@@ -1,15 +1,6 @@
 <template>
-  <div class="about">
+  <div class="grid grid-cols-1 p-10">
     <h1>This is an EIP-7823 page</h1>
   </div>
 </template>
 
-<style>
-@media (min-width: 1024px) {
-  .about {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-  }
-}
-</style>
