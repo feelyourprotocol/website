@@ -5,21 +5,19 @@ import HelloWorld from './components/HelloWorld.vue'
 
 <template>
   <header>
-    <div class="grid grid-cols-2">
-      <h1 class="font-mono">feelyourprotocol.org</h1>
-      <nav class="font-mono">
-        <RouterLink to="/" class="m-5">Home</RouterLink>
-        <RouterLink to="/eip-7823-modexp-upper-bounds" class="m5">EIP-7823</RouterLink>
-        <RouterLink to="/fusaka" class="m-5">Fusaka</RouterLink>
+    <div class="grid grid-cols-2 pt-2 pb-2 mb-5 border-b-2 border-blue-300">
+      <h1 class="font-mono text-lg">feelyourprotocol.org</h1>
+      <nav class="font-mono text-right">
+        <RouterLink to="/" class="ml-5">Home</RouterLink>
+        <RouterLink to="/eip-7823-modexp-upper-bounds" class="ml-5">EIP-7823</RouterLink>
+        <RouterLink to="/fusaka" class="ml-5">Fusaka</RouterLink>
       </nav>
     </div>
   </header>
 
-  <RouterView class="grid grid-cols-1"/>
+  <RouterView class="grid grid-cols-1" />
 
   <HelloWorld msg="Made with ❤️ and pure dedication" />
-
 </template>
 
-<style scoped>
-</style>
+<style scoped></style>

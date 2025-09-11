@@ -3,4 +3,3 @@
     <h1>This is an EIP-7823 page</h1>
   </div>
 </template>
-

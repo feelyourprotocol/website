@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import WelcomeItem from './WelcomeItem.vue'
-
 </script>
 
 <template>
@@ -9,5 +8,4 @@ import WelcomeItem from './WelcomeItem.vue'
 
     Here you will find an intro page.
   </WelcomeItem>
-
 </template>
