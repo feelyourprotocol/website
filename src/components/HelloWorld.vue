@@ -5,7 +5,7 @@ defineProps<{
 </script>
 
 <template>
-  <div class="grid grid-cols-2 pt-2 border-t-2 border-blue-300">
+  <div class="grid grid-cols-2 pt-2 border-t-2 border-blue-300 mt-10">
     <h1 class="font-mono text-xs">{{ msg }}</h1>
 
     <h3 class="font-mono text-xs text-right">
