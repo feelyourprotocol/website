@@ -5,15 +5,18 @@ import HelloWorld from './components/HelloWorld.vue'
 
 <template>
   <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
+    <div>
+      <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
+    </div>
 
     <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-
+      <h1>feelyourprotocol.org</h1>
       <nav>
         <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
+        <RouterLink to="/eip-7823-modexp-upper-bounds">EIP-7823</RouterLink>
       </nav>
+
+      <HelloWorld msg="You did it!" />
     </div>
   </header>
 
