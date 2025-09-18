@@ -1,3 +1,7 @@
+<script setup lang="ts">
+import EIP7823EVM from '@/components/EIP7823EVM.vue'
+</script>
+
 <template>
   <div class="bg-blue-300 bg-clip-border p-5 rounded-xl">
 
@@ -7,5 +11,9 @@
     </div>
 
     <p class="text-blue-900 font-mono text-xs">The modexp precompile provides upper bounds for the input values.</p>
+
+    <p>
+      <EIP7823EVM />
+    </p>
   </div>
 </template>
