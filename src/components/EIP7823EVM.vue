@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { Common, Hardfork, Mainnet } from '@ethereumjs/common'
 import { createEVM, getActivePrecompiles } from '@ethereumjs/evm'
-import { bytesToHex, hexToBigInt, hexToBytes } from '@ethereumjs/util'
+import { bigIntToBytes, bigIntToHex, bytesToHex, hexToBigInt, hexToBytes } from '@ethereumjs/util'
 import { ref, type Ref } from 'vue'
 import { isValidByteInputForm, preformatByteInputForm } from './lib/inputUtils'
 
@@ -37,13 +37,16 @@ const modexp = getActivePrecompiles(common).get('0000000000000000000000000000000
  * Run the precompile
  */
 async function run() {
+  console.log(data.value)
   const callData = {
     data: hexToBytes(`0x${data.value}`),
     gasLimit,
     common,
     _EVM: evm,
   }
+  console.log(callData)
   const res = await modexp(callData)
+  console.log(res)
   gas.value = res.executionGasUsed
   result.value = bytesToHex(res.returnValue)
 }
@@ -84,10 +87,25 @@ async function onByteInputFormChange() {
 
 function valueToByteInput() {
   const p = (value: bigint, length: number) => {
-    return value.toString().padStart(length, '0')
+    return bigIntToHex(value).substring(2).padStart(length, '0')
   }
+
+  console.log(bigIntToBytes(valB.value))
+  console.log(bigIntToBytes(valB.value).byteLength)
+  lenB.value = BigInt(bigIntToBytes(valB.value).byteLength)
+  const lenBStr = p(lenB.value, 32 * 2)
   const valBStr = p(valB.value, Number(lenB.value) * 2)
-  console.log(valBStr)
+
+  lenE.value = BigInt(bigIntToBytes(valE.value).byteLength)
+  const lenEStr = p(lenE.value, 32 * 2)
+  const valEStr = p(valE.value, Number(lenE.value) * 2)
+
+  lenM.value = BigInt(bigIntToBytes(valM.value).byteLength)
+  const lenMStr = p(lenM.value, 32 * 2)
+  const valMStr = p(valM.value, Number(lenM.value) * 2)
+
+  data.value = lenBStr + lenEStr + lenMStr + valBStr + valEStr + valMStr
+
   return true
 }
 
