@@ -1,16 +1,14 @@
 <script setup lang="ts">
 import { Common, Hardfork, Mainnet } from '@ethereumjs/common'
 import { createEVM, getActivePrecompiles } from '@ethereumjs/evm'
-import { bigIntToBytes, bigIntToHex, bytesToHex, hexToBigInt, hexToBytes } from '@ethereumjs/util'
+import { bytesToHex, hexToBytes } from '@ethereumjs/util'
 import { ref, type Ref } from 'vue'
-import { isValidByteInputForm, preformatByteInputForm } from './lib/inputUtils'
+import { byteToValueInput, isValidByteInputForm, preformatByteInputForm, toHex, toVal, valueToByteInput } from './lib/byteFormUtils'
 import PrecompileValueInput from './precompiles/PrecompileValueInput.vue'
 
 
-const validByteInputForm: Ref<boolean> = ref(true)
-
 const vals: Ref<bigint[]> = ref([1n, 1n, 1n, 2n, 2n, 2n])
-const lengthMask: Ref<(bigint | undefined)[]> = ref([32n, 32n, 32n, undefined, undefined])
+const lengthsMask: Ref<(bigint | undefined)[]> = ref([32n, 32n, 32n, undefined, undefined])
 
 const byteLengths: Ref<bigint[]> = ref([])
 const hexStrings: Ref<string[]> = ref([])
@@ -43,71 +41,32 @@ async function run() {
   result.value = bytesToHex(res.returnValue)
 }
 
-function byteToValueInput() {
+async function onByteInputFormChange() {
   data.value = preformatByteInputForm(data.value)
-  validByteInputForm.value = isValidByteInputForm(data.value)
-  if (!validByteInputForm.value) {
+  if (!isValidByteInputForm(data.value)) {
     return false
   }
 
-  const from = (start: number, end: number) => {
-    return hexToBigInt(`0x${data.value.substring(start, end)}`)
-  }
+  byteLengths.value[3] = toVal(data, 0, 32 * 2)
+  byteLengths.value[4] = toVal(data, 64, 64 + 32 * 2)
+  byteLengths.value[5] = toVal(data, 128, 128 + 32 * 2)
 
-  byteLengths.value[3] = from(0, 32 * 2)
-  byteLengths.value[4] = from(64, 64 + 32 * 2)
-  byteLengths.value[5] = from(128, 128 + 32 * 2)
-
-  let start = 0
-  for (let i=0; i < vals.value.length; i++) {
-    const end = start + Number(byteLengths.value[i]) * 2
-    hexStrings.value[i] = data.value.substring(start, end)
-    vals.value[i] = from(start, end)
-    start = end
-  }
-  return true
+  byteToValueInput(data, vals, byteLengths, hexStrings)
+  await run()
 }
-
-async function onByteInputFormChange() {
-  const success = byteToValueInput()
-  if (success) {
-    await run()
-  }
-}
-
-function valueToByteInput() {
-  const p = (value: bigint, length: number) => {
-    return bigIntToHex(value).substring(2).padStart(length, '0')
-  }
-
-  for (let i=0; i < vals.value.length; i++) {
-    if (lengthMask.value[i] === undefined) {
-      byteLengths.value[i] = BigInt(bigIntToBytes(vals.value[i]).byteLength)
-    } else {
-      byteLengths.value[i] = lengthMask.value[i]!
-    }
-    hexStrings.value[i] = p(vals.value[i], Number(byteLengths.value[i]) * 2)
-  }
-
-  data.value = p(byteLengths.value[3], 32 * 2) + 
-    p(byteLengths.value[4], 32 * 2) +
-    p(byteLengths.value[5], 32 * 2) +
-    hexStrings.value[3] + hexStrings.value[4] + hexStrings.value[5]
-
-  return true
-}
-
-
 
 async function onValueInputFormChange() {
-  const success = valueToByteInput()
-  if (success) {
-    await run()
-  }
+  valueToByteInput(vals, lengthsMask, byteLengths, hexStrings)
+
+  data.value = toHex(byteLengths.value[3], 32 * 2) + 
+    toHex(byteLengths.value[4], 32 * 2) +
+    toHex(byteLengths.value[5], 32 * 2) +
+    hexStrings.value[3] + hexStrings.value[4] + hexStrings.value[5]
+
+  await run()
 }
 
-valueToByteInput()
-await run()
+await onValueInputFormChange()
 
 </script>
 
