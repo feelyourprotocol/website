@@ -1,6 +1,7 @@
 # feelyourprotocol.org
 
-This template should help get you started developing with Vue 3 in Vite.
+Ethereum protocol experiences.
+
 
 ## Recommended IDE Setup
 
@@ -59,3 +60,8 @@ npm run test:e2e
 ```sh
 npm run lint
 ```
+
+## Other Libraries used
+
+- [Tailwind](https://tailwindcss.com/) for CSS
+- [Heroicons](https://heroicons.com/) for basic icons (`@heroicons/vue`)

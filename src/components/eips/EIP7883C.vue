@@ -10,8 +10,8 @@ import {
   toHex,
   toVal,
   valueToByteInput,
-} from './lib/byteFormUtils'
-import PrecompileValueInput from './precompiles/PrecompileValueInput.vue'
+} from '../lib/byteFormUtils'
+import PrecompileValueInput from '../precompiles/PrecompileValueInput.vue'
 
 const vals: Ref<bigint[]> = ref([1n, 1n, 1n, 2n, 2n, 2n])
 const lengthsMask: Ref<(bigint | undefined)[]> = ref([32n, 32n, 32n, undefined, undefined])

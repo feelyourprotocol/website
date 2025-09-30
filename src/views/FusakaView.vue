@@ -1,6 +1,8 @@
 <script setup lang="ts">
-import EIP7823View from './EIP7883View.vue'
 import { ArrowTopRightOnSquareIcon } from '@heroicons/vue/24/solid'
+import EIP7883C from '@/components/eips/EIP7883C.vue'
+import PrecompileC from '@/components/precompiles/PrecompileC.vue'
+import { EIP7883 } from './lib/eips'
 </script>
 
 <template>
@@ -19,7 +21,15 @@ import { ArrowTopRightOnSquareIcon } from '@heroicons/vue/24/solid'
     </div>
 
     <div class="grid grid-cols-2">
-      <EIP7823View />
+      <PrecompileC
+        :title="EIP7883['title']"
+        :eip="EIP7883['num']"
+        :descriptionHTML="EIP7883['descriptionHTML']"
+      >
+        <suspense>
+          <EIP7883C />
+        </suspense>
+      </PrecompileC>
     </div>
   </main>
 </template>
