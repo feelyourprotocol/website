@@ -10,12 +10,12 @@ const router = createRouter({
       component: HomeView,
     },
     {
-      path: '/eip-7823-modexp-upper-bounds',
+      path: '/eip-7883-modexp-gas-cost-increase',
       name: 'about',
       // route level code-splitting
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      component: () => import('../views/EIP7823View.vue'),
+      component: () => import('../views/EIP7883View.vue'),
     },
     {
       path: '/fusaka',

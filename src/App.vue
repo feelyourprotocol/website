@@ -1,6 +1,22 @@
 <script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router'
+import { RouterLink, RouterView, useRoute, useRouter } from 'vue-router'
 import SiteFooter from './components/SiteFooter.vue'
+import { ref, watch, type Ref } from 'vue'
+
+const router = useRouter()
+const route = useRoute()
+const selectedRoute: Ref<string> = ref(route.path.includes('eip-') ? route.path : '')
+
+watch(
+  () => route.path,
+  (newPath) => {
+    selectedRoute.value = newPath.includes('eip-') ? newPath : ''
+  },
+)
+
+const navigate = () => {
+  router.push(selectedRoute.value)
+}
 </script>
 
 <template>
@@ -10,7 +26,11 @@ import SiteFooter from './components/SiteFooter.vue'
         <RouterLink to="/">feelyourprotocol.org</RouterLink>
       </h1>
       <nav class="font-mono text-right">
-        <RouterLink to="/eip-7823-modexp-upper-bounds" class="ml-5">EIP-7823</RouterLink>
+        <select v-model="selectedRoute" @change="navigate">
+          <option disabled value="">All EIPs</option>
+          <option value="/eip-7883-modexp-gas-cost-increase">EIP-7883</option>
+        </select>
+
         <RouterLink to="/fusaka" class="ml-5">Fusaka</RouterLink>
       </nav>
     </div>

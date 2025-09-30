@@ -1,7 +1,7 @@
 describe('EIP-7823 Component Tests', () => {
   it('checks if the precompile component works', () => {
     cy.visit('/')
-    cy.contains('EIP-7823').click()
+    cy.contains('Fusaka').click()
 
     const bytesExpected =
       '0000000000000000000000000000000000000000000000000000000000000001' +

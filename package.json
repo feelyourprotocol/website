@@ -25,6 +25,7 @@
     "@ethereumjs/common": "^10.0.0",
     "@ethereumjs/evm": "^10.0.0",
     "@ethereumjs/util": "^10.0.0",
+    "@heroicons/vue": "^2.2.0",
     "@tailwindcss/vite": "^4.1.13",
     "tailwindcss": "^4.1.13",
     "vue": "^3.5.18",
