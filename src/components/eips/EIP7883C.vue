@@ -83,6 +83,7 @@ const modexp = getActivePrecompiles(common).get('0000000000000000000000000000000
  * Run the precompile
  */
 async function run() {
+  console.log(`0x${data.value}`)
   const callData = {
     data: hexToBytes(`0x${data.value}`),
     gasLimit,
@@ -90,6 +91,7 @@ async function run() {
     _EVM: evm,
   }
   const res = await modexp(callData)
+  console.log(res)
   gas.value = res.executionGasUsed
   result.value = bytesToHex(res.returnValue)
 }
@@ -157,7 +159,11 @@ await init()
   >
     <div>
       <p class="text-right">
-        <select v-model="example" @change="selectExample">
+        <select
+          v-model="example"
+          class="text-blue-900 text-xs border-1 pl-1 pr-1 pt-0.5 pb-0.5 rounded-sm"
+          @change="selectExample"
+        >
           <option disabled selected value="">Examples</option>
           <option value="rsa-random">RSA Random</option>
         </select>
@@ -168,7 +174,7 @@ await init()
           @input="onByteInputFormChange"
           rows="6"
           v-model="data"
-          class="block w-full mb-3 font-mono text-sm text-slate-600 bg-gray-50 border border-blue-400 p-1"
+          class="block w-full mt-1.5 mb-2 font-mono text-xs rounded-sm text-slate-600 bg-blue-50 p-1"
         ></textarea>
       </p>
 
@@ -176,7 +182,7 @@ await init()
         <input
           @input="onValueInputFormChange"
           v-model.number="vals[3]"
-          class="text-right font-mono text-lg text-slate-600 bg-gray-50 border border-gray-300 p-1"
+          class="text-right font-mono text-xs col-span-5 bg-blue-50 text-slate-600 rounded-xs p-0.5"
         />
       </PrecompileValueInput>
 
@@ -184,7 +190,7 @@ await init()
         <input
           @input="onValueInputFormChange"
           v-model.number="vals[4]"
-          class="text-right font-mono text-lg text-slate-600 bg-gray-50 border border-gray-300 p-1"
+          class="text-right font-mono text-xs col-span-5 bg-blue-50 text-slate-600 rounded-xs p-0.5"
         />
       </PrecompileValueInput>
 
@@ -192,11 +198,26 @@ await init()
         <input
           @input="onValueInputFormChange"
           v-model.number="vals[5]"
-          class="text-right font-mono text-lg text-slate-600 bg-gray-50 border border-gray-300 p-1"
+          class="text-right font-mono text-xs col-span-5 bg-blue-50 text-slate-600 rounded-xs p-0.5"
         />
       </PrecompileValueInput>
 
-      <p class="mt-5">Gas: {{ gas }} | Result: {{ result }}</p>
+      <div class="grid grid-cols-2 gap-1 mt-2.5">
+        <div class="bg-blue-900 rounded-sm p-2.5 text-left">
+          <span class="text-xs bg-white p-1 text-blue-900 rounded-xs">Pre-Osaka</span>
+          <p class="text-2xl font-bold text-white mt-2.5">{{ gas }} Gas</p>
+          <p class="text-xs font-bold font-mono text-white mt-1 break-words w-full overflow-hidden">
+            Result: {{ result }}
+          </p>
+        </div>
+        <div class="bg-blue-900 rounded-sm p-2.5 text-right">
+          <span class="text-xs w-fit bg-white p-1 text-blue-900 rounded-xs">Post-Osaka</span>
+          <p class="text-2xl font-bold text-white mt-2.5">200 Gas</p>
+          <p class="text-xs font-bold font-mono text-white mt-1 break-words w-full overflow-hidden">
+            Result: 0x00
+          </p>
+        </div>
+      </div>
     </div>
   </PrecompileC>
 </template>

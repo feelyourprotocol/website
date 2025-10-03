@@ -54,6 +54,10 @@ export const valueToByteInput = (
   byteLengths: Ref<bigint[], bigint[]>,
   hexStrings: Ref<string[], string[]>,
 ) => {
+  console.log(vals.value)
+  console.log(lengthsMask.value)
+  console.log(byteLengths.value)
+  console.log(hexStrings.value)
   for (let i = 0; i < vals.value.length; i++) {
     if (lengthsMask.value[i] === undefined) {
       byteLengths.value[i] = BigInt(bigIntToBytes(vals.value[i]).byteLength)
