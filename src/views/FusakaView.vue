@@ -5,7 +5,7 @@ import EIP7883C from '@/components/eips/EIP7883C.vue'
 
 <template>
   <main>
-    <div class="grid grid-cols-1">
+    <div class="grid grid-cols-1 mb-3">
       <p class="text-right text-4xl">
         <a
           href="https://forkcast.org/upgrade/fusaka"
@@ -18,7 +18,7 @@ import EIP7883C from '@/components/eips/EIP7883C.vue'
       </p>
     </div>
 
-    <div class="grid grid-cols-2">
+    <div class="grid md:grid-cols-2">
       <suspense>
         <EIP7883C />
       </suspense>
