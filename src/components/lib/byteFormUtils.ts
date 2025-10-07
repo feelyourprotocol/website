@@ -1,4 +1,4 @@
-import { bigIntToBytes, bigIntToHex, hexToBigInt, isHexString } from '@ethereumjs/util'
+import { bigIntToHex, hexToBigInt, hexToBytes, isHexString } from '@ethereumjs/util'
 import type { Ref } from 'vue'
 
 /**
@@ -25,7 +25,7 @@ export const preformatByteInputForm = (str: string) => {
   return str
 }
 
-export const toVal = (data: Ref<string, string>, start: number, end: number) => {
+export const toBigInt = (data: Ref<string, string>, start: number, end: number) => {
   return hexToBigInt(`0x${data.value.substring(start, end)}`)
 }
 
@@ -33,37 +33,44 @@ export const toHex = (value: bigint, length: number) => {
   return bigIntToHex(value).substring(2).padStart(length, '0')
 }
 
-export const byteToValueInput = (
+export const dataToValueInput = (
   data: Ref<string, string>,
-  vals: Ref<bigint[], bigint[]>,
+  hexVals: Ref<string[], string[]>,
+  bigIntVals: Ref<bigint[], bigint[]>,
   byteLengths: Ref<bigint[], bigint[]>,
-  hexStrings: Ref<string[], string[]>,
 ) => {
   let start = 0
-  for (let i = 0; i < vals.value.length; i++) {
+  for (let i = 0; i < hexVals.value.length; i++) {
     const end = start + Number(byteLengths.value[i]) * 2
-    hexStrings.value[i] = data.value.substring(start, end)
-    vals.value[i] = toVal(data, start, end)
+    hexVals.value[i] = data.value.substring(start, end)
+    bigIntVals.value[i] = toBigInt(data, start, end)
     start = end
   }
 }
 
-export const valueToByteInput = (
-  vals: Ref<bigint[], bigint[]>,
+export const valueToDataInput = (
+  hexVals: Ref<string[], string[]>,
+  bigIntVals: Ref<bigint[], bigint[]>,
   lengthsMask: Ref<(bigint | undefined)[], (bigint | undefined)[]>,
   byteLengths: Ref<bigint[], bigint[]>,
-  hexStrings: Ref<string[], string[]>,
 ) => {
-  console.log(vals.value)
-  console.log(lengthsMask.value)
-  console.log(byteLengths.value)
-  console.log(hexStrings.value)
-  for (let i = 0; i < vals.value.length; i++) {
+  for (let i = 0; i < hexVals.value.length; i++) {
     if (lengthsMask.value[i] === undefined) {
-      byteLengths.value[i] = BigInt(bigIntToBytes(vals.value[i]).byteLength)
+      byteLengths.value[i] = BigInt(hexToBytes(`0x${hexVals.value[i]}`).byteLength)
     } else {
       byteLengths.value[i] = lengthsMask.value[i]!
     }
-    hexStrings.value[i] = toHex(vals.value[i], Number(byteLengths.value[i]) * 2)
+    bigIntVals.value[i] = hexToBigInt(`0x${hexVals.value[i]}`)
   }
+}
+
+/**
+ * Only use up to 99
+ */
+export const countUpwardsHexStr = (num: number) => {
+  let str = ''
+  for (let i = 1; i <= num; i++) {
+    str += i.toString().substring(0, 2).padStart(2, '0')
+  }
+  return str
 }

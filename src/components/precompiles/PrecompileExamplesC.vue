@@ -2,7 +2,7 @@
 interface Examples {
   [key: string]: {
     title: string
-    values: bigint[]
+    values: string[]
   }
 }
 

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const val = defineModel()
 
-defineProps(['title', 'input', 'len', 'hex'])
+defineProps(['title', 'input', 'len', 'bigIntVal'])
 </script>
 
 <template>
@@ -12,13 +12,13 @@ defineProps(['title', 'input', 'len', 'hex'])
       <p class="font-bold text-xl col-span-1 text-blue-900">{{ title }}</p>
       <input
         @input="input"
-        v-model.number="val"
+        v-model="val"
         class="text-right font-mono text-xs col-span-5 bg-blue-50 text-slate-600 rounded-xs p-0.5"
       />
 
       <p class="col-span-1 text-xs">{{ len }} Bytes</p>
       <p class="text-right font-mono col-span-5 text-xs mt-0.5 break-words w-full overflow-hidden">
-        {{ hex }}
+        {{ bigIntVal }}
       </p>
     </div>
   </div>

@@ -17,14 +17,14 @@ defineProps(['title', 'eip', 'descriptionHTML', 'shareURL'])
         </span>
         <span class="mr-1">
           <a
-            href="https://eips.ethereum.org/EIPS/eip-{{  eip }}"
+            :href="'https://eips.ethereum.org/EIPS/eip-' + eip"
             target="_blank"
             class="relative group"
           >
             <ButtonC :icon="ArrowTopRightOnSquareIcon" tooltip="Visit EIP Specification" />
           </a>
         </span>
-        <h3 class="font-mono text-right text-xl inline text-blue-900">EIP-{{ eip }}</h3>
+        <h3 class="font-mono text-right text-xl inline text-blue-900 ml-2">EIP-{{ eip }}</h3>
       </div>
     </div>
 
