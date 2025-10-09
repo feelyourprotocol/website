@@ -24,7 +24,9 @@ const navigate = () => {
   <header>
     <div class="grid grid-cols-2 pt-2 pb-2 mb-5">
       <h1 class="font-mono text-lg">
-        <RouterLink to="/">feelyourprotocol.org</RouterLink>
+        <RouterLink to="/">
+          <span style="font-family:'ItalianoRegular', Times, serif;" class="text-6xl">feelyourprotocol</span> .org
+        </RouterLink>
       </h1>
       <nav class="font-mono text-sm text-right flex justify-end items-center">
         <RouterLink to="/precompiles" class="ml-5">Precompiles</RouterLink>
@@ -47,7 +49,7 @@ const navigate = () => {
 
   <RouterView class="grid grid-cols-1" />
 
-  <SiteFooter msg="Made with ❤️ and pure dedication" />
+  <SiteFooter />
 </template>
 
 <style scoped></style>

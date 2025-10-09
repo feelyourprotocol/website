@@ -1,1 +1,9 @@
 @import 'tailwindcss';
+
+@font-face {
+  font-family: 'ItalianoRegular';
+  src: url('./fonts/italianno/Italianno-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: italic;
+  font-display: swap;
+}

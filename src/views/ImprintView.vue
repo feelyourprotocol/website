@@ -1,0 +1,97 @@
+<script setup lang="ts">
+</script>
+
+<template>
+  <main>
+    <div class="grid grid-cols-1 mb-3">
+      <p class="text-right text-3xl">
+        <span class="ml-3">IMPRINT</span>
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-4">
+      <div class=" bg-blue-300 bg-clip-border p-6 rounded-xl font-mono text-xs">
+        <h3 class="font-bold text-lg text-blue-900">
+          CONTRIBUTIONS 👾 
+        </h3>
+
+         <p class="mt-2">
+          Questions? Ideas? Suggestions?<br>
+          Reach out!
+         </p>
+         <p class="mt-5">
+          This website is open for contributions on GitHub.
+         </p>
+
+        <h3 class="font-bold text-lg text-blue-900 mt-8">ACKNOWLEDGEMENTS ❤️</h3>
+          
+        <p class="mt-2">
+          This site uses the following libraries & tools:
+        </p>
+
+        <h4 class="font-bold text-sm text-blue-900 mt-5">
+          Ethereum
+        </h4>
+        <ul class="mt-2">
+          <li class="m-1">
+            <a href="https://github.com/ethereumjs/ethereumjs-monorepo" target="_blank" rel="noopener">EthereumJS</a>
+          </li>
+          <li class="m-1">
+            <a href="https://paulmillr.com/noble/" target="_blank" rel="noopener">Noble Crypto</a>
+          </li>
+        </ul>
+
+        <h4 class="font-bold text-sm text-blue-900 mt-5">
+          Tooling
+        </h4>
+        <ul class="mt-2">
+          <li class="m-1">
+            <a href="https://vuejs.org/" target="_blank" rel="noopener">Vue.js (+ Vitest/Cypress/ESlint)</a>
+          </li>
+          <li class="m-1">
+            <a href="https://tailwindcss.com/" target="_blank" rel="noopener">Tailwind</a>
+          </li>
+        </ul>
+
+        <h4 class="font-bold text-sm text-blue-900 mt-5">
+          Design
+        </h4>
+        <ul class="mt-2">
+          <li class="m-1">
+            <a href="https://www.midjourney.com" target="_blank" rel="noopener">Midjourney (dancers)</a>
+          </li>
+          <li class="m-1">
+            <a href="https://www.1001fonts.com/users/typesetit/" target="_blank" rel="noopener">Italiano font by TypeSETit</a>
+          </li>
+        </ul>
+        
+      </div>
+
+      <div class="border-blue-300 border-2 bg-clip-border p-6 rounded-xl text-xs font-mono">
+
+        <h3 class="font-bold text-lg text-blue-900">CONTACT 👋</h3>
+        
+        <p class="mt-5">
+          Holger Drewes
+        </p>
+        <p class="mt-2">
+          Gutenberg Digital Hub coworking<br>
+          Taunusstr. 59-61<br>
+          55118 Mainz
+        </p>
+        <p class="mt-4">
+          Contact: Holger.Drewes with Gmail, Twitter or GitHub
+        </p>
+
+        <div class="mt-10">
+          <h3 class="font-bold text-lg text-blue-900">DATA 🐠</h3>
+
+          <p class="mt-3">
+            This website is a personal/developer project and does not collect any personal data, use cookies, or employ analytics.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </main>
+</template>

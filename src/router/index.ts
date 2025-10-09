@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
+import ImprintView from '@/views/ImprintView.vue'
 import { EIPs, HARDFORKS, TOPICS } from '@/views/structure'
 
 function loadRoutes() {
@@ -8,6 +9,11 @@ function loadRoutes() {
       path: '/',
       name: 'home',
       component: HomeView,
+    },
+    {
+      path: '/imprint',
+      name: 'imprint',
+      component: ImprintView,
     },
   ]
 
