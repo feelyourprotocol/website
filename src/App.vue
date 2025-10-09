@@ -22,7 +22,7 @@ const navigate = () => {
 
 <template>
   <header>
-    <div class="grid grid-cols-2 pt-2 pb-2 mb-5 border-b-2 border-blue-300">
+    <div class="grid grid-cols-2 pt-2 pb-2 mb-5">
       <h1 class="font-mono text-lg">
         <RouterLink to="/">feelyourprotocol.org</RouterLink>
       </h1>

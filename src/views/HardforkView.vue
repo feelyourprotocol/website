@@ -19,7 +19,7 @@ const hardfork: Hardfork = HARDFORKS[route.name]
       </p>
     </div>
 
-    <div class="grid md:grid-cols-2">
+    <div class="grid md:grid-cols-2 gap-4">
       <slot></slot>
     </div>
   </main>
