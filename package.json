@@ -22,9 +22,9 @@
     "format": "prettier --write src/ cypress/e2e/"
   },
   "dependencies": {
-    "@ethereumjs/common": "./ext/ethereumjs-common-10.0.0.tgz",
-    "@ethereumjs/evm": "./ext/ethereumjs-evm-10.0.0.tgz",
-    "@ethereumjs/util": "^10.0.0",
+    "@ethereumjs/common": "^10.1.0",
+    "@ethereumjs/evm": "^10.1.0",
+    "@ethereumjs/util": "^10.1.0",
     "@heroicons/vue": "^2.2.0",
     "@tailwindcss/vite": "^4.1.13",
     "tailwindcss": "^4.1.13",

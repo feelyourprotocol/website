@@ -18,6 +18,12 @@ export const isValidByteInputForm = (str: string) => {
   return validHex && evenLength
 }
 
+/**
+ * Remove the 0x-prefix if present.
+ *
+ * @param str - The input string
+ * @returns The formatted string
+ */
 export const preformatByteInputForm = (str: string) => {
   if (str.substring(0, 2) === '0x') {
     str = str.substring(2)
@@ -33,6 +39,15 @@ export const toHex = (value: bigint, length: number) => {
   return bigIntToHex(value).substring(2).padStart(length, '0')
 }
 
+/**
+ * Derive the individual values from the combined data
+ * being flexible on the number of values.
+ *
+ * @param data - The combined data as the "source of truth"
+ * @param hexVals - The individual hex values
+ * @param bigIntVals - The individual bigInt values
+ * @param byteLengths - The individual byte lengths
+ */
 export const dataToValueInput = (
   data: Ref<string, string>,
   hexVals: Ref<string[], string[]>,
@@ -48,6 +63,15 @@ export const dataToValueInput = (
   }
 }
 
+/**
+ * Derive the combined data from the individual values
+ * being flexible on the number of values.
+ *
+ * @param hexVals - The individual hex values
+ * @param bigIntVals - The individual bigInt values
+ * @param lengthsMask - The lengths mask defining certain fixed byte lengths
+ * @param byteLengths - Calculated or taken from the lengths mask
+ */
 export const valueToDataInput = (
   hexVals: Ref<string[], string[]>,
   bigIntVals: Ref<bigint[], bigint[]>,

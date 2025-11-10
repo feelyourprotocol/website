@@ -2,6 +2,14 @@ export const EIPs: EIPs = {
   'eip-7883': {
     num: 7883,
     path: '/eip-7883-modexp-gas-cost-increase',
+    title: 'ModExp Gas Cost Increase',
+    hardforkId: 'fusaka',
+    topicId: 'precompiles',
+  },
+  'eip-7951': {
+    num: 7951,
+    path: '/eip-7951-secp256r1-precompile',
+    title: 'secp256r1 Precompile',
     hardforkId: 'fusaka',
     topicId: 'precompiles',
   },
@@ -29,6 +37,7 @@ export const TOPICS: Topics = {
 export interface EIP {
   num: number
   path: string
+  title: string
   hardforkId: string
   topicId: string
 }

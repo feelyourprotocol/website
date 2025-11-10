@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useRoute } from 'vue-router'
-import { EIPs, type EIP, HARDFORKS, TOPICS } from './structure'
+import { EIPs, type EIP, HARDFORKS, TOPICS } from './lib/structure'
 
 const route = useRoute()
 // @ts-expect-error route.name doesn't seem to be properly typed

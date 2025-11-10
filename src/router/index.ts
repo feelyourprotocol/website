@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import { EIPs, HARDFORKS, TOPICS } from '@/views/structure'
+import { EIPs, HARDFORKS, TOPICS } from '@/views/lib/structure'
 
 function loadRoutes() {
   // Use Vite's glob imports so production builds can resolve lazy routes

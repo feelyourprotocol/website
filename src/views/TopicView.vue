@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useRoute } from 'vue-router'
-import { TOPICS, type Topic } from './structure'
+import { TOPICS, type Topic } from './lib/structure'
 
 const route = useRoute()
 // @ts-expect-error route.name doesn't seem to be properly typed

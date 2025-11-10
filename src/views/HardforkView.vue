@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ArrowTopRightOnSquareIcon } from '@heroicons/vue/24/solid'
 import { useRoute } from 'vue-router'
-import { HARDFORKS, type Hardfork } from './structure'
+import { HARDFORKS, type Hardfork } from './lib/structure'
 
 const route = useRoute()
 // @ts-expect-error route.name doesn't seem to be properly typed

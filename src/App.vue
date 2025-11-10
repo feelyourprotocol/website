@@ -2,7 +2,7 @@
 import { RouterLink, RouterView, useRoute, useRouter } from 'vue-router'
 import SiteFooter from './components/SiteFooter.vue'
 import { ref, watch, type Ref } from 'vue'
-import { EIPs } from './views/structure'
+import { EIPs } from './views/lib/structure'
 
 const router = useRouter()
 const route = useRoute()

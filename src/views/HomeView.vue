@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import DancerView from './DancerView.vue'
-import { EIPs } from './structure.js'
+import { EIPs } from './lib/structure.js'
+
+const latest = ['eip-7951', 'eip-7883']
 </script>
 
 <template>
@@ -42,9 +44,9 @@ import { EIPs } from './structure.js'
         <div class="border-0 border-blue-200 rounded-xl p-5">
           <span class="text-lg rounded-lg border-1 p-1.5"> Latest </span>
           <ul id="latest-navi" class="text-xl text-blue-900 p-1.5 mt-3">
-            <li>
-              <RouterLink :to="EIPs['eip-7883'].path">
-                EIP-7823: ModExp Gas Cost Increase
+            <li v-for="eipId in latest" :key="eipId" class="mb-1">
+              <RouterLink :to="EIPs[eipId].path">
+                EIP-{{ EIPs[eipId].num }}: {{ EIPs[eipId].title }}
               </RouterLink>
             </li>
           </ul>
