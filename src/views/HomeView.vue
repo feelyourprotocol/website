@@ -2,7 +2,7 @@
 import DancerView from './DancerView.vue'
 import { EIPs } from './lib/structure.js'
 
-const latest = ['eip-7594', 'eip-7951']
+const latest = ['eip-7883', 'eip-7594', 'eip-7951']
 </script>
 
 <template>

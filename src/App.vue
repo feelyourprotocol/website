@@ -22,10 +22,10 @@ const navigate = () => {
 
 <template>
   <header>
-    <div class="grid md:grid-cols-2 pt-2 pb-2 mb-5">
-      <h1 class="font-mono text-lg">
+    <div class="grid grid-cols-2 pt-2 pb-2 mb-5">
+      <h1 class="font-mono text-sm md:text-lg ml-4">
         <RouterLink to="/">
-          <span style="font-family: 'ItalianoRegular', Times, serif" class="text-6xl"
+          <span style="font-family: 'ItalianoRegular', Times, serif" class="text-4xl md:text-6xl"
             >feelyourprotocol</span
           >
           .org
@@ -37,7 +37,7 @@ const navigate = () => {
         <select
           v-model="selectedRoute"
           @change="navigate"
-          class="text-xs ml-7 border-1 pl-1 pr-1 pt-0.5 pb-0.5 rounded-sm"
+          class="text-xs ml-6 border-1 pl-1 pr-1 pt-0.5 pb-0.5 rounded-sm"
           id="eip-navi"
         >
           <option disabled value="">All EIPs</option>
