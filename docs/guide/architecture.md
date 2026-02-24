@@ -1,0 +1,43 @@
+# Architecture
+
+::: warning 🚧 Under Active Development
+Both the Feel Your Protocol project and this documentation are in an early stage and under active development. Things may change frequently.
+:::
+
+## Overview
+
+Feel Your Protocol is a Vue 3 application built with Vite. The core idea is simple: each Ethereum EIP gets its own route and interactive component that runs real library code in the browser.
+
+## Tech Stack
+
+- **Vue 3** with Composition API and `<script setup>`
+- **Vite** for development and production builds
+- **Tailwind CSS v4** for styling
+- **Vue Router** with route-level code splitting
+- **VitePress** for documentation
+- **Cypress** for E2E testing
+- **Vitest** for unit testing
+
+## Key Design Decisions
+
+### One Component per EIP
+
+Each EIP has:
+- A **view** file (`src/views/eips/EIP{num}View.vue`) — thin wrapper that provides layout
+- A **component** file (`src/components/eips/EIP{num}C.vue`) — the actual interactive widget
+
+Only the component file imports EIP-specific library code. This ensures that Vite's code splitting keeps each EIP's dependencies in its own chunk — users only download the libraries needed for the page they visit.
+
+### Route-Level Code Splitting
+
+The router uses `import.meta.glob()` for lazy loading:
+
+```typescript
+const eipViews = import.meta.glob('../views/eips/*View.vue')
+```
+
+This means each route is a separate chunk that's loaded on demand.
+
+### Library Forks
+
+Some EIP widgets require custom forks of Ethereum libraries (see [Library Forks](./library-forks.md)). The architecture ensures that different forks of the same library can coexist without conflicts, each isolated to its specific EIP route.
