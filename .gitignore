@@ -13,6 +13,9 @@ dist-ssr
 coverage
 *.local
 
+# VitePress cache
+docs/.vitepress/cache
+
 /cypress/videos/
 /cypress/screenshots/
 
