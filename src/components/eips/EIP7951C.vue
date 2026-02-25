@@ -34,16 +34,7 @@ const example: Ref<string> = ref('')
 const execResultPre: Ref<ExecResult | undefined> = ref()
 const execResultPost: Ref<ExecResult | undefined> = ref()
 
-const poweredBy = ref([
-  {
-    name: 'Noble Curves',
-    href: 'https://github.com/paulmillr/noble-curves',
-  },
-  {
-    name: 'EthereumJS',
-    href: 'https://github.com/ethereumjs/ethereumjs-monorepo',
-  },
-])
+const poweredBy = eip.poweredBy ?? []
 
 const router = useRouter()
 const route = useRoute()

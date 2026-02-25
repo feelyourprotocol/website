@@ -18,6 +18,11 @@ export const EIPs: EIPs = {
       'using Noble <a href="https://github.com/paulmillr/micro-eth-signer?tab=readme-ov-file#kzg--peerdas" target="_blank">micro-eth-signer</a>) ' +
       'match with your local values or values from blob explorers like ' +
       '<a href="https://blobscan.org/" target="_blank">Blobscan</a>.',
+    poweredBy: [
+      { name: 'Ethers', href: 'https://github.com/ethers-io/ethers.js' },
+      { name: 'Noble Curves', href: 'https://github.com/paulmillr/noble-curves' },
+      { name: 'EthereumJS', href: 'https://github.com/ethereumjs/ethereumjs-monorepo' },
+    ],
   },
   'eip-7883': {
     num: 7883,
@@ -32,6 +37,9 @@ export const EIPs: EIPs = {
       'costs. A major use case in smart contracts is to verify RSA signatures, e.g. in the context ' +
       'of airdrops. You can find a realistic RSA value setup in the examples. The widget also ' +
       'respects the new ModExp value boundaries set with EIP-7823 (also Fusaka).',
+    poweredBy: [
+      { name: 'EthereumJS', href: 'https://github.com/ethereumjs/ethereumjs-monorepo' },
+    ],
   },
   'eip-7951': {
     num: 7951,
@@ -54,6 +62,10 @@ export const EIPs: EIPs = {
       '<a href="https://github.com/ethereumjs/ethereumjs-monorepo/tree/master/packages/evm#eip-7951-precompile-for-secp256r1-curve-support-osaka" target="_blank">here</a> ' +
       'for example code - or use one of the examples provided. The precompile will return ' +
       '<code>0x01</code> (as 32-bytes) if the signature is valid.',
+    poweredBy: [
+      { name: 'Noble Curves', href: 'https://github.com/paulmillr/noble-curves' },
+      { name: 'EthereumJS', href: 'https://github.com/ethereumjs/ethereumjs-monorepo' },
+    ],
   },
 }
 
@@ -66,6 +78,11 @@ export const TOPICS: Topics = {
   },
 }
 
+export interface PoweredByItem {
+  name: string
+  href: string
+}
+
 export interface EIP {
   num: number
   path: string
@@ -73,6 +90,7 @@ export interface EIP {
   topics?: string[]
   introText?: string
   usageText?: string
+  poweredBy?: PoweredByItem[]
 }
 export interface EIPs {
   [key: string]: EIP

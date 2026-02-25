@@ -59,20 +59,7 @@ const examples: Examples = {
   },
 }
 
-const poweredBy = ref([
-  {
-    name: 'Ethers',
-    href: 'https://github.com/ethers-io/ethers.js',
-  },
-  {
-    name: 'Noble Curves',
-    href: 'https://github.com/paulmillr/noble-curves',
-  },
-  {
-    name: 'EthereumJS',
-    href: 'https://github.com/ethereumjs/ethereumjs-monorepo',
-  },
-])
+const poweredBy = eip.poweredBy ?? []
 
 /**
  * Example/URL helper functions
