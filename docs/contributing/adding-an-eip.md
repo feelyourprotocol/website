@@ -10,7 +10,7 @@ Each EIP page consists of a **view** (route wrapper) and a **component** (intera
 
 ## Step 1: Register the EIP
 
-Add your EIP to `src/views/lib/structure.ts`:
+Add your EIP to the `EIPs` object in `src/views/lib/structure.ts`:
 
 ```typescript
 export const EIPs: EIPs = {
@@ -19,13 +19,13 @@ export const EIPs: EIPs = {
     num: XXXX,
     path: '/eip-XXXX-short-description',
     title: 'Your EIP Title',
-    hardforkId: 'fusaka',  // optional
-    topicId: 'precompiles', // optional
+    hardforkId: 'fusaka',   // optional: groups into a hardfork page
+    topicId: 'precompiles', // optional: groups into a topic page
   },
 }
 ```
 
-The route is automatically created by the router based on this structure.
+This automatically creates the route — the router reads from this structure directly (see `src/router/index.ts`).
 
 ## Step 2: Create the View
 
@@ -71,15 +71,23 @@ const eip = EIPs['eip-XXXX']
 </template>
 ```
 
-## Step 4: Add Library Dependencies
+## Step 4: Add to Home and Group Pages
+
+A few places reference EIPs by ID and may need updating:
+
+- **Home page** (`src/views/HomeView.vue`): Add the EIP ID to the `latest` array if it should appear on the home page.
+- **Hardfork view** (e.g. `src/views/hardforks/FusakaView.vue`): If the EIP belongs to a hardfork, add its component here.
+- **Topic view** (e.g. `src/views/topics/PrecompilesView.vue`): If the EIP belongs to a topic, add its component here.
+
+## Step 5: Add Library Dependencies
 
 If your widget needs a library fork, see the [Library Forks](../guide/library-forks.md) guide. Key rule: **only import fork-specific libraries in your component file**, never in shared code.
 
-## Step 5: Add Tests
+## Step 6: Add Tests
 
 Add a Cypress E2E test in `cypress/e2e/eipXXXX.cy.ts` to verify basic widget functionality.
 
-## Step 6: Build and Verify
+## Step 7: Build and Verify
 
 ```bash
 npm run build        # verify production build works

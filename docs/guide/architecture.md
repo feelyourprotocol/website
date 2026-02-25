@@ -10,13 +10,25 @@ Feel Your Protocol is a Vue 3 application built with Vite. The core idea is simp
 
 ## Tech Stack
 
-- **Vue 3** with Composition API and `<script setup>`
-- **Vite** for development and production builds
-- **Tailwind CSS v4** for styling
-- **Vue Router** with route-level code splitting
-- **VitePress** for documentation
-- **Cypress** for E2E testing
-- **Vitest** for unit testing
+- **[Vue 3](https://vuejs.org/)** with Composition API and `<script setup>`
+- **[Vite](https://vite.dev/)** for development and production builds
+- **[Tailwind CSS v4](https://tailwindcss.com/)** for styling
+- **[Vue Router](https://router.vuejs.org/)** with route-level code splitting
+- **[VitePress](https://vitepress.dev/)** for documentation
+- **[Cypress](https://www.cypress.io/)** for E2E testing
+- **[Heroicons](https://heroicons.com/)** for icons (`@heroicons/vue`)
+
+The dancer images on the site are generated using [Midjourney](https://www.midjourney.com/).
+
+## Content Structure
+
+Content is organized around three taxonomies:
+
+- **EIPs** — the core unit. Each EIP gets its own route and interactive widget.
+- **Hardforks** (called `hardforks` in code) — group EIPs by network upgrade (e.g. "Fusaka"). Each EIP can optionally belong to a hardfork via `hardforkId`.
+- **Topics** (called `topics` in code) — group EIPs by technical area (e.g. "Precompiles"). Each EIP can optionally belong to a topic via `topicId`.
+
+All three are defined in `src/views/lib/structure.ts`. The router reads from this structure to automatically create routes — no manual route registration needed.
 
 ## Key Design Decisions
 

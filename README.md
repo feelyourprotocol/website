@@ -1,91 +1,32 @@
-# feelyourprotocol.org
+# Feel Your Protocol
 
-Ethereum protocol experiences.
+Interactive Ethereum protocol explorer — hands on.
 
-## Project Setup
+Explore, visualize and understand Ethereum protocol changes (EIPs) by interacting with real library code running directly in the browser.
 
-Project is set up using [vue.js](https://vuejs.org/) and [vite](https://vite.dev/), being initialized with the
-[create-vue](https://github.com/vuejs/create-vue) command (TypeScript version, Cypress for end-to-end tests, ESLint for linting, Prettier for formatting).
+> **Note:** This project is under active development. Contributions and feedback are very welcome!
 
-You can install dependencies with:
+## Quick Start
 
-```sh
+```bash
+git clone https://github.com/feelyourprotocol/website.git
+cd website
 npm install
-```
-
-## Getting Started
-
-### Development Server
-
-Start the development server with:
-
-```sh
 npm run dev
 ```
 
-### Linting and Formatting
+## Documentation
 
-Linting and formatting is done with [ESLint](https://eslint.org/) and [Prettier](https://prettier.io/).
-Run linting and formatting with:
+Full documentation is available at **[docs.feelyourprotocol.org](https://docs.feelyourprotocol.org)**.
 
-```sh
-npm run lf
+This includes guides on [architecture](https://docs.feelyourprotocol.org/guide/architecture), [adding new EIPs](https://docs.feelyourprotocol.org/contributing/adding-an-eip), [library forks](https://docs.feelyourprotocol.org/guide/library-forks) and [how to contribute](https://docs.feelyourprotocol.org/contributing/how-to-contribute).
+
+To preview the docs locally:
+
+```bash
+npm run docs:dev
 ```
 
-### Testing
+## License
 
-There are no unit tests and testing is based on end-to-end coverage with [Cypress](https://www.cypress.io/).
-
- Run tests with:
-
-```sh
-npm run test:e2e:dev
-```
-
-## User Interface
-
-The user interface is using Vue.js for the interactions and Tailwind for the styling. There are some additiona
-components for things like icons or fonts.
-
-- [Tailwind](https://tailwindcss.com/) for CSS
-- [Heroicons](https://heroicons.com/) for basic icons (`@heroicons/vue`)
-
-The dancer images are generated using [Midjourney](https://www.midjourney.com/).
-
-## Content Structure
-
-There are three taxonomies to add new modules:
-
-- EIPs: the most basic unit for structuring
-- Hardforks/Research (Projects): called "hardforks" in the code, one per EIP, examples: "Fusaka"
-- Technical Topics: called "topics" in the code, one per EIP, examples: "Precompiles"
-
-### Adding a new EIP
-
-EIPs are identified by `eip-<number>` (e.g. `eip-7951`). A clear number-type EIP number is available as a property
-in the EIPs array (`num`).
-
-1. Add the EIP to the `EIPs` array in `src/views/structure.ts`
-2. Attention! This already activates the router, see `src/router/index.ts` (no other changes needed)
-3. Add EIP ID (e.g. `eip-7951`) to `latest` (first item) in `src/views/home.vue`
-4. Create EIP component in `src/components/eips/EIP<number>C.vue`
-5. Add EIP component to `src/views/EIP<number>View.vue`
-6. Add EIP component to `src/views/hardforks/<hardfork>View.vue`
-7. Add EIP component to `src/views/topics/<topic>View.vue`
-
-### Third-party Ethereum Library Specifics
-
-#### EthereumJS
-
-If in-between builds should be included, all necessary packages need to be build with `npm pack`, copied to the `ext` directory
-and referenced in the `package.json` file as follows:
-
-```json
-{
-  "@ethereumjs/common": "./ext/ethereumjs-common-10.0.0.tgz",
-  "@ethereumjs/evm": "./ext/ethereumjs-evm-10.0.0.tgz",
-  "@ethereumjs/util": "^10.0.0"
-}
-```
-
-
+[MIT](LICENSE)
