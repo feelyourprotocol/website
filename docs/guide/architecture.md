@@ -25,7 +25,7 @@ The dancer images on the site are generated using [Midjourney](https://www.midjo
 Content is organized around two taxonomies:
 
 - **EIPs** — the core unit. Each EIP gets its own route and interactive widget.
-- **Topics** — group EIPs by theme (e.g. "Fusaka" for the upcoming hardfork). Each EIP can optionally belong to a topic via `topicId`. Topics can represent hardforks, technical areas, or any other grouping.
+- **Topics** — group EIPs by theme (e.g. "Fusaka" for the upcoming hardfork). Each EIP can belong to zero or more topics via the `topics` array. Topics can represent hardforks, technical areas, or any other grouping.
 
 Both are defined in `src/views/lib/structure.ts`. The router reads from this structure to automatically create routes — no manual route registration needed.
 

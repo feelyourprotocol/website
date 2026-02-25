@@ -19,7 +19,7 @@ export const EIPs: EIPs = {
     num: XXXX,
     path: '/eip-XXXX-short-description',
     title: 'Your EIP Title',
-    topicId: 'fusaka', // optional: groups into a topic page
+    topics: ['fusaka'], // optional: groups into one or more topic pages
   },
 }
 ```
