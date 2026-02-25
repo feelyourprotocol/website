@@ -22,13 +22,12 @@ The dancer images on the site are generated using [Midjourney](https://www.midjo
 
 ## Content Structure
 
-Content is organized around three taxonomies:
+Content is organized around two taxonomies:
 
 - **EIPs** — the core unit. Each EIP gets its own route and interactive widget.
-- **Hardforks** (called `hardforks` in code) — group EIPs by network upgrade (e.g. "Fusaka"). Each EIP can optionally belong to a hardfork via `hardforkId`.
-- **Topics** (called `topics` in code) — group EIPs by technical area (e.g. "Precompiles"). Each EIP can optionally belong to a topic via `topicId`.
+- **Topics** — group EIPs by theme (e.g. "Fusaka" for the upcoming hardfork). Each EIP can optionally belong to a topic via `topicId`. Topics can represent hardforks, technical areas, or any other grouping.
 
-All three are defined in `src/views/lib/structure.ts`. The router reads from this structure to automatically create routes — no manual route registration needed.
+Both are defined in `src/views/lib/structure.ts`. The router reads from this structure to automatically create routes — no manual route registration needed.
 
 ## Key Design Decisions
 

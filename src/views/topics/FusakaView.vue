@@ -2,12 +2,12 @@
 import EIP7594C from '@/components/eips/EIP7594C.vue'
 import EIP7883C from '@/components/eips/EIP7883C.vue'
 import EIP7951C from '@/components/eips/EIP7951C.vue'
-import HardforkView from '../HardforkView.vue'
+import TopicView from '../TopicView.vue'
 import DancerView from '../DancerView.vue'
 </script>
 
 <template>
-  <HardforkView>
+  <TopicView>
     <Suspense>
       <EIP7883C />
     </Suspense>
@@ -18,5 +18,5 @@ import DancerView from '../DancerView.vue'
     <Suspense>
       <EIP7951C />
     </Suspense>
-  </HardforkView>
+  </TopicView>
 </template>

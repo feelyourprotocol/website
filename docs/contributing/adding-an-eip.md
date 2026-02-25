@@ -19,8 +19,7 @@ export const EIPs: EIPs = {
     num: XXXX,
     path: '/eip-XXXX-short-description',
     title: 'Your EIP Title',
-    hardforkId: 'fusaka',   // optional: groups into a hardfork page
-    topicId: 'precompiles', // optional: groups into a topic page
+    topicId: 'fusaka', // optional: groups into a topic page
   },
 }
 ```
@@ -71,13 +70,12 @@ const eip = EIPs['eip-XXXX']
 </template>
 ```
 
-## Step 4: Add to Home and Group Pages
+## Step 4: Add to Home and Topic Pages
 
 A few places reference EIPs by ID and may need updating:
 
 - **Home page** (`src/views/HomeView.vue`): Add the EIP ID to the `latest` array if it should appear on the home page.
-- **Hardfork view** (e.g. `src/views/hardforks/FusakaView.vue`): If the EIP belongs to a hardfork, add its component here.
-- **Topic view** (e.g. `src/views/topics/PrecompilesView.vue`): If the EIP belongs to a topic, add its component here.
+- **Topic view** (e.g. `src/views/topics/FusakaView.vue`): If the EIP belongs to a topic, add its component here.
 
 ## Step 5: Add Library Dependencies
 

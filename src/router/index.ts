@@ -1,11 +1,10 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import { EIPs, HARDFORKS, TOPICS } from '@/views/lib/structure'
+import { EIPs, TOPICS } from '@/views/lib/structure'
 
 function loadRoutes() {
   // Use Vite's glob imports so production builds can resolve lazy routes
   // This is important to keep the routes statically analyzable for cypress e2e tests
   const eipViews = import.meta.glob('../views/eips/*View.vue')
-  const hardforkViews = import.meta.glob('../views/hardforks/*View.vue')
   const topicViews = import.meta.glob('../views/topics/*View.vue')
   const baseViews = import.meta.glob('../views/*View.vue')
 
@@ -32,16 +31,6 @@ function loadRoutes() {
     })
   }
 
-  const hardforkRs = []
-  for (const [name, hardfork] of Object.entries(HARDFORKS)) {
-    hardforkRs.push({
-      path: hardfork.path,
-      name,
-      // Lazy-load via statically analyzable glob map
-      component: hardforkViews[`../views/hardforks/${hardfork.title}View.vue`],
-    })
-  }
-
   const topicRs = []
   for (const [name, topic] of Object.entries(TOPICS)) {
     topicRs.push({
@@ -52,7 +41,7 @@ function loadRoutes() {
     })
   }
 
-  return [...homeRs, ...eipRs, ...hardforkRs, ...topicRs]
+  return [...homeRs, ...eipRs, ...topicRs]
 }
 
 const router = createRouter({
