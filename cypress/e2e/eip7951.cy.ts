@@ -3,7 +3,7 @@ describe('EIP-7951/secp256r1 Precompile Support', () => {
     cy.visit('/eip-7951-secp256r1-precompile')
 
     // Basic component display
-    cy.contains('h1', 'feelyourprotocol')
+    cy.contains('h1', 'Feel Your Protocol')
     cy.contains('h3', 'secp256r1 Precompile Support')
 
     // Values from inital example

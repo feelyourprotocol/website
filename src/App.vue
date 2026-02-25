@@ -22,13 +22,10 @@ const navigate = () => {
 <template>
   <header>
     <div class="grid grid-cols-2 pt-2 pb-2 mb-5">
-      <h1 class="font-mono text-sm md:text-lg ml-4">
-        <RouterLink to="/">
-          <span style="font-family: 'ItalianoRegular', Times, serif" class="text-4xl md:text-6xl"
-            >feelyourprotocol</span
-          >
-          .org
-        </RouterLink>
+      <h1 class="ml-4">
+        <RouterLink to="/" class="text-2xl md:text-4xl font-bold text-blue-900"
+          >Feel Your Protocol</RouterLink
+        >
       </h1>
       <nav class="font-mono text-sm text-right flex justify-end items-center">
         <RouterLink to="/fusaka" class="ml-5">Fusaka</RouterLink>

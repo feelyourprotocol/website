@@ -12,7 +12,7 @@ describe('EIP-7823/Precompile Component Tests', () => {
   it('initialization', () => {
     cy.visit('/eip-7883-modexp-gas-cost-increase')
 
-    cy.contains('h1', 'feelyourprotocol')
+    cy.contains('h1', 'Feel Your Protocol')
     cy.contains('h3', 'ModExp')
 
     cy.get('#eip-7883-precompile-c textarea', { timeout: 10000 }).should(

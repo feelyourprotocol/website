@@ -3,7 +3,7 @@ describe('Site Structure', () => {
     for (const path of ['/', '/fusaka', '/eip-7883-modexp-gas-cost-increase', '/imprint']) {
       cy.visit(path)
       cy.get('header').within(() => {
-        cy.contains('h1', 'feelyourprotocol')
+        cy.contains('h1', 'Feel Your Protocol')
         cy.get('nav').should('exist')
       })
     }
@@ -31,7 +31,7 @@ describe('Site Structure', () => {
     cy.get('footer').contains('Imprint').click()
     cy.url().should('include', '/imprint')
 
-    cy.contains('h1', 'feelyourprotocol').click()
+    cy.contains('h1', 'Feel Your Protocol').click()
     cy.url().should('eq', Cypress.config().baseUrl + '/')
   })
 
