@@ -4,8 +4,7 @@ describe('Home Page', () => {
   })
 
   it('renders intro content', () => {
-    cy.contains("Let's have a dance.")
-    cy.contains('Ethereum')
+    cy.contains('Interactive Ethereum Protocol Explorations')
     cy.contains('For the Community.')
     cy.contains('For Builders.')
     cy.contains('For Testers.')

@@ -21,8 +21,8 @@ const navigate = () => {
 
 <template>
   <header>
-    <div class="grid grid-cols-2 pt-2 pb-2 mb-5">
-      <h1 class="ml-4">
+    <div class="grid grid-cols-2 pt-2 pb-2 mt-1 mb-2">
+      <h1>
         <RouterLink to="/" class="text-2xl md:text-4xl font-bold text-blue-900"
           >Feel Your Protocol</RouterLink
         >
