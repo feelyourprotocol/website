@@ -222,19 +222,7 @@ await init()
 </script>
 
 <template>
-  <EIPC :title="eip.title" :eip="eip.num" :shareURL="shareURL">
-    <template v-slot:description>
-      <p>
-        <b>How are ModExp gas costs changing with Fusaka?</b> EIP-7883 changes the gas calculation
-        algorithm of the ModExp precompile.
-      </p>
-      <p class="mt-4">
-        Especially interesting to explore are values around 32 bytes. Also take note of the new base
-        costs. A major use case in smart contracts is to verify RSA signatures, e.g. in the context
-        of airdrops. You can find a realistic RSA value setup in the examples. The widget also
-        respects the new ModExp value boundaries set with EIP-7823 (also Fusaka).
-      </p>
-    </template>
+  <EIPC :title="eip.title" :eip="eip.num" :introText="eip.introText" :usageText="eip.usageText" :shareURL="shareURL">
     <template v-slot:content>
       <div>
         <ExamplesC v-model="example" :examples="examples" :change="selectExample" />

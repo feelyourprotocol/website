@@ -132,40 +132,16 @@ await init()
 </script>
 
 <template>
-  <EIPC :title="eip.title" :eip="eip.num">
+  <EIPC :title="eip.title" :eip="eip.num" :introText="eip.introText" :usageText="eip.usageText">
     <template v-slot:description>
-      <p>
-        <b>How do blob transactions change with PeerDAS?</b>
-        Data availability sampling (DAS) - introduced along the Fusaka hardfork - comes with a new
-        proof format for blobs, dividing the previous per-blob proofs into 128 cell proofs per blob.
-        The network wrapper gets a new version 1 and the EIP-4844 blob transaction serialization
-        format changes when submitting a blob transaction to the network. Libraries like
-        <a href="https://github.com/ethers-io/ethers.js/issues/5062" target="_blank">Ethers</a>
-        or
-        <a
-          href="https://github.com/ethereumjs/ethereumjs-monorepo/blob/master/packages/tx/examples/blobTx.ts"
-          target="_blank"
-          >EthereumJS</a
-        >
-        give some illustration.
-        <br /><br />
-        <span class="float-right ml-5 mb-2 mt-3">
-          <ActionButtonC
-            tooltip="This is a bit slow (> 10 seconds)"
-            text="COMMIT/PROOF/RUN"
-            :onClick="run"
-            class="run-button"
-          />
-        </span>
-        Below you can check if the values for versioned hashes, commitments and proofs (computed
-        using Noble
-        <a
-          href="https://github.com/paulmillr/micro-eth-signer?tab=readme-ov-file#kzg--peerdas"
-          target="_blank"
-          >micro-eth-signer</a
-        >) match with your local values or values from blob explorers like
-        <a href="https://blobscan.org/" target="_blank">Blobscan</a>.
-      </p>
+      <div class="mt-3 text-right">
+        <ActionButtonC
+          tooltip="This is a bit slow (> 10 seconds)"
+          text="COMMIT/PROOF/RUN"
+          :onClick="run"
+          class="run-button"
+        />
+      </div>
     </template>
     <template v-slot:content>
       <div>

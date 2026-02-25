@@ -5,6 +5,8 @@ import ButtonC from '../ui/ButtonC.vue'
 defineProps<{
   title: string
   eip: number
+  introText?: string
+  usageText?: string
   shareURL?: () => void
 }>()
 </script>
@@ -32,6 +34,8 @@ defineProps<{
     </div>
 
     <div class="text-blue-900 font-mono text-xs mb-6">
+      <p v-if="introText" v-html="introText"></p>
+      <p v-if="usageText" class="mt-4" v-html="usageText"></p>
       <slot name="description"></slot>
     </div>
 
