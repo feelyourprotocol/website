@@ -28,15 +28,13 @@ const navigate = () => {
         >
       </h1>
       <nav class="font-mono text-sm text-right flex justify-end items-center">
-        <RouterLink to="/fusaka" class="ml-5">Fusaka</RouterLink>
-
         <select
           v-model="selectedRoute"
           @change="navigate"
-          class="text-xs ml-6 border-1 pl-1 pr-1 pt-0.5 pb-0.5 rounded-sm"
+          class="text-sm ml-6 border-1 p-1 rounded-sm"
           id="eip-navi"
         >
-          <option disabled value="">All EIPs</option>
+          <option disabled value="">All Explorations</option>
           <option v-for="[id, eip] in Object.entries(EIPs)" :key="id" :value="eip.path">
             EIP-{{ eip.num }}
           </option>

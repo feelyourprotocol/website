@@ -120,7 +120,7 @@ await init()
 
 <template>
   <EIPC :title="eip.title" :eip="eip.num" :introText="eip.introText" :usageText="eip.usageText">
-    <template v-slot:description>
+    <template v-slot:content>
       <div class="mt-3 text-right">
         <ActionButtonC
           tooltip="This is a bit slow (> 10 seconds)"
@@ -129,8 +129,6 @@ await init()
           class="run-button"
         />
       </div>
-    </template>
-    <template v-slot:content>
       <div>
         <ExamplesC v-model="example" :examples="examples" :change="selectExample" />
         <HexDataInputC v-model="data" rows="6" :formChange="onDataInputFormChange" />

@@ -74,6 +74,11 @@ export const TOPICS: Topics = {
     title: 'Fusaka',
     path: '/fusaka',
     url: 'https://forkcast.org/upgrade/fusaka',
+    introText:
+      'Fusaka is Ethereum\'s next major network upgrade following Pectra. ' +
+      'It brings significant changes to data availability with PeerDAS, adjusts precompile gas costs ' +
+      'for ModExp, and introduces a new secp256r1 signature verification precompile enabling ' +
+      'seamless wallet interactions from modern devices.',
     eips: getTopicEIPs('fusaka'),
   },
 }
@@ -100,6 +105,7 @@ export interface Topic {
   title: string
   path: string
   url: string
+  introText?: string
   eips: number[]
 }
 export interface Topics {

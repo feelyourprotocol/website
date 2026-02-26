@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import DancerView from './DancerView.vue'
-import { EIPs } from './lib/structure.js'
+import EIPC from '@/components/eips/EIPC.vue'
+import { EIPs, TOPICS } from './lib/structure.js'
 
-const latest = ['eip-7883', 'eip-7594', 'eip-7951']
+const featured = ['eip-7883', 'eip-7594', 'eip-7951']
 </script>
 
 <template>
@@ -13,39 +14,57 @@ const latest = ['eip-7883', 'eip-7594', 'eip-7951']
 
     <div class="grid md:grid-cols-2 gap-4">
       <div>
-        <div class="bg-blue-200 rounded-xl mb-2 p-5">
-          <p class="mb-1.5 text-xl font-bold text-blue-900">For the Community.</p>
-          <p>Get a feeling where the protocol is headed and help build the future.</p>
-        </div>
-
-        <div class="bg-blue-100 rounded-xl mb-2 p-5">
-          <p class="mb-1.5 text-xl font-bold text-blue-900">For Builders.</p>
-          <p>Explore how updates play with your smart contracts and tools.</p>
-        </div>
-
-        <div class="bg-blue-200 rounded-xl mb-2 p-5">
-          <p class="mb-1.5 text-xl font-bold text-blue-900">For Testers.</p>
-          <p>Everything covered? Get inspiration for new test cases.</p>
-        </div>
-
-        <div class="bg-blue-100 rounded-xl mb-2 p-5">
-          <p class="mb-1.5 text-xl font-bold text-blue-900">For Researchers.</p>
-          <p>This is your EIP? See if things feel as intended.</p>
-        </div>
+        <RouterLink to="/fusaka" class="block no-underline">
+          <DancerView
+            nameId="fusaka"
+            :title="TOPICS.fusaka.title"
+            :introText="TOPICS.fusaka.introText"
+          />
+        </RouterLink>
       </div>
 
       <div>
-        <div class="border-0 border-blue-200 rounded-xl p-5">
-          <span class="text-lg rounded-lg border-1 p-1.5"> Latest </span>
-          <ul id="latest-navi" class="text-xl text-blue-900 p-1.5 mt-3">
-            <li v-for="eipId in latest" :key="eipId" class="mb-1">
-              <RouterLink :to="EIPs[eipId].path">
-                EIP-{{ EIPs[eipId].num }}: {{ EIPs[eipId].title }}
-              </RouterLink>
-            </li>
-          </ul>
+        <div class="bg-blue-900 text-white rounded-xl mb-4 p-5">
+          <p class="mb-2 text-xl font-bold">About the Project</p>
+          <p class="text-blue-100 text-sm leading-relaxed">
+            Feel Your Protocol is a collaborative open-source project providing interactive
+            explorations of upcoming Ethereum protocol changes. Widgets are powered by real EVM and
+            cryptography libraries running directly in the browser — no backend needed.
+          </p>
+          <p class="text-blue-100 text-sm leading-relaxed mt-2">
+            Want to contribute?
+            <a
+              href="https://docs.feelyourprotocol.org"
+              target="_blank"
+              class="underline text-white hover:text-blue-200"
+              >Check the docs</a
+            >
+            or jump straight into the
+            <a
+              href="https://github.com/feelyourprotocol/website"
+              target="_blank"
+              class="underline text-white hover:text-blue-200"
+              >code on GitHub</a
+            >.
+          </p>
         </div>
-        <DancerView nameId="fusaka" :hasBorder="false" />
+
+        <div class="text-right mb-3 mt-6">
+          <span class="text-sm rounded-lg border-1 p-1">Latest</span>
+        </div>
+
+        <RouterLink
+          v-for="eipId in featured"
+          :key="eipId"
+          :to="EIPs[eipId].path"
+          class="block mb-2 no-underline"
+        >
+          <EIPC
+            :title="EIPs[eipId].title"
+            :eip="EIPs[eipId].num"
+            :introText="EIPs[eipId].introText"
+          />
+        </RouterLink>
       </div>
     </div>
   </main>
