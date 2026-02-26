@@ -10,7 +10,7 @@ export const INFO: Exploration = {
   introText:
     '<b>How can I interact with the new curve precompile?</b> The ' +
     '<a href="https://www.nervos.org/knowledge-base/what_is_secp256r1" target="_blank">secp256r1</a> ' +
-    '(also know as P-256) precompile improves Ethereum\'s UX by allowing efficient ' +
+    "(also know as P-256) precompile improves Ethereum's UX by allowing efficient " +
     'in-contract-signature verification (e.g. for multisig wallets) from ' +
     '<a href="https://developer.apple.com/documentation/cryptokit/p256" target="_blank">Apple</a> and ' +
     '<a href="https://developer.android.com/privacy-and-security/keystore" target="_blank">Android</a> ' +

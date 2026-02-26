@@ -12,11 +12,7 @@ const featured = ['eip-7883', 'eip-7594', 'eip-7951']
     <div class="grid md:grid-cols-2 gap-4">
       <div>
         <RouterLink to="/fusaka" class="block no-underline">
-          <TopicIntroView
-            :topic="TOPICS.fusaka"
-            image="fusaka.webp"
-            :overviewMode="true"
-          />
+          <TopicIntroView :topic="TOPICS.fusaka" image="fusaka.webp" :overviewMode="true" />
         </RouterLink>
       </div>
 

@@ -11,7 +11,9 @@ const exploration = EXPLORATIONS[explorationId]
 
 const componentModules = import.meta.glob('../explorations/*/MyC.vue')
 const ExplorationComponent = defineAsyncComponent(
-  componentModules[`../explorations/${explorationId}/MyC.vue`] as () => Promise<{ default: object }>,
+  componentModules[`../explorations/${explorationId}/MyC.vue`] as () => Promise<{
+    default: object
+  }>,
 )
 </script>
 

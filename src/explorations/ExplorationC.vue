@@ -21,12 +21,11 @@ defineProps<{
         <a v-if="shareURL" href="#" @click.prevent="shareURL" class="share-url-button mr-1.5">
           <ButtonC :icon="ShareIcon" tooltip="Open Shareable URL" />
         </a>
-        <a
-          :href="exploration.infoURL"
-          target="_blank"
-          class="visit-exploration-button mr-1"
-        >
-          <ButtonC :icon="ArrowTopRightOnSquareIcon" tooltip="External Link with more information" />
+        <a :href="exploration.infoURL" target="_blank" class="visit-exploration-button mr-1">
+          <ButtonC
+            :icon="ArrowTopRightOnSquareIcon"
+            tooltip="External Link with more information"
+          />
         </a>
       </div>
     </div>

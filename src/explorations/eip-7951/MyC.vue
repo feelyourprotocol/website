@@ -3,7 +3,11 @@ import { Hardfork } from '@ethereumjs/common'
 import { type ExecResult } from '@ethereumjs/evm'
 import { ref, type Ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
-import { dataToValueInput, isValidByteInputForm, valueToDataInput } from '../../components/lib/byteFormUtils.js'
+import {
+  dataToValueInput,
+  isValidByteInputForm,
+  valueToDataInput,
+} from '../../components/lib/byteFormUtils.js'
 import PrecompileValueInput from '../../components/precompiles/PrecompileValueInput.vue'
 import PrecompileResultC from '../../components/precompiles/PrecompileResultC.vue'
 import ExamplesC from '../../components/ui/ExamplesC.vue'

@@ -35,16 +35,18 @@ const navigate = () => {
           id="exploration-navi"
         >
           <option disabled value="">All Explorations</option>
-          <option v-for="[id, exploration] in Object.entries(EXPLORATIONS)" :key="id" :value="exploration.path">
+          <option
+            v-for="[id, exploration] in Object.entries(EXPLORATIONS)"
+            :key="id"
+            :value="exploration.path"
+          >
             {{ id.toUpperCase() }}
           </option>
         </select>
       </nav>
     </div>
     <div class="grid grid-cols-1">
-      <p class="text-xl md:text-2xl text-slate-500">
-      Interactive Ethereum Protocol Explorations.
-    </p>
+      <p class="text-xl md:text-2xl text-slate-500">Interactive Ethereum Protocol Explorations.</p>
     </div>
   </header>
 
