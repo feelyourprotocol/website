@@ -1,21 +1,21 @@
 <script setup lang="ts">
 import { ref, type Ref } from 'vue'
-import HexDataInputC from '../ui/HexDataInputC.vue'
-import { type Examples } from '../lib/general.js'
-import blobBase from '../lib/blobs/blob_base.txt?raw'
-import blobGnosis from '../lib/blobs/blob_gnosis.txt?raw'
-import blobLighter from '../lib/blobs/blob_lighter.txt?raw'
-import ExplorationC from './ExplorationC.vue'
+import HexDataInputC from '../../components/ui/HexDataInputC.vue'
+import { type Examples } from '../../components/lib/general.js'
+import blobBase from '../../components/lib/blobs/blob_base.txt?raw'
+import blobGnosis from '../../components/lib/blobs/blob_gnosis.txt?raw'
+import blobLighter from '../../components/lib/blobs/blob_lighter.txt?raw'
+import ExplorationC from '../ExplorationC.vue'
 import { EXPLORATIONS } from '@/views/lib/structure.js'
-import PoweredByC from './PoweredByC.vue'
-import ExamplesC from '../ui/ExamplesC.vue'
+import PoweredByC from '../PoweredByC.vue'
+import ExamplesC from '../../components/ui/ExamplesC.vue'
 import {
   PP_BOX_LAYOUT,
   PP_BOX_TEXT_SMALL,
   PP_BOX_LAYOUT_SINGLE,
   PP_BOX_TABLE_TD,
-} from '../lib/layout'
-import PPBoxC from '../ui/PPBoxC.vue'
+} from '../../components/lib/layout'
+import PPBoxC from '../../components/ui/PPBoxC.vue'
 import { trustedSetup } from '@paulmillr/trusted-setups/fast-peerdas.js'
 import { KZG as microEthKZG } from 'micro-eth-signer/kzg.js'
 import {
@@ -24,9 +24,9 @@ import {
   computeVersionedHash,
   type PrefixedHexString,
 } from '@ethereumjs/util'
-import ActionButtonC from '../ui/ActionButtonC.vue'
-import PPBoxInfoText from '../ui/PPBoxInfoText.vue'
-import PPBoxErrorText from '../ui/PPBoxErrorText.vue'
+import ActionButtonC from '../../components/ui/ActionButtonC.vue'
+import PPBoxInfoText from '../../components/ui/PPBoxInfoText.vue'
+import PPBoxErrorText from '../../components/ui/PPBoxErrorText.vue'
 
 const kzg = new microEthKZG(trustedSetup)
 

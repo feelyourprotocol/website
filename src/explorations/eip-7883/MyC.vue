@@ -10,22 +10,22 @@ import {
   toBigInt,
   toHex,
   valueToDataInput,
-} from '../lib/byteFormUtils.js'
-import PrecompileValueInput from '../precompiles/PrecompileValueInput.vue'
+} from '../../components/lib/byteFormUtils.js'
+import PrecompileValueInput from '../../components/precompiles/PrecompileValueInput.vue'
 import { useRoute, useRouter } from 'vue-router'
-import PrecompileResultC from '../precompiles/PrecompileResultC.vue'
-import ExamplesC from '../ui/ExamplesC.vue'
-import HexDataInputC from '../ui/HexDataInputC.vue'
-import ExplorationC from './ExplorationC.vue'
-import PoweredByC from './PoweredByC.vue'
+import PrecompileResultC from '../../components/precompiles/PrecompileResultC.vue'
+import ExamplesC from '../../components/ui/ExamplesC.vue'
+import HexDataInputC from '../../components/ui/HexDataInputC.vue'
+import ExplorationC from '../ExplorationC.vue'
+import PoweredByC from '../PoweredByC.vue'
 import {
   runPrecompile,
   type BIGINT_6,
   type BIGINT_UNDEFINED_6,
   type HEX_6,
-} from '../lib/precompiles.js'
+} from '../../components/lib/precompiles.js'
 import { EXPLORATIONS } from '@/views/lib/structure.js'
-import { type Examples } from '../lib/general.js'
+import { type Examples } from '../../components/lib/general.js'
 
 const exploration = EXPLORATIONS['eip-7883']
 

@@ -8,9 +8,9 @@ const route = useRoute()
 const explorationId = route.name as string
 const exploration = EXPLORATIONS[explorationId]
 
-const componentModules = import.meta.glob('../components/explorations/EIP*C.vue')
+const componentModules = import.meta.glob('../explorations/*/MyC.vue')
 const ExplorationComponent = defineAsyncComponent(
-  componentModules[`../components/explorations/${explorationId.toUpperCase().replace('-', '')}C.vue`] as () => Promise<{ default: object }>,
+  componentModules[`../explorations/${explorationId}/MyC.vue`] as () => Promise<{ default: object }>,
 )
 </script>
 

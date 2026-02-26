@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import ExplorationC from '@/components/explorations/ExplorationC.vue'
+import ExplorationC from '@/explorations/ExplorationC.vue'
 import TopicIntroView from './TopicIntroView.vue'
 import { useRoute } from 'vue-router'
 import { EXPLORATIONS, TOPICS, getTopicExplorationIds } from './lib/structure'

@@ -3,22 +3,22 @@ import { Hardfork } from '@ethereumjs/common'
 import { type ExecResult } from '@ethereumjs/evm'
 import { ref, type Ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
-import { dataToValueInput, isValidByteInputForm, valueToDataInput } from '../lib/byteFormUtils.js'
-import PrecompileValueInput from '../precompiles/PrecompileValueInput.vue'
-import PrecompileResultC from '../precompiles/PrecompileResultC.vue'
-import ExamplesC from '../ui/ExamplesC.vue'
-import HexDataInputC from '../ui/HexDataInputC.vue'
-import ExplorationC from './ExplorationC.vue'
-import PoweredByC from './PoweredByC.vue'
+import { dataToValueInput, isValidByteInputForm, valueToDataInput } from '../../components/lib/byteFormUtils.js'
+import PrecompileValueInput from '../../components/precompiles/PrecompileValueInput.vue'
+import PrecompileResultC from '../../components/precompiles/PrecompileResultC.vue'
+import ExamplesC from '../../components/ui/ExamplesC.vue'
+import HexDataInputC from '../../components/ui/HexDataInputC.vue'
+import ExplorationC from '../ExplorationC.vue'
+import PoweredByC from '../PoweredByC.vue'
 import {
   runPrecompile,
   type BIGINT_5,
   type BIGINT_UNDEFINED_5,
   type HEX_5,
-} from '../lib/precompiles.js'
+} from '../../components/lib/precompiles.js'
 import { EXPLORATIONS } from '@/views/lib/structure.js'
-import { type Examples } from '../lib/general.js'
-import { PP_BOX_LAYOUT } from '../lib/layout'
+import { type Examples } from '../../components/lib/general.js'
+import { PP_BOX_LAYOUT } from '../../components/lib/layout'
 
 const exploration = EXPLORATIONS['eip-7951']
 
