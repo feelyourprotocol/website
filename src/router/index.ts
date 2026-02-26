@@ -1,12 +1,10 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import { EIPs, HARDFORKS, TOPICS } from '@/views/lib/structure'
+import { EXPLORATIONS } from '@/explorations/REGISTRY'
+import { TOPICS } from '@/explorations/TOPICS'
 
 function loadRoutes() {
   // Use Vite's glob imports so production builds can resolve lazy routes
   // This is important to keep the routes statically analyzable for cypress e2e tests
-  const eipViews = import.meta.glob('../views/eips/*View.vue')
-  const hardforkViews = import.meta.glob('../views/hardforks/*View.vue')
-  const topicViews = import.meta.glob('../views/topics/*View.vue')
   const baseViews = import.meta.glob('../views/*View.vue')
 
   const homeRs = [
@@ -22,23 +20,12 @@ function loadRoutes() {
     },
   ]
 
-  const eipRs = []
-  for (const [name, eip] of Object.entries(EIPs)) {
-    eipRs.push({
-      path: eip.path,
+  const explorationRs = []
+  for (const [name, exploration] of Object.entries(EXPLORATIONS)) {
+    explorationRs.push({
+      path: exploration.path,
       name,
-      // Lazy-load via statically analyzable glob map
-      component: eipViews[`../views/eips/EIP${eip.num}View.vue`],
-    })
-  }
-
-  const hardforkRs = []
-  for (const [name, hardfork] of Object.entries(HARDFORKS)) {
-    hardforkRs.push({
-      path: hardfork.path,
-      name,
-      // Lazy-load via statically analyzable glob map
-      component: hardforkViews[`../views/hardforks/${hardfork.title}View.vue`],
+      component: baseViews['../views/ExplorationView.vue'],
     })
   }
 
@@ -47,12 +34,11 @@ function loadRoutes() {
     topicRs.push({
       path: topic.path,
       name,
-      // Lazy-load via statically analyzable glob map
-      component: topicViews[`../views/topics/${topic.title}View.vue`],
+      component: baseViews['../views/TopicView.vue'],
     })
   }
 
-  return [...homeRs, ...eipRs, ...hardforkRs, ...topicRs]
+  return [...homeRs, ...explorationRs, ...topicRs]
 }
 
 const router = createRouter({

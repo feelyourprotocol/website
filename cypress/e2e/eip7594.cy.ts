@@ -3,7 +3,7 @@ describe('EIP-7594/PeerDAS Tests', () => {
     cy.visit('/eip-7594-peerdas-data-availability-sampling')
 
     // Basic component display
-    cy.contains('h1', 'feelyourprotocol')
+    cy.contains('h1', 'Feel Your Protocol')
     cy.contains('h3', 'Peer Data Availability Sampling')
 
     // Values from inital example

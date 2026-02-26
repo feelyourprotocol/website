@@ -1,8 +1,7 @@
 <script setup lang="ts">
 import { RouterLink, RouterView, useRoute, useRouter } from 'vue-router'
-import SiteFooter from './components/SiteFooter.vue'
 import { ref, watch, type Ref } from 'vue'
-import { EIPs } from './views/lib/structure'
+import { EXPLORATIONS } from '@/explorations/REGISTRY'
 
 const router = useRouter()
 const route = useRoute()
@@ -21,37 +20,53 @@ const navigate = () => {
 </script>
 
 <template>
-  <header>
-    <div class="grid grid-cols-2 pt-2 pb-2 mb-5">
-      <h1 class="font-mono text-sm md:text-lg ml-4">
-        <RouterLink to="/">
-          <span style="font-family: 'ItalianoRegular', Times, serif" class="text-4xl md:text-6xl"
-            >feelyourprotocol</span
-          >
-          .org
-        </RouterLink>
+  <header class="mt-3 mb-8">
+    <div class="grid grid-cols-2 mb-3">
+      <h1>
+        <RouterLink to="/" class="text-2xl md:text-4xl font-bold text-blue-900"
+          >Feel Your Protocol</RouterLink
+        >
       </h1>
       <nav class="font-mono text-sm text-right flex justify-end items-center">
-        <RouterLink to="/fusaka" class="ml-5">Fusaka</RouterLink>
-
         <select
           v-model="selectedRoute"
           @change="navigate"
-          class="text-xs ml-6 border-1 pl-1 pr-1 pt-0.5 pb-0.5 rounded-sm"
-          id="eip-navi"
+          class="text-sm ml-6 border-1 p-1 rounded-sm"
+          id="exploration-navi"
         >
-          <option disabled value="">All EIPs</option>
-          <option v-for="[id, eip] in Object.entries(EIPs)" :key="id" :value="eip.path">
-            EIP-{{ eip.num }}
+          <option disabled value="">All Explorations</option>
+          <option
+            v-for="[id, exploration] in Object.entries(EXPLORATIONS)"
+            :key="id"
+            :value="exploration.path"
+          >
+            {{ id.toUpperCase() }}
           </option>
         </select>
       </nav>
+    </div>
+    <div class="grid grid-cols-1">
+      <p class="text-xl md:text-2xl text-slate-500">Interactive Ethereum Protocol Explorations.</p>
     </div>
   </header>
 
   <RouterView class="grid grid-cols-1" />
 
-  <SiteFooter />
-</template>
+  <footer class="grid grid-cols-2 pt-2 mt-10 mb-2">
+    <h3 class="font-mono text-xs">
+      Made with ❤️ and pure dedication by
+      <a href="https://x.com/HolgerD77" target="_blank" rel="noopener">HolgerD77</a>
+    </h3>
 
-<style scoped></style>
+    <h3 class="font-mono text-xs text-right">
+      <RouterLink to="/imprint">Imprint</RouterLink>
+      <a
+        href="https://github.com/feelyourprotocol/website"
+        target="_blank"
+        rel="noopener"
+        class="ml-3"
+        >GitHub</a
+      >
+    </h3>
+  </footer>
+</template>

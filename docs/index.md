@@ -3,7 +3,7 @@ layout: home
 
 hero:
   name: Feel Your Protocol
-  text: Interactive Ethereum EIP Explorer
+  text: Interactive Ethereum Protocol Explorations
   tagline: Explore, visualize and understand Ethereum protocol changes — hands on.
   actions:
     - theme: brand
@@ -17,14 +17,14 @@ hero:
       link: https://github.com/feelyourprotocol/website
 
 features:
-  - title: Per-EIP Interactive Widgets
-    details: Each EIP gets its own page with interactive components that let you explore the protocol change hands on.
+  - title: Interactive Explorations
+    details: Each exploration gets its own self-contained folder with an interactive component that lets you explore the protocol change hands on.
   - title: Powered by Real Libraries
     details: Widgets run actual Ethereum library code in the browser — no mocks, no simplifications.
   - title: Collaborative & Open Source
-    details: Designed for community contributions. Add a new EIP widget, improve an existing one, or fork a library.
+    details: Designed for community contributions. The modular folder-per-exploration structure makes it easy to add new explorations or improve existing ones.
 ---
 
-::: warning 🚧 Under Active Development
+::: warning Under Active Development
 Both the Feel Your Protocol project and this documentation are in an early stage and under active development. Things may change frequently. Contributions and feedback are very welcome!
 :::

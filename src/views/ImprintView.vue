@@ -56,11 +56,6 @@
               >Midjourney (dancers)</a
             >
           </li>
-          <li class="m-1">
-            <a href="https://www.1001fonts.com/users/typesetit/" target="_blank" rel="noopener"
-              >Italiano font by TypeSETit</a
-            >
-          </li>
         </ul>
       </div>
 
