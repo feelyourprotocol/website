@@ -50,7 +50,7 @@ const featured = ['eip-7883', 'eip-7594', 'eip-7951']
         </div>
 
         <div class="text-right mb-3 mt-6">
-          <span class="text-sm rounded-lg border-1 p-1">Latest</span>
+          <span class="text-sm rounded-lg font-mono border-1 p-1.5">Latest</span>
         </div>
 
         <RouterLink

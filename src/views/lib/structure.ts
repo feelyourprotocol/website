@@ -121,3 +121,13 @@ function getTopicEIPs(topicId: string) {
   }
   return eips
 }
+
+export function getTopicEIPIds(topicId: string): string[] {
+  const ids: string[] = []
+  for (const [id, eip] of Object.entries(EIPs)) {
+    if (eip.topics?.includes(topicId)) {
+      ids.push(id)
+    }
+  }
+  return ids
+}

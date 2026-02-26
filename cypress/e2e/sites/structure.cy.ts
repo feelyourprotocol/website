@@ -22,7 +22,7 @@ describe('Site Structure', () => {
   it('navigation links work', () => {
     cy.visit('/')
 
-    cy.get('nav').contains('Fusaka').click()
+    cy.contains('h2', 'Fusaka').click()
     cy.url().should('include', '/fusaka')
 
     cy.get('#eip-navi').select('EIP-7883')

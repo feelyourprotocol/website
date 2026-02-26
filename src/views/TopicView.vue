@@ -1,12 +1,15 @@
 <script setup lang="ts">
+import EIPC from '@/components/eips/EIPC.vue'
 import HeadlineButtonC from '@/components/ui/HeadlineButtonC.vue'
 import TooltipC from '@/components/ui/TooltipC.vue'
+import DancerView from './DancerView.vue'
 import { useRoute } from 'vue-router'
-import { TOPICS, type Topic } from './lib/structure'
+import { EIPs, TOPICS, getTopicEIPIds } from './lib/structure'
 
 const route = useRoute()
-// @ts-expect-error route.name doesn't seem to be properly typed
-const topic: Topic = TOPICS[route.name]
+const topicId = route.name as string
+const topic = TOPICS[topicId]
+const eipIds = getTopicEIPIds(topicId)
 </script>
 
 <template>
@@ -19,7 +22,28 @@ const topic: Topic = TOPICS[route.name]
     </div>
     <TooltipC :tooltip="topic.url" />
     <div class="grid md:grid-cols-2 gap-4">
-      <slot></slot>
+      <div>
+        <RouterLink
+          v-for="eipId in eipIds"
+          :key="eipId"
+          :to="EIPs[eipId].path"
+          class="block mb-2 no-underline"
+        >
+          <EIPC
+            :title="EIPs[eipId].title"
+            :eip="EIPs[eipId].num"
+            :introText="EIPs[eipId].introText"
+          />
+        </RouterLink>
+      </div>
+
+      <div>
+        <DancerView
+          :nameId="topicId"
+          :title="topic.title"
+          :introText="topic.introText"
+        />
+      </div>
     </div>
   </main>
 </template>

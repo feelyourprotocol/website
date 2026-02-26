@@ -3,17 +3,20 @@ describe('Home Page', () => {
     cy.visit('/')
   })
 
-  it('renders intro content', () => {
+  it('renders intro and project overview', () => {
     cy.contains('Interactive Ethereum Protocol Explorations')
-    cy.contains('For the Community.')
-    cy.contains('For Builders.')
-    cy.contains('For Testers.')
-    cy.contains('For Researchers.')
+    cy.contains('About the Project')
+    cy.contains('Feel Your Protocol is a collaborative open-source project')
   })
 
-  it('latest EIPs section has entries and links work', () => {
-    cy.get('#latest-navi li').should('have.length.gte', 1)
-    cy.get('#latest-navi li').first().find('a').click()
+  it('renders topic box with dancer', () => {
+    cy.contains('h2', 'Fusaka')
+    cy.get('img').should('exist')
+  })
+
+  it('featured EIP boxes have entries and links work', () => {
+    cy.get('.eip-precompile-c').should('have.length.gte', 1)
+    cy.get('.eip-precompile-c').first().parents('a').click()
     cy.url().should('include', '/eip-')
   })
 })
