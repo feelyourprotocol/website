@@ -20,11 +20,7 @@ const eipIds = getTopicEIPIds(topicId)
           :to="EIPs[eipId].path"
           class="block mb-2 no-underline"
         >
-          <EIPC
-            :title="EIPs[eipId].title"
-            :eip="EIPs[eipId].num"
-            :introText="EIPs[eipId].introText"
-          />
+          <EIPC :eipId="eipId" :eip="EIPs[eipId]" />
         </RouterLink>
       </div>
 

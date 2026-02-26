@@ -36,7 +36,7 @@ const navigate = () => {
         >
           <option disabled value="">All Explorations</option>
           <option v-for="[id, eip] in Object.entries(EIPs)" :key="id" :value="eip.path">
-            EIP-{{ eip.num }}
+            {{ id.toUpperCase() }}
           </option>
         </select>
       </nav>

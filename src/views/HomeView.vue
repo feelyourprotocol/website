@@ -55,11 +55,7 @@ const featured = ['eip-7883', 'eip-7594', 'eip-7951']
           :to="EIPs[eipId].path"
           class="block mb-2 no-underline"
         >
-          <EIPC
-            :title="EIPs[eipId].title"
-            :eip="EIPs[eipId].num"
-            :introText="EIPs[eipId].introText"
-          />
+          <EIPC :eipId="eipId" :eip="EIPs[eipId]" />
         </RouterLink>
       </div>
     </div>

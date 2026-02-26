@@ -10,7 +10,7 @@ const eip = EIPs[eipId]
 
 const componentModules = import.meta.glob('../components/eips/EIP*C.vue')
 const EIPComponent = defineAsyncComponent(
-  componentModules[`../components/eips/EIP${eip.num}C.vue`] as () => Promise<{ default: object }>,
+  componentModules[`../components/eips/${eipId.toUpperCase().replace('-', '')}C.vue`] as () => Promise<{ default: object }>,
 )
 </script>
 

@@ -119,7 +119,7 @@ await init()
 </script>
 
 <template>
-  <EIPC :title="eip.title" :eip="eip.num" :introText="eip.introText" :usageText="eip.usageText">
+  <EIPC eipId="eip-7594" :eip="eip">
     <template v-slot:content>
       <div class="mt-3 text-right">
         <ActionButtonC

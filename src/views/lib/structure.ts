@@ -1,8 +1,8 @@
 export const EIPs: EIPs = {
   'eip-7594': {
-    num: 7594,
     path: '/eip-7594-peerdas-data-availability-sampling',
-    title: 'Peer Data Availability Sampling',
+    title: 'EIP-7594 Peer Data Availability Sampling',
+    infoURL: 'https://eips.ethereum.org/EIPS/eip-7594',
     topics: ['fusaka'],
     image: 'fusaka.webp',
     introText:
@@ -26,9 +26,9 @@ export const EIPs: EIPs = {
     ],
   },
   'eip-7883': {
-    num: 7883,
     path: '/eip-7883-modexp-gas-cost-increase',
-    title: 'ModExp Gas Cost Increase',
+    title: 'EIP-7883 ModExp Gas Cost Increase',
+    infoURL: 'https://eips.ethereum.org/EIPS/eip-7883',
     topics: ['fusaka'],
     image: 'precompiles.webp',
     introText:
@@ -44,9 +44,9 @@ export const EIPs: EIPs = {
     ],
   },
   'eip-7951': {
-    num: 7951,
     path: '/eip-7951-secp256r1-precompile',
-    title: 'secp256r1 Precompile Support',
+    title: 'EIP-7951 secp256r1 Precompile Support',
+    infoURL: 'https://eips.ethereum.org/EIPS/eip-7951',
     topics: ['fusaka'],
     image: 'precompiles.webp',
     introText:
@@ -83,7 +83,7 @@ export const TOPICS: Topics = {
       'It brings significant changes to data availability with PeerDAS, adjusts precompile gas costs ' +
       'for ModExp, and introduces a new secp256r1 signature verification precompile enabling ' +
       'seamless wallet interactions from modern devices.',
-    eips: getTopicEIPs('fusaka'),
+    eips: getTopicEIPIds('fusaka'),
   },
 }
 
@@ -93,9 +93,9 @@ export interface PoweredByItem {
 }
 
 export interface EIP {
-  num: number
   path: string
   title: string
+  infoURL: string
   topics?: string[]
   image?: string
   introText?: string
@@ -112,20 +112,10 @@ export interface Topic {
   url: string
   image?: string
   introText?: string
-  eips: number[]
+  eips: string[]
 }
 export interface Topics {
   [key: string]: Topic
-}
-
-function getTopicEIPs(topicId: string) {
-  const eips: number[] = []
-  for (const [, eip] of Object.entries(EIPs)) {
-    if (eip.topics?.includes(topicId)) {
-      eips.push(eip.num)
-    }
-  }
-  return eips
 }
 
 export function getTopicEIPIds(topicId: string): string[] {

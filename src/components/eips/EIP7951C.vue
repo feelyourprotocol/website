@@ -211,7 +211,7 @@ await init()
 </script>
 
 <template>
-  <EIPC :title="eip.title" :eip="eip.num" :introText="eip.introText" :usageText="eip.usageText" :shareURL="shareURL">
+  <EIPC eipId="eip-7951" :eip="eip" :shareURL="shareURL">
     <template v-slot:content>
       <div>
         <ExamplesC v-model="example" :examples="examples" :change="selectExample" />
