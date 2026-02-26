@@ -6,7 +6,7 @@ import blobBase from '../lib/blobs/blob_base.txt?raw'
 import blobGnosis from '../lib/blobs/blob_gnosis.txt?raw'
 import blobLighter from '../lib/blobs/blob_lighter.txt?raw'
 import EIPC from './EIPC.vue'
-import { EIPs } from '@/views/lib/structure.js'
+import { EXPLORATIONS } from '@/views/lib/structure.js'
 import PoweredByC from './PoweredByC.vue'
 import ExamplesC from '../ui/ExamplesC.vue'
 import {
@@ -39,7 +39,7 @@ const cellProofs: Ref<string[]> = ref([''])
 const errorMsg: Ref<string> = ref('')
 const example: Ref<string> = ref('')
 
-const eip = EIPs['eip-7594']
+const exploration = EXPLORATIONS['eip-7594']
 
 /**
  * Examples
@@ -59,7 +59,7 @@ const examples: Examples = {
   },
 }
 
-const poweredBy = eip.poweredBy ?? []
+const poweredBy = exploration.poweredBy ?? []
 
 /**
  * Example/URL helper functions
@@ -119,7 +119,7 @@ await init()
 </script>
 
 <template>
-  <EIPC eipId="eip-7594" :eip="eip">
+  <EIPC explorationId="eip-7594" :exploration="exploration">
     <template v-slot:content>
       <div class="mt-3 text-right">
         <ActionButtonC

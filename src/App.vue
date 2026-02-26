@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { RouterLink, RouterView, useRoute, useRouter } from 'vue-router'
 import { ref, watch, type Ref } from 'vue'
-import { EIPs } from './views/lib/structure'
+import { EXPLORATIONS } from './views/lib/structure'
 
 const router = useRouter()
 const route = useRoute()
@@ -32,10 +32,10 @@ const navigate = () => {
           v-model="selectedRoute"
           @change="navigate"
           class="text-sm ml-6 border-1 p-1 rounded-sm"
-          id="eip-navi"
+          id="exploration-navi"
         >
           <option disabled value="">All Explorations</option>
-          <option v-for="[id, eip] in Object.entries(EIPs)" :key="id" :value="eip.path">
+          <option v-for="[id, exploration] in Object.entries(EXPLORATIONS)" :key="id" :value="exploration.path">
             {{ id.toUpperCase() }}
           </option>
         </select>

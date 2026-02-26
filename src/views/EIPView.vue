@@ -1,16 +1,16 @@
 <script setup lang="ts">
 import { defineAsyncComponent } from 'vue'
 import { useRoute } from 'vue-router'
-import { EIPs, TOPICS } from './lib/structure'
+import { EXPLORATIONS, TOPICS } from './lib/structure'
 import TopicIntroView from './TopicIntroView.vue'
 
 const route = useRoute()
-const eipId = route.name as string
-const eip = EIPs[eipId]
+const explorationId = route.name as string
+const exploration = EXPLORATIONS[explorationId]
 
 const componentModules = import.meta.glob('../components/eips/EIP*C.vue')
 const EIPComponent = defineAsyncComponent(
-  componentModules[`../components/eips/${eipId.toUpperCase().replace('-', '')}C.vue`] as () => Promise<{ default: object }>,
+  componentModules[`../components/eips/${explorationId.toUpperCase().replace('-', '')}C.vue`] as () => Promise<{ default: object }>,
 )
 </script>
 
@@ -20,9 +20,9 @@ const EIPComponent = defineAsyncComponent(
       <EIPComponent />
     </Suspense>
     <TopicIntroView
-      v-if="eip.image && eip.topics?.[0]"
-      :topic="TOPICS[eip.topics[0]]"
-      :image="eip.image"
+      v-if="exploration.image && exploration.topics?.[0]"
+      :topic="TOPICS[exploration.topics[0]]"
+      :image="exploration.image"
     />
   </div>
 </template>

@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import { EIPs, TOPICS } from '@/views/lib/structure'
+import { EXPLORATIONS, TOPICS } from '@/views/lib/structure'
 
 function loadRoutes() {
   // Use Vite's glob imports so production builds can resolve lazy routes
@@ -19,10 +19,10 @@ function loadRoutes() {
     },
   ]
 
-  const eipRs = []
-  for (const [name, eip] of Object.entries(EIPs)) {
-    eipRs.push({
-      path: eip.path,
+  const explorationRs = []
+  for (const [name, exploration] of Object.entries(EXPLORATIONS)) {
+    explorationRs.push({
+      path: exploration.path,
       name,
       component: baseViews['../views/EIPView.vue'],
     })
@@ -37,7 +37,7 @@ function loadRoutes() {
     })
   }
 
-  return [...homeRs, ...eipRs, ...topicRs]
+  return [...homeRs, ...explorationRs, ...topicRs]
 }
 
 const router = createRouter({

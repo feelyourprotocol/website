@@ -2,12 +2,12 @@
 import EIPC from '@/components/eips/EIPC.vue'
 import TopicIntroView from './TopicIntroView.vue'
 import { useRoute } from 'vue-router'
-import { EIPs, TOPICS, getTopicEIPIds } from './lib/structure'
+import { EXPLORATIONS, TOPICS, getTopicExplorationIds } from './lib/structure'
 
 const route = useRoute()
 const topicId = route.name as string
 const topic = TOPICS[topicId]
-const eipIds = getTopicEIPIds(topicId)
+const explorationIds = getTopicExplorationIds(topicId)
 </script>
 
 <template>
@@ -15,12 +15,12 @@ const eipIds = getTopicEIPIds(topicId)
     <div class="grid md:grid-cols-2 gap-4">
       <div>
         <RouterLink
-          v-for="eipId in eipIds"
-          :key="eipId"
-          :to="EIPs[eipId].path"
+          v-for="explorationId in explorationIds"
+          :key="explorationId"
+          :to="EXPLORATIONS[explorationId].path"
           class="block mb-2 no-underline"
         >
-          <EIPC :eipId="eipId" :eip="EIPs[eipId]" />
+          <EIPC :explorationId="explorationId" :exploration="EXPLORATIONS[explorationId]" />
         </RouterLink>
       </div>
 

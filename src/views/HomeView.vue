@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import TopicIntroView from './TopicIntroView.vue'
 import EIPC from '@/components/eips/EIPC.vue'
-import { EIPs, TOPICS } from './lib/structure.js'
+import { EXPLORATIONS, TOPICS } from './lib/structure.js'
 
 const featured = ['eip-7883', 'eip-7594', 'eip-7951']
 </script>
@@ -50,12 +50,12 @@ const featured = ['eip-7883', 'eip-7594', 'eip-7951']
         </div>
 
         <RouterLink
-          v-for="eipId in featured"
-          :key="eipId"
-          :to="EIPs[eipId].path"
+          v-for="explorationId in featured"
+          :key="explorationId"
+          :to="EXPLORATIONS[explorationId].path"
           class="block mb-2 no-underline"
         >
-          <EIPC :eipId="eipId" :eip="EIPs[eipId]" />
+          <EIPC :explorationId="explorationId" :exploration="EXPLORATIONS[explorationId]" />
         </RouterLink>
       </div>
     </div>

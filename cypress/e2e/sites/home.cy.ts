@@ -14,9 +14,9 @@ describe('Home Page', () => {
     cy.get('img').should('exist')
   })
 
-  it('featured EIP boxes have entries and links work', () => {
-    cy.get('.eip-precompile-c').should('have.length.gte', 1)
-    cy.get('.eip-precompile-c').first().parents('a').click()
+  it('featured exploration boxes have entries and links work', () => {
+    cy.get('.exploration-precompile-c').should('have.length.gte', 1)
+    cy.get('.exploration-precompile-c').first().parents('a').click()
     cy.url().should('include', '/eip-')
   })
 })

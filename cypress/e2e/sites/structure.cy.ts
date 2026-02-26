@@ -25,7 +25,7 @@ describe('Site Structure', () => {
     cy.contains('h2', 'Fusaka').click()
     cy.url().should('include', '/fusaka')
 
-    cy.get('#eip-navi').select('EIP-7883')
+    cy.get('#exploration-navi').select('EIP-7883')
     cy.url().should('include', '/eip-7883')
 
     cy.get('footer').contains('Imprint').click()
@@ -35,11 +35,11 @@ describe('Site Structure', () => {
     cy.url().should('eq', Cypress.config().baseUrl + '/')
   })
 
-  it('EIP dropdown lists all EIPs', () => {
+  it('exploration dropdown lists all explorations', () => {
     cy.visit('/')
-    cy.get('#eip-navi option').should('have.length.gte', 4)
-    cy.get('#eip-navi').contains('EIP-7594')
-    cy.get('#eip-navi').contains('EIP-7883')
-    cy.get('#eip-navi').contains('EIP-7951')
+    cy.get('#exploration-navi option').should('have.length.gte', 4)
+    cy.get('#exploration-navi').contains('EIP-7594')
+    cy.get('#exploration-navi').contains('EIP-7883')
+    cy.get('#exploration-navi').contains('EIP-7951')
   })
 })

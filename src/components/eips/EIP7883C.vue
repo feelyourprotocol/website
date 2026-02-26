@@ -24,10 +24,10 @@ import {
   type BIGINT_UNDEFINED_6,
   type HEX_6,
 } from '../lib/precompiles.js'
-import { EIPs } from '@/views/lib/structure.js'
+import { EXPLORATIONS } from '@/views/lib/structure.js'
 import { type Examples } from '../lib/general.js'
 
-const eip = EIPs['eip-7883']
+const exploration = EXPLORATIONS['eip-7883']
 
 const data: Ref<string> = ref('')
 
@@ -42,7 +42,7 @@ const example: Ref<string> = ref('')
 const execResultPre: Ref<ExecResult | undefined> = ref()
 const execResultPost: Ref<ExecResult | undefined> = ref()
 
-const poweredBy = eip.poweredBy ?? []
+const poweredBy = exploration.poweredBy ?? []
 
 const router = useRouter()
 const route = useRoute()
@@ -217,7 +217,7 @@ await init()
 </script>
 
 <template>
-  <EIPC eipId="eip-7883" :eip="eip" :shareURL="shareURL">
+  <EIPC explorationId="eip-7883" :exploration="exploration" :shareURL="shareURL">
     <template v-slot:content>
       <div>
         <ExamplesC v-model="example" :examples="examples" :change="selectExample" />

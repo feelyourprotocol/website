@@ -16,11 +16,11 @@ import {
   type BIGINT_UNDEFINED_5,
   type HEX_5,
 } from '../lib/precompiles.js'
-import { EIPs } from '@/views/lib/structure.js'
+import { EXPLORATIONS } from '@/views/lib/structure.js'
 import { type Examples } from '../lib/general.js'
 import { PP_BOX_LAYOUT } from '../lib/layout'
 
-const eip = EIPs['eip-7951']
+const exploration = EXPLORATIONS['eip-7951']
 
 const data: Ref<string> = ref('')
 const hexVals: Ref<HEX_5> = ref(Array(5).fill('') as HEX_5)
@@ -34,7 +34,7 @@ const example: Ref<string> = ref('')
 const execResultPre: Ref<ExecResult | undefined> = ref()
 const execResultPost: Ref<ExecResult | undefined> = ref()
 
-const poweredBy = eip.poweredBy ?? []
+const poweredBy = exploration.poweredBy ?? []
 
 const router = useRouter()
 const route = useRoute()
@@ -211,7 +211,7 @@ await init()
 </script>
 
 <template>
-  <EIPC eipId="eip-7951" :eip="eip" :shareURL="shareURL">
+  <EIPC explorationId="eip-7951" :exploration="exploration" :shareURL="shareURL">
     <template v-slot:content>
       <div>
         <ExamplesC v-model="example" :examples="examples" :change="selectExample" />

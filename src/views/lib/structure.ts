@@ -1,4 +1,4 @@
-export const EIPs: EIPs = {
+export const EXPLORATIONS: Explorations = {
   'eip-7594': {
     path: '/eip-7594-peerdas-data-availability-sampling',
     title: 'EIP-7594 Peer Data Availability Sampling',
@@ -83,7 +83,7 @@ export const TOPICS: Topics = {
       'It brings significant changes to data availability with PeerDAS, adjusts precompile gas costs ' +
       'for ModExp, and introduces a new secp256r1 signature verification precompile enabling ' +
       'seamless wallet interactions from modern devices.',
-    eips: getTopicEIPIds('fusaka'),
+    explorations: getTopicExplorationIds('fusaka'),
   },
 }
 
@@ -92,7 +92,7 @@ export interface PoweredByItem {
   href: string
 }
 
-export interface EIP {
+export interface Exploration {
   path: string
   title: string
   infoURL: string
@@ -102,8 +102,8 @@ export interface EIP {
   usageText?: string
   poweredBy?: PoweredByItem[]
 }
-export interface EIPs {
-  [key: string]: EIP
+export interface Explorations {
+  [key: string]: Exploration
 }
 
 export interface Topic {
@@ -112,16 +112,16 @@ export interface Topic {
   url: string
   image?: string
   introText?: string
-  eips: string[]
+  explorations: string[]
 }
 export interface Topics {
   [key: string]: Topic
 }
 
-export function getTopicEIPIds(topicId: string): string[] {
+export function getTopicExplorationIds(topicId: string): string[] {
   const ids: string[] = []
-  for (const [id, eip] of Object.entries(EIPs)) {
-    if (eip.topics?.includes(topicId)) {
+  for (const [id, exploration] of Object.entries(EXPLORATIONS)) {
+    if (exploration.topics?.includes(topicId)) {
       ids.push(id)
     }
   }
