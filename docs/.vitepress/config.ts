@@ -23,7 +23,7 @@ export default defineConfig({
         text: 'Contributing',
         items: [
           { text: 'How to Contribute', link: '/contributing/how-to-contribute' },
-          { text: 'Adding an EIP', link: '/contributing/adding-an-eip' },
+          { text: 'Adding an Exploration', link: '/contributing/adding-an-exploration' },
         ],
       },
     ],

@@ -1,14 +1,14 @@
 # Library Forks
 
-::: warning 🚧 Under Active Development
+::: warning Under Active Development
 Both the Feel Your Protocol project and this documentation are in an early stage and under active development. Things may change frequently.
 :::
 
 ## Why Forks?
 
-Feel Your Protocol runs real Ethereum library code in the browser. Some EIP widgets need a modified version of an existing library — for example, a version with a new precompile implementation, or experimental gas calculation changes that haven't been released yet.
+Feel Your Protocol runs real Ethereum library code in the browser. Some exploration widgets need a modified version of an existing library — for example, a version with a new precompile implementation, or experimental gas calculation changes that haven't been released yet.
 
-Rather than waiting for upstream releases, we maintain targeted forks that are used by specific EIP pages.
+Rather than waiting for upstream releases, we maintain targeted forks that are used by specific exploration pages.
 
 ## How Forks Work
 
@@ -38,7 +38,7 @@ For libraries from monorepos (like EthereumJS), where the target package has sev
 
 ### Per-Route Isolation
 
-Each fork is only imported in its specific EIP component. Thanks to Vite's code splitting, the fork's code is only loaded when the user visits that EIP's page. Other pages are unaffected.
+Each fork is only imported in its specific exploration's `MyC.vue`. Thanks to Vite's code splitting, the fork's code is only loaded when the user visits that exploration's page. Other pages are unaffected.
 
 ## Adding a New Fork
 
@@ -46,5 +46,5 @@ Each fork is only imported in its specific EIP component. Thanks to Vite's code 
 2. Make your changes
 3. For single-package repos: add an npm alias pointing to your fork's git URL
 4. For monorepo packages: create a bundled build, then reference it
-5. Import the fork only in your EIP's component file
+5. Import the fork only in your exploration's `MyC.vue` file — never in shared code
 6. Document the fork in this page

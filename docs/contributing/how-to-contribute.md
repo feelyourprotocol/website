@@ -1,13 +1,13 @@
 # How to Contribute
 
-::: warning 🚧 Under Active Development
+::: warning Under Active Development
 Both the Feel Your Protocol project and this documentation are in an early stage and under active development. Things may change frequently.
 :::
 
 ## Ways to Contribute
 
-- **Add a new EIP widget** — the most impactful contribution
-- **Improve an existing widget** — better examples, UI improvements, bug fixes
+- **Add a new exploration** — the most impactful contribution (see [Adding an Exploration](./adding-an-exploration.md))
+- **Improve an existing exploration** — better examples, UI improvements, bug fixes
 - **Improve documentation** — fix typos, add guides, clarify explanations
 - **Report issues** — found a bug or have a suggestion? Open an issue
 
