@@ -4,7 +4,6 @@ import { EIPs, TOPICS } from '@/views/lib/structure'
 function loadRoutes() {
   // Use Vite's glob imports so production builds can resolve lazy routes
   // This is important to keep the routes statically analyzable for cypress e2e tests
-  const eipViews = import.meta.glob('../views/eips/*View.vue')
   const baseViews = import.meta.glob('../views/*View.vue')
 
   const homeRs = [
@@ -25,7 +24,7 @@ function loadRoutes() {
     eipRs.push({
       path: eip.path,
       name,
-      component: eipViews[`../views/eips/EIP${eip.num}View.vue`],
+      component: baseViews['../views/EIPView.vue'],
     })
   }
 

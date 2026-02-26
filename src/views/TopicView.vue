@@ -1,8 +1,6 @@
 <script setup lang="ts">
 import EIPC from '@/components/eips/EIPC.vue'
-import HeadlineButtonC from '@/components/ui/HeadlineButtonC.vue'
-import TooltipC from '@/components/ui/TooltipC.vue'
-import DancerView from './DancerView.vue'
+import TopicIntroView from './TopicIntroView.vue'
 import { useRoute } from 'vue-router'
 import { EIPs, TOPICS, getTopicEIPIds } from './lib/structure'
 
@@ -14,13 +12,6 @@ const eipIds = getTopicEIPIds(topicId)
 
 <template>
   <main>
-    <div class="grid grid-cols-1 mb-3">
-      <p class="text-right text-3xl">
-        <HeadlineButtonC :url="topic.url" />
-        <span class="ml-3">{{ topic.title }}</span>
-      </p>
-    </div>
-    <TooltipC :tooltip="topic.url" />
     <div class="grid md:grid-cols-2 gap-4">
       <div>
         <RouterLink
@@ -38,10 +29,11 @@ const eipIds = getTopicEIPIds(topicId)
       </div>
 
       <div>
-        <DancerView
-          :nameId="topicId"
-          :title="topic.title"
-          :introText="topic.introText"
+        <TopicIntroView
+          v-if="topic.image"
+          :topic="topic"
+          :image="topic.image"
+          :overviewMode="true"
         />
       </div>
     </div>

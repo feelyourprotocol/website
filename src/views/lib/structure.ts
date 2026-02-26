@@ -4,6 +4,7 @@ export const EIPs: EIPs = {
     path: '/eip-7594-peerdas-data-availability-sampling',
     title: 'Peer Data Availability Sampling',
     topics: ['fusaka'],
+    image: 'fusaka.webp',
     introText:
       '<b>How do blob transactions change with PeerDAS?</b> ' +
       'Data availability sampling (DAS) - introduced along the Fusaka hardfork - comes with a new ' +
@@ -29,6 +30,7 @@ export const EIPs: EIPs = {
     path: '/eip-7883-modexp-gas-cost-increase',
     title: 'ModExp Gas Cost Increase',
     topics: ['fusaka'],
+    image: 'precompiles.webp',
     introText:
       '<b>How are ModExp gas costs changing with Fusaka?</b> ' +
       'EIP-7883 changes the gas calculation algorithm of the ModExp precompile.',
@@ -46,6 +48,7 @@ export const EIPs: EIPs = {
     path: '/eip-7951-secp256r1-precompile',
     title: 'secp256r1 Precompile Support',
     topics: ['fusaka'],
+    image: 'precompiles.webp',
     introText:
       '<b>How can I interact with the new curve precompile?</b> The ' +
       '<a href="https://www.nervos.org/knowledge-base/what_is_secp256r1" target="_blank">secp256r1</a> ' +
@@ -74,6 +77,7 @@ export const TOPICS: Topics = {
     title: 'Fusaka',
     path: '/fusaka',
     url: 'https://forkcast.org/upgrade/fusaka',
+    image: 'fusaka.webp',
     introText:
       'Fusaka is Ethereum\'s next major network upgrade following Pectra. ' +
       'It brings significant changes to data availability with PeerDAS, adjusts precompile gas costs ' +
@@ -93,6 +97,7 @@ export interface EIP {
   path: string
   title: string
   topics?: string[]
+  image?: string
   introText?: string
   usageText?: string
   poweredBy?: PoweredByItem[]
@@ -105,6 +110,7 @@ export interface Topic {
   title: string
   path: string
   url: string
+  image?: string
   introText?: string
   eips: number[]
 }

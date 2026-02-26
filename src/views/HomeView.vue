@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import DancerView from './DancerView.vue'
+import TopicIntroView from './TopicIntroView.vue'
 import EIPC from '@/components/eips/EIPC.vue'
 import { EIPs, TOPICS } from './lib/structure.js'
 
@@ -8,17 +8,13 @@ const featured = ['eip-7883', 'eip-7594', 'eip-7951']
 
 <template>
   <main>
-    <p class="text-xl md:text-2xl text-slate-500 mb-10">
-      Interactive Ethereum Protocol Explorations.
-    </p>
-
     <div class="grid md:grid-cols-2 gap-4">
       <div>
         <RouterLink to="/fusaka" class="block no-underline">
-          <DancerView
-            nameId="fusaka"
-            :title="TOPICS.fusaka.title"
-            :introText="TOPICS.fusaka.introText"
+          <TopicIntroView
+            :topic="TOPICS.fusaka"
+            image="fusaka.webp"
+            :overviewMode="true"
           />
         </RouterLink>
       </div>

@@ -1,22 +1,28 @@
 <script setup lang="ts">
+import { defineAsyncComponent } from 'vue'
 import { useRoute } from 'vue-router'
-import { EIPs, type EIP } from './lib/structure'
+import { EIPs, TOPICS } from './lib/structure'
+import TopicIntroView from './TopicIntroView.vue'
 
 const route = useRoute()
-// @ts-expect-error route.name doesn't seem to be properly typed
-const eip: EIP = EIPs[route.name]
+const eipId = route.name as string
+const eip = EIPs[eipId]
+
+const componentModules = import.meta.glob('../components/eips/EIP*C.vue')
+const EIPComponent = defineAsyncComponent(
+  componentModules[`../components/eips/EIP${eip.num}C.vue`] as () => Promise<{ default: object }>,
+)
 </script>
 
 <template>
-  <div class="grid grid-cols-1">
-    <p class="flex justify-end text-sm items-center mb-3">
-      <span class="ml-5 text-3xl">EIP-{{ eip.num }}</span>
-    </p>
-  </div>
-
   <div class="grid md:grid-cols-2 gap-4">
     <Suspense>
-      <slot></slot>
+      <EIPComponent />
     </Suspense>
+    <TopicIntroView
+      v-if="eip.image && eip.topics?.[0]"
+      :topic="TOPICS[eip.topics[0]]"
+      :image="eip.image"
+    />
   </div>
 </template>

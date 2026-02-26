@@ -20,8 +20,8 @@ const navigate = () => {
 </script>
 
 <template>
-  <header>
-    <div class="grid grid-cols-2 pt-2 pb-2 mt-1 mb-2">
+  <header class="mt-3 mb-8">
+    <div class="grid grid-cols-2 mb-3">
       <h1>
         <RouterLink to="/" class="text-2xl md:text-4xl font-bold text-blue-900"
           >Feel Your Protocol</RouterLink
@@ -40,6 +40,11 @@ const navigate = () => {
           </option>
         </select>
       </nav>
+    </div>
+    <div class="grid grid-cols-1">
+      <p class="text-xl md:text-2xl text-slate-500">
+      Interactive Ethereum Protocol Explorations.
+    </p>
     </div>
   </header>
 
