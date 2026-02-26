@@ -24,10 +24,10 @@ import {
   type BIGINT_UNDEFINED_6,
   type HEX_6,
 } from '../../components/lib/precompiles.js'
-import { EXPLORATIONS } from '@/views/lib/structure.js'
+import { INFO } from './info'
 import { type Examples } from '../../components/lib/general.js'
 
-const exploration = EXPLORATIONS['eip-7883']
+const exploration = INFO
 
 const data: Ref<string> = ref('')
 

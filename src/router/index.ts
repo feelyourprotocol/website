@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import { EXPLORATIONS, TOPICS } from '@/views/lib/structure'
+import { EXPLORATIONS } from '@/explorations/REGISTRY'
+import { TOPICS } from '@/explorations/TOPICS'
 
 function loadRoutes() {
   // Use Vite's glob imports so production builds can resolve lazy routes

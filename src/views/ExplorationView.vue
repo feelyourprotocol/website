@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { defineAsyncComponent } from 'vue'
 import { useRoute } from 'vue-router'
-import { EXPLORATIONS, TOPICS } from './lib/structure'
+import { EXPLORATIONS } from '@/explorations/REGISTRY'
+import { TOPICS } from '@/explorations/TOPICS'
 import TopicIntroView from './TopicIntroView.vue'
 
 const route = useRoute()

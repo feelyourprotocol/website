@@ -6,7 +6,7 @@ import blobBase from '../../components/lib/blobs/blob_base.txt?raw'
 import blobGnosis from '../../components/lib/blobs/blob_gnosis.txt?raw'
 import blobLighter from '../../components/lib/blobs/blob_lighter.txt?raw'
 import ExplorationC from '../ExplorationC.vue'
-import { EXPLORATIONS } from '@/views/lib/structure.js'
+import { INFO } from './info'
 import PoweredByC from '../PoweredByC.vue'
 import ExamplesC from '../../components/ui/ExamplesC.vue'
 import {
@@ -39,7 +39,7 @@ const cellProofs: Ref<string[]> = ref([''])
 const errorMsg: Ref<string> = ref('')
 const example: Ref<string> = ref('')
 
-const exploration = EXPLORATIONS['eip-7594']
+const exploration = INFO
 
 /**
  * Examples

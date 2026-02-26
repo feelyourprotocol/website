@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import TopicIntroView from './TopicIntroView.vue'
 import ExplorationC from '@/explorations/ExplorationC.vue'
-import { EXPLORATIONS, TOPICS } from './lib/structure.js'
+import { EXPLORATIONS } from '@/explorations/REGISTRY'
+import { TOPICS } from '@/explorations/TOPICS'
 
 const featured = ['eip-7883', 'eip-7594', 'eip-7951']
 </script>

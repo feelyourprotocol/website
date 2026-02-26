@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ArrowTopRightOnSquareIcon, ShareIcon } from '@heroicons/vue/24/solid'
 import ButtonC from '../components/ui/ButtonC.vue'
-import type { Exploration } from '@/views/lib/structure'
+import type { Exploration } from './REGISTRY'
 
 defineProps<{
   explorationId: string

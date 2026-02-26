@@ -2,7 +2,8 @@
 import ExplorationC from '@/explorations/ExplorationC.vue'
 import TopicIntroView from './TopicIntroView.vue'
 import { useRoute } from 'vue-router'
-import { EXPLORATIONS, TOPICS, getTopicExplorationIds } from './lib/structure'
+import { EXPLORATIONS, getTopicExplorationIds } from '@/explorations/REGISTRY'
+import { TOPICS } from '@/explorations/TOPICS'
 
 const route = useRoute()
 const topicId = route.name as string

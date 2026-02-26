@@ -16,11 +16,11 @@ import {
   type BIGINT_UNDEFINED_5,
   type HEX_5,
 } from '../../components/lib/precompiles.js'
-import { EXPLORATIONS } from '@/views/lib/structure.js'
+import { INFO } from './info'
 import { type Examples } from '../../components/lib/general.js'
 import { PP_BOX_LAYOUT } from '../../components/lib/layout'
 
-const exploration = EXPLORATIONS['eip-7951']
+const exploration = INFO
 
 const data: Ref<string> = ref('')
 const hexVals: Ref<HEX_5> = ref(Array(5).fill('') as HEX_5)

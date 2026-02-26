@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Topic } from './lib/structure'
+import type { Topic } from '@/explorations/TOPICS'
 
 withDefaults(
   defineProps<{

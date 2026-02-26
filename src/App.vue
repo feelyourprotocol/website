@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { RouterLink, RouterView, useRoute, useRouter } from 'vue-router'
 import { ref, watch, type Ref } from 'vue'
-import { EXPLORATIONS } from './views/lib/structure'
+import { EXPLORATIONS } from '@/explorations/REGISTRY'
 
 const router = useRouter()
 const route = useRoute()
