@@ -8,7 +8,7 @@ import PrecompileValueInput from '../precompiles/PrecompileValueInput.vue'
 import PrecompileResultC from '../precompiles/PrecompileResultC.vue'
 import ExamplesC from '../ui/ExamplesC.vue'
 import HexDataInputC from '../ui/HexDataInputC.vue'
-import EIPC from './EIPC.vue'
+import ExplorationC from './ExplorationC.vue'
 import PoweredByC from './PoweredByC.vue'
 import {
   runPrecompile,
@@ -211,7 +211,7 @@ await init()
 </script>
 
 <template>
-  <EIPC explorationId="eip-7951" :exploration="exploration" :shareURL="shareURL">
+  <ExplorationC explorationId="eip-7951" :exploration="exploration" :shareURL="shareURL">
     <template v-slot:content>
       <div>
         <ExamplesC v-model="example" :examples="examples" :change="selectExample" />
@@ -235,5 +235,5 @@ await init()
         <PoweredByC :poweredBy="poweredBy" />
       </div>
     </template>
-  </EIPC>
+  </ExplorationC>
 </template>

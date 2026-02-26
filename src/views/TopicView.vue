@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import EIPC from '@/components/eips/EIPC.vue'
+import ExplorationC from '@/components/explorations/ExplorationC.vue'
 import TopicIntroView from './TopicIntroView.vue'
 import { useRoute } from 'vue-router'
 import { EXPLORATIONS, TOPICS, getTopicExplorationIds } from './lib/structure'
@@ -20,7 +20,7 @@ const explorationIds = getTopicExplorationIds(topicId)
           :to="EXPLORATIONS[explorationId].path"
           class="block mb-2 no-underline"
         >
-          <EIPC :explorationId="explorationId" :exploration="EXPLORATIONS[explorationId]" />
+          <ExplorationC :explorationId="explorationId" :exploration="EXPLORATIONS[explorationId]" />
         </RouterLink>
       </div>
 

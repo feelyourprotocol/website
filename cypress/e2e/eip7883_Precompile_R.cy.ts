@@ -100,7 +100,7 @@ describe('EIP-7823/Precompile Component Tests', () => {
       cy.get('input').eq(2).should('have.value', '02')
 
       // EIP button
-      cy.get('.visit-eip-button').invoke('removeAttr', 'target').click()
+      cy.get('.visit-exploration-button').invoke('removeAttr', 'target').click()
       cy.origin('https://eips.ethereum.org', () => {
         cy.url().should('eq', 'https://eips.ethereum.org/EIPS/eip-7883')
       })

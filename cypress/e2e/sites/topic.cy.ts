@@ -21,10 +21,10 @@ describe('Topic Page (Fusaka)', () => {
   })
 
   it('EIP widgets have EIP links', () => {
-    cy.get('#eip-7883-precompile-c .visit-eip-button')
+    cy.get('#eip-7883-precompile-c .visit-exploration-button')
       .should('have.attr', 'href')
       .and('include', 'eip-7883')
-    cy.get('#eip-7951-precompile-c .visit-eip-button')
+    cy.get('#eip-7951-precompile-c .visit-exploration-button')
       .should('have.attr', 'href')
       .and('include', 'eip-7951')
   })

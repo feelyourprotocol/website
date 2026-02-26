@@ -8,16 +8,16 @@ const route = useRoute()
 const explorationId = route.name as string
 const exploration = EXPLORATIONS[explorationId]
 
-const componentModules = import.meta.glob('../components/eips/EIP*C.vue')
-const EIPComponent = defineAsyncComponent(
-  componentModules[`../components/eips/${explorationId.toUpperCase().replace('-', '')}C.vue`] as () => Promise<{ default: object }>,
+const componentModules = import.meta.glob('../components/explorations/EIP*C.vue')
+const ExplorationComponent = defineAsyncComponent(
+  componentModules[`../components/explorations/${explorationId.toUpperCase().replace('-', '')}C.vue`] as () => Promise<{ default: object }>,
 )
 </script>
 
 <template>
   <div class="grid md:grid-cols-2 gap-4">
     <Suspense>
-      <EIPComponent />
+      <ExplorationComponent />
     </Suspense>
     <TopicIntroView
       v-if="exploration.image && exploration.topics?.[0]"

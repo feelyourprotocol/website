@@ -24,7 +24,7 @@ function loadRoutes() {
     explorationRs.push({
       path: exploration.path,
       name,
-      component: baseViews['../views/EIPView.vue'],
+      component: baseViews['../views/ExplorationView.vue'],
     })
   }
 

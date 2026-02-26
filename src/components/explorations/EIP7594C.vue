@@ -5,7 +5,7 @@ import { type Examples } from '../lib/general.js'
 import blobBase from '../lib/blobs/blob_base.txt?raw'
 import blobGnosis from '../lib/blobs/blob_gnosis.txt?raw'
 import blobLighter from '../lib/blobs/blob_lighter.txt?raw'
-import EIPC from './EIPC.vue'
+import ExplorationC from './ExplorationC.vue'
 import { EXPLORATIONS } from '@/views/lib/structure.js'
 import PoweredByC from './PoweredByC.vue'
 import ExamplesC from '../ui/ExamplesC.vue'
@@ -119,7 +119,7 @@ await init()
 </script>
 
 <template>
-  <EIPC explorationId="eip-7594" :exploration="exploration">
+  <ExplorationC explorationId="eip-7594" :exploration="exploration">
     <template v-slot:content>
       <div class="mt-3 text-right">
         <ActionButtonC
@@ -184,5 +184,5 @@ await init()
         <PoweredByC :poweredBy="poweredBy" />
       </div>
     </template>
-  </EIPC>
+  </ExplorationC>
 </template>
