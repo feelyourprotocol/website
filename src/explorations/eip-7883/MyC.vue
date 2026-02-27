@@ -42,7 +42,7 @@ const example: Ref<string> = ref('')
 const execResultPre: Ref<ExecResult | undefined> = ref()
 const execResultPost: Ref<ExecResult | undefined> = ref()
 
-const poweredBy = exploration.poweredBy ?? []
+const poweredBy = exploration.poweredBy
 
 const router = useRouter()
 const route = useRoute()

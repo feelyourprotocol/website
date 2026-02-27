@@ -19,12 +19,19 @@ const ExplorationComponent = defineAsyncComponent(
 
 <template>
   <div class="grid md:grid-cols-2 gap-4">
-    <Suspense>
-      <ExplorationComponent />
-    </Suspense>
+    <div>
+      <Suspense>
+        <ExplorationComponent />
+        <template #fallback>
+          <div class="flex justify-center pt-32">
+            <span class="text-blue-900 font-mono font-bold text-lg animate-pulse">Loading...</span>
+          </div>
+        </template>
+      </Suspense>
+    </div>
     <TopicIntroView
-      v-if="exploration.image && exploration.topics?.[0]"
-      :topic="TOPICS[exploration.topics[0]]"
+      v-if="exploration.image"
+      :topic="TOPICS[exploration.topic]"
       :image="exploration.image"
     />
   </div>

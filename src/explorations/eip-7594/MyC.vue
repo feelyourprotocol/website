@@ -59,7 +59,7 @@ const examples: Examples = {
   },
 }
 
-const poweredBy = exploration.poweredBy ?? []
+const poweredBy = exploration.poweredBy
 
 /**
  * Example/URL helper functions

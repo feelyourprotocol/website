@@ -6,7 +6,7 @@ export const INFO: Exploration = {
   path: '/eip-7594-peerdas-data-availability-sampling',
   title: 'EIP-7594 Peer Data Availability Sampling',
   infoURL: 'https://eips.ethereum.org/EIPS/eip-7594',
-  topics: ['fusaka'],
+  topic: 'fusaka',
   image,
   introText:
     '<b>How do blob transactions change with PeerDAS?</b> ' +

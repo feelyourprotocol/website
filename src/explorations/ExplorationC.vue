@@ -31,8 +31,8 @@ defineProps<{
     </div>
 
     <div class="text-blue-900 font-mono text-xs mb-6">
-      <p v-if="exploration.introText" v-html="exploration.introText"></p>
-      <p v-if="exploration.usageText" class="mt-4" v-html="exploration.usageText"></p>
+      <p v-html="exploration.introText"></p>
+      <p class="mt-4" v-html="exploration.usageText"></p>
     </div>
 
     <slot name="content"></slot>
