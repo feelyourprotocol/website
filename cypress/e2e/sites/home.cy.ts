@@ -15,8 +15,8 @@ describe('Home Page', () => {
   })
 
   it('featured exploration boxes have entries and links work', () => {
-    cy.get('.exploration--c').should('have.length.gte', 1)
-    cy.get('.exploration--c').first().parents('a').click()
+    cy.get('.exploration-c').should('have.length.gte', 1)
+    cy.get('.exploration-c').first().parents('a').click()
     cy.url().should('include', '/eip-')
   })
 })
