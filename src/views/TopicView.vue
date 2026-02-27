@@ -2,13 +2,14 @@
 import ExplorationC from '@/explorations/ExplorationC.vue'
 import TopicIntroView from './TopicIntroView.vue'
 import { useRoute } from 'vue-router'
-import { EXPLORATIONS, getTopicExplorationIds } from '@/explorations/REGISTRY'
+import { EXPLORATIONS, getTopicExplorationIds, getRandomTopicExplorationImage } from '@/explorations/REGISTRY'
 import { TOPICS } from '@/explorations/TOPICS'
 
 const route = useRoute()
 const topicId = route.name as string
 const topic = TOPICS[topicId]
 const explorationIds = getTopicExplorationIds(topicId)
+const topicImage = getRandomTopicExplorationImage(topicId)
 </script>
 
 <template>
@@ -27,9 +28,9 @@ const explorationIds = getTopicExplorationIds(topicId)
 
       <div>
         <TopicIntroView
-          v-if="topic.image"
+          v-if="topicImage"
           :topic="topic"
-          :image="topic.image"
+          :image="topicImage"
           :overviewMode="true"
         />
       </div>

@@ -1,4 +1,5 @@
 import type { Exploration } from '../REGISTRY'
+import image from './image.webp'
 
 export const INFO: Exploration = {
   id: 'eip-7594',
@@ -6,7 +7,7 @@ export const INFO: Exploration = {
   title: 'EIP-7594 Peer Data Availability Sampling',
   infoURL: 'https://eips.ethereum.org/EIPS/eip-7594',
   topics: ['fusaka'],
-  image: 'fusaka.webp',
+  image,
   introText:
     '<b>How do blob transactions change with PeerDAS?</b> ' +
     'Data availability sampling (DAS) - introduced along the Fusaka hardfork - comes with a new ' +

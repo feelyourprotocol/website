@@ -1,4 +1,5 @@
 import type { Exploration } from '../REGISTRY'
+import image from './image.webp'
 
 export const INFO: Exploration = {
   id: 'eip-7883',
@@ -6,7 +7,7 @@ export const INFO: Exploration = {
   title: 'EIP-7883 ModExp Gas Cost Increase',
   infoURL: 'https://eips.ethereum.org/EIPS/eip-7883',
   topics: ['fusaka'],
-  image: 'precompiles.webp',
+  image,
   introText:
     '<b>How are ModExp gas costs changing with Fusaka?</b> ' +
     'EIP-7883 changes the gas calculation algorithm of the ModExp precompile.',

@@ -1,10 +1,11 @@
 <script setup lang="ts">
 import TopicIntroView from './TopicIntroView.vue'
 import ExplorationC from '@/explorations/ExplorationC.vue'
-import { EXPLORATIONS } from '@/explorations/REGISTRY'
+import { EXPLORATIONS, getRandomTopicExplorationImage } from '@/explorations/REGISTRY'
 import { TOPICS } from '@/explorations/TOPICS'
 
 const featured = ['eip-7883', 'eip-7594', 'eip-7951']
+const fusakaImage = getRandomTopicExplorationImage('fusaka')
 </script>
 
 <template>
@@ -12,7 +13,7 @@ const featured = ['eip-7883', 'eip-7594', 'eip-7951']
     <div class="grid md:grid-cols-2 gap-4">
       <div>
         <RouterLink to="/fusaka" class="block no-underline">
-          <TopicIntroView :topic="TOPICS.fusaka" image="fusaka.webp" :overviewMode="true" />
+          <TopicIntroView v-if="fusakaImage" :topic="TOPICS.fusaka" :image="fusakaImage" :overviewMode="true" />
         </RouterLink>
       </div>
 

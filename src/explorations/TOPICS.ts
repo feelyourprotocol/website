@@ -5,7 +5,6 @@ export const TOPICS: Topics = {
     title: 'Fusaka',
     path: '/fusaka',
     url: 'https://forkcast.org/upgrade/fusaka',
-    image: 'fusaka.webp',
     introText:
       "Fusaka is Ethereum's next major network upgrade following Pectra. " +
       'It brings significant changes to data availability with PeerDAS, adjusts precompile gas costs ' +
@@ -19,7 +18,6 @@ export interface Topic {
   title: string
   path: string
   url: string
-  image?: string
   introText?: string
   explorations: string[]
 }

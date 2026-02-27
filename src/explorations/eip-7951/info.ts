@@ -1,4 +1,5 @@
 import type { Exploration } from '../REGISTRY'
+import image from './image.webp'
 
 export const INFO: Exploration = {
   id: 'eip-7951',
@@ -6,7 +7,7 @@ export const INFO: Exploration = {
   title: 'EIP-7951 secp256r1 Precompile Support',
   infoURL: 'https://eips.ethereum.org/EIPS/eip-7951',
   topics: ['fusaka'],
-  image: 'precompiles.webp',
+  image,
   introText:
     '<b>How can I interact with the new curve precompile?</b> The ' +
     '<a href="https://www.nervos.org/knowledge-base/what_is_secp256r1" target="_blank">secp256r1</a> ' +

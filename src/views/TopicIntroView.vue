@@ -13,7 +13,7 @@ withDefaults(
 )
 
 const getImageUrl = (image: string) =>
-  new URL(`../assets/imgs/dancers/${image}`, import.meta.url).href
+  image.includes('/') ? image : new URL(`../assets/imgs/dancers/${image}`, import.meta.url).href
 </script>
 
 <template>
