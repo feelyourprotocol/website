@@ -8,6 +8,7 @@ import blobLighter from '../../components/lib/blobs/blob_lighter.txt?raw'
 import ExplorationC from '../ExplorationC.vue'
 import { INFO } from './info'
 import PoweredByC from '../PoweredByC.vue'
+import { TOPICS } from '../TOPICS'
 import ExamplesC from '../../components/ui/ExamplesC.vue'
 import {
   PP_BOX_LAYOUT,
@@ -40,6 +41,7 @@ const errorMsg: Ref<string> = ref('')
 const example: Ref<string> = ref('')
 
 const exploration = INFO
+const topic = TOPICS[exploration.topic]
 
 /**
  * Examples
@@ -119,7 +121,7 @@ await init()
 </script>
 
 <template>
-  <ExplorationC explorationId="eip-7594" :exploration="exploration">
+  <ExplorationC explorationId="eip-7594" :exploration="exploration" :topic="topic">
     <template v-slot:content>
       <div class="mt-3 text-right">
         <ActionButtonC
@@ -181,7 +183,7 @@ await init()
             <PPBoxInfoText v-else text="Same here." />
           </PPBoxC>
         </div>
-        <PoweredByC :poweredBy="poweredBy" />
+        <PoweredByC :poweredBy="poweredBy" :topic="topic" />
       </div>
     </template>
   </ExplorationC>

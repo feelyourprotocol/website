@@ -14,6 +14,7 @@ import ExamplesC from '../../components/ui/ExamplesC.vue'
 import HexDataInputC from '../../components/ui/HexDataInputC.vue'
 import ExplorationC from '../ExplorationC.vue'
 import PoweredByC from '../PoweredByC.vue'
+import { TOPICS } from '../TOPICS'
 import {
   runPrecompile,
   type BIGINT_5,
@@ -25,6 +26,7 @@ import { type Examples } from '../../components/lib/general.js'
 import { PP_BOX_LAYOUT } from '../../components/lib/layout'
 
 const exploration = INFO
+const topic = TOPICS[exploration.topic]
 
 const data: Ref<string> = ref('')
 const hexVals: Ref<HEX_5> = ref(Array(5).fill('') as HEX_5)
@@ -215,7 +217,12 @@ await init()
 </script>
 
 <template>
-  <ExplorationC explorationId="eip-7951" :exploration="exploration" :shareURL="shareURL">
+  <ExplorationC
+    explorationId="eip-7951"
+    :exploration="exploration"
+    :topic="topic"
+    :shareURL="shareURL"
+  >
     <template v-slot:content>
       <div>
         <ExamplesC v-model="example" :examples="examples" :change="selectExample" />
@@ -236,7 +243,7 @@ await init()
           <PrecompileResultC v-model="execResultPre" title="Pre-Osaka" :left="true" />
           <PrecompileResultC v-model="execResultPost" title="Post-Osaka" :left="false" />
         </div>
-        <PoweredByC :poweredBy="poweredBy" />
+        <PoweredByC :poweredBy="poweredBy" :topic="topic" />
       </div>
     </template>
   </ExplorationC>

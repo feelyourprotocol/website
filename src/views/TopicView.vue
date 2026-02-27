@@ -2,7 +2,11 @@
 import ExplorationC from '@/explorations/ExplorationC.vue'
 import TopicIntroView from './TopicIntroView.vue'
 import { useRoute } from 'vue-router'
-import { EXPLORATIONS, getTopicExplorationIds, getRandomTopicExplorationImage } from '@/explorations/REGISTRY'
+import {
+  EXPLORATIONS,
+  getTopicExplorationIds,
+  getRandomTopicExplorationImage,
+} from '@/explorations/REGISTRY'
 import { TOPICS } from '@/explorations/TOPICS'
 
 const route = useRoute()
@@ -22,17 +26,16 @@ const topicImage = getRandomTopicExplorationImage(topicId)
           :to="EXPLORATIONS[explorationId].path"
           class="block mb-2 no-underline"
         >
-          <ExplorationC :explorationId="explorationId" :exploration="EXPLORATIONS[explorationId]" />
+          <ExplorationC
+            :explorationId="explorationId"
+            :exploration="EXPLORATIONS[explorationId]"
+            :topic="topic"
+          />
         </RouterLink>
       </div>
 
       <div>
-        <TopicIntroView
-          v-if="topicImage"
-          :topic="topic"
-          :image="topicImage"
-          :overviewMode="true"
-        />
+        <TopicIntroView v-if="topicImage" :topic="topic" :image="topicImage" :overviewMode="true" />
       </div>
     </div>
   </main>

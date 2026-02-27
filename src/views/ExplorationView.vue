@@ -2,12 +2,13 @@
 import { defineAsyncComponent } from 'vue'
 import { useRoute } from 'vue-router'
 import { EXPLORATIONS } from '@/explorations/REGISTRY'
-import { TOPICS } from '@/explorations/TOPICS'
+import { TOPICS, TOPIC_COLOR_CLASSES } from '@/explorations/TOPICS'
 import TopicIntroView from './TopicIntroView.vue'
 
 const route = useRoute()
 const explorationId = route.name as string
 const exploration = EXPLORATIONS[explorationId]
+const cc = TOPIC_COLOR_CLASSES[TOPICS[exploration.topic].color]
 
 const componentModules = import.meta.glob('../explorations/*/MyC.vue')
 const ExplorationComponent = defineAsyncComponent(
@@ -24,7 +25,9 @@ const ExplorationComponent = defineAsyncComponent(
         <ExplorationComponent />
         <template #fallback>
           <div class="flex justify-center pt-32">
-            <span class="text-blue-900 font-mono font-bold text-lg animate-pulse">Loading...</span>
+            <span class="font-mono font-bold text-lg animate-pulse" :class="cc.text900"
+              >Loading...</span
+            >
           </div>
         </template>
       </Suspense>

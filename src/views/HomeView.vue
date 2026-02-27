@@ -13,7 +13,12 @@ const fusakaImage = getRandomTopicExplorationImage('fusaka')
     <div class="grid md:grid-cols-2 gap-4">
       <div>
         <RouterLink to="/fusaka" class="block no-underline">
-          <TopicIntroView v-if="fusakaImage" :topic="TOPICS.fusaka" :image="fusakaImage" :overviewMode="true" />
+          <TopicIntroView
+            v-if="fusakaImage"
+            :topic="TOPICS.fusaka"
+            :image="fusakaImage"
+            :overviewMode="true"
+          />
         </RouterLink>
       </div>
 
@@ -53,7 +58,11 @@ const fusakaImage = getRandomTopicExplorationImage('fusaka')
           :to="EXPLORATIONS[explorationId].path"
           class="block mb-2 no-underline"
         >
-          <ExplorationC :explorationId="explorationId" :exploration="EXPLORATIONS[explorationId]" />
+          <ExplorationC
+            :explorationId="explorationId"
+            :exploration="EXPLORATIONS[explorationId]"
+            :topic="TOPICS[EXPLORATIONS[explorationId].topic]"
+          />
         </RouterLink>
       </div>
     </div>
