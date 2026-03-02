@@ -15,10 +15,7 @@ describe('EIP-7823/Precompile Component Tests', () => {
     cy.contains('h1', 'Feel Your Protocol')
     cy.contains('h3', 'ModExp')
 
-    cy.get('#eip-7883-c textarea', { timeout: 10000 }).should(
-      'have.value',
-      bytesExpected,
-    )
+    cy.get('#eip-7883-c textarea', { timeout: 10000 }).should('have.value', bytesExpected)
     cy.get('#eip-7883-c input').eq(0).should('have.value', '03')
     cy.get('#eip-7883-c input').eq(1).should('have.value', '03')
     cy.get('#eip-7883-c input').eq(2).should('have.value', '02')

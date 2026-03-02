@@ -1,5 +1,5 @@
-import { describe, expect,it } from 'vitest'
-import { createMemoryHistory,createRouter } from 'vue-router'
+import { describe, expect, it } from 'vitest'
+import { createMemoryHistory, createRouter } from 'vue-router'
 import { mount, RouterLinkStub } from '@vue/test-utils'
 
 import { EXPLORATIONS, getTopicExplorationIds } from '@/explorations/REGISTRY'

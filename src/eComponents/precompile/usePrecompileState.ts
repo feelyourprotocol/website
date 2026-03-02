@@ -28,20 +28,24 @@ function createState(config: PrecompileConfig) {
 }
 
 export function usePrecompileState(config: PrecompileConfig, examples: Examples) {
-  const { data, hexVals, bigIntVals, lengthsMask, byteLengths, example, execResultPre, execResultPost } =
-    createState(config)
+  const {
+    data,
+    hexVals,
+    bigIntVals,
+    lengthsMask,
+    byteLengths,
+    example,
+    execResultPre,
+    execResultPost,
+  } = createState(config)
 
   const router = useRouter()
   const route = useRoute()
 
-  const editableIndices = config.values
-    .map((v, i) => (v.urlParam ? i : -1))
-    .filter((i) => i !== -1)
+  const editableIndices = config.values.map((v, i) => (v.urlParam ? i : -1)).filter((i) => i !== -1)
 
   const inputValues = computed(() =>
-    config.values
-      .map((def, index) => ({ ...def, index }))
-      .filter((def) => def.showInput !== false),
+    config.values.map((def, index) => ({ ...def, index })).filter((def) => def.showInput !== false),
   )
 
   // --- Data conversion ---
@@ -131,12 +135,18 @@ export function usePrecompileState(config: PrecompileConfig, examples: Examples)
   }
 
   return {
-    data, example,
-    hexVals, bigIntVals, byteLengths,
-    execResultPre, execResultPost,
+    data,
+    example,
+    hexVals,
+    bigIntVals,
+    byteLengths,
+    execResultPre,
+    execResultPost,
     inputValues,
-    selectExample, shareURL,
-    onDataInputFormChange, onValueInputFormChange,
+    selectExample,
+    shareURL,
+    onDataInputFormChange,
+    onValueInputFormChange,
     init,
   }
 }

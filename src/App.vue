@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { type Ref,ref, watch } from 'vue'
+import { type Ref, ref, watch } from 'vue'
 import { RouterLink, RouterView, useRoute, useRouter } from 'vue-router'
 
 import { EXPLORATIONS } from '@/explorations/REGISTRY'

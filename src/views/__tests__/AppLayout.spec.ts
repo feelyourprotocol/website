@@ -1,5 +1,5 @@
-import { describe, expect,it } from 'vitest'
-import { createMemoryHistory,createRouter } from 'vue-router'
+import { describe, expect, it } from 'vitest'
+import { createMemoryHistory, createRouter } from 'vue-router'
 import { mount, RouterLinkStub } from '@vue/test-utils'
 
 import App from '@/App.vue'
@@ -32,9 +32,7 @@ describe('App layout', () => {
 
     it('renders subtitle', async () => {
       const wrapper = await mountApp()
-      expect(wrapper.find('header').text()).toContain(
-        'Interactive Ethereum Protocol Explorations',
-      )
+      expect(wrapper.find('header').text()).toContain('Interactive Ethereum Protocol Explorations')
     })
 
     it('exploration dropdown lists all explorations', async () => {
@@ -57,9 +55,7 @@ describe('App layout', () => {
 
     it('has GitHub link', async () => {
       const wrapper = await mountApp()
-      const ghLink = wrapper.find(
-        'footer a[href="https://github.com/feelyourprotocol/website"]',
-      )
+      const ghLink = wrapper.find('footer a[href="https://github.com/feelyourprotocol/website"]')
       expect(ghLink.exists()).toBe(true)
     })
   })

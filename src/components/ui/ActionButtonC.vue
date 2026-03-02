@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { nextTick,ref } from 'vue'
+import { nextTick, ref } from 'vue'
 
 import TooltipC from './TooltipC.vue'
 

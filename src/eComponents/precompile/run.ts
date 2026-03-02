@@ -1,6 +1,6 @@
 import type { Ref } from 'vue'
-import { Common, type Hardfork,Mainnet } from '@ethereumjs/common'
-import { createEVM, type ExecResult,getActivePrecompiles } from '@ethereumjs/evm'
+import { Common, type Hardfork, Mainnet } from '@ethereumjs/common'
+import { createEVM, type ExecResult, getActivePrecompiles } from '@ethereumjs/evm'
 import { hexToBytes } from '@ethereumjs/util'
 
 export async function runPrecompile(

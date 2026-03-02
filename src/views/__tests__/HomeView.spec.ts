@@ -1,4 +1,4 @@
-import { describe, expect,it } from 'vitest'
+import { describe, expect, it } from 'vitest'
 import { mount, RouterLinkStub } from '@vue/test-utils'
 
 import { EXPLORATIONS } from '@/explorations/REGISTRY'
@@ -44,9 +44,7 @@ describe('HomeView', () => {
   describe('About section', () => {
     it('renders project description', () => {
       expect(wrapper.text()).toContain('About the Project')
-      expect(wrapper.text()).toContain(
-        'Feel Your Protocol is a collaborative open-source project',
-      )
+      expect(wrapper.text()).toContain('Feel Your Protocol is a collaborative open-source project')
     })
 
     it('has contributor docs link pointing to docs site', () => {

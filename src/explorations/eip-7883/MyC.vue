@@ -3,20 +3,11 @@ import { Hardfork } from '@ethereumjs/common'
 import { hexToBigInt } from '@ethereumjs/util'
 
 import { padHex, toHex } from '@/components/lib/byteFormUtils'
-import ExamplesC from '@/components/ui/ExamplesC.vue'
-import HexDataInputC from '@/components/ui/HexDataInputC.vue'
-import PrecompileResultC from '@/eComponents/precompile/PrecompileResultC.vue'
-import PrecompileValueInput from '@/eComponents/precompile/PrecompileValueInput.vue'
+import PrecompileExplorationC from '@/eComponents/precompile/PrecompileExplorationC.vue'
 import type { PrecompileConfig } from '@/eComponents/precompile/types'
-import { usePrecompileState } from '@/eComponents/precompile/usePrecompileState'
-import ExplorationC from '@/explorations/ExplorationC.vue'
-import PoweredByC from '@/explorations/PoweredByC.vue'
-import { TOPICS } from '@/explorations/TOPICS'
 
 import { examples } from './examples'
 import { INFO as exploration } from './info'
-
-const topic = TOPICS[exploration.topic]
 
 const config: PrecompileConfig = {
   explorationId: 'eip-7883',
@@ -45,49 +36,8 @@ const config: PrecompileConfig = {
     byteLengths[5] = hexToBigInt(`0x${data.substring(128, 192)}`)
   },
 }
-
-const {
-  data, example,
-  hexVals, bigIntVals, byteLengths,
-  execResultPre, execResultPost,
-  inputValues,
-  selectExample, shareURL,
-  onDataInputFormChange, onValueInputFormChange,
-  init,
-} = usePrecompileState(config, examples)
-
-await init()
 </script>
 
 <template>
-  <ExplorationC
-    explorationId="eip-7883"
-    :exploration="exploration"
-    :topic="topic"
-    :shareURL="shareURL"
-  >
-    <template #content>
-      <div>
-        <ExamplesC v-model="example" :examples="examples" :change="selectExample" />
-        <HexDataInputC v-model="data" rows="6" :formChange="onDataInputFormChange" />
-
-        <PrecompileValueInput
-          v-for="val in inputValues"
-          :key="val.title"
-          v-model="hexVals[val.index]"
-          :title="val.title"
-          :input="onValueInputFormChange"
-          :len="byteLengths[val.index]"
-          :expectedLen="val.expectedLen"
-          :bigIntVal="bigIntVals[val.index]"
-        />
-
-        <div class="grid grid-cols-2 gap-1 mt-2.5">
-          <PrecompileResultC v-model="execResultPre" title="Pre-Osaka" :left="true" />
-          <PrecompileResultC v-model="execResultPost" title="Post-Osaka" :left="false" />
-        </div>
-        <PoweredByC :poweredBy="exploration.poweredBy" :topic="topic" />
-      </div>
-    </template>
-  </ExplorationC>
+  <PrecompileExplorationC :config="config" :examples="examples" :exploration="exploration" />
 </template>
