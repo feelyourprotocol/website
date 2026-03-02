@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { Hardfork } from '@ethereumjs/common'
 import { type ExecResult } from '@ethereumjs/evm'
-import { ref, watch, type Ref } from 'vue'
+import { ref, type Ref } from 'vue'
 import {
   dataToValueInput,
   isValidByteInputForm,
@@ -10,9 +10,9 @@ import {
   toHex,
   valueToDataInput,
 } from '../../components/lib/byteFormUtils.js'
-import PrecompileValueInput from '../../components/precompiles/PrecompileValueInput.vue'
+import PrecompileValueInput from '../../eComponents/precompile/PrecompileValueInput.vue'
 import { useRoute, useRouter } from 'vue-router'
-import PrecompileResultC from '../../components/precompiles/PrecompileResultC.vue'
+import PrecompileResultC from '../../eComponents/precompile/PrecompileResultC.vue'
 import ExamplesC from '../../components/ui/ExamplesC.vue'
 import HexDataInputC from '../../components/ui/HexDataInputC.vue'
 import ExplorationC from '../ExplorationC.vue'
@@ -23,11 +23,10 @@ import {
   type BIGINT_6,
   type BIGINT_UNDEFINED_6,
   type HEX_6,
-} from '../../components/lib/precompiles.js'
-import { INFO } from './info'
+} from '../../eComponents/precompile/run.js'
+import { INFO as exploration } from './info'
 import { examples } from './examples'
 
-const exploration = INFO
 const topic = TOPICS[exploration.topic]
 
 const data: Ref<string> = ref('')
@@ -43,14 +42,8 @@ const example: Ref<string> = ref('')
 const execResultPre: Ref<ExecResult | undefined> = ref()
 const execResultPost: Ref<ExecResult | undefined> = ref()
 
-const poweredBy = exploration.poweredBy
-
 const router = useRouter()
 const route = useRoute()
-
-watch(hexVals, () => {
-  console.log('hexVals changed', hexVals.value)
-})
 
 /**
  * Example/URL helper functions
@@ -218,7 +211,7 @@ await init()
           <PrecompileResultC v-model="execResultPre" title="Pre-Osaka" :left="true" />
           <PrecompileResultC v-model="execResultPost" title="Post-Osaka" :left="false" />
         </div>
-        <PoweredByC :poweredBy="poweredBy" :topic="topic" />
+        <PoweredByC :poweredBy="exploration.poweredBy" :topic="topic" />
       </div>
     </template>
   </ExplorationC>

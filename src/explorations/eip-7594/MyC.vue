@@ -3,7 +3,7 @@ import { ref, type Ref } from 'vue'
 import HexDataInputC from '../../components/ui/HexDataInputC.vue'
 import { examples } from './examples'
 import ExplorationC from '../ExplorationC.vue'
-import { INFO } from './info'
+import { INFO as exploration } from './info'
 import PoweredByC from '../PoweredByC.vue'
 import { TOPICS } from '../TOPICS'
 import ExamplesC from '../../components/ui/ExamplesC.vue'
@@ -37,10 +37,7 @@ const cellProofs: Ref<string[]> = ref([''])
 const errorMsg: Ref<string> = ref('')
 const example: Ref<string> = ref('')
 
-const exploration = INFO
 const topic = TOPICS[exploration.topic]
-
-const poweredBy = exploration.poweredBy
 
 /**
  * Example/URL helper functions
@@ -162,7 +159,7 @@ await init()
             <PPBoxInfoText v-else text="Same here." />
           </PPBoxC>
         </div>
-        <PoweredByC :poweredBy="poweredBy" :topic="topic" />
+        <PoweredByC :poweredBy="exploration.poweredBy" :topic="topic" />
       </div>
     </template>
   </ExplorationC>

@@ -8,8 +8,8 @@ import {
   isValidByteInputForm,
   valueToDataInput,
 } from '../../components/lib/byteFormUtils.js'
-import PrecompileValueInput from '../../components/precompiles/PrecompileValueInput.vue'
-import PrecompileResultC from '../../components/precompiles/PrecompileResultC.vue'
+import PrecompileValueInput from '../../eComponents/precompile/PrecompileValueInput.vue'
+import PrecompileResultC from '../../eComponents/precompile/PrecompileResultC.vue'
 import ExamplesC from '../../components/ui/ExamplesC.vue'
 import HexDataInputC from '../../components/ui/HexDataInputC.vue'
 import ExplorationC from '../ExplorationC.vue'
@@ -20,12 +20,11 @@ import {
   type BIGINT_5,
   type BIGINT_UNDEFINED_5,
   type HEX_5,
-} from '../../components/lib/precompiles.js'
-import { INFO } from './info'
+} from '../../eComponents/precompile/run.js'
+import { INFO as exploration } from './info'
 import { examples } from './examples'
 import { PP_BOX_LAYOUT } from '../../components/lib/layout'
 
-const exploration = INFO
 const topic = TOPICS[exploration.topic]
 
 const data: Ref<string> = ref('')
@@ -39,8 +38,6 @@ const example: Ref<string> = ref('')
 
 const execResultPre: Ref<ExecResult | undefined> = ref()
 const execResultPost: Ref<ExecResult | undefined> = ref()
-
-const poweredBy = exploration.poweredBy
 
 const router = useRouter()
 const route = useRoute()
@@ -187,7 +184,7 @@ await init()
           <PrecompileResultC v-model="execResultPre" title="Pre-Osaka" :left="true" />
           <PrecompileResultC v-model="execResultPost" title="Post-Osaka" :left="false" />
         </div>
-        <PoweredByC :poweredBy="poweredBy" :topic="topic" />
+        <PoweredByC :poweredBy="exploration.poweredBy" :topic="topic" />
       </div>
     </template>
   </ExplorationC>
