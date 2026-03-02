@@ -1,25 +1,13 @@
 <script setup lang="ts">
-import { ref } from 'vue'
-import { useRoute, useRouter } from 'vue-router'
 import { Hardfork } from '@ethereumjs/common'
-import { type ExecResult } from '@ethereumjs/evm'
 
-import {
-  dataToValueInput,
-  isValidByteInputForm,
-  valueToDataInput,
-} from '@/components/lib/byteFormUtils.js'
 import { PP_BOX_LAYOUT } from '@/components/lib/layout'
 import ExamplesC from '@/components/ui/ExamplesC.vue'
 import HexDataInputC from '@/components/ui/HexDataInputC.vue'
 import PrecompileResultC from '@/eComponents/precompile/PrecompileResultC.vue'
 import PrecompileValueInput from '@/eComponents/precompile/PrecompileValueInput.vue'
-import {
-  type BIGINT_5,
-  type BIGINT_UNDEFINED_5,
-  type HEX_5,
-  runPrecompile,
-} from '@/eComponents/precompile/run.js'
+import type { PrecompileConfig } from '@/eComponents/precompile/types'
+import { usePrecompileState } from '@/eComponents/precompile/usePrecompileState'
 import ExplorationC from '@/explorations/ExplorationC.vue'
 import PoweredByC from '@/explorations/PoweredByC.vue'
 import { TOPICS } from '@/explorations/TOPICS'
@@ -29,128 +17,31 @@ import { INFO as exploration } from './info'
 
 const topic = TOPICS[exploration.topic]
 
-const data = ref('')
-const hexVals = ref(Array(5).fill('') as HEX_5)
-const bigIntVals = ref(Array(5).fill(undefined) as BIGINT_UNDEFINED_5)
-
-const lengthsMask = ref<BIGINT_UNDEFINED_5>([32n, 32n, 32n, 32n, 32n])
-const byteLengths = ref(Array(5).fill(0n) as BIGINT_5)
-
-const example = ref('')
-
-const execResultPre = ref<ExecResult | undefined>()
-const execResultPost = ref<ExecResult | undefined>()
-
-const router = useRouter()
-const route = useRoute()
-
-/**
- * Example/URL helper functions
- */
-async function selectExample() {
-  if (example.value === '') {
-    return
-  }
-  for (let i = 0; i < hexVals.value.length; i++) {
-    hexVals.value[i] = examples[example.value]!.values[i]
-  }
-  await values2Data()
+const config: PrecompileConfig = {
+  explorationId: 'eip-7951',
+  precompileAddress: '100',
+  preHardfork: Hardfork.Prague,
+  postHardfork: Hardfork.Osaka,
+  defaultExample: 'valid',
+  showBigInt: false,
+  values: [
+    { title: 'Hash', urlParam: 'hash', expectedLen: 32n },
+    { title: 'SigR', urlParam: 'sigr', expectedLen: 32n },
+    { title: 'SigS', urlParam: 'sigs', expectedLen: 32n },
+    { title: 'PubX', urlParam: 'pubx', expectedLen: 32n },
+    { title: 'PubY', urlParam: 'puby', expectedLen: 32n },
+  ],
 }
 
-function shareURL() {
-  const routeData = router.resolve({
-    name: 'eip-7951',
-    query: {
-      hash: hexVals.value[0],
-      sigr: hexVals.value[1],
-      sigs: hexVals.value[2],
-      pubx: hexVals.value[3],
-      puby: hexVals.value[4],
-    },
-  })
-  window.open(routeData.href, '_blank')
-}
-
-/**
- * Run the precompile
- */
-async function run() {
-  await runPrecompile(
-    data.value,
-    Hardfork.Prague,
-    Hardfork.Osaka,
-    '100',
-    execResultPre,
-    execResultPost,
-  )
-}
-
-/**
- * The combined data is taken as the "source of truth" and the
- * individual values are derived from it.
- */
-async function data2Values() {
-  if (!isValidByteInputForm(data.value)) {
-    return false
-  }
-  dataToValueInput(data, hexVals, bigIntVals, byteLengths)
-  await run()
-}
-
-/**
- * The data form values changed.
- */
-async function onDataInputFormChange() {
-  example.value = ''
-  await data2Values()
-}
-
-/**
- * The individual values are taken as the "source of truth" and the
- * combined data is derived from them.
- */
-async function values2Data() {
-  for (let i = 0; i < hexVals.value.length; i++) {
-    if (isValidByteInputForm(hexVals.value[i], lengthsMask.value[i]).length > 0) {
-      return false
-    }
-  }
-
-  valueToDataInput(hexVals, bigIntVals, lengthsMask, byteLengths)
-
-  data.value = hexVals.value.join('')
-
-  await run()
-}
-
-/**
- * The (some) individual values form values changed.
- */
-async function onValueInputFormChange() {
-  example.value = ''
-  await values2Data()
-}
-
-/**
- * Initialize the widget either with URL parameters or with a default example.
- */
-async function init() {
-  if ('b' in route.query && 'e' in route.query && 'm' in route.query) {
-    try {
-      hexVals.value[0] = route.query['hash']!.toString()
-      hexVals.value[1] = route.query['sigr']!.toString()
-      hexVals.value[2] = route.query['sigs']!.toString()
-      hexVals.value[3] = route.query['pubx']!.toString()
-      hexVals.value[4] = route.query['puby']!.toString()
-      await values2Data()
-    } catch {
-      // Fallback to default example on invalid URL params
-    }
-  } else {
-    example.value = 'valid'
-    await selectExample()
-  }
-}
+const {
+  data, example,
+  hexVals, bigIntVals, byteLengths,
+  execResultPre, execResultPost,
+  inputValues,
+  selectExample, shareURL,
+  onDataInputFormChange, onValueInputFormChange,
+  init,
+} = usePrecompileState(config, examples)
 
 await init()
 </script>
@@ -168,14 +59,14 @@ await init()
         <HexDataInputC v-model="data" rows="6" :formChange="onDataInputFormChange" />
 
         <PrecompileValueInput
-          v-for="(title, index) in ['Hash', 'SigR', 'SigS', 'PubX', 'PubY']"
-          :key="index"
-          v-model="hexVals[index]"
-          :title="title"
+          v-for="val in inputValues"
+          :key="val.title"
+          v-model="hexVals[val.index]"
+          :title="val.title"
           :input="onValueInputFormChange"
-          :len="byteLengths[index]"
-          :expectedLen="lengthsMask[index]"
-          :bigIntVal="bigIntVals[index]"
+          :len="byteLengths[val.index]"
+          :expectedLen="val.expectedLen"
+          :bigIntVal="bigIntVals[val.index]"
         />
 
         <div :class="PP_BOX_LAYOUT">

@@ -3,16 +3,6 @@ import { Common, type Hardfork,Mainnet } from '@ethereumjs/common'
 import { createEVM, type ExecResult,getActivePrecompiles } from '@ethereumjs/evm'
 import { hexToBytes } from '@ethereumjs/util'
 
-type BU = bigint | undefined
-
-export type HEX_5 = [string, string, string, string, string]
-export type BIGINT_5 = [bigint, bigint, bigint, bigint, bigint]
-export type BIGINT_UNDEFINED_5 = [BU, BU, BU, BU, BU]
-
-export type HEX_6 = [string, string, string, string, string, string]
-export type BIGINT_6 = [bigint, bigint, bigint, bigint, bigint, bigint]
-export type BIGINT_UNDEFINED_6 = [BU, BU, BU, BU, BU, BU]
-
 export async function runPrecompile(
   data: string,
   preHF: Hardfork,
