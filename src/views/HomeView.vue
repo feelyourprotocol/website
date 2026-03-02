@@ -5,18 +5,27 @@ import { EXPLORATIONS, getRandomTopicExplorationImage } from '@/explorations/REG
 import { TOPICS } from '@/explorations/TOPICS'
 
 const featured = ['eip-7883', 'eip-7594', 'eip-7951']
-const fusakaImage = getRandomTopicExplorationImage('fusaka')
+
+const topicImages: Record<string, string | undefined> = {}
+for (const topicId of Object.keys(TOPICS)) {
+  topicImages[topicId] = getRandomTopicExplorationImage(topicId)
+}
 </script>
 
 <template>
   <main>
     <div class="grid md:grid-cols-2 gap-4">
       <div>
-        <RouterLink to="/fusaka" class="block no-underline">
+        <RouterLink
+          v-for="topicId in Object.keys(TOPICS)"
+          :key="topicId"
+          :to="TOPICS[topicId].path"
+          class="block mb-4 last:mb-0 no-underline"
+        >
           <TopicIntroView
-            v-if="fusakaImage"
-            :topic="TOPICS.fusaka"
-            :image="fusakaImage"
+            v-if="topicImages[topicId]"
+            :topic="TOPICS[topicId]"
+            :image="topicImages[topicId]!"
             :overviewMode="true"
           />
         </RouterLink>
