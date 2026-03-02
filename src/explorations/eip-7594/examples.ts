@@ -1,4 +1,5 @@
 import { type Examples } from '@/components/lib/general.js'
+
 import blobBase from './data/blob_base.txt?raw'
 import blobGnosis from './data/blob_gnosis.txt?raw'
 import blobLighter from './data/blob_lighter.txt?raw'

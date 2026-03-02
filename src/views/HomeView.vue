@@ -1,8 +1,9 @@
 <script setup lang="ts">
-import TopicIntroView from './TopicIntroView.vue'
 import ExplorationC from '@/explorations/ExplorationC.vue'
 import { EXPLORATIONS, getRandomTopicExplorationImage } from '@/explorations/REGISTRY'
 import { TOPICS } from '@/explorations/TOPICS'
+
+import TopicIntroView from './TopicIntroView.vue'
 
 const featured = ['eip-7883', 'eip-7594', 'eip-7951']
 

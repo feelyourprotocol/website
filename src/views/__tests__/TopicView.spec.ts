@@ -1,9 +1,11 @@
-import { describe, it, expect } from 'vitest'
+import { describe, expect,it } from 'vitest'
+import { createMemoryHistory,createRouter } from 'vue-router'
 import { mount, RouterLinkStub } from '@vue/test-utils'
-import { createRouter, createMemoryHistory } from 'vue-router'
-import TopicView from '../TopicView.vue'
-import { TOPICS } from '@/explorations/TOPICS'
+
 import { EXPLORATIONS, getTopicExplorationIds } from '@/explorations/REGISTRY'
+import { TOPICS } from '@/explorations/TOPICS'
+
+import TopicView from '../TopicView.vue'
 
 const topicId = Object.keys(TOPICS)[0]
 const topic = TOPICS[topicId]

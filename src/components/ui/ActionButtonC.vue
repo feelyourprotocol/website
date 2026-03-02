@@ -1,6 +1,7 @@
 <script setup lang="ts">
+import { nextTick,ref } from 'vue'
+
 import TooltipC from './TooltipC.vue'
-import { ref, nextTick } from 'vue'
 
 const props = defineProps<{
   text: string

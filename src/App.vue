@@ -1,6 +1,7 @@
 <script setup lang="ts">
+import { type Ref,ref, watch } from 'vue'
 import { RouterLink, RouterView, useRoute, useRouter } from 'vue-router'
-import { ref, watch, type Ref } from 'vue'
+
 import { EXPLORATIONS } from '@/explorations/REGISTRY'
 
 const router = useRouter()

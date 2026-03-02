@@ -1,13 +1,15 @@
 <script setup lang="ts">
-import ExplorationC from '@/explorations/ExplorationC.vue'
-import TopicIntroView from './TopicIntroView.vue'
 import { useRoute } from 'vue-router'
+
+import ExplorationC from '@/explorations/ExplorationC.vue'
 import {
   EXPLORATIONS,
-  getTopicExplorationIds,
   getRandomTopicExplorationImage,
+  getTopicExplorationIds,
 } from '@/explorations/REGISTRY'
 import { TOPICS } from '@/explorations/TOPICS'
+
+import TopicIntroView from './TopicIntroView.vue'
 
 const route = useRoute()
 const topicId = route.name as string

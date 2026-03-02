@@ -1,4 +1,5 @@
 import type { Exploration } from '@/explorations/REGISTRY'
+
 import image from './image.webp'
 
 export const INFO: Exploration = {

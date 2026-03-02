@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { ArrowTopRightOnSquareIcon, ShareIcon } from '@heroicons/vue/24/solid'
+
 import ButtonC from '@/components/ui/ButtonC.vue'
+
 import type { Exploration } from './REGISTRY'
 import { type Topic, TOPIC_COLOR_CLASSES } from './TOPICS'
 

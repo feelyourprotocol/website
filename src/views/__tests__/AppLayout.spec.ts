@@ -1,6 +1,7 @@
-import { describe, it, expect } from 'vitest'
+import { describe, expect,it } from 'vitest'
+import { createMemoryHistory,createRouter } from 'vue-router'
 import { mount, RouterLinkStub } from '@vue/test-utils'
-import { createRouter, createMemoryHistory } from 'vue-router'
+
 import App from '@/App.vue'
 import { EXPLORATIONS } from '@/explorations/REGISTRY'
 

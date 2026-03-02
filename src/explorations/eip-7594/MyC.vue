@@ -1,30 +1,32 @@
 <script setup lang="ts">
-import { ref, type Ref } from 'vue'
-import HexDataInputC from '@/components/ui/HexDataInputC.vue'
-import { examples } from './examples'
-import ExplorationC from '@/explorations/ExplorationC.vue'
-import { INFO as exploration } from './info'
-import PoweredByC from '@/explorations/PoweredByC.vue'
-import { TOPICS } from '@/explorations/TOPICS'
-import ExamplesC from '@/components/ui/ExamplesC.vue'
-import {
-  PP_BOX_LAYOUT,
-  PP_BOX_TEXT_SMALL,
-  PP_BOX_LAYOUT_SINGLE,
-  PP_BOX_TABLE_TD,
-} from '@/components/lib/layout'
-import PPBoxC from '@/components/ui/PPBoxC.vue'
-import { trustedSetup } from '@paulmillr/trusted-setups/fast-peerdas.js'
 import { KZG as microEthKZG } from 'micro-eth-signer/kzg.js'
+import { type Ref,ref } from 'vue'
 import {
   blobsToCellProofs,
   blobsToProofs,
   computeVersionedHash,
   type PrefixedHexString,
 } from '@ethereumjs/util'
+import { trustedSetup } from '@paulmillr/trusted-setups/fast-peerdas.js'
+
+import {
+  PP_BOX_LAYOUT,
+  PP_BOX_LAYOUT_SINGLE,
+  PP_BOX_TABLE_TD,
+  PP_BOX_TEXT_SMALL,
+} from '@/components/lib/layout'
 import ActionButtonC from '@/components/ui/ActionButtonC.vue'
-import PPBoxInfoText from '@/components/ui/PPBoxInfoText.vue'
+import ExamplesC from '@/components/ui/ExamplesC.vue'
+import HexDataInputC from '@/components/ui/HexDataInputC.vue'
+import PPBoxC from '@/components/ui/PPBoxC.vue'
 import PPBoxErrorText from '@/components/ui/PPBoxErrorText.vue'
+import PPBoxInfoText from '@/components/ui/PPBoxInfoText.vue'
+import ExplorationC from '@/explorations/ExplorationC.vue'
+import PoweredByC from '@/explorations/PoweredByC.vue'
+import { TOPICS } from '@/explorations/TOPICS'
+
+import { examples } from './examples'
+import { INFO as exploration } from './info'
 
 const kzg = new microEthKZG(trustedSetup)
 

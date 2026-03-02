@@ -1,7 +1,9 @@
 <script setup lang="ts">
+import { type Ref,ref } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
 import { Hardfork } from '@ethereumjs/common'
 import { type ExecResult } from '@ethereumjs/evm'
-import { ref, type Ref } from 'vue'
+
 import {
   dataToValueInput,
   isValidByteInputForm,
@@ -10,22 +12,22 @@ import {
   toHex,
   valueToDataInput,
 } from '@/components/lib/byteFormUtils.js'
-import PrecompileValueInput from '@/eComponents/precompile/PrecompileValueInput.vue'
-import { useRoute, useRouter } from 'vue-router'
-import PrecompileResultC from '@/eComponents/precompile/PrecompileResultC.vue'
 import ExamplesC from '@/components/ui/ExamplesC.vue'
 import HexDataInputC from '@/components/ui/HexDataInputC.vue'
-import ExplorationC from '@/explorations/ExplorationC.vue'
-import PoweredByC from '@/explorations/PoweredByC.vue'
-import { TOPICS } from '@/explorations/TOPICS'
+import PrecompileResultC from '@/eComponents/precompile/PrecompileResultC.vue'
+import PrecompileValueInput from '@/eComponents/precompile/PrecompileValueInput.vue'
 import {
-  runPrecompile,
   type BIGINT_6,
   type BIGINT_UNDEFINED_6,
   type HEX_6,
+  runPrecompile,
 } from '@/eComponents/precompile/run.js'
-import { INFO as exploration } from './info'
+import ExplorationC from '@/explorations/ExplorationC.vue'
+import PoweredByC from '@/explorations/PoweredByC.vue'
+import { TOPICS } from '@/explorations/TOPICS'
+
 import { examples } from './examples'
+import { INFO as exploration } from './info'
 
 const topic = TOPICS[exploration.topic]
 

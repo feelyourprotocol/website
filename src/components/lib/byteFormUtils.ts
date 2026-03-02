@@ -1,5 +1,5 @@
-import { bigIntToHex, hexToBigInt, hexToBytes, isHexString } from '@ethereumjs/util'
 import type { Ref } from 'vue'
+import { bigIntToHex, hexToBigInt, hexToBytes, isHexString } from '@ethereumjs/util'
 
 /**
  * Checks for Byte input form validity

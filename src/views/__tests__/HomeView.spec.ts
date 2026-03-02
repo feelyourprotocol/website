@@ -1,8 +1,10 @@
-import { describe, it, expect } from 'vitest'
+import { describe, expect,it } from 'vitest'
 import { mount, RouterLinkStub } from '@vue/test-utils'
-import HomeView from '../HomeView.vue'
-import { TOPICS } from '@/explorations/TOPICS'
+
 import { EXPLORATIONS } from '@/explorations/REGISTRY'
+import { TOPICS } from '@/explorations/TOPICS'
+
+import HomeView from '../HomeView.vue'
 
 const wrapper = mount(HomeView, {
   global: {
