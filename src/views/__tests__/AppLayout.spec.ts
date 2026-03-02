@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest'
 import { mount, RouterLinkStub } from '@vue/test-utils'
 import { createRouter, createMemoryHistory } from 'vue-router'
-import App from '../../App.vue'
+import App from '@/App.vue'
 import { EXPLORATIONS } from '@/explorations/REGISTRY'
 
 const DummyView = { template: '<div>dummy</div>' }

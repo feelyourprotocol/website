@@ -9,21 +9,21 @@ import {
   toBigInt,
   toHex,
   valueToDataInput,
-} from '../../components/lib/byteFormUtils.js'
-import PrecompileValueInput from '../../eComponents/precompile/PrecompileValueInput.vue'
+} from '@/components/lib/byteFormUtils.js'
+import PrecompileValueInput from '@/eComponents/precompile/PrecompileValueInput.vue'
 import { useRoute, useRouter } from 'vue-router'
-import PrecompileResultC from '../../eComponents/precompile/PrecompileResultC.vue'
-import ExamplesC from '../../components/ui/ExamplesC.vue'
-import HexDataInputC from '../../components/ui/HexDataInputC.vue'
-import ExplorationC from '../ExplorationC.vue'
-import PoweredByC from '../PoweredByC.vue'
-import { TOPICS } from '../TOPICS'
+import PrecompileResultC from '@/eComponents/precompile/PrecompileResultC.vue'
+import ExamplesC from '@/components/ui/ExamplesC.vue'
+import HexDataInputC from '@/components/ui/HexDataInputC.vue'
+import ExplorationC from '@/explorations/ExplorationC.vue'
+import PoweredByC from '@/explorations/PoweredByC.vue'
+import { TOPICS } from '@/explorations/TOPICS'
 import {
   runPrecompile,
   type BIGINT_6,
   type BIGINT_UNDEFINED_6,
   type HEX_6,
-} from '../../eComponents/precompile/run.js'
+} from '@/eComponents/precompile/run.js'
 import { INFO as exploration } from './info'
 import { examples } from './examples'
 

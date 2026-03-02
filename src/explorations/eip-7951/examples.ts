@@ -1,4 +1,4 @@
-import { type Examples } from '../../components/lib/general.js'
+import { type Examples } from '@/components/lib/general.js'
 
 export const examples: Examples = {
   valid: {

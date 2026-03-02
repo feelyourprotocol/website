@@ -7,23 +7,23 @@ import {
   dataToValueInput,
   isValidByteInputForm,
   valueToDataInput,
-} from '../../components/lib/byteFormUtils.js'
-import PrecompileValueInput from '../../eComponents/precompile/PrecompileValueInput.vue'
-import PrecompileResultC from '../../eComponents/precompile/PrecompileResultC.vue'
-import ExamplesC from '../../components/ui/ExamplesC.vue'
-import HexDataInputC from '../../components/ui/HexDataInputC.vue'
-import ExplorationC from '../ExplorationC.vue'
-import PoweredByC from '../PoweredByC.vue'
-import { TOPICS } from '../TOPICS'
+} from '@/components/lib/byteFormUtils.js'
+import PrecompileValueInput from '@/eComponents/precompile/PrecompileValueInput.vue'
+import PrecompileResultC from '@/eComponents/precompile/PrecompileResultC.vue'
+import ExamplesC from '@/components/ui/ExamplesC.vue'
+import HexDataInputC from '@/components/ui/HexDataInputC.vue'
+import ExplorationC from '@/explorations/ExplorationC.vue'
+import PoweredByC from '@/explorations/PoweredByC.vue'
+import { TOPICS } from '@/explorations/TOPICS'
 import {
   runPrecompile,
   type BIGINT_5,
   type BIGINT_UNDEFINED_5,
   type HEX_5,
-} from '../../eComponents/precompile/run.js'
+} from '@/eComponents/precompile/run.js'
 import { INFO as exploration } from './info'
 import { examples } from './examples'
-import { PP_BOX_LAYOUT } from '../../components/lib/layout'
+import { PP_BOX_LAYOUT } from '@/components/lib/layout'
 
 const topic = TOPICS[exploration.topic]
 

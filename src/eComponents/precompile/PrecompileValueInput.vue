@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { isValidByteInputForm } from '../../components/lib/byteFormUtils'
-import TooltipC from '../../components/ui/TooltipC.vue'
+import { isValidByteInputForm } from '@/components/lib/byteFormUtils'
+import TooltipC from '@/components/ui/TooltipC.vue'
 const val = defineModel<string>()
 
 const props = defineProps<{

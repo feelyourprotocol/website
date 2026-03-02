@@ -1,19 +1,19 @@
 <script setup lang="ts">
 import { ref, type Ref } from 'vue'
-import HexDataInputC from '../../components/ui/HexDataInputC.vue'
+import HexDataInputC from '@/components/ui/HexDataInputC.vue'
 import { examples } from './examples'
-import ExplorationC from '../ExplorationC.vue'
+import ExplorationC from '@/explorations/ExplorationC.vue'
 import { INFO as exploration } from './info'
-import PoweredByC from '../PoweredByC.vue'
-import { TOPICS } from '../TOPICS'
-import ExamplesC from '../../components/ui/ExamplesC.vue'
+import PoweredByC from '@/explorations/PoweredByC.vue'
+import { TOPICS } from '@/explorations/TOPICS'
+import ExamplesC from '@/components/ui/ExamplesC.vue'
 import {
   PP_BOX_LAYOUT,
   PP_BOX_TEXT_SMALL,
   PP_BOX_LAYOUT_SINGLE,
   PP_BOX_TABLE_TD,
-} from '../../components/lib/layout'
-import PPBoxC from '../../components/ui/PPBoxC.vue'
+} from '@/components/lib/layout'
+import PPBoxC from '@/components/ui/PPBoxC.vue'
 import { trustedSetup } from '@paulmillr/trusted-setups/fast-peerdas.js'
 import { KZG as microEthKZG } from 'micro-eth-signer/kzg.js'
 import {
@@ -22,9 +22,9 @@ import {
   computeVersionedHash,
   type PrefixedHexString,
 } from '@ethereumjs/util'
-import ActionButtonC from '../../components/ui/ActionButtonC.vue'
-import PPBoxInfoText from '../../components/ui/PPBoxInfoText.vue'
-import PPBoxErrorText from '../../components/ui/PPBoxErrorText.vue'
+import ActionButtonC from '@/components/ui/ActionButtonC.vue'
+import PPBoxInfoText from '@/components/ui/PPBoxInfoText.vue'
+import PPBoxErrorText from '@/components/ui/PPBoxErrorText.vue'
 
 const kzg = new microEthKZG(trustedSetup)
 

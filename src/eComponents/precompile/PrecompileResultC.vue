@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import type { ExecResult } from '@ethereumjs/evm'
 import { bytesToHex } from '@ethereumjs/util'
-import { PP_BOX_TEXT_BIG, PP_BOX_TEXT_MIDDLE, PP_BOX_TEXT_SMALL } from '../../components/lib/layout'
-import PPBoxC from '../../components/ui/PPBoxC.vue'
+import { PP_BOX_TEXT_BIG, PP_BOX_TEXT_MIDDLE, PP_BOX_TEXT_SMALL } from '@/components/lib/layout'
+import PPBoxC from '@/components/ui/PPBoxC.vue'
 
 const execResult = defineModel<ExecResult>()
 
