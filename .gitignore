@@ -32,3 +32,6 @@ docs/.vitepress/cache
 *.tsbuildinfo
 
 SERVER_NOTES.md
+
+# Dist
+dist/
