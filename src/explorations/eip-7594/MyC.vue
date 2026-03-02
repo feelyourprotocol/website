@@ -1,10 +1,7 @@
 <script setup lang="ts">
 import { ref, type Ref } from 'vue'
 import HexDataInputC from '../../components/ui/HexDataInputC.vue'
-import { type Examples } from '../../components/lib/general.js'
-import blobBase from '../../components/lib/blobs/blob_base.txt?raw'
-import blobGnosis from '../../components/lib/blobs/blob_gnosis.txt?raw'
-import blobLighter from '../../components/lib/blobs/blob_lighter.txt?raw'
+import { examples } from './examples'
 import ExplorationC from '../ExplorationC.vue'
 import { INFO } from './info'
 import PoweredByC from '../PoweredByC.vue'
@@ -42,24 +39,6 @@ const example: Ref<string> = ref('')
 
 const exploration = INFO
 const topic = TOPICS[exploration.topic]
-
-/**
- * Examples
- */
-const examples: Examples = {
-  blob1: {
-    title: 'Base L2 Blob | Hash: 0x01ae971... | Block Nr: 23966811 | 2025-12-08',
-    values: [blobBase],
-  },
-  blob2: {
-    title: 'Lighter L2 Blob | Hash: 0x015ed6b... | Block Nr: 23967328 | 2025-12-08',
-    values: [blobLighter],
-  },
-  blob3: {
-    title: 'Gnosis Chain Blob | Hash: 0x01755da... | Block Nr: 43511951 | 2025-12-06',
-    values: [blobGnosis],
-  },
-}
 
 const poweredBy = exploration.poweredBy
 
