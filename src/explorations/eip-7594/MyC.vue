@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { KZG as microEthKZG } from 'micro-eth-signer/kzg.js'
-import { type Ref,ref } from 'vue'
+import { ref } from 'vue'
 import {
   blobsToCellProofs,
   blobsToProofs,
@@ -30,21 +30,21 @@ import { INFO as exploration } from './info'
 
 const kzg = new microEthKZG(trustedSetup)
 
-const data: Ref<string> = ref('')
-const commitment: Ref<string> = ref('')
-const versionedHash: Ref<string> = ref('')
-const blobProof: Ref<string> = ref('')
-const cellProofs: Ref<string[]> = ref([''])
+const data = ref('')
+const commitment = ref('')
+const versionedHash = ref('')
+const blobProof = ref('')
+const cellProofs = ref([''])
 
-const errorMsg: Ref<string> = ref('')
-const example: Ref<string> = ref('')
+const errorMsg = ref('')
+const example = ref('')
 
 const topic = TOPICS[exploration.topic]
 
 /**
  * Example/URL helper functions
  */
-const selectExample = async () => {
+async function selectExample() {
   if (example.value === '') {
     return
   }
@@ -100,7 +100,7 @@ await init()
 
 <template>
   <ExplorationC explorationId="eip-7594" :exploration="exploration" :topic="topic">
-    <template v-slot:content>
+    <template #content>
       <div class="mt-3 text-right">
         <ActionButtonC
           tooltip="This is a bit slow (> 10 seconds)"
@@ -142,13 +142,13 @@ await init()
         </div>
         <div :class="PP_BOX_LAYOUT">
           <PPBoxC title="EIP-4844 | 1 Blob Proof" :left="true" class="4844-box">
-            <p v-if="commitment != ''" :class="PP_BOX_TEXT_SMALL">
+            <p v-if="commitment !== ''" :class="PP_BOX_TEXT_SMALL">
               {{ blobProof }}
             </p>
             <PPBoxInfoText v-else text="Same here." />
           </PPBoxC>
           <PPBoxC title="EIP-7594 | 128 Cell Proofs" :left="false" class="7594-box">
-            <div v-if="commitment != ''">
+            <div v-if="commitment !== ''">
               <p
                 v-for="(value, index) in cellProofs.slice(0, 4)"
                 :class="PP_BOX_TEXT_SMALL"

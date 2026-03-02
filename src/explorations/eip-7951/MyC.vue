@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { type Ref,ref } from 'vue'
+import { ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { Hardfork } from '@ethereumjs/common'
 import { type ExecResult } from '@ethereumjs/evm'
@@ -29,17 +29,17 @@ import { INFO as exploration } from './info'
 
 const topic = TOPICS[exploration.topic]
 
-const data: Ref<string> = ref('')
-const hexVals: Ref<HEX_5> = ref(Array(5).fill('') as HEX_5)
-const bigIntVals: Ref<BIGINT_UNDEFINED_5> = ref(Array(5).fill(undefined) as BIGINT_UNDEFINED_5)
+const data = ref('')
+const hexVals = ref(Array(5).fill('') as HEX_5)
+const bigIntVals = ref(Array(5).fill(undefined) as BIGINT_UNDEFINED_5)
 
-const lengthsMask: Ref<BIGINT_UNDEFINED_5> = ref([32n, 32n, 32n, 32n, 32n])
-const byteLengths: Ref<BIGINT_5> = ref(Array(5).fill(0n) as BIGINT_5)
+const lengthsMask = ref<BIGINT_UNDEFINED_5>([32n, 32n, 32n, 32n, 32n])
+const byteLengths = ref(Array(5).fill(0n) as BIGINT_5)
 
-const example: Ref<string> = ref('')
+const example = ref('')
 
-const execResultPre: Ref<ExecResult | undefined> = ref()
-const execResultPost: Ref<ExecResult | undefined> = ref()
+const execResultPre = ref<ExecResult | undefined>()
+const execResultPost = ref<ExecResult | undefined>()
 
 const router = useRouter()
 const route = useRoute()
@@ -47,7 +47,7 @@ const route = useRoute()
 /**
  * Example/URL helper functions
  */
-const selectExample = async () => {
+async function selectExample() {
   if (example.value === '') {
     return
   }
@@ -70,10 +70,6 @@ function shareURL() {
   })
   window.open(routeData.href, '_blank')
 }
-
-/**
- * EVM Initialization
- */
 
 /**
  * Run the precompile
@@ -148,7 +144,7 @@ async function init() {
       hexVals.value[4] = route.query['puby']!.toString()
       await values2Data()
     } catch {
-      console.log('Invalid parameter call!')
+      // Fallback to default example on invalid URL params
     }
   } else {
     example.value = 'valid'
@@ -166,7 +162,7 @@ await init()
     :topic="topic"
     :shareURL="shareURL"
   >
-    <template v-slot:content>
+    <template #content>
       <div>
         <ExamplesC v-model="example" :examples="examples" :change="selectExample" />
         <HexDataInputC v-model="data" rows="6" :formChange="onDataInputFormChange" />

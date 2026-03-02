@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { type Ref,ref } from 'vue'
+import { ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { Hardfork } from '@ethereumjs/common'
 import { type ExecResult } from '@ethereumjs/evm'
@@ -31,18 +31,18 @@ import { INFO as exploration } from './info'
 
 const topic = TOPICS[exploration.topic]
 
-const data: Ref<string> = ref('')
+const data = ref('')
 
-const hexVals: Ref<HEX_6> = ref(Array(6).fill('00'.repeat(32)) as HEX_6)
-const bigIntVals: Ref<BIGINT_UNDEFINED_6> = ref(Array(6).fill(0n) as BIGINT_6)
+const hexVals = ref(Array(6).fill('00'.repeat(32)) as HEX_6)
+const bigIntVals = ref(Array(6).fill(0n) as BIGINT_6)
 
-const lengthsMask: Ref<BIGINT_UNDEFINED_6> = ref([32n, 32n, 32n, undefined, undefined, undefined])
-const byteLengths: Ref<BIGINT_6> = ref(Array(6).fill(0n) as BIGINT_6)
+const lengthsMask = ref<BIGINT_UNDEFINED_6>([32n, 32n, 32n, undefined, undefined, undefined])
+const byteLengths = ref(Array(6).fill(0n) as BIGINT_6)
 
-const example: Ref<string> = ref('')
+const example = ref('')
 
-const execResultPre: Ref<ExecResult | undefined> = ref()
-const execResultPost: Ref<ExecResult | undefined> = ref()
+const execResultPre = ref<ExecResult | undefined>()
+const execResultPost = ref<ExecResult | undefined>()
 
 const router = useRouter()
 const route = useRoute()
@@ -50,7 +50,7 @@ const route = useRoute()
 /**
  * Example/URL helper functions
  */
-const selectExample = async () => {
+async function selectExample() {
   if (example.value === '') {
     return
   }
@@ -71,10 +71,6 @@ function shareURL() {
   })
   window.open(routeData.href, '_blank')
 }
-
-/**
- * EVM Initialization
- */
 
 /**
  * Run the precompile
@@ -143,7 +139,6 @@ async function values2Data() {
  * The (some) individual values form values changed.
  */
 async function onValueInputFormChange() {
-  console.log('onValueInputFormChange')
   example.value = ''
   await values2Data()
 }
@@ -159,7 +154,7 @@ async function init() {
       hexVals.value[5] = route.query['m']!.toString()
       await values2Data()
     } catch {
-      console.log('Invalid parameter call!')
+      // Fallback to default example on invalid URL params
     }
   } else {
     example.value = 'simple'
@@ -177,7 +172,7 @@ await init()
     :topic="topic"
     :shareURL="shareURL"
   >
-    <template v-slot:content>
+    <template #content>
       <div>
         <ExamplesC v-model="example" :examples="examples" :change="selectExample" />
         <HexDataInputC v-model="data" rows="6" :formChange="onDataInputFormChange" />
