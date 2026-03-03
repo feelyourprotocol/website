@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import type { Examples } from '@/components/lib/general'
-import { PP_BOX_LAYOUT } from '@/components/lib/layout'
 import ExamplesC from '@/components/ui/ExamplesC.vue'
 import HexDataInputC from '@/components/ui/HexDataInputC.vue'
 import ExplorationC from '@/explorations/ExplorationC.vue'
@@ -63,11 +62,11 @@ await init()
           :bigIntVal="bigIntVals[val.index]"
         />
 
-        <div :class="PP_BOX_LAYOUT">
+        <div class="e-grid-double">
           <PrecompileInterfaceResultEC v-model="execResultPre" title="Pre-Osaka" :left="true" />
           <PrecompileInterfaceResultEC v-model="execResultPost" title="Post-Osaka" :left="false" />
         </div>
-        <PoweredByC :poweredBy="exploration.poweredBy" :topic="topic" />
+        <PoweredByC :poweredBy="exploration.poweredBy" />
       </div>
     </template>
   </ExplorationC>

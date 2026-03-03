@@ -9,12 +9,6 @@ import {
 } from '@ethereumjs/util'
 import { trustedSetup } from '@paulmillr/trusted-setups/fast-peerdas.js'
 
-import {
-  PP_BOX_LAYOUT,
-  PP_BOX_LAYOUT_SINGLE,
-  PP_BOX_TABLE_TD,
-  PP_BOX_TEXT_SMALL,
-} from '@/components/lib/layout'
 import ActionButtonC from '@/components/ui/ActionButtonC.vue'
 import ExamplesC from '@/components/ui/ExamplesC.vue'
 import HexDataInputC from '@/components/ui/HexDataInputC.vue'
@@ -41,9 +35,6 @@ const example = ref('')
 
 const topic = TOPICS[exploration.topic]
 
-/**
- * Example/URL helper functions
- */
 async function selectExample() {
   if (example.value === '') {
     return
@@ -56,9 +47,6 @@ async function selectExample() {
   errorMsg.value = ''
 }
 
-/**
- * The data form values changed.
- */
 async function onDataInputFormChange() {
   example.value = ''
   errorMsg.value = ''
@@ -86,13 +74,10 @@ async function run() {
     errorMsg.value = error instanceof Error ? error.message : String(error)
   }
 }
-/**
- * Initialize the widget either with URL parameters or with a default example.
- */
+
 async function init() {
   example.value = 'blob1'
   await selectExample()
-  //await run()
 }
 
 await init()
@@ -113,16 +98,16 @@ await init()
         <ExamplesC v-model="example" :examples="examples" :change="selectExample" />
         <HexDataInputC v-model="data" rows="6" :formChange="onDataInputFormChange" />
 
-        <div :class="PP_BOX_LAYOUT_SINGLE">
+        <div class="e-grid-single">
           <PPBoxC title="EIP-4844 + EIP-7594" :left="true" class="4844-7594-box">
-            <table v-if="commitment !== ''" :class="PP_BOX_TEXT_SMALL">
+            <table v-if="commitment !== ''" class="e-result-text-sm">
               <tr>
-                <td :class="PP_BOX_TABLE_TD">Commitment</td>
-                <td :class="[PP_BOX_TABLE_TD, 'break-all']">{{ commitment }}</td>
+                <td class="p-3">Commitment</td>
+                <td class="p-3 break-all">{{ commitment }}</td>
               </tr>
               <tr>
-                <td :class="PP_BOX_TABLE_TD">Versioned Hash</td>
-                <td :class="[PP_BOX_TABLE_TD, 'break-all']">
+                <td class="p-3">Versioned Hash</td>
+                <td class="p-3 break-all">
                   {{ versionedHash }}
                   (<a :href="`https://blobscan.com/blob/${versionedHash}`" target="_blank"
                     >Blobscan</a
@@ -130,8 +115,8 @@ await init()
                 </td>
               </tr>
               <tr>
-                <td :class="PP_BOX_TABLE_TD">Blob Length</td>
-                <td :class="[PP_BOX_TABLE_TD, 'break-all']">{{ data.length }}</td>
+                <td class="p-3">Blob Length</td>
+                <td class="p-3 break-all">{{ data.length }}</td>
               </tr>
             </table>
             <div v-else>
@@ -140,9 +125,9 @@ await init()
             </div>
           </PPBoxC>
         </div>
-        <div :class="PP_BOX_LAYOUT">
+        <div class="e-grid-double">
           <PPBoxC title="EIP-4844 | 1 Blob Proof" :left="true" class="4844-box">
-            <p v-if="commitment !== ''" :class="PP_BOX_TEXT_SMALL">
+            <p v-if="commitment !== ''" class="e-result-text-sm">
               {{ blobProof }}
             </p>
             <PPBoxInfoText v-else text="Same here." />
@@ -151,17 +136,17 @@ await init()
             <div v-if="commitment !== ''">
               <p
                 v-for="(value, index) in cellProofs.slice(0, 4)"
-                :class="PP_BOX_TEXT_SMALL"
+                class="e-result-text-sm"
                 :key="index"
               >
                 {{ value }}
               </p>
-              <p v-if="cellProofs.length > 4" :class="PP_BOX_TEXT_SMALL">...</p>
+              <p v-if="cellProofs.length > 4" class="e-result-text-sm">...</p>
             </div>
             <PPBoxInfoText v-else text="Same here." />
           </PPBoxC>
         </div>
-        <PoweredByC :poweredBy="exploration.poweredBy" :topic="topic" />
+        <PoweredByC :poweredBy="exploration.poweredBy" />
       </div>
     </template>
   </ExplorationC>

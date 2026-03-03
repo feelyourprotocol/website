@@ -1,7 +1,103 @@
 @import 'tailwindcss';
 
-.pp-box {
+/* ============================================================
+ * Exploration Design System
+ *
+ * Topic colors flow via CSS custom properties (--e-*) set by
+ * ExplorationC on its root element. All child components inherit
+ * them automatically — no prop drilling needed.
+ * ============================================================ */
+
+/* --- Defaults (blue, overridden per-topic by ExplorationC) --- */
+:root {
+  --e-text: var(--color-blue-900);
+  --e-bg: var(--color-blue-200);
+  --e-bg-light: var(--color-blue-50);
+  --e-bg-medium: var(--color-blue-100);
+  --e-bg-dark: var(--color-blue-900);
+  --e-border: var(--color-blue-200);
+  --e-border-dark: var(--color-blue-900);
+}
+
+/* --- Topic text color utility --- */
+.e-text {
+  color: var(--e-text);
+}
+
+/* --- Exploration wrapper --- */
+.exploration-c {
+  background-color: var(--e-bg);
+  @apply bg-clip-border p-4 rounded-xl;
+}
+
+/* --- Result boxes (dark comparison panels) --- */
+.e-result-box {
+  background-color: var(--e-bg-dark);
+  @apply rounded-sm p-2.5;
+
   a {
     @apply text-white underline;
   }
+}
+
+.e-result-title {
+  color: var(--e-text);
+  @apply text-xs bg-white p-1 rounded-xs;
+}
+
+.e-result-text-lg {
+  @apply text-2xl font-bold text-white py-2;
+}
+
+.e-result-text-md {
+  @apply text-xl font-bold text-white py-2;
+}
+
+.e-result-text-sm {
+  @apply text-xs font-bold font-mono text-white py-1 break-words w-full overflow-hidden;
+}
+
+/* --- Grid layouts for result panels --- */
+.e-grid-single {
+  @apply grid grid-cols-1 gap-1 mt-2.5;
+}
+
+.e-grid-double {
+  @apply grid grid-cols-2 gap-1 mt-2.5;
+}
+
+/* --- Form inputs --- */
+.e-textarea {
+  background-color: var(--e-bg-light);
+  @apply block w-full mt-1.5 mb-2 font-mono text-xs rounded-sm text-slate-600 p-1;
+}
+
+.e-select {
+  color: var(--e-text);
+  @apply text-xs border-1 px-1 pt-0.5 pb-0.5 mb-0.5 rounded-sm;
+}
+
+.e-input {
+  background-color: var(--e-bg-light);
+  @apply font-mono text-xs rounded-xs p-0.5 w-full;
+}
+
+/* --- Buttons --- */
+.e-button-icon {
+  color: var(--e-text);
+  border-color: var(--e-text);
+  @apply size-4 inline align-baseline border-1 p-0.5 rounded-xs;
+}
+
+/* --- E-Component: Precompile Interface --- */
+.precompile-value-input {
+  border-top: 1px solid var(--e-border-dark);
+  @apply bg-clip-border pt-1.5 pb-0.5 px-0.5 mb-0.5;
+}
+
+/* --- Buttons --- */
+.e-action-button {
+  color: var(--e-text);
+  background-color: var(--e-bg-medium);
+  @apply relative inline-flex items-center justify-center border-2 border-white rounded-lg p-2 text-xs font-bold cursor-pointer hover:bg-white disabled:opacity-50 disabled:cursor-not-allowed;
 }

@@ -3,6 +3,7 @@ import { computed } from 'vue'
 
 import { isValidByteInputForm } from '@/components/lib/byteFormUtils'
 import TooltipC from '@/components/ui/TooltipC.vue'
+
 const val = defineModel<string>()
 
 const props = defineProps<{
@@ -28,18 +29,11 @@ const tooltip = computed(() => {
 </script>
 
 <template>
-  <div
-    class="value-input-{{ num }} border-blue-900 border-t-1 bg-clip-border pt-1.5 pb-0.5 pl-0.5 pr-0.5 mb-0.5"
-  >
+  <div class="precompile-value-input">
     <div class="grid grid-cols-6 items-center">
-      <p class="font-bold text-xl col-span-1 text-blue-900">{{ title }}</p>
+      <p class="font-bold text-xl col-span-1 e-text">{{ title }}</p>
       <span class="group relative col-span-5">
-        <input
-          @input="input"
-          v-model="val"
-          :class="validation"
-          class="text-right font-mono text-xs bg-blue-50 rounded-xs p-0.5 w-full"
-        />
+        <input @input="input" v-model="val" :class="validation" class="e-input text-right" />
         <TooltipC :tooltip="tooltip" />
       </span>
 

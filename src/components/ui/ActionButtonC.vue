@@ -12,14 +12,12 @@ const props = defineProps<{
 const buttonText = ref(props.text)
 const isLoading = ref(false)
 
-const handleClick = async () => {
+async function handleClick() {
   isLoading.value = true
   buttonText.value = 'Loading...'
   await nextTick()
-  // Double requestAnimationFrame ensures the browser has painted the update
   await new Promise((resolve) => requestAnimationFrame(resolve))
   await new Promise((resolve) => requestAnimationFrame(resolve))
-  // Additional small timeout as a safety net
   await new Promise((resolve) => setTimeout(resolve, 10))
   try {
     await props.onClick()
@@ -31,12 +29,7 @@ const handleClick = async () => {
 </script>
 
 <template>
-  <button
-    @click="handleClick"
-    type="button"
-    :disabled="isLoading"
-    class="group relative inline-flex items-center justify-center border-2 border-white rounded-lg bg-blue-100 p-2 text-xs font-bold text-blue-900 cursor-pointer hover:bg-white disabled:opacity-50 disabled:cursor-not-allowed"
-  >
+  <button @click="handleClick" type="button" :disabled="isLoading" class="group e-action-button">
     {{ buttonText }}
     <TooltipC :tooltip="tooltip" />
   </button>

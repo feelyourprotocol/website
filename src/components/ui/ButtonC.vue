@@ -9,10 +9,7 @@ defineProps({
 
 <template>
   <span class="group relative inline-block">
-    <component
-      :is="icon"
-      class="size-4 inline align-baseline border-blue-900 border-1 text-blue-900 p-0.5 rounded-xs"
-    />
+    <component :is="icon" class="e-button-icon" />
     <TooltipC :tooltip="tooltip" />
   </span>
 </template>

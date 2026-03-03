@@ -12,6 +12,22 @@ export const TOPIC_COLOR_CLASSES: Record<
   red: { bg200: 'bg-red-200', text900: 'text-red-900', border200: 'border-red-200' },
 }
 
+/**
+ * CSS custom properties for topic-aware styling inside explorations.
+ * Set on ExplorationC's root element; inherited by all child components.
+ */
+export function topicCSSVars(color: TopicColor): Record<string, string> {
+  return {
+    '--e-text': `var(--color-${color}-900)`,
+    '--e-bg': `var(--color-${color}-200)`,
+    '--e-bg-light': `var(--color-${color}-50)`,
+    '--e-bg-medium': `var(--color-${color}-100)`,
+    '--e-bg-dark': `var(--color-${color}-900)`,
+    '--e-border': `var(--color-${color}-200)`,
+    '--e-border-dark': `var(--color-${color}-900)`,
+  }
+}
+
 export const TOPICS: Topics = {
   fusaka: {
     title: 'Fusaka',

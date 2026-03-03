@@ -4,7 +4,7 @@ import { ArrowTopRightOnSquareIcon, ShareIcon } from '@heroicons/vue/24/solid'
 import ButtonC from '@/components/ui/ButtonC.vue'
 
 import type { Exploration } from './REGISTRY'
-import { type Topic, TOPIC_COLOR_CLASSES } from './TOPICS'
+import { type Topic, topicCSSVars } from './TOPICS'
 
 const props = defineProps<{
   explorationId: string
@@ -13,17 +13,13 @@ const props = defineProps<{
   shareURL?: () => void
 }>()
 
-const cc = TOPIC_COLOR_CLASSES[props.topic.color]
+const cssVars = topicCSSVars(props.topic.color)
 </script>
 
 <template>
-  <div
-    :id="explorationId + '-c'"
-    class="exploration-c bg-clip-border p-4 rounded-xl"
-    :class="cc.bg200"
-  >
+  <div :id="explorationId + '-c'" :style="cssVars" class="exploration-c">
     <div class="grid grid-cols-4 mb-3 items-center">
-      <h3 class="font-bold text-xl col-span-3" :class="cc.text900">{{ exploration.title }}</h3>
+      <h3 class="font-bold text-xl col-span-3 e-text">{{ exploration.title }}</h3>
       <div class="flex justify-end items-center">
         <a v-if="shareURL" href="#" @click.prevent="shareURL" class="share-url-button mr-1.5">
           <ButtonC :icon="ShareIcon" tooltip="Open Shareable URL" />
@@ -37,7 +33,7 @@ const cc = TOPIC_COLOR_CLASSES[props.topic.color]
       </div>
     </div>
 
-    <div class="font-mono text-xs mb-6" :class="cc.text900">
+    <div class="font-mono text-xs mb-6 e-text">
       <p v-html="exploration.introText"></p>
       <p class="mt-4" v-html="exploration.usageText"></p>
     </div>

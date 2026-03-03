@@ -16,11 +16,7 @@ defineProps<{
 
 <template>
   <p class="text-right">
-    <select
-      v-model="example"
-      class="examples-select text-blue-900 text-xs border-1 pl-1 pr-1 pt-0.5 pb-0.5 mb-0.5 rounded-sm"
-      @change="change"
-    >
+    <select v-model="example" class="examples-select e-select" @change="change">
       <option disabled value="">Examples</option>
       <option v-for="(val, key) in examples" :key="key" :value="key">{{ val.title }}</option>
     </select>
