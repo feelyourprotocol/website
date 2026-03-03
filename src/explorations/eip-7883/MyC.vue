@@ -3,8 +3,8 @@ import { Hardfork } from '@ethereumjs/common'
 import { hexToBigInt } from '@ethereumjs/util'
 
 import { padHex, toHex } from '@/components/lib/byteFormUtils'
-import PrecompileExplorationC from '@/eComponents/precompile/PrecompileExplorationC.vue'
-import type { PrecompileConfig } from '@/eComponents/precompile/types'
+import PrecompileInterfaceEC from '@/eComponents/precompileInterfaceEC/PrecompileInterfaceEC.vue'
+import type { PrecompileConfig } from '@/eComponents/precompileInterfaceEC/types'
 
 import { examples } from './examples'
 import { INFO as exploration } from './info'
@@ -39,5 +39,5 @@ const config: PrecompileConfig = {
 </script>
 
 <template>
-  <PrecompileExplorationC :config="config" :examples="examples" :exploration="exploration" />
+  <PrecompileInterfaceEC :config="config" :examples="examples" :exploration="exploration" />
 </template>

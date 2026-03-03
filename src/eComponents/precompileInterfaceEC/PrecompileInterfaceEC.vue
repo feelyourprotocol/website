@@ -8,8 +8,8 @@ import PoweredByC from '@/explorations/PoweredByC.vue'
 import type { Exploration } from '@/explorations/REGISTRY'
 import { TOPICS } from '@/explorations/TOPICS'
 
-import PrecompileResultC from './PrecompileResultC.vue'
-import PrecompileValueInput from './PrecompileValueInput.vue'
+import PrecompileInterfaceResultEC from './PrecompileInterfaceResultEC.vue'
+import PrecompileValueInputEC from './PrecompileValueInputEC.vue'
 import type { PrecompileConfig } from './types'
 import { usePrecompileState } from './usePrecompileState'
 
@@ -52,7 +52,7 @@ await init()
         <ExamplesC v-model="example" :examples="examples" :change="selectExample" />
         <HexDataInputC v-model="data" rows="6" :formChange="onDataInputFormChange" />
 
-        <PrecompileValueInput
+        <PrecompileValueInputEC
           v-for="val in inputValues"
           :key="val.title"
           v-model="hexVals[val.index]"
@@ -64,8 +64,8 @@ await init()
         />
 
         <div :class="PP_BOX_LAYOUT">
-          <PrecompileResultC v-model="execResultPre" title="Pre-Osaka" :left="true" />
-          <PrecompileResultC v-model="execResultPost" title="Post-Osaka" :left="false" />
+          <PrecompileInterfaceResultEC v-model="execResultPre" title="Pre-Osaka" :left="true" />
+          <PrecompileInterfaceResultEC v-model="execResultPost" title="Post-Osaka" :left="false" />
         </div>
         <PoweredByC :poweredBy="exploration.poweredBy" :topic="topic" />
       </div>
