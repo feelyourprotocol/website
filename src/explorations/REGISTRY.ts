@@ -8,6 +8,13 @@ export const EXPLORATIONS: Explorations = {
   [eip7951.id]: eip7951,
 }
 
+export interface Examples {
+  [key: string]: {
+    title: string
+    values: string[]
+  }
+}
+
 export interface PoweredByItem {
   name: string
   href: string

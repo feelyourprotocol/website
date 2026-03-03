@@ -2,9 +2,9 @@
 import { Hardfork } from '@ethereumjs/common'
 import { hexToBigInt } from '@ethereumjs/util'
 
-import { padHex, toHex } from '@/components/lib/byteFormUtils'
 import PrecompileInterfaceEC from '@/eComponents/precompileInterfaceEC/PrecompileInterfaceEC.vue'
 import type { PrecompileConfig } from '@/eComponents/precompileInterfaceEC/types'
+import { padHex, toHex } from '@/eComponents/precompileInterfaceEC/utils'
 
 import { examples } from './examples'
 import { INFO as exploration } from './info'

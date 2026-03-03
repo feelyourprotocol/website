@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import type { Examples } from '@/components/lib/general'
 import ExamplesC from '@/components/ui/ExamplesC.vue'
 import HexDataInputC from '@/components/ui/HexDataInputC.vue'
 import ExplorationC from '@/explorations/ExplorationC.vue'
 import PoweredByC from '@/explorations/PoweredByC.vue'
+import type { Examples } from '@/explorations/REGISTRY'
 import type { Exploration } from '@/explorations/REGISTRY'
 import { TOPICS } from '@/explorations/TOPICS'
 

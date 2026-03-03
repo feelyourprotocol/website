@@ -1,5 +1,5 @@
-import { countUpwardsHexStr } from '@/components/lib/byteFormUtils.js'
-import { type Examples } from '@/components/lib/general.js'
+import { countUpwardsHexStr } from '@/eComponents/precompileInterfaceEC/utils'
+import type { Examples } from '@/explorations/REGISTRY'
 
 export const examples: Examples = {
   simple: {

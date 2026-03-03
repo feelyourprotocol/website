@@ -2,15 +2,11 @@ import { computed, ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import type { ExecResult } from '@ethereumjs/evm'
 
-import {
-  dataToValueInput,
-  isValidByteInputForm,
-  valueToDataInput,
-} from '@/components/lib/byteFormUtils'
-import type { Examples } from '@/components/lib/general'
+import type { Examples } from '@/explorations/REGISTRY'
 
 import { runPrecompile } from './run'
 import type { PrecompileConfig } from './types'
+import { dataToValueInput, isValidByteInputForm, valueToDataInput } from './utils'
 
 function createState(config: PrecompileConfig) {
   return {

@@ -1,4 +1,4 @@
-import { type Examples } from '@/components/lib/general.js'
+import type { Examples } from '@/explorations/REGISTRY'
 
 import blobBase from './data/blob_base.txt?raw'
 import blobGnosis from './data/blob_gnosis.txt?raw'
