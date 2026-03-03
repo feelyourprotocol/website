@@ -9,10 +9,10 @@ import {
 } from '@ethereumjs/util'
 import { trustedSetup } from '@paulmillr/trusted-setups/fast-peerdas.js'
 
-import ActionButtonC from '@/eComponents/ui/ActionButtonC.vue'
-import ExamplesC from '@/eComponents/ui/ExamplesC.vue'
-import HexDataInputC from '@/eComponents/ui/HexDataInputC.vue'
-import ResultBoxC from '@/eComponents/ui/resultBox/ResultBoxC.vue'
+import ActionButtonUIC from '@/eComponents/ui/ActionButtonUIC.vue'
+import ExamplesUIC from '@/eComponents/ui/ExamplesUIC.vue'
+import HexDataInputUIC from '@/eComponents/ui/HexDataInputUIC.vue'
+import ResultBoxUIC from '@/eComponents/ui/resultBox/ResultBoxUIC.vue'
 import ExplorationC from '@/explorations/ExplorationC.vue'
 import PoweredByC from '@/explorations/PoweredByC.vue'
 import { TOPICS } from '@/explorations/TOPICS'
@@ -85,7 +85,7 @@ await init()
   <ExplorationC explorationId="eip-7594" :exploration="exploration" :topic="topic">
     <template #content>
       <div class="mt-3 text-right">
-        <ActionButtonC
+        <ActionButtonUIC
           tooltip="This is a bit slow (> 10 seconds)"
           text="COMMIT/PROOF/RUN"
           :onClick="run"
@@ -93,11 +93,11 @@ await init()
         />
       </div>
       <div>
-        <ExamplesC v-model="example" :examples="examples" :change="selectExample" />
-        <HexDataInputC v-model="data" rows="6" :formChange="onDataInputFormChange" />
+        <ExamplesUIC v-model="example" :examples="examples" :change="selectExample" />
+        <HexDataInputUIC v-model="data" rows="6" :formChange="onDataInputFormChange" />
 
         <div class="e-grid-single">
-          <ResultBoxC
+          <ResultBoxUIC
             title="EIP-4844 + EIP-7594"
             :left="true"
             class="4844-7594-box"
@@ -123,10 +123,10 @@ await init()
                 <td class="p-3 break-all">{{ data.length }}</td>
               </tr>
             </table>
-          </ResultBoxC>
+          </ResultBoxUIC>
         </div>
         <div class="e-grid-double">
-          <ResultBoxC
+          <ResultBoxUIC
             title="EIP-4844 | 1 Blob Proof"
             :left="true"
             class="4844-box"
@@ -135,8 +135,8 @@ await init()
             <p v-if="commitment !== ''" class="e-result-text-sm">
               {{ blobProof }}
             </p>
-          </ResultBoxC>
-          <ResultBoxC
+          </ResultBoxUIC>
+          <ResultBoxUIC
             title="EIP-7594 | 128 Cell Proofs"
             :left="false"
             class="7594-box"
@@ -152,7 +152,7 @@ await init()
               </p>
               <p v-if="cellProofs.length > 4" class="e-result-text-sm">...</p>
             </div>
-          </ResultBoxC>
+          </ResultBoxUIC>
         </div>
         <PoweredByC :poweredBy="exploration.poweredBy" />
       </div>

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ArrowTopRightOnSquareIcon, ShareIcon } from '@heroicons/vue/24/solid'
 
-import ButtonC from '@/eComponents/ui/ButtonC.vue'
+import ButtonUIC from '@/eComponents/ui/ButtonUIC.vue'
 
 import type { Exploration } from './REGISTRY'
 import { type Topic, topicCSSVars } from './TOPICS'
@@ -22,10 +22,10 @@ const cssVars = topicCSSVars(props.topic.color)
       <h3 class="font-bold text-xl col-span-3 e-text">{{ exploration.title }}</h3>
       <div class="flex justify-end items-center">
         <a v-if="shareURL" href="#" @click.prevent="shareURL" class="share-url-button mr-1.5">
-          <ButtonC :icon="ShareIcon" tooltip="Open Shareable URL" />
+          <ButtonUIC :icon="ShareIcon" tooltip="Open Shareable URL" />
         </a>
         <a :href="exploration.infoURL" target="_blank" class="visit-exploration-button mr-1">
-          <ButtonC
+          <ButtonUIC
             :icon="ArrowTopRightOnSquareIcon"
             tooltip="External Link with more information"
           />

@@ -54,18 +54,18 @@ Result boxes are the dark panels used to display computation output (e.g. gas co
 | `e-result-text-md` | Medium text (e.g. status messages) |
 | `e-result-text-sm` | Small monospace text (e.g. hex output) |
 
-Usage with the `ResultBoxC` component:
+Usage with the `ResultBoxUIC` component:
 
 ```vue
 <div class="e-grid-double">
-  <ResultBoxC title="Before" :left="true">
+  <ResultBoxUIC title="Before" :left="true">
     <p class="e-result-text-lg">21000 Gas</p>
     <p class="e-result-text-sm">Result: 0xdeadbeef...</p>
-  </ResultBoxC>
-  <ResultBoxC title="After" :left="false">
+  </ResultBoxUIC>
+  <ResultBoxUIC title="After" :left="false">
     <p class="e-result-text-lg">42000 Gas</p>
     <p class="e-result-text-sm">Result: 0xcafebabe...</p>
-  </ResultBoxC>
+  </ResultBoxUIC>
 </div>
 ```
 
@@ -78,7 +78,7 @@ Usage with the `ResultBoxC` component:
 
 ### Form Inputs
 
-These classes are already applied inside the shared UI components (`HexDataInputC`, `ExamplesC`). You typically don't need them directly, but they're available:
+These classes are already applied inside the shared UI components (`HexDataInputUIC`, `ExamplesUIC`). You typically don't need them directly, but they're available:
 
 | Class | Purpose |
 |-------|---------|
@@ -105,18 +105,18 @@ Most styling is encapsulated in reusable UI components so you don't need to appl
 
 | Component | What it does |
 |-----------|-------------|
-| `ExamplesC` | Example selector dropdown — already styled with `e-select` |
-| `HexDataInputC` | Hex data input textarea — already styled with `e-textarea` |
-| `ResultBoxC` | Result display box with title, info text, and error text — uses `e-result-box` and `e-result-title` |
-| `ActionButtonC` | Action button with loading state and tooltip |
-| `ButtonC` | Small icon button with tooltip |
+| `ExamplesUIC` | Example selector dropdown — already styled with `e-select` |
+| `HexDataInputUIC` | Hex data input textarea — already styled with `e-textarea` |
+| `ResultBoxUIC` | Result display box with title, info text, and error text — uses `e-result-box` and `e-result-title` |
+| `ActionButtonUIC` | Action button with loading state and tooltip |
+| `ButtonUIC` | Small icon button with tooltip |
 
 Import them from `@/eComponents/ui/`:
 
 ```typescript
-import ResultBoxC from '@/eComponents/ui/resultBox/ResultBoxC.vue'
-import HexDataInputC from '@/eComponents/ui/HexDataInputC.vue'
-import ActionButtonC from '@/eComponents/ui/ActionButtonC.vue'
+import ResultBoxUIC from '@/eComponents/ui/resultBox/ResultBoxUIC.vue'
+import HexDataInputUIC from '@/eComponents/ui/HexDataInputUIC.vue'
+import ActionButtonUIC from '@/eComponents/ui/ActionButtonUIC.vue'
 ```
 
 ## Custom Styling
@@ -143,8 +143,8 @@ While the design system handles the common cases, you can always add custom Tail
   <ExplorationC explorationId="my-exploration" :exploration="exploration" :topic="topic">
     <template #content>
       <div>
-        <ExamplesC v-model="example" :examples="examples" :change="selectExample" />
-        <HexDataInputC v-model="data" rows="6" :formChange="onDataInputFormChange" />
+        <ExamplesUIC v-model="example" :examples="examples" :change="selectExample" />
+        <HexDataInputUIC v-model="data" rows="6" :formChange="onDataInputFormChange" />
 
         <!-- Custom layout with design system colors -->
         <div class="mt-4 grid grid-cols-3 gap-2">
@@ -154,12 +154,12 @@ While the design system handles the common cases, you can always add custom Tail
 
         <!-- Standard result display -->
         <div class="e-grid-double">
-          <ResultBoxC title="Result A" :left="true">
+          <ResultBoxUIC title="Result A" :left="true">
             <p class="e-result-text-lg">{{ resultA }}</p>
-          </ResultBoxC>
-          <ResultBoxC title="Result B" :left="false">
+          </ResultBoxUIC>
+          <ResultBoxUIC title="Result B" :left="false">
             <p class="e-result-text-lg">{{ resultB }}</p>
-          </ResultBoxC>
+          </ResultBoxUIC>
         </div>
 
         <PoweredByC :poweredBy="exploration.poweredBy" />

@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import ExamplesC from '@/eComponents/ui/ExamplesC.vue'
-import HexDataInputC from '@/eComponents/ui/HexDataInputC.vue'
+import ExamplesUIC from '@/eComponents/ui/ExamplesUIC.vue'
+import HexDataInputUIC from '@/eComponents/ui/HexDataInputUIC.vue'
 import ExplorationC from '@/explorations/ExplorationC.vue'
 import PoweredByC from '@/explorations/PoweredByC.vue'
 import type { Examples } from '@/explorations/REGISTRY'
@@ -48,8 +48,8 @@ await init()
   >
     <template #content>
       <div>
-        <ExamplesC v-model="example" :examples="examples" :change="selectExample" />
-        <HexDataInputC v-model="data" rows="6" :formChange="onDataInputFormChange" />
+        <ExamplesUIC v-model="example" :examples="examples" :change="selectExample" />
+        <HexDataInputUIC v-model="data" rows="6" :formChange="onDataInputFormChange" />
 
         <PrecompileValueInputEC
           v-for="val in inputValues"

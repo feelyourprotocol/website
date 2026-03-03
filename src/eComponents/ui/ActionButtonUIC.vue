@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { nextTick, ref } from 'vue'
 
-import TooltipC from './TooltipC.vue'
+import TooltipUIC from './TooltipUIC.vue'
 
 const props = defineProps<{
   text: string
@@ -31,6 +31,6 @@ async function handleClick() {
 <template>
   <button @click="handleClick" type="button" :disabled="isLoading" class="group e-action-button">
     {{ buttonText }}
-    <TooltipC :tooltip="tooltip" />
+    <TooltipUIC :tooltip="tooltip" />
   </button>
 </template>

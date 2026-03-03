@@ -60,18 +60,18 @@ Generic UI components live in `src/eComponents/ui/` alongside the E-Components t
 
 | Component | Purpose |
 |-----------|---------|
-| `ExamplesC` | Example selector dropdown |
-| `HexDataInputC` | Hex data input textarea |
-| `ResultBoxC` | Result display box with title, info text, and error text |
-| `ActionButtonC` | Async action button with loading state and tooltip |
-| `ButtonC` | Icon button with tooltip |
-| `TooltipC` | CSS tooltip wrapper |
+| `ExamplesUIC` | Example selector dropdown |
+| `HexDataInputUIC` | Hex data input textarea |
+| `ResultBoxUIC` | Result display box with title, info text, and error text |
+| `ActionButtonUIC` | Async action button with loading state and tooltip |
+| `ButtonUIC` | Icon button with tooltip |
+| `TooltipUIC` | CSS tooltip wrapper |
 
 Import them from `@/eComponents/ui/`:
 
 ```typescript
-import ResultBoxC from '@/eComponents/ui/resultBox/ResultBoxC.vue'
-import ExamplesC from '@/eComponents/ui/ExamplesC.vue'
+import ResultBoxUIC from '@/eComponents/ui/resultBox/ResultBoxUIC.vue'
+import ExamplesUIC from '@/eComponents/ui/ExamplesUIC.vue'
 ```
 
 ## Key Design Decisions

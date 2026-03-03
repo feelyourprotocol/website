@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 
-import TooltipC from '@/eComponents/ui/TooltipC.vue'
+import TooltipUIC from '@/eComponents/ui/TooltipUIC.vue'
 
 import { isValidByteInputForm } from './utils'
 
@@ -35,7 +35,7 @@ const tooltip = computed(() => {
       <p class="font-bold text-xl col-span-1 e-text">{{ title }}</p>
       <span class="group relative col-span-5">
         <input @input="input" v-model="val" :class="validation" class="e-input text-right" />
-        <TooltipC :tooltip="tooltip" />
+        <TooltipUIC :tooltip="tooltip" />
       </span>
 
       <p class="col-span-1 text-xs">{{ len }} Bytes</p>

@@ -96,9 +96,9 @@ For explorations with unique behavior, build the widget from scratch using share
 import { ref } from 'vue'
 
 import { PP_BOX_LAYOUT } from '@/components/lib/layout'
-import ExamplesC from '@/eComponents/ui/ExamplesC.vue'
-import HexDataInputC from '@/eComponents/ui/HexDataInputC.vue'
-import ResultBoxC from '@/eComponents/ui/resultBox/ResultBoxC.vue'
+import ExamplesUIC from '@/eComponents/ui/ExamplesUIC.vue'
+import HexDataInputUIC from '@/eComponents/ui/HexDataInputUIC.vue'
+import ResultBoxUIC from '@/eComponents/ui/resultBox/ResultBoxUIC.vue'
 import ExplorationC from '@/explorations/ExplorationC.vue'
 import PoweredByC from '@/explorations/PoweredByC.vue'
 import { TOPICS } from '@/explorations/TOPICS'
@@ -131,8 +131,8 @@ await init()
   <ExplorationC explorationId="eip-XXXX" :exploration="exploration" :topic="topic">
     <template #content>
       <div>
-        <ExamplesC v-model="example" :examples="examples" :change="selectExample" />
-        <HexDataInputC v-model="data" rows="6" :formChange="onDataInputFormChange" />
+        <ExamplesUIC v-model="example" :examples="examples" :change="selectExample" />
+        <HexDataInputUIC v-model="data" rows="6" :formChange="onDataInputFormChange" />
         <!-- Your result display here -->
         <PoweredByC :poweredBy="exploration.poweredBy" :topic="topic" />
       </div>

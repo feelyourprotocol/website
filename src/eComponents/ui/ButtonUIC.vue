@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import TooltipC from './TooltipC.vue'
+import TooltipUIC from './TooltipUIC.vue'
 
 defineProps({
   icon: Object,
@@ -10,6 +10,6 @@ defineProps({
 <template>
   <span class="group relative inline-block">
     <component :is="icon" class="e-button-icon" />
-    <TooltipC :tooltip="tooltip" />
+    <TooltipUIC :tooltip="tooltip" />
   </span>
 </template>

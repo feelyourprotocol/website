@@ -10,12 +10,12 @@ UI components are organized by scope:
 src/eComponents/
 ├── ui/                          # Shared across all E-Components and explorations
 │   ├── resultBox/               # Result display components
-│   │   └── ResultBoxC.vue
-│   ├── ExamplesC.vue
-│   ├── HexDataInputC.vue
-│   ├── ActionButtonC.vue
-│   ├── ButtonC.vue
-│   └── TooltipC.vue
+│   │   └── ResultBoxUIC.vue
+│   ├── ExamplesUIC.vue
+│   ├── HexDataInputUIC.vue
+│   ├── ActionButtonUIC.vue
+│   ├── ButtonUIC.vue
+│   └── TooltipUIC.vue
 └── precompileInterfaceEC/
     └── ui/                      # (future) Components specific to this E-Component
 ```
@@ -24,18 +24,18 @@ The placement rules:
 
 | Scope | Location | Example |
 |-------|----------|---------|
-| Used across multiple E-Components or explorations | `src/eComponents/ui/` | `ResultBoxC`, `ExamplesC` |
+| Used across multiple E-Components or explorations | `src/eComponents/ui/` | `ResultBoxUIC`, `ExamplesUIC` |
 | Specific to one E-Component | `src/eComponents/<name>/ui/` | (none yet) |
 | Specific to one exploration | `src/explorations/<id>/custom/ui/` | (none yet) |
 
 ## Available Components
 
-### ExamplesC
+### ExamplesUIC
 
 Example selector dropdown. Provides a `<select>` with pre-defined example presets.
 
 ```vue
-<ExamplesC v-model="example" :examples="examples" :change="selectExample" />
+<ExamplesUIC v-model="example" :examples="examples" :change="selectExample" />
 ```
 
 | Prop | Type | Description |
@@ -44,12 +44,12 @@ Example selector dropdown. Provides a `<select>` with pre-defined example preset
 | `examples` | `Examples` | Object mapping keys to `{ title, values }` |
 | `change` | `() => void` | Called when selection changes |
 
-### HexDataInputC
+### HexDataInputUIC
 
 Hex data input textarea for raw byte input.
 
 ```vue
-<HexDataInputC v-model="data" rows="6" :formChange="onDataInputFormChange" />
+<HexDataInputUIC v-model="data" rows="6" :formChange="onDataInputFormChange" />
 ```
 
 | Prop | Type | Description |
@@ -58,14 +58,14 @@ Hex data input textarea for raw byte input.
 | `rows` | `number` | Textarea row count |
 | `formChange` | `() => void` | Called on input change |
 
-### ResultBoxC
+### ResultBoxUIC
 
 Result display box with a title label. Used for showing computation output. Has built-in support for placeholder info text and error messages via optional props.
 
 ```vue
-<ResultBoxC title="Result" :left="true">
+<ResultBoxUIC title="Result" :left="true">
   <p class="e-result-text-lg">21000 Gas</p>
-</ResultBoxC>
+</ResultBoxUIC>
 ```
 
 | Prop | Type | Description |
@@ -78,31 +78,31 @@ Result display box with a title label. Used for showing computation output. Has 
 `errorText` takes precedence over `infoText`. Both render below the slot content, so conditionally pass them only when the slot is empty:
 
 ```vue
-<ResultBoxC
+<ResultBoxUIC
   title="Result"
   :left="true"
   :error-text="hasError ? errorMsg : undefined"
   :info-text="!hasResult ? 'Press button to compute...' : undefined"
 >
   <table v-if="hasResult">...</table>
-</ResultBoxC>
+</ResultBoxUIC>
 ```
 
 Use with `e-grid-single` or `e-grid-double` for layout:
 
 ```vue
 <div class="e-grid-double">
-  <ResultBoxC title="Before" :left="true">...</ResultBoxC>
-  <ResultBoxC title="After" :left="false">...</ResultBoxC>
+  <ResultBoxUIC title="Before" :left="true">...</ResultBoxUIC>
+  <ResultBoxUIC title="After" :left="false">...</ResultBoxUIC>
 </div>
 ```
 
-### ActionButtonC
+### ActionButtonUIC
 
 Async action button with loading state and tooltip. Disables itself and shows "Loading..." while the async handler runs.
 
 ```vue
-<ActionButtonC tooltip="Runs the computation" text="RUN" :onClick="run" />
+<ActionButtonUIC tooltip="Runs the computation" text="RUN" :onClick="run" />
 ```
 
 | Prop | Type | Description |
@@ -111,24 +111,24 @@ Async action button with loading state and tooltip. Disables itself and shows "L
 | `tooltip` | `string` | Tooltip text on hover |
 | `onClick` | `() => Promise<void>` | Async click handler |
 
-### ButtonC
+### ButtonUIC
 
 Small icon button with tooltip. Used internally by `ExplorationC` for share and external-link icons.
 
 ```vue
-<ButtonC :icon="ShareIcon" tooltip="Share" />
+<ButtonUIC :icon="ShareIcon" tooltip="Share" />
 ```
 
-### TooltipC
+### TooltipUIC
 
-CSS tooltip wrapper. Used internally by `ButtonC` and `ActionButtonC`. You typically don't need this directly — use `ActionButtonC` or `ButtonC` instead.
+CSS tooltip wrapper. Used internally by `ButtonUIC` and `ActionButtonUIC`. You typically don't need this directly — use `ActionButtonUIC` or `ButtonUIC` instead.
 
 ## Importing
 
 All shared UI components use the `@/eComponents/ui/` path:
 
 ```typescript
-import ExamplesC from '@/eComponents/ui/ExamplesC.vue'
-import ResultBoxC from '@/eComponents/ui/resultBox/ResultBoxC.vue'
-import ActionButtonC from '@/eComponents/ui/ActionButtonC.vue'
+import ExamplesUIC from '@/eComponents/ui/ExamplesUIC.vue'
+import ResultBoxUIC from '@/eComponents/ui/resultBox/ResultBoxUIC.vue'
+import ActionButtonUIC from '@/eComponents/ui/ActionButtonUIC.vue'
 ```
