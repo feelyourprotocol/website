@@ -23,7 +23,8 @@ export default defineConfig({
         items: [
           { text: 'How to Contribute', link: '/contributing/how-to-contribute' },
           { text: 'Adding an Exploration', link: '/contributing/adding-an-exploration' },
-          { text: 'Using E-Components', link: '/contributing/e-components' },
+          { text: 'E-Components', link: '/contributing/e-components' },
+          { text: 'Available E-Components', link: '/contributing/available-e-components' },
           { text: 'Code Conventions', link: '/contributing/code-conventions' },
           { text: 'Library Forks', link: '/contributing/library-forks' },
         ],
