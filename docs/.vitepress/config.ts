@@ -16,7 +16,6 @@ export default defineConfig({
         items: [
           { text: 'Getting Started', link: '/guide/getting-started' },
           { text: 'Architecture', link: '/guide/architecture' },
-          { text: 'Library Forks', link: '/guide/library-forks' },
         ],
       },
       {
@@ -24,6 +23,9 @@ export default defineConfig({
         items: [
           { text: 'How to Contribute', link: '/contributing/how-to-contribute' },
           { text: 'Adding an Exploration', link: '/contributing/adding-an-exploration' },
+          { text: 'Using E-Components', link: '/contributing/e-components' },
+          { text: 'Code Conventions', link: '/contributing/code-conventions' },
+          { text: 'Library Forks', link: '/contributing/library-forks' },
         ],
       },
     ],
