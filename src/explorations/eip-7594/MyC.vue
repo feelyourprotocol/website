@@ -102,7 +102,9 @@ await init()
             :left="true"
             class="4844-7594-box"
             :error-text="commitment === '' && errorMsg !== '' ? errorMsg : undefined"
-            :info-text="commitment === '' && errorMsg === '' ? 'Press button to compute...' : undefined"
+            :info-text="
+              commitment === '' && errorMsg === '' ? 'Press button to compute...' : undefined
+            "
           >
             <table v-if="commitment !== ''" class="e-result-text-sm">
               <tr>
