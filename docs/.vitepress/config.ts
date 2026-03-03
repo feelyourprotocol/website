@@ -23,6 +23,7 @@ export default defineConfig({
         items: [
           { text: 'How to Contribute', link: '/contributing/how-to-contribute' },
           { text: 'Adding an Exploration', link: '/contributing/adding-an-exploration' },
+          { text: 'UI Components', link: '/contributing/ui-components' },
           { text: 'E-Components', link: '/contributing/e-components' },
           { text: 'Available E-Components', link: '/contributing/available-e-components' },
           { text: 'Styling & Design', link: '/contributing/styling' },

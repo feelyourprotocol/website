@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import ExamplesC from '@/components/ui/ExamplesC.vue'
-import HexDataInputC from '@/components/ui/HexDataInputC.vue'
+import ExamplesC from '@/eComponents/ui/ExamplesC.vue'
+import HexDataInputC from '@/eComponents/ui/HexDataInputC.vue'
 import ExplorationC from '@/explorations/ExplorationC.vue'
 import PoweredByC from '@/explorations/PoweredByC.vue'
 import type { Examples } from '@/explorations/REGISTRY'

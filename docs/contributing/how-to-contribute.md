@@ -75,8 +75,7 @@ npm run test:e2e     # E2E tests
 | Example presets | `src/explorations/<id>/examples.ts` |
 | Exploration registry | `src/explorations/REGISTRY.ts` |
 | E-Components | `src/eComponents/<name>EC/` |
-| Shared UI components | `src/components/ui/` |
-| Shared utilities | `src/components/lib/` |
+| Shared UI components | `src/eComponents/ui/` |
 | Unit tests | `src/views/__tests__/` (or co-located `__tests__/`) |
 | E2E tests | `cypress/e2e/` |
 | Documentation | `docs/` |

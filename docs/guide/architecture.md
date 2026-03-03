@@ -56,27 +56,23 @@ Using the Precompile Interface E-Component, a precompile exploration widget can 
 
 ## UI Components
 
-Generic UI components live in `src/components/ui/` and are used across explorations:
+Generic UI components live in `src/eComponents/ui/` alongside the E-Components they serve. These are reusable building blocks available for any exploration or E-Component:
 
 | Component | Purpose |
 |-----------|---------|
 | `ExamplesC` | Example selector dropdown |
-| `HexDataInputC` | Hex data input textarea with validation |
-| `PPBoxC` | Result display box with title |
-| `PPBoxErrorText` | Error message display |
-| `PPBoxInfoText` | Informational message display |
-| `ActionButtonC` | Action button with tooltip |
+| `HexDataInputC` | Hex data input textarea |
+| `ResultBoxC` | Result display box with title, info text, and error text |
+| `ActionButtonC` | Async action button with loading state and tooltip |
 | `ButtonC` | Icon button with tooltip |
-| `HeadlineButtonC` | Headline with action button |
-| `TooltipC` | Generic tooltip wrapper |
+| `TooltipC` | CSS tooltip wrapper |
 
-Shared utilities in `src/components/lib/`:
+Import them from `@/eComponents/ui/`:
 
-| Module | Purpose |
-|--------|---------|
-| `byteFormUtils.ts` | Hex/byte conversion and validation |
-| `general.ts` | Shared types (e.g. `Examples`) |
-| `layout.ts` | Tailwind CSS class constants for consistent layouts |
+```typescript
+import ResultBoxC from '@/eComponents/ui/resultBox/ResultBoxC.vue'
+import ExamplesC from '@/eComponents/ui/ExamplesC.vue'
+```
 
 ## Key Design Decisions
 

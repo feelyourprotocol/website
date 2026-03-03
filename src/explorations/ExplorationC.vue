@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ArrowTopRightOnSquareIcon, ShareIcon } from '@heroicons/vue/24/solid'
 
-import ButtonC from '@/components/ui/ButtonC.vue'
+import ButtonC from '@/eComponents/ui/ButtonC.vue'
 
 import type { Exploration } from './REGISTRY'
 import { type Topic, topicCSSVars } from './TOPICS'

@@ -13,7 +13,7 @@ Use `@/` path aliases for cross-module imports and relative paths (`./`, `../`) 
 import { Hardfork } from '@ethereumjs/common'
 
 // Internal @/ alias imports
-import PPBoxC from '@/components/ui/PPBoxC.vue'
+import ResultBoxC from '@/eComponents/ui/resultBox/ResultBoxC.vue'
 import ExplorationC from '@/explorations/ExplorationC.vue'
 
 // Local relative imports last
@@ -52,9 +52,8 @@ E-Component folders and files use the `EC` postfix:
 
 ### UI Components
 
-Standard Vue component naming in `src/components/ui/`:
-- Components end with `C` (e.g. `PPBoxC.vue`, `ExamplesC.vue`)
-- Non-component helpers have descriptive names (e.g. `PPBoxErrorText.vue`)
+Standard Vue component naming in `src/eComponents/ui/`:
+- Components end with `C` (e.g. `ResultBoxC.vue`, `ExamplesC.vue`)
 
 ## Vue Patterns
 

@@ -9,12 +9,10 @@ import {
 } from '@ethereumjs/util'
 import { trustedSetup } from '@paulmillr/trusted-setups/fast-peerdas.js'
 
-import ActionButtonC from '@/components/ui/ActionButtonC.vue'
-import ExamplesC from '@/components/ui/ExamplesC.vue'
-import HexDataInputC from '@/components/ui/HexDataInputC.vue'
-import PPBoxC from '@/components/ui/PPBoxC.vue'
-import PPBoxErrorText from '@/components/ui/PPBoxErrorText.vue'
-import PPBoxInfoText from '@/components/ui/PPBoxInfoText.vue'
+import ActionButtonC from '@/eComponents/ui/ActionButtonC.vue'
+import ExamplesC from '@/eComponents/ui/ExamplesC.vue'
+import HexDataInputC from '@/eComponents/ui/HexDataInputC.vue'
+import ResultBoxC from '@/eComponents/ui/resultBox/ResultBoxC.vue'
 import ExplorationC from '@/explorations/ExplorationC.vue'
 import PoweredByC from '@/explorations/PoweredByC.vue'
 import { TOPICS } from '@/explorations/TOPICS'
@@ -99,7 +97,13 @@ await init()
         <HexDataInputC v-model="data" rows="6" :formChange="onDataInputFormChange" />
 
         <div class="e-grid-single">
-          <PPBoxC title="EIP-4844 + EIP-7594" :left="true" class="4844-7594-box">
+          <ResultBoxC
+            title="EIP-4844 + EIP-7594"
+            :left="true"
+            class="4844-7594-box"
+            :error-text="commitment === '' && errorMsg !== '' ? errorMsg : undefined"
+            :info-text="commitment === '' && errorMsg === '' ? 'Press button to compute...' : undefined"
+          >
             <table v-if="commitment !== ''" class="e-result-text-sm">
               <tr>
                 <td class="p-3">Commitment</td>
@@ -119,20 +123,25 @@ await init()
                 <td class="p-3 break-all">{{ data.length }}</td>
               </tr>
             </table>
-            <div v-else>
-              <PPBoxErrorText v-if="errorMsg !== ''" :text="errorMsg" />
-              <PPBoxInfoText v-else text="Press button to compute..." />
-            </div>
-          </PPBoxC>
+          </ResultBoxC>
         </div>
         <div class="e-grid-double">
-          <PPBoxC title="EIP-4844 | 1 Blob Proof" :left="true" class="4844-box">
+          <ResultBoxC
+            title="EIP-4844 | 1 Blob Proof"
+            :left="true"
+            class="4844-box"
+            :info-text="commitment === '' ? 'Same here.' : undefined"
+          >
             <p v-if="commitment !== ''" class="e-result-text-sm">
               {{ blobProof }}
             </p>
-            <PPBoxInfoText v-else text="Same here." />
-          </PPBoxC>
-          <PPBoxC title="EIP-7594 | 128 Cell Proofs" :left="false" class="7594-box">
+          </ResultBoxC>
+          <ResultBoxC
+            title="EIP-7594 | 128 Cell Proofs"
+            :left="false"
+            class="7594-box"
+            :info-text="commitment === '' ? 'Same here.' : undefined"
+          >
             <div v-if="commitment !== ''">
               <p
                 v-for="(value, index) in cellProofs.slice(0, 4)"
@@ -143,8 +152,7 @@ await init()
               </p>
               <p v-if="cellProofs.length > 4" class="e-result-text-sm">...</p>
             </div>
-            <PPBoxInfoText v-else text="Same here." />
-          </PPBoxC>
+          </ResultBoxC>
         </div>
         <PoweredByC :poweredBy="exploration.poweredBy" />
       </div>

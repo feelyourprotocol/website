@@ -96,9 +96,9 @@ For explorations with unique behavior, build the widget from scratch using share
 import { ref } from 'vue'
 
 import { PP_BOX_LAYOUT } from '@/components/lib/layout'
-import ExamplesC from '@/components/ui/ExamplesC.vue'
-import HexDataInputC from '@/components/ui/HexDataInputC.vue'
-import PPBoxC from '@/components/ui/PPBoxC.vue'
+import ExamplesC from '@/eComponents/ui/ExamplesC.vue'
+import HexDataInputC from '@/eComponents/ui/HexDataInputC.vue'
+import ResultBoxC from '@/eComponents/ui/resultBox/ResultBoxC.vue'
 import ExplorationC from '@/explorations/ExplorationC.vue'
 import PoweredByC from '@/explorations/PoweredByC.vue'
 import { TOPICS } from '@/explorations/TOPICS'

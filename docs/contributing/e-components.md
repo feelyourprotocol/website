@@ -2,7 +2,7 @@
 
 **E-Components** are reusable, Ethereum-specific components that encapsulate common patterns across explorations. They live in `src/eComponents/` and are designed to let you build new explorations quickly without duplicating logic.
 
-While the shared [UI components](/guide/architecture#ui-components) (`src/components/ui/`) provide generic building blocks like buttons and input fields, E-Components go a level higher: they package complete Ethereum-domain patterns — like a full precompile testing interface — into a single component with a clean configuration API.
+While the shared [UI components](/contributing/ui-components) (`src/eComponents/ui/`) provide generic building blocks like buttons and input fields, E-Components go a level higher: they package complete Ethereum-domain patterns — like a full precompile testing interface — into a single component with a clean configuration API.
 
 For the list of ready-to-use E-Components, see [Available E-Components](/contributing/available-e-components).
 

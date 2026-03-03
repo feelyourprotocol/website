@@ -54,18 +54,18 @@ Result boxes are the dark panels used to display computation output (e.g. gas co
 | `e-result-text-md` | Medium text (e.g. status messages) |
 | `e-result-text-sm` | Small monospace text (e.g. hex output) |
 
-Usage with the `PPBoxC` component:
+Usage with the `ResultBoxC` component:
 
 ```vue
 <div class="e-grid-double">
-  <PPBoxC title="Before" :left="true">
+  <ResultBoxC title="Before" :left="true">
     <p class="e-result-text-lg">21000 Gas</p>
     <p class="e-result-text-sm">Result: 0xdeadbeef...</p>
-  </PPBoxC>
-  <PPBoxC title="After" :left="false">
+  </ResultBoxC>
+  <ResultBoxC title="After" :left="false">
     <p class="e-result-text-lg">42000 Gas</p>
     <p class="e-result-text-sm">Result: 0xcafebabe...</p>
-  </PPBoxC>
+  </ResultBoxC>
 </div>
 ```
 
@@ -107,18 +107,16 @@ Most styling is encapsulated in reusable UI components so you don't need to appl
 |-----------|-------------|
 | `ExamplesC` | Example selector dropdown — already styled with `e-select` |
 | `HexDataInputC` | Hex data input textarea — already styled with `e-textarea` |
-| `PPBoxC` | Result display box with title — uses `e-result-box` and `e-result-title` |
-| `PPBoxInfoText` | Informational placeholder message inside a result box |
-| `PPBoxErrorText` | Error message display inside a result box |
+| `ResultBoxC` | Result display box with title, info text, and error text — uses `e-result-box` and `e-result-title` |
 | `ActionButtonC` | Action button with loading state and tooltip |
 | `ButtonC` | Small icon button with tooltip |
 
-Import them from `@/components/ui/`:
+Import them from `@/eComponents/ui/`:
 
 ```typescript
-import PPBoxC from '@/components/ui/PPBoxC.vue'
-import HexDataInputC from '@/components/ui/HexDataInputC.vue'
-import ActionButtonC from '@/components/ui/ActionButtonC.vue'
+import ResultBoxC from '@/eComponents/ui/resultBox/ResultBoxC.vue'
+import HexDataInputC from '@/eComponents/ui/HexDataInputC.vue'
+import ActionButtonC from '@/eComponents/ui/ActionButtonC.vue'
 ```
 
 ## Custom Styling
@@ -156,12 +154,12 @@ While the design system handles the common cases, you can always add custom Tail
 
         <!-- Standard result display -->
         <div class="e-grid-double">
-          <PPBoxC title="Result A" :left="true">
+          <ResultBoxC title="Result A" :left="true">
             <p class="e-result-text-lg">{{ resultA }}</p>
-          </PPBoxC>
-          <PPBoxC title="Result B" :left="false">
+          </ResultBoxC>
+          <ResultBoxC title="Result B" :left="false">
             <p class="e-result-text-lg">{{ resultB }}</p>
-          </PPBoxC>
+          </ResultBoxC>
         </div>
 
         <PoweredByC :poweredBy="exploration.poweredBy" />

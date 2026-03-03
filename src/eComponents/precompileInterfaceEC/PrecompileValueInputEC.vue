@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 
-import TooltipC from '@/components/ui/TooltipC.vue'
+import TooltipC from '@/eComponents/ui/TooltipC.vue'
 
 import { isValidByteInputForm } from './utils'
 
