@@ -25,6 +25,7 @@ export default defineConfig({
           { text: 'Adding an Exploration', link: '/contributing/adding-an-exploration' },
           { text: 'E-Components', link: '/contributing/e-components' },
           { text: 'Available E-Components', link: '/contributing/available-e-components' },
+          { text: 'Styling & Design', link: '/contributing/styling' },
           { text: 'Code Conventions', link: '/contributing/code-conventions' },
           { text: 'Library Forks', link: '/contributing/library-forks' },
         ],

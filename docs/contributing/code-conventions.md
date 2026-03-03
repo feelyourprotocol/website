@@ -13,7 +13,6 @@ Use `@/` path aliases for cross-module imports and relative paths (`./`, `../`) 
 import { Hardfork } from '@ethereumjs/common'
 
 // Internal @/ alias imports
-import { PP_BOX_LAYOUT } from '@/components/lib/layout'
 import PPBoxC from '@/components/ui/PPBoxC.vue'
 import ExplorationC from '@/explorations/ExplorationC.vue'
 
