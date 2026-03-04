@@ -16,12 +16,12 @@ const selectedLabel = computed(() => {
   return entry ? entry[0].toUpperCase() : 'All Explorations'
 })
 
-watch(selectedRoute, (path) => {
+function navigate(path: string) {
   const target = path || '/'
   if (route.path !== target) {
     router.push(target)
   }
-})
+}
 
 watch(
   () => route.path,
@@ -45,7 +45,7 @@ watch(
         >
       </h1>
       <nav class="font-mono text-sm text-right flex justify-end items-center">
-        <Listbox v-model="selectedRoute">
+        <Listbox v-model="selectedRoute" @update:model-value="navigate">
           <div class="relative inline-block">
             <ListboxButton
               class="inline-flex items-center gap-1 text-xs ml-6 border border-slate-200 bg-white rounded-md text-slate-500 hover:text-slate-700 hover:border-slate-300 px-2 py-1 cursor-pointer"

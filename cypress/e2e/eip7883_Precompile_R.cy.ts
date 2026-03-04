@@ -91,7 +91,8 @@ describe('EIP-7823/Precompile Component Tests', () => {
       cy.get('input').eq(2).should('have.value', '0202')
 
       // examples
-      cy.get('.examples-select').select('Simple')
+      cy.get('.e-select').click()
+      cy.contains('[role="option"]', 'Simple').click()
       cy.get('input').eq(0).should('have.value', '03')
       cy.get('input').eq(1).should('have.value', '03')
       cy.get('input').eq(2).should('have.value', '02')

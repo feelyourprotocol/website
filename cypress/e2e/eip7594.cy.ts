@@ -13,7 +13,8 @@ describe('EIP-7594/PeerDAS Tests', () => {
     )
 
     // Select different example
-    cy.get('#eip-7594-c').find('select').select(2)
+    cy.get('#eip-7594-c .e-select').click()
+    cy.get('#eip-7594-c [role="option"]').eq(1).click()
     cy.get('#eip-7594-c textarea', { timeout: 10000 }).should(
       'contain.value',
       '00000000000000000000000000000000000000000',

@@ -10,7 +10,7 @@ defineProps(['title', 'left'])
 </script>
 
 <template>
-  <ResultBoxUIC :title="title" :left="true">
+  <ResultBoxUIC :title="title" :left="left">
     <p v-if="execResult" class="e-result-text-lg">{{ execResult?.executionGasUsed }} Gas</p>
     <p v-if="execResult" class="e-result-text-sm">
       Result: {{ execResult ? bytesToHex(execResult.returnValue) : '' }}

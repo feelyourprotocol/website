@@ -42,7 +42,8 @@ describe('Navigation', () => {
     cy.get('header').contains('Feel Your Protocol')
     cy.get('footer').contains('Imprint')
 
-    cy.get('#exploration-navi').select('EIP-7883')
+    cy.get('#exploration-navi').click()
+    cy.contains('[role="option"]', 'EIP-7883').click()
     cy.url().should('include', '/eip-7883')
 
     cy.get('footer').contains('Imprint').click()
