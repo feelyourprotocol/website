@@ -38,7 +38,7 @@ watch(
   <header class="mt-3 mb-8">
     <div class="grid grid-cols-2 mb-3">
       <h1>
-        <RouterLink to="/" class="text-2xl md:text-4xl font-bold text-blue-900"
+        <RouterLink to="/" class="text-2xl md:text-4xl font-bold text-slate-800"
           >Feel Your Protocol</RouterLink
         >
       </h1>
@@ -68,7 +68,7 @@ watch(
                   <li
                     :class="[
                       'cursor-pointer whitespace-nowrap px-3 py-1.5 select-none first:rounded-t-sm last:rounded-b-sm',
-                      active ? 'bg-blue-50' : '',
+                      active ? 'bg-slate-100' : '',
                       selected ? 'font-bold' : '',
                     ]"
                   >
@@ -85,7 +85,7 @@ watch(
                   <li
                     :class="[
                       'cursor-pointer whitespace-nowrap px-3 py-1.5 select-none first:rounded-t-sm last:rounded-b-sm',
-                      active ? 'bg-blue-50' : '',
+                      active ? 'bg-slate-100' : '',
                       selected ? 'font-bold' : '',
                     ]"
                   >

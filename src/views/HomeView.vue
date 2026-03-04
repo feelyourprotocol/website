@@ -33,33 +33,35 @@ for (const topicId of Object.keys(TOPICS)) {
       </div>
 
       <div>
-        <div class="bg-blue-900 text-white rounded-xl mb-4 p-5">
+        <div class="bg-slate-800 text-white rounded-xl mb-4 p-5">
           <p class="mb-2 text-xl font-bold">About the Project</p>
-          <p class="text-blue-100 text-sm leading-relaxed">
+          <p class="text-slate-300 text-sm leading-relaxed">
             Feel Your Protocol is a collaborative open-source project providing interactive
             explorations of upcoming Ethereum protocol changes. Widgets are powered by real EVM and
             cryptography libraries running directly in the browser — no backend needed.
           </p>
-          <p class="text-blue-100 text-sm leading-relaxed mt-2">
+          <p class="text-slate-300 text-sm leading-relaxed mt-2">
             Want to contribute?
             <a
               href="https://docs.feelyourprotocol.org"
               target="_blank"
-              class="underline text-white hover:text-blue-200"
+              class="underline text-white hover:text-slate-100"
               >Check the docs</a
             >
             or jump straight into the
             <a
               href="https://github.com/feelyourprotocol/website"
               target="_blank"
-              class="underline text-white hover:text-blue-200"
+              class="underline text-white hover:text-slate-100"
               >code on GitHub</a
             >.
           </p>
         </div>
 
         <div class="text-right mb-3 mt-6">
-          <span class="text-sm rounded-lg font-mono border-1 p-1.5">Latest</span>
+          <span class="text-sm rounded-lg font-mono border-1 border-slate-300 text-slate-600 p-1.5"
+            >Latest</span
+          >
         </div>
 
         <RouterLink
