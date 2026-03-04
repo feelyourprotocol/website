@@ -102,7 +102,11 @@ watch(
     </div>
     <p class="flex items-baseline text-sm md:text-xl text-slate-500 tracking-wide">
       <span class="shrink-0">Interactive Ethereum Protocol Explorations</span>
-      <span class="protocol-dots flex-1 overflow-hidden whitespace-nowrap">· · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · ·</span>
+      <span class="protocol-dots flex-1 overflow-hidden whitespace-nowrap"
+        >· · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · ·
+        · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · ·
+        · · · · · · · ·</span
+      >
     </p>
   </header>
 
@@ -117,10 +121,7 @@ watch(
     <h3 class="font-mono text-xs text-right text-slate-500">
       <RouterLink to="/imprint">Imprint</RouterLink>
       <span class="text-purple-500 mx-2">◆</span>
-      <a
-        href="https://github.com/feelyourprotocol/website"
-        target="_blank"
-        rel="noopener"
+      <a href="https://github.com/feelyourprotocol/website" target="_blank" rel="noopener"
         >GitHub</a
       >
     </h3>

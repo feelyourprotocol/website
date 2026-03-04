@@ -19,20 +19,11 @@ const getImageUrl = (image: string) =>
 </script>
 
 <template>
-  <div
-    :style="cssVars"
-    class="topic-intro-card bg-white rounded-lg p-5 shadow-sm"
-  >
-    <h2
-      v-if="overviewMode"
-      class="text-2xl md:text-3xl font-bold tracking-tight mb-4 e-text"
-    >
+  <div :style="cssVars" class="topic-intro-card bg-white rounded-lg p-5 shadow-sm">
+    <h2 v-if="overviewMode" class="text-2xl md:text-3xl font-bold tracking-tight mb-4 e-text">
       {{ topic.title }}
     </h2>
-    <h2
-      v-else
-      class="text-lg md:text-xl font-bold tracking-tight mb-3 text-right e-text"
-    >
+    <h2 v-else class="text-lg md:text-xl font-bold tracking-tight mb-3 text-right e-text">
       <RouterLink :to="topic.path" class="hover:underline">{{ topic.title }} ↑</RouterLink>
     </h2>
 

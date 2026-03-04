@@ -10,7 +10,9 @@
     </div>
 
     <div class="grid md:grid-cols-2 gap-4">
-      <div class="bg-slate-800 text-white bg-clip-border p-6 rounded-xl font-mono text-xs border-l-3 border-purple-500 neon-glow-permanent">
+      <div
+        class="bg-slate-800 text-white bg-clip-border p-6 rounded-xl font-mono text-xs border-l-3 border-purple-500 neon-glow-permanent"
+      >
         <h3 class="font-bold text-lg">CONTRIBUTIONS 👾</h3>
 
         <p class="mt-2 text-slate-300">

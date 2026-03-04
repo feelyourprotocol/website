@@ -37,7 +37,6 @@ export function topicCSSVars(color: TopicColor): Record<string, string> {
   }
 }
 
-
 export const TOPICS: Topics = {
   fusaka: {
     title: 'Fusaka',

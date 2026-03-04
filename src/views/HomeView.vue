@@ -59,7 +59,8 @@ for (const topicId of Object.keys(TOPICS)) {
         </div>
 
         <div class="text-right mb-3 mt-6">
-          <span class="text-sm rounded-lg font-mono bg-gradient-to-r from-purple-500 to-cyan-500 text-white px-3 py-1.5"
+          <span
+            class="text-sm rounded-lg font-mono bg-gradient-to-r from-purple-500 to-cyan-500 text-white px-3 py-1.5"
             >Latest</span
           >
         </div>
