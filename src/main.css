@@ -90,11 +90,11 @@ body {
 /* --- Defaults (blue, overridden per-topic by ExplorationC) --- */
 :root {
   --e-text: var(--color-blue-800);
-  --e-bg: var(--color-blue-50);
+  --e-bg: var(--color-blue-100);
   --e-bg-light: var(--color-white);
   --e-bg-medium: var(--color-blue-100);
   --e-bg-dark: var(--color-blue-900);
-  --e-border: var(--color-blue-200);
+  --e-border: var(--color-blue-300);
   --e-border-dark: var(--color-blue-800);
   --e-accent: var(--color-blue-600);
 }
@@ -166,13 +166,10 @@ body {
 .e-select {
   color: var(--e-text);
   border-color: var(--e-border);
-  @apply text-xs border-1 px-2 py-1 mb-0.5 rounded-md;
+  @apply text-xs border-1 px-2 py-1 mb-0.5 rounded-md cursor-pointer;
   transition: border-color 0.15s ease;
 }
 
-.e-select:hover {
-  border-color: var(--e-accent);
-}
 
 .e-listbox-options {
   background-color: var(--e-bg);

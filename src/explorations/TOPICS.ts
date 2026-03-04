@@ -27,11 +27,11 @@ export function topicCSSVars(color: TopicColor): Record<string, string> {
   const c = CSS_COLOR_MAP[color]
   return {
     '--e-text': `var(--color-${c}-800)`,
-    '--e-bg': `var(--color-${c}-50)`,
+    '--e-bg': `var(--color-${c}-100)`,
     '--e-bg-light': `var(--color-white)`,
     '--e-bg-medium': `var(--color-${c}-100)`,
     '--e-bg-dark': `var(--color-${c}-900)`,
-    '--e-border': `var(--color-${c}-200)`,
+    '--e-border': `var(--color-${c}-300)`,
     '--e-border-dark': `var(--color-${c}-800)`,
     '--e-accent': `var(--color-${c}-600)`,
   }

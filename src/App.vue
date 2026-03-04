@@ -48,7 +48,7 @@ watch(
         <Listbox v-model="selectedRoute" @update:model-value="navigate">
           <div class="relative inline-block">
             <ListboxButton
-              class="inline-flex items-center gap-1 text-xs ml-6 border border-slate-200 bg-white rounded-md text-slate-500 hover:text-slate-700 hover:border-slate-300 px-2 py-1 cursor-pointer"
+              class="inline-flex items-center gap-1 text-xs ml-6 border border-slate-400 bg-white rounded-md text-slate-500 px-2 py-1 cursor-pointer"
               id="exploration-navi"
             >
               {{ selectedLabel }}
@@ -64,7 +64,7 @@ watch(
               leave-to-class="opacity-0 scale-95"
             >
               <ListboxOptions
-                class="absolute right-0 z-20 mt-1 w-max max-h-60 overflow-auto rounded-md border border-slate-200 bg-white text-xs shadow-md focus:outline-none"
+                class="absolute right-0 z-20 mt-1 w-max max-h-60 overflow-auto rounded-md border border-slate-400 bg-white text-xs shadow-md focus:outline-none"
               >
                 <ListboxOption value="" v-slot="{ active, selected }" as="template">
                   <li
