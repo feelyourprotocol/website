@@ -32,7 +32,7 @@ The placement rules:
 
 ### ExamplesUIC
 
-Example selector dropdown. Provides a `<select>` with pre-defined example presets.
+Example selector dropdown built on [Headless UI Listbox](https://headlessui.dev/v1/vue/listbox). Provides an accessible, keyboard-navigable dropdown with pre-defined example presets.
 
 ```vue
 <ExamplesUIC v-model="example" :examples="examples" :change="selectExample" />
@@ -122,6 +122,15 @@ Small icon button with tooltip. Used internally by `ExplorationC` for share and 
 ### TooltipUIC
 
 CSS tooltip wrapper. Used internally by `ButtonUIC` and `ActionButtonUIC`. You typically don't need this directly — use `ActionButtonUIC` or `ButtonUIC` instead.
+
+## Underlying Libraries
+
+Some UI components use [Headless UI](https://headlessui.dev/) (`@headlessui/vue`) — a set of completely unstyled, accessible UI primitives designed for Tailwind CSS. Headless UI handles keyboard navigation, focus management, and ARIA attributes while we control all styling via the exploration design system.
+
+Currently used by:
+- `ExamplesUIC` — uses the Headless UI **Listbox** component
+
+As a contributor you don't need to interact with Headless UI directly — just use the UIC components as documented above.
 
 ## Importing
 
