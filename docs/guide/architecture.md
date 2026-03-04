@@ -1,9 +1,5 @@
 # Architecture
 
-::: warning Under Active Development
-Both the Feel Your Protocol project and this documentation are in an early stage and under active development. Things may change frequently.
-:::
-
 ## Overview
 
 Feel Your Protocol is a Vue 3 application built with Vite. The core idea is simple: each Ethereum protocol change gets its own interactive widget that runs real library code in the browser.
@@ -15,69 +11,77 @@ Feel Your Protocol is a Vue 3 application built with Vite. The core idea is simp
 - **[Tailwind CSS v4](https://tailwindcss.com/)** for styling
 - **[Vue Router](https://router.vuejs.org/)** with route-level code splitting
 - **[VitePress](https://vitepress.dev/)** for documentation
+- **[Vitest](https://vitest.dev/)** + **[Vue Test Utils](https://test-utils.vuejs.org/)** for unit testing
 - **[Cypress](https://www.cypress.io/)** for E2E testing
 - **[Heroicons](https://heroicons.com/)** for icons (`@heroicons/vue`)
 
-## Content Structure
+## Content Model
 
 Content is organized around two concepts:
 
-- **Explorations** — the core unit. Each exploration represents an interactive widget for a protocol change (EIP, ERC, or other research topic). Explorations live in `src/explorations/`.
-- **Topics** — group explorations by theme (e.g. "Fusaka" for an upcoming hardfork). Each exploration can belong to zero or more topics via the `topics` array. Topics are defined in `src/explorations/TOPICS.ts`.
+### Explorations
 
-### The `src/explorations/` Folder
-
-This is the heart of the project. Each exploration is a self-contained folder:
+The core content unit. Each exploration represents an interactive widget for a protocol change — EIPs, ERCs, or research topics. Explorations live in `src/explorations/`, one folder per exploration:
 
 ```
-src/explorations/
-├── REGISTRY.ts            # Assembles all explorations, exports EXPLORATIONS dict
-├── TOPICS.ts              # Topic definitions
-├── ExplorationC.vue       # Shared wrapper component (title, description, buttons)
-├── PoweredByC.vue         # Shared "powered by" footer
-├── eip-7594/
-│   ├── info.ts            # Metadata: id, title, path, infoURL, introText, usageText, …
-│   └── MyC.vue            # The interactive widget
-├── eip-7883/
-│   ├── info.ts
-│   └── MyC.vue
-└── eip-7951/
-    ├── info.ts
-    └── MyC.vue
+src/explorations/eip-7883/
+├── info.ts         # Metadata: id, title, path, topic, introText, poweredBy, …
+├── MyC.vue         # The interactive widget
+└── examples.ts     # Example presets for the widget
 ```
 
-Each `info.ts` exports a `const INFO` object typed as `Exploration`. The `REGISTRY.ts` imports all `INFO` constants and assembles them into the `EXPLORATIONS` dictionary. The router reads from this to automatically create routes — no manual route registration needed.
+Each `info.ts` exports a `const INFO` object typed as `Exploration`. The `REGISTRY.ts` imports all `INFO` constants and assembles them into the `EXPLORATIONS` dictionary. The router reads from this dictionary to automatically create routes — no manual route registration needed.
 
-### Exploration Metadata (`info.ts`)
+### Topics
 
-Each exploration's `info.ts` contains all its metadata as a flat object:
+Topics group explorations by theme (e.g. "Fusaka" for an upcoming hardfork). Each exploration belongs to exactly one topic via the `topic` field in its `info.ts`. Topics are defined in `src/explorations/TOPICS.ts`.
+
+## E-Components
+
+**E-Components** are reusable Ethereum-specific components that encapsulate common patterns across explorations. They live in `src/eComponents/` and follow a naming convention: folder and component names are post-fixed with `EC`.
+
+The first E-Component is `precompileInterfaceEC`, which provides a complete precompile exploration interface — input parsing, hardfork comparison, result display — as a single component backed by a composable:
+
+```
+src/eComponents/precompileInterfaceEC/
+├── PrecompileInterfaceEC.vue      # Full-featured precompile exploration template
+├── PrecompileInterfaceResultEC.vue # Result display (pre/post hardfork comparison)
+├── PrecompileValueInputEC.vue     # Value input with byte length validation
+├── usePrecompileState.ts          # Composable: all state and logic
+├── types.ts                       # PrecompileConfig and PrecompileValueDef interfaces
+└── run.ts                         # EVM precompile execution utility
+```
+
+Using the Precompile Interface E-Component, a precompile exploration widget can be as short as 30 lines — just a config object and a single component tag. See [Using E-Components](/contributing/e-components) for details.
+
+## UI Components
+
+Generic UI components live in `src/eComponents/ui/` alongside the E-Components they serve. These are reusable building blocks available for any exploration or E-Component:
+
+| Component | Purpose |
+|-----------|---------|
+| `ExamplesUIC` | Example selector dropdown |
+| `HexDataInputUIC` | Hex data input textarea |
+| `ResultBoxUIC` | Result display box with title, info text, and error text |
+| `ActionButtonUIC` | Async action button with loading state and tooltip |
+| `ButtonUIC` | Icon button with tooltip |
+| `TooltipUIC` | CSS tooltip wrapper |
+
+Import them from `@/eComponents/ui/`:
 
 ```typescript
-import type { Exploration } from '../REGISTRY'
-
-export const INFO: Exploration = {
-  id: 'eip-XXXX',
-  path: '/eip-XXXX-short-description',
-  title: 'Human-Readable Title',
-  infoURL: 'https://eips.ethereum.org/EIPS/eip-XXXX',
-  topics: ['fusaka'],
-  image: 'fusaka.webp',
-  introText: 'HTML-formatted introduction.',
-  usageText: 'HTML-formatted usage instructions.',
-  poweredBy: [
-    { name: 'Library Name', href: 'https://github.com/...' },
-  ],
-}
+import ResultBoxUIC from '@/eComponents/ui/resultBox/ResultBoxUIC.vue'
+import ExamplesUIC from '@/eComponents/ui/ExamplesUIC.vue'
 ```
 
 ## Key Design Decisions
 
 ### Folder-per-Exploration
 
-Each exploration is fully self-contained in its own folder with `info.ts` (metadata) and `MyC.vue` (widget). This means:
+Each exploration is fully self-contained in its own folder. This means:
 
 - Contributors can focus on a single folder
-- Adding a new exploration is a matter of creating a folder and adding one import to `REGISTRY.ts`
+- Adding a new exploration requires creating a folder and adding one import to `REGISTRY.ts`
 - Each exploration's dependencies are isolated
 
 ### Dynamic Views
@@ -86,12 +90,11 @@ There are no static per-exploration or per-topic view files. Instead:
 
 - **`ExplorationView.vue`** dynamically loads the correct `MyC.vue` using `import.meta.glob()` and `defineAsyncComponent()` based on the route name
 - **`TopicView.vue`** dynamically lists all explorations belonging to a topic
-
-This keeps the views lean and avoids boilerplate when adding new content.
+- **`HomeView.vue`** dynamically renders all topics defined in `TOPICS.ts`
 
 ### Route-Level Code Splitting
 
-The `ExplorationView.vue` uses `import.meta.glob()` for lazy loading:
+Each exploration is a separate chunk that is loaded on demand. Users only download the libraries needed for the page they visit. This is achieved via `import.meta.glob()` for lazy loading:
 
 ```typescript
 const componentModules = import.meta.glob('../explorations/*/MyC.vue')
@@ -100,8 +103,11 @@ const ExplorationComponent = defineAsyncComponent(
 )
 ```
 
-Each exploration is a separate chunk that's loaded on demand. Users only download the libraries needed for the page they visit.
+### Testing Strategy
 
-### Library Forks
+The project uses a hybrid testing approach:
 
-Some exploration widgets require custom forks of Ethereum libraries (see [Library Forks](./library-forks.md)). The architecture ensures that different forks of the same library can coexist without conflicts, each isolated to its specific exploration route.
+- **Unit tests** (Vitest + Vue Test Utils) for component rendering, content verification, and UI logic — fast and focused
+- **E2E tests** (Cypress) as lean smoke tests for critical navigation flows and page-level integration
+
+Unit tests live alongside their components in `__tests__/` folders. E2E tests are consolidated in `cypress/e2e/`.

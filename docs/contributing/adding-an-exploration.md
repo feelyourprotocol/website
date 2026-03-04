@@ -1,35 +1,42 @@
 # Adding an Exploration
 
-::: warning Under Active Development
-Both the Feel Your Protocol project and this documentation are in an early stage and under active development. Things may change frequently.
-:::
+Each exploration lives in its own folder under `src/explorations/` with a few files. This guide walks you through adding a new one.
 
-## Overview
+## Quick Overview
 
-Each exploration lives in its own folder under `src/explorations/` with two files: `info.ts` (metadata) and `MyC.vue` (interactive widget). This guide walks you through adding a new one.
+An exploration folder looks like this:
 
-## Step 1: Create the Exploration Folder
+```
+src/explorations/eip-XXXX/
+├── info.ts         # Metadata (required)
+├── MyC.vue         # Interactive widget (required)
+├── examples.ts     # Example presets (recommended)
+└── data/           # Optional data files
+```
 
-Create a new folder in `src/explorations/` named after your exploration's ID. The ID should be lowercase and hyphen-separated (e.g. `eip-XXXX`, `erc-XXXX`, or any descriptive identifier):
+## Step 1: Create the Folder
+
+Create a new folder in `src/explorations/` named after your exploration's ID. Use lowercase, hyphen-separated names:
 
 ```bash
 mkdir src/explorations/eip-XXXX
 ```
 
+The ID can be `eip-XXXX`, `erc-XXXX`, or any descriptive identifier for research topics.
+
 ## Step 2: Create `info.ts`
 
-Create `src/explorations/eip-XXXX/info.ts` with your exploration's metadata:
+This file defines all the metadata for your exploration:
 
 ```typescript
-import type { Exploration } from '../REGISTRY'
+import type { Exploration } from '@/explorations/REGISTRY'
 
 export const INFO: Exploration = {
   id: 'eip-XXXX',
   path: '/eip-XXXX-short-description',
   title: 'Human-Readable Title',
   infoURL: 'https://eips.ethereum.org/EIPS/eip-XXXX',
-  topics: ['fusaka'],
-  image: 'fusaka.webp',
+  topic: 'fusaka',
   introText:
     '<b>What does this change?</b> ' +
     'A brief introduction to the protocol change.',
@@ -41,7 +48,7 @@ export const INFO: Exploration = {
 }
 ```
 
-**Fields:**
+### Field Reference
 
 | Field | Required | Description |
 |-------|----------|-------------|
@@ -49,44 +56,128 @@ export const INFO: Exploration = {
 | `path` | Yes | URL path for the exploration page |
 | `title` | Yes | Display title |
 | `infoURL` | Yes | Link to the specification or reference material |
-| `topics` | No | Array of topic IDs this exploration belongs to |
-| `image` | No | Image filename from `src/assets/` (e.g. `fusaka.webp`) |
+| `topic` | Yes | Topic ID this exploration belongs to (e.g. `'fusaka'`) |
+| `image` | No | Imported image for topic overview display |
 | `introText` | No | HTML-formatted introduction paragraph |
 | `usageText` | No | HTML-formatted usage instructions |
-| `poweredBy` | No | Array of `{ name, href }` for library credits |
+| `poweredBy` | Yes | Array of `{ name, href }` for library credits |
 
-## Step 3: Create `MyC.vue`
+## Step 3: Create `examples.ts`
 
-Create `src/explorations/eip-XXXX/MyC.vue` with your interactive widget. Use `ExplorationC` as the wrapper component for consistent layout:
+Define example presets that users can select from a dropdown:
+
+```typescript
+import type { Examples } from '@/components/lib/general'
+
+export const examples: Examples = {
+  basic: {
+    title: 'Basic Example',
+    values: ['deadbeef'],
+  },
+  advanced: {
+    title: 'Advanced Example',
+    values: ['cafebabe', '0102030405'],
+  },
+}
+```
+
+Each example has a `title` (displayed in the dropdown) and a `values` array (the preset input values).
+
+## Step 4: Create `MyC.vue`
+
+This is your interactive widget. The approach depends on what you are building.
+
+### Option A: Custom Widget
+
+For explorations with unique behavior, build the widget from scratch using shared UI components:
 
 ```vue
 <script setup lang="ts">
-import ExplorationC from '../ExplorationC.vue'
-import PoweredByC from '../PoweredByC.vue'
-import { INFO } from './info'
+import { ref } from 'vue'
 
-const exploration = INFO
-const poweredBy = exploration.poweredBy ?? []
+import { PP_BOX_LAYOUT } from '@/components/lib/layout'
+import ExamplesUIC from '@/eComponents/ui/ExamplesUIC.vue'
+import HexDataInputUIC from '@/eComponents/ui/HexDataInputUIC.vue'
+import ResultBoxUIC from '@/eComponents/ui/resultBox/ResultBoxUIC.vue'
+import ExplorationC from '@/explorations/ExplorationC.vue'
+import PoweredByC from '@/explorations/PoweredByC.vue'
+import { TOPICS } from '@/explorations/TOPICS'
+
+import { examples } from './examples'
+import { INFO as exploration } from './info'
+
+const topic = TOPICS[exploration.topic]
+const data = ref('')
+const example = ref('')
+
+async function selectExample() {
+  if (example.value === '') return
+  data.value = examples[example.value]!.values[0]
+}
+
+async function onDataInputFormChange() {
+  example.value = ''
+}
+
+async function init() {
+  example.value = 'basic'
+  await selectExample()
+}
+
+await init()
 </script>
 
 <template>
-  <div>
-    <ExplorationC :explorationId="exploration.id" :exploration="exploration">
-      <template v-slot:content>
-        <!-- Your interactive widget here -->
-        <p>Widget content goes here.</p>
-      </template>
-    </ExplorationC>
-    <PoweredByC :poweredBy="poweredBy" />
-  </div>
+  <ExplorationC explorationId="eip-XXXX" :exploration="exploration" :topic="topic">
+    <template #content>
+      <div>
+        <ExamplesUIC v-model="example" :examples="examples" :change="selectExample" />
+        <HexDataInputUIC v-model="data" rows="6" :formChange="onDataInputFormChange" />
+        <!-- Your result display here -->
+        <PoweredByC :poweredBy="exploration.poweredBy" :topic="topic" />
+      </div>
+    </template>
+  </ExplorationC>
 </template>
 ```
 
-The `ExplorationC` wrapper automatically renders the title, info link, intro text and usage text from your `info.ts`. You only need to provide the interactive content via the `content` slot.
+The `ExplorationC` wrapper renders the title, info link, intro text, and usage text from your `info.ts`. You provide the interactive content via the `#content` slot.
 
-For shared UI components (hex inputs, result displays, etc.), import from `../../components/ui/` and `../../components/precompiles/`. Browse existing explorations for examples.
+### Option B: Precompile Interface E-Component
 
-## Step 4: Register in the Registry
+If your exploration is about a precompile, you can use the Precompile Interface E-Component and get a full-featured widget in ~30 lines:
+
+```vue
+<script setup lang="ts">
+import { Hardfork } from '@ethereumjs/common'
+
+import PrecompileInterfaceEC from '@/eComponents/precompileInterfaceEC/PrecompileInterfaceEC.vue'
+import type { PrecompileConfig } from '@/eComponents/precompileInterfaceEC/types'
+
+import { examples } from './examples'
+import { INFO as exploration } from './info'
+
+const config: PrecompileConfig = {
+  explorationId: 'eip-XXXX',
+  precompileAddress: '0a',
+  preHardfork: Hardfork.Prague,
+  postHardfork: Hardfork.Osaka,
+  defaultExample: 'basic',
+  values: [
+    { title: 'Input A', urlParam: 'a', expectedLen: 32n },
+    { title: 'Input B', urlParam: 'b', expectedLen: 32n },
+  ],
+}
+</script>
+
+<template>
+  <PrecompileInterfaceEC :config="config" :examples="examples" :exploration="exploration" />
+</template>
+```
+
+See [Using E-Components](/contributing/e-components) for the full API reference.
+
+## Step 5: Register in the Registry
 
 Add one import line to `src/explorations/REGISTRY.ts`:
 
@@ -99,34 +190,35 @@ export const EXPLORATIONS: Explorations = {
 }
 ```
 
-That's it for registration. The router reads from `EXPLORATIONS` and automatically creates the route — no manual route configuration needed.
+The router reads from `EXPLORATIONS` and automatically creates the route — no manual route configuration needed.
 
-## Step 5: Add Library Dependencies
+## Step 6: Install Dependencies
 
-If your widget needs an Ethereum library (or a custom fork), install it and import it only in your `MyC.vue` file:
+If your widget needs additional libraries, install them:
 
 ```bash
 npm install some-library
 ```
 
-If you need a library fork, see the [Library Forks](../guide/library-forks.md) guide. Key rule: **only import fork-specific libraries in your `MyC.vue`**, never in shared code. This keeps each exploration's dependencies isolated via Vite's code splitting.
+Import libraries only in your `MyC.vue` — never in shared code. This keeps each exploration's dependencies isolated via Vite's code splitting.
 
-## Step 6: Add Tests
+If you need a custom library fork (e.g. with experimental features), see [Library Forks](/contributing/library-forks).
 
-Add a Cypress E2E test in `cypress/e2e/` to verify basic widget functionality. Name it after your exploration ID (e.g. `eip-XXXX.cy.ts`).
-
-## Step 7: Build and Verify
+## Step 7: Verify
 
 ```bash
-npm run build        # verify production build works
-npm run test:e2e     # run E2E tests
+npm run dev          # check your exploration locally
+npm run lf           # format + lint
+npm run type-check   # TypeScript check
+npm run build        # verify production build
 ```
 
-## Quick Checklist
+## Checklist
 
 - [ ] Created `src/explorations/<id>/info.ts` with metadata
 - [ ] Created `src/explorations/<id>/MyC.vue` with interactive widget
+- [ ] Created `src/explorations/<id>/examples.ts` with example presets
 - [ ] Added import and entry in `src/explorations/REGISTRY.ts`
-- [ ] Added library dependencies (if needed)
-- [ ] Added E2E test
-- [ ] Build passes (`npm run build`)
+- [ ] Installed library dependencies (if needed)
+- [ ] Linting and type checking pass
+- [ ] Production build succeeds

@@ -17,9 +17,8 @@ describe('EIP-7951/secp256r1 Precompile Support', () => {
     cy.get('.post-hardfork').find('p').eq(0).should('include.text', '6900 Gas')
 
     // Select different example
-    cy.get('#eip-7951-c')
-      .find('select')
-      .select('Invalid (Wycheproof), r value too large')
+    cy.get('#eip-7951-c .e-select').click()
+    cy.contains('[role="option"]', 'Invalid (Wycheproof), r value too large').click()
     cy.get('#eip-7951-c textarea', { timeout: 10000 }).should(
       'contain.value',
       '532eaabd9574880dbf76b9b8cc00832c20a6ec113d682299550d7a6e0f345e25',

@@ -1,8 +1,10 @@
 <script setup lang="ts">
 import { defineAsyncComponent } from 'vue'
 import { useRoute } from 'vue-router'
+
 import { EXPLORATIONS } from '@/explorations/REGISTRY'
-import { TOPICS, TOPIC_COLOR_CLASSES } from '@/explorations/TOPICS'
+import { TOPIC_COLOR_CLASSES, TOPICS } from '@/explorations/TOPICS'
+
 import TopicIntroView from './TopicIntroView.vue'
 
 const route = useRoute()

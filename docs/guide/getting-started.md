@@ -1,16 +1,10 @@
 # Getting Started
 
-::: warning Under Active Development
-Both the Feel Your Protocol project and this documentation are in an early stage and under active development. Things may change frequently.
-:::
-
 ## What is Feel Your Protocol?
 
 Feel Your Protocol is an interactive website that lets you explore Ethereum protocol changes hands on. Instead of just reading specifications, you can interact with real Ethereum library code running directly in the browser.
 
-Each protocol change — called an **Exploration** — gets its own page with a dedicated interactive widget. For example, the [EIP-7883](https://feelyourprotocol.org/eip-7883-modexp-gas-cost-increase) page lets you experiment with ModExp gas cost changes interactively.
-
-Explorations are grouped into **Topics** (e.g. "Fusaka" for the upcoming hardfork), making it easy to discover related protocol changes.
+Each protocol change — called an **Exploration** — gets its own page with a dedicated interactive widget. Explorations cover EIPs, ERCs, and other research topics. They are grouped into **Topics** (e.g. "Fusaka" for the upcoming hardfork), making it easy to discover related protocol changes.
 
 ## Prerequisites
 
@@ -41,9 +35,23 @@ Start the docs dev server:
 npm run docs:dev
 ```
 
-## Building
+## Quality Checks
 
-Build both the website and documentation:
+```bash
+npm run lf           # format + lint (auto-fix)
+npm run lf:ci        # lint + format check (CI mode, no auto-fix)
+npm run type-check   # TypeScript type checking (vue-tsc)
+```
+
+## Testing
+
+```bash
+npx vitest run       # unit tests (single run)
+npm run test:unit    # unit tests (watch mode)
+npm run test:e2e     # E2E tests (Cypress, requires build first)
+```
+
+## Building
 
 ```bash
 npm run build          # website → dist/website
@@ -55,33 +63,36 @@ npm run docs:build     # docs → dist/docs
 ```
 website/
 ├── src/
-│   ├── explorations/          # Explorations (the core content)
-│   │   ├── REGISTRY.ts        # Exploration registry, types, helper functions
-│   │   ├── TOPICS.ts          # Topic definitions and types
-│   │   ├── ExplorationC.vue   # Shared exploration wrapper component
-│   │   ├── PoweredByC.vue     # Shared "powered by" component
-│   │   ├── eip-7594/          # One folder per exploration
-│   │   │   ├── info.ts        #   Metadata (title, description, links, …)
-│   │   │   └── MyC.vue        #   Interactive widget component
+│   ├── explorations/              # Explorations (the core content)
+│   │   ├── REGISTRY.ts            # Exploration registry and types
+│   │   ├── TOPICS.ts              # Topic definitions and types
+│   │   ├── ExplorationC.vue       # Shared exploration wrapper component
+│   │   ├── PoweredByC.vue         # Shared "powered by" component
+│   │   ├── eip-7594/              # One folder per exploration
+│   │   │   ├── info.ts            #   Metadata (title, description, links, …)
+│   │   │   ├── MyC.vue            #   Interactive widget component
+│   │   │   ├── examples.ts        #   Example presets
+│   │   │   └── data/              #   Optional data files
 │   │   ├── eip-7883/
-│   │   │   ├── info.ts
-│   │   │   └── MyC.vue
 │   │   └── eip-7951/
-│   │       ├── info.ts
-│   │       └── MyC.vue
-│   ├── components/            # Shared UI and utility components
-│   │   ├── ui/                # Generic UI components
-│   │   ├── precompiles/       # Precompile-related shared components
-│   │   └── lib/               # Shared logic and utilities
-│   ├── views/                 # Route views
+│   ├── eComponents/               # Reusable Ethereum-specific components (E-Components)
+│   │   └── precompileInterfaceEC/ # Precompile interface E-Component
+│   │       ├── PrecompileInterfaceEC.vue
+│   │       ├── PrecompileInterfaceResultEC.vue
+│   │       ├── PrecompileValueInputEC.vue
+│   │       ├── usePrecompileState.ts
+│   │       ├── types.ts
+│   │       └── run.ts
+│   ├── components/                # Shared UI components and utilities
+│   │   ├── ui/                    # Generic UI components
+│   │   └── lib/                   # Shared logic and utilities
+│   ├── views/                     # Route views
 │   │   ├── HomeView.vue
 │   │   ├── TopicView.vue
 │   │   ├── ExplorationView.vue
-│   │   └── TopicIntroView.vue
-│   └── router/                # Vue Router config
-├── docs/                      # Documentation (VitePress)
-├── cypress/                   # E2E tests
-└── dist/                      # Build output
-    ├── website/
-    └── docs/
+│   │   └── __tests__/             # Unit tests
+│   └── router/                    # Vue Router config
+├── docs/                          # Documentation (VitePress)
+├── cypress/                       # E2E tests
+└── .github/workflows/             # CI workflows
 ```

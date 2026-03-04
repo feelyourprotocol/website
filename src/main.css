@@ -1,0 +1,239 @@
+@import 'tailwindcss';
+
+/* ============================================================
+ * JetBrains Mono — self-hosted, SIL Open Font License
+ * ============================================================ */
+
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('./assets/fonts/JetBrainsMono-Regular.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('./assets/fonts/JetBrainsMono-Bold.woff2') format('woff2');
+}
+
+@theme {
+  --font-mono:
+    'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono',
+    'Courier New', monospace;
+}
+
+/* ============================================================
+ * Protocol Signals — subtle cypherpunk design sparks
+ *
+ * Each spark carries philosophical weight from the cypherpunk
+ * movement: privacy, code-first culture, open commons,
+ * decentralized coordination. They signal "Ethereum builder
+ * space" without overpowering the content.
+ * ============================================================ */
+
+/* Spark 4: Protocol pulse — gradient dots that breathe */
+@keyframes gradientShift {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.protocol-dots {
+  background: linear-gradient(90deg, #7c3aed, #06b6d4, #7c3aed);
+  background-size: 200% 100%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  animation: gradientShift 10s ease-in-out infinite;
+  letter-spacing: 0.25em;
+  @apply ml-7 font-mono text-sm;
+}
+
+/* Spark 5: Neon hover glow — protocol nodes light up on interaction */
+.neon-glow-hover {
+  transition: box-shadow 0.25s ease;
+}
+
+.neon-glow-hover:hover {
+  box-shadow:
+    0 0 15px rgba(124, 58, 237, 0.12),
+    0 0 30px rgba(6, 182, 212, 0.06);
+}
+
+/* Spark 6: About box permanent glow */
+.neon-glow-permanent {
+  box-shadow: 0 0 25px rgba(124, 58, 237, 0.1);
+}
+
+/* Spark 9: Dot-grid texture — network topology underneath */
+body {
+  background-image: radial-gradient(circle, #cbd5e1 0.5px, transparent 0.5px);
+  background-size: 24px 24px;
+}
+
+/* ============================================================
+ * Exploration Design System
+ *
+ * Topic colors flow via CSS custom properties (--e-*) set by
+ * ExplorationC on its root element. All child components inherit
+ * them automatically — no prop drilling needed.
+ * ============================================================ */
+
+/* --- Defaults (blue, overridden per-topic by ExplorationC) --- */
+:root {
+  --e-text: var(--color-blue-800);
+  --e-bg: var(--color-blue-100);
+  --e-bg-light: var(--color-white);
+  --e-bg-medium: var(--color-blue-100);
+  --e-bg-dark: var(--color-blue-900);
+  --e-border: var(--color-blue-300);
+  --e-border-dark: var(--color-blue-800);
+  --e-accent: var(--color-blue-600);
+}
+
+/* --- Topic text color utility --- */
+.e-text {
+  color: var(--e-text);
+}
+
+/* --- Exploration wrapper --- */
+.exploration-c {
+  background-color: var(--e-bg);
+  border: 1px solid var(--e-border);
+  @apply p-5 rounded-lg;
+}
+
+/* --- Result boxes (comparison panels) --- */
+.e-result-box {
+  background-color: var(--e-bg-dark);
+  @apply rounded-md p-3;
+
+  a {
+    @apply text-white underline;
+  }
+}
+
+.e-result-title {
+  color: var(--e-text);
+  @apply text-xs font-mono font-bold bg-white/90 px-2 py-0.5 rounded-sm;
+}
+
+.e-result-text-lg {
+  @apply text-2xl font-bold text-white py-2;
+}
+
+.e-result-text-md {
+  @apply text-xl font-bold text-white py-2;
+}
+
+.e-result-text-sm {
+  @apply text-xs font-bold font-mono text-white py-1 break-words w-full overflow-hidden;
+}
+
+/* --- Grid layouts for result panels --- */
+.e-grid-single {
+  @apply grid grid-cols-1 gap-1.5 mt-3;
+}
+
+.e-grid-double {
+  @apply grid grid-cols-2 gap-1.5 mt-3;
+}
+
+/* --- Form inputs --- */
+.e-textarea {
+  background-color: var(--e-bg-light);
+  border: 1px solid var(--e-border);
+  @apply block w-full mt-1.5 mb-2 font-mono text-xs rounded-md text-slate-600 p-2;
+  transition:
+    border-color 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.e-textarea:focus {
+  border-color: var(--e-accent);
+  outline: none;
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--e-accent) 20%, transparent);
+}
+
+.e-select {
+  color: var(--e-text);
+  border-color: var(--e-border);
+  @apply text-xs border-1 px-2 py-1 mb-0.5 rounded-md cursor-pointer;
+  transition: border-color 0.15s ease;
+}
+
+.e-listbox-options {
+  background-color: var(--e-bg);
+  border-color: var(--e-border);
+}
+
+.e-listbox-option {
+  color: var(--e-text);
+}
+
+.e-listbox-option-active {
+  background-color: var(--e-bg-medium);
+}
+
+.e-input {
+  background-color: var(--e-bg-light);
+  border: 1px solid var(--e-border);
+  @apply font-mono text-xs rounded-md p-1 w-full;
+  transition:
+    border-color 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.e-input:focus {
+  border-color: var(--e-accent);
+  outline: none;
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--e-accent) 20%, transparent);
+}
+
+/* --- Icon buttons --- */
+.e-button-icon {
+  color: var(--e-text);
+  border-color: var(--e-border);
+  @apply size-4 inline align-baseline border-1 p-0.5 rounded-sm;
+}
+
+/* --- E-Component: Precompile Interface --- */
+.precompile-value-input {
+  border-top: 1px solid var(--e-border);
+  @apply bg-clip-border pt-1.5 pb-0.5 px-0.5 mb-0.5;
+}
+
+/* --- Action buttons --- */
+.e-action-button {
+  color: var(--e-text);
+  background-color: var(--e-bg-medium);
+  border-color: var(--e-border);
+  @apply relative inline-flex items-center justify-center border-1 rounded-md p-2 text-xs font-bold cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed;
+  transition:
+    background-color 0.15s ease,
+    transform 0.1s ease,
+    box-shadow 0.15s ease;
+}
+
+.e-action-button:hover:not(:disabled) {
+  background-color: var(--e-bg);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transform: translateY(-1px);
+}
+
+.e-action-button:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+/* --- Topic intro cards (gradient left border) --- */
+.topic-intro-card {
+  border: 1px solid var(--e-border);
+}

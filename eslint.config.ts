@@ -1,11 +1,12 @@
 import { globalIgnores } from 'eslint/config'
-import { defineConfigWithVueTs, vueTsConfigs } from '@vue/eslint-config-typescript'
-import pluginVue from 'eslint-plugin-vue'
-import pluginVitest from '@vitest/eslint-plugin'
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import pluginCypress from 'eslint-plugin-cypress'
+import simpleImportSort from 'eslint-plugin-simple-import-sort'
+import pluginVue from 'eslint-plugin-vue'
+import pluginVitest from '@vitest/eslint-plugin'
 import skipFormatting from '@vue/eslint-config-prettier/skip-formatting'
+import { defineConfigWithVueTs, vueTsConfigs } from '@vue/eslint-config-typescript'
 
 // To allow more languages other than `ts` in `.vue` files, uncomment the following lines:
 // import { configureVueProject } from '@vue/eslint-config-typescript'
@@ -22,7 +23,25 @@ export default defineConfigWithVueTs(
 
   pluginVue.configs['flat/essential'],
   vueTsConfigs.recommended,
-  
+
+  {
+    name: 'app/import-sort',
+    plugins: { 'simple-import-sort': simpleImportSort },
+    rules: {
+      'simple-import-sort/imports': ['error', {
+        groups: [
+          // 1) External packages (anything not starting with . or @/)
+          ['^[^.@]', '^@(?!/)'],
+          // 2) Internal @/ alias imports
+          ['^@/'],
+          // 3) Local ./  and ../ relative imports
+          ['^\\.'],
+        ],
+      }],
+      'simple-import-sort/exports': 'error',
+    },
+  },
+
   {
     ...pluginVitest.configs.recommended,
     files: ['src/**/__tests__/*'],

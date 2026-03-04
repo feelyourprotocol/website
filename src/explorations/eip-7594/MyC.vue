@@ -1,72 +1,39 @@
 <script setup lang="ts">
-import { ref, type Ref } from 'vue'
-import HexDataInputC from '../../components/ui/HexDataInputC.vue'
-import { type Examples } from '../../components/lib/general.js'
-import blobBase from '../../components/lib/blobs/blob_base.txt?raw'
-import blobGnosis from '../../components/lib/blobs/blob_gnosis.txt?raw'
-import blobLighter from '../../components/lib/blobs/blob_lighter.txt?raw'
-import ExplorationC from '../ExplorationC.vue'
-import { INFO } from './info'
-import PoweredByC from '../PoweredByC.vue'
-import { TOPICS } from '../TOPICS'
-import ExamplesC from '../../components/ui/ExamplesC.vue'
-import {
-  PP_BOX_LAYOUT,
-  PP_BOX_TEXT_SMALL,
-  PP_BOX_LAYOUT_SINGLE,
-  PP_BOX_TABLE_TD,
-} from '../../components/lib/layout'
-import PPBoxC from '../../components/ui/PPBoxC.vue'
-import { trustedSetup } from '@paulmillr/trusted-setups/fast-peerdas.js'
 import { KZG as microEthKZG } from 'micro-eth-signer/kzg.js'
+import { ref } from 'vue'
 import {
   blobsToCellProofs,
   blobsToProofs,
   computeVersionedHash,
   type PrefixedHexString,
 } from '@ethereumjs/util'
-import ActionButtonC from '../../components/ui/ActionButtonC.vue'
-import PPBoxInfoText from '../../components/ui/PPBoxInfoText.vue'
-import PPBoxErrorText from '../../components/ui/PPBoxErrorText.vue'
+import { trustedSetup } from '@paulmillr/trusted-setups/fast-peerdas.js'
+
+import ActionButtonUIC from '@/eComponents/ui/ActionButtonUIC.vue'
+import ExamplesUIC from '@/eComponents/ui/ExamplesUIC.vue'
+import HexDataInputUIC from '@/eComponents/ui/HexDataInputUIC.vue'
+import ResultBoxUIC from '@/eComponents/ui/resultBox/ResultBoxUIC.vue'
+import ExplorationC from '@/explorations/ExplorationC.vue'
+import PoweredByC from '@/explorations/PoweredByC.vue'
+import { TOPICS } from '@/explorations/TOPICS'
+
+import { examples } from './examples'
+import { INFO as exploration } from './info'
 
 const kzg = new microEthKZG(trustedSetup)
 
-const data: Ref<string> = ref('')
-const commitment: Ref<string> = ref('')
-const versionedHash: Ref<string> = ref('')
-const blobProof: Ref<string> = ref('')
-const cellProofs: Ref<string[]> = ref([''])
+const data = ref('')
+const commitment = ref('')
+const versionedHash = ref('')
+const blobProof = ref('')
+const cellProofs = ref([''])
 
-const errorMsg: Ref<string> = ref('')
-const example: Ref<string> = ref('')
+const errorMsg = ref('')
+const example = ref('')
 
-const exploration = INFO
 const topic = TOPICS[exploration.topic]
 
-/**
- * Examples
- */
-const examples: Examples = {
-  blob1: {
-    title: 'Base L2 Blob | Hash: 0x01ae971... | Block Nr: 23966811 | 2025-12-08',
-    values: [blobBase],
-  },
-  blob2: {
-    title: 'Lighter L2 Blob | Hash: 0x015ed6b... | Block Nr: 23967328 | 2025-12-08',
-    values: [blobLighter],
-  },
-  blob3: {
-    title: 'Gnosis Chain Blob | Hash: 0x01755da... | Block Nr: 43511951 | 2025-12-06',
-    values: [blobGnosis],
-  },
-}
-
-const poweredBy = exploration.poweredBy
-
-/**
- * Example/URL helper functions
- */
-const selectExample = async () => {
+async function selectExample() {
   if (example.value === '') {
     return
   }
@@ -78,9 +45,6 @@ const selectExample = async () => {
   errorMsg.value = ''
 }
 
-/**
- * The data form values changed.
- */
 async function onDataInputFormChange() {
   example.value = ''
   errorMsg.value = ''
@@ -108,13 +72,10 @@ async function run() {
     errorMsg.value = error instanceof Error ? error.message : String(error)
   }
 }
-/**
- * Initialize the widget either with URL parameters or with a default example.
- */
+
 async function init() {
   example.value = 'blob1'
   await selectExample()
-  //await run()
 }
 
 await init()
@@ -122,9 +83,9 @@ await init()
 
 <template>
   <ExplorationC explorationId="eip-7594" :exploration="exploration" :topic="topic">
-    <template v-slot:content>
+    <template #content>
       <div class="mt-3 text-right">
-        <ActionButtonC
+        <ActionButtonUIC
           tooltip="This is a bit slow (> 10 seconds)"
           text="COMMIT/PROOF/RUN"
           :onClick="run"
@@ -132,19 +93,27 @@ await init()
         />
       </div>
       <div>
-        <ExamplesC v-model="example" :examples="examples" :change="selectExample" />
-        <HexDataInputC v-model="data" rows="6" :formChange="onDataInputFormChange" />
+        <ExamplesUIC v-model="example" :examples="examples" :change="selectExample" />
+        <HexDataInputUIC v-model="data" rows="6" :formChange="onDataInputFormChange" />
 
-        <div :class="PP_BOX_LAYOUT_SINGLE">
-          <PPBoxC title="EIP-4844 + EIP-7594" :left="true" class="4844-7594-box">
-            <table v-if="commitment !== ''" :class="PP_BOX_TEXT_SMALL">
+        <div class="e-grid-single">
+          <ResultBoxUIC
+            title="EIP-4844 + EIP-7594"
+            :left="true"
+            class="4844-7594-box"
+            :error-text="commitment === '' && errorMsg !== '' ? errorMsg : undefined"
+            :info-text="
+              commitment === '' && errorMsg === '' ? 'Press button to compute...' : undefined
+            "
+          >
+            <table v-if="commitment !== ''" class="e-result-text-sm">
               <tr>
-                <td :class="PP_BOX_TABLE_TD">Commitment</td>
-                <td :class="[PP_BOX_TABLE_TD, 'break-all']">{{ commitment }}</td>
+                <td class="p-3">Commitment</td>
+                <td class="p-3 break-all">{{ commitment }}</td>
               </tr>
               <tr>
-                <td :class="PP_BOX_TABLE_TD">Versioned Hash</td>
-                <td :class="[PP_BOX_TABLE_TD, 'break-all']">
+                <td class="p-3">Versioned Hash</td>
+                <td class="p-3 break-all">
                   {{ versionedHash }}
                   (<a :href="`https://blobscan.com/blob/${versionedHash}`" target="_blank"
                     >Blobscan</a
@@ -152,38 +121,42 @@ await init()
                 </td>
               </tr>
               <tr>
-                <td :class="PP_BOX_TABLE_TD">Blob Length</td>
-                <td :class="[PP_BOX_TABLE_TD, 'break-all']">{{ data.length }}</td>
+                <td class="p-3">Blob Length</td>
+                <td class="p-3 break-all">{{ data.length }}</td>
               </tr>
             </table>
-            <div v-else>
-              <PPBoxErrorText v-if="errorMsg !== ''" :text="errorMsg" />
-              <PPBoxInfoText v-else text="Press button to compute..." />
-            </div>
-          </PPBoxC>
+          </ResultBoxUIC>
         </div>
-        <div :class="PP_BOX_LAYOUT">
-          <PPBoxC title="EIP-4844 | 1 Blob Proof" :left="true" class="4844-box">
-            <p v-if="commitment != ''" :class="PP_BOX_TEXT_SMALL">
+        <div class="e-grid-double">
+          <ResultBoxUIC
+            title="EIP-4844 | 1 Blob Proof"
+            :left="true"
+            class="4844-box"
+            :info-text="commitment === '' ? 'Same here.' : undefined"
+          >
+            <p v-if="commitment !== ''" class="e-result-text-sm">
               {{ blobProof }}
             </p>
-            <PPBoxInfoText v-else text="Same here." />
-          </PPBoxC>
-          <PPBoxC title="EIP-7594 | 128 Cell Proofs" :left="false" class="7594-box">
-            <div v-if="commitment != ''">
+          </ResultBoxUIC>
+          <ResultBoxUIC
+            title="EIP-7594 | 128 Cell Proofs"
+            :left="false"
+            class="7594-box"
+            :info-text="commitment === '' ? 'Same here.' : undefined"
+          >
+            <div v-if="commitment !== ''">
               <p
                 v-for="(value, index) in cellProofs.slice(0, 4)"
-                :class="PP_BOX_TEXT_SMALL"
+                class="e-result-text-sm"
                 :key="index"
               >
                 {{ value }}
               </p>
-              <p v-if="cellProofs.length > 4" :class="PP_BOX_TEXT_SMALL">...</p>
+              <p v-if="cellProofs.length > 4" class="e-result-text-sm">...</p>
             </div>
-            <PPBoxInfoText v-else text="Same here." />
-          </PPBoxC>
+          </ResultBoxUIC>
         </div>
-        <PoweredByC :poweredBy="poweredBy" :topic="topic" />
+        <PoweredByC :poweredBy="exploration.poweredBy" />
       </div>
     </template>
   </ExplorationC>

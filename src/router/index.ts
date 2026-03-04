@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
+
 import { EXPLORATIONS } from '@/explorations/REGISTRY'
 import { TOPICS } from '@/explorations/TOPICS'
 
