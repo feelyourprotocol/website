@@ -74,7 +74,21 @@
 
 .e-select {
   color: var(--e-text);
+  border-color: var(--e-text);
   @apply text-xs border-1 px-1 pt-0.5 pb-0.5 mb-0.5 rounded-sm;
+}
+
+.e-listbox-options {
+  background-color: var(--e-bg);
+  border-color: var(--e-text);
+}
+
+.e-listbox-option {
+  color: var(--e-text);
+}
+
+.e-listbox-option-active {
+  background-color: var(--e-bg-medium);
 }
 
 .e-input {
