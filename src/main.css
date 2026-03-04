@@ -90,7 +90,7 @@ body {
   --e-bg-dark: var(--color-blue-900);
   --e-border: var(--color-blue-200);
   --e-border-dark: var(--color-blue-800);
-  --e-accent: var(--color-blue-500);
+  --e-accent: var(--color-blue-600);
 }
 
 /* --- Topic text color utility --- */
@@ -102,18 +102,7 @@ body {
 .exploration-c {
   background-color: var(--e-bg);
   border: 1px solid var(--e-border);
-  border-left: none;
-  @apply relative bg-clip-border p-5 pl-6 rounded-lg overflow-hidden;
-}
-
-.exploration-c::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  width: 3px;
-  background: linear-gradient(to bottom, #7c3aed, var(--e-accent));
+  @apply p-5 rounded-lg;
 }
 
 /* --- Result boxes (comparison panels) --- */
@@ -243,17 +232,4 @@ body {
 /* --- Topic intro cards (gradient left border) --- */
 .topic-intro-card {
   border: 1px solid var(--e-border);
-  border-left: none;
-  position: relative;
-  overflow: hidden;
-}
-
-.topic-intro-card::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  width: 3px;
-  background: linear-gradient(to bottom, #7c3aed, var(--e-accent));
 }

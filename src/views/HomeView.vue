@@ -33,7 +33,7 @@ for (const topicId of Object.keys(TOPICS)) {
       </div>
 
       <div>
-        <div class="bg-slate-700 rounded-lg mb-4 p-5 border-l-3 border-l-purple-400 shadow-md">
+        <div class="bg-slate-700 rounded-lg mb-4 p-5 shadow-md">
           <p class="mb-2 text-base font-bold text-white">About the Project</p>
           <p class="text-slate-300 text-sm leading-relaxed">
             Feel Your Protocol is a collaborative open-source project providing interactive
