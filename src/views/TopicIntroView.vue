@@ -19,7 +19,7 @@ const getImageUrl = (image: string) =>
 </script>
 
 <template>
-  <div class="border-2 bg-clip-border p-6 rounded-xl" :class="cc.border200">
+  <div class="border-2 bg-clip-border p-6 rounded-xl neon-glow-hover" :class="cc.border200">
     <h2 v-if="overviewMode" class="text-3xl md:text-4xl font-bold mb-4" :class="cc.text900">
       {{ topic.title }}
     </h2>

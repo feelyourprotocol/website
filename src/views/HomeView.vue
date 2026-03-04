@@ -33,8 +33,8 @@ for (const topicId of Object.keys(TOPICS)) {
       </div>
 
       <div>
-        <div class="bg-slate-800 text-white rounded-xl mb-4 p-5">
-          <p class="mb-2 text-xl font-bold">About the Project</p>
+        <div class="bg-slate-800 text-white rounded-xl mb-4 p-5 border-l-3 border-purple-500 neon-glow-permanent">
+          <p class="mb-2 text-xl font-bold bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent">About the Project</p>
           <p class="text-slate-300 text-sm leading-relaxed">
             Feel Your Protocol is a collaborative open-source project providing interactive
             explorations of upcoming Ethereum protocol changes. Widgets are powered by real EVM and
@@ -59,7 +59,7 @@ for (const topicId of Object.keys(TOPICS)) {
         </div>
 
         <div class="text-right mb-3 mt-6">
-          <span class="text-sm rounded-lg font-mono border-1 border-slate-300 text-slate-600 p-1.5"
+          <span class="text-sm rounded-lg font-mono bg-gradient-to-r from-purple-500 to-cyan-500 text-white px-3 py-1.5"
             >Latest</span
           >
         </div>

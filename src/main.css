@@ -1,6 +1,86 @@
 @import 'tailwindcss';
 
 /* ============================================================
+ * JetBrains Mono — self-hosted, SIL Open Font License
+ * ============================================================ */
+
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('./assets/fonts/JetBrainsMono-Regular.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('./assets/fonts/JetBrainsMono-Bold.woff2') format('woff2');
+}
+
+@theme {
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    'Liberation Mono', 'Courier New', monospace;
+}
+
+/* ============================================================
+ * Protocol Signals — subtle cypherpunk design sparks
+ *
+ * Each spark carries philosophical weight from the cypherpunk
+ * movement: privacy, code-first culture, open commons,
+ * decentralized coordination. They signal "Ethereum builder
+ * space" without overpowering the content.
+ * ============================================================ */
+
+/* Spark 2: Protocol beacon — thin gradient accent at page top */
+body::before {
+  content: '';
+  display: block;
+  height: 2px;
+  background: linear-gradient(90deg, #7c3aed, #06b6d4);
+}
+
+/* Spark 4: Terminal cursor — always building, always running */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.terminal-cursor::after {
+  content: '▌';
+  animation: blink 1s step-end infinite;
+  @apply text-cyan-500 ml-0.5;
+}
+
+/* Spark 5: Neon hover glow — protocol nodes light up on interaction */
+.neon-glow-hover {
+  transition: box-shadow 0.25s ease;
+}
+
+.neon-glow-hover:hover {
+  box-shadow: 0 0 15px rgba(124, 58, 237, 0.12), 0 0 30px rgba(6, 182, 212, 0.06);
+}
+
+/* Spark 6: About box permanent glow */
+.neon-glow-permanent {
+  box-shadow: 0 0 25px rgba(124, 58, 237, 0.1);
+}
+
+/* Spark 8: Footer gradient accent */
+.footer-accent {
+  border-image: linear-gradient(90deg, #7c3aed, #06b6d4) 1;
+  border-top-width: 1px;
+}
+
+/* Spark 9: Dot-grid texture — network topology underneath */
+body {
+  background-image: radial-gradient(circle, #cbd5e1 0.5px, transparent 0.5px);
+  background-size: 24px 24px;
+}
+
+/* ============================================================
  * Exploration Design System
  *
  * Topic colors flow via CSS custom properties (--e-*) set by
@@ -114,4 +194,13 @@
   color: var(--e-text);
   background-color: var(--e-bg-medium);
   @apply relative inline-flex items-center justify-center border-2 border-white rounded-lg p-2 text-xs font-bold cursor-pointer hover:bg-white disabled:opacity-50 disabled:cursor-not-allowed;
+}
+
+/* Spark 5 (continued): exploration cards glow on hover */
+.exploration-c {
+  transition: box-shadow 0.25s ease;
+}
+
+.exploration-c:hover {
+  box-shadow: 0 0 15px rgba(124, 58, 237, 0.12), 0 0 30px rgba(6, 182, 212, 0.06);
 }

@@ -3,13 +3,14 @@
 <template>
   <main>
     <div class="grid grid-cols-1 mb-3">
-      <p class="text-right text-3xl">
-        <span class="ml-3">IMPRINT</span>
+      <p class="text-right text-3xl tracking-widest text-slate-600">
+        <span class="text-purple-500">◆</span>
+        <span class="ml-2">IMPRINT</span>
       </p>
     </div>
 
     <div class="grid md:grid-cols-2 gap-4">
-      <div class="bg-slate-800 text-white bg-clip-border p-6 rounded-xl font-mono text-xs">
+      <div class="bg-slate-800 text-white bg-clip-border p-6 rounded-xl font-mono text-xs border-l-3 border-purple-500 neon-glow-permanent">
         <h3 class="font-bold text-lg">CONTRIBUTIONS 👾</h3>
 
         <p class="mt-2 text-slate-300">

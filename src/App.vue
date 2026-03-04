@@ -38,8 +38,10 @@ watch(
   <header class="mt-3 mb-8">
     <div class="grid grid-cols-2 mb-3">
       <h1>
-        <RouterLink to="/" class="text-2xl md:text-4xl font-bold text-slate-800"
-          >Feel Your Protocol</RouterLink
+        <RouterLink
+          to="/"
+          class="text-2xl md:text-4xl font-bold tracking-wider bg-gradient-to-r from-purple-600 to-cyan-500 bg-clip-text text-transparent"
+          ><span class="text-purple-500">◆</span> Feel Your Protocol</RouterLink
         >
       </h1>
       <nav class="font-mono text-sm text-right flex justify-end items-center">
@@ -98,26 +100,26 @@ watch(
         </Listbox>
       </nav>
     </div>
-    <div class="grid grid-cols-1">
-      <p class="text-xl md:text-2xl text-slate-500">Interactive Ethereum Protocol Explorations.</p>
-    </div>
+    <p class="text-lg md:text-xl text-slate-500 tracking-wide terminal-cursor">
+      Interactive Ethereum Protocol Explorations.
+    </p>
   </header>
 
   <RouterView :key="route.path" class="grid grid-cols-1" />
 
-  <footer class="grid grid-cols-2 pt-2 mt-10 mb-2">
-    <h3 class="font-mono text-xs">
-      Made with ❤️ and pure dedication by
+  <footer class="footer-accent grid grid-cols-2 pt-3 mt-10 mb-2">
+    <h3 class="font-mono text-xs text-slate-500">
+      <span class="text-purple-500">◆</span> Made with ❤️ and pure dedication by
       <a href="https://x.com/HolgerD77" target="_blank" rel="noopener">HolgerD77</a>
     </h3>
 
-    <h3 class="font-mono text-xs text-right">
+    <h3 class="font-mono text-xs text-right text-slate-500">
       <RouterLink to="/imprint">Imprint</RouterLink>
+      <span class="text-purple-500 mx-2">◆</span>
       <a
         href="https://github.com/feelyourprotocol/website"
         target="_blank"
         rel="noopener"
-        class="ml-3"
         >GitHub</a
       >
     </h3>
