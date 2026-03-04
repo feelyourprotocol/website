@@ -34,24 +34,22 @@
  * space" without overpowering the content.
  * ============================================================ */
 
-/* Spark 2: Protocol beacon — thin gradient accent at page top */
-body::before {
-  content: '';
-  display: block;
-  height: 2px;
-  background: linear-gradient(90deg, #7c3aed, #06b6d4);
+
+/* Spark 4: Protocol pulse — gradient dots that breathe */
+@keyframes gradientShift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
 }
 
-/* Spark 4: Terminal cursor — always building, always running */
-@keyframes blink {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0; }
-}
-
-.terminal-cursor::after {
-  content: '▌';
-  animation: blink 1s step-end infinite;
-  @apply text-cyan-500 ml-0.5;
+.protocol-dots {
+  background: linear-gradient(90deg, #7c3aed, #06b6d4, #7c3aed);
+  background-size: 200% 100%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  animation: gradientShift 10s ease-in-out infinite;
+  letter-spacing: 0.25em;
+  @apply ml-7 font-mono text-sm;
 }
 
 /* Spark 5: Neon hover glow — protocol nodes light up on interaction */
@@ -68,11 +66,6 @@ body::before {
   box-shadow: 0 0 25px rgba(124, 58, 237, 0.1);
 }
 
-/* Spark 8: Footer gradient accent */
-.footer-accent {
-  border-image: linear-gradient(90deg, #7c3aed, #06b6d4) 1;
-  border-top-width: 1px;
-}
 
 /* Spark 9: Dot-grid texture — network topology underneath */
 body {
@@ -90,13 +83,14 @@ body {
 
 /* --- Defaults (blue, overridden per-topic by ExplorationC) --- */
 :root {
-  --e-text: var(--color-blue-900);
-  --e-bg: var(--color-blue-200);
-  --e-bg-light: var(--color-blue-50);
+  --e-text: var(--color-blue-800);
+  --e-bg: var(--color-blue-50);
+  --e-bg-light: var(--color-white);
   --e-bg-medium: var(--color-blue-100);
   --e-bg-dark: var(--color-blue-900);
   --e-border: var(--color-blue-200);
-  --e-border-dark: var(--color-blue-900);
+  --e-border-dark: var(--color-blue-800);
+  --e-accent: var(--color-blue-500);
 }
 
 /* --- Topic text color utility --- */
@@ -107,13 +101,25 @@ body {
 /* --- Exploration wrapper --- */
 .exploration-c {
   background-color: var(--e-bg);
-  @apply bg-clip-border p-4 rounded-xl;
+  border: 1px solid var(--e-border);
+  border-left: none;
+  @apply relative bg-clip-border p-5 pl-6 rounded-lg overflow-hidden;
 }
 
-/* --- Result boxes (dark comparison panels) --- */
+.exploration-c::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: linear-gradient(to bottom, #7c3aed, var(--e-accent));
+}
+
+/* --- Result boxes (comparison panels) --- */
 .e-result-box {
   background-color: var(--e-bg-dark);
-  @apply rounded-sm p-2.5;
+  @apply rounded-md p-3;
 
   a {
     @apply text-white underline;
@@ -122,7 +128,7 @@ body {
 
 .e-result-title {
   color: var(--e-text);
-  @apply text-xs bg-white p-1 rounded-xs;
+  @apply text-xs font-mono font-bold bg-white/90 px-2 py-0.5 rounded-sm;
 }
 
 .e-result-text-lg {
@@ -139,28 +145,41 @@ body {
 
 /* --- Grid layouts for result panels --- */
 .e-grid-single {
-  @apply grid grid-cols-1 gap-1 mt-2.5;
+  @apply grid grid-cols-1 gap-1.5 mt-3;
 }
 
 .e-grid-double {
-  @apply grid grid-cols-2 gap-1 mt-2.5;
+  @apply grid grid-cols-2 gap-1.5 mt-3;
 }
 
 /* --- Form inputs --- */
 .e-textarea {
   background-color: var(--e-bg-light);
-  @apply block w-full mt-1.5 mb-2 font-mono text-xs rounded-sm text-slate-600 p-1;
+  border: 1px solid var(--e-border);
+  @apply block w-full mt-1.5 mb-2 font-mono text-xs rounded-md text-slate-600 p-2;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.e-textarea:focus {
+  border-color: var(--e-accent);
+  outline: none;
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--e-accent) 20%, transparent);
 }
 
 .e-select {
   color: var(--e-text);
-  border-color: var(--e-text);
-  @apply text-xs border-1 px-1 pt-0.5 pb-0.5 mb-0.5 rounded-sm;
+  border-color: var(--e-border);
+  @apply text-xs border-1 px-2 py-1 mb-0.5 rounded-md;
+  transition: border-color 0.15s ease;
+}
+
+.e-select:hover {
+  border-color: var(--e-accent);
 }
 
 .e-listbox-options {
   background-color: var(--e-bg);
-  border-color: var(--e-text);
+  border-color: var(--e-border);
 }
 
 .e-listbox-option {
@@ -173,34 +192,68 @@ body {
 
 .e-input {
   background-color: var(--e-bg-light);
-  @apply font-mono text-xs rounded-xs p-0.5 w-full;
+  border: 1px solid var(--e-border);
+  @apply font-mono text-xs rounded-md p-1 w-full;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
 }
 
-/* --- Buttons --- */
+.e-input:focus {
+  border-color: var(--e-accent);
+  outline: none;
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--e-accent) 20%, transparent);
+}
+
+/* --- Icon buttons --- */
 .e-button-icon {
   color: var(--e-text);
-  border-color: var(--e-text);
-  @apply size-4 inline align-baseline border-1 p-0.5 rounded-xs;
+  border-color: var(--e-border);
+  @apply size-4 inline align-baseline border-1 p-0.5 rounded-sm;
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+
+.e-button-icon:hover {
+  border-color: var(--e-accent);
 }
 
 /* --- E-Component: Precompile Interface --- */
 .precompile-value-input {
-  border-top: 1px solid var(--e-border-dark);
+  border-top: 1px solid var(--e-border);
   @apply bg-clip-border pt-1.5 pb-0.5 px-0.5 mb-0.5;
 }
 
-/* --- Buttons --- */
+/* --- Action buttons --- */
 .e-action-button {
   color: var(--e-text);
   background-color: var(--e-bg-medium);
-  @apply relative inline-flex items-center justify-center border-2 border-white rounded-lg p-2 text-xs font-bold cursor-pointer hover:bg-white disabled:opacity-50 disabled:cursor-not-allowed;
+  border-color: var(--e-border);
+  @apply relative inline-flex items-center justify-center border-1 rounded-md p-2 text-xs font-bold cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed;
+  transition: background-color 0.15s ease, transform 0.1s ease, box-shadow 0.15s ease;
 }
 
-/* Spark 5 (continued): exploration cards glow on hover */
-.exploration-c {
-  transition: box-shadow 0.25s ease;
+.e-action-button:hover:not(:disabled) {
+  background-color: var(--e-bg);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transform: translateY(-1px);
 }
 
-.exploration-c:hover {
-  box-shadow: 0 0 15px rgba(124, 58, 237, 0.12), 0 0 30px rgba(6, 182, 212, 0.06);
+.e-action-button:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+/* --- Topic intro cards (gradient left border) --- */
+.topic-intro-card {
+  border: 1px solid var(--e-border);
+  border-left: none;
+  position: relative;
+  overflow: hidden;
+}
+
+.topic-intro-card::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: linear-gradient(to bottom, #7c3aed, var(--e-accent));
 }

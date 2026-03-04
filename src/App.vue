@@ -40,19 +40,19 @@ watch(
       <h1>
         <RouterLink
           to="/"
-          class="text-2xl md:text-4xl font-bold tracking-wider bg-gradient-to-r from-purple-600 to-cyan-500 bg-clip-text text-transparent"
-          ><span class="text-purple-500">◆</span> Feel Your Protocol</RouterLink
+          class="text-2xl md:text-4xl font-bold tracking-wider whitespace-nowrap bg-gradient-to-r from-purple-600 to-cyan-500 bg-clip-text text-transparent"
+          >Feel Your Protocol</RouterLink
         >
       </h1>
       <nav class="font-mono text-sm text-right flex justify-end items-center">
         <Listbox v-model="selectedRoute">
           <div class="relative inline-block">
             <ListboxButton
-              class="inline-flex items-center gap-1 text-sm ml-6 border-1 p-1 rounded-sm cursor-pointer"
+              class="inline-flex items-center gap-1 text-xs ml-6 border border-slate-200 bg-white rounded-md text-slate-500 hover:text-slate-700 hover:border-slate-300 px-2 py-1 cursor-pointer"
               id="exploration-navi"
             >
               {{ selectedLabel }}
-              <ChevronUpDownIcon class="size-4 opacity-60" />
+              <ChevronUpDownIcon class="size-3.5 opacity-50" />
             </ListboxButton>
 
             <transition
@@ -64,14 +64,14 @@ watch(
               leave-to-class="opacity-0 scale-95"
             >
               <ListboxOptions
-                class="absolute right-0 z-20 mt-1 w-max max-h-60 overflow-auto rounded-sm border border-slate-300 bg-white text-sm shadow-lg focus:outline-none"
+                class="absolute right-0 z-20 mt-1 w-max max-h-60 overflow-auto rounded-md border border-slate-200 bg-white text-xs shadow-md focus:outline-none"
               >
                 <ListboxOption value="" v-slot="{ active, selected }" as="template">
                   <li
                     :class="[
-                      'cursor-pointer whitespace-nowrap px-3 py-1.5 select-none first:rounded-t-sm last:rounded-b-sm',
-                      active ? 'bg-slate-100' : '',
-                      selected ? 'font-bold' : '',
+                      'cursor-pointer whitespace-nowrap px-3 py-1.5 select-none text-slate-500',
+                      active ? 'bg-slate-50 text-slate-700' : '',
+                      selected ? 'font-bold text-slate-700' : '',
                     ]"
                   >
                     All Explorations
@@ -86,9 +86,9 @@ watch(
                 >
                   <li
                     :class="[
-                      'cursor-pointer whitespace-nowrap px-3 py-1.5 select-none first:rounded-t-sm last:rounded-b-sm',
-                      active ? 'bg-slate-100' : '',
-                      selected ? 'font-bold' : '',
+                      'cursor-pointer whitespace-nowrap px-3 py-1.5 select-none text-slate-500',
+                      active ? 'bg-slate-50 text-slate-700' : '',
+                      selected ? 'font-bold text-slate-700' : '',
                     ]"
                   >
                     {{ id.toUpperCase() }}
@@ -100,14 +100,15 @@ watch(
         </Listbox>
       </nav>
     </div>
-    <p class="text-lg md:text-xl text-slate-500 tracking-wide terminal-cursor">
-      Interactive Ethereum Protocol Explorations.
+    <p class="flex items-baseline text-sm md:text-xl text-slate-500 tracking-wide">
+      <span class="shrink-0">Interactive Ethereum Protocol Explorations</span>
+      <span class="protocol-dots flex-1 overflow-hidden whitespace-nowrap">· · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · ·</span>
     </p>
   </header>
 
   <RouterView :key="route.path" class="grid grid-cols-1" />
 
-  <footer class="footer-accent grid grid-cols-2 pt-3 mt-10 mb-2">
+  <footer class="grid grid-cols-2 pt-3 mt-10 mb-2">
     <h3 class="font-mono text-xs text-slate-500">
       <span class="text-purple-500">◆</span> Made with ❤️ and pure dedication by
       <a href="https://x.com/HolgerD77" target="_blank" rel="noopener">HolgerD77</a>

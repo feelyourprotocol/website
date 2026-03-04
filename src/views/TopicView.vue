@@ -26,7 +26,7 @@ const topicImage = getRandomTopicExplorationImage(topicId)
           v-for="explorationId in explorationIds"
           :key="explorationId"
           :to="EXPLORATIONS[explorationId].path"
-          class="block mb-2 no-underline"
+          class="block mb-3 no-underline"
         >
           <ExplorationC
             :explorationId="explorationId"

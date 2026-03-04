@@ -21,7 +21,7 @@ for (const topicId of Object.keys(TOPICS)) {
           v-for="topicId in Object.keys(TOPICS)"
           :key="topicId"
           :to="TOPICS[topicId].path"
-          class="block mb-4 last:mb-0 no-underline"
+          class="block mb-5 last:mb-0 no-underline"
         >
           <TopicIntroView
             v-if="topicImages[topicId]"
@@ -33,8 +33,8 @@ for (const topicId of Object.keys(TOPICS)) {
       </div>
 
       <div>
-        <div class="bg-slate-800 text-white rounded-xl mb-4 p-5 border-l-3 border-purple-500 neon-glow-permanent">
-          <p class="mb-2 text-xl font-bold bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent">About the Project</p>
+        <div class="bg-slate-700 rounded-lg mb-4 p-5 border-l-3 border-l-purple-400 shadow-md">
+          <p class="mb-2 text-base font-bold text-white">About the Project</p>
           <p class="text-slate-300 text-sm leading-relaxed">
             Feel Your Protocol is a collaborative open-source project providing interactive
             explorations of upcoming Ethereum protocol changes. Widgets are powered by real EVM and
@@ -45,14 +45,14 @@ for (const topicId of Object.keys(TOPICS)) {
             <a
               href="https://docs.feelyourprotocol.org"
               target="_blank"
-              class="underline text-white hover:text-slate-100"
+              class="font-semibold text-white underline hover:text-slate-200"
               >Check the docs</a
             >
             or jump straight into the
             <a
               href="https://github.com/feelyourprotocol/website"
               target="_blank"
-              class="underline text-white hover:text-slate-100"
+              class="font-semibold text-white underline hover:text-slate-200"
               >code on GitHub</a
             >.
           </p>
@@ -68,7 +68,7 @@ for (const topicId of Object.keys(TOPICS)) {
           v-for="explorationId in featured"
           :key="explorationId"
           :to="EXPLORATIONS[explorationId].path"
-          class="block mb-2 no-underline"
+          class="block mb-3 no-underline"
         >
           <ExplorationC
             :explorationId="explorationId"
