@@ -170,7 +170,6 @@ body {
   transition: border-color 0.15s ease;
 }
 
-
 .e-listbox-options {
   background-color: var(--e-bg);
   border-color: var(--e-border);
