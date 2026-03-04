@@ -203,13 +203,6 @@ body {
   color: var(--e-text);
   border-color: var(--e-border);
   @apply size-4 inline align-baseline border-1 p-0.5 rounded-sm;
-  transition:
-    border-color 0.15s ease,
-    color 0.15s ease;
-}
-
-.e-button-icon:hover {
-  border-color: var(--e-accent);
 }
 
 /* --- E-Component: Precompile Interface --- */
