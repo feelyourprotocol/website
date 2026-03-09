@@ -34,27 +34,23 @@ const example = ref('')
 const topic = TOPICS[exploration.topic]
 const hasResult = computed(() => commitment.value !== '')
 
-function selectExample() {
-  if (example.value === '') {
-    return
-  }
-  data.value = examples[example.value]!.values[0]
+function resetResults() {
   commitment.value = ''
   versionedHash.value = ''
   blobProof.value = ''
   cellProofs.value = []
-
   errorMsg.value = ''
+}
+
+function selectExample() {
+  if (example.value === '') return
+  data.value = examples[example.value]!.values[0]
+  resetResults()
 }
 
 function onDataInputFormChange() {
   example.value = ''
-  errorMsg.value = ''
-
-  commitment.value = ''
-  versionedHash.value = ''
-  blobProof.value = ''
-  cellProofs.value = []
+  resetResults()
 }
 
 async function run() {
