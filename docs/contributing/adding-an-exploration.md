@@ -145,23 +145,26 @@ The `ExplorationC` wrapper renders the title, info link, intro text, and usage t
 
 ### Option B: Precompile Interface E-Component
 
-If your exploration is about a precompile, you can use the Precompile Interface E-Component and get a full-featured widget in ~30 lines:
+If your exploration is about a precompile, you can use the Precompile Interface E-Component. It handles all input management while you provide the execution logic and result display:
 
 ```vue
 <script setup lang="ts">
 import { Hardfork } from '@ethereumjs/common'
 
 import PrecompileInterfaceEC from '@/eComponents/precompileInterfaceEC/PrecompileInterfaceEC.vue'
+import PrecompileInterfaceResultEC from '@/eComponents/precompileInterfaceEC/PrecompileInterfaceResultEC.vue'
+import { useStandardPrecompileRun } from '@/eComponents/precompileInterfaceEC/run'
 import type { PrecompileConfig } from '@/eComponents/precompileInterfaceEC/types'
 
 import { examples } from './examples'
 import { INFO as exploration } from './info'
 
+const { run, execResultPre, execResultPost } = useStandardPrecompileRun(
+  Hardfork.Prague, Hardfork.Osaka, '0a',
+)
+
 const config: PrecompileConfig = {
   explorationId: 'eip-XXXX',
-  precompileAddress: '0a',
-  preHardfork: Hardfork.Prague,
-  postHardfork: Hardfork.Osaka,
   defaultExample: 'basic',
   values: [
     { title: 'Input A', urlParam: 'a', expectedLen: 32n },
@@ -171,11 +174,20 @@ const config: PrecompileConfig = {
 </script>
 
 <template>
-  <PrecompileInterfaceEC :config="config" :examples="examples" :exploration="exploration" />
+  <PrecompileInterfaceEC
+    :config="config" :examples="examples" :exploration="exploration" :run="run"
+  >
+    <template #result>
+      <div class="e-grid-double">
+        <PrecompileInterfaceResultEC v-model="execResultPre" title="Pre-Osaka" :left="true" />
+        <PrecompileInterfaceResultEC v-model="execResultPost" title="Post-Osaka" :left="false" />
+      </div>
+    </template>
+  </PrecompileInterfaceEC>
 </template>
 ```
 
-See [Using E-Components](/contributing/e-components) for the full API reference.
+The `useStandardPrecompileRun` helper covers the common EthereumJS pre/post hardfork comparison. For custom execution (different library, custom precompile, etc.), provide your own `run` function and `#result` slot — see [Available E-Components](/contributing/available-e-components) for the full API reference.
 
 ## Step 5: Register in the Registry
 

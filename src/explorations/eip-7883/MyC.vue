@@ -3,17 +3,20 @@ import { Hardfork } from '@ethereumjs/common'
 import { hexToBigInt } from '@ethereumjs/util'
 
 import PrecompileInterfaceEC from '@/eComponents/precompileInterfaceEC/PrecompileInterfaceEC.vue'
+import PrecompileInterfaceResultEC from '@/eComponents/precompileInterfaceEC/PrecompileInterfaceResultEC.vue'
+import { useStandardPrecompileRun } from '@/eComponents/precompileInterfaceEC/run'
 import type { PrecompileConfig } from '@/eComponents/precompileInterfaceEC/types'
 import { padHex, toHex } from '@/eComponents/precompileInterfaceEC/utils'
 
 import { examples } from './examples'
 import { INFO as exploration } from './info'
 
+const { run, execResultPre, execResultPost } = useStandardPrecompileRun(
+  Hardfork.Prague, Hardfork.Osaka, '05',
+)
+
 const config: PrecompileConfig = {
   explorationId: 'eip-7883',
-  precompileAddress: '05',
-  preHardfork: Hardfork.Prague,
-  postHardfork: Hardfork.Osaka,
   defaultExample: 'simple',
   values: [
     { title: 'Blen', expectedLen: 32n, initialHex: '00'.repeat(32), showInput: false },
@@ -39,5 +42,14 @@ const config: PrecompileConfig = {
 </script>
 
 <template>
-  <PrecompileInterfaceEC :config="config" :examples="examples" :exploration="exploration" />
+  <PrecompileInterfaceEC
+    :config="config" :examples="examples" :exploration="exploration" :run="run"
+  >
+    <template #result>
+      <div class="e-grid-double">
+        <PrecompileInterfaceResultEC v-model="execResultPre" title="Pre-Osaka" :left="true" />
+        <PrecompileInterfaceResultEC v-model="execResultPost" title="Post-Osaka" :left="false" />
+      </div>
+    </template>
+  </PrecompileInterfaceEC>
 </template>

@@ -1,10 +1,8 @@
 import { computed, ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
-import type { ExecResult } from '@ethereumjs/evm'
 
 import type { Examples } from '@/explorations/REGISTRY'
 
-import { runPrecompile } from './run'
 import type { PrecompileConfig } from './types'
 import { dataToValueInput, isValidByteInputForm, valueToDataInput } from './utils'
 
@@ -18,12 +16,14 @@ function createState(config: PrecompileConfig) {
     lengthsMask: ref<(bigint | undefined)[]>(config.values.map((v) => v.expectedLen)),
     byteLengths: ref<bigint[]>(config.values.map(() => 0n)),
     example: ref(''),
-    execResultPre: ref<ExecResult | undefined>(),
-    execResultPost: ref<ExecResult | undefined>(),
   }
 }
 
-export function usePrecompileState(config: PrecompileConfig, examples: Examples) {
+export function usePrecompileState(
+  config: PrecompileConfig,
+  examples: Examples,
+  run: (data: string) => Promise<void>,
+) {
   const {
     data,
     hexVals,
@@ -31,8 +31,6 @@ export function usePrecompileState(config: PrecompileConfig, examples: Examples)
     lengthsMask,
     byteLengths,
     example,
-    execResultPre,
-    execResultPost,
   } = createState(config)
 
   const router = useRouter()
@@ -46,24 +44,13 @@ export function usePrecompileState(config: PrecompileConfig, examples: Examples)
 
   // --- Data conversion ---
 
-  async function run() {
-    await runPrecompile(
-      data.value,
-      config.preHardfork,
-      config.postHardfork,
-      config.precompileAddress,
-      execResultPre,
-      execResultPost,
-    )
-  }
-
   async function data2Values() {
     if (isValidByteInputForm(data.value).length > 0) return
     if (config.parseData) {
       config.parseData(data.value, byteLengths.value)
     }
     dataToValueInput(data, hexVals, bigIntVals, byteLengths)
-    await run()
+    await run(data.value)
   }
 
   async function values2Data() {
@@ -76,7 +63,7 @@ export function usePrecompileState(config: PrecompileConfig, examples: Examples)
     data.value = config.assembleData
       ? config.assembleData(hexVals.value, byteLengths.value)
       : hexVals.value.join('')
-    await run()
+    await run(data.value)
   }
 
   // --- User interaction ---
@@ -136,8 +123,6 @@ export function usePrecompileState(config: PrecompileConfig, examples: Examples)
     hexVals,
     bigIntVals,
     byteLengths,
-    execResultPre,
-    execResultPost,
     inputValues,
     selectExample,
     shareURL,
