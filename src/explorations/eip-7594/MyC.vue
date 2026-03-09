@@ -62,11 +62,8 @@ async function run() {
       commitment.value as PrefixedHexString,
       blobCommitmentVersion,
     )
-    blobProof.value = blobsToProofs(
-      kzg,
-      [blobHex],
-      [commitment.value as PrefixedHexString],
-    )?.[0] ?? ''
+    blobProof.value =
+      blobsToProofs(kzg, [blobHex], [commitment.value as PrefixedHexString])?.[0] ?? ''
     cellProofs.value = blobsToCellProofs(kzg, [blobHex])
   } catch (error) {
     errorMsg.value = error instanceof Error ? error.message : String(error)
@@ -102,9 +99,7 @@ await init()
             :left="true"
             class="eip-4844-7594-box"
             :error-text="!hasResult && errorMsg !== '' ? errorMsg : undefined"
-            :info-text="
-              !hasResult && errorMsg === '' ? 'Press button to compute...' : undefined
-            "
+            :info-text="!hasResult && errorMsg === '' ? 'Press button to compute...' : undefined"
           >
             <table v-if="hasResult" class="e-result-text-sm">
               <tr>

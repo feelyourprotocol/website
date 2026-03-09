@@ -39,7 +39,9 @@ describe('runPrecompile', () => {
 describe('useStandardPrecompileRun', () => {
   it('initializes with undefined results', () => {
     const { execResultPre, execResultPost } = useStandardPrecompileRun(
-      Hardfork.Prague, Hardfork.Osaka, '05',
+      Hardfork.Prague,
+      Hardfork.Osaka,
+      '05',
     )
     expect(execResultPre.value).toBeUndefined()
     expect(execResultPost.value).toBeUndefined()
@@ -47,7 +49,9 @@ describe('useStandardPrecompileRun', () => {
 
   it('populates reactive refs after run', async () => {
     const { run, execResultPre, execResultPost } = useStandardPrecompileRun(
-      Hardfork.Prague, Hardfork.Osaka, '05',
+      Hardfork.Prague,
+      Hardfork.Osaka,
+      '05',
     )
 
     await run(MODEXP_SIMPLE)

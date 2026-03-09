@@ -24,14 +24,7 @@ export function usePrecompileState(
   examples: Examples,
   run: (data: string) => Promise<void>,
 ) {
-  const {
-    data,
-    hexVals,
-    bigIntVals,
-    lengthsMask,
-    byteLengths,
-    example,
-  } = createState(config)
+  const { data, hexVals, bigIntVals, lengthsMask, byteLengths, example } = createState(config)
 
   const router = useRouter()
   const route = useRoute()

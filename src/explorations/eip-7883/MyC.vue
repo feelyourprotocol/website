@@ -10,13 +10,18 @@ import { examples } from './examples'
 import { INFO as exploration } from './info'
 
 const { run, execResultPre, execResultPost } = useStandardPrecompileRun(
-  Hardfork.Prague, Hardfork.Osaka, '05',
+  Hardfork.Prague,
+  Hardfork.Osaka,
+  '05',
 )
 </script>
 
 <template>
   <PrecompileInterfaceEC
-    :config="config" :examples="examples" :exploration="exploration" :run="run"
+    :config="config"
+    :examples="examples"
+    :exploration="exploration"
+    :run="run"
   >
     <template #result>
       <div class="e-grid-double">
