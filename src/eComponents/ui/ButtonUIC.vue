@@ -1,10 +1,12 @@
 <script setup lang="ts">
+import type { Component } from 'vue'
+
 import TooltipUIC from './TooltipUIC.vue'
 
-defineProps({
-  icon: Object,
-  tooltip: String,
-})
+defineProps<{
+  icon: Component
+  tooltip?: string
+}>()
 </script>
 
 <template>

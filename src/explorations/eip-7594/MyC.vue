@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { KZG as microEthKZG } from 'micro-eth-signer/kzg.js'
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 import {
   blobsToCellProofs,
   blobsToProofs,
@@ -26,48 +26,45 @@ const data = ref('')
 const commitment = ref('')
 const versionedHash = ref('')
 const blobProof = ref('')
-const cellProofs = ref([''])
+const cellProofs = ref<string[]>([])
 
 const errorMsg = ref('')
 const example = ref('')
 
 const topic = TOPICS[exploration.topic]
+const hasResult = computed(() => commitment.value !== '')
 
-async function selectExample() {
-  if (example.value === '') {
-    return
-  }
-  data.value = examples[example.value]!.values[0]
+function resetResults() {
   commitment.value = ''
+  versionedHash.value = ''
   blobProof.value = ''
-  cellProofs.value = ['']
-
+  cellProofs.value = []
   errorMsg.value = ''
 }
 
-async function onDataInputFormChange() {
-  example.value = ''
-  errorMsg.value = ''
+function selectExample() {
+  if (example.value === '') return
+  data.value = examples[example.value]!.values[0]
+  resetResults()
+}
 
-  commitment.value = ''
-  blobProof.value = ''
-  cellProofs.value = ['']
+function onDataInputFormChange() {
+  example.value = ''
+  resetResults()
 }
 
 async function run() {
   try {
+    const blobHex = `0x${data.value}` as PrefixedHexString
     commitment.value = kzg.blobToKzgCommitment(data.value)
     const blobCommitmentVersion = 0x01
     versionedHash.value = computeVersionedHash(
       commitment.value as PrefixedHexString,
       blobCommitmentVersion,
     )
-    blobProof.value = blobsToProofs(
-      kzg,
-      [`0x${data.value}`],
-      [commitment.value as PrefixedHexString],
-    )![0]
-    cellProofs.value = blobsToCellProofs(kzg, [`0x${data.value}`])
+    blobProof.value =
+      blobsToProofs(kzg, [blobHex], [commitment.value as PrefixedHexString])?.[0] ?? ''
+    cellProofs.value = blobsToCellProofs(kzg, [blobHex])
   } catch (error) {
     errorMsg.value = error instanceof Error ? error.message : String(error)
   }
@@ -100,13 +97,11 @@ await init()
           <ResultBoxUIC
             title="EIP-4844 + EIP-7594"
             :left="true"
-            class="4844-7594-box"
-            :error-text="commitment === '' && errorMsg !== '' ? errorMsg : undefined"
-            :info-text="
-              commitment === '' && errorMsg === '' ? 'Press button to compute...' : undefined
-            "
+            class="eip-4844-7594-box"
+            :error-text="!hasResult && errorMsg !== '' ? errorMsg : undefined"
+            :info-text="!hasResult && errorMsg === '' ? 'Press button to compute...' : undefined"
           >
-            <table v-if="commitment !== ''" class="e-result-text-sm">
+            <table v-if="hasResult" class="e-result-text-sm">
               <tr>
                 <td class="p-3">Commitment</td>
                 <td class="p-3 break-all">{{ commitment }}</td>
@@ -131,20 +126,20 @@ await init()
           <ResultBoxUIC
             title="EIP-4844 | 1 Blob Proof"
             :left="true"
-            class="4844-box"
-            :info-text="commitment === '' ? 'Same here.' : undefined"
+            class="eip-4844-box"
+            :info-text="!hasResult ? 'Same here.' : undefined"
           >
-            <p v-if="commitment !== ''" class="e-result-text-sm">
+            <p v-if="hasResult" class="e-result-text-sm">
               {{ blobProof }}
             </p>
           </ResultBoxUIC>
           <ResultBoxUIC
             title="EIP-7594 | 128 Cell Proofs"
             :left="false"
-            class="7594-box"
-            :info-text="commitment === '' ? 'Same here.' : undefined"
+            class="eip-7594-box"
+            :info-text="!hasResult ? 'Same here.' : undefined"
           >
-            <div v-if="commitment !== ''">
+            <div v-if="hasResult">
               <p
                 v-for="(value, index) in cellProofs.slice(0, 4)"
                 class="e-result-text-sm"

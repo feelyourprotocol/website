@@ -1,0 +1,32 @@
+import type { Examples } from '@/explorations/REGISTRY'
+
+export const examples: Examples = {
+  simple: {
+    title: 'Simple (2 + 3 = 5)',
+    values: [
+      '0000000000000000000000000000000000000000000000000000000000000002',
+      '0000000000000000000000000000000000000000000000000000000000000003',
+    ],
+  },
+  large: {
+    title: 'Large Numbers',
+    values: [
+      '00000000000000000000000000000000000000000000000000000000ffffffff',
+      '0000000000000000000000000000000000000000000000000000000000000001',
+    ],
+  },
+  overflow: {
+    title: 'Overflow (wraps around)',
+    values: [
+      'ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff',
+      '0000000000000000000000000000000000000000000000000000000000000001',
+    ],
+  },
+  zero: {
+    title: 'Zero + Zero',
+    values: [
+      '0000000000000000000000000000000000000000000000000000000000000000',
+      '0000000000000000000000000000000000000000000000000000000000000000',
+    ],
+  },
+}

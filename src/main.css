@@ -114,7 +114,7 @@ body {
 /* --- Result boxes (comparison panels) --- */
 .e-result-box {
   background-color: var(--e-bg-dark);
-  @apply rounded-md p-3;
+  @apply rounded-md p-3 text-white;
 
   a {
     @apply text-white underline;
@@ -233,7 +233,9 @@ body {
   transform: translateY(0);
 }
 
-/* --- Topic intro cards (gradient left border) --- */
+/* --- Topic intro cards --- */
+/* Border colour is applied as a Tailwind utility via TOPIC_CARD_BORDER in TopicIntroView.vue */
 .topic-intro-card {
-  border: 1px solid var(--e-border);
+  border-width: 1px;
+  border-style: solid;
 }

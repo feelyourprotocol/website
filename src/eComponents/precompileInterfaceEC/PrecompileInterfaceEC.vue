@@ -1,4 +1,6 @@
-<script setup lang="ts">
+<script setup lang="ts" generic="T">
+import type { PrefixedHexString } from '@ethereumjs/util'
+
 import ExamplesUIC from '@/eComponents/ui/ExamplesUIC.vue'
 import HexDataInputUIC from '@/eComponents/ui/HexDataInputUIC.vue'
 import ExplorationC from '@/explorations/ExplorationC.vue'
@@ -7,7 +9,6 @@ import type { Examples } from '@/explorations/REGISTRY'
 import type { Exploration } from '@/explorations/REGISTRY'
 import { TOPICS } from '@/explorations/TOPICS'
 
-import PrecompileInterfaceResultEC from './PrecompileInterfaceResultEC.vue'
 import PrecompileValueInputEC from './PrecompileValueInputEC.vue'
 import type { PrecompileConfig } from './types'
 import { usePrecompileState } from './usePrecompileState'
@@ -16,6 +17,11 @@ const props = defineProps<{
   config: PrecompileConfig
   examples: Examples
   exploration: Exploration
+  run: (data: PrefixedHexString) => Promise<T>
+}>()
+
+defineSlots<{
+  result(props: { result: T | undefined }): void
 }>()
 
 const topic = TOPICS[props.exploration.topic]
@@ -26,15 +32,14 @@ const {
   hexVals,
   bigIntVals,
   byteLengths,
-  execResultPre,
-  execResultPost,
   inputValues,
+  result,
   selectExample,
   shareURL,
   onDataInputFormChange,
   onValueInputFormChange,
   init,
-} = usePrecompileState(props.config, props.examples)
+} = usePrecompileState(props.config, props.examples, props.run)
 
 await init()
 </script>
@@ -62,10 +67,7 @@ await init()
           :bigIntVal="bigIntVals[val.index]"
         />
 
-        <div class="e-grid-double">
-          <PrecompileInterfaceResultEC v-model="execResultPre" title="Pre-Osaka" :left="true" />
-          <PrecompileInterfaceResultEC v-model="execResultPost" title="Post-Osaka" :left="false" />
-        </div>
+        <slot name="result" :result="result" />
         <PoweredByC :poweredBy="exploration.poweredBy" />
       </div>
     </template>
