@@ -1,11 +1,8 @@
 import { Common, type Hardfork, Mainnet } from '@ethereumjs/common'
-import {
-  createEVM,
-  type ExecResult,
-  getActivePrecompiles,
-  type PrecompileFunc,
-} from '@ethereumjs/evm'
-import { createAddressFromString, hexToBytes } from '@ethereumjs/util'
+import { createEVM, type ExecResult, getActivePrecompiles, type PrecompileInput } from '@ethereumjs/evm'
+import { createAddressFromString, hexToBytes, type PrefixedHexString } from '@ethereumjs/util'
+
+type PrecompileFunc = (input: PrecompileInput) => Promise<ExecResult> | ExecResult
 
 export interface StandardRunResult {
   pre?: ExecResult
@@ -13,12 +10,13 @@ export interface StandardRunResult {
 }
 
 export async function runPrecompile(
-  data: string,
+  data: PrefixedHexString,
   preHF: Hardfork,
   postHF: Hardfork,
   precompile: string,
 ): Promise<StandardRunResult> {
   const gasLimit = BigInt(5000000)
+  const dataBytes = hexToBytes(data)
 
   const commonPre = new Common({ chain: Mainnet, hardfork: preHF })
   const evmPre = await createEVM({ common: commonPre })
@@ -30,22 +28,15 @@ export async function runPrecompile(
 
   let pre: ExecResult | undefined
   if (precompilePre) {
-    const callDataPre = {
-      data: hexToBytes(`0x${data}`),
-      gasLimit,
-      common: commonPre,
-      _EVM: evmPre,
-    }
-    pre = await precompilePre(callDataPre)
+    pre = await precompilePre({ data: dataBytes, gasLimit, common: commonPre, _EVM: evmPre })
   }
 
-  const callDataPost = {
-    data: hexToBytes(`0x${data}`),
+  const post = await precompilePost({
+    data: dataBytes,
     gasLimit,
     common: commonPost,
     _EVM: evmPost,
-  }
-  const post = await precompilePost(callDataPost)
+  })
 
   return { pre, post }
 }
@@ -60,7 +51,7 @@ export function useStandardPrecompileRun(
   postHF: Hardfork,
   precompileAddress: string,
 ) {
-  async function run(data: string): Promise<StandardRunResult> {
+  async function run(data: PrefixedHexString): Promise<StandardRunResult> {
     return runPrecompile(data, preHF, postHF, precompileAddress)
   }
 
@@ -71,14 +62,14 @@ export function useStandardPrecompileRun(
  * Runs a custom precompile function against the EVM.
  * Handles all EVM setup boilerplate (Common, EVM instance, call data assembly).
  *
- * @param data - Unprefixed hex input data
+ * @param data - `0x`-prefixed hex input data
  * @param precompileFn - The precompile implementation function
  * @param address - `0x`-prefixed hex address to register the precompile at
  * @param hardfork - Hardfork context (defaults to Prague)
  * @returns The raw `ExecResult` from the precompile execution
  */
 export async function runCustomPrecompile(
-  data: string,
+  data: PrefixedHexString,
   precompileFn: PrecompileFunc,
   address: string,
   hardfork: Hardfork = 'prague' as Hardfork,
@@ -95,7 +86,7 @@ export async function runCustomPrecompile(
   )!
 
   return fn({
-    data: hexToBytes(`0x${data}`),
+    data: hexToBytes(data),
     gasLimit: BigInt(5000000),
     common,
     _EVM: evm,

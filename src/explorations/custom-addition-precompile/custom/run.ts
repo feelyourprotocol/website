@@ -1,5 +1,11 @@
 import { type ExecResult, type PrecompileInput } from '@ethereumjs/evm'
-import { bigIntToBytes, bytesToBigInt, hexToBytes, setLengthLeft } from '@ethereumjs/util'
+import {
+  bigIntToBytes,
+  bytesToBigInt,
+  hexToBytes,
+  type PrefixedHexString,
+  setLengthLeft,
+} from '@ethereumjs/util'
 
 import { runCustomPrecompile } from '@/eComponents/precompileInterfaceEC/run'
 
@@ -23,11 +29,12 @@ export interface RunResult {
   sum: bigint
 }
 
-export async function run(data: string): Promise<RunResult> {
+export async function run(data: PrefixedHexString): Promise<RunResult> {
   const execResult = await runCustomPrecompile(data, additionPrecompile, CUSTOM_PRECOMPILE_ADDRESS)
 
-  const a = bytesToBigInt(hexToBytes(`0x${data.substring(0, 64)}`))
-  const b = bytesToBigInt(hexToBytes(`0x${data.substring(64, 128)}`))
+  const dataBytes = hexToBytes(data)
+  const a = bytesToBigInt(dataBytes.subarray(0, 32))
+  const b = bytesToBigInt(dataBytes.subarray(32, 64))
   const sum = (a + b) % 2n ** 256n
 
   return { execResult, a, b, sum }

@@ -1,4 +1,6 @@
 <script setup lang="ts" generic="T">
+import type { PrefixedHexString } from '@ethereumjs/util'
+
 import ExamplesUIC from '@/eComponents/ui/ExamplesUIC.vue'
 import HexDataInputUIC from '@/eComponents/ui/HexDataInputUIC.vue'
 import ExplorationC from '@/explorations/ExplorationC.vue'
@@ -15,7 +17,7 @@ const props = defineProps<{
   config: PrecompileConfig
   examples: Examples
   exploration: Exploration
-  run: (data: string) => Promise<T>
+  run: (data: PrefixedHexString) => Promise<T>
 }>()
 
 defineSlots<{

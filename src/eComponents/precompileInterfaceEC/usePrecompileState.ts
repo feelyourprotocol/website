@@ -1,5 +1,6 @@
 import { computed, ref, type ShallowRef, shallowRef } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
+import type { PrefixedHexString } from '@ethereumjs/util'
 
 import type { Examples } from '@/explorations/REGISTRY'
 
@@ -22,7 +23,7 @@ function createState(config: PrecompileConfig) {
 export function usePrecompileState<T = unknown>(
   config: PrecompileConfig,
   examples: Examples,
-  run: (data: string) => Promise<T>,
+  run: (data: PrefixedHexString) => Promise<T>,
 ) {
   const { data, hexVals, bigIntVals, lengthsMask, byteLengths, example } = createState(config)
   const result: ShallowRef<T | undefined> = shallowRef()
@@ -44,7 +45,7 @@ export function usePrecompileState<T = unknown>(
       config.parseData(data.value, byteLengths.value)
     }
     dataToValueInput(data, hexVals, bigIntVals, byteLengths)
-    result.value = await run(data.value)
+    result.value = await run(`0x${data.value}`)
   }
 
   async function values2Data() {
@@ -57,7 +58,7 @@ export function usePrecompileState<T = unknown>(
     data.value = config.assembleData
       ? config.assembleData(hexVals.value, byteLengths.value)
       : hexVals.value.join('')
-    result.value = await run(data.value)
+    result.value = await run(`0x${data.value}`)
   }
 
   // --- User interaction ---
