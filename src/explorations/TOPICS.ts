@@ -50,6 +50,16 @@ export const TOPICS: Topics = {
       'seamless wallet interactions from modern devices.',
     explorations: getTopicExplorationIds('fusaka'),
   },
+  research: {
+    title: 'Research',
+    path: '/research',
+    url: 'https://ethereum.org/en/community/research/',
+    color: 'yellow',
+    introText:
+      'Experimental explorations showcasing custom EVM functionality, protocol research ideas, ' +
+      'and proof-of-concept implementations beyond mainnet hardfork scope.',
+    explorations: getTopicExplorationIds('research'),
+  },
 }
 
 export interface Topic {

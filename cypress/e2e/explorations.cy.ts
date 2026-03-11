@@ -59,3 +59,24 @@ describe('EIP-7951 secp256r1', () => {
     cy.get('[role="option"]').should('have.length.gte', 2)
   })
 })
+
+describe('Custom Addition Precompile', () => {
+  it('loads and displays exploration content', () => {
+    cy.visit('/custom-addition-precompile')
+    cy.contains('h1', 'Feel Your Protocol')
+    cy.contains('h3', 'Custom Addition Precompile')
+    cy.get('#custom-addition-precompile-c', { timeout: 10000 }).should('exist')
+  })
+
+  it('loads default example with inputs', () => {
+    cy.visit('/custom-addition-precompile')
+    cy.get('#custom-addition-precompile-c textarea', { timeout: 10000 }).should('not.have.value', '')
+    cy.get('#custom-addition-precompile-c input').should('have.length.gte', 2)
+  })
+
+  it('example selector shows available options', () => {
+    cy.visit('/custom-addition-precompile')
+    cy.get('#custom-addition-precompile-c .e-select', { timeout: 10000 }).click()
+    cy.get('[role="option"]').should('have.length.gte', 2)
+  })
+})
