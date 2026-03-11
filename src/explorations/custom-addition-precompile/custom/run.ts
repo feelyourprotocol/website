@@ -1,12 +1,7 @@
-import { Common, Hardfork, Mainnet } from '@ethereumjs/common'
-import { createEVM, type ExecResult, getActivePrecompiles, type PrecompileInput } from '@ethereumjs/evm'
-import {
-  bigIntToBytes,
-  bytesToBigInt,
-  createAddressFromString,
-  hexToBytes,
-  setLengthLeft,
-} from '@ethereumjs/util'
+import { type ExecResult, type PrecompileInput } from '@ethereumjs/evm'
+import { bigIntToBytes, bytesToBigInt, hexToBytes, setLengthLeft } from '@ethereumjs/util'
+
+import { runCustomPrecompile } from '@/eComponents/precompileInterfaceEC/run'
 
 const CUSTOM_PRECOMPILE_ADDRESS = '0x0000000000000000000000000000000000ff0001'
 const ADDITION_GAS = 15n
@@ -29,24 +24,7 @@ export interface RunResult {
 }
 
 export async function run(data: string): Promise<RunResult> {
-  const common = new Common({ chain: Mainnet, hardfork: Hardfork.Prague })
-  const address = createAddressFromString(CUSTOM_PRECOMPILE_ADDRESS)
-  const evm = await createEVM({
-    common,
-    customPrecompiles: [{ address, function: additionPrecompile }],
-  })
-
-  const precompileFunc = getActivePrecompiles(common, [
-    { address, function: additionPrecompile },
-  ]).get(CUSTOM_PRECOMPILE_ADDRESS.slice(2))!
-
-  const callData = {
-    data: hexToBytes(`0x${data}`),
-    gasLimit: BigInt(5000000),
-    common,
-    _EVM: evm,
-  }
-  const execResult = await precompileFunc(callData)
+  const execResult = await runCustomPrecompile(data, additionPrecompile, CUSTOM_PRECOMPILE_ADDRESS)
 
   const a = bytesToBigInt(hexToBytes(`0x${data.substring(0, 64)}`))
   const b = bytesToBigInt(hexToBytes(`0x${data.substring(64, 128)}`))

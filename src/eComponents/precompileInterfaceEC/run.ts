@@ -1,6 +1,11 @@
 import { Common, type Hardfork, Mainnet } from '@ethereumjs/common'
-import { createEVM, type ExecResult, getActivePrecompiles } from '@ethereumjs/evm'
-import { hexToBytes } from '@ethereumjs/util'
+import {
+  createEVM,
+  type ExecResult,
+  getActivePrecompiles,
+  type PrecompileFunc,
+} from '@ethereumjs/evm'
+import { createAddressFromString, hexToBytes } from '@ethereumjs/util'
 
 export interface StandardRunResult {
   pre?: ExecResult
@@ -60,4 +65,39 @@ export function useStandardPrecompileRun(
   }
 
   return { run }
+}
+
+/**
+ * Runs a custom precompile function against the EVM.
+ * Handles all EVM setup boilerplate (Common, EVM instance, call data assembly).
+ *
+ * @param data - Unprefixed hex input data
+ * @param precompileFn - The precompile implementation function
+ * @param address - `0x`-prefixed hex address to register the precompile at
+ * @param hardfork - Hardfork context (defaults to Prague)
+ * @returns The raw `ExecResult` from the precompile execution
+ */
+export async function runCustomPrecompile(
+  data: string,
+  precompileFn: PrecompileFunc,
+  address: string,
+  hardfork: Hardfork = 'prague' as Hardfork,
+): Promise<ExecResult> {
+  const common = new Common({ chain: Mainnet, hardfork })
+  const addr = createAddressFromString(address)
+  const evm = await createEVM({
+    common,
+    customPrecompiles: [{ address: addr, function: precompileFn }],
+  })
+
+  const fn = getActivePrecompiles(common, [
+    { address: addr, function: precompileFn },
+  ]).get(address.slice(2).padStart(40, '0').toLowerCase())!
+
+  return fn({
+    data: hexToBytes(`0x${data}`),
+    gasLimit: BigInt(5000000),
+    common,
+    _EVM: evm,
+  })
 }
