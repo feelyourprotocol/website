@@ -1,4 +1,4 @@
-import { type ShallowRef, computed, ref, shallowRef } from 'vue'
+import { computed, ref, type ShallowRef, shallowRef } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 
 import type { Examples } from '@/explorations/REGISTRY'

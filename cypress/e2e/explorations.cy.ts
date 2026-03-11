@@ -70,7 +70,10 @@ describe('Custom Addition Precompile', () => {
 
   it('loads default example with inputs', () => {
     cy.visit('/custom-addition-precompile')
-    cy.get('#custom-addition-precompile-c textarea', { timeout: 10000 }).should('not.have.value', '')
+    cy.get('#custom-addition-precompile-c textarea', { timeout: 10000 }).should(
+      'not.have.value',
+      '',
+    )
     cy.get('#custom-addition-precompile-c input').should('have.length.gte', 2)
   })
 

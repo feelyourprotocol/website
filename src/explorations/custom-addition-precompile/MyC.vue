@@ -12,7 +12,10 @@ import { INFO as exploration } from './info'
 
 <template>
   <PrecompileInterfaceEC
-    :config="config" :examples="examples" :exploration="exploration" :run="run"
+    :config="config"
+    :examples="examples"
+    :exploration="exploration"
+    :run="run"
   >
     <template #result="{ result }">
       <div class="e-grid-single">

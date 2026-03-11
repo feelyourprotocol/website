@@ -19,7 +19,5 @@ export const INFO: Exploration = {
     'Enter two 32-byte unsigned integers (A and B). The custom precompile adds them together ' +
     'and returns the 32-byte result. Gas is charged at a flat rate of 15. Try values that ' +
     'overflow 256 bits to see wrapping behavior.',
-  poweredBy: [
-    { name: 'EthereumJS', href: 'https://github.com/ethereumjs/ethereumjs-monorepo' },
-  ],
+  poweredBy: [{ name: 'EthereumJS', href: 'https://github.com/ethereumjs/ethereumjs-monorepo' }],
 }

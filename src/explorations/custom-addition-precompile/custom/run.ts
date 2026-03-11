@@ -9,7 +9,7 @@ const ADDITION_GAS = 15n
 function additionPrecompile(input: PrecompileInput): ExecResult {
   const a = bytesToBigInt(input.data.subarray(0, 32))
   const b = bytesToBigInt(input.data.subarray(32, 64))
-  const sum = (a + b) % (2n ** 256n)
+  const sum = (a + b) % 2n ** 256n
   return {
     executionGasUsed: ADDITION_GAS,
     returnValue: setLengthLeft(bigIntToBytes(sum), 32),
@@ -28,7 +28,7 @@ export async function run(data: string): Promise<RunResult> {
 
   const a = bytesToBigInt(hexToBytes(`0x${data.substring(0, 64)}`))
   const b = bytesToBigInt(hexToBytes(`0x${data.substring(64, 128)}`))
-  const sum = (a + b) % (2n ** 256n)
+  const sum = (a + b) % 2n ** 256n
 
   return { execResult, a, b, sum }
 }

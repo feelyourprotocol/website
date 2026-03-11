@@ -90,9 +90,9 @@ export async function runCustomPrecompile(
     customPrecompiles: [{ address: addr, function: precompileFn }],
   })
 
-  const fn = getActivePrecompiles(common, [
-    { address: addr, function: precompileFn },
-  ]).get(address.slice(2).padStart(40, '0').toLowerCase())!
+  const fn = getActivePrecompiles(common, [{ address: addr, function: precompileFn }]).get(
+    address.slice(2).padStart(40, '0').toLowerCase(),
+  )!
 
   return fn({
     data: hexToBytes(`0x${data}`),
