@@ -233,7 +233,9 @@ body {
   transform: translateY(0);
 }
 
-/* --- Topic intro cards (gradient left border) --- */
+/* --- Topic intro cards --- */
+/* Border colour is applied as a Tailwind utility via TOPIC_CARD_BORDER in TopicIntroView.vue */
 .topic-intro-card {
-  border: 1px solid var(--e-border);
+  border-width: 1px;
+  border-style: solid;
 }

@@ -2,29 +2,72 @@ import { getTopicExplorationIds } from './REGISTRY'
 
 export type TopicColor = 'blue' | 'yellow' | 'green' | 'red'
 
-export const TOPIC_COLOR_CLASSES: Record<
-  TopicColor,
-  { bg200: string; text900: string; border200: string }
-> = {
-  blue: { bg200: 'bg-blue-50', text900: 'text-blue-800', border200: 'border-blue-200' },
-  yellow: { bg200: 'bg-yellow-50', text900: 'text-yellow-800', border200: 'border-yellow-200' },
-  green: { bg200: 'bg-green-50', text900: 'text-green-800', border200: 'border-green-200' },
-  red: { bg200: 'bg-red-50', text900: 'text-red-800', border200: 'border-red-200' },
+interface TopicColorConfig {
+  /**
+   * Tailwind color name used to construct CSS custom properties, e.g. `var(--color-blue-300)`.
+   * Kept separate from the class strings so `topicCSSVars` can build arbitrary shade references
+   * without requiring every shade to appear as a static utility class.
+   */
+  tw: string
+  /**
+   * Static Tailwind utility class strings used as `:class` bindings in templates.
+   * They must be static (not interpolated) so Tailwind's content scanner includes them.
+   * `borderCard` uses a heavier shade for perceptually-light colors (yellow, green) to ensure
+   * visibility on the white topic intro card background.
+   */
+  classes: {
+    text: string
+    bg: string
+    border: string
+    borderCard: string
+  }
+}
+
+export const TOPIC_COLORS: Record<TopicColor, TopicColorConfig> = {
+  blue: {
+    tw: 'blue',
+    classes: {
+      text: 'text-blue-800',
+      bg: 'bg-blue-50',
+      border: 'border-blue-200',
+      borderCard: 'border-blue-300',
+    },
+  },
+  yellow: {
+    tw: 'yellow',
+    classes: {
+      text: 'text-yellow-800',
+      bg: 'bg-yellow-50',
+      border: 'border-yellow-200',
+      borderCard: 'border-yellow-500',
+    },
+  },
+  green: {
+    tw: 'green',
+    classes: {
+      text: 'text-green-800',
+      bg: 'bg-green-50',
+      border: 'border-green-200',
+      borderCard: 'border-green-400',
+    },
+  },
+  red: {
+    tw: 'red',
+    classes: {
+      text: 'text-red-800',
+      bg: 'bg-red-50',
+      border: 'border-red-200',
+      borderCard: 'border-red-400',
+    },
+  },
 }
 
 /**
  * CSS custom properties for topic-aware styling inside explorations.
  * Set on ExplorationC's root element; inherited by all child components.
  */
-const CSS_COLOR_MAP: Record<TopicColor, string> = {
-  blue: 'blue',
-  yellow: 'yellow',
-  green: 'green',
-  red: 'red',
-}
-
 export function topicCSSVars(color: TopicColor): Record<string, string> {
-  const c = CSS_COLOR_MAP[color]
+  const c = TOPIC_COLORS[color].tw
   return {
     '--e-text': `var(--color-${c}-800)`,
     '--e-bg': `var(--color-${c}-100)`,
