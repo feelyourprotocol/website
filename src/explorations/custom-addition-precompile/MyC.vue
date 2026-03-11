@@ -21,13 +21,13 @@ import { INFO as exploration } from './info'
       <div class="e-grid-single">
         <ResultBoxUIC title="Addition Result" :left="true">
           <template v-if="result">
-            <p class="text-4xl font-mono font-bold mt-2 mb-4 break-all e-text">
+            <p class="text-4xl font-mono font-bold mt-2 mb-4 break-all">
               {{ result.sum }}
             </p>
-            <p class="text-sm font-mono break-all text-slate-500">
+            <p class="text-sm font-mono break-all opacity-75">
               {{ bytesToHex(result.execResult.returnValue) }}
             </p>
-            <p class="text-xs text-slate-400 mt-3">
+            <p class="text-xs opacity-60 mt-3">
               Gas used: {{ result.execResult.executionGasUsed }}
             </p>
           </template>
