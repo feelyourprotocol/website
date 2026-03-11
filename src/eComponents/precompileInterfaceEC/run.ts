@@ -1,5 +1,10 @@
 import { Common, type Hardfork, Mainnet } from '@ethereumjs/common'
-import { createEVM, type ExecResult, getActivePrecompiles, type PrecompileInput } from '@ethereumjs/evm'
+import {
+  createEVM,
+  type ExecResult,
+  getActivePrecompiles,
+  type PrecompileInput,
+} from '@ethereumjs/evm'
 import { createAddressFromString, hexToBytes, type PrefixedHexString } from '@ethereumjs/util'
 
 type PrecompileFunc = (input: PrecompileInput) => Promise<ExecResult> | ExecResult
