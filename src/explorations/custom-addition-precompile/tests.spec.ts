@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest'
+import type { PrefixedHexString } from '@ethereumjs/util'
 
 import { config } from './config'
 import { run } from './custom/run'
@@ -66,7 +67,7 @@ describe('Custom Addition Precompile Exploration', () => {
         '0x' +
         '0000000000000000000000000000000000000000000000000000000000000002' +
         '0000000000000000000000000000000000000000000000000000000000000003'
-      const result = await run(data)
+      const result = await run(data as PrefixedHexString)
       expect(result.a).toBe(2n)
       expect(result.b).toBe(3n)
       expect(result.sum).toBe(5n)
@@ -78,7 +79,7 @@ describe('Custom Addition Precompile Exploration', () => {
         '0x' +
         'ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff' +
         '0000000000000000000000000000000000000000000000000000000000000001'
-      const result = await run(data)
+      const result = await run(data as PrefixedHexString)
       expect(result.sum).toBe(0n)
     })
 
@@ -87,7 +88,7 @@ describe('Custom Addition Precompile Exploration', () => {
         '0x' +
         '0000000000000000000000000000000000000000000000000000000000000000' +
         '0000000000000000000000000000000000000000000000000000000000000000'
-      const result = await run(data)
+      const result = await run(data as PrefixedHexString)
       expect(result.sum).toBe(0n)
     })
   })
