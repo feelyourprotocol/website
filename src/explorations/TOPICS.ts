@@ -1,6 +1,6 @@
 import { getTopicExplorationIds } from './REGISTRY'
 
-export type TopicColor = 'blue' | 'yellow' | 'green' | 'red'
+export type TopicColor = 'blue' | 'yellow' | 'green' | 'red' | 'orange' | 'purple'
 
 interface TopicColorConfig {
   /**
@@ -88,6 +88,30 @@ export const TOPIC_COLORS: Record<TopicColor, TopicColorConfig> = {
       accent: 'text-red-600',
     },
   },
+  orange: {
+    classes: {
+      text: 'text-orange-800',
+      bgItem: 'bg-orange-50',
+      bg: 'bg-orange-100',
+      bgDark: 'bg-orange-900',
+      border: 'border-orange-200',
+      borderMid: 'border-orange-300',
+      borderCard: 'border-orange-400',
+      accent: 'text-orange-600',
+    },
+  },
+  purple: {
+    classes: {
+      text: 'text-purple-800',
+      bgItem: 'bg-purple-50',
+      bg: 'bg-purple-100',
+      bgDark: 'bg-purple-900',
+      border: 'border-purple-200',
+      borderMid: 'border-purple-300',
+      borderCard: 'border-purple-400',
+      accent: 'text-purple-600',
+    },
+  },
 }
 
 /**
@@ -138,7 +162,7 @@ export const TOPICS: Topics = {
     title: 'Research',
     path: '/research',
     url: 'https://ethereum.org/en/community/research/',
-    color: 'yellow',
+    color: 'purple',
     introText:
       'Experimental explorations showcasing custom EVM functionality, protocol research ideas, ' +
       'and proof-of-concept implementations beyond mainnet hardfork scope.',

@@ -4,7 +4,7 @@ The project uses [Tailwind CSS v4](https://tailwindcss.com/) for styling with a 
 
 ## How Topic Colors Work
 
-Every exploration belongs to a **topic** (e.g. "Fusaka"), and each topic has a color (blue, yellow, green, red). The `ExplorationC` wrapper component sets CSS custom properties on its root element based on the topic color. All child components — UI components, E-Components, and your widget — automatically inherit these colors.
+Every exploration belongs to a **topic** (e.g. "Fusaka"), and each topic has a color (blue, yellow, green, red, orange, purple). The `ExplorationC` wrapper component sets CSS custom properties on its root element based on the topic color. All child components — UI components, E-Components, and your widget — automatically inherit these colors.
 
 ```
 Topic (e.g. Fusaka = blue)
@@ -20,13 +20,14 @@ These variables are set by `ExplorationC` and available to all child elements:
 
 | Variable | Purpose | Blue topic example |
 |----------|---------|-------------------|
-| `--e-text` | Primary text color | `blue-900` |
-| `--e-bg` | Exploration wrapper background | `blue-200` |
-| `--e-bg-light` | Input backgrounds | `blue-50` |
+| `--e-text` | Primary text color | `blue-800` |
+| `--e-bg` | Exploration wrapper background | `blue-100` |
+| `--e-bg-light` | Input backgrounds | `white` |
 | `--e-bg-medium` | Button backgrounds | `blue-100` |
 | `--e-bg-dark` | Result box backgrounds | `blue-900` |
-| `--e-border` | Light borders | `blue-200` |
-| `--e-border-dark` | Dark borders | `blue-900` |
+| `--e-border` | Borders on coloured backgrounds | `blue-300` |
+| `--e-border-dark` | Dark/emphasis borders | `blue-800` |
+| `--e-accent` | Focus rings, interactive accents | `blue-600` |
 
 If you need the topic color for custom elements, use the `.e-text` utility class or reference the variables directly:
 
