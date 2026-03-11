@@ -1,4 +1,4 @@
-import { computed, ref } from 'vue'
+import { type ShallowRef, computed, ref, shallowRef } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 
 import type { Examples } from '@/explorations/REGISTRY'
@@ -19,12 +19,13 @@ function createState(config: PrecompileConfig) {
   }
 }
 
-export function usePrecompileState(
+export function usePrecompileState<T = unknown>(
   config: PrecompileConfig,
   examples: Examples,
-  run: (data: string) => Promise<void>,
+  run: (data: string) => Promise<T>,
 ) {
   const { data, hexVals, bigIntVals, lengthsMask, byteLengths, example } = createState(config)
+  const result: ShallowRef<T | undefined> = shallowRef()
 
   const router = useRouter()
   const route = useRoute()
@@ -43,7 +44,7 @@ export function usePrecompileState(
       config.parseData(data.value, byteLengths.value)
     }
     dataToValueInput(data, hexVals, bigIntVals, byteLengths)
-    await run(data.value)
+    result.value = await run(data.value)
   }
 
   async function values2Data() {
@@ -56,7 +57,7 @@ export function usePrecompileState(
     data.value = config.assembleData
       ? config.assembleData(hexVals.value, byteLengths.value)
       : hexVals.value.join('')
-    await run(data.value)
+    result.value = await run(data.value)
   }
 
   // --- User interaction ---
@@ -117,6 +118,7 @@ export function usePrecompileState(
     bigIntVals,
     byteLengths,
     inputValues,
+    result,
     selectExample,
     shareURL,
     onDataInputFormChange,

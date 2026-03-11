@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup lang="ts" generic="T">
 import ExamplesUIC from '@/eComponents/ui/ExamplesUIC.vue'
 import HexDataInputUIC from '@/eComponents/ui/HexDataInputUIC.vue'
 import ExplorationC from '@/explorations/ExplorationC.vue'
@@ -15,7 +15,11 @@ const props = defineProps<{
   config: PrecompileConfig
   examples: Examples
   exploration: Exploration
-  run: (data: string) => Promise<void>
+  run: (data: string) => Promise<T>
+}>()
+
+defineSlots<{
+  result(props: { result: T | undefined }): void
 }>()
 
 const topic = TOPICS[props.exploration.topic]
@@ -27,6 +31,7 @@ const {
   bigIntVals,
   byteLengths,
   inputValues,
+  result,
   selectExample,
   shareURL,
   onDataInputFormChange,
@@ -60,7 +65,7 @@ await init()
           :bigIntVal="bigIntVals[val.index]"
         />
 
-        <slot name="result" />
+        <slot name="result" :result="result" />
         <PoweredByC :poweredBy="exploration.poweredBy" />
       </div>
     </template>

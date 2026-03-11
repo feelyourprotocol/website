@@ -66,7 +66,19 @@ describe('usePrecompileState', () => {
     expect(state.example.value).toBe('')
   })
 
-  it('exposes input state without execution state', () => {
+  it('exposes result ref populated by run return value', async () => {
+    const mockResult = { gas: 42n }
+    const run = vi.fn().mockResolvedValue(mockResult)
+    const state = usePrecompileState(config, examples, run)
+
+    expect(state.result.value).toBeUndefined()
+
+    await state.init()
+
+    expect(state.result.value).toEqual(mockResult)
+  })
+
+  it('exposes input state without legacy execution refs', () => {
     const run = vi.fn().mockResolvedValue(undefined)
     const state = usePrecompileState(config, examples, run)
 
@@ -76,6 +88,7 @@ describe('usePrecompileState', () => {
     expect(state.byteLengths).toBeDefined()
     expect(state.example).toBeDefined()
     expect(state.inputValues).toBeDefined()
+    expect(state.result).toBeDefined()
     expect(state).not.toHaveProperty('execResultPre')
     expect(state).not.toHaveProperty('execResultPost')
   })

@@ -37,28 +37,19 @@ describe('runPrecompile', () => {
 })
 
 describe('useStandardPrecompileRun', () => {
-  it('initializes with undefined results', () => {
-    const { execResultPre, execResultPost } = useStandardPrecompileRun(
-      Hardfork.Prague,
-      Hardfork.Osaka,
-      '05',
-    )
-    expect(execResultPre.value).toBeUndefined()
-    expect(execResultPost.value).toBeUndefined()
+  it('returns a run function', () => {
+    const { run } = useStandardPrecompileRun(Hardfork.Prague, Hardfork.Osaka, '05')
+    expect(run).toBeTypeOf('function')
   })
 
-  it('populates reactive refs after run', async () => {
-    const { run, execResultPre, execResultPost } = useStandardPrecompileRun(
-      Hardfork.Prague,
-      Hardfork.Osaka,
-      '05',
-    )
+  it('run returns pre/post results directly', async () => {
+    const { run } = useStandardPrecompileRun(Hardfork.Prague, Hardfork.Osaka, '05')
 
-    await run(MODEXP_SIMPLE)
+    const result = await run(MODEXP_SIMPLE)
 
-    expect(execResultPre.value).toBeDefined()
-    expect(execResultPost.value).toBeDefined()
-    expect(execResultPre.value!.executionGasUsed).toBe(200n)
-    expect(execResultPost.value!.executionGasUsed).toBe(500n)
+    expect(result.pre).toBeDefined()
+    expect(result.post).toBeDefined()
+    expect(result.pre!.executionGasUsed).toBe(200n)
+    expect(result.post.executionGasUsed).toBe(500n)
   })
 })

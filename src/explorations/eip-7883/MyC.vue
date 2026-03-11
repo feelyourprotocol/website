@@ -9,11 +9,7 @@ import { config } from './config'
 import { examples } from './examples'
 import { INFO as exploration } from './info'
 
-const { run, execResultPre, execResultPost } = useStandardPrecompileRun(
-  Hardfork.Prague,
-  Hardfork.Osaka,
-  '05',
-)
+const { run } = useStandardPrecompileRun(Hardfork.Prague, Hardfork.Osaka, '05')
 </script>
 
 <template>
@@ -23,10 +19,10 @@ const { run, execResultPre, execResultPost } = useStandardPrecompileRun(
     :exploration="exploration"
     :run="run"
   >
-    <template #result>
-      <div class="e-grid-double">
-        <PrecompileInterfaceResultEC v-model="execResultPre" title="Pre-Osaka" :left="true" />
-        <PrecompileInterfaceResultEC v-model="execResultPost" title="Post-Osaka" :left="false" />
+    <template #result="{ result }">
+      <div v-if="result" class="e-grid-double">
+        <PrecompileInterfaceResultEC v-model="result.pre" title="Pre-Osaka" :left="true" />
+        <PrecompileInterfaceResultEC v-model="result.post" title="Post-Osaka" :left="false" />
       </div>
     </template>
   </PrecompileInterfaceEC>

@@ -1,14 +1,18 @@
-import { ref } from 'vue'
 import { Common, type Hardfork, Mainnet } from '@ethereumjs/common'
 import { createEVM, type ExecResult, getActivePrecompiles } from '@ethereumjs/evm'
 import { hexToBytes } from '@ethereumjs/util'
+
+export interface StandardRunResult {
+  pre?: ExecResult
+  post: ExecResult
+}
 
 export async function runPrecompile(
   data: string,
   preHF: Hardfork,
   postHF: Hardfork,
   precompile: string,
-): Promise<{ pre?: ExecResult; post: ExecResult }> {
+): Promise<StandardRunResult> {
   const gasLimit = BigInt(5000000)
 
   const commonPre = new Common({ chain: Mainnet, hardfork: preHF })
@@ -42,23 +46,18 @@ export async function runPrecompile(
 }
 
 /**
- * Convenience composable for the standard pre/post hardfork comparison pattern.
- * Returns a `run` function compatible with the `PrecompileInterfaceEC` `run` prop,
- * plus reactive refs for both results.
+ * Creates a `run` function for the standard pre/post hardfork comparison pattern.
+ * The returned function is compatible with the `PrecompileInterfaceEC` `run` prop
+ * and returns the result directly (captured automatically by the composable).
  */
 export function useStandardPrecompileRun(
   preHF: Hardfork,
   postHF: Hardfork,
   precompileAddress: string,
 ) {
-  const execResultPre = ref<ExecResult | undefined>()
-  const execResultPost = ref<ExecResult | undefined>()
-
-  async function run(data: string) {
-    const results = await runPrecompile(data, preHF, postHF, precompileAddress)
-    execResultPre.value = results.pre
-    execResultPost.value = results.post
+  async function run(data: string): Promise<StandardRunResult> {
+    return runPrecompile(data, preHF, postHF, precompileAddress)
   }
 
-  return { run, execResultPre, execResultPost }
+  return { run }
 }
