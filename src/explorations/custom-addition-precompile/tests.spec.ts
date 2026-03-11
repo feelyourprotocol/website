@@ -63,6 +63,7 @@ describe('Custom Addition Precompile Exploration', () => {
   describe('custom run', () => {
     it('adds two small numbers (2 + 3 = 5)', async () => {
       const data =
+        '0x' +
         '0000000000000000000000000000000000000000000000000000000000000002' +
         '0000000000000000000000000000000000000000000000000000000000000003'
       const result = await run(data)
@@ -74,6 +75,7 @@ describe('Custom Addition Precompile Exploration', () => {
 
     it('handles overflow (wraps mod 2^256)', async () => {
       const data =
+        '0x' +
         'ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff' +
         '0000000000000000000000000000000000000000000000000000000000000001'
       const result = await run(data)
@@ -82,6 +84,7 @@ describe('Custom Addition Precompile Exploration', () => {
 
     it('adds zeros', async () => {
       const data =
+        '0x' +
         '0000000000000000000000000000000000000000000000000000000000000000' +
         '0000000000000000000000000000000000000000000000000000000000000000'
       const result = await run(data)

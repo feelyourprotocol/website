@@ -27,7 +27,7 @@ describe('usePrecompileState', () => {
 
     await state.init()
 
-    expect(run).toHaveBeenCalledWith('deadbeef')
+    expect(run).toHaveBeenCalledWith('0xdeadbeef')
   })
 
   it('calls run on data input change', async () => {
@@ -39,7 +39,7 @@ describe('usePrecompileState', () => {
     state.data.value = 'cafebabe'
     await state.onDataInputFormChange()
 
-    expect(run).toHaveBeenCalledWith('cafebabe')
+    expect(run).toHaveBeenCalledWith('0xcafebabe')
   })
 
   it('calls run on value input change', async () => {
@@ -51,7 +51,7 @@ describe('usePrecompileState', () => {
     state.hexVals.value[0] = 'aabbccdd'
     await state.onValueInputFormChange()
 
-    expect(run).toHaveBeenCalledWith('aabbccdd')
+    expect(run).toHaveBeenCalledWith('0xaabbccdd')
   })
 
   it('clears example on manual data input', async () => {

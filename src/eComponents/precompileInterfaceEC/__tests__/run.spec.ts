@@ -4,6 +4,7 @@ import { Hardfork } from '@ethereumjs/common'
 import { runPrecompile, useStandardPrecompileRun } from '../run'
 
 const MODEXP_SIMPLE =
+  '0x' +
   '0000000000000000000000000000000000000000000000000000000000000001' +
   '0000000000000000000000000000000000000000000000000000000000000001' +
   '0000000000000000000000000000000000000000000000000000000000000001' +
@@ -25,6 +26,7 @@ describe('runPrecompile', () => {
 
   it('returns gas for secp256r1 precompile (address 100)', async () => {
     const data =
+      '0x' +
       '4dfb1eae8ed41e188b8a44a1109d982d01fc24bb85a933e6283e8838e46942fd' +
       'eb3dc5ce2902f162745057efb7a3308eba992c0d843623603516845ffccd3f10' +
       '3b91fedfb22f40063245c621036a040c159f02ae02e6d450ff9b53235e9232c4' +
