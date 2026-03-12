@@ -24,21 +24,24 @@ export const TIMELINE: Timeline = {
   },
   ready: {
     title: 'Ready',
-    shortDescription: 'Mature proposals that could be picked for a future hardfork with little friction.',
+    shortDescription:
+      'Mature proposals that could be picked for a future hardfork with little friction.',
     emoji: '🍎',
     onChain: false,
     order: 500,
   },
   research: {
     title: 'Research',
-    shortDescription: 'Substantial drafts and papers with a clear direction, but final shaping still in progress.',
+    shortDescription:
+      'Substantial drafts and papers with a clear direction, but final shaping still in progress.',
     emoji: '🔬',
     onChain: false,
     order: 600,
   },
   ideas: {
     title: 'Ideas',
-    shortDescription: 'Early-stage concepts — a mention on a forum or social media, not yet a formal proposal.',
+    shortDescription:
+      'Early-stage concepts — a mention on a forum or social media, not yet a formal proposal.',
     emoji: '💡',
     onChain: false,
     order: 700,
