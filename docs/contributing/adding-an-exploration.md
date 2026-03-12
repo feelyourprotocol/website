@@ -38,7 +38,7 @@ export const INFO: Exploration = {
   path: '/eip-XXXX-short-description',
   title: 'Human-Readable Title',
   infoURL: 'https://eips.ethereum.org/EIPS/eip-XXXX',
-  topic: 'fusaka',
+  topic: 'scaling',
   introText:
     '<b>What does this change?</b> ' +
     'A brief introduction to the protocol change.',
@@ -58,7 +58,7 @@ export const INFO: Exploration = {
 | `path` | Yes | URL path for the exploration page |
 | `title` | Yes | Display title |
 | `infoURL` | Yes | Link to the specification or reference material |
-| `topic` | Yes | Topic ID this exploration belongs to (e.g. `'fusaka'`) |
+| `topic` | Yes | Topic ID this exploration belongs to. Must be one of the fixed set: `scaling`, `privacy`, `ux`, `security`, `robustness`, `interoperability`. Topics are static and not added via contributions — see [Architecture](/guide/architecture#topics) for the full list. |
 | `image` | No | Imported image for topic overview display |
 | `introText` | No | HTML-formatted introduction paragraph |
 | `usageText` | No | HTML-formatted usage instructions |
@@ -256,7 +256,7 @@ describe('EIP-XXXX Exploration', () => {
     it('has correct metadata', () => {
       expect(INFO.id).toBe('eip-XXXX')
       expect(INFO.path).toContain('eip-XXXX')
-      expect(INFO.topic).toBe('fusaka')
+      expect(INFO.topic).toBe('scaling')
       expect(INFO.poweredBy.length).toBeGreaterThan(0)
     })
   })
@@ -287,7 +287,7 @@ describe('EIP-XXXX Exploration', () => {
   describe('info', () => {
     it('has correct metadata', () => {
       expect(INFO.id).toBe('eip-XXXX')
-      expect(INFO.topic).toBe('fusaka')
+      expect(INFO.topic).toBe('scaling')
     })
   })
 

@@ -7,7 +7,7 @@ export const INFO: Exploration = {
   path: '/custom-addition-precompile',
   title: 'Custom Addition Precompile',
   infoURL: 'https://github.com/ethereumjs/ethereumjs-monorepo/tree/master/packages/evm',
-  topic: 'research',
+  topic: 'interoperability',
   image,
   introText:
     '<b>Can you define your own precompile and run it in the EVM?</b> ' +

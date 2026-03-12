@@ -34,7 +34,20 @@ Each `info.ts` exports a `const INFO` object typed as `Exploration`. The `REGIST
 
 ### Topics
 
-Topics group explorations by theme (e.g. "Fusaka" for an upcoming hardfork). Each exploration belongs to exactly one topic via the `topic` field in its `info.ts`. Topics are defined in `src/explorations/TOPICS.ts`.
+Topics are the high-level strategic pillars that group explorations by theme. Each exploration belongs to exactly one topic via the `topic` field in its `info.ts`. Topics are defined in `src/explorations/TOPICS.ts`.
+
+**Topics are a static, curated set — they are not meant to be added as part of regular contributions.** The current topics are:
+
+| ID | Title | Description |
+|----|-------|-------------|
+| `scaling` | Scaling | Data availability, throughput, and L2 enablement |
+| `privacy` | Privacy | ZK-proofs, homomorphic encryption, private mempools |
+| `ux` | UX | Account abstraction, wallet infrastructure, signature schemes |
+| `security` | Security | Validator incentives, cryptographic agility, MEV mitigations |
+| `robustness` | Robustness | Gas cost accuracy, EVM semantics hardening, spec clarity |
+| `interoperability` | Interoperability | Cross-chain standards, bridge infrastructure, signature scheme support |
+
+When adding an exploration, pick the topic that best reflects the primary concern of the protocol change.
 
 ## E-Components
 

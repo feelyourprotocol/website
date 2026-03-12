@@ -9,7 +9,7 @@ describe('EIP-7951 Exploration', () => {
     it('has correct metadata', () => {
       expect(INFO.id).toBe('eip-7951')
       expect(INFO.path).toContain('eip-7951')
-      expect(INFO.topic).toBe('fusaka')
+      expect(INFO.topic).toBe('ux')
       expect(INFO.poweredBy.length).toBeGreaterThan(0)
     })
   })

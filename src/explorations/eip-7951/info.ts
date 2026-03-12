@@ -7,7 +7,7 @@ export const INFO: Exploration = {
   path: '/eip-7951-secp256r1-precompile',
   title: 'EIP-7951 secp256r1 Precompile Support',
   infoURL: 'https://eips.ethereum.org/EIPS/eip-7951',
-  topic: 'fusaka',
+  topic: 'ux',
   image,
   introText:
     '<b>How can I interact with the new curve precompile?</b> The ' +

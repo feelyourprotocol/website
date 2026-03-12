@@ -11,7 +11,7 @@ describe('Custom Addition Precompile Exploration', () => {
     it('has correct metadata', () => {
       expect(INFO.id).toBe('custom-addition-precompile')
       expect(INFO.path).toContain('custom-addition-precompile')
-      expect(INFO.topic).toBe('research')
+      expect(INFO.topic).toBe('interoperability')
       expect(INFO.poweredBy.length).toBeGreaterThan(0)
     })
   })

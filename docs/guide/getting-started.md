@@ -4,7 +4,7 @@
 
 Feel Your Protocol is an interactive website that lets you explore Ethereum protocol changes hands on. Instead of just reading specifications, you can interact with real Ethereum library code running directly in the browser.
 
-Each protocol change — called an **Exploration** — gets its own page with a dedicated interactive widget. Explorations cover EIPs, ERCs, and other research topics. They are grouped into **Topics** (e.g. "Fusaka" for the upcoming hardfork), making it easy to discover related protocol changes.
+Each protocol change — called an **Exploration** — gets its own page with a dedicated interactive widget. Explorations cover EIPs, ERCs, and protocol research. They are grouped into **Topics** — high-level strategic pillars like "Scaling" or "UX" — making it easy to discover related protocol changes.
 
 ## Prerequisites
 

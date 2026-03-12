@@ -146,27 +146,71 @@ export function topicCSSVars(color: TopicColor): Record<string, string> {
 }
 
 export const TOPICS: Topics = {
-  fusaka: {
-    title: 'Fusaka',
-    path: '/fusaka',
-    url: 'https://forkcast.org/upgrade/fusaka',
+  scaling: {
+    title: 'Scaling',
+    path: '/scaling',
+    url: 'https://ethereum.org',
+    color: 'orange',
+    introText:
+      'Throughput and cost efficiency are central to Ethereum\'s long-term success. ' +
+      'Scaling research spans data availability improvements like PeerDAS, execution layer ' +
+      'throughput, and the L2 infrastructure needed to serve a global user base.',
+    explorations: getTopicExplorationIds('scaling'),
+  },
+  privacy: {
+    title: 'Privacy',
+    path: '/privacy',
+    url: 'https://ethereum.org',
+    color: 'yellow',
+    introText:
+      'Blockchain transparency conflicts with basic privacy expectations for many use cases. ' +
+      'Research focuses on ZK-proofs, homomorphic encryption, and privacy-preserving identity ' +
+      'schemes that enable verifiable computation without unnecessary data disclosure.',
+    explorations: getTopicExplorationIds('privacy'),
+  },
+  ux: {
+    title: 'UX',
+    path: '/ux',
+    url: 'https://ethereum.org',
     color: 'blue',
     introText:
-      "Fusaka is Ethereum's next major network upgrade following Pectra. " +
-      'It brings significant changes to data availability with PeerDAS, adjusts precompile gas costs ' +
-      'for ModExp, and introduces a new secp256r1 signature verification precompile enabling ' +
-      'seamless wallet interactions from modern devices.',
-    explorations: getTopicExplorationIds('fusaka'),
+      'Many barriers to Ethereum adoption are user experience problems. ' +
+      'Research in this area covers account abstraction, passkey-based authentication, and ' +
+      'signature scheme improvements that reduce friction across devices and use cases.',
+    explorations: getTopicExplorationIds('ux'),
   },
-  research: {
-    title: 'Research',
-    path: '/research',
-    url: 'https://ethereum.org/en/community/research/',
+  security: {
+    title: 'Security',
+    path: '/security',
+    url: 'https://ethereum.org',
+    color: 'green',
+    introText:
+      'The security of Ethereum\'s base layer underpins the entire ecosystem. ' +
+      'Research spans validator incentive design, cryptographic agility, MEV mitigations, ' +
+      'and formal verification of protocol-critical components.',
+    explorations: getTopicExplorationIds('security'),
+  },
+  robustness: {
+    title: 'Robustness',
+    path: '/robustness',
+    url: 'https://ethereum.org',
     color: 'purple',
     introText:
-      'Experimental explorations showcasing custom EVM functionality, protocol research ideas, ' +
-      'and proof-of-concept implementations beyond mainnet hardfork scope.',
-    explorations: getTopicExplorationIds('research'),
+      'A protocol built to last decades must be sound in its foundations. ' +
+      'Robustness covers gas cost recalibrations, EVM semantics hardening, and spec clarity — ' +
+      'incremental changes that accumulate into a more correct and predictable execution environment.',
+    explorations: getTopicExplorationIds('robustness'),
+  },
+  interoperability: {
+    title: 'Interoperability',
+    path: '/interoperability',
+    url: 'https://ethereum.org',
+    color: 'red',
+    introText:
+      'Ethereum operates within a broader ecosystem of chains, standards, and off-chain systems. ' +
+      'Research addresses cross-chain communication, shared cryptographic standards, and native ' +
+      'protocol support for other signature schemes — without compromising trust assumptions.',
+    explorations: getTopicExplorationIds('interoperability'),
   },
 }
 
