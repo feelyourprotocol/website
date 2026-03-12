@@ -54,4 +54,31 @@ describe('TopicView', () => {
     const wrapper = await mountTopicView()
     expect(wrapper.findAll('img').length).toBeGreaterThanOrEqual(1)
   })
+
+  it('filters explorations by timeline query param', async () => {
+    const timeline = EXPLORATIONS[explorationIds[0]].timeline
+    await router.push({ name: topicId, query: { timeline } })
+    const wrapper = mount(TopicView, {
+      global: { plugins: [router], stubs: { RouterLink: RouterLinkStub } },
+    })
+    const expected = explorationIds.filter((id) => EXPLORATIONS[id].timeline === timeline)
+    expect(wrapper.findAll('.exploration-c')).toHaveLength(expected.length)
+  })
+
+  it('shows all explorations when no timeline query param', async () => {
+    await router.push({ name: topicId })
+    const wrapper = mount(TopicView, {
+      global: { plugins: [router], stubs: { RouterLink: RouterLinkStub } },
+    })
+    expect(wrapper.findAll('.exploration-c')).toHaveLength(explorationIds.length)
+  })
+
+  it('shows no-explorations message for non-matching timeline', async () => {
+    await router.push({ name: topicId, query: { timeline: 'nonexistent' } })
+    const wrapper = mount(TopicView, {
+      global: { plugins: [router], stubs: { RouterLink: RouterLinkStub } },
+    })
+    expect(wrapper.findAll('.exploration-c')).toHaveLength(0)
+    expect(wrapper.text()).toContain('No explorations here yet')
+  })
 })

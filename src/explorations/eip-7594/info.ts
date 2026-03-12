@@ -8,6 +8,7 @@ export const INFO: Exploration = {
   title: 'EIP-7594 Peer Data Availability Sampling',
   infoURL: 'https://eips.ethereum.org/EIPS/eip-7594',
   topic: 'scaling',
+  timeline: 'fusaka',
   image,
   introText:
     '<b>How do blob transactions change with PeerDAS?</b> ' +

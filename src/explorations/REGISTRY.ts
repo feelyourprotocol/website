@@ -28,6 +28,7 @@ export interface Exploration {
   title: string
   infoURL: string
   topic: string
+  timeline: string
   image?: string
   introText: string
   usageText: string

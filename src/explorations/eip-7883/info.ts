@@ -8,6 +8,7 @@ export const INFO: Exploration = {
   title: 'EIP-7883 ModExp Gas Cost Increase',
   infoURL: 'https://eips.ethereum.org/EIPS/eip-7883',
   topic: 'robustness',
+  timeline: 'fusaka',
   image,
   introText:
     '<b>How are ModExp gas costs changing with Fusaka?</b> ' +
