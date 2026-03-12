@@ -152,7 +152,7 @@ export const TOPICS: Topics = {
     url: 'https://ethereum.org',
     color: 'orange',
     introText:
-      'Throughput and cost efficiency are central to Ethereum\'s long-term success. ' +
+      "Throughput and cost efficiency are central to Ethereum's long-term success. " +
       'Scaling research spans data availability improvements like PeerDAS, execution layer ' +
       'throughput, and the L2 infrastructure needed to serve a global user base.',
     explorations: getTopicExplorationIds('scaling'),
@@ -185,7 +185,7 @@ export const TOPICS: Topics = {
     url: 'https://ethereum.org',
     color: 'green',
     introText:
-      'The security of Ethereum\'s base layer underpins the entire ecosystem. ' +
+      "The security of Ethereum's base layer underpins the entire ecosystem. " +
       'Research spans validator incentive design, cryptographic agility, MEV mitigations, ' +
       'and formal verification of protocol-critical components.',
     explorations: getTopicExplorationIds('security'),

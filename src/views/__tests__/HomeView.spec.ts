@@ -12,17 +12,19 @@ const wrapper = mount(HomeView, {
   },
 })
 
+const activeTopics = Object.values(TOPICS).filter((t) => t.explorations.length > 0)
+
 describe('HomeView', () => {
   describe('Topics', () => {
-    it('renders a topic card for each topic', () => {
-      for (const topic of Object.values(TOPICS)) {
+    it('renders a topic card for each active topic', () => {
+      for (const topic of activeTopics) {
         expect(wrapper.text()).toContain(topic.title)
       }
     })
 
     it('topic cards link to correct paths', () => {
       const links = wrapper.findAllComponents(RouterLinkStub)
-      for (const topic of Object.values(TOPICS)) {
+      for (const topic of activeTopics) {
         expect(links.some((l) => l.props('to') === topic.path)).toBe(true)
       }
     })
@@ -33,7 +35,7 @@ describe('HomeView', () => {
     })
 
     it('shows topic intro text', () => {
-      for (const topic of Object.values(TOPICS)) {
+      for (const topic of activeTopics) {
         if (topic.introText) {
           expect(wrapper.text()).toContain(topic.introText)
         }
