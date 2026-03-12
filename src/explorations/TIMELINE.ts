@@ -26,7 +26,7 @@ export const TIMELINE: Timeline = {
     title: 'Ready',
     shortDescription:
       'Mature proposals that could be picked for a future hardfork with little friction.',
-    emoji: '🍎',
+    emoji: '✅',
     onChain: false,
     order: 500,
   },

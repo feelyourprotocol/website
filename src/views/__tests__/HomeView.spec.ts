@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest'
+import { createMemoryHistory, createRouter } from 'vue-router'
 import { mount, RouterLinkStub } from '@vue/test-utils'
 
 import { EXPLORATIONS } from '@/explorations/REGISTRY'
@@ -6,8 +7,14 @@ import { TOPICS } from '@/explorations/TOPICS'
 
 import HomeView from '../HomeView.vue'
 
+const router = createRouter({
+  history: createMemoryHistory(),
+  routes: [{ path: '/', name: 'home', component: HomeView }],
+})
+
 const wrapper = mount(HomeView, {
   global: {
+    plugins: [router],
     stubs: { RouterLink: RouterLinkStub },
   },
 })

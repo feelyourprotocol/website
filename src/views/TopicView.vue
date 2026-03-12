@@ -11,13 +11,17 @@ import {
 } from '@/explorations/REGISTRY'
 import { TOPICS } from '@/explorations/TOPICS'
 
+import TimelineNaviView from './TimelineNaviView.vue'
 import TopicIntroView from './TopicIntroView.vue'
 
 const route = useRoute()
 const topicId = route.name as string
-const topic = TOPICS[topicId]
-const allExplorationIds = getTopicExplorationIds(topicId)
-const topicImage = getRandomTopicExplorationImage(topicId)
+const isAll = topicId === 'all'
+const topic = isAll ? undefined : TOPICS[topicId]
+
+const allExplorationIds = isAll ? Object.keys(EXPLORATIONS) : getTopicExplorationIds(topicId)
+
+const topicImage = isAll ? undefined : getRandomTopicExplorationImage(topicId)
 
 const explorationIds = computed(() => {
   const timeline = route.query.timeline as string | undefined
@@ -40,7 +44,7 @@ const explorationIds = computed(() => {
             <ExplorationC
               :explorationId="explorationId"
               :exploration="EXPLORATIONS[explorationId]"
-              :topic="topic"
+              :topic="TOPICS[EXPLORATIONS[explorationId].topic]"
             />
           </RouterLink>
         </template>
@@ -48,7 +52,13 @@ const explorationIds = computed(() => {
       </div>
 
       <div>
-        <TopicIntroView v-if="topicImage" :topic="topic" :image="topicImage" :overviewMode="true" />
+        <TimelineNaviView v-if="isAll" class="mb-4" />
+        <TopicIntroView
+          v-if="topicImage"
+          :topic="topic!"
+          :image="topicImage"
+          :overviewMode="true"
+        />
       </div>
     </div>
   </main>
