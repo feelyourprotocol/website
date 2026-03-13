@@ -3,8 +3,11 @@ import ExplorationC from '@/explorations/ExplorationC.vue'
 import { EXPLORATIONS, getRandomTopicExplorationImage } from '@/explorations/REGISTRY'
 import { TOPICS } from '@/explorations/TOPICS'
 
+import TagCloudView from './TagCloudView.vue'
 import TimelineNaviView from './TimelineNaviView.vue'
 import TopicIntroView from './TopicIntroView.vue'
+
+const allExplorationIds = Object.keys(EXPLORATIONS)
 
 const featured = ['eip-7883', 'eip-7594', 'eip-7951']
 
@@ -36,7 +39,14 @@ for (const topicId of activeTopicIds) {
       </div>
 
       <div>
-        <TimelineNaviView basePath="/all" class="mb-4" />
+        <div class="grid grid-cols-5 gap-3 mb-4">
+          <TagCloudView
+            :explorationIds="allExplorationIds"
+            basePath="/all"
+            class="col-span-3"
+          />
+          <TimelineNaviView basePath="/all" class="col-span-2" />
+        </div>
 
         <div class="bg-slate-700 rounded-lg mb-4 p-5 shadow-md">
           <p class="mb-2 text-base font-bold text-white">About the Project</p>

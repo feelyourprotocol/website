@@ -9,8 +9,10 @@ import {
   getRandomTopicExplorationImage,
   getTopicExplorationIds,
 } from '@/explorations/REGISTRY'
+import { Tag } from '@/explorations/TAGS'
 import { TOPICS } from '@/explorations/TOPICS'
 
+import TagCloudView from './TagCloudView.vue'
 import TimelineNaviView from './TimelineNaviView.vue'
 import TopicIntroView from './TopicIntroView.vue'
 
@@ -23,10 +25,21 @@ const allExplorationIds = isAll ? Object.keys(EXPLORATIONS) : getTopicExploratio
 
 const topicImage = isAll ? undefined : getRandomTopicExplorationImage(topicId)
 
-const explorationIds = computed(() => {
+const tagCloudExplorationIds = computed(() => {
   const timeline = route.query.timeline as string | undefined
   if (!timeline) return allExplorationIds
   return allExplorationIds.filter((id) => EXPLORATIONS[id].timeline === timeline)
+})
+
+const explorationIds = computed(() => {
+  const tagKey = route.query.tag as string | undefined
+  const tagValue = tagKey ? Tag[tagKey as keyof typeof Tag] : undefined
+
+  const ids = tagCloudExplorationIds.value
+  if (tagValue) {
+    return ids.filter((id) => EXPLORATIONS[id].tags.includes(tagValue))
+  }
+  return ids
 })
 </script>
 
@@ -52,7 +65,13 @@ const explorationIds = computed(() => {
       </div>
 
       <div>
-        <TimelineNaviView v-if="isAll" class="mb-4" />
+        <div v-if="isAll" class="grid grid-cols-5 gap-3 mb-4">
+          <TagCloudView
+            :explorationIds="tagCloudExplorationIds"
+            class="col-span-3"
+          />
+          <TimelineNaviView class="col-span-2" />
+        </div>
         <TopicIntroView
           v-if="topicImage"
           :topic="topic!"

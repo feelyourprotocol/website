@@ -18,7 +18,9 @@ const activeTimeline = computed(() => route.query.timeline as string | undefined
 
 function navigate(timelineId: string) {
   if (props.basePath) {
-    router.push({ path: props.basePath, query: { timeline: timelineId } })
+    const query: Record<string, string> = { timeline: timelineId }
+    if (route.query.tag) query.tag = route.query.tag as string
+    router.push({ path: props.basePath, query })
   } else {
     router.push({ query: { ...route.query, timeline: timelineId } })
   }
