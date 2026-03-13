@@ -49,6 +49,21 @@ Topics are the high-level strategic pillars that group explorations by theme. Ea
 
 When adding an exploration, pick the topic that best reflects the primary concern of the protocol change.
 
+### Tags
+
+Tags enrich navigation by adding broader Ethereum technical concepts, protocol-relevant areas, or general technology topics from the blockchain space. Each exploration can have up to 3–4 tags. Tags are defined as a TypeScript enum in `src/explorations/TAGS.ts`.
+
+**Tags grow with contributions** — unlike topics and timeline, new tags can be proposed when adding an exploration. They must follow these rules:
+
+| Rule | Example |
+|------|---------|
+| Must be reusable beyond a single exploration | `EVM` ✅ — `EIP-7883` ❌ |
+| Short form preferred | `EVM` ✅ — `Ethereum Virtual Machine` ❌ |
+| No redundancy with existing tags | `Gas Costs` exists → don't add `Gas` |
+| When in doubt, choose the more generic concept | `Gas Costs` ✅ — `Gas Increases` ❌ |
+
+**Format:** Enum keys use CamelCase (`GasCosts`), all-caps for abbreviations (`EVM`). Members must be sorted alphabetically (enforced by lint).
+
 ## E-Components
 
 **E-Components** are reusable Ethereum-specific components that encapsulate common patterns across explorations. They live in `src/eComponents/` and follow a naming convention: folder and component names are post-fixed with `EC`.

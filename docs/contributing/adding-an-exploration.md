@@ -32,6 +32,7 @@ This file defines all the metadata for your exploration:
 
 ```typescript
 import type { Exploration } from '@/explorations/REGISTRY'
+import { Tag } from '@/explorations/TAGS'
 
 export const INFO: Exploration = {
   id: 'eip-XXXX',
@@ -39,6 +40,8 @@ export const INFO: Exploration = {
   title: 'Human-Readable Title',
   infoURL: 'https://eips.ethereum.org/EIPS/eip-XXXX',
   topic: 'scaling',
+  timeline: 'fusaka',
+  tags: [Tag.EVM, Tag.GasCosts],
   introText:
     '<b>What does this change?</b> ' +
     'A brief introduction to the protocol change.',
@@ -59,6 +62,8 @@ export const INFO: Exploration = {
 | `title` | Yes | Display title |
 | `infoURL` | Yes | Link to the specification or reference material |
 | `topic` | Yes | Topic ID this exploration belongs to. Must be one of the fixed set: `scaling`, `privacy`, `ux`, `security`, `robustness`, `interoperability`. Topics are static and not added via contributions — see [Architecture](/guide/architecture#topics) for the full list. |
+| `timeline` | Yes | Timeline ID for this exploration (e.g. `fusaka`, `glamsterdam`, `ready`, `research`, `ideas`). See [Architecture](/guide/architecture) for details. |
+| `tags` | Yes | Array of `Tag` enum values (max 3–4). Tags are broader technical concepts that must be reusable across explorations. New tags can be proposed — see [Architecture](/guide/architecture#tags) for rules and the current list. |
 | `image` | No | Imported image for topic overview display |
 | `introText` | No | HTML-formatted introduction paragraph |
 | `usageText` | No | HTML-formatted usage instructions |

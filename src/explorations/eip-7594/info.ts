@@ -1,4 +1,5 @@
 import type { Exploration } from '@/explorations/REGISTRY'
+import { Tag } from '@/explorations/TAGS'
 
 import image from './image.webp'
 
@@ -9,6 +10,7 @@ export const INFO: Exploration = {
   infoURL: 'https://eips.ethereum.org/EIPS/eip-7594',
   topic: 'scaling',
   timeline: 'fusaka',
+  tags: [Tag.PeerDAS],
   image,
   introText:
     '<b>How do blob transactions change with PeerDAS?</b> ' +

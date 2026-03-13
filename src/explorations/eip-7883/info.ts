@@ -1,4 +1,5 @@
 import type { Exploration } from '@/explorations/REGISTRY'
+import { Tag } from '@/explorations/TAGS'
 
 import image from './image.webp'
 
@@ -9,6 +10,7 @@ export const INFO: Exploration = {
   infoURL: 'https://eips.ethereum.org/EIPS/eip-7883',
   topic: 'robustness',
   timeline: 'fusaka',
+  tags: [Tag.GasCosts, Tag.Precompiles],
   image,
   introText:
     '<b>How are ModExp gas costs changing with Fusaka?</b> ' +

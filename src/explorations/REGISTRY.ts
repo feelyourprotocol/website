@@ -2,6 +2,7 @@ import { INFO as customAdditionPrecompile } from './custom-addition-precompile/i
 import { INFO as eip7594 } from './eip-7594/info'
 import { INFO as eip7883 } from './eip-7883/info'
 import { INFO as eip7951 } from './eip-7951/info'
+import type { Tag } from './TAGS'
 
 export const EXPLORATIONS: Explorations = {
   [eip7594.id]: eip7594,
@@ -29,6 +30,7 @@ export interface Exploration {
   infoURL: string
   topic: string
   timeline: string
+  tags: Tag[]
   image?: string
   introText: string
   usageText: string

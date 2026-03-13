@@ -1,4 +1,5 @@
 import type { Exploration } from '@/explorations/REGISTRY'
+import { Tag } from '@/explorations/TAGS'
 
 import image from './image.webp'
 
@@ -9,6 +10,7 @@ export const INFO: Exploration = {
   infoURL: 'https://eips.ethereum.org/EIPS/eip-7951',
   topic: 'ux',
   timeline: 'fusaka',
+  tags: [Tag.Precompiles, Tag.Signatures],
   image,
   introText:
     '<b>How can I interact with the new curve precompile?</b> The ' +
