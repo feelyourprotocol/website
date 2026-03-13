@@ -3,6 +3,7 @@ import { createMemoryHistory, createRouter } from 'vue-router'
 import { mount, RouterLinkStub } from '@vue/test-utils'
 
 import { EXPLORATIONS } from '@/explorations/REGISTRY'
+import { Tag } from '@/explorations/TAGS'
 import { TOPICS } from '@/explorations/TOPICS'
 
 import HomeView from '../HomeView.vue'
@@ -66,6 +67,25 @@ describe('HomeView', () => {
       const link = wrapper.find('a[href="https://github.com/feelyourprotocol/website"]')
       expect(link.exists()).toBe(true)
       expect(link.attributes('target')).toBe('_blank')
+    })
+  })
+
+  describe('Tag cloud', () => {
+    it('renders tag cloud with tags used by explorations', () => {
+      const usedTags = new Set(Object.values(EXPLORATIONS).flatMap((e) => e.tags))
+      for (const tag of usedTags) {
+        expect(wrapper.text()).toContain(tag)
+      }
+    })
+
+    it('does not render unused tags', () => {
+      const usedTags = new Set(Object.values(EXPLORATIONS).flatMap((e) => e.tags))
+      const allTags = Object.values(Tag)
+      for (const tag of allTags) {
+        if (!usedTags.has(tag)) {
+          expect(wrapper.text()).not.toContain(tag)
+        }
+      }
     })
   })
 

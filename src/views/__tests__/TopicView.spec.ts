@@ -3,6 +3,7 @@ import { createMemoryHistory, createRouter } from 'vue-router'
 import { mount, RouterLinkStub } from '@vue/test-utils'
 
 import { EXPLORATIONS, getTopicExplorationIds } from '@/explorations/REGISTRY'
+import { Tag } from '@/explorations/TAGS'
 import { TOPICS } from '@/explorations/TOPICS'
 
 import TopicView from '../TopicView.vue'
@@ -80,5 +81,30 @@ describe('TopicView', () => {
     })
     expect(wrapper.findAll('.exploration-c')).toHaveLength(0)
     expect(wrapper.text()).toContain('No explorations here yet')
+  })
+
+  it('filters explorations by tag query param', async () => {
+    const firstTag = EXPLORATIONS[explorationIds[0]].tags[0]
+    const tagKey = Object.entries(Tag).find(([, v]) => v === firstTag)![0]
+    await router.push({ name: topicId, query: { tag: tagKey } })
+    const wrapper = mount(TopicView, {
+      global: { plugins: [router], stubs: { RouterLink: RouterLinkStub } },
+    })
+    const expected = explorationIds.filter((id) => EXPLORATIONS[id].tags.includes(firstTag))
+    expect(wrapper.findAll('.exploration-c')).toHaveLength(expected.length)
+  })
+
+  it('filters explorations by both timeline and tag', async () => {
+    const timeline = EXPLORATIONS[explorationIds[0]].timeline
+    const firstTag = EXPLORATIONS[explorationIds[0]].tags[0]
+    const tagKey = Object.entries(Tag).find(([, v]) => v === firstTag)![0]
+    await router.push({ name: topicId, query: { timeline, tag: tagKey } })
+    const wrapper = mount(TopicView, {
+      global: { plugins: [router], stubs: { RouterLink: RouterLinkStub } },
+    })
+    const expected = explorationIds.filter(
+      (id) => EXPLORATIONS[id].timeline === timeline && EXPLORATIONS[id].tags.includes(firstTag),
+    )
+    expect(wrapper.findAll('.exploration-c')).toHaveLength(expected.length)
   })
 })
