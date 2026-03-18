@@ -59,4 +59,3 @@ describe('EIP-7951 secp256r1', () => {
     cy.get('[role="option"]').should('have.length.gte', 2)
   })
 })
-
