@@ -26,9 +26,11 @@ export const INFO: Exploration = {
     'using Noble <a href="https://github.com/paulmillr/micro-eth-signer?tab=readme-ov-file#kzg--peerdas" target="_blank">micro-eth-signer</a>) ' +
     'match with your local values or values from blob explorers like ' +
     '<a href="https://blobscan.org/" target="_blank">Blobscan</a>.',
+  creatorName: 'HolgerD77',
+  creatorURL: 'https://x.com/HolgerD77',
   poweredBy: [
     { name: 'Ethers', href: 'https://github.com/ethers-io/ethers.js' },
-    { name: 'Noble Curves', href: 'https://github.com/paulmillr/noble-curves' },
+    { name: 'Noble', href: 'https://github.com/paulmillr/noble-curves' },
     { name: 'EthereumJS', href: 'https://github.com/ethereumjs/ethereumjs-monorepo' },
   ],
 }

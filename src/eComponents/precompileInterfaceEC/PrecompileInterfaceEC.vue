@@ -68,7 +68,7 @@ await init()
         />
 
         <slot name="result" :result="result" />
-        <PoweredByC :poweredBy="exploration.poweredBy" />
+        <PoweredByC :poweredBy="exploration.poweredBy" :creatorName="exploration.creatorName" :creatorURL="exploration.creatorURL" />
       </div>
     </template>
   </ExplorationC>

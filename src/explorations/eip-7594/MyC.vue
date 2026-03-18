@@ -151,7 +151,7 @@ await init()
             </div>
           </ResultBoxUIC>
         </div>
-        <PoweredByC :poweredBy="exploration.poweredBy" />
+        <PoweredByC :poweredBy="exploration.poweredBy" :creatorName="exploration.creatorName" :creatorURL="exploration.creatorURL" />
       </div>
     </template>
   </ExplorationC>

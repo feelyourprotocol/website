@@ -32,6 +32,8 @@ export interface Exploration {
   image?: string
   introText: string
   usageText: string
+  creatorName?: string
+  creatorURL?: string
   poweredBy: PoweredByItem[]
 }
 export interface Explorations {

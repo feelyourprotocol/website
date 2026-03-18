@@ -28,8 +28,10 @@ export const INFO: Exploration = {
     '<a href="https://github.com/ethereumjs/ethereumjs-monorepo/tree/master/packages/evm#eip-7951-precompile-for-secp256r1-curve-support-osaka" target="_blank">here</a> ' +
     'for example code - or use one of the examples provided. The precompile will return ' +
     '<code>0x01</code> (as 32-bytes) if the signature is valid.',
+  creatorName: 'HolgerD77',
+  creatorURL: 'https://x.com/HolgerD77',
   poweredBy: [
-    { name: 'Noble Curves', href: 'https://github.com/paulmillr/noble-curves' },
+    { name: 'Noble', href: 'https://github.com/paulmillr/noble-curves' },
     { name: 'EthereumJS', href: 'https://github.com/ethereumjs/ethereumjs-monorepo' },
   ],
 }

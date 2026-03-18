@@ -20,5 +20,7 @@ export const INFO: Exploration = {
     'costs. A major use case in smart contracts is to verify RSA signatures, e.g. in the context ' +
     'of airdrops. You can find a realistic RSA value setup in the examples. The widget also ' +
     'respects the new ModExp value boundaries set with EIP-7823 (also Fusaka).',
+  creatorName: 'HolgerD77',
+  creatorURL: 'https://x.com/HolgerD77',
   poweredBy: [{ name: 'EthereumJS', href: 'https://github.com/ethereumjs/ethereumjs-monorepo' }],
 }
