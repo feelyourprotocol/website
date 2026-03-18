@@ -1,4 +1,3 @@
-import { INFO as customAdditionPrecompile } from './custom-addition-precompile/info'
 import { INFO as eip7594 } from './eip-7594/info'
 import { INFO as eip7883 } from './eip-7883/info'
 import { INFO as eip7951 } from './eip-7951/info'
@@ -8,7 +7,6 @@ export const EXPLORATIONS: Explorations = {
   [eip7594.id]: eip7594,
   [eip7883.id]: eip7883,
   [eip7951.id]: eip7951,
-  [customAdditionPrecompile.id]: customAdditionPrecompile,
 }
 
 export interface Examples {

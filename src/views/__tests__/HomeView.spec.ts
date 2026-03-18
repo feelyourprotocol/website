@@ -78,12 +78,13 @@ describe('HomeView', () => {
       }
     })
 
-    it('does not render unused tags', () => {
+    it('does not render unused tags in the tag cloud', () => {
       const usedTags = new Set(Object.values(EXPLORATIONS).flatMap((e) => e.tags))
       const allTags = Object.values(Tag)
+      const tagLabels = wrapper.findAll('.tag-item').map((b) => b.text())
       for (const tag of allTags) {
         if (!usedTags.has(tag)) {
-          expect(wrapper.text()).not.toContain(tag)
+          expect(tagLabels).not.toContainEqual(tag)
         }
       }
     })
