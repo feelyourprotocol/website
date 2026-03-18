@@ -30,7 +30,13 @@ function loadRoutes() {
     })
   }
 
-  const topicRs = []
+  const topicRs = [
+    {
+      path: '/all',
+      name: 'all',
+      component: baseViews['../views/TopicView.vue'],
+    },
+  ]
   for (const [name, topic] of Object.entries(TOPICS)) {
     topicRs.push({
       path: topic.path,

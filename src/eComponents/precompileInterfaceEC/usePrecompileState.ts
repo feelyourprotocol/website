@@ -1,10 +1,9 @@
-import { computed, ref } from 'vue'
+import { computed, ref, type ShallowRef, shallowRef } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
-import type { ExecResult } from '@ethereumjs/evm'
+import type { PrefixedHexString } from '@ethereumjs/util'
 
 import type { Examples } from '@/explorations/REGISTRY'
 
-import { runPrecompile } from './run'
 import type { PrecompileConfig } from './types'
 import { dataToValueInput, isValidByteInputForm, valueToDataInput } from './utils'
 
@@ -18,22 +17,16 @@ function createState(config: PrecompileConfig) {
     lengthsMask: ref<(bigint | undefined)[]>(config.values.map((v) => v.expectedLen)),
     byteLengths: ref<bigint[]>(config.values.map(() => 0n)),
     example: ref(''),
-    execResultPre: ref<ExecResult | undefined>(),
-    execResultPost: ref<ExecResult | undefined>(),
   }
 }
 
-export function usePrecompileState(config: PrecompileConfig, examples: Examples) {
-  const {
-    data,
-    hexVals,
-    bigIntVals,
-    lengthsMask,
-    byteLengths,
-    example,
-    execResultPre,
-    execResultPost,
-  } = createState(config)
+export function usePrecompileState<T = unknown>(
+  config: PrecompileConfig,
+  examples: Examples,
+  run: (data: PrefixedHexString) => Promise<T>,
+) {
+  const { data, hexVals, bigIntVals, lengthsMask, byteLengths, example } = createState(config)
+  const result: ShallowRef<T | undefined> = shallowRef()
 
   const router = useRouter()
   const route = useRoute()
@@ -46,24 +39,13 @@ export function usePrecompileState(config: PrecompileConfig, examples: Examples)
 
   // --- Data conversion ---
 
-  async function run() {
-    await runPrecompile(
-      data.value,
-      config.preHardfork,
-      config.postHardfork,
-      config.precompileAddress,
-      execResultPre,
-      execResultPost,
-    )
-  }
-
   async function data2Values() {
     if (isValidByteInputForm(data.value).length > 0) return
     if (config.parseData) {
       config.parseData(data.value, byteLengths.value)
     }
     dataToValueInput(data, hexVals, bigIntVals, byteLengths)
-    await run()
+    result.value = await run(`0x${data.value}`)
   }
 
   async function values2Data() {
@@ -76,7 +58,7 @@ export function usePrecompileState(config: PrecompileConfig, examples: Examples)
     data.value = config.assembleData
       ? config.assembleData(hexVals.value, byteLengths.value)
       : hexVals.value.join('')
-    await run()
+    result.value = await run(`0x${data.value}`)
   }
 
   // --- User interaction ---
@@ -136,9 +118,8 @@ export function usePrecompileState(config: PrecompileConfig, examples: Examples)
     hexVals,
     bigIntVals,
     byteLengths,
-    execResultPre,
-    execResultPost,
     inputValues,
+    result,
     selectExample,
     shareURL,
     onDataInputFormChange,

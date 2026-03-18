@@ -8,10 +8,12 @@ An exploration folder looks like this:
 
 ```
 src/explorations/eip-XXXX/
-├── info.ts         # Metadata (required)
-├── MyC.vue         # Interactive widget (required)
-├── examples.ts     # Example presets (recommended)
-└── data/           # Optional data files
+├── info.ts          # Metadata (required)
+├── MyC.vue          # Interactive widget (required)
+├── examples.ts      # Example presets (recommended)
+├── tests.spec.ts    # Unit tests (required)
+├── config.ts        # Precompile config (for precompile explorations)
+└── data/            # Optional data files
 ```
 
 ## Step 1: Create the Folder
@@ -30,13 +32,18 @@ This file defines all the metadata for your exploration:
 
 ```typescript
 import type { Exploration } from '@/explorations/REGISTRY'
+import { Tag } from '@/explorations/TAGS'
 
 export const INFO: Exploration = {
   id: 'eip-XXXX',
   path: '/eip-XXXX-short-description',
   title: 'Human-Readable Title',
   infoURL: 'https://eips.ethereum.org/EIPS/eip-XXXX',
-  topic: 'fusaka',
+  topic: 'scaling',
+  timeline: 'fusaka',
+  tags: [Tag.EVM, Tag.GasCosts],
+  creatorName: 'YourName',
+  creatorURL: 'https://x.com/YourHandle',
   introText:
     '<b>What does this change?</b> ' +
     'A brief introduction to the protocol change.',
@@ -56,10 +63,14 @@ export const INFO: Exploration = {
 | `path` | Yes | URL path for the exploration page |
 | `title` | Yes | Display title |
 | `infoURL` | Yes | Link to the specification or reference material |
-| `topic` | Yes | Topic ID this exploration belongs to (e.g. `'fusaka'`) |
+| `topic` | Yes | Topic ID this exploration belongs to. Must be one of the fixed set: `scaling`, `privacy`, `ux`, `security`, `robustness`, `interoperability`. Topics are static and not added via contributions — see [Architecture](/guide/architecture#topics) for the full list. |
+| `timeline` | Yes | Timeline ID for this exploration (e.g. `fusaka`, `glamsterdam`, `ready`, `research`, `ideas`). See [Architecture](/guide/architecture) for details. |
+| `tags` | Yes | Array of `Tag` enum values (max 3–4). Tags are broader technical concepts that must be reusable across explorations. New tags can be proposed — see [Architecture](/guide/architecture#tags) for rules and the current list. |
 | `image` | No | Imported image for topic overview display |
 | `introText` | No | HTML-formatted introduction paragraph |
 | `usageText` | No | HTML-formatted usage instructions |
+| `creatorName` | No | Display name of the exploration's creator |
+| `creatorURL` | No | URL to the creator's profile (X/Twitter, GitHub, etc.) |
 | `poweredBy` | Yes | Array of `{ name, href }` for library credits |
 
 ## Step 3: Create `examples.ts`
@@ -67,7 +78,7 @@ export const INFO: Exploration = {
 Define example presets that users can select from a dropdown:
 
 ```typescript
-import type { Examples } from '@/components/lib/general'
+import type { Examples } from '@/explorations/REGISTRY'
 
 export const examples: Examples = {
   basic: {
@@ -134,7 +145,7 @@ await init()
         <ExamplesUIC v-model="example" :examples="examples" :change="selectExample" />
         <HexDataInputUIC v-model="data" rows="6" :formChange="onDataInputFormChange" />
         <!-- Your result display here -->
-        <PoweredByC :poweredBy="exploration.poweredBy" :topic="topic" />
+        <PoweredByC :poweredBy="exploration.poweredBy" :creatorName="exploration.creatorName" :creatorURL="exploration.creatorURL" />
       </div>
     </template>
   </ExplorationC>
@@ -145,37 +156,58 @@ The `ExplorationC` wrapper renders the title, info link, intro text, and usage t
 
 ### Option B: Precompile Interface E-Component
 
-If your exploration is about a precompile, you can use the Precompile Interface E-Component and get a full-featured widget in ~30 lines:
+If your exploration is about a precompile, you can use the Precompile Interface E-Component. It handles all input management while you provide the execution logic and result display:
 
-```vue
-<script setup lang="ts">
-import { Hardfork } from '@ethereumjs/common'
+First, define your precompile config in a separate `config.ts` file (this keeps the config testable):
 
-import PrecompileInterfaceEC from '@/eComponents/precompileInterfaceEC/PrecompileInterfaceEC.vue'
+```typescript
+// config.ts
 import type { PrecompileConfig } from '@/eComponents/precompileInterfaceEC/types'
 
-import { examples } from './examples'
-import { INFO as exploration } from './info'
-
-const config: PrecompileConfig = {
+export const config: PrecompileConfig = {
   explorationId: 'eip-XXXX',
-  precompileAddress: '0a',
-  preHardfork: Hardfork.Prague,
-  postHardfork: Hardfork.Osaka,
   defaultExample: 'basic',
   values: [
     { title: 'Input A', urlParam: 'a', expectedLen: 32n },
     { title: 'Input B', urlParam: 'b', expectedLen: 32n },
   ],
 }
+```
+
+Then in `MyC.vue`:
+
+```vue
+<script setup lang="ts">
+import { Hardfork } from '@ethereumjs/common'
+
+import PrecompileInterfaceEC from '@/eComponents/precompileInterfaceEC/PrecompileInterfaceEC.vue'
+import PrecompileInterfaceResultEC from '@/eComponents/precompileInterfaceEC/PrecompileInterfaceResultEC.vue'
+import { useStandardPrecompileRun } from '@/eComponents/precompileInterfaceEC/run'
+
+import { config } from './config'
+import { examples } from './examples'
+import { INFO as exploration } from './info'
+
+const { run, execResultPre, execResultPost } = useStandardPrecompileRun(
+  Hardfork.Prague, Hardfork.Osaka, '0a',
+)
 </script>
 
 <template>
-  <PrecompileInterfaceEC :config="config" :examples="examples" :exploration="exploration" />
+  <PrecompileInterfaceEC
+    :config="config" :examples="examples" :exploration="exploration" :run="run"
+  >
+    <template #result>
+      <div class="e-grid-double">
+        <PrecompileInterfaceResultEC v-model="execResultPre" title="Pre-Osaka" :left="true" />
+        <PrecompileInterfaceResultEC v-model="execResultPost" title="Post-Osaka" :left="false" />
+      </div>
+    </template>
+  </PrecompileInterfaceEC>
 </template>
 ```
 
-See [Using E-Components](/contributing/e-components) for the full API reference.
+The `useStandardPrecompileRun` helper covers the common EthereumJS pre/post hardfork comparison. For custom execution (different library, custom precompile, etc.), provide your own `run` function and `#result` slot — see [Available E-Components](/contributing/available-e-components) for the full API reference.
 
 ## Step 5: Register in the Registry
 
@@ -204,7 +236,99 @@ Import libraries only in your `MyC.vue` — never in shared code. This keeps eac
 
 If you need a custom library fork (e.g. with experimental features), see [Library Forks](/contributing/library-forks).
 
-## Step 7: Verify
+## Step 7: Add Tests
+
+Each exploration should have a `tests.spec.ts` file in its folder. Tests verify that your exploration's metadata, examples, and config are correct.
+
+### What to Test
+
+**All explorations** should test:
+
+- `info.ts` — correct `id`, `path`, `topic`, and `poweredBy`
+- `examples.ts` — each example has the right number of values, valid hex data, and a non-empty title
+
+**Precompile explorations** should additionally test:
+
+- `config.ts` — `defaultExample` exists in examples, value field count and URL params match expectations
+- `assembleData`/`parseData` — if defined, verify they produce correct output and are inverse operations
+
+### Example: Custom Exploration Test
+
+```typescript
+import { describe, expect, it } from 'vitest'
+
+import { examples } from '../examples'
+import { INFO } from '../info'
+
+describe('EIP-XXXX Exploration', () => {
+  describe('info', () => {
+    it('has correct metadata', () => {
+      expect(INFO.id).toBe('eip-XXXX')
+      expect(INFO.path).toContain('eip-XXXX')
+      expect(INFO.topic).toBe('scaling')
+      expect(INFO.poweredBy.length).toBeGreaterThan(0)
+    })
+  })
+
+  describe('examples', () => {
+    it('each example has valid hex data', () => {
+      const hexRegex = /^[0-9a-f]+$/i
+      for (const [key, ex] of Object.entries(examples)) {
+        for (const val of ex.values) {
+          expect(val, `Value in "${key}" should be valid hex`).toMatch(hexRegex)
+        }
+      }
+    })
+  })
+})
+```
+
+### Example: Precompile Exploration Test
+
+```typescript
+import { describe, expect, it } from 'vitest'
+
+import { config } from '../config'
+import { examples } from '../examples'
+import { INFO } from '../info'
+
+describe('EIP-XXXX Exploration', () => {
+  describe('info', () => {
+    it('has correct metadata', () => {
+      expect(INFO.id).toBe('eip-XXXX')
+      expect(INFO.topic).toBe('scaling')
+    })
+  })
+
+  describe('config', () => {
+    it('references a valid default example', () => {
+      expect(examples[config.defaultExample]).toBeDefined()
+    })
+
+    it('has correct number of value fields', () => {
+      expect(config.values).toHaveLength(2)
+    })
+  })
+
+  describe('examples', () => {
+    it('each example has the right number of values', () => {
+      const editableCount = config.values.filter((v) => v.urlParam).length
+      for (const [key, ex] of Object.entries(examples)) {
+        expect(ex.values, `Example "${key}"`).toHaveLength(editableCount)
+      }
+    })
+  })
+})
+```
+
+### Running Tests
+
+```bash
+npx vitest run                              # run all unit tests
+npx vitest run src/explorations/eip-XXXX    # run tests for one exploration
+```
+
+## Step 8: Verify
 
 ```bash
 npm run dev          # check your exploration locally
@@ -218,7 +342,9 @@ npm run build        # verify production build
 - [ ] Created `src/explorations/<id>/info.ts` with metadata
 - [ ] Created `src/explorations/<id>/MyC.vue` with interactive widget
 - [ ] Created `src/explorations/<id>/examples.ts` with example presets
+- [ ] Created `src/explorations/<id>/tests.spec.ts` with unit tests
 - [ ] Added import and entry in `src/explorations/REGISTRY.ts`
 - [ ] Installed library dependencies (if needed)
+- [ ] All unit tests pass
 - [ ] Linting and type checking pass
 - [ ] Production build succeeds

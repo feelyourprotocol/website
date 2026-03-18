@@ -43,6 +43,41 @@ export default defineConfigWithVueTs(
   },
 
   {
+    name: 'app/sorted-tags-enum',
+    files: ['src/explorations/TAGS.ts'],
+    plugins: {
+      custom: {
+        rules: {
+          'sorted-enum-members': {
+            meta: { type: 'suggestion', messages: { unsorted: 'Enum members must be sorted alphabetically. "{{current}}" should come after "{{previous}}", not before.' } },
+            create(context: { report: (descriptor: Record<string, unknown>) => void }) {
+              return {
+                TSEnumDeclaration(node: { members: Array<{ id: { type: string; name?: string; value?: string } }> }) {
+                  const names = node.members.map((m) =>
+                    m.id.type === 'Identifier' ? m.id.name! : String(m.id.value),
+                  )
+                  for (let i = 1; i < names.length; i++) {
+                    if (names[i].localeCompare(names[i - 1]) < 0) {
+                      context.report({
+                        node: node.members[i],
+                        messageId: 'unsorted',
+                        data: { current: names[i], previous: names[i - 1] },
+                      })
+                    }
+                  }
+                },
+              }
+            },
+          },
+        },
+      },
+    },
+    rules: {
+      'custom/sorted-enum-members': 'error',
+    },
+  },
+
+  {
     ...pluginVitest.configs.recommended,
     files: ['src/**/__tests__/*'],
   },

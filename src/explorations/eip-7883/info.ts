@@ -1,4 +1,5 @@
 import type { Exploration } from '@/explorations/REGISTRY'
+import { Tag } from '@/explorations/TAGS'
 
 import image from './image.webp'
 
@@ -7,7 +8,9 @@ export const INFO: Exploration = {
   path: '/eip-7883-modexp-gas-cost-increase',
   title: 'EIP-7883 ModExp Gas Cost Increase',
   infoURL: 'https://eips.ethereum.org/EIPS/eip-7883',
-  topic: 'fusaka',
+  topic: 'robustness',
+  timeline: 'fusaka',
+  tags: [Tag.GasCosts, Tag.Precompiles],
   image,
   introText:
     '<b>How are ModExp gas costs changing with Fusaka?</b> ' +
@@ -17,5 +20,7 @@ export const INFO: Exploration = {
     'costs. A major use case in smart contracts is to verify RSA signatures, e.g. in the context ' +
     'of airdrops. You can find a realistic RSA value setup in the examples. The widget also ' +
     'respects the new ModExp value boundaries set with EIP-7823 (also Fusaka).',
+  creatorName: 'HolgerD77',
+  creatorURL: 'https://x.com/HolgerD77',
   poweredBy: [{ name: 'EthereumJS', href: 'https://github.com/ethereumjs/ethereumjs-monorepo' }],
 }

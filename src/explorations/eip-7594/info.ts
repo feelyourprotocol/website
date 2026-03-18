@@ -1,4 +1,5 @@
 import type { Exploration } from '@/explorations/REGISTRY'
+import { Tag } from '@/explorations/TAGS'
 
 import image from './image.webp'
 
@@ -7,7 +8,9 @@ export const INFO: Exploration = {
   path: '/eip-7594-peerdas-data-availability-sampling',
   title: 'EIP-7594 Peer Data Availability Sampling',
   infoURL: 'https://eips.ethereum.org/EIPS/eip-7594',
-  topic: 'fusaka',
+  topic: 'scaling',
+  timeline: 'fusaka',
+  tags: [Tag.PeerDAS],
   image,
   introText:
     '<b>How do blob transactions change with PeerDAS?</b> ' +
@@ -23,9 +26,11 @@ export const INFO: Exploration = {
     'using Noble <a href="https://github.com/paulmillr/micro-eth-signer?tab=readme-ov-file#kzg--peerdas" target="_blank">micro-eth-signer</a>) ' +
     'match with your local values or values from blob explorers like ' +
     '<a href="https://blobscan.org/" target="_blank">Blobscan</a>.',
+  creatorName: 'HolgerD77',
+  creatorURL: 'https://x.com/HolgerD77',
   poweredBy: [
     { name: 'Ethers', href: 'https://github.com/ethers-io/ethers.js' },
-    { name: 'Noble Curves', href: 'https://github.com/paulmillr/noble-curves' },
+    { name: 'Noble', href: 'https://github.com/paulmillr/noble-curves' },
     { name: 'EthereumJS', href: 'https://github.com/ethereumjs/ethereumjs-monorepo' },
   ],
 }

@@ -82,6 +82,7 @@ npm run test:e2e     # E2E tests
 
 ## Further Reading
 
+- [AI-Assisted Development](/contributing/ai-assisted-development) — best practices for building explorations with AI agents
 - [Adding an Exploration](/contributing/adding-an-exploration) — step-by-step guide
 - [Using E-Components](/contributing/e-components) — reusable Ethereum-specific components
 - [Code Conventions](/contributing/code-conventions) — imports, naming, linting, testing

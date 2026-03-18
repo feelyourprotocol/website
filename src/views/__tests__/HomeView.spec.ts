@@ -1,28 +1,38 @@
 import { describe, expect, it } from 'vitest'
+import { createMemoryHistory, createRouter } from 'vue-router'
 import { mount, RouterLinkStub } from '@vue/test-utils'
 
 import { EXPLORATIONS } from '@/explorations/REGISTRY'
+import { Tag } from '@/explorations/TAGS'
 import { TOPICS } from '@/explorations/TOPICS'
 
 import HomeView from '../HomeView.vue'
 
+const router = createRouter({
+  history: createMemoryHistory(),
+  routes: [{ path: '/', name: 'home', component: HomeView }],
+})
+
 const wrapper = mount(HomeView, {
   global: {
+    plugins: [router],
     stubs: { RouterLink: RouterLinkStub },
   },
 })
 
+const activeTopics = Object.values(TOPICS).filter((t) => t.explorations.length > 0)
+
 describe('HomeView', () => {
   describe('Topics', () => {
-    it('renders a topic card for each topic', () => {
-      for (const topic of Object.values(TOPICS)) {
+    it('renders a topic card for each active topic', () => {
+      for (const topic of activeTopics) {
         expect(wrapper.text()).toContain(topic.title)
       }
     })
 
     it('topic cards link to correct paths', () => {
       const links = wrapper.findAllComponents(RouterLinkStub)
-      for (const topic of Object.values(TOPICS)) {
+      for (const topic of activeTopics) {
         expect(links.some((l) => l.props('to') === topic.path)).toBe(true)
       }
     })
@@ -33,7 +43,7 @@ describe('HomeView', () => {
     })
 
     it('shows topic intro text', () => {
-      for (const topic of Object.values(TOPICS)) {
+      for (const topic of activeTopics) {
         if (topic.introText) {
           expect(wrapper.text()).toContain(topic.introText)
         }
@@ -57,6 +67,26 @@ describe('HomeView', () => {
       const link = wrapper.find('a[href="https://github.com/feelyourprotocol/website"]')
       expect(link.exists()).toBe(true)
       expect(link.attributes('target')).toBe('_blank')
+    })
+  })
+
+  describe('Tag cloud', () => {
+    it('renders tag cloud with tags used by explorations', () => {
+      const usedTags = new Set(Object.values(EXPLORATIONS).flatMap((e) => e.tags))
+      for (const tag of usedTags) {
+        expect(wrapper.text()).toContain(tag)
+      }
+    })
+
+    it('does not render unused tags in the tag cloud', () => {
+      const usedTags = new Set(Object.values(EXPLORATIONS).flatMap((e) => e.tags))
+      const allTags = Object.values(Tag)
+      const tagLabels = wrapper.findAll('.tag-item').map((b) => b.text())
+      for (const tag of allTags) {
+        if (!usedTags.has(tag)) {
+          expect(tagLabels).not.toContainEqual(tag)
+        }
+      }
     })
   })
 

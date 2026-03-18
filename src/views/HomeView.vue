@@ -3,12 +3,18 @@ import ExplorationC from '@/explorations/ExplorationC.vue'
 import { EXPLORATIONS, getRandomTopicExplorationImage } from '@/explorations/REGISTRY'
 import { TOPICS } from '@/explorations/TOPICS'
 
+import TagCloudView from './TagCloudView.vue'
+import TimelineNaviView from './TimelineNaviView.vue'
 import TopicIntroView from './TopicIntroView.vue'
+
+const allExplorationIds = Object.keys(EXPLORATIONS)
 
 const featured = ['eip-7883', 'eip-7594', 'eip-7951']
 
+const activeTopicIds = Object.keys(TOPICS).filter((id) => TOPICS[id].explorations.length > 0)
+
 const topicImages: Record<string, string | undefined> = {}
-for (const topicId of Object.keys(TOPICS)) {
+for (const topicId of activeTopicIds) {
   topicImages[topicId] = getRandomTopicExplorationImage(topicId)
 }
 </script>
@@ -18,7 +24,7 @@ for (const topicId of Object.keys(TOPICS)) {
     <div class="grid md:grid-cols-2 gap-4">
       <div>
         <RouterLink
-          v-for="topicId in Object.keys(TOPICS)"
+          v-for="topicId in activeTopicIds"
           :key="topicId"
           :to="TOPICS[topicId].path"
           class="block mb-5 last:mb-0 no-underline"
@@ -33,6 +39,15 @@ for (const topicId of Object.keys(TOPICS)) {
       </div>
 
       <div>
+        <div class="grid grid-cols-5 gap-3 mb-4">
+          <TagCloudView :explorationIds="allExplorationIds" basePath="/all" class="col-span-3" />
+          <TimelineNaviView
+            basePath="/all"
+            :explorationIds="allExplorationIds"
+            class="col-span-2"
+          />
+        </div>
+
         <div class="bg-slate-700 rounded-lg mb-4 p-5 shadow-md">
           <p class="mb-2 text-base font-bold text-white">About the Project</p>
           <p class="text-slate-300 text-sm leading-relaxed">

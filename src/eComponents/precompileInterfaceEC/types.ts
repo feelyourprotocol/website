@@ -1,5 +1,3 @@
-import type { Hardfork } from '@ethereumjs/common'
-
 export interface PrecompileValueDef {
   title: string
   urlParam?: string
@@ -11,9 +9,6 @@ export interface PrecompileValueDef {
 
 export interface PrecompileConfig {
   explorationId: string
-  precompileAddress: string
-  preHardfork: Hardfork
-  postHardfork: Hardfork
   defaultExample: string
   showBigInt?: boolean
   values: PrecompileValueDef[]

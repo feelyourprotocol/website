@@ -1,4 +1,5 @@
 import type { Exploration } from '@/explorations/REGISTRY'
+import { Tag } from '@/explorations/TAGS'
 
 import image from './image.webp'
 
@@ -7,7 +8,9 @@ export const INFO: Exploration = {
   path: '/eip-7951-secp256r1-precompile',
   title: 'EIP-7951 secp256r1 Precompile Support',
   infoURL: 'https://eips.ethereum.org/EIPS/eip-7951',
-  topic: 'fusaka',
+  topic: 'ux',
+  timeline: 'fusaka',
+  tags: [Tag.Precompiles, Tag.Signatures],
   image,
   introText:
     '<b>How can I interact with the new curve precompile?</b> The ' +
@@ -25,8 +28,10 @@ export const INFO: Exploration = {
     '<a href="https://github.com/ethereumjs/ethereumjs-monorepo/tree/master/packages/evm#eip-7951-precompile-for-secp256r1-curve-support-osaka" target="_blank">here</a> ' +
     'for example code - or use one of the examples provided. The precompile will return ' +
     '<code>0x01</code> (as 32-bytes) if the signature is valid.',
+  creatorName: 'HolgerD77',
+  creatorURL: 'https://x.com/HolgerD77',
   poweredBy: [
-    { name: 'Noble Curves', href: 'https://github.com/paulmillr/noble-curves' },
+    { name: 'Noble', href: 'https://github.com/paulmillr/noble-curves' },
     { name: 'EthereumJS', href: 'https://github.com/ethereumjs/ethereumjs-monorepo' },
   ],
 }

@@ -2,28 +2,28 @@
 import { Hardfork } from '@ethereumjs/common'
 
 import PrecompileInterfaceEC from '@/eComponents/precompileInterfaceEC/PrecompileInterfaceEC.vue'
-import type { PrecompileConfig } from '@/eComponents/precompileInterfaceEC/types'
+import PrecompileInterfaceResultEC from '@/eComponents/precompileInterfaceEC/PrecompileInterfaceResultEC.vue'
+import { useStandardPrecompileRun } from '@/eComponents/precompileInterfaceEC/run'
 
+import { config } from './config'
 import { examples } from './examples'
 import { INFO as exploration } from './info'
 
-const config: PrecompileConfig = {
-  explorationId: 'eip-7951',
-  precompileAddress: '100',
-  preHardfork: Hardfork.Prague,
-  postHardfork: Hardfork.Osaka,
-  defaultExample: 'valid',
-  showBigInt: false,
-  values: [
-    { title: 'Hash', urlParam: 'hash', expectedLen: 32n },
-    { title: 'SigR', urlParam: 'sigr', expectedLen: 32n },
-    { title: 'SigS', urlParam: 'sigs', expectedLen: 32n },
-    { title: 'PubX', urlParam: 'pubx', expectedLen: 32n },
-    { title: 'PubY', urlParam: 'puby', expectedLen: 32n },
-  ],
-}
+const { run } = useStandardPrecompileRun(Hardfork.Prague, Hardfork.Osaka, '100')
 </script>
 
 <template>
-  <PrecompileInterfaceEC :config="config" :examples="examples" :exploration="exploration" />
+  <PrecompileInterfaceEC
+    :config="config"
+    :examples="examples"
+    :exploration="exploration"
+    :run="run"
+  >
+    <template #result="{ result }">
+      <div v-if="result" class="e-grid-double">
+        <PrecompileInterfaceResultEC v-model="result.pre" title="Pre-Osaka" :left="true" />
+        <PrecompileInterfaceResultEC v-model="result.post" title="Post-Osaka" :left="false" />
+      </div>
+    </template>
+  </PrecompileInterfaceEC>
 </template>

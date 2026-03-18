@@ -110,7 +110,7 @@ watch(
     </p>
   </header>
 
-  <RouterView :key="route.path" class="grid grid-cols-1" />
+  <RouterView :key="route.fullPath" class="grid grid-cols-1" />
 
   <footer class="grid grid-cols-2 pt-3 mt-10 mb-2">
     <h3 class="font-mono text-xs text-slate-500">

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { type Topic, topicCSSVars } from '@/explorations/TOPICS'
+import { type Topic, TOPIC_COLORS, topicCSSVars } from '@/explorations/TOPICS'
 
 const props = withDefaults(
   defineProps<{
@@ -19,7 +19,13 @@ const getImageUrl = (image: string) =>
 </script>
 
 <template>
-  <div :style="cssVars" class="topic-intro-card bg-white rounded-lg p-5 shadow-sm">
+  <div
+    :style="cssVars"
+    :class="[
+      'topic-intro-card bg-white rounded-lg p-5 shadow-sm',
+      TOPIC_COLORS[topic.color].classes.borderCard,
+    ]"
+  >
     <h2 v-if="overviewMode" class="text-2xl md:text-3xl font-bold tracking-tight mb-4 e-text">
       {{ topic.title }}
     </h2>

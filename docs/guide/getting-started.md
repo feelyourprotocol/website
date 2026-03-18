@@ -4,7 +4,7 @@
 
 Feel Your Protocol is an interactive website that lets you explore Ethereum protocol changes hands on. Instead of just reading specifications, you can interact with real Ethereum library code running directly in the browser.
 
-Each protocol change — called an **Exploration** — gets its own page with a dedicated interactive widget. Explorations cover EIPs, ERCs, and other research topics. They are grouped into **Topics** (e.g. "Fusaka" for the upcoming hardfork), making it easy to discover related protocol changes.
+Each protocol change — called an **Exploration** — gets its own page with a dedicated interactive widget. Explorations cover EIPs, ERCs, and protocol research. They are organized through three taxonomies: **Topics** (static strategic pillars like "Scaling" or "UX"), **Timeline** (maturity and hardfork placement like "Fusaka" or "Research"), and **Tags** (reusable technical concepts like "EVM" or "Precompiles") — making it easy to discover and navigate related protocol changes.
 
 ## Prerequisites
 
@@ -65,17 +65,21 @@ website/
 ├── src/
 │   ├── explorations/              # Explorations (the core content)
 │   │   ├── REGISTRY.ts            # Exploration registry and types
-│   │   ├── TOPICS.ts              # Topic definitions and types
+│   │   ├── TOPICS.ts              # Topic definitions and colors
+│   │   ├── TIMELINE.ts            # Timeline taxonomy (hardforks + maturity stages)
+│   │   ├── TAGS.ts                # Tag enum (technical concepts)
 │   │   ├── ExplorationC.vue       # Shared exploration wrapper component
-│   │   ├── PoweredByC.vue         # Shared "powered by" component
+│   │   ├── PoweredByC.vue         # Shared creator + "powered by" component
+│   │   ├── NoExplorationsC.vue    # Empty state component
 │   │   ├── eip-7594/              # One folder per exploration
-│   │   │   ├── info.ts            #   Metadata (title, description, links, …)
+│   │   │   ├── info.ts            #   Metadata (title, topic, timeline, tags, …)
 │   │   │   ├── MyC.vue            #   Interactive widget component
 │   │   │   ├── examples.ts        #   Example presets
 │   │   │   └── data/              #   Optional data files
 │   │   ├── eip-7883/
 │   │   └── eip-7951/
 │   ├── eComponents/               # Reusable Ethereum-specific components (E-Components)
+│   │   ├── ui/                    # Generic UI components (UIC)
 │   │   └── precompileInterfaceEC/ # Precompile interface E-Component
 │   │       ├── PrecompileInterfaceEC.vue
 │   │       ├── PrecompileInterfaceResultEC.vue
@@ -83,13 +87,14 @@ website/
 │   │       ├── usePrecompileState.ts
 │   │       ├── types.ts
 │   │       └── run.ts
-│   ├── components/                # Shared UI components and utilities
-│   │   ├── ui/                    # Generic UI components
-│   │   └── lib/                   # Shared logic and utilities
+│   ├── libs/                      # Shared computation logic
+│   │   └── tagCloud.ts            # Tag cloud weight computation
 │   ├── views/                     # Route views
 │   │   ├── HomeView.vue
-│   │   ├── TopicView.vue
+│   │   ├── TopicView.vue          # Topic + /all view with filtering
 │   │   ├── ExplorationView.vue
+│   │   ├── TimelineNaviView.vue   # Timeline navigation component
+│   │   ├── TagCloudView.vue       # Tag cloud navigation component
 │   │   └── __tests__/             # Unit tests
 │   └── router/                    # Vue Router config
 ├── docs/                          # Documentation (VitePress)

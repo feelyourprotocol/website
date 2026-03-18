@@ -17,7 +17,7 @@ Feel Your Protocol is a Vue 3 application built with Vite. The core idea is simp
 
 ## Content Model
 
-Content is organized around two concepts:
+Content is organized around three taxonomies:
 
 ### Explorations
 
@@ -25,7 +25,7 @@ The core content unit. Each exploration represents an interactive widget for a p
 
 ```
 src/explorations/eip-7883/
-├── info.ts         # Metadata: id, title, path, topic, introText, poweredBy, …
+├── info.ts         # Metadata: id, title, path, topic, timeline, tags, poweredBy, …
 ├── MyC.vue         # The interactive widget
 └── examples.ts     # Example presets for the widget
 ```
@@ -34,7 +34,41 @@ Each `info.ts` exports a `const INFO` object typed as `Exploration`. The `REGIST
 
 ### Topics
 
-Topics group explorations by theme (e.g. "Fusaka" for an upcoming hardfork). Each exploration belongs to exactly one topic via the `topic` field in its `info.ts`. Topics are defined in `src/explorations/TOPICS.ts`.
+Topics are the high-level strategic pillars that group explorations by theme. Each exploration belongs to exactly one topic via the `topic` field in its `info.ts`. Topics are defined in `src/explorations/TOPICS.ts`.
+
+**Topics are a static, curated set — they are not meant to be added as part of regular contributions.** The current topics are:
+
+| ID | Title | Description |
+|----|-------|-------------|
+| `scaling` | Scaling | Data availability, throughput, and L2 enablement |
+| `privacy` | Privacy | ZK-proofs, homomorphic encryption, private mempools |
+| `ux` | UX | Account abstraction, wallet infrastructure, signature schemes |
+| `security` | Security | Validator incentives, cryptographic agility, MEV mitigations |
+| `robustness` | Robustness | Gas cost accuracy, EVM semantics hardening, spec clarity |
+| `interoperability` | Interoperability | Cross-chain standards, bridge infrastructure, signature scheme support |
+
+When adding an exploration, pick the topic that best reflects the primary concern of the protocol change.
+
+### Timeline
+
+Timeline is a taxonomy that combines two dimensions: how settled an idea is (from early mention to finalized spec) and where it sits relative to mainnet Ethereum (specific hardfork vs. general readiness stage). Each exploration belongs to exactly one timeline entry via the `timeline` field in its `info.ts`. Timeline entries are defined in `src/explorations/TIMELINE.ts`.
+
+Hardfork entries are named after their Ethereum community event city of origin (e.g. "Fusaka" from Osaka, "Glamsterdam" from Amsterdam). The non-hardfork categories (Ready, Research, Ideas) are static. **New hardfork entries can be added as Ethereum's upgrade schedule evolves.**
+
+### Tags
+
+Tags enrich navigation by adding broader Ethereum technical concepts, protocol-relevant areas, or general technology topics from the blockchain space. Each exploration can have up to 3–4 tags. Tags are defined as a TypeScript enum in `src/explorations/TAGS.ts`.
+
+**Tags grow with contributions** — unlike topics and timeline, new tags can be proposed when adding an exploration. They must follow these rules:
+
+| Rule | Example |
+|------|---------|
+| Must be reusable beyond a single exploration | `EVM` ✅ — `EIP-7883` ❌ |
+| Short form preferred | `EVM` ✅ — `Ethereum Virtual Machine` ❌ |
+| No redundancy with existing tags | `Gas Costs` exists → don't add `Gas` |
+| When in doubt, choose the more generic concept | `Gas Costs` ✅ — `Gas Increases` ❌ |
+
+**Format:** Enum keys use CamelCase (`GasCosts`), all-caps for abbreviations (`EVM`). Members must be sorted alphabetically (enforced by lint).
 
 ## E-Components
 
@@ -89,8 +123,8 @@ Each exploration is fully self-contained in its own folder. This means:
 There are no static per-exploration or per-topic view files. Instead:
 
 - **`ExplorationView.vue`** dynamically loads the correct `MyC.vue` using `import.meta.glob()` and `defineAsyncComponent()` based on the route name
-- **`TopicView.vue`** dynamically lists all explorations belonging to a topic
-- **`HomeView.vue`** dynamically renders all topics defined in `TOPICS.ts`
+- **`TopicView.vue`** dynamically lists all explorations belonging to a topic (or all explorations on the `/all` route), with URL query parameter filtering by `timeline` and `tag`
+- **`HomeView.vue`** dynamically renders all active topics, a tag cloud, and a timeline navigation
 
 ### Route-Level Code Splitting
 
