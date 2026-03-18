@@ -45,7 +45,7 @@ for (const topicId of activeTopicIds) {
             basePath="/all"
             class="col-span-3"
           />
-          <TimelineNaviView basePath="/all" class="col-span-2" />
+          <TimelineNaviView basePath="/all" :explorationIds="allExplorationIds" class="col-span-2" />
         </div>
 
         <div class="bg-slate-700 rounded-lg mb-4 p-5 shadow-md">

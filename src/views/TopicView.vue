@@ -25,6 +25,16 @@ const allExplorationIds = isAll ? Object.keys(EXPLORATIONS) : getTopicExploratio
 
 const topicImage = isAll ? undefined : getRandomTopicExplorationImage(topicId)
 
+const activeTagValue = computed(() => {
+  const tagKey = route.query.tag as string | undefined
+  return tagKey ? Tag[tagKey as keyof typeof Tag] : undefined
+})
+
+const tagFilteredIds = computed(() => {
+  if (!activeTagValue.value) return allExplorationIds
+  return allExplorationIds.filter((id) => EXPLORATIONS[id].tags.includes(activeTagValue.value!))
+})
+
 const tagCloudExplorationIds = computed(() => {
   const timeline = route.query.timeline as string | undefined
   if (!timeline) return allExplorationIds
@@ -32,12 +42,10 @@ const tagCloudExplorationIds = computed(() => {
 })
 
 const explorationIds = computed(() => {
-  const tagKey = route.query.tag as string | undefined
-  const tagValue = tagKey ? Tag[tagKey as keyof typeof Tag] : undefined
-
-  const ids = tagCloudExplorationIds.value
-  if (tagValue) {
-    return ids.filter((id) => EXPLORATIONS[id].tags.includes(tagValue))
+  const timeline = route.query.timeline as string | undefined
+  let ids = tagFilteredIds.value
+  if (timeline) {
+    ids = ids.filter((id) => EXPLORATIONS[id].timeline === timeline)
   }
   return ids
 })
@@ -70,7 +78,7 @@ const explorationIds = computed(() => {
             :explorationIds="tagCloudExplorationIds"
             class="col-span-3"
           />
-          <TimelineNaviView class="col-span-2" />
+          <TimelineNaviView :explorationIds="tagFilteredIds" class="col-span-2" />
         </div>
         <TopicIntroView
           v-if="topicImage"

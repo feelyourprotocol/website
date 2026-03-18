@@ -3,10 +3,12 @@ import { computed } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 
 import TooltipUIC from '@/eComponents/ui/TooltipUIC.vue'
+import { EXPLORATIONS } from '@/explorations/REGISTRY'
 import { TIMELINE } from '@/explorations/TIMELINE'
 
 const props = defineProps<{
   basePath?: string
+  explorationIds: string[]
 }>()
 
 const route = useRoute()
@@ -15,6 +17,14 @@ const router = useRouter()
 const sortedEntries = Object.entries(TIMELINE).sort(([, a], [, b]) => a.order - b.order)
 
 const activeTimeline = computed(() => route.query.timeline as string | undefined)
+
+const counts = computed(() => {
+  const map: Record<string, number> = {}
+  for (const [id] of sortedEntries) {
+    map[id] = props.explorationIds.filter((eid) => EXPLORATIONS[eid].timeline === id).length
+  }
+  return map
+})
 
 function navigate(timelineId: string) {
   if (props.basePath) {
@@ -68,6 +78,7 @@ function reset() {
               :class="activeTimeline === id ? 'text-slate-800 font-semibold' : 'text-slate-600'"
               >{{ entry.title }}</span
             >
+            <span class="text-slate-400 text-xs">({{ counts[id] }})</span>
           </button>
           <button
             v-if="!basePath && activeTimeline === id"

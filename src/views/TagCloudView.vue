@@ -44,7 +44,7 @@ function reset() {
         :style="{ fontSize: item.fontSize + 'rem' }"
         @click="navigate(item.key)"
       >
-        {{ item.label }}
+        {{ item.label }} <span class="text-slate-400 text-xs">({{ item.weight }})</span>
       </button>
     </div>
     <div v-if="!basePath && activeTag" class="text-center mt-1">
