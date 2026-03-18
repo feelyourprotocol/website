@@ -13,93 +13,116 @@
       <div
         class="bg-slate-800 text-white bg-clip-border p-6 rounded-xl font-mono text-xs border-l-3 border-purple-500 neon-glow-permanent"
       >
-        <h3 class="font-bold text-lg">CONTRIBUTIONS 👾</h3>
+        <h3 class="font-bold text-lg">ACKNOWLEDGEMENTS ❤️</h3>
 
         <p class="mt-2 text-slate-300">
-          Questions? Ideas? Suggestions?<br />
-          Reach out!
+          This platform is built with the following open source tools:
         </p>
-        <p class="mt-5 text-slate-300">This website is open for contributions on GitHub.</p>
 
-        <h3 class="font-bold text-lg mt-8">ACKNOWLEDGEMENTS ❤️</h3>
-
-        <p class="mt-2 text-slate-300">This site uses the following libraries & tools:</p>
-
-        <h4 class="font-bold text-sm mt-5">Ethereum</h4>
-        <ul class="mt-2 text-slate-300">
-          <li class="m-1">
-            <a
-              href="https://github.com/ethereumjs/ethereumjs-monorepo"
-              target="_blank"
-              rel="noopener"
-              class="underline text-white hover:text-slate-100"
-              >EthereumJS</a
-            >
-          </li>
-          <li class="m-1">
-            <a
-              href="https://paulmillr.com/noble/"
-              target="_blank"
-              rel="noopener"
-              class="underline text-white hover:text-slate-100"
-              >Noble Crypto</a
-            >
-          </li>
-        </ul>
-
-        <h4 class="font-bold text-sm mt-5">Tooling</h4>
-        <ul class="mt-2 text-slate-300">
-          <li class="m-1">
+        <ul class="mt-4 text-slate-300 space-y-1.5">
+          <li>
             <a
               href="https://vuejs.org/"
               target="_blank"
               rel="noopener"
               class="underline text-white hover:text-slate-100"
-              >Vue.js (+ Vitest/Cypress/ESlint)</a
+              >Vue.js</a
             >
+            — UI framework
           </li>
-          <li class="m-1">
+          <li>
+            <a
+              href="https://vite.dev/"
+              target="_blank"
+              rel="noopener"
+              class="underline text-white hover:text-slate-100"
+              >Vite</a
+            >
+            — build tooling
+          </li>
+          <li>
             <a
               href="https://tailwindcss.com/"
               target="_blank"
               rel="noopener"
               class="underline text-white hover:text-slate-100"
-              >Tailwind</a
+              >Tailwind CSS</a
             >
+            — styling
           </li>
-        </ul>
-
-        <h4 class="font-bold text-sm mt-5">Design</h4>
-        <ul class="mt-2 text-slate-300">
-          <li class="m-1">
+          <li>
             <a
-              href="https://www.midjourney.com"
+              href="https://vitepress.dev/"
               target="_blank"
               rel="noopener"
               class="underline text-white hover:text-slate-100"
-              >Midjourney (dancers)</a
+              >VitePress</a
             >
+            — documentation
+          </li>
+          <li>
+            <a
+              href="https://vitest.dev/"
+              target="_blank"
+              rel="noopener"
+              class="underline text-white hover:text-slate-100"
+              >Vitest</a
+            >
+            — unit testing
           </li>
         </ul>
+
+        <p class="mt-6 text-slate-300">
+          Ethereum libraries used by individual explorations are credited inline via the
+          <span class="text-white">⚡</span> icon on each widget.
+        </p>
       </div>
 
       <div class="border-slate-300 border-2 bg-clip-border p-6 rounded-xl text-xs font-mono">
-        <h3 class="font-bold text-lg text-slate-800">CONTACT 👋</h3>
+        <h3 class="font-bold text-lg text-slate-800">ABOUT 👋</h3>
 
-        <p class="mt-5">Holger Drewes</p>
-        <p class="mt-2">
-          Gutenberg Digital Hub coworking<br />
-          Taunusstr. 59-61<br />
-          55118 Mainz
+        <p class="mt-4">
+          Feel Your Protocol is initiated and maintained by Holger Drewes as part of the broader
+          Ethereum open source ecosystem work around the
+          <a
+            href="https://github.com/ethereumjs/ethereumjs-monorepo"
+            target="_blank"
+            rel="noopener"
+            class="underline hover:text-slate-600"
+            >EthereumJS</a
+          >
+          project.
         </p>
-        <p class="mt-4">Contact: Holger.Drewes with Gmail, Twitter or GitHub</p>
+
+        <p class="mt-3">
+          For questions, ideas, or collaboration reach out via
+          <a
+            href="https://x.com/HolgerD77"
+            target="_blank"
+            rel="noopener"
+            class="underline hover:text-slate-600"
+            >X/Twitter</a
+          >,
+          <a
+            href="https://github.com/holgerd77"
+            target="_blank"
+            rel="noopener"
+            class="underline hover:text-slate-600"
+            >GitHub</a
+          >, or Gmail (Holger.Drewes).
+        </p>
+
+        <p class="mt-3 text-slate-400">
+          Gutenberg Digital Hub coworking<br />
+          Taunusstr. 59-61, 55118 Mainz
+        </p>
 
         <div class="mt-10">
           <h3 class="font-bold text-lg text-slate-800">DATA 🐠</h3>
 
           <p class="mt-3">
-            This website is a personal/developer project and does not collect any personal data, use
-            cookies, or employ analytics.
+            This website is an open source community developer platform and does not collect any
+            personal data, use cookies, or employ analytics.
           </p>
         </div>
       </div>
