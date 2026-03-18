@@ -42,6 +42,8 @@ export const INFO: Exploration = {
   topic: 'scaling',
   timeline: 'fusaka',
   tags: [Tag.EVM, Tag.GasCosts],
+  creatorName: 'YourName',
+  creatorURL: 'https://x.com/YourHandle',
   introText:
     '<b>What does this change?</b> ' +
     'A brief introduction to the protocol change.',
@@ -67,6 +69,8 @@ export const INFO: Exploration = {
 | `image` | No | Imported image for topic overview display |
 | `introText` | No | HTML-formatted introduction paragraph |
 | `usageText` | No | HTML-formatted usage instructions |
+| `creatorName` | No | Display name of the exploration's creator |
+| `creatorURL` | No | URL to the creator's profile (X/Twitter, GitHub, etc.) |
 | `poweredBy` | Yes | Array of `{ name, href }` for library credits |
 
 ## Step 3: Create `examples.ts`
@@ -74,7 +78,7 @@ export const INFO: Exploration = {
 Define example presets that users can select from a dropdown:
 
 ```typescript
-import type { Examples } from '@/components/lib/general'
+import type { Examples } from '@/explorations/REGISTRY'
 
 export const examples: Examples = {
   basic: {
@@ -141,7 +145,7 @@ await init()
         <ExamplesUIC v-model="example" :examples="examples" :change="selectExample" />
         <HexDataInputUIC v-model="data" rows="6" :formChange="onDataInputFormChange" />
         <!-- Your result display here -->
-        <PoweredByC :poweredBy="exploration.poweredBy" :topic="topic" />
+        <PoweredByC :poweredBy="exploration.poweredBy" :creatorName="exploration.creatorName" :creatorURL="exploration.creatorURL" />
       </div>
     </template>
   </ExplorationC>

@@ -112,6 +112,7 @@ The ESLint config (`eslint.config.ts`) includes:
 - Import sorting (`eslint-plugin-simple-import-sort`)
 - Vitest rules for test files
 - Cypress rules for E2E files
+- Custom `sorted-enum-members` rule for `TAGS.ts` (enforces alphabetical enum ordering)
 
 ## Testing
 
