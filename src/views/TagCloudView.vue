@@ -48,10 +48,7 @@ function reset() {
       </button>
     </div>
     <div v-if="!basePath && activeTag" class="text-center mt-1">
-      <button
-        class="text-xs text-slate-400 hover:text-slate-600 cursor-pointer"
-        @click="reset"
-      >
+      <button class="text-xs text-slate-400 hover:text-slate-600 cursor-pointer" @click="reset">
         ✕ clear tag
       </button>
     </div>
