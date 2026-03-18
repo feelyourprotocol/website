@@ -4,7 +4,7 @@ Interactive Ethereum protocol explorer — hands on.
 
 Explore, visualize and understand Ethereum protocol changes (EIPs) by interacting with real library code running directly in the browser.
 
-> **Note:** This project is under active development. Contributions and feedback are very welcome!
+> **Status: Beta** — The project is fully functional, but the APIs of reusable components (E-Components, UI components) have not fully stabilized yet. Contributions are very welcome — expect some manual back-and-forth during review until the component interfaces settle.
 
 ## Quick Start
 

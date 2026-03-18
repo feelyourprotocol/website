@@ -27,6 +27,6 @@ features:
     details: Designed for community contributions. A modular folder-per-exploration structure and shared components make it straightforward to add new explorations.
 ---
 
-::: tip Want to contribute?
-The fastest way to get started is to [add a new exploration](/contributing/adding-an-exploration). Each one lives in a single folder with just two files — metadata and your interactive widget.
+::: warning Beta — Contributions Welcome!
+This project is in **beta**. Everything works, but the APIs of reusable components (E-Components, shared UI) are still evolving. That means contributions may require some manual coordination during review until the interfaces fully stabilize — we are happy to guide you through! The fastest way to get started is to [add a new exploration](/contributing/adding-an-exploration).
 :::
