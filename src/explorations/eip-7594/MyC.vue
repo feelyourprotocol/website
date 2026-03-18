@@ -102,23 +102,25 @@ await init()
             :info-text="!hasResult && errorMsg === '' ? 'Press button to compute...' : undefined"
           >
             <table v-if="hasResult" class="e-result-text-sm">
-              <tr>
-                <td class="p-3">Commitment</td>
-                <td class="p-3 break-all">{{ commitment }}</td>
-              </tr>
-              <tr>
-                <td class="p-3">Versioned Hash</td>
-                <td class="p-3 break-all">
-                  {{ versionedHash }}
-                  (<a :href="`https://blobscan.com/blob/${versionedHash}`" target="_blank"
-                    >Blobscan</a
-                  >)
-                </td>
-              </tr>
-              <tr>
-                <td class="p-3">Blob Length</td>
-                <td class="p-3 break-all">{{ data.length }}</td>
-              </tr>
+              <tbody>
+                <tr>
+                  <td class="p-3">Commitment</td>
+                  <td class="p-3 break-all">{{ commitment }}</td>
+                </tr>
+                <tr>
+                  <td class="p-3">Versioned Hash</td>
+                  <td class="p-3 break-all">
+                    {{ versionedHash }}
+                    (<a :href="`https://blobscan.com/blob/${versionedHash}`" target="_blank"
+                      >Blobscan</a
+                    >)
+                  </td>
+                </tr>
+                <tr>
+                  <td class="p-3">Blob Length</td>
+                  <td class="p-3 break-all">{{ data.length }}</td>
+                </tr>
+              </tbody>
             </table>
           </ResultBoxUIC>
         </div>
