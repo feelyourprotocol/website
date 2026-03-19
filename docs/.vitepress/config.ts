@@ -24,6 +24,7 @@ export default defineConfig({
           { text: 'How to Contribute', link: '/contributing/how-to-contribute' },
           { text: 'AI-Assisted Development', link: '/contributing/ai-assisted-development' },
           { text: 'Adding an Exploration', link: '/contributing/adding-an-exploration' },
+          { text: 'Images', link: '/contributing/images' },
           { text: 'UI Components', link: '/contributing/ui-components' },
           { text: 'E-Components', link: '/contributing/e-components' },
           { text: 'Available E-Components', link: '/contributing/available-e-components' },

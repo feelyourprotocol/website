@@ -66,7 +66,7 @@ export const INFO: Exploration = {
 | `topic` | Yes | Topic ID this exploration belongs to. Must be one of the fixed set: `scaling`, `privacy`, `ux`, `security`, `robustness`, `interoperability`. Topics are static and not added via contributions — see [Architecture](/guide/architecture#topics) for the full list. |
 | `timeline` | Yes | Timeline ID for this exploration (e.g. `fusaka`, `glamsterdam`, `ready`, `research`, `ideas`). See [Architecture](/guide/architecture) for details. |
 | `tags` | Yes | Array of `Tag` enum values (max 3–4). Tags are broader technical concepts that must be reusable across explorations. New tags can be proposed — see [Architecture](/guide/architecture#tags) for rules and the current list. |
-| `image` | No | Imported image for topic overview display |
+| `image` | No | Imported image for topic overview display — see [Images](/contributing/images) for format, palette, and style guidance |
 | `introText` | No | HTML-formatted introduction paragraph |
 | `usageText` | No | HTML-formatted usage instructions |
 | `creatorName` | No | Display name of the exploration's creator |
