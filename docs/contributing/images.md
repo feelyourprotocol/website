@@ -211,20 +211,28 @@ shades of red (hex range: #fef2f2 to #7f1d1d)
 
 ## Drawing Style
 
-The visual style should lean towards **technical illustration** rather than photorealistic rendering or cartoons. Think along these lines:
+The visual style should lean towards **abstract technical illustration** rather than photorealistic rendering or cartoons. Think along these lines:
 
 - **Architectural blueprints** — clean lines, measured precision, schematic layouts
 - **Industrial design sketches** — product concepts, exploded views, annotated diagrams
 - **Pen-and-ink drafting** — crosshatching, fine linework, hand-drawn texture
 - **Etching / engraving** — dense parallel lines, high contrast, vintage technical feel
 
-The image should feel like it belongs on a workbench or in an engineer's notebook — detailed, purposeful, slightly raw.
+### Composition Rules
+
+- **One focal point.** The image should concentrate on a single action, detail, or movement at its center. Avoid busy scenes with many competing elements — abstract and reduce.
+- **White margins.** The subject should naturally fade or dissolve towards the edges so that generous white space surrounds it. The image borders should be purely white.
+- **No lettering.** No text, labels, captions, or watermarks anywhere in the image.
+
+### Color Separation
+
+Keep greyscale tones and topic color tones clearly separate. Elements should be either drawn in black/grey/white *or* rendered in topic color shades — avoid muddying the two together. Within the allowed color palette, be **bold and vivid**: use the full range from light tints to deep shades for visual punch.
 
 ## Theming
 
 ### Ethereum Association
 
-The image should evoke a connection to Ethereum, its ecosystem, or decentralized technology. This can be subtle (geometric patterns reminiscent of blockchain structure) or direct (stylized network nodes, crystal/diamond shapes).
+The image should evoke a **subtle** connection to Ethereum, its ecosystem, or decentralized technology — think geometric patterns reminiscent of blockchain structure, faint diamond shapes woven into the composition, or network-like line patterns. Avoid prominent Ethereum logos or brand marks; the association should feel organic, not stamped on.
 
 ### Mood & Aesthetic
 
@@ -274,32 +282,51 @@ Most images will be generated with AI tools (ChatGPT/DALL-E, Midjourney, Stable 
 Use this when you have a specific visual idea for your exploration. Replace the placeholders:
 
 ```text
-Create a portrait-format illustration in the style of an architectural blueprint
-or industrial design sketch. Use only greyscale tones (black, white, greys) and
-shades of [TOPIC COLOR] (hex range: [LIGHTEST HEX] to [DARKEST HEX]) — no other
-colors.
+Create a portrait-format (3:4) abstract illustration in the style of an
+architectural blueprint or industrial design sketch.
 
 Subject: [YOUR SUBJECT DESCRIPTION — e.g. "a lattice-based cryptographic
-shield protecting a stylized Ethereum diamond"]
+shield emerging from intersecting geometric planes"]
 
-Style references: pen-and-ink drafting, technical etching, crosshatching.
-The image should evoke Ethereum and decentralized technology. Mood:
-cypherpunk / futurist. No text, no watermarks. Clean background.
+Style and composition:
+- Abstract, reduced — focus on ONE central action, detail, or movement
+- Pen-and-ink drafting, technical etching, crosshatching
+- The subject fades naturally into generous white margins at all edges
+- Very subtle Ethereum association (faint geometric patterns, not logos)
+- Cypherpunk / futurist mood
+- No text, no lettering, no watermarks
+
+Colors — strict:
+- Greyscale tones (black, white, greys) AND [TOPIC COLOR]
+  (hex range: [LIGHTEST HEX] to [DARKEST HEX]). No other hues.
+- Use the color palette boldly and vividly across the full shade range
+- Keep greyscale and color clearly separated — elements are either
+  drawn in black/grey OR rendered in color, not mixed together
 ```
 
 **Example** (for an exploration in the **Scaling / Orange** topic):
 
 ```text
-Create a portrait-format illustration in the style of an architectural blueprint
-or industrial design sketch. Use only greyscale tones (black, white, greys) and
-shades of orange (hex range: #fff7ed to #7c2d12) — no other colors.
+Create a portrait-format (3:4) abstract illustration in the style of an
+architectural blueprint or industrial design sketch.
 
-Subject: a distributed mesh network expanding outward from a central beacon node,
-with data shards flowing between peers in concentric rings.
+Subject: a distributed mesh network expanding outward from a central beacon
+node, with data shards flowing between peers in concentric rings.
 
-Style references: pen-and-ink drafting, technical etching, crosshatching.
-The image should evoke Ethereum and decentralized technology. Mood:
-cypherpunk / futurist. No text, no watermarks. Clean background.
+Style and composition:
+- Abstract, reduced — focus on ONE central action, detail, or movement
+- Pen-and-ink drafting, technical etching, crosshatching
+- The subject fades naturally into generous white margins at all edges
+- Very subtle Ethereum association (faint geometric patterns, not logos)
+- Cypherpunk / futurist mood
+- No text, no lettering, no watermarks
+
+Colors — strict:
+- Greyscale tones (black, white, greys) AND shades of orange
+  (hex range: #fff7ed to #7c2d12). No other hues.
+- Use the color palette boldly and vividly across the full shade range
+- Keep greyscale and color clearly separated — elements are either
+  drawn in black/grey OR rendered in color, not mixed together
 ```
 
 ### Template B — Fully AI-Derived
@@ -312,19 +339,25 @@ I'm creating a cover image for an interactive exploration of [EIP TITLE]
 
 The EIP in one sentence: [ONE-SENTENCE SUMMARY OF THE EIP]
 
-Create a portrait-format illustration that visually represents this protocol
-change. Choose an evocative subject — it can represent the goal, the internal
-architecture, or the process flow of the change.
+Create a portrait-format (3:4) abstract illustration that visually represents
+this protocol change. Choose an evocative subject — it can represent the goal,
+the internal architecture, or the process flow of the change.
 
-Constraints:
-- Style: architectural blueprint / industrial design sketch / pen-and-ink etching
-- Colors: ONLY greyscale (black, white, greys) plus shades of [TOPIC COLOR]
+Style and composition:
+- Abstract, reduced — concentrate on ONE central action, detail, or movement
+- Architectural blueprint / industrial design sketch / pen-and-ink etching
+- The subject fades naturally into generous white margins at all edges
+- Very subtle Ethereum association (faint geometric patterns woven into the
+  composition — no prominent logos or brand marks)
+- Cypherpunk / futurist mood
+- No text, no lettering, no watermarks
+
+Colors — strict:
+- Greyscale tones (black, white, greys) AND [TOPIC COLOR]
   (hex range: [LIGHTEST HEX] to [DARKEST HEX]). No other hues.
-- Mood: technical, intentional, cypherpunk or futurist undertones
-- Subtle Ethereum association (geometric patterns, crystal/diamond shapes,
-  network nodes — keep it tasteful)
-- No text, no watermarks, clean background
-- Portrait orientation (3:4 aspect ratio)
+- Use the color palette boldly and vividly across the full shade range
+- Keep greyscale and color clearly separated — elements are either
+  drawn in black/grey OR rendered in color, not mixed together
 ```
 
 **Example** (for EIP-7883, **Robustness / Purple** topic):
@@ -336,19 +369,25 @@ Increase" (EIP-7883) on an Ethereum protocol education site.
 The EIP in one sentence: EIP-7883 recalibrates the gas cost formula for the
 ModExp precompile to better reflect actual computation costs on modern hardware.
 
-Create a portrait-format illustration that visually represents this protocol
-change. Choose an evocative subject — it can represent the goal, the internal
-architecture, or the process flow of the change.
+Create a portrait-format (3:4) abstract illustration that visually represents
+this protocol change. Choose an evocative subject — it can represent the goal,
+the internal architecture, or the process flow of the change.
 
-Constraints:
-- Style: architectural blueprint / industrial design sketch / pen-and-ink etching
-- Colors: ONLY greyscale (black, white, greys) plus shades of purple
+Style and composition:
+- Abstract, reduced — concentrate on ONE central action, detail, or movement
+- Architectural blueprint / industrial design sketch / pen-and-ink etching
+- The subject fades naturally into generous white margins at all edges
+- Very subtle Ethereum association (faint geometric patterns woven into the
+  composition — no prominent logos or brand marks)
+- Cypherpunk / futurist mood
+- No text, no lettering, no watermarks
+
+Colors — strict:
+- Greyscale tones (black, white, greys) AND shades of purple
   (hex range: #faf5ff to #581c87). No other hues.
-- Mood: technical, intentional, cypherpunk or futurist undertones
-- Subtle Ethereum association (geometric patterns, crystal/diamond shapes,
-  network nodes — keep it tasteful)
-- No text, no watermarks, clean background
-- Portrait orientation (3:4 aspect ratio)
+- Use the color palette boldly and vividly across the full shade range
+- Keep greyscale and color clearly separated — elements are either
+  drawn in black/grey OR rendered in color, not mixed together
 ```
 
 ## Quick Reference
@@ -359,7 +398,9 @@ Constraints:
 | Orientation | Portrait (3:4) |
 | Resolution | 768×1024 recommended; min 512px short side, max 1536px long side |
 | File size | < 200 KB (WebP) or < 400 KB (PNG/JPEG) |
-| Colors | Greyscale + topic color shades only |
+| Colors | Greyscale + topic color shades only; keep the two clearly separated |
+| Composition | Abstract, one focal point, generous white margins at edges |
 | Style | Technical illustration — blueprints, sketches, etching |
-| Theme | Ethereum association; cypherpunk / futurist mood optional |
+| Theme | Subtle Ethereum association; cypherpunk / futurist mood optional |
+| Lettering | None — no text, labels, or watermarks |
 | File location | `src/explorations/<id>/image.webp` |
