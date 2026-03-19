@@ -234,7 +234,7 @@ npm install some-library
 
 Import libraries only in your `MyC.vue` — never in shared code. This keeps each exploration's dependencies isolated via Vite's code splitting.
 
-If you need a custom library fork (e.g. with experimental features), see [Library Forks](/contributing/library-forks).
+If you need a library that isn't in `package.json` yet, or need a customized version, see [Third-Party Libraries](/contributing/third-party-libraries).
 
 ## Step 7: Add Tests
 

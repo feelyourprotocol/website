@@ -30,7 +30,7 @@ export default defineConfig({
           { text: 'Available E-Components', link: '/contributing/available-e-components' },
           { text: 'Styling & Design', link: '/contributing/styling' },
           { text: 'Code Conventions', link: '/contributing/code-conventions' },
-          { text: 'Library Forks', link: '/contributing/library-forks' },
+          { text: 'Third-Party Libraries', link: '/contributing/third-party-libraries' },
         ],
       },
     ],

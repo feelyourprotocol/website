@@ -1,0 +1,51 @@
+name: "\U0001F41B Bug Report"
+description: Report a bug on the website or in the framework.
+title: "[Bug] "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for reporting a bug. Please provide enough detail so we can reproduce and fix it.
+
+  - type: input
+    id: url
+    attributes:
+      label: Page URL
+      description: The URL where you encountered the bug (if applicable).
+      placeholder: "https://feelyourprotocol.org/eip-7883-modexp-gas-cost-increase"
+
+  - type: textarea
+    id: description
+    attributes:
+      label: What happened?
+      description: Describe the bug and what you expected to happen instead.
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      description: Numbered steps to trigger the bug.
+      placeholder: |
+        1. Go to …
+        2. Click on …
+        3. See error …
+
+  - type: dropdown
+    id: browser
+    attributes:
+      label: Browser
+      options:
+        - Chrome
+        - Firefox
+        - Safari
+        - Edge
+        - Other
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional context
+      description: Screenshots, console errors, or anything else that helps.
