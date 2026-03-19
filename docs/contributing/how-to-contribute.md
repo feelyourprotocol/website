@@ -29,7 +29,11 @@ npm run docs:dev
 
 ### Report Issues
 
-Found a bug or have a suggestion? [Open an issue](https://github.com/feelyourprotocol/website/issues) on GitHub.
+Found a bug or have a suggestion? [Open an issue](https://github.com/feelyourprotocol/website/issues) on GitHub. Our issue templates will guide you through the relevant details.
+
+::: tip Open an issue early
+For new explorations, especially those that need library additions or custom forks, it's a good idea to **open an issue before you start coding**. This lets us align on taxonomy placement, library setup, and scope — and avoids surprises during review.
+:::
 
 ## Development Workflow
 
@@ -86,4 +90,4 @@ npm run test:e2e     # E2E tests
 - [Adding an Exploration](/contributing/adding-an-exploration) — step-by-step guide
 - [Using E-Components](/contributing/e-components) — reusable Ethereum-specific components
 - [Code Conventions](/contributing/code-conventions) — imports, naming, linting, testing
-- [Library Forks](/contributing/library-forks) — when you need a custom library build
+- [Third-Party Libraries](/contributing/third-party-libraries) — using, adding, and forking libraries

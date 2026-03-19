@@ -1,0 +1,25 @@
+name: "\U0001F4AC General / Question"
+description: Ask a question, suggest an improvement, or discuss an idea.
+title: "[Discussion] "
+labels: ["discussion"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this template for questions, feature ideas, or anything that doesn't fit the other templates.
+
+        **Docs:** [How to Contribute](https://docs.feelyourprotocol.org/contributing/how-to-contribute) · [Architecture](https://docs.feelyourprotocol.org/guide/architecture)
+
+  - type: textarea
+    id: description
+    attributes:
+      label: What's on your mind?
+      description: Describe your question, idea, or suggestion.
+    validations:
+      required: true
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional context
+      description: Links, screenshots, or references that help explain.

@@ -1,0 +1,54 @@
+name: "\U0001F4E6 Library Request"
+description: Request adding a new dependency or setting up a managed fork.
+title: "[Library] "
+labels: ["library"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this template to request a new third-party dependency or a managed fork branch.
+
+        **Docs:** [Third-Party Libraries](https://docs.feelyourprotocol.org/contributing/third-party-libraries)
+
+  - type: dropdown
+    id: type
+    attributes:
+      label: Request type
+      options:
+        - "Add a new npm dependency"
+        - "Create a managed fork branch"
+        - "Other / not sure"
+    validations:
+      required: true
+
+  - type: input
+    id: library
+    attributes:
+      label: Library name & URL
+      description: Name of the npm package and link to its repository.
+      placeholder: "e.g. @noble/curves — https://github.com/paulmillr/noble-curves"
+    validations:
+      required: true
+
+  - type: input
+    id: exploration
+    attributes:
+      label: Related exploration
+      description: Which exploration will use this library?
+      placeholder: "e.g. eip-7951 (secp256r1)"
+
+  - type: textarea
+    id: description
+    attributes:
+      label: What do you need?
+      description: |
+        For new dependencies: why is this library needed and can it be used unmodified?
+        For managed forks: what modifications are required and on which branch?
+    validations:
+      required: true
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional context
+      description: Links to your fork branch, related issues, or anything else.

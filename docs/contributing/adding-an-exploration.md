@@ -66,7 +66,7 @@ export const INFO: Exploration = {
 | `topic` | Yes | Topic ID this exploration belongs to. Must be one of the fixed set: `scaling`, `privacy`, `ux`, `security`, `robustness`, `interoperability`. Topics are static and not added via contributions — see [Architecture](/guide/architecture#topics) for the full list. |
 | `timeline` | Yes | Timeline ID for this exploration (e.g. `fusaka`, `glamsterdam`, `ready`, `research`, `ideas`). See [Architecture](/guide/architecture) for details. |
 | `tags` | Yes | Array of `Tag` enum values (max 3–4). Tags are broader technical concepts that must be reusable across explorations. New tags can be proposed — see [Architecture](/guide/architecture#tags) for rules and the current list. |
-| `image` | No | Imported image for topic overview display |
+| `image` | No | Imported image for topic overview display — see [Images](/contributing/images) for format, palette, and style guidance |
 | `introText` | No | HTML-formatted introduction paragraph |
 | `usageText` | No | HTML-formatted usage instructions |
 | `creatorName` | No | Display name of the exploration's creator |
@@ -234,7 +234,7 @@ npm install some-library
 
 Import libraries only in your `MyC.vue` — never in shared code. This keeps each exploration's dependencies isolated via Vite's code splitting.
 
-If you need a custom library fork (e.g. with experimental features), see [Library Forks](/contributing/library-forks).
+If you need a library that isn't in `package.json` yet, or need a customized version, see [Third-Party Libraries](/contributing/third-party-libraries).
 
 ## Step 7: Add Tests
 
