@@ -19,14 +19,6 @@ npm run dev
 
 Full documentation is available at **[docs.feelyourprotocol.org](https://docs.feelyourprotocol.org)**.
 
-This includes guides on [architecture](https://docs.feelyourprotocol.org/guide/architecture), [adding new EIPs](https://docs.feelyourprotocol.org/contributing/adding-an-eip), [library forks](https://docs.feelyourprotocol.org/guide/library-forks) and [how to contribute](https://docs.feelyourprotocol.org/contributing/how-to-contribute).
-
-To preview the docs locally:
-
-```bash
-npm run docs:dev
-```
-
 ## License
 
 [MIT](LICENSE)
