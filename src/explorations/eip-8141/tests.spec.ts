@@ -1,5 +1,7 @@
 import { describe, expect, it } from 'vitest'
 
+import { isValidExplorationDate } from '@/libs/dates'
+
 import { INFO } from './info'
 
 describe('EIP-8141 Exploration', () => {
@@ -10,6 +12,10 @@ describe('EIP-8141 Exploration', () => {
       expect(INFO.topic).toBe('ux')
       expect(INFO.timeline).toBe('research')
       expect(INFO.poweredBy.length).toBeGreaterThan(0)
+    })
+
+    it('has a valid added date', () => {
+      expect(isValidExplorationDate(INFO.added)).toBe(true)
     })
 
     it('has required text fields', () => {

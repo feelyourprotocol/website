@@ -11,6 +11,7 @@ export const INFO: Exploration = {
   topic: 'scaling',
   timeline: 'fusaka',
   tags: [Tag.PeerDAS],
+  added: '2025-12-08 11:40',
   image,
   introText:
     '<b>How do blob transactions change with PeerDAS?</b> ' +

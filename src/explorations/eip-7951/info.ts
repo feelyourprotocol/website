@@ -11,6 +11,7 @@ export const INFO: Exploration = {
   topic: 'ux',
   timeline: 'fusaka',
   tags: [Tag.Precompiles, Tag.Signatures],
+  added: '2025-11-10 15:08',
   image,
   introText:
     '<b>How can I interact with the new curve precompile?</b> The ' +

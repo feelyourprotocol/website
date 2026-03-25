@@ -31,6 +31,8 @@ export interface Exploration {
   topic: string
   timeline: string
   tags: Tag[]
+  /** Date when the exploration was added, format: "YYYY-MM-DD HH:mm" (UTC). */
+  added: string
   image?: string
   introText: string
   usageText: string

@@ -2,6 +2,7 @@
 import ExplorationC from '@/explorations/ExplorationC.vue'
 import { EXPLORATIONS, getRandomTopicExplorationImage } from '@/explorations/REGISTRY'
 import { TOPICS } from '@/explorations/TOPICS'
+import { latestExplorationIds } from '@/libs/dates'
 
 import TagCloudView from './TagCloudView.vue'
 import TimelineNaviView from './TimelineNaviView.vue'
@@ -9,7 +10,7 @@ import TopicIntroView from './TopicIntroView.vue'
 
 const allExplorationIds = Object.keys(EXPLORATIONS)
 
-const featured = ['eip-7883', 'eip-7594', 'eip-7951']
+const featured = latestExplorationIds(3)
 
 const activeTopicIds = Object.keys(TOPICS).filter((id) => TOPICS[id].explorations.length > 0)
 

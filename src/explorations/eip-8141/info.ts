@@ -11,6 +11,7 @@ export const INFO: Exploration = {
   topic: 'ux',
   timeline: 'research',
   tags: [Tag.AccountAbstraction, Tag.PostQuantum],
+  added: '2026-03-24 13:20',
   image,
   introText:
     '<b>What are Frame Transactions and why do they matter?</b> ' +

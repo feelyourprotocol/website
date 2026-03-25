@@ -5,6 +5,7 @@ import { mount, RouterLinkStub } from '@vue/test-utils'
 import { EXPLORATIONS } from '@/explorations/REGISTRY'
 import { Tag } from '@/explorations/TAGS'
 import { TOPICS } from '@/explorations/TOPICS'
+import { latestExplorationIds } from '@/libs/dates'
 
 import HomeView from '../HomeView.vue'
 
@@ -91,7 +92,7 @@ describe('HomeView', () => {
   })
 
   describe('Featured explorations', () => {
-    const featured = ['eip-7883', 'eip-7594', 'eip-7951']
+    const featured = latestExplorationIds(3)
 
     it('shows "Latest" label', () => {
       expect(wrapper.text()).toContain('Latest')
