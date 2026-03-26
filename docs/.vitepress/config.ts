@@ -31,6 +31,7 @@ export default defineConfig({
           { text: 'Styling & Design', link: '/contributing/styling' },
           { text: 'Code Conventions', link: '/contributing/code-conventions' },
           { text: 'Third-Party Libraries', link: '/contributing/third-party-libraries' },
+          { text: 'Maintained Library Forks', link: '/contributing/library-forks' },
         ],
       },
     ],
