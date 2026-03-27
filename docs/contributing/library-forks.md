@@ -159,3 +159,27 @@ console.log(`Gas spent: ${result.totalGasSpent}`)
 ```
 
 For complete working examples, see the [`packages/vm/examples/eip8141-frame-txs/`](https://github.com/feelyourprotocol/ethereumjs-monorepo/tree/eip-8141-frame-transactions/packages/vm/examples/eip8141-frame-txs) directory in the fork.
+
+#### Local Development (FYP_LOCAL Mode)
+
+During active development on the EIP-8141 implementation, you can skip the npm publish cycle entirely and bind the website directly to the monorepo fork's TypeScript source. Vite compiles the source on the fly — edits to the monorepo are picked up instantly by the dev server and test runner.
+
+**Enable:**
+
+```sh
+echo "VITE_FYP_LOCAL=true" > .env.local
+```
+
+**Disable:**
+
+```sh
+rm .env.local
+```
+
+When active, all `@fyp-8141/*` imports and their internal `@feelyourprotocol/*` cross-package imports are resolved via Vite aliases to the monorepo source at `../../ethereumjs-monorepo-fyp/packages/<pkg>/src`. This covers the full transitive dependency chain: `common`, `rlp`, `tx`, `util`, `vm`, `evm`, `block`, `statemanager`, `mpt`, and `binarytree`.
+
+The configuration lives in `vite.config.ts` and is inherited by Vitest automatically. The `.env.local` file is gitignored (`*.local`), so this stays a local-only setting.
+
+::: warning Monorepo layout assumption
+FYP_LOCAL mode assumes the monorepo fork is checked out at `../../ethereumjs-monorepo-fyp` relative to the website directory (i.e. both repos live under the same parent). If your checkout is elsewhere, adjust the path in the `getFypLocalAliases()` function in `vite.config.ts`.
+:::
