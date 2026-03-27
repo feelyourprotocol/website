@@ -20,9 +20,10 @@ export const INFO: Exploration = {
     'door to post-quantum secure authentication, native account abstraction, and user-defined ' +
     'verification logic — all at the protocol level.',
   usageText:
-    'This exploration is under active development. It will provide an interactive transaction ' +
-    'composer letting you assemble frame transactions, inspect state transitions, and run them ' +
-    'against demo accounts — powered by real EVM execution in the browser.',
+    'Select an example from the dropdown to load a frame transaction. Inspect each frame, ' +
+    'edit data fields where available, then press <b>Execute</b> to run the transaction. ' +
+    'Use the <b>Next Frame</b> button to step through the execution and observe per-frame ' +
+    'results and state changes — all powered by real EVM execution in the browser.',
   creatorName: 'HolgerD77',
   creatorURL: 'https://x.com/HolgerD77',
   poweredBy: [{ name: 'EthereumJS', href: 'https://github.com/ethereumjs/ethereumjs-monorepo' }],

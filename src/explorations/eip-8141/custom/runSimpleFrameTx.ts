@@ -9,7 +9,7 @@
 
 import { Common, Hardfork, Mainnet } from '@fyp-8141/common'
 import { RLP } from '@fyp-8141/rlp'
-import { createFrameEIP8141Tx,type FrameEIP8141TxData } from '@fyp-8141/tx'
+import { createFrameEIP8141Tx, type FrameEIP8141TxData } from '@fyp-8141/tx'
 import {
   Account,
   Address,
@@ -18,12 +18,14 @@ import {
   bytesToHex,
   concatBytes,
   hexToBytes,
-  privateToPublic,
-  publicToAddress,
 } from '@fyp-8141/util'
 import { createVM, runTx } from '@fyp-8141/vm'
 import { secp256k1 } from '@noble/curves/secp256k1.js'
 import { keccak_256 } from '@noble/hashes/sha3.js'
+
+import { PRIVATE_KEY, SENDER_ADDR } from './constants'
+
+export { PRIVATE_KEY, SENDER_ADDR } from './constants'
 
 export interface FrameTxResult {
   sender: string
@@ -39,10 +41,6 @@ export interface FrameTxResult {
   senderNonceAfter: bigint
   recipientBalance: bigint
 }
-
-export const PRIVATE_KEY = hexToBytes(('0x' + 'ab'.repeat(32)) as `0x${string}`)
-export const PUBLIC_KEY = privateToPublic(PRIVATE_KEY)
-export const SENDER_ADDR = new Address(publicToAddress(PUBLIC_KEY))
 
 export function buildVerifyData(
   scope: number,
