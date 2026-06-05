@@ -1,0 +1,44 @@
+@import 'tailwindcss';
+
+/* Shared JetBrains Mono from the main site */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('../../src/assets/fonts/JetBrainsMono-Regular.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('../../src/assets/fonts/JetBrainsMono-Bold.woff2') format('woff2');
+}
+
+@theme {
+  --font-mono:
+    'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono',
+    'Courier New', monospace;
+}
+
+/* Community-token palette: familiar FYP sparks, slightly more document-like */
+.ct-page {
+  min-height: 100vh;
+  background-color: #f8fafc;
+  background-image: radial-gradient(circle, #cbd5e1 0.5px, transparent 0.5px);
+  background-size: 24px 24px;
+}
+
+.ct-gradient-text {
+  @apply bg-gradient-to-r from-purple-600 to-cyan-500 bg-clip-text text-transparent;
+}
+
+.ct-card {
+  @apply rounded-xl border border-slate-200 bg-white/90 backdrop-blur-sm shadow-sm;
+}
+
+.ct-section-anchor {
+  scroll-margin-top: 5.5rem;
+}
