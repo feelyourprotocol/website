@@ -3,6 +3,7 @@ import { Tab, TabGroup, TabList, TabPanel, TabPanels } from '@headlessui/vue'
 import { ref } from 'vue'
 
 import type { GuidelineTab } from '@ct/content/topics'
+import { HOW_IT_WORKS } from '@ct/content/topics'
 
 defineProps<{
   tabs: GuidelineTab[]
@@ -12,12 +13,12 @@ const selectedIndex = ref(0)
 </script>
 
 <template>
-  <section id="guidelines" class="ct-section-anchor ct-card flex min-h-80 flex-col overflow-hidden">
+  <section id="how-it-works" class="ct-section-anchor ct-card flex min-h-64 flex-col overflow-hidden">
     <div class="border-b border-slate-100 px-4 py-3 md:px-5">
       <h2 class="font-mono text-sm font-bold uppercase tracking-[0.15em] text-slate-600">
-        Guidelines
+        {{ HOW_IT_WORKS.title }}
       </h2>
-      <p class="mt-0.5 text-xs text-slate-500">Tap a topic — one screen, no scrolling required.</p>
+      <p class="mt-0.5 text-xs text-slate-500">{{ HOW_IT_WORKS.subtitle }}</p>
     </div>
 
     <TabGroup v-model="selectedIndex" as="div" class="flex min-h-0 flex-1 flex-col">
@@ -61,6 +62,10 @@ const selectedIndex = ref(0)
             </span>
           </div>
 
+          <p v-if="tab.intro" class="mt-2 text-sm leading-relaxed text-slate-600">
+            {{ tab.intro }}
+          </p>
+
           <ul class="mt-3 space-y-2.5 text-sm leading-relaxed text-slate-600">
             <li v-for="(bullet, index) in tab.bullets" :key="index" class="flex gap-2.5">
               <span class="mt-2 size-1.5 shrink-0 rounded-full bg-purple-400" aria-hidden="true" />
@@ -70,5 +75,11 @@ const selectedIndex = ref(0)
         </TabPanel>
       </TabPanels>
     </TabGroup>
+
+    <p
+      class="border-t border-slate-100 px-4 py-2.5 font-mono text-[0.65rem] leading-relaxed text-slate-400 md:px-5"
+    >
+      {{ HOW_IT_WORKS.footnote }}
+    </p>
   </section>
 </template>

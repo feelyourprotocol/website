@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import FundCommitment from '@ct/components/FundCommitment.vue'
 import GuidelinesTabs from '@ct/components/GuidelinesTabs.vue'
 import SiteFooter from '@ct/components/SiteFooter.vue'
 import SiteHeader from '@ct/components/SiteHeader.vue'
@@ -12,7 +13,7 @@ import { GUIDELINE_TABS, INTRO } from '@ct/content/topics'
     <SiteHeader />
 
     <main class="mt-5 flex flex-1 flex-col">
-      <div class="grid flex-1 gap-5 lg:grid-cols-2 lg:items-stretch">
+      <div class="grid flex-1 gap-5 lg:grid-cols-2 lg:items-start">
         <!-- Left: intro + reference info -->
         <div class="flex flex-col gap-4">
           <section class="ct-card p-5 md:p-6">
@@ -34,11 +35,14 @@ import { GUIDELINE_TABS, INTRO } from '@ct/content/topics'
 
           <TokenInfoCard />
 
-          <VisualPlaceholder class="hidden lg:flex lg:flex-1" />
+          <VisualPlaceholder class="hidden lg:flex lg:min-h-32 lg:flex-1" />
         </div>
 
-        <!-- Right: tabbed guidelines -->
-        <GuidelinesTabs :tabs="GUIDELINE_TABS" class="lg:min-h-0" />
+        <!-- Right: fund commitment + guidelines -->
+        <div class="flex flex-col gap-4">
+          <FundCommitment />
+          <GuidelinesTabs :tabs="GUIDELINE_TABS" />
+        </div>
       </div>
     </main>
 

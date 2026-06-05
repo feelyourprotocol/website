@@ -32,10 +32,11 @@ npm run build:deploy
 
 | File | Purpose |
 | --- | --- |
-| `src/content/topics.ts` | Intro prose + tabbed guideline bullets (`GUIDELINE_TABS`) |
+| `src/content/fund.ts` | Developer Fund (fee uses + short notes) |
+| `src/content/topics.ts` | Intro prose, `HOW_IT_WORKS` box meta, tabbed content (`GUIDELINE_TABS`) |
 | `src/content/token.ts` | Which-token reference (name, symbol, links) |
 
-Layout: two columns on large screens (intro + token left, tabbed guidelines right). Tabs use short labels (`Relationship`, `Funding`, `Terms`, …). Replace `status: 'draft'` tabs when final copy is ready.
+Layout: two columns on large screens — left: intro + token; right: **How fees are used** box (top) + tabbed **How this works** (bottom). Tabs: `Scope`, `Token Relationship`, `Terms`, `Community`.
 
 ## Subdomain deployment
 
