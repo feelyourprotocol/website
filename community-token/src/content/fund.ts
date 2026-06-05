@@ -6,7 +6,7 @@ export const FUND_COMMITMENT = {
   uses: [
     'Development work — accounted for at 50 €/hour',
     'LLM usage — API and tool costs tied to FYP or related EthereumJS work',
-    'Infrastructure — hosting, domains, CI, and similar, where it serves Feel Your Protocol (not personal hardware, e.g. no new dev laptop)',
+    'Infrastructure — hosting, domains, CI, LLM servers, where it serves Feel Your Protocol (not personal hardware, e.g. no new dev laptop)',
     'Conferences — roughly up to 2,000 € per year for travel and tickets connected to FYP or protocol work',
   ],
   notes: [

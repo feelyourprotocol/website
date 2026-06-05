@@ -1,9 +1,8 @@
 <script setup lang="ts">
-import { Tab, TabGroup, TabList, TabPanel, TabPanels } from '@headlessui/vue'
 import { ref } from 'vue'
-
 import type { GuidelineTab } from '@ct/content/topics'
 import { HOW_IT_WORKS } from '@ct/content/topics'
+import { Tab, TabGroup, TabList, TabPanel, TabPanels } from '@headlessui/vue'
 
 defineProps<{
   tabs: GuidelineTab[]

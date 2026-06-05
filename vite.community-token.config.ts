@@ -1,8 +1,7 @@
 import { fileURLToPath, URL } from 'node:url'
-
+import { defineConfig } from 'vite'
 import tailwindcss from '@tailwindcss/vite'
 import vue from '@vitejs/plugin-vue'
-import { defineConfig } from 'vite'
 
 const rootDir = fileURLToPath(new URL('./community-token', import.meta.url))
 const outDir = fileURLToPath(new URL('./dist/community-token', import.meta.url))
