@@ -2,6 +2,7 @@
 const MAIN_SITE_URL = 'https://feelyourprotocol.org'
 const DOCS_URL = 'https://docs.feelyourprotocol.org'
 const GITHUB_URL = 'https://github.com/feelyourprotocol/website'
+const LAST_UPDATED = 'June 5, 2026'
 </script>
 
 <template>
@@ -27,5 +28,6 @@ const GITHUB_URL = 'https://github.com/feelyourprotocol/website'
       This subdomain documents the relationship between an independently launched community token
       and the Feel Your Protocol open-source project. It is not investment advice.
     </p>
+    <p class="mt-1.5 text-[0.65rem] text-slate-400">Last updated: {{ LAST_UPDATED }}</p>
   </footer>
 </template>

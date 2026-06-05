@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref, watch } from 'vue'
+import SectionAnchorLink from '@ct/components/SectionAnchorLink.vue'
 import { useLocationHash } from '@ct/composables/useLocationHash'
 import type { GuidelineTab } from '@ct/content/topics'
 import { HOW_IT_WORKS } from '@ct/content/topics'
@@ -46,9 +47,12 @@ watch(
 <template>
   <section id="how-it-works" class="ct-section-anchor ct-card flex min-h-64 flex-col overflow-hidden">
     <div class="border-b border-slate-100 px-4 py-3 md:px-5">
-      <h2 class="font-mono text-sm font-bold uppercase tracking-[0.15em] text-slate-600">
-        {{ HOW_IT_WORKS.title }}
-      </h2>
+      <div class="group flex items-baseline gap-2">
+        <h2 class="font-mono text-sm font-bold uppercase tracking-[0.15em] text-slate-600">
+          {{ HOW_IT_WORKS.title }}
+        </h2>
+        <SectionAnchorLink id="how-it-works" />
+      </div>
       <p class="mt-0.5 text-xs text-slate-500">{{ HOW_IT_WORKS.subtitle }}</p>
     </div>
 

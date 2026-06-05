@@ -30,7 +30,7 @@ export const GUIDELINE_TABS: GuidelineTab[] = [
     intro: 'A bit on how I approach the work itself.',
     status: 'ready',
     bullets: [
-      'This is a side project I run in my spare time.',
+      'This is not the only project I have and time I can put in will vary.',
       'I decide what to work on, and how much time I put in.',
       'Token activity does not set my task list or my hours.',
       'Some of the funded time — up to around half — may go to EthereumJS work that supports FYP, like Amsterdam integrations and library upkeep.',
@@ -43,7 +43,7 @@ export const GUIDELINE_TABS: GuidelineTab[] = [
     intro: 'This token and Feel Your Protocol are related, but they are not the same thing.',
     status: 'ready',
     bullets: [
-      'Launched independently by community members on Bankr — not issued or endorsed by me.',
+      "Launched independently by community members on Bankr — I didn't issue it, but I've chosen to engage with it in good faith.",
       'Not an official financial product, security, or project equity.',
       'Feel Your Protocol remains an educational, open-source protocol exploration project.',
       'Holding or trading the token grants no ownership, voting rights, or claims on the code or repositories.',

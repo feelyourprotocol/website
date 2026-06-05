@@ -1,13 +1,17 @@
 <script setup lang="ts">
+import SectionAnchorLink from '@ct/components/SectionAnchorLink.vue'
 import { TOKEN_INFO_FIELDS } from '@ct/content/token'
 </script>
 
 <template>
   <section id="token-info" class="ct-section-anchor ct-card p-5 md:p-6">
     <div class="mb-4 flex items-baseline justify-between gap-3">
-      <h2 class="font-mono text-sm font-bold uppercase tracking-[0.15em] text-slate-600">
-        Which Token
-      </h2>
+      <div class="group flex items-baseline gap-2">
+        <h2 class="font-mono text-sm font-bold uppercase tracking-[0.15em] text-slate-600">
+          Which Token
+        </h2>
+        <SectionAnchorLink id="token-info" />
+      </div>
       <span
         class="rounded-full bg-slate-100 px-2 py-0.5 font-mono text-[0.65rem] text-slate-500"
       >
