@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import SectionAnchorLink from '@ct/components/SectionAnchorLink.vue'
 import { FUND_COMMITMENT } from '@ct/content/fund'
 </script>
 
@@ -11,9 +12,12 @@ import { FUND_COMMITMENT } from '@ct/content/fund'
       <p class="font-mono text-[0.65rem] uppercase tracking-[0.2em] text-purple-600/90">
         {{ FUND_COMMITMENT.subtitle }}
       </p>
-      <h2 class="mt-1 text-lg font-bold tracking-wide text-slate-800 md:text-xl">
-        {{ FUND_COMMITMENT.title }}
-      </h2>
+      <div class="group mt-1 flex items-baseline gap-2">
+        <h2 class="text-lg font-bold tracking-wide text-slate-800 md:text-xl">
+          {{ FUND_COMMITMENT.title }}
+        </h2>
+        <SectionAnchorLink id="fund" />
+      </div>
       <p class="mt-2 text-sm leading-relaxed text-slate-600">
         {{ FUND_COMMITMENT.lead }}
       </p>

@@ -42,3 +42,16 @@
 .ct-section-anchor {
   scroll-margin-top: 5.5rem;
 }
+
+.ct-section-link {
+  @apply shrink-0 font-mono text-sm leading-none text-slate-400 no-underline opacity-40 transition hover:text-purple-600 hover:opacity-100 focus:opacity-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-300 focus-visible:ring-offset-1;
+}
+
+.ct-section-link--active {
+  @apply font-bold text-purple-700 opacity-100;
+}
+
+.group:hover .ct-section-link:not(.ct-section-link--active),
+.group:focus-within .ct-section-link:not(.ct-section-link--active) {
+  @apply opacity-70;
+}
