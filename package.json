@@ -9,6 +9,7 @@
   "scripts": {
     "dev": "vite",
     "build": "run-p type-check \"build-only {@}\" --",
+    "build:deploy": "run-s build community-token:build docs:build",
     "preview": "vite preview --outDir dist/website",
     "test:unit": "vitest",
     "prepare": "cypress install",
@@ -19,6 +20,9 @@
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
     "docs:preview": "vitepress preview docs",
+    "community-token:dev": "vite --config vite.community-token.config.ts",
+    "community-token:build": "vue-tsc --build tsconfig.community-token.json && vite build --config vite.community-token.config.ts",
+    "community-token:preview": "vite preview --config vite.community-token.config.ts",
     "lf": "npm run format && npm run lint",
     "lf:ci": "eslint . && prettier -c src/ cypress/e2e/",
     "lint": "eslint . --fix",

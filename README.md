@@ -19,6 +19,15 @@ npm run dev
 
 Full documentation is available at **[docs.feelyourprotocol.org](https://docs.feelyourprotocol.org)**.
 
+## Community Token Site
+
+Guidelines and transparency page for the independently launched community token:
+
+- **Production:** [communitytoken.feelyourprotocol.org](https://communitytoken.feelyourprotocol.org) (after deploy)
+- **Local dev:** `npm run community-token:dev` → http://localhost:5174
+
+See [community-token/README.md](./community-token/README.md) for content structure and deployment notes.
+
 ## License
 
 [MIT](LICENSE)
