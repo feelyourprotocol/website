@@ -1,6 +1,6 @@
 # Community Token Site
 
-Standalone mini-site for **communitytoken.feelyourprotocol.org**.
+Standalone mini-site for **community-token.feelyourprotocol.org**.
 
 It shares the Feel Your Protocol design language (JetBrains Mono, purple/cyan sparks, dot grid) but uses its own layout and build output so it reads as a separate space — not a subpage of the main explorations site.
 
@@ -45,8 +45,8 @@ Nginx block is prepared in `server-config/config/fyp_nginx` (BLOCK 6–7).
 After first deploy:
 
 ```bash
-sudo certbot certonly --nginx -d communitytoken.feelyourprotocol.org
+sudo certbot certonly --nginx -d community-token.feelyourprotocol.org
 # or expand existing cert:
 # sudo certbot -d feelyourprotocol.org -d www.feelyourprotocol.org \
-#   -d docs.feelyourprotocol.org -d communitytoken.feelyourprotocol.org
+#   -d docs.feelyourprotocol.org -d community-token.feelyourprotocol.org
 ```

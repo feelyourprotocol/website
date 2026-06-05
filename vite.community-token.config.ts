@@ -7,7 +7,7 @@ import { defineConfig } from 'vite'
 const rootDir = fileURLToPath(new URL('./community-token', import.meta.url))
 const outDir = fileURLToPath(new URL('./dist/community-token', import.meta.url))
 
-// Standalone mini-site for communitytoken.feelyourprotocol.org
+// Standalone mini-site for community-token.feelyourprotocol.org
 // Dev:  npm run community-token:dev   (http://localhost:5174)
 // Prod: npm run community-token:build → dist/community-token/
 export default defineConfig({
