@@ -1,8 +1,8 @@
 ---
 month: 2026-06
 hourly_rate_eur: 50
-total_hours: 3
-total_eur: 150
+total_hours: 4
+total_eur: 200
 ---
 
 # FYP work — June 2026

@@ -41,6 +41,12 @@ const MAIN_SITE_URL = 'https://feelyourprotocol.org'
           Fund
         </a>
         <a
+          href="#treasury"
+          class="rounded-md border border-slate-300 px-3 py-1.5 text-slate-600 transition hover:border-cyan-300 hover:text-cyan-700"
+        >
+          Treasury
+        </a>
+        <a
           href="#how-it-works"
           class="rounded-md border border-slate-300 px-3 py-1.5 text-slate-600 transition hover:border-purple-300 hover:text-purple-700"
         >
