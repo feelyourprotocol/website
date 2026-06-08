@@ -42,58 +42,22 @@ Place custom code in your exploration's folder (e.g. a `custom/` subfolder) so i
 
 ## 4. Use a Managed Fork (Special Libraries)
 
-For protocol-core libraries where deep modifications are common, Feel Your Protocol maintains **dedicated forks** under the `feelyourprotocol` GitHub organization. These forks allow multiple explorations to carry independent, branch-isolated customizations in a controlled way.
+For protocol-core libraries where deep modifications are common, Feel Your Protocol maintains **dedicated forks** under the `feelyourprotocol` GitHub organization. These forks are published under the `@feelyourprotocol` npm scope with a version scheme that encodes the feature branch, and coexist alongside official packages via npm aliases.
+
+This workflow is fully documented in the dedicated **[Maintained Library Forks](/contributing/library-forks)** page, which covers:
+
+- The fork contribution workflow (branching, PRs, security policy)
+- The unified versioning scheme (`@feelyourprotocol/<package>@<eipNumber>.<iteration>.<patch>`)
+- How to install and import fork packages alongside official ones
+- Detailed sections for each managed fork and its release branches
 
 ### Currently Managed Forks
 
-| Library | Fork URL | Upstream |
-|---------|----------|----------|
+| Library | Fork | Upstream |
+|---------|------|----------|
 | **EthereumJS** | [feelyourprotocol/ethereumjs-monorepo](https://github.com/feelyourprotocol/ethereumjs-monorepo) | [ethereumjs/ethereumjs-monorepo](https://github.com/ethereumjs/ethereumjs-monorepo) |
 
 Want to propose adding another library as a managed fork? Open an issue. Capacity to maintain forks is limited, so this is reserved for libraries with frequent deep-customization needs.
-
-### Fork Workflow
-
-If your exploration needs a modification to one of the managed fork libraries:
-
-1. **Fork the original upstream library** to your own GitHub account
-2. **Create a branch** and implement your changes there
-3. **Request a named target branch** on the FYP fork — ask a maintainer (via your issue) to create a branch like `my-custom-exploration` on the managed fork
-4. **Open a PR** from your branch towards that named target branch on the FYP fork
-5. Your branch is reviewed, merged into the FYP fork, and **kept as a separate branch** — it won't be merged into `master`
-6. **A release is built** from that branch and integrated into the site's `package.json` using an [npm alias](#npm-package-aliases)
-
-::: warning Security policy
-For security reasons, code is never integrated directly from a contributor's personal fork or branch into the site. All library code flows through the managed FYP fork, where it can be reviewed and maintained.
-:::
-
-### npm Package Aliases
-
-Multiple versions or forks of the same library coexist in `package.json` using npm aliases:
-
-```json
-{
-  "dependencies": {
-    "@ethereumjs/evm": "^10.1.1-nightly.1",
-    "@ethereumjs/evm-experimental": "npm:@ethereumjs/evm@^11.0.0-fork.1"
-  }
-}
-```
-
-Each alias is a fully independent install. In your exploration, import the specific version you need:
-
-```typescript
-import { EVM } from '@ethereumjs/evm'
-import { EVM as EVMExp } from '@ethereumjs/evm-experimental'
-```
-
-### Monorepo Libraries
-
-For libraries from monorepos (like EthereumJS), where the target package has several intra-monorepo dependencies, use **pre-bundled ESM builds**. The fork is bundled on the monorepo side with all internal dependencies resolved, producing a single ESM file with no wiring issues.
-
-### Per-Route Isolation
-
-Each fork is only imported in its specific exploration's `MyC.vue`. Thanks to Vite's code splitting, the fork's code is only loaded when the user visits that page. Other explorations are unaffected.
 
 ## Decision Flowchart
 

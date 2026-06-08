@@ -11,6 +11,7 @@ export const INFO: Exploration = {
   topic: 'robustness',
   timeline: 'fusaka',
   tags: [Tag.GasCosts, Tag.Precompiles],
+  added: '2025-12-17 09:12',
   image,
   introText:
     '<b>How are ModExp gas costs changing with Fusaka?</b> ' +

@@ -20,9 +20,11 @@
  * - Short form preferred (e.g. "EVM" not "Ethereum Virtual Machine").
  */
 export enum Tag {
+  AccountAbstraction = 'Account Abstraction',
   EVM = 'EVM',
   GasCosts = 'Gas Costs',
   PeerDAS = 'PeerDAS',
+  PostQuantum = 'Post Quantum',
   Precompiles = 'Precompiles',
   Signatures = 'Signatures',
 }
