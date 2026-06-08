@@ -1,26 +1,67 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
+import SectionAnchorLink from '@ct/components/SectionAnchorLink.vue'
+import { useLocationHash } from '@ct/composables/useLocationHash'
 import type { GuidelineTab } from '@ct/content/topics'
 import { HOW_IT_WORKS } from '@ct/content/topics'
 import { Tab, TabGroup, TabList, TabPanel, TabPanels } from '@headlessui/vue'
 
-defineProps<{
+const props = defineProps<{
   tabs: GuidelineTab[]
 }>()
 
+const { hash, setHash } = useLocationHash()
 const selectedIndex = ref(0)
+
+function indexFromHash(id: string): number {
+  if (!id) return -1
+  return props.tabs.findIndex((tab) => tab.id === id)
+}
+
+function syncFromHash(id: string, scroll: boolean): void {
+  const index = indexFromHash(id)
+  if (index < 0) return
+  selectedIndex.value = index
+  if (scroll) {
+    document.getElementById('how-it-works')?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+  }
+}
+
+function onSelectTab(index: number): void {
+  selectedIndex.value = index
+  const tab = props.tabs[index]
+  if (tab) {
+    setHash(tab.id)
+  }
+}
+
+watch(
+  hash,
+  (id) => {
+    syncFromHash(id, true)
+  },
+  { immediate: true },
+)
 </script>
 
 <template>
   <section id="how-it-works" class="ct-section-anchor ct-card flex min-h-64 flex-col overflow-hidden">
     <div class="border-b border-slate-100 px-4 py-3 md:px-5">
-      <h2 class="font-mono text-sm font-bold uppercase tracking-[0.15em] text-slate-600">
-        {{ HOW_IT_WORKS.title }}
-      </h2>
+      <div class="group flex items-baseline gap-2">
+        <h2 class="font-mono text-sm font-bold uppercase tracking-[0.15em] text-slate-600">
+          {{ HOW_IT_WORKS.title }}
+        </h2>
+        <SectionAnchorLink id="how-it-works" />
+      </div>
       <p class="mt-0.5 text-xs text-slate-500">{{ HOW_IT_WORKS.subtitle }}</p>
     </div>
 
-    <TabGroup v-model="selectedIndex" as="div" class="flex min-h-0 flex-1 flex-col">
+    <TabGroup
+      :selected-index="selectedIndex"
+      as="div"
+      class="flex min-h-0 flex-1 flex-col"
+      @change="onSelectTab"
+    >
       <TabList class="flex flex-wrap gap-1 border-b border-slate-100 bg-slate-50/80 px-3 py-2 md:px-4">
         <Tab
           v-for="tab in tabs"
