@@ -1,3 +1,9 @@
+export const TREASURY_URL =
+  'https://github.com/feelyourprotocol/website/tree/main/treasury' as const
+
+export const TREASURY_WALLET_URL =
+  'https://basescan.org/address/0x15952A6B59F8BaDBD3551F896377EEcF461E79F8#asset-multichain' as const
+
 export const FUND_COMMITMENT = {
   title: 'How fees are used',
   subtitle: 'Developer Fund',
@@ -9,10 +15,7 @@ export const FUND_COMMITMENT = {
     'Infrastructure — hosting, domains, CI, LLM servers, where it serves Feel Your Protocol (not personal hardware, e.g. no new dev laptop)',
     'Conferences — roughly up to 2,000 € per year for travel and tickets connected to FYP or protocol work',
   ],
-  notes: [
-    'Some of this may also cover EthereumJS upkeep that Feel Your Protocol depends on.',
-    'I claim roughly at month\u2019s end, for work already done, with a short work log.',
-  ],
+  notes: ['Some of this may also cover EthereumJS upkeep that Feel Your Protocol depends on.'],
   disclaimer:
     'This is not legal advice or a securities offering — just how I intend to handle things, in good faith.',
 } as const

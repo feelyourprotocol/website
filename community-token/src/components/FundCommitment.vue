@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { FUND_COMMITMENT } from '@ct/content/fund'
+import { FUND_COMMITMENT, TREASURY_URL, TREASURY_WALLET_URL } from '@ct/content/fund'
 </script>
 
 <template>
@@ -29,7 +29,24 @@ import { FUND_COMMITMENT } from '@ct/content/fund'
       </ul>
 
       <ul class="mt-4 space-y-1.5 border-t border-slate-100 pt-3 text-sm leading-relaxed text-slate-500">
-        <li v-for="(note, index) in FUND_COMMITMENT.notes" :key="index">{{ note }}</li>
+        <li>{{ FUND_COMMITMENT.notes[0] }}</li>
+        <li>
+          I claim roughly at month&rsquo;s end, for work already done. Fees land in the
+          <a
+            :href="TREASURY_WALLET_URL"
+            target="_blank"
+            rel="noopener"
+            class="text-purple-600 underline decoration-purple-200 underline-offset-2 hover:text-purple-800"
+            >treasury wallet on Base</a
+          >; hours, expenses, claims, and withdrawals are tracked in the
+          <a
+            :href="TREASURY_URL"
+            target="_blank"
+            rel="noopener"
+            class="text-purple-600 underline decoration-purple-200 underline-offset-2 hover:text-purple-800"
+            >treasury folder on GitHub</a
+          >.
+        </li>
       </ul>
 
       <p class="mt-4 font-mono text-[0.65rem] leading-relaxed text-slate-400">
