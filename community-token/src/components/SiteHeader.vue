@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { SITE_VERSION } from '@ct/content/version'
+
 const MAIN_SITE_URL = 'https://feelyourprotocol.org'
 </script>
 
@@ -11,6 +13,11 @@ const MAIN_SITE_URL = 'https://feelyourprotocol.org'
         </p>
         <h1 class="flex items-center gap-2 text-xl font-bold tracking-wide md:text-2xl">
           <span class="ct-gradient-text">Community Token</span>
+          <span
+            class="rounded-md border border-slate-300 bg-slate-100 px-1.5 py-0.5 font-mono text-[0.6rem] uppercase tracking-[0.15em] text-slate-600"
+          >
+            {{ SITE_VERSION }}
+          </span>
           <span
             class="rounded-md border border-amber-300 bg-amber-50 px-1.5 py-0.5 font-mono text-[0.6rem] uppercase tracking-[0.15em] text-amber-700"
           >
