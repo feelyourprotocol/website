@@ -1,10 +1,12 @@
 <script setup lang="ts">
+import ChangelogBox from '@ct/components/ChangelogBox.vue'
 import FundCommitment from '@ct/components/FundCommitment.vue'
 import GuidelinesTabs from '@ct/components/GuidelinesTabs.vue'
 import SectionAnchorLink from '@ct/components/SectionAnchorLink.vue'
 import SiteFooter from '@ct/components/SiteFooter.vue'
 import SiteHeader from '@ct/components/SiteHeader.vue'
 import TokenInfoCard from '@ct/components/TokenInfoCard.vue'
+import TreasurySection from '@ct/components/TreasurySection.vue'
 import VisualPlaceholder from '@ct/components/VisualPlaceholder.vue'
 import { GUIDELINE_TABS, INTRO } from '@ct/content/topics'
 </script>
@@ -40,12 +42,15 @@ import { GUIDELINE_TABS, INTRO } from '@ct/content/topics'
           <TokenInfoCard />
 
           <VisualPlaceholder class="hidden lg:flex lg:min-h-32 lg:flex-1" />
+
+          <TreasurySection />
         </div>
 
         <!-- Right: fund commitment + guidelines -->
         <div class="flex flex-col gap-4">
           <FundCommitment />
           <GuidelinesTabs :tabs="GUIDELINE_TABS" />
+          <ChangelogBox />
         </div>
       </div>
     </main>

@@ -34,6 +34,15 @@ import { FUND_COMMITMENT } from '@ct/content/fund'
 
       <ul class="mt-4 space-y-1.5 border-t border-slate-100 pt-3 text-sm leading-relaxed text-slate-500">
         <li v-for="(note, index) in FUND_COMMITMENT.notes" :key="index">{{ note }}</li>
+        <li>
+          On-chain balances, claims, withdrawals, and the work log live in the
+          <a
+            href="#treasury"
+            class="text-purple-600 underline decoration-purple-200 underline-offset-2 hover:text-purple-800"
+            >Treasury</a
+          >
+          section below.
+        </li>
       </ul>
 
       <p class="mt-4 font-mono text-[0.65rem] leading-relaxed text-slate-400">

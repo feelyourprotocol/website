@@ -12,7 +12,7 @@ export const FUND_COMMITMENT = {
   ],
   notes: [
     'Some of this may also cover EthereumJS upkeep that Feel Your Protocol depends on.',
-    'I claim roughly at month\u2019s end, for work already done, with a short work log.',
+    'I claim roughly at month\u2019s end, for work already done.',
   ],
   disclaimer:
     'This is not legal advice or a securities offering — just how I intend to handle things, in good faith.',
