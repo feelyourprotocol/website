@@ -9,7 +9,7 @@ import TopicIntroView from './TopicIntroView.vue'
 
 const allExplorationIds = Object.keys(EXPLORATIONS)
 
-const featured = ['eip-7883', 'eip-7594', 'eip-7951']
+const featured = ['eip-8024', 'eip-7883', 'eip-7594', 'eip-7951']
 
 const activeTopicIds = Object.keys(TOPICS).filter((id) => TOPICS[id].explorations.length > 0)
 

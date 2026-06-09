@@ -2,7 +2,7 @@ import type { BytecodeStepperConfig } from '@/eComponents/bytecodeStepperEC/type
 
 export const config: BytecodeStepperConfig = {
   explorationId: 'eip-8024',
-  defaultExample: 'push-add',
+  defaultExample: 'dupn',
   gasLimit: 1_000_000n,
   maxStackDisplay: 20,
 }

@@ -5,11 +5,9 @@ import { createEVM } from '@ethereumjs/evm'
 import { runBytecode } from '@/eComponents/bytecodeStepperEC/runBytecode'
 
 import {
-  bytecodeToHex,
   dupnBytecode,
   exchangeBytecode,
   invalidDupnBytecode,
-  PUSH_ADD,
   stackTopNumbers,
   swapnBytecode,
 } from './bytecode'
@@ -34,8 +32,9 @@ describe('EIP-8024 Exploration', () => {
   })
 
   describe('config', () => {
-    it('references a valid default example', () => {
-      expect(examples[config.defaultExample]).toBeDefined()
+    it('defaults to the DUPN example', () => {
+      expect(config.defaultExample).toBe('dupn')
+      expect(examples.dupn).toBeDefined()
     })
 
     it('shows enough stack slots for the minimal DUPN demo', () => {
@@ -65,20 +64,6 @@ describe('EIP-8024 Exploration', () => {
   })
 
   describe('bytecode execution', () => {
-    it('push-add completes without exception', async () => {
-      const evm = await createAmsterdamEvm()
-      const result = await runBytecode({
-        evm,
-        code: PUSH_ADD,
-        gasLimit: 1_000_000n,
-        stepMode: false,
-        onStep: () => {},
-        shouldAbort: () => false,
-      })
-      expect(result.exceptionError).toBeUndefined()
-      expect(result.executionGasUsed).toBeGreaterThan(0n)
-    })
-
     it('DUPN copies stack item at depth 17 onto the top', async () => {
       const evm = await createAmsterdamEvm()
       const result = await runBytecode({
@@ -150,10 +135,6 @@ describe('EIP-8024 Exploration', () => {
         })
         expect(result.exceptionError, `Example "${key}" should run cleanly`).toBeUndefined()
       }
-    })
-
-    it('push-add hex matches builder output', () => {
-      expect(examples['push-add'].values[0]).toBe(bytecodeToHex(PUSH_ADD))
     })
   })
 })

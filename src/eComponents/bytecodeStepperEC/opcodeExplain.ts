@@ -22,6 +22,10 @@ function immediateByte(row: InstructionRow): number | undefined {
   return parseInt(parts[1]!, 16)
 }
 
+function immediateMagicSuffix(): string {
+  return ' (some immediate magic!)'
+}
+
 function formatPushValue(row: InstructionRow): string {
   const hex = row.immediateHex?.replace(/^0x/i, '') ?? row.name.match(/0x[0-9a-f]+/i)?.[0]?.slice(2)
   if (!hex) return 'a value'
@@ -162,7 +166,7 @@ export function explainInstruction(row: InstructionRow): string {
     const imm = immediateByte(row)
     if (imm !== undefined) {
       const depth = decodeDupnSwapnDepth(imm)
-      return `Copy ${depthLabel(depth)} onto the top of the stack`
+      return `Copy ${depthLabel(depth)} onto the top of the stack${immediateMagicSuffix()}`
     }
     return 'Copy a deep stack item onto the top (DUPN)'
   }
@@ -171,7 +175,7 @@ export function explainInstruction(row: InstructionRow): string {
     const imm = immediateByte(row)
     if (imm !== undefined) {
       const depth = decodeDupnSwapnDepth(imm)
-      return `Swap the top stack item with ${depthLabel(depth)}`
+      return `Swap the top stack item with ${depthLabel(depth)}${immediateMagicSuffix()}`
     }
     return 'Swap the top item with a deep stack item (SWAPN)'
   }
@@ -180,7 +184,7 @@ export function explainInstruction(row: InstructionRow): string {
     const imm = immediateByte(row)
     if (imm !== undefined) {
       const [a, b] = decodeExchangeDepths(imm)
-      return `Swap ${depthLabel(exchangeOperandToDepth(a))} with ${depthLabel(exchangeOperandToDepth(b))}`
+      return `Swap ${depthLabel(exchangeOperandToDepth(a))} with ${depthLabel(exchangeOperandToDepth(b))}${immediateMagicSuffix()}`
     }
     return 'Swap two stack items below the top (EXCHANGE)'
   }

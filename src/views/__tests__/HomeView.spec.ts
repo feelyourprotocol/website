@@ -91,14 +91,14 @@ describe('HomeView', () => {
   })
 
   describe('Featured explorations', () => {
-    const featured = ['eip-7883', 'eip-7594', 'eip-7951']
+    const featured = ['eip-8024', 'eip-7883', 'eip-7594', 'eip-7951']
 
     it('shows "Latest" label', () => {
       expect(wrapper.text()).toContain('Latest')
     })
 
-    it('renders three featured exploration cards', () => {
-      expect(wrapper.findAll('.exploration-c')).toHaveLength(3)
+    it('renders featured exploration cards', () => {
+      expect(wrapper.findAll('.exploration-c')).toHaveLength(featured.length)
     })
 
     it('cards display exploration titles', () => {

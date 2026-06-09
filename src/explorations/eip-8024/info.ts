@@ -1,6 +1,8 @@
 import type { Exploration } from '@/explorations/REGISTRY'
 import { Tag } from '@/explorations/TAGS'
 
+import image from './image.jpg'
+
 export const INFO: Exploration = {
   id: 'eip-8024',
   path: '/eip-8024-stack-opcodes-dupn-swapn-exchange',
@@ -9,6 +11,7 @@ export const INFO: Exploration = {
   topic: 'robustness',
   timeline: 'glamsterdam',
   tags: [Tag.EVM],
+  image,
   introText:
     '<b>How do you manipulate deep stack items without blowing the 1024 limit?</b> ' +
     'Smart contracts often hit the classic "stack too deep" compiler error when juggling ' +

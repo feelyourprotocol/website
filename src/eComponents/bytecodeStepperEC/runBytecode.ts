@@ -3,7 +3,7 @@ import type { EVM, ExecResult, InterpreterStep } from '@ethereumjs/evm'
 import type { StepSnapshot } from './types'
 
 export function stepToSnapshot(step: InterpreterStep): StepSnapshot {
-  const gasCost = step.opcode.dynamicFee ?? step.opcode.feeBigInt ?? BigInt(step.opcode.fee)
+  const gasCost = step.opcode.dynamicFee ?? BigInt(step.opcode.fee)
   const stack = [...step.stack].reverse().map((word) => BigInt(word))
 
   return {

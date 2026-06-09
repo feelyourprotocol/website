@@ -5,15 +5,10 @@ import {
   dupnBytecode,
   exchangeBytecode,
   invalidDupnBytecode,
-  PUSH_ADD,
   swapnBytecode,
 } from './bytecode'
 
 export const examples: Examples = {
-  'push-add': {
-    title: 'Push + Add (sanity check)',
-    values: [bytecodeToHex(PUSH_ADD)],
-  },
   dupn: {
     title: 'DUPN — copy stack item at depth 17',
     values: [bytecodeToHex(dupnBytecode())],

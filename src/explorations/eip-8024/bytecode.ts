@@ -42,8 +42,6 @@ export function bytecodeToHex(code: Uint8Array): string {
   return bytesToHex(code).substring(2)
 }
 
-export const PUSH_ADD = new Uint8Array([0x60, 0x01, 0x60, 0x02, 0x01, 0x00])
-
 /** Smallest valid DUPN demo: stack [1..17], copy item at depth 17 (value 1). */
 export function dupnBytecode(): Uint8Array {
   return concatBytes(

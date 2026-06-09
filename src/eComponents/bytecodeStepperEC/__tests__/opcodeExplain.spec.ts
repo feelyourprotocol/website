@@ -49,7 +49,7 @@ describe('explainInstruction', () => {
           size: 2,
         }),
       ),
-    ).toBe('Copy the stack item at depth 17 onto the top of the stack')
+    ).toBe('Copy the stack item at depth 17 onto the top of the stack (some immediate magic!)')
   })
 
   it('explains EXCHANGE with decoded depths', () => {
@@ -63,7 +63,9 @@ describe('explainInstruction', () => {
           size: 2,
         }),
       ),
-    ).toBe('Swap the stack item at depth 2 with the stack item at depth 3')
+    ).toBe(
+      'Swap the stack item at depth 2 with the stack item at depth 3 (some immediate magic!)',
+    )
   })
 
   it('explains STOP', () => {
