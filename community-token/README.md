@@ -22,7 +22,7 @@ npm run community-token:preview
 
 Production output: `dist/community-token/`
 
-Full deploy build (main site + community token + docs):
+Full deploy build (main site + community token + docs, rebuilt on server — `dist/` is not in git):
 
 ```bash
 npm run build:deploy

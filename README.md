@@ -15,6 +15,10 @@ npm install
 npm run dev
 ```
 
+## Deployment
+
+Production builds (`dist/website`, `dist/docs`, `dist/community-token`) are **not** in the repo — the server runs `npm run build:deploy` after `git pull`. See `server-config/deployment/fyp_deploy.sh`.
+
 ## Documentation
 
 Full documentation is available at **[docs.feelyourprotocol.org](https://docs.feelyourprotocol.org)**.
