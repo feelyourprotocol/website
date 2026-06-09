@@ -57,7 +57,7 @@ export interface TimelineEntry {
   emoji: string
   /** Whether the related EIP/research is already active on mainnet. */
   onChain: boolean
-  /** Numeric ordering key; lower values appear earlier on the timeline. */
+  /** Numeric ordering key; higher values appear first (top) on the timeline. */
   order: number
 }
 

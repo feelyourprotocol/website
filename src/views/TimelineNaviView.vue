@@ -14,7 +14,7 @@ const props = defineProps<{
 const route = useRoute()
 const router = useRouter()
 
-const sortedEntries = Object.entries(TIMELINE).sort(([, a], [, b]) => a.order - b.order)
+const sortedEntries = Object.entries(TIMELINE).sort(([, a], [, b]) => b.order - a.order)
 
 const activeTimeline = computed(() => route.query.timeline as string | undefined)
 
