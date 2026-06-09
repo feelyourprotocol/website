@@ -20,6 +20,7 @@ const config: BytecodeStepperConfig = {
 
 const examples: Examples = {
   'push-add': { title: 'Push + Add', values: ['600160020100'] },
+  'push-stop': { title: 'Push + Stop', values: ['60016000'] },
 }
 
 async function createEvm() {
@@ -40,7 +41,7 @@ describe('useBytecodeStepper', () => {
     expect(state.steps.value.length).toBeGreaterThan(0)
   })
 
-  it('bytecode change clears execution state', async () => {
+  it('bytecode change clears execution state and re-arms at PC 0', async () => {
     const evm = await createEvm()
     const state = useBytecodeStepper(config, evm)
     await state.init(examples)
@@ -52,8 +53,49 @@ describe('useBytecodeStepper', () => {
     await state.onBytecodeChange()
 
     expect(state.execResult.value).toBeUndefined()
+    expect(state.mode.value).toBe('stepping')
+    expect(state.currentSnapshot.value?.pc).toBe(0)
+    expect(state.currentSnapshot.value?.stack).toEqual([])
+    expect(state.steps.value).toHaveLength(1)
+  })
+
+  it('switching example clears execution state and re-arms at PC 0', async () => {
+    const evm = await createEvm()
+    const state = useBytecodeStepper(config, evm)
+    await state.init(examples)
+
+    await state.runAll()
+    expect(state.execResult.value).toBeDefined()
+
+    state.example.value = 'push-stop'
+    await state.selectExample(examples)
+
+    expect(state.bytecodeHex.value).toBe('60016000')
+    expect(state.execResult.value).toBeUndefined()
+    expect(state.mode.value).toBe('stepping')
+    expect(state.currentSnapshot.value?.pc).toBe(0)
+    expect(state.currentSnapshot.value?.stack).toEqual([])
+    expect(state.steps.value).toHaveLength(1)
+  })
+
+  it('switching example after stepping clears stack progress', async () => {
+    const evm = await createEvm()
+    const state = useBytecodeStepper(config, evm)
+    await state.init(examples)
+
     await vi.waitFor(() => state.mode.value === 'stepping', { timeout: 2000 })
-    expect(state.steps.value.length).toBeGreaterThan(0)
+    await state.stepOnce()
+    await state.stepOnce()
+    await vi.waitFor(() => (state.currentSnapshot.value?.stack.length ?? 0) > 0, {
+      timeout: 2000,
+    })
+
+    state.example.value = 'push-stop'
+    await state.selectExample(examples)
+
+    expect(state.currentSnapshot.value?.pc).toBe(0)
+    expect(state.currentSnapshot.value?.stack).toEqual([])
+    expect(state.mode.value).toBe('stepping')
   })
 
   it('reset preserves bytecode and re-arms step mode', async () => {

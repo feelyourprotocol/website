@@ -79,26 +79,30 @@ export function useBytecodeStepper(config: BytecodeStepperConfig, evm: EVM) {
     instructions.value = disassembleBytecode(code, evm.common)
   }
 
-  /** Start step mode paused before the first opcode — ready for the next Step click. */
-  function armStepping() {
-    if (!canExecute.value) return
-    if (mode.value === 'stepping' || mode.value === 'running') return
-    void executeRun(true)
+  /** Reset execution and re-arm stepping for the current bytecode (shared by Reset / edits / examples). */
+  async function rearm() {
+    updateDisassembly()
+    if (!canExecute.value) {
+      resetExecutionState()
+      return
+    }
+    steps.value = []
+    currentStepIndex.value = -1
+    execResult.value = undefined
+    error.value = undefined
+    await executeRun(true)
+    await waitUntilArmed()
   }
 
   async function onBytecodeChange() {
-    resetExecutionState()
     example.value = ''
-    updateDisassembly()
-    armStepping()
+    await rearm()
   }
 
   async function selectExample(examples: Examples) {
     if (example.value === '') return
-    resetExecutionState()
     bytecodeHex.value = examples[example.value]!.values[0]
-    updateDisassembly()
-    armStepping()
+    await rearm()
   }
 
   async function init(examples: Examples) {
@@ -181,8 +185,8 @@ export function useBytecodeStepper(config: BytecodeStepperConfig, evm: EVM) {
     if (mode.value === 'finished' || mode.value === 'error') return
 
     if (mode.value === 'idle') {
-      armStepping()
-      await waitUntilArmed()
+      await rearm()
+      return
     }
 
     if (mode.value === 'stepping') {
@@ -191,17 +195,7 @@ export function useBytecodeStepper(config: BytecodeStepperConfig, evm: EVM) {
   }
 
   async function reset() {
-    updateDisassembly()
-    if (!canExecute.value) {
-      resetExecutionState()
-      return
-    }
-    steps.value = []
-    currentStepIndex.value = -1
-    execResult.value = undefined
-    error.value = undefined
-    await executeRun(true)
-    await waitUntilArmed()
+    await rearm()
   }
 
   async function waitUntilArmed(timeoutMs = 2000): Promise<void> {
