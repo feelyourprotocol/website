@@ -13,6 +13,7 @@ import type { Exploration } from '@/explorations/REGISTRY'
 import { TOPICS } from '@/explorations/TOPICS'
 
 import BytecodeStepperResultEC from './BytecodeStepperResultEC.vue'
+import { explainInstruction } from './opcodeExplain'
 import type { BytecodeStepperConfig } from './types'
 import { useBytecodeStepper } from './useBytecodeStepper'
 
@@ -49,6 +50,15 @@ const {
 await init(props.examples)
 
 const activePc = computed(() => currentSnapshot.value?.pc ?? -1)
+
+const activeInstruction = computed(() =>
+  instructions.value.find((row) => row.pc === activePc.value),
+)
+
+const stepExplanation = computed(() => {
+  if (!activeInstruction.value) return undefined
+  return explainInstruction(activeInstruction.value)
+})
 
 const displayedStack = computed(() => {
   const stack = currentSnapshot.value?.stack ?? []
@@ -119,6 +129,13 @@ function formatStackWord(word: bigint): string {
             ({{ mode }})
           </span>
         </div>
+
+        <p
+          v-if="stepExplanation"
+          class="font-mono text-xs text-slate-700 mb-4 px-3 py-2.5 bg-purple-50 border border-purple-200 rounded-md leading-relaxed"
+        >
+          {{ stepExplanation }}
+        </p>
 
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-4">
           <div>
