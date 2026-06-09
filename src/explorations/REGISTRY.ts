@@ -1,12 +1,14 @@
 import { INFO as eip7594 } from './eip-7594/info'
 import { INFO as eip7883 } from './eip-7883/info'
 import { INFO as eip7951 } from './eip-7951/info'
+import { INFO as eip8024 } from './eip-8024/info'
 import type { Tag } from './TAGS'
 
 export const EXPLORATIONS: Explorations = {
   [eip7594.id]: eip7594,
   [eip7883.id]: eip7883,
   [eip7951.id]: eip7951,
+  [eip8024.id]: eip8024,
 }
 
 export interface Examples {
