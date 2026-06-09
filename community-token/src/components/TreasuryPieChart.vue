@@ -14,9 +14,7 @@ const activeSlices = computed(() => props.spec.slices.filter((slice) => slice.eu
 
 const basisEur = computed(() => props.spec.basis.totalEur)
 
-const earmarkedEur = computed(() =>
-  activeSlices.value.reduce((sum, slice) => sum + slice.eur, 0),
-)
+const earmarkedEur = computed(() => activeSlices.value.reduce((sum, slice) => sum + slice.eur, 0))
 
 type Segment = {
   id: string
@@ -71,20 +69,19 @@ const generatedLabel = computed(() => {
 <template>
   <figure class="ct-treasury-chart">
     <figcaption :class="compact ? 'mb-2' : 'mb-3'">
-      <h4 :class="compact ? 'text-xs font-bold text-slate-700' : 'text-sm font-bold text-slate-800'">
+      <h4
+        :class="compact ? 'text-xs font-bold text-slate-700' : 'text-sm font-bold text-slate-800'"
+      >
         {{ spec.title }}
       </h4>
-      <p
-        v-if="!compact"
-        class="mt-0.5 text-xs text-slate-500"
-      >
+      <p v-if="!compact" class="mt-0.5 text-xs text-slate-500">
         {{ spec.subtitle }}
       </p>
       <p class="font-mono text-[0.6rem] text-slate-400" :class="compact ? 'mt-0.5' : 'mt-1'">
         <template v-if="compact">As of {{ generatedLabel }}</template>
         <template v-else>
-          Basis: {{ spec.basis.description }} ({{ spec.basis.totalEur.toLocaleString('en-GB') }} €) ·
-          Generated {{ generatedLabel }}
+          Basis: {{ spec.basis.description }} ({{ spec.basis.totalEur.toLocaleString('en-GB') }} €)
+          · Generated {{ generatedLabel }}
         </template>
       </p>
     </figcaption>
@@ -123,7 +120,13 @@ const generatedLabel = computed(() => {
         </text>
       </svg>
 
-      <ul :class="compact ? 'min-w-0 flex-1 space-y-1 text-[0.65rem]' : 'min-w-0 flex-1 space-y-2 text-xs text-slate-600'">
+      <ul
+        :class="
+          compact
+            ? 'min-w-0 flex-1 space-y-1 text-[0.65rem]'
+            : 'min-w-0 flex-1 space-y-2 text-xs text-slate-600'
+        "
+      >
         <li v-for="segment in segments" :key="segment.id" class="flex items-start gap-1.5">
           <span
             class="mt-0.5 size-2 shrink-0 rounded-sm"

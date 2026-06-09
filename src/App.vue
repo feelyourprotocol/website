@@ -121,10 +121,7 @@ watch(
     </h3>
 
     <h3 class="font-mono text-xs text-right text-slate-500">
-      <a
-        href="https://community-token.feelyourprotocol.org/"
-        target="_blank"
-        rel="noopener"
+      <a href="https://community-token.feelyourprotocol.org/" target="_blank" rel="noopener"
         >Community Token</a
       >
       <span class="text-purple-500 mx-2">◆</span>

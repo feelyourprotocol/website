@@ -95,9 +95,7 @@ describe('App layout', () => {
 
     it('has Community Token link', async () => {
       const wrapper = await mountApp(makeRouter())
-      const ctLink = wrapper.find(
-        'footer a[href="https://community-token.feelyourprotocol.org/"]',
-      )
+      const ctLink = wrapper.find('footer a[href="https://community-token.feelyourprotocol.org/"]')
       expect(ctLink.exists()).toBe(true)
     })
 

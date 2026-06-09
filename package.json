@@ -27,9 +27,9 @@
     "community-token:build": "vue-tsc --build tsconfig.community-token.json && vite build --config vite.community-token.config.ts",
     "community-token:preview": "vite preview --config vite.community-token.config.ts",
     "lf": "npm run format && npm run lint",
-    "lf:ci": "eslint . && prettier -c src/ cypress/e2e/",
+    "lf:ci": "eslint . && prettier -c src/ cypress/e2e/ community-token/",
     "lint": "eslint . --fix",
-    "format": "prettier --write src/ cypress/e2e/"
+    "format": "prettier --write src/ cypress/e2e/ community-token/"
   },
   "dependencies": {
     "@ethereumjs/common": "^10.1.2",

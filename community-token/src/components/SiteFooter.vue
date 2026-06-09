@@ -19,9 +19,7 @@ const LAST_UPDATED = 'June 5, 2026'
         <span class="text-slate-300">·</span>
         <a :href="DOCS_URL" target="_blank" rel="noopener" class="hover:text-slate-700">Docs</a>
         <span class="text-slate-300">·</span>
-        <a :href="GITHUB_URL" target="_blank" rel="noopener" class="hover:text-slate-700"
-          >GitHub</a
-        >
+        <a :href="GITHUB_URL" target="_blank" rel="noopener" class="hover:text-slate-700">GitHub</a>
       </p>
     </div>
     <p class="mt-3 text-[0.65rem] leading-relaxed text-slate-400">

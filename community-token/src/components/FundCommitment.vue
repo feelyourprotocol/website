@@ -8,7 +8,9 @@ import { FUND_COMMITMENT } from '@ct/content/fund'
     id="fund"
     class="ct-section-anchor ct-card overflow-hidden border-purple-200/80 ring-1 ring-purple-100"
   >
-    <header class="border-b border-purple-100 bg-gradient-to-r from-purple-50/80 to-cyan-50/40 px-4 py-3 md:px-5">
+    <header
+      class="border-b border-purple-100 bg-gradient-to-r from-purple-50/80 to-cyan-50/40 px-4 py-3 md:px-5"
+    >
       <p class="font-mono text-[0.65rem] uppercase tracking-[0.2em] text-purple-600/90">
         {{ FUND_COMMITMENT.subtitle }}
       </p>
@@ -32,7 +34,9 @@ import { FUND_COMMITMENT } from '@ct/content/fund'
         </li>
       </ul>
 
-      <ul class="mt-4 space-y-1.5 border-t border-slate-100 pt-3 text-sm leading-relaxed text-slate-500">
+      <ul
+        class="mt-4 space-y-1.5 border-t border-slate-100 pt-3 text-sm leading-relaxed text-slate-500"
+      >
         <li v-for="(note, index) in FUND_COMMITMENT.notes" :key="index">{{ note }}</li>
         <li>
           On-chain balances, claims, withdrawals, and the work log live in the

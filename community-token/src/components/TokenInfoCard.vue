@@ -12,9 +12,7 @@ import { TOKEN_INFO_FIELDS } from '@ct/content/token'
         </h2>
         <SectionAnchorLink id="token-info" />
       </div>
-      <span
-        class="rounded-full bg-slate-100 px-2 py-0.5 font-mono text-[0.65rem] text-slate-500"
-      >
+      <span class="rounded-full bg-slate-100 px-2 py-0.5 font-mono text-[0.65rem] text-slate-500">
         reference
       </span>
     </div>
