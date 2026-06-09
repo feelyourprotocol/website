@@ -6,9 +6,12 @@ export const EXCHANGE = 0xe8
 export const STOP = 0x00
 export const PUSH1 = 0x60
 
+/** Minimum stack depth for DUPN / SWAPN immediates (EIP-8024). */
+export const DUPN_MIN_DEPTH = 17
+
 /** Encode DUPN / SWAPN immediate for one-based depth n (17..235). Spec: n = (x + 145) mod 256 */
 export function encodeSingleImmediate(n: number): number {
-  if (n < 17 || n > 235) {
+  if (n < DUPN_MIN_DEPTH || n > 235) {
     throw new Error(`DUPN/SWAPN depth must be 17..235, got ${n}`)
   }
   return (n - 145) & 0xff
@@ -41,32 +44,34 @@ export function bytecodeToHex(code: Uint8Array): string {
 
 export const PUSH_ADD = new Uint8Array([0x60, 0x01, 0x60, 0x02, 0x01, 0x00])
 
-export function dupnDepth17Bytecode(): Uint8Array {
+/** Smallest valid DUPN demo: stack [1..17], copy item at depth 17 (value 1). */
+export function dupnBytecode(): Uint8Array {
   return concatBytes(
-    buildPushSequence(18),
-    Uint8Array.from([DUPN, encodeSingleImmediate(17), STOP]),
+    buildPushSequence(DUPN_MIN_DEPTH),
+    Uint8Array.from([DUPN, encodeSingleImmediate(DUPN_MIN_DEPTH), STOP]),
   )
 }
 
-export function swapnDepth17Bytecode(): Uint8Array {
+/** Smallest valid SWAPN demo: stack [1..18], swap top with item at depth 17. */
+export function swapnBytecode(): Uint8Array {
+  const stackSize = DUPN_MIN_DEPTH + 1
   return concatBytes(
-    buildPushSequence(18),
-    Uint8Array.from([SWAPN, encodeSingleImmediate(17), STOP]),
+    buildPushSequence(stackSize),
+    Uint8Array.from([SWAPN, encodeSingleImmediate(DUPN_MIN_DEPTH), STOP]),
   )
 }
 
-export function exchange0x8eBytecode(): Uint8Array {
-  return concatBytes(buildPushSequence(20), Uint8Array.from([EXCHANGE, 0x8e, STOP]))
+/** Compact EXCHANGE demo: stack [1..4], swap depths 2 and 3 below the top. */
+export function exchangeBytecode(): Uint8Array {
+  return concatBytes(buildPushSequence(4), Uint8Array.from([EXCHANGE, 0x8e, STOP]))
 }
 
-/** Shorter demo: stack [1..18], DUPN duplicates deep item 2 without 17 DUP instructions */
-export function dupnEffectBytecode(): Uint8Array {
-  return dupnDepth17Bytecode()
-}
-
-/** Stack too shallow for DUPN depth 17 — triggers an exception */
+/** Stack too shallow for DUPN depth 17 — triggers an exception. */
 export function invalidDupnBytecode(): Uint8Array {
-  return concatBytes(buildPushSequence(5), Uint8Array.from([DUPN, encodeSingleImmediate(17), STOP]))
+  return concatBytes(
+    buildPushSequence(3),
+    Uint8Array.from([DUPN, encodeSingleImmediate(DUPN_MIN_DEPTH), STOP]),
+  )
 }
 
 export function stackTopNumbers(

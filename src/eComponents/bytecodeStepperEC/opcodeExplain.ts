@@ -1,3 +1,4 @@
+import { depthLabel, exchangeOperandToDepth } from './stackDepth'
 import type { InstructionRow } from './types'
 
 /** EIP-8024 immediate decode (mirrors @ethereumjs/evm). */
@@ -27,11 +28,6 @@ function formatPushValue(row: InstructionRow): string {
   const value = BigInt(`0x${hex}`)
   if (value <= 999_999n) return value.toString()
   return `0x${hex}`
-}
-
-function depthLabel(n: number): string {
-  if (n === 1) return 'the top stack item'
-  return `the stack item at depth ${n} (counting from the top)`
 }
 
 const STATIC: Record<string, string> = {
@@ -184,7 +180,7 @@ export function explainInstruction(row: InstructionRow): string {
     const imm = immediateByte(row)
     if (imm !== undefined) {
       const [a, b] = decodeExchangeDepths(imm)
-      return `Swap the item ${a} below the top with the item ${b} below the top`
+      return `Swap ${depthLabel(exchangeOperandToDepth(a))} with ${depthLabel(exchangeOperandToDepth(b))}`
     }
     return 'Swap two stack items below the top (EXCHANGE)'
   }

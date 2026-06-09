@@ -14,7 +14,9 @@ export const INFO: Exploration = {
     'Smart contracts often hit the classic "stack too deep" compiler error when juggling ' +
     'many local variables. EIP-8024 adds three backward-compatible opcodes — ' +
     '<code>DUPN</code> (0xe6), <code>SWAPN</code> (0xe7), and <code>EXCHANGE</code> (0xe8) — ' +
-    'that extend <code>DUP</code>/<code>SWAP</code> to depths 17–235 using a single-byte immediate.',
+    'that extend <code>DUP</code>/<code>SWAP</code> to depths 17–235 using a single-byte immediate. ' +
+    'The DUPN demo uses the smallest legal stack (17 items); SWAPN needs one more slot at the same depth. ' +
+    'EXCHANGE fits in four pushes.',
   usageText:
     'Pick an example below, then use <b>Step</b> to walk through each opcode and watch the stack ' +
     'change. Use <b>Run</b> to execute the full sequence at once. The widget runs bytecode on an ' +

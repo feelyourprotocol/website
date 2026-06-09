@@ -34,7 +34,7 @@ describe('explainInstruction', () => {
 
   it('explains DUP1', () => {
     expect(explainInstruction(row({ pc: 0, opcodeByte: 0x80, name: 'DUP1', rawBytes: '80' }))).toBe(
-      'Copy the top stack item onto the top of the stack',
+      'Copy the stack item at depth 1 (top) onto the top of the stack',
     )
   })
 
@@ -49,7 +49,7 @@ describe('explainInstruction', () => {
           size: 2,
         }),
       ),
-    ).toBe('Copy the stack item at depth 17 (counting from the top) onto the top of the stack')
+    ).toBe('Copy the stack item at depth 17 onto the top of the stack')
   })
 
   it('explains EXCHANGE with decoded depths', () => {
@@ -63,7 +63,7 @@ describe('explainInstruction', () => {
           size: 2,
         }),
       ),
-    ).toBe('Swap the item 1 below the top with the item 2 below the top')
+    ).toBe('Swap the stack item at depth 2 with the stack item at depth 3')
   })
 
   it('explains STOP', () => {

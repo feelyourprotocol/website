@@ -6,12 +6,12 @@ import { runBytecode } from '@/eComponents/bytecodeStepperEC/runBytecode'
 
 import {
   bytecodeToHex,
-  dupnDepth17Bytecode,
-  exchange0x8eBytecode,
+  dupnBytecode,
+  exchangeBytecode,
   invalidDupnBytecode,
   PUSH_ADD,
   stackTopNumbers,
-  swapnDepth17Bytecode,
+  swapnBytecode,
 } from './bytecode'
 import { config } from './config'
 import { examples } from './examples'
@@ -37,13 +37,17 @@ describe('EIP-8024 Exploration', () => {
     it('references a valid default example', () => {
       expect(examples[config.defaultExample]).toBeDefined()
     })
+
+    it('shows enough stack slots for the minimal DUPN demo', () => {
+      expect(config.maxStackDisplay).toBeGreaterThanOrEqual(17)
+    })
   })
 
   describe('examples', () => {
     it('has at least one example per new opcode', () => {
-      expect(examples['dupn-depth-17']).toBeDefined()
-      expect(examples['swapn-depth-17']).toBeDefined()
-      expect(examples['exchange-0x8e']).toBeDefined()
+      expect(examples.dupn).toBeDefined()
+      expect(examples.swapn).toBeDefined()
+      expect(examples.exchange).toBeDefined()
     })
 
     it('each example has unprefixed hex bytecode', () => {
@@ -52,6 +56,11 @@ describe('EIP-8024 Exploration', () => {
         expect(ex.values[0]).toMatch(/^[0-9a-f]+$/i)
         expect(ex.values[0].length % 2).toBe(0)
       }
+    })
+
+    it('uses compact bytecode for EXCHANGE and invalid DUPN', () => {
+      expect(examples.exchange.values[0].length).toBeLessThan(examples.dupn.values[0].length)
+      expect(examples['invalid-dupn'].values[0].length).toBeLessThan(examples.dupn.values[0].length)
     })
   })
 
@@ -70,46 +79,46 @@ describe('EIP-8024 Exploration', () => {
       expect(result.executionGasUsed).toBeGreaterThan(0n)
     })
 
-    it('DUPN depth 17 yields stack top [2, 18, 2]', async () => {
+    it('DUPN copies stack item at depth 17 onto the top', async () => {
       const evm = await createAmsterdamEvm()
       const result = await runBytecode({
         evm,
-        code: dupnDepth17Bytecode(),
+        code: dupnBytecode(),
         gasLimit: 1_000_000n,
         stepMode: false,
         onStep: () => {},
         shouldAbort: () => false,
       })
       expect(result.exceptionError).toBeUndefined()
-      expect(stackTopNumbers(result.runState?.stack, 3)).toEqual([17, 18, 2])
+      expect(stackTopNumbers(result.runState?.stack, 3)).toEqual([16, 17, 1])
     })
 
-    it('SWAPN depth 17 yields stack top [2, 18]', async () => {
+    it('SWAPN swaps top with stack item at depth 17', async () => {
       const evm = await createAmsterdamEvm()
       const result = await runBytecode({
         evm,
-        code: swapnDepth17Bytecode(),
+        code: swapnBytecode(),
         gasLimit: 1_000_000n,
         stepMode: false,
         onStep: () => {},
         shouldAbort: () => false,
       })
       expect(result.exceptionError).toBeUndefined()
-      expect(stackTopNumbers(result.runState?.stack, 2)).toEqual([17, 1])
+      expect(stackTopNumbers(result.runState?.stack, 3)).toEqual([16, 17, 1])
     })
 
-    it('EXCHANGE 0x8e swaps slots below top', async () => {
+    it('EXCHANGE swaps stack items at depths 2 and 3 on a 4-item stack', async () => {
       const evm = await createAmsterdamEvm()
       const result = await runBytecode({
         evm,
-        code: exchange0x8eBytecode(),
+        code: exchangeBytecode(),
         gasLimit: 1_000_000n,
         stepMode: false,
         onStep: () => {},
         shouldAbort: () => false,
       })
       expect(result.exceptionError).toBeUndefined()
-      expect(stackTopNumbers(result.runState?.stack, 3)).toEqual([19, 18, 20])
+      expect(stackTopNumbers(result.runState?.stack, 4)).toEqual([1, 3, 2, 4])
     })
 
     it('invalid DUPN example throws an exception', async () => {
@@ -128,7 +137,7 @@ describe('EIP-8024 Exploration', () => {
     it('example hex strings round-trip to working bytecode', async () => {
       const evm = await createAmsterdamEvm()
       for (const [key, ex] of Object.entries(examples)) {
-        if (key === 'invalid-dupn-immediate') continue
+        if (key === 'invalid-dupn') continue
         const hex = ex.values[0]
         const code = new Uint8Array(hex.match(/.{1,2}/g)!.map((b) => parseInt(b, 16)))
         const result = await runBytecode({

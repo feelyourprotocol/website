@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
 import type { EVM } from '@ethereumjs/evm'
 import { bytesToHex } from '@ethereumjs/util'
 
@@ -14,6 +14,7 @@ import { TOPICS } from '@/explorations/TOPICS'
 
 import BytecodeStepperResultEC from './BytecodeStepperResultEC.vue'
 import { explainInstruction } from './opcodeExplain'
+import { depthFromIndex } from './stackDepth'
 import type { BytecodeStepperConfig } from './types'
 import { useBytecodeStepper } from './useBytecodeStepper'
 
@@ -62,7 +63,17 @@ const stepExplanation = computed(() => {
 
 const displayedStack = computed(() => {
   const stack = currentSnapshot.value?.stack ?? []
-  return stack.slice(0, maxStackDisplay)
+  return stack.slice(0, maxStackDisplay).map((word, index) => ({
+    depth: depthFromIndex(index),
+    word,
+  }))
+})
+
+const stackDepthHint = computed(() => {
+  const total = currentSnapshot.value?.stack.length ?? 0
+  if (total === 0) return ''
+  if (total <= maxStackDisplay) return 'depth 1 = top'
+  return `depth 1 = top · showing 1–${maxStackDisplay} of ${total}`
 })
 
 const memoryLines = computed(() => {
@@ -94,8 +105,29 @@ const gasLabel = computed(() => {
   return `Gas limit: ${gasLimit}`
 })
 
+const disassemblyPanel = ref<HTMLElement | null>(null)
+const stackPanel = ref<HTMLElement | null>(null)
+const memoryPanel = ref<HTMLElement | null>(null)
+
+function scrollPanelsToTop() {
+  for (const panel of [disassemblyPanel, stackPanel, memoryPanel]) {
+    if (panel.value) panel.value.scrollTop = 0
+  }
+}
+
 async function onExampleChange() {
   await selectExample(props.examples)
+  scrollPanelsToTop()
+}
+
+async function onBytecodeChangeWrapped() {
+  await onBytecodeChange()
+  scrollPanelsToTop()
+}
+
+async function onReset() {
+  await reset()
+  scrollPanelsToTop()
 }
 
 function formatStackWord(word: bigint): string {
@@ -110,7 +142,7 @@ function formatStackWord(word: bigint): string {
         <ExamplesUIC v-model="example" :examples="examples" :change="onExampleChange" />
 
         <p class="font-mono text-xs font-bold mb-1 text-slate-700">Bytecode</p>
-        <HexDataInputUIC v-model="bytecodeHex" rows="4" :formChange="onBytecodeChange" />
+        <HexDataInputUIC v-model="bytecodeHex" rows="4" :formChange="onBytecodeChangeWrapped" />
 
         <p v-if="validationErrors.length" class="text-red-500 text-xs font-mono mb-2">
           {{ validationErrors.join(', ') }}
@@ -122,7 +154,7 @@ function formatStackWord(word: bigint): string {
           <ActionButtonUIC
             text="Reset"
             tooltip="Clear execution state (keeps bytecode)"
-            :onClick="reset"
+            :onClick="onReset"
           />
           <span class="font-mono text-xs text-slate-600 ml-2">{{ gasLabel }}</span>
           <span v-if="mode !== 'idle'" class="font-mono text-xs text-slate-500">
@@ -141,6 +173,7 @@ function formatStackWord(word: bigint): string {
           <div>
             <h4 class="font-mono text-xs font-bold mb-2 text-slate-700">Disassembly</h4>
             <div
+              ref="disassemblyPanel"
               class="font-mono text-xs bg-slate-50 border border-slate-200 rounded-md p-2 max-h-64 overflow-y-auto"
             >
               <div
@@ -183,13 +216,34 @@ function formatStackWord(word: bigint): string {
           </div>
 
           <div>
-            <h4 class="font-mono text-xs font-bold mb-2 text-slate-700">Stack</h4>
+            <h4 class="font-mono text-xs font-bold mb-2 text-slate-700">
+              Stack
+              <span v-if="stackDepthHint" class="font-normal text-slate-500">
+                ({{ stackDepthHint }})
+              </span>
+            </h4>
             <div
+              ref="stackPanel"
               class="font-mono text-xs bg-slate-50 border border-slate-200 rounded-md p-2 min-h-[6rem] max-h-40 overflow-y-auto"
             >
-              <div v-for="(word, i) in displayedStack" :key="i" class="py-0.5 break-all">
-                [{{ formatStackWord(word) }}]
-                <span v-if="i === 0" class="text-purple-600"> ← top</span>
+              <div
+                v-if="displayedStack.length > 0"
+                class="grid grid-cols-[2.5rem_1fr] gap-x-2 text-slate-400 border-b border-slate-200 pb-1 mb-1"
+              >
+                <span>Depth</span>
+                <span>Value</span>
+              </div>
+              <div
+                v-for="item in displayedStack"
+                :key="item.depth"
+                class="grid grid-cols-[2.5rem_1fr] gap-x-2 py-0.5 break-all items-baseline"
+              >
+                <span
+                  :class="item.depth === 1 ? 'text-purple-600 font-semibold' : 'text-slate-500'"
+                >
+                  {{ item.depth }}
+                </span>
+                <span>[{{ formatStackWord(item.word) }}]</span>
               </div>
               <p v-if="displayedStack.length === 0" class="text-slate-400">(empty)</p>
             </div>
@@ -201,6 +255,7 @@ function formatStackWord(word: bigint): string {
               </span>
             </h4>
             <div
+              ref="memoryPanel"
               class="font-mono text-xs bg-slate-50 border border-slate-200 rounded-md p-2 max-h-32 overflow-y-auto"
             >
               <div v-for="line in memoryLines" :key="line.offset" class="py-0.5">

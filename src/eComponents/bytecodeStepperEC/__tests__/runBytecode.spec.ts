@@ -2,6 +2,8 @@ import { describe, expect, it } from 'vitest'
 import { Common, Hardfork, Mainnet } from '@ethereumjs/common'
 import { createEVM } from '@ethereumjs/evm'
 
+import { dupnBytecode } from '@/explorations/eip-8024/bytecode'
+
 import { createStepGate, runBytecode } from '../runBytecode'
 
 const PUSH1_STOP = new Uint8Array([0x60, 0x01, 0x00])
@@ -9,18 +11,6 @@ const PUSH1_STOP = new Uint8Array([0x60, 0x01, 0x00])
 async function createAmsterdamEvm() {
   const common = new Common({ chain: Mainnet, hardfork: Hardfork.Amsterdam })
   return createEVM({ common })
-}
-
-function buildPushSequence(count: number): Uint8Array {
-  const bytes = new Uint8Array(count * 2 + 2)
-  for (let i = 0; i < count; i++) {
-    bytes[i * 2] = 0x60
-    bytes[i * 2 + 1] = i + 1
-  }
-  bytes[count * 2] = 0xe6
-  bytes[count * 2 + 1] = (17 - 145) & 0xff
-  bytes[count * 2 + 2] = 0x00
-  return bytes
 }
 
 describe('runBytecode', () => {
@@ -74,9 +64,9 @@ describe('runBytecode', () => {
     expect(result.exceptionError).toBeUndefined()
   })
 
-  it('DUPN depth 17 duplicates stack item 2 onto top', async () => {
+  it('DUPN duplicates stack item at depth 17 onto top', async () => {
     const evm = await createAmsterdamEvm()
-    const code = buildPushSequence(18)
+    const code = dupnBytecode()
 
     const result = await runBytecode({
       evm,
@@ -93,7 +83,7 @@ describe('runBytecode', () => {
       .peek(3)
       .map((w) => Number(w))
       .reverse()
-    expect(top).toEqual([17, 18, 2])
+    expect(top).toEqual([16, 17, 1])
   })
 })
 
