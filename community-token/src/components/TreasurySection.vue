@@ -8,8 +8,7 @@ import {
   TREASURY_WALLET_URL,
 } from '@ct/content/treasury'
 
-const inTreasuryEur =
-  TREASURY_SNAPSHOT_2026.claimedEur - TREASURY_SNAPSHOT_2026.withdrawnEur
+const inTreasuryEur = TREASURY_SNAPSHOT_2026.claimedEur - TREASURY_SNAPSHOT_2026.withdrawnEur
 </script>
 
 <template>
@@ -57,7 +56,9 @@ const inTreasuryEur =
         </dd>
       </div>
       <div class="rounded-md border border-purple-100 bg-purple-50/50 px-2 py-1.5">
-        <dt class="font-mono text-[0.6rem] uppercase tracking-wider text-purple-500">In treasury</dt>
+        <dt class="font-mono text-[0.6rem] uppercase tracking-wider text-purple-500">
+          In treasury
+        </dt>
         <dd class="font-mono text-xs font-bold text-purple-800">
           {{ inTreasuryEur.toLocaleString('en-GB') }} €
         </dd>

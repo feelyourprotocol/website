@@ -22,7 +22,7 @@ npm run community-token:preview
 
 Production output: `dist/community-token/`
 
-Full deploy build (main site + community token + docs):
+Full deploy build (main site + community token + docs, rebuilt on server — `dist/` is not in git):
 
 ```bash
 npm run build:deploy
@@ -30,11 +30,11 @@ npm run build:deploy
 
 ## Content (fill in later)
 
-| File | Purpose |
-| --- | --- |
-| `src/content/fund.ts` | Developer Fund (fee uses + short notes) |
+| File                    | Purpose                                                                 |
+| ----------------------- | ----------------------------------------------------------------------- |
+| `src/content/fund.ts`   | Developer Fund (fee uses + short notes)                                 |
 | `src/content/topics.ts` | Intro prose, `HOW_IT_WORKS` box meta, tabbed content (`GUIDELINE_TABS`) |
-| `src/content/token.ts` | Which-token reference (name, symbol, links) |
+| `src/content/token.ts`  | Which-token reference (name, symbol, links)                             |
 
 Layout: two columns on large screens — left: intro + token; right: **How fees are used** box (top) + tabbed **How this works** (bottom). Tabs: `Scope`, `Token Relationship`, `Terms`, `Community`.
 

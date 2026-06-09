@@ -45,7 +45,10 @@ watch(
 </script>
 
 <template>
-  <section id="how-it-works" class="ct-section-anchor ct-card flex min-h-64 flex-col overflow-hidden">
+  <section
+    id="how-it-works"
+    class="ct-section-anchor ct-card flex min-h-64 flex-col overflow-hidden"
+  >
     <div class="border-b border-slate-100 px-4 py-3 md:px-5">
       <div class="group flex items-baseline gap-2">
         <h2 class="font-mono text-sm font-bold uppercase tracking-[0.15em] text-slate-600">
@@ -62,13 +65,10 @@ watch(
       class="flex min-h-0 flex-1 flex-col"
       @change="onSelectTab"
     >
-      <TabList class="flex flex-wrap gap-1 border-b border-slate-100 bg-slate-50/80 px-3 py-2 md:px-4">
-        <Tab
-          v-for="tab in tabs"
-          :key="tab.id"
-          v-slot="{ selected }"
-          as="template"
-        >
+      <TabList
+        class="flex flex-wrap gap-1 border-b border-slate-100 bg-slate-50/80 px-3 py-2 md:px-4"
+      >
+        <Tab v-for="tab in tabs" :key="tab.id" v-slot="{ selected }" as="template">
           <button
             type="button"
             :class="[

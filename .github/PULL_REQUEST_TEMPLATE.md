@@ -34,7 +34,7 @@
 - [ ] Linting and type checking pass (`npm run lf && npm run type-check`)
 - [ ] Unit tests pass (`npx vitest run`)
 - [ ] E2E tests pass (`npm run test:e2e`)
-- [ ] Production build succeeds (`npm run build`)
+- [ ] Production build succeeds (`npm run build` — website + community-token + docs)
 - [ ] New exploration is registered in `REGISTRY.ts`
 - [ ] Library needs were discussed in a separate issue (if applicable — see [Third-Party Libraries](https://docs.feelyourprotocol.org/contributing/third-party-libraries))
 

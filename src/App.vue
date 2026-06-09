@@ -116,10 +116,14 @@ watch(
     <h3 class="font-mono text-xs text-slate-500">
       <span class="text-purple-500">◆</span> Made with ❤️ and pure dedication by
       <a href="https://x.com/HolgerD77" target="_blank" rel="noopener">HolgerD77</a>
+      <span class="text-purple-500 mx-2">◆</span>
+      <RouterLink to="/imprint">Imprint</RouterLink>
     </h3>
 
     <h3 class="font-mono text-xs text-right text-slate-500">
-      <RouterLink to="/imprint">Imprint</RouterLink>
+      <a href="https://community-token.feelyourprotocol.org/" target="_blank" rel="noopener"
+        >Community Token</a
+      >
       <span class="text-purple-500 mx-2">◆</span>
       <a href="https://github.com/feelyourprotocol/website" target="_blank" rel="noopener"
         >GitHub</a

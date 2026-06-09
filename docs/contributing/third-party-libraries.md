@@ -74,7 +74,7 @@ Multiple versions or forks of the same library coexist in `package.json` using n
 ```json
 {
   "dependencies": {
-    "@ethereumjs/evm": "^10.1.1-nightly.1",
+    "@ethereumjs/evm": "^10.1.2",
     "@ethereumjs/evm-experimental": "npm:@ethereumjs/evm@^11.0.0-fork.1"
   }
 }

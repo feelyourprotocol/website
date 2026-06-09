@@ -93,6 +93,12 @@ describe('App layout', () => {
       expect(links.some((l) => l.props('to') === '/imprint')).toBe(true)
     })
 
+    it('has Community Token link', async () => {
+      const wrapper = await mountApp(makeRouter())
+      const ctLink = wrapper.find('footer a[href="https://community-token.feelyourprotocol.org/"]')
+      expect(ctLink.exists()).toBe(true)
+    })
+
     it('has GitHub link', async () => {
       const wrapper = await mountApp(makeRouter())
       const ghLink = wrapper.find('footer a[href="https://github.com/feelyourprotocol/website"]')

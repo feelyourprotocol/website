@@ -54,9 +54,16 @@ npm run test:e2e     # E2E tests (Cypress, requires build first)
 ## Building
 
 ```bash
-npm run build          # website → dist/website
-npm run docs:build     # docs → dist/docs
+npm run build          # all three, with website type-check
+npm run build:deploy   # all three (website vite-only; used on the server after git pull)
+
+# Individual targets:
+npm run website:build           # dist/website
+npm run community-token:build   # dist/community-token
+npm run docs:build              # dist/docs
 ```
+
+`dist/` is not committed — production output is rebuilt on deploy.
 
 ## Project Structure
 

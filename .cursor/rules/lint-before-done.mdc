@@ -1,0 +1,14 @@
+---
+description: Run lint/format CI before finishing code changes in this repo
+alwaysApply: true
+---
+
+# Lint before done
+
+When you change code in this repository, **before reporting the task complete**:
+
+1. Run `npm run lf:ci` from `feelyourprotocol/website/`.
+2. If it fails, fix issues (or run `npm run lf` to auto-fix where possible) and re-run until it passes.
+3. Do not skip this for "small" edits — including `community-token/`, `src/`, and config files.
+
+`lf:ci` = ESLint (whole repo) + Prettier check (`src/`, `cypress/e2e/`, `community-token/`).
