@@ -63,9 +63,7 @@ describe('explainInstruction', () => {
           size: 2,
         }),
       ),
-    ).toBe(
-      'Swap the stack item at depth 2 with the stack item at depth 3 (some immediate magic!)',
-    )
+    ).toBe('Swap the stack item at depth 2 with the stack item at depth 3 (some immediate magic!)')
   })
 
   it('explains STOP', () => {

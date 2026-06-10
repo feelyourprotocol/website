@@ -1,20 +1,6 @@
+import { decodeDupnSwapnOperand, decodeExchangeOperands } from './eip8024Immediate'
 import { depthLabel, exchangeOperandToDepth } from './stackDepth'
 import type { InstructionRow } from './types'
-
-/** EIP-8024 immediate decode (mirrors @ethereumjs/evm). */
-function decodeDupnSwapnDepth(immediate: number): number {
-  return (immediate + 145) & 0xff
-}
-
-function decodeExchangeDepths(immediate: number): [number, number] {
-  const k = immediate ^ 0x8f
-  const q = (k >> 4) & 0xf
-  const r = k & 0xf
-  if (q < r) {
-    return [q + 1, r + 1]
-  }
-  return [r + 1, 29 - q]
-}
 
 function immediateByte(row: InstructionRow): number | undefined {
   const parts = row.rawBytes.trim().split(/\s+/)
@@ -165,7 +151,7 @@ export function explainInstruction(row: InstructionRow): string {
   if (opcodeByte === 0xe6) {
     const imm = immediateByte(row)
     if (imm !== undefined) {
-      const depth = decodeDupnSwapnDepth(imm)
+      const depth = decodeDupnSwapnOperand(imm)
       return `Copy ${depthLabel(depth)} onto the top of the stack${immediateMagicSuffix()}`
     }
     return 'Copy a deep stack item onto the top (DUPN)'
@@ -174,8 +160,8 @@ export function explainInstruction(row: InstructionRow): string {
   if (opcodeByte === 0xe7) {
     const imm = immediateByte(row)
     if (imm !== undefined) {
-      const depth = decodeDupnSwapnDepth(imm)
-      return `Swap the top stack item with ${depthLabel(depth)}${immediateMagicSuffix()}`
+      const n = decodeDupnSwapnOperand(imm)
+      return `Swap the top stack item with ${depthLabel(n + 1)}${immediateMagicSuffix()}`
     }
     return 'Swap the top item with a deep stack item (SWAPN)'
   }
@@ -183,7 +169,7 @@ export function explainInstruction(row: InstructionRow): string {
   if (opcodeByte === 0xe8) {
     const imm = immediateByte(row)
     if (imm !== undefined) {
-      const [a, b] = decodeExchangeDepths(imm)
+      const [a, b] = decodeExchangeOperands(imm)
       return `Swap ${depthLabel(exchangeOperandToDepth(a))} with ${depthLabel(exchangeOperandToDepth(b))}${immediateMagicSuffix()}`
     }
     return 'Swap two stack items below the top (EXCHANGE)'

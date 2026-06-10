@@ -1,5 +1,10 @@
 import { bytesToHex } from '@ethereumjs/util'
 
+import {
+  DUPN_SWAPN_MIN_DEPTH,
+  encodeDupnSwapnImmediate,
+} from '@/eComponents/bytecodeStepperEC/eip8024Immediate'
+
 export const DUPN = 0xe6
 export const SWAPN = 0xe7
 export const EXCHANGE = 0xe8
@@ -7,14 +12,15 @@ export const STOP = 0x00
 export const PUSH1 = 0x60
 
 /** Minimum stack depth for DUPN / SWAPN immediates (EIP-8024). */
-export const DUPN_MIN_DEPTH = 17
+export const DUPN_MIN_DEPTH = DUPN_SWAPN_MIN_DEPTH
 
 /** Encode DUPN / SWAPN immediate for one-based depth n (17..235). Spec: n = (x + 145) mod 256 */
 export function encodeSingleImmediate(n: number): number {
-  if (n < DUPN_MIN_DEPTH || n > 235) {
-    throw new Error(`DUPN/SWAPN depth must be 17..235, got ${n}`)
+  const result = encodeDupnSwapnImmediate(n)
+  if (!result.ok) {
+    throw new Error(result.error)
   }
-  return (n - 145) & 0xff
+  return result.immediate
 }
 
 /** Push consecutive values 1..count (bottom = 1, top = count) */
