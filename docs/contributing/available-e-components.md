@@ -42,7 +42,9 @@ import { examples } from './examples'
 import { INFO as exploration } from './info'
 
 const { run, execResultPre, execResultPost } = useStandardPrecompileRun(
-  Hardfork.Prague, Hardfork.Osaka, '0a',
+  Hardfork.Prague,
+  Hardfork.Osaka,
+  '0a',
 )
 
 const config: PrecompileConfig = {
@@ -57,7 +59,10 @@ const config: PrecompileConfig = {
 
 <template>
   <PrecompileInterfaceEC
-    :config="config" :examples="examples" :exploration="exploration" :run="run"
+    :config="config"
+    :examples="examples"
+    :exploration="exploration"
+    :run="run"
   >
     <template #result>
       <div class="e-grid-double">
@@ -71,12 +76,12 @@ const config: PrecompileConfig = {
 
 ### Component Props
 
-| Prop | Required | Description |
-|------|----------|-------------|
-| `config` | Yes | Input configuration (see `PrecompileConfig` below) |
-| `examples` | Yes | Example presets from `examples.ts` |
-| `exploration` | Yes | Exploration metadata from `info.ts` |
-| `run` | Yes | Execution function, called with the assembled hex data (without `0x`) on every valid input change |
+| Prop          | Required | Description                                                                                       |
+| ------------- | -------- | ------------------------------------------------------------------------------------------------- |
+| `config`      | Yes      | Input configuration (see `PrecompileConfig` below)                                                |
+| `examples`    | Yes      | Example presets from `examples.ts`                                                                |
+| `exploration` | Yes      | Exploration metadata from `info.ts`                                                               |
+| `run`         | Yes      | Execution function, called with the assembled hex data (without `0x`) on every valid input change |
 
 ### `PrecompileConfig` Reference
 
@@ -91,14 +96,14 @@ interface PrecompileConfig {
 }
 ```
 
-| Field | Required | Description |
-|-------|----------|-------------|
-| `explorationId` | Yes | Matches the exploration's `id` in `info.ts` |
-| `defaultExample` | Yes | Key from `examples.ts` to load on initialization |
-| `showBigInt` | No | Show BigInt representations for values (default: per-value setting) |
-| `values` | Yes | Array of value definitions (see below) |
-| `assembleData` | No | Custom function to assemble raw hex data from individual values |
-| `parseData` | No | Custom function to parse raw hex data into individual values |
+| Field            | Required | Description                                                         |
+| ---------------- | -------- | ------------------------------------------------------------------- |
+| `explorationId`  | Yes      | Matches the exploration's `id` in `info.ts`                         |
+| `defaultExample` | Yes      | Key from `examples.ts` to load on initialization                    |
+| `showBigInt`     | No       | Show BigInt representations for values (default: per-value setting) |
+| `values`         | Yes      | Array of value definitions (see below)                              |
+| `assembleData`   | No       | Custom function to assemble raw hex data from individual values     |
+| `parseData`      | No       | Custom function to parse raw hex data into individual values        |
 
 ### `PrecompileValueDef` Reference
 
@@ -113,14 +118,14 @@ interface PrecompileValueDef {
 }
 ```
 
-| Field | Required | Description |
-|-------|----------|-------------|
-| `title` | Yes | Display label for this value |
-| `urlParam` | No | URL query parameter name for sharing (omit for computed values) |
-| `expectedLen` | No | Expected byte length for validation |
-| `initialHex` | No | Initial hex value (used for length-prefix fields) |
-| `showBigInt` | No | Show BigInt representation for this value |
-| `showInput` | No | Whether to show the input field (default: `true`, set `false` for computed fields) |
+| Field         | Required | Description                                                                        |
+| ------------- | -------- | ---------------------------------------------------------------------------------- |
+| `title`       | Yes      | Display label for this value                                                       |
+| `urlParam`    | No       | URL query parameter name for sharing (omit for computed values)                    |
+| `expectedLen` | No       | Expected byte length for validation                                                |
+| `initialHex`  | No       | Initial hex value (used for length-prefix fields)                                  |
+| `showBigInt`  | No       | Show BigInt representation for this value                                          |
+| `showInput`   | No       | Whether to show the input field (default: `true`, set `false` for computed fields) |
 
 ### Custom Data Assembly
 
@@ -167,7 +172,9 @@ For the common pre/post hardfork comparison using the EthereumJS EVM, use the pr
 import { useStandardPrecompileRun } from '@/eComponents/precompileInterfaceEC/run'
 
 const { run, execResultPre, execResultPost } = useStandardPrecompileRun(
-  Hardfork.Prague, Hardfork.Osaka, '05',
+  Hardfork.Prague,
+  Hardfork.Osaka,
+  '05',
 )
 ```
 
@@ -195,7 +202,10 @@ async function run(data: string) {
 
 <template>
   <PrecompileInterfaceEC
-    :config="config" :examples="examples" :exploration="exploration" :run="run"
+    :config="config"
+    :examples="examples"
+    :exploration="exploration"
+    :run="run"
   >
     <template #result>
       <div class="e-grid-single">
@@ -210,3 +220,84 @@ async function run(data: string) {
 ```
 
 The `#result` slot template lives in the exploration's scope, so it naturally accesses your own refs and computed properties.
+
+## Bytecode Stepper (`bytecodeStepperEC`)
+
+A stepping debugger for raw EVM bytecode. The exploration injects a configured `EVM` instance (hardfork, chain); the E-Component handles bytecode editing, disassembly, run/step/reset, and stack/memory/gas display.
+
+**Files:**
+
+```
+src/eComponents/bytecodeStepperEC/
+├── BytecodeStepperEC.vue          # Main component
+├── BytecodeStepperResultEC.vue    # ExecResult summary
+├── useBytecodeStepper.ts          # Composable: state machine + run/step/reset
+├── disassemble.ts                 # Hex → instruction rows via getOpcodesForHF
+├── runBytecode.ts                 # runCode orchestration + step event gate
+└── types.ts                       # BytecodeStepperConfig and internal types
+```
+
+**Used by:** [EIP-8024](https://github.com/feelyourprotocol/website/blob/main/src/explorations/eip-8024/MyC.vue) (DUPN/SWAPN/EXCHANGE stack opcodes)
+
+### Basic Usage
+
+The exploration creates an EVM for the target hardfork and passes it to the component:
+
+```vue
+<script setup lang="ts">
+import { Common, Hardfork, Mainnet } from '@ethereumjs/common'
+import { createEVM } from '@ethereumjs/evm'
+
+import BytecodeStepperEC from '@/eComponents/bytecodeStepperEC/BytecodeStepperEC.vue'
+
+import { config } from './config'
+import { examples } from './examples'
+import { INFO as exploration } from './info'
+
+const common = new Common({ chain: Mainnet, hardfork: Hardfork.Amsterdam })
+const evm = await createEVM({ common })
+</script>
+
+<template>
+  <BytecodeStepperEC :config="config" :examples="examples" :exploration="exploration" :evm="evm" />
+</template>
+```
+
+### Component Props
+
+| Prop          | Required | Description                                                |
+| ------------- | -------- | ---------------------------------------------------------- |
+| `config`      | Yes      | Stepping configuration (see `BytecodeStepperConfig` below) |
+| `examples`    | Yes      | Example presets; `values[0]` is unprefixed hex bytecode    |
+| `exploration` | Yes      | Exploration metadata from `info.ts`                        |
+| `evm`         | Yes      | Pre-configured EVM instance owned by the exploration       |
+
+### `BytecodeStepperConfig` Reference
+
+```typescript
+interface BytecodeStepperConfig {
+  explorationId: string
+  defaultExample: string
+  gasLimit?: bigint // default 1_000_000n
+  maxStackDisplay?: number // default 12
+  maxMemoryBytes?: number // default 64
+}
+```
+
+| Field             | Required | Description                                      |
+| ----------------- | -------- | ------------------------------------------------ |
+| `explorationId`   | Yes      | Matches the exploration's `id` in `info.ts`      |
+| `defaultExample`  | Yes      | Key from `examples.ts` to load on initialization |
+| `gasLimit`        | No       | Gas limit passed to `runCode`                    |
+| `maxStackDisplay` | No       | Max stack slots shown in the UI                  |
+| `maxMemoryBytes`  | No       | Max memory bytes shown in the hex dump           |
+
+### Execution Modes
+
+| Action    | Behavior                                                                       |
+| --------- | ------------------------------------------------------------------------------ |
+| **Run**   | Execute bytecode to completion; record all step snapshots                      |
+| **Step**  | Advance one opcode (step mode is pre-armed when bytecode is valid)             |
+| **Reset** | Clear execution state, re-arm stepping; bytecode input is preserved            |
+
+Valid bytecode automatically enters step mode paused before the first opcode, so the first **Step** click executes that opcode. Changing bytecode triggers a full reset and re-arms stepping.

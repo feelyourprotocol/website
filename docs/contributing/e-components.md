@@ -68,6 +68,5 @@ Some patterns that might become E-Components as the project grows:
 - **Transaction builder** — interactive transaction construction and signing
 - **Gas calculator** — compare gas costs across hardforks for different operations
 - **Storage layout** — visualize contract storage slot changes
-- **Opcode explorer** — step through EVM bytecode execution
 
 If you are interested in building any of these (or have other ideas), feel free to [open an issue](https://github.com/feelyourprotocol/website/issues) to discuss the design.
