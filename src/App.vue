@@ -5,6 +5,7 @@ import { Listbox, ListboxButton, ListboxOption, ListboxOptions } from '@headless
 import { ChevronUpDownIcon } from '@heroicons/vue/20/solid'
 
 import { EXPLORATIONS } from '@/explorations/REGISTRY'
+import logoUrl from '@/logo.png'
 
 const router = useRouter()
 const route = useRoute()
@@ -40,9 +41,21 @@ watch(
       <h1>
         <RouterLink
           to="/"
-          class="text-2xl md:text-4xl font-bold tracking-wider whitespace-nowrap bg-gradient-to-r from-purple-600 to-cyan-500 bg-clip-text text-transparent"
-          >Feel Your Protocol</RouterLink
+          class="inline-flex items-center gap-2.5 md:gap-3 text-2xl md:text-4xl font-bold tracking-wider whitespace-nowrap"
         >
+          <span class="inline-flex h-[1em] items-center overflow-visible shrink-0">
+            <img
+              :src="logoUrl"
+              alt=""
+              aria-hidden="true"
+              class="h-[1.25em] w-auto"
+            />
+          </span>
+          <span
+            class="bg-gradient-to-r from-purple-600 to-cyan-500 bg-clip-text text-transparent"
+            >Feel Your Protocol</span
+          >
+        </RouterLink>
       </h1>
       <nav class="font-mono text-sm text-right flex justify-end items-center">
         <Listbox v-model="selectedRoute" @update:model-value="navigate">
