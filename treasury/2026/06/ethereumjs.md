@@ -7,5 +7,5 @@ total_eur: 0
 
 # EthereumJS work — June 2026
 
-| Date | Hours | Task |
-| ---- | ----- | ---- |
+| Date | CW | Hours | Task |
+| ---- | -- | ----- | ---- |

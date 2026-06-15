@@ -1,7 +1,7 @@
 name: Check Formatting/Linting
 on:
   pull_request:
-    types: [opened, reopened, synchronize]
+    types: [opened, reopened, synchronize, labeled, unlabeled]
   push:
     branches: [master]
     tags: ['*']
@@ -18,16 +18,25 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Skip lint (label)
+        if: github.event_name == 'pull_request' && contains(github.event.pull_request.labels.*.name, 'skip lint')
+        run: echo "Lint skipped via 'skip lint' label."
+
       - uses: actions/checkout@v5
+        if: github.event_name != 'pull_request' || !contains(github.event.pull_request.labels.*.name, 'skip lint')
 
       - name: Use Node.js 22
+        if: github.event_name != 'pull_request' || !contains(github.event.pull_request.labels.*.name, 'skip lint')
         uses: actions/setup-node@v5
         with:
           node-version: 22
           cache: 'npm'
 
-      - run: npm ci
+      - name: Install dependencies
+        if: github.event_name != 'pull_request' || !contains(github.event.pull_request.labels.*.name, 'skip lint')
+        run: npm ci
         working-directory: ${{github.workspace}}
-      
+
       - name: Check formatting/linting
+        if: github.event_name != 'pull_request' || !contains(github.event.pull_request.labels.*.name, 'skip lint')
         run: npm run lf:ci

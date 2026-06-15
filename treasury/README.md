@@ -64,15 +64,19 @@ Frontmatter: `total_withdrawn_eur` — sum of **completed** rows only
 
 ### `fyp.md` / `ethereumjs.md`
 
-| Date | Hours | Task |
+| Date | CW | Hours | Task |
 
+- **Date:** ISO `YYYY-MM-DD`
+- **CW:** ISO calendar week (Monday–Sunday) for that date, e.g. `24` for CW 24
 - **Hourly rate:** 50 €/hour (see [community-token fund page](https://community-token.feelyourprotocol.org/#fund))
 - Frontmatter: `month`, `hourly_rate_eur`, `total_hours`, `total_eur`
 
 ### `expenses.md`
 
-| Date | Category | Amount (€) | Description |
+| Date | CW | Category | Amount (€) | Description |
 
+- **Date:** ISO `YYYY-MM-DD`
+- **CW:** ISO calendar week for that date
 - **Category:** e.g. `LLM`, `Infrastructure`, `Conference`
 - Frontmatter: `month`, `total_eur`
 
