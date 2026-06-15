@@ -145,7 +145,12 @@ function formatStackWord(word: bigint): string {
 
 <template>
   <div class="flex flex-col gap-4">
-    <ExplorationC :explorationId="config.explorationId" :exploration="exploration" :topic="topic">
+    <ExplorationC
+      asPageTitle
+      :explorationId="config.explorationId"
+      :exploration="exploration"
+      :topic="topic"
+    >
       <template #content>
         <div>
           <ExamplesUIC v-model="example" :examples="examples" :change="onExampleChange" />

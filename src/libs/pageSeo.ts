@@ -1,0 +1,361 @@
+import { EXPLORATIONS } from '@/explorations/REGISTRY'
+import { TOPICS } from '@/explorations/TOPICS'
+
+export const SITE_ORIGIN = 'https://feelyourprotocol.org'
+export const SITE_NAME = 'Feel Your Protocol'
+
+export const DEFAULT_DESCRIPTION =
+  'Collaborative open-source interactive explorations of upcoming Ethereum protocol changes. ' +
+  'Widgets are powered by real EVM and cryptography libraries running in the browser.'
+
+export interface BreadcrumbItem {
+  label: string
+  to?: string
+}
+
+export interface PageSeo {
+  path: string
+  title: string
+  description: string
+  canonicalUrl: string
+  noindex?: boolean
+  jsonLd?: object | object[]
+}
+
+export interface SitemapEntry {
+  loc: string
+  lastmod?: string
+}
+
+const explorationByPath = new Map(
+  Object.entries(EXPLORATIONS).map(([id, exploration]) => [exploration.path, { id, exploration }]),
+)
+
+const topicByPath = new Map(Object.values(TOPICS).map((topic) => [topic.path, topic]))
+
+function absoluteUrl(path: string): string {
+  return path === '/' ? `${SITE_ORIGIN}/` : `${SITE_ORIGIN}${path}`
+}
+
+function formatDocumentTitle(pageTitle: string): string {
+  return pageTitle === SITE_NAME ? SITE_NAME : `${pageTitle} — ${SITE_NAME}`
+}
+
+/** Strip HTML tags and collapse whitespace for meta descriptions. */
+export function stripHtml(html: string): string {
+  return html
+    .replace(/<[^>]+>/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim()
+}
+
+export function truncateDescription(text: string, maxLength = 160): string {
+  if (text.length <= maxLength) return text
+  const cut = text.slice(0, maxLength - 1)
+  const lastSpace = cut.lastIndexOf(' ')
+  return `${(lastSpace > 80 ? cut.slice(0, lastSpace) : cut).trim()}…`
+}
+
+export function formatEipSpecLabel(explorationId: string): string {
+  const match = /^eip-(\d+)$/i.exec(explorationId)
+  return match ? `EIP-${match[1]}` : explorationId.toUpperCase()
+}
+
+function breadcrumbJsonLd(items: BreadcrumbItem[], pageUrl: string): object {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: items.map((item, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      name: item.label,
+      ...(item.to ? { item: absoluteUrl(item.to) } : { item: pageUrl }),
+    })),
+  }
+}
+
+export function getBreadcrumbsForPath(path: string): BreadcrumbItem[] {
+  if (path === '/') {
+    return [{ label: SITE_NAME }]
+  }
+
+  if (path === '/imprint') {
+    return [{ label: 'Home', to: '/' }, { label: 'Imprint' }]
+  }
+
+  if (path === '/all') {
+    return [{ label: 'Home', to: '/' }, { label: 'All Explorations' }]
+  }
+
+  const topic = topicByPath.get(path)
+  if (topic) {
+    return [{ label: 'Home', to: '/' }, { label: topic.title }]
+  }
+
+  const entry = explorationByPath.get(path)
+  if (entry) {
+    const topicForExploration = TOPICS[entry.exploration.topic]
+    return [
+      { label: 'Home', to: '/' },
+      { label: topicForExploration.title, to: topicForExploration.path },
+      { label: entry.exploration.title },
+    ]
+  }
+
+  return [{ label: SITE_NAME }]
+}
+
+/** Paths that receive nginx SPA fallbacks (all router paths except the catch-all 404). */
+export function getValidSpaPaths(): string[] {
+  const paths = ['/', '/imprint', '/all']
+
+  for (const topic of Object.values(TOPICS)) {
+    paths.push(topic.path)
+  }
+  for (const exploration of Object.values(EXPLORATIONS)) {
+    paths.push(exploration.path)
+  }
+
+  return paths
+}
+
+/** Indexed paths only — excludes topic pages with no explorations yet. */
+export function getSitemapPaths(): string[] {
+  return getValidSpaPaths().filter((path) => {
+    const topic = topicByPath.get(path)
+    if (topic) return topic.explorations.length > 0
+    return true
+  })
+}
+
+export function getPageSeoForPath(path: string): PageSeo {
+  const canonicalUrl = absoluteUrl(path)
+  const breadcrumbs = getBreadcrumbsForPath(path)
+
+  if (path === '/') {
+    return {
+      path,
+      title: SITE_NAME,
+      description: DEFAULT_DESCRIPTION,
+      canonicalUrl,
+      jsonLd: [
+        {
+          '@context': 'https://schema.org',
+          '@type': 'WebSite',
+          name: SITE_NAME,
+          url: SITE_ORIGIN,
+          description: DEFAULT_DESCRIPTION,
+        },
+        breadcrumbJsonLd(breadcrumbs, canonicalUrl),
+      ],
+    }
+  }
+
+  if (path === '/imprint') {
+    const description =
+      'Imprint and contact information for Feel Your Protocol, an open-source Ethereum ' +
+      'protocol exploration project by Holger Drewes.'
+    return {
+      path,
+      title: formatDocumentTitle('Imprint'),
+      description,
+      canonicalUrl,
+      jsonLd: [
+        {
+          '@context': 'https://schema.org',
+          '@type': 'WebPage',
+          name: 'Imprint',
+          url: canonicalUrl,
+          description,
+          isPartOf: { '@type': 'WebSite', name: SITE_NAME, url: SITE_ORIGIN },
+        },
+        breadcrumbJsonLd(breadcrumbs, canonicalUrl),
+      ],
+    }
+  }
+
+  if (path === '/all') {
+    const description =
+      'Browse all interactive Ethereum protocol explorations on Feel Your Protocol — filter by ' +
+      'research topic, timeline, and tags.'
+    return {
+      path,
+      title: formatDocumentTitle('All Explorations'),
+      description,
+      canonicalUrl,
+      jsonLd: [
+        {
+          '@context': 'https://schema.org',
+          '@type': 'CollectionPage',
+          name: 'All Explorations',
+          url: canonicalUrl,
+          description,
+          isPartOf: { '@type': 'WebSite', name: SITE_NAME, url: SITE_ORIGIN },
+        },
+        breadcrumbJsonLd(breadcrumbs, canonicalUrl),
+      ],
+    }
+  }
+
+  const topic = topicByPath.get(path)
+  if (topic) {
+    const description = truncateDescription(topic.introText ?? DEFAULT_DESCRIPTION)
+    return {
+      path,
+      title: formatDocumentTitle(topic.title),
+      description,
+      canonicalUrl,
+      noindex: topic.explorations.length === 0 ? true : undefined,
+      jsonLd: [
+        {
+          '@context': 'https://schema.org',
+          '@type': 'CollectionPage',
+          name: topic.title,
+          url: canonicalUrl,
+          description,
+          isPartOf: { '@type': 'WebSite', name: SITE_NAME, url: SITE_ORIGIN },
+        },
+        breadcrumbJsonLd(breadcrumbs, canonicalUrl),
+      ],
+    }
+  }
+
+  const entry = explorationByPath.get(path)
+  if (entry) {
+    const { id, exploration } = entry
+    const topicForExploration = TOPICS[exploration.topic]
+    const description = truncateDescription(stripHtml(exploration.introText))
+    const eipLabel = formatEipSpecLabel(id)
+
+    return {
+      path,
+      title: formatDocumentTitle(exploration.title),
+      description,
+      canonicalUrl,
+      jsonLd: [
+        {
+          '@context': 'https://schema.org',
+          '@type': 'LearningResource',
+          name: exploration.title,
+          url: canonicalUrl,
+          description,
+          learningResourceType: 'InteractiveResource',
+          about: { '@type': 'Thing', name: eipLabel },
+          sameAs: exploration.infoURL,
+          isPartOf: {
+            '@type': 'CollectionPage',
+            name: topicForExploration.title,
+            url: absoluteUrl(topicForExploration.path),
+          },
+        },
+        breadcrumbJsonLd(breadcrumbs, canonicalUrl),
+      ],
+    }
+  }
+
+  return {
+    path,
+    title: formatDocumentTitle('Page Not Found'),
+    description:
+      'This URL is not part of Feel Your Protocol. Explore Ethereum protocol changes interactively.',
+    canonicalUrl,
+    noindex: true,
+    jsonLd: breadcrumbJsonLd(
+      [{ label: 'Home', to: '/' }, { label: 'Page Not Found' }],
+      canonicalUrl,
+    ),
+  }
+}
+
+export function getPageSeoForRoute(path: string, query: Record<string, unknown> = {}): PageSeo {
+  const seo = getPageSeoForPath(path)
+  const hasFilters = Boolean(query.tag || query.timeline)
+
+  if (!hasFilters) return seo
+
+  return {
+    ...seo,
+    canonicalUrl: absoluteUrl(path),
+    noindex: true,
+  }
+}
+
+export function getSitemapEntries(lastmodByPath: Record<string, string> = {}): SitemapEntry[] {
+  return getSitemapPaths().map((path) => ({
+    loc: absoluteUrl(path),
+    lastmod: lastmodByPath[path],
+  }))
+}
+
+export function generateSitemapXml(lastmodByPath: Record<string, string> = {}): string {
+  const entries = getSitemapEntries(lastmodByPath)
+    .map(({ loc, lastmod }) => {
+      const lastmodTag = lastmod ? `\n    <lastmod>${lastmod}</lastmod>` : ''
+      return `  <url>\n    <loc>${loc}</loc>${lastmodTag}\n  </url>`
+    })
+    .join('\n')
+
+  return [
+    '<?xml version="1.0" encoding="UTF-8"?>',
+    '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
+    entries,
+    '</urlset>',
+    '',
+  ].join('\n')
+}
+
+export function generateRobotsTxt(): string {
+  return ['User-agent: *', 'Allow: /', '', `Sitemap: ${SITE_ORIGIN}/sitemap.xml`, ''].join('\n')
+}
+
+export function getSpaFallbackDirectories(): string[] {
+  return getValidSpaPaths()
+    .filter((path) => path !== '/')
+    .map((path) => path.replace(/^\//, ''))
+}
+
+function escapeHtml(text: string): string {
+  return text
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+}
+
+/** Inject title, meta, canonical, Open Graph, and JSON-LD into the Vite-built index.html shell. */
+export function injectSeoIntoHtml(html: string, seo: PageSeo): string {
+  const headTags: string[] = [
+    `<meta name="description" content="${escapeHtml(seo.description)}">`,
+    `<link rel="canonical" href="${escapeHtml(seo.canonicalUrl)}">`,
+    `<meta property="og:type" content="website">`,
+    `<meta property="og:site_name" content="${escapeHtml(SITE_NAME)}">`,
+    `<meta property="og:title" content="${escapeHtml(seo.title)}">`,
+    `<meta property="og:description" content="${escapeHtml(seo.description)}">`,
+    `<meta property="og:url" content="${escapeHtml(seo.canonicalUrl)}">`,
+    `<meta name="twitter:card" content="summary">`,
+    `<meta name="twitter:title" content="${escapeHtml(seo.title)}">`,
+    `<meta name="twitter:description" content="${escapeHtml(seo.description)}">`,
+  ]
+
+  if (seo.noindex) {
+    headTags.push('<meta name="robots" content="noindex, follow">')
+  }
+
+  if (seo.jsonLd) {
+    const json = JSON.stringify(seo.jsonLd).replace(/</g, '\\u003c')
+    headTags.push(`<script type="application/ld+json" id="page-seo-jsonld">${json}</script>`)
+  }
+
+  let out = html.replace(/<title>[^<]*<\/title>/, `<title>${escapeHtml(seo.title)}</title>`)
+  out = out.replace(/<meta name="description"[^>]*>\s*/g, '')
+  out = out.replace(/<link rel="canonical"[^>]*>\s*/g, '')
+  out = out.replace(/<meta property="og:[^"]+"[^>]*>\s*/g, '')
+  out = out.replace(/<meta name="twitter:[^"]+"[^>]*>\s*/g, '')
+  out = out.replace(/<meta name="robots"[^>]*>\s*/g, '')
+  out = out.replace(
+    /<script type="application\/ld\+json" id="page-seo-jsonld"[^>]*>[\s\S]*?<\/script>\s*/g,
+    '',
+  )
+  out = out.replace('</head>', `    ${headTags.join('\n    ')}\n  </head>`)
+  return out
+}

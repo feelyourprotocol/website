@@ -2,8 +2,10 @@
 import { defineAsyncComponent } from 'vue'
 import { useRoute } from 'vue-router'
 
+import BreadcrumbNav from '@/components/BreadcrumbNav.vue'
 import { EXPLORATIONS } from '@/explorations/REGISTRY'
 import { TOPIC_COLORS, TOPICS } from '@/explorations/TOPICS'
+import { getBreadcrumbsForPath } from '@/libs/pageSeo'
 
 import TopicIntroView from './TopicIntroView.vue'
 
@@ -11,6 +13,7 @@ const route = useRoute()
 const explorationId = route.name as string
 const exploration = EXPLORATIONS[explorationId]
 const cc = TOPIC_COLORS[TOPICS[exploration.topic].color].classes
+const breadcrumbs = getBreadcrumbsForPath(route.path)
 
 const componentModules = import.meta.glob('../explorations/*/MyC.vue')
 const ExplorationComponent = defineAsyncComponent(
@@ -21,6 +24,7 @@ const ExplorationComponent = defineAsyncComponent(
 </script>
 
 <template>
+  <BreadcrumbNav :items="breadcrumbs" />
   <div class="grid md:grid-cols-2 gap-4">
     <div>
       <Suspense>

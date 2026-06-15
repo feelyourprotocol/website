@@ -2,6 +2,8 @@ import { createRouter, createWebHistory } from 'vue-router'
 
 import { EXPLORATIONS } from '@/explorations/REGISTRY'
 import { TOPICS } from '@/explorations/TOPICS'
+import { applyPageSeo } from '@/libs/applyPageSeo'
+import { getPageSeoForRoute } from '@/libs/pageSeo'
 
 function loadRoutes() {
   // Use Vite's glob imports so production builds can resolve lazy routes
@@ -60,6 +62,10 @@ function loadRoutes() {
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: loadRoutes(),
+})
+
+router.afterEach((to) => {
+  applyPageSeo(getPageSeoForRoute(to.path, to.query))
 })
 
 export default router

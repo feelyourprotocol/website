@@ -79,7 +79,7 @@ await init()
 </script>
 
 <template>
-  <ExplorationC explorationId="eip-7594" :exploration="exploration" :topic="topic">
+  <ExplorationC asPageTitle explorationId="eip-7594" :exploration="exploration" :topic="topic">
     <template #content>
       <div class="mt-3 text-right">
         <ActionButtonUIC

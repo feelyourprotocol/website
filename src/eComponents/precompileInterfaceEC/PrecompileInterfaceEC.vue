@@ -46,6 +46,7 @@ await init()
 
 <template>
   <ExplorationC
+    asPageTitle
     :explorationId="config.explorationId"
     :exploration="exploration"
     :topic="topic"
