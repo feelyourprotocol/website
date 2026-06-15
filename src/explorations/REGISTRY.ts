@@ -42,11 +42,20 @@ export interface Explorations {
   [key: string]: Exploration
 }
 
+export function pickRandom<T>(items: T[]): T | undefined {
+  if (items.length === 0) return undefined
+  return items[Math.floor(Math.random() * items.length)]
+}
+
+export function getRandomExplorationWithImage(): Exploration | undefined {
+  return pickRandom(Object.values(EXPLORATIONS).filter((e) => e.image))
+}
+
 export function getRandomTopicExplorationImage(topicId: string): string | undefined {
   const images = Object.values(EXPLORATIONS)
     .filter((e) => e.topic === topicId && e.image)
     .map((e) => e.image!)
-  return images.length > 0 ? images[Math.floor(Math.random() * images.length)] : undefined
+  return pickRandom(images)
 }
 
 export function getTopicExplorationIds(topicId: string): string[] {

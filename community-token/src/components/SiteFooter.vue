@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const MAIN_SITE_URL = 'https://feelyourprotocol.org'
-const DOCS_URL = 'https://docs.feelyourprotocol.org'
+const DOCS_URL = 'https://docs.feelyourprotocol.org/index.html'
 const GITHUB_URL = 'https://github.com/feelyourprotocol/website'
 const LAST_UPDATED = 'June 5, 2026'
 </script>

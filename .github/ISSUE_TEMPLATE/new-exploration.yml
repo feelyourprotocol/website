@@ -8,7 +8,7 @@ body:
       value: |
         Thanks for proposing a new exploration! Please fill out the sections below so we can discuss scope, library needs, and taxonomy placement before you start coding.
 
-        **Docs:** [Adding an Exploration](https://docs.feelyourprotocol.org/contributing/adding-an-exploration) · [Architecture](https://docs.feelyourprotocol.org/guide/architecture)
+        **Docs:** [Adding an Exploration](https://docs.feelyourprotocol.org/contributing/adding-an-exploration.html) · [Architecture](https://docs.feelyourprotocol.org/guide/architecture.html)
 
   - type: input
     id: eip
@@ -31,7 +31,7 @@ body:
     id: topic
     attributes:
       label: Topic
-      description: "Which strategic pillar does this belong to? See [Topics](https://docs.feelyourprotocol.org/guide/architecture#topics)."
+      description: "Which strategic pillar does this belong to? See [Topics](https://docs.feelyourprotocol.org/guide/architecture.html#topics)."
       options:
         - Scaling
         - Privacy
@@ -47,7 +47,7 @@ body:
     id: timeline
     attributes:
       label: Timeline
-      description: "Where does this sit on the protocol timeline? See [Timeline](https://docs.feelyourprotocol.org/guide/architecture#timeline)."
+      description: "Where does this sit on the protocol timeline? See [Timeline](https://docs.feelyourprotocol.org/guide/architecture.html#timeline)."
       options:
         - Fusaka
         - Glamsterdam
@@ -62,7 +62,7 @@ body:
     id: tags
     attributes:
       label: Tags (up to 3–4)
-      description: "Existing tags or proposed new ones. See [Tags](https://docs.feelyourprotocol.org/guide/architecture#tags) for rules."
+      description: "Existing tags or proposed new ones. See [Tags](https://docs.feelyourprotocol.org/guide/architecture.html#tags) for rules."
       placeholder: "e.g. EVM, Gas Costs, Precompiles"
 
   - type: textarea
@@ -72,7 +72,7 @@ body:
       description: |
         Which libraries will the exploration use? Are they already in `package.json`? Do you need a custom fork or new dependency?
 
-        See [Third-Party Libraries](https://docs.feelyourprotocol.org/contributing/third-party-libraries) for the process.
+        See [Third-Party Libraries](https://docs.feelyourprotocol.org/contributing/third-party-libraries.html) for the process.
       placeholder: "e.g. @ethereumjs/evm (already available), noble-curves (needs adding)"
 
   - type: textarea

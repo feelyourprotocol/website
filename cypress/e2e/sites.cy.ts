@@ -34,6 +34,16 @@ describe('Imprint', () => {
   })
 })
 
+describe('404', () => {
+  it('shows a friendly not-found page with navigation options', () => {
+    cy.visit('/this-path-does-not-exist', { failOnStatusCode: false })
+    cy.contains("This path isn't in the registry.")
+    cy.contains('← Home')
+    cy.contains('Add an exploration')
+    cy.get('img').should('be.visible')
+  })
+})
+
 describe('Navigation', () => {
   it('full navigation flow through the site', () => {
     cy.visit('/')

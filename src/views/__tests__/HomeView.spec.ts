@@ -5,6 +5,7 @@ import { mount, RouterLinkStub } from '@vue/test-utils'
 import { EXPLORATIONS } from '@/explorations/REGISTRY'
 import { Tag } from '@/explorations/TAGS'
 import { TOPICS } from '@/explorations/TOPICS'
+import { DOCS_HOME } from '@/libs/docsUrls'
 
 import HomeView from '../HomeView.vue'
 
@@ -58,7 +59,7 @@ describe('HomeView', () => {
     })
 
     it('has contributor docs link pointing to docs site', () => {
-      const link = wrapper.find('a[href="https://docs.feelyourprotocol.org"]')
+      const link = wrapper.find(`a[href="${DOCS_HOME}"]`)
       expect(link.exists()).toBe(true)
       expect(link.attributes('target')).toBe('_blank')
     })
