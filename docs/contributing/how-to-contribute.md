@@ -27,6 +27,8 @@ Fix typos, add guides, clarify explanations. Documentation lives in the `docs/` 
 npm run docs:dev
 ```
 
+When a change affects the **structural base** (E-Components, contribution workflow, architecture), bump the patch version in `package.json` and add an entry to [Changelog](/changelog). New explorations alone do not require a version bump.
+
 ### Report Issues
 
 Found a bug or have a suggestion? [Open an issue](https://github.com/feelyourprotocol/website/issues) on GitHub. Our issue templates will guide you through the relevant details.
@@ -71,21 +73,22 @@ npm run test:e2e     # E2E tests
 
 ## What Goes Where
 
-| What you are working on | Where it lives |
-|------------------------|----------------|
-| A new exploration | `src/explorations/<id>/` |
-| Exploration metadata | `src/explorations/<id>/info.ts` |
-| Interactive widget | `src/explorations/<id>/MyC.vue` |
-| Example presets | `src/explorations/<id>/examples.ts` |
-| Exploration registry | `src/explorations/REGISTRY.ts` |
-| E-Components | `src/eComponents/<name>EC/` |
-| Shared UI components | `src/eComponents/ui/` |
-| Unit tests | `src/views/__tests__/` (or co-located `__tests__/`) |
-| E2E tests | `cypress/e2e/` |
-| Documentation | `docs/` |
+| What you are working on | Where it lives                                      |
+| ----------------------- | --------------------------------------------------- |
+| A new exploration       | `src/explorations/<id>/`                            |
+| Exploration metadata    | `src/explorations/<id>/info.ts`                     |
+| Interactive widget      | `src/explorations/<id>/MyC.vue`                     |
+| Example presets         | `src/explorations/<id>/examples.ts`                 |
+| Exploration registry    | `src/explorations/REGISTRY.ts`                      |
+| E-Components            | `src/eComponents/<name>EC/`                         |
+| Shared UI components    | `src/eComponents/ui/`                               |
+| Unit tests              | `src/views/__tests__/` (or co-located `__tests__/`) |
+| E2E tests               | `cypress/e2e/`                                      |
+| Documentation           | `docs/`                                             |
 
 ## Further Reading
 
+- [Changelog](/changelog) — structural-base history (check after pulling `main`)
 - [AI-Assisted Development](/contributing/ai-assisted-development) — best practices for building explorations with AI agents
 - [Adding an Exploration](/contributing/adding-an-exploration) — step-by-step guide
 - [Using E-Components](/contributing/e-components) — reusable Ethereum-specific components

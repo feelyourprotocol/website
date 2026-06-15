@@ -12,7 +12,9 @@ src/explorations/eip-XXXX/
 ├── MyC.vue          # Interactive widget (required)
 ├── examples.ts      # Example presets (recommended)
 ├── tests.spec.ts    # Unit tests (required)
-├── config.ts        # Precompile config (for precompile explorations)
+├── config.ts        # E-Component config (when using an E-Component)
+├── *.vue            # Optional companion components
+├── *.ts             # Optional helpers (builders, domain logic)
 └── data/            # Optional data files
 ```
 
@@ -44,34 +46,29 @@ export const INFO: Exploration = {
   tags: [Tag.EVM, Tag.GasCosts],
   creatorName: 'YourName',
   creatorURL: 'https://x.com/YourHandle',
-  introText:
-    '<b>What does this change?</b> ' +
-    'A brief introduction to the protocol change.',
-  usageText:
-    'Instructions on how to use the interactive widget below.',
-  poweredBy: [
-    { name: 'EthereumJS', href: 'https://github.com/ethereumjs/ethereumjs-monorepo' },
-  ],
+  introText: '<b>What does this change?</b> ' + 'A brief introduction to the protocol change.',
+  usageText: 'Instructions on how to use the interactive widget below.',
+  poweredBy: [{ name: 'EthereumJS', href: 'https://github.com/ethereumjs/ethereumjs-monorepo' }],
 }
 ```
 
 ### Field Reference
 
-| Field | Required | Description |
-|-------|----------|-------------|
-| `id` | Yes | Unique identifier, matches the folder name |
-| `path` | Yes | URL path for the exploration page |
-| `title` | Yes | Display title |
-| `infoURL` | Yes | Link to the specification or reference material |
-| `topic` | Yes | Topic ID this exploration belongs to. Must be one of the fixed set: `scaling`, `privacy`, `ux`, `security`, `robustness`, `interoperability`. Topics are static and not added via contributions — see [Architecture](/guide/architecture#topics) for the full list. |
-| `timeline` | Yes | Timeline ID for this exploration (e.g. `fusaka`, `glamsterdam`, `ready`, `research`, `ideas`). See [Architecture](/guide/architecture) for details. |
-| `tags` | Yes | Array of `Tag` enum values (max 3–4). Tags are broader technical concepts that must be reusable across explorations. New tags can be proposed — see [Architecture](/guide/architecture#tags) for rules and the current list. |
-| `image` | No | Imported image for topic overview display — see [Images](/contributing/images) for format, palette, and style guidance |
-| `introText` | No | HTML-formatted introduction paragraph |
-| `usageText` | No | HTML-formatted usage instructions |
-| `creatorName` | No | Display name of the exploration's creator |
-| `creatorURL` | No | URL to the creator's profile (X/Twitter, GitHub, etc.) |
-| `poweredBy` | Yes | Array of `{ name, href }` for library credits |
+| Field         | Required | Description                                                                                                                                                                                                                                                         |
+| ------------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`          | Yes      | Unique identifier, matches the folder name                                                                                                                                                                                                                          |
+| `path`        | Yes      | URL path for the exploration page                                                                                                                                                                                                                                   |
+| `title`       | Yes      | Display title                                                                                                                                                                                                                                                       |
+| `infoURL`     | Yes      | Link to the specification or reference material                                                                                                                                                                                                                     |
+| `topic`       | Yes      | Topic ID this exploration belongs to. Must be one of the fixed set: `scaling`, `privacy`, `ux`, `security`, `robustness`, `interoperability`. Topics are static and not added via contributions — see [Architecture](/guide/architecture#topics) for the full list. |
+| `timeline`    | Yes      | Timeline ID for this exploration (e.g. `fusaka`, `glamsterdam`, `ready`, `research`, `ideas`). See [Architecture](/guide/architecture) for details.                                                                                                                 |
+| `tags`        | Yes      | Array of `Tag` enum values (max 3–4). Tags are broader technical concepts that must be reusable across explorations. New tags can be proposed — see [Architecture](/guide/architecture#tags) for rules and the current list.                                        |
+| `image`       | No       | Imported image for topic overview display — see [Images](/contributing/images) for format, palette, and style guidance                                                                                                                                              |
+| `introText`   | No       | HTML-formatted introduction paragraph                                                                                                                                                                                                                               |
+| `usageText`   | No       | HTML-formatted usage instructions                                                                                                                                                                                                                                   |
+| `creatorName` | No       | Display name of the exploration's creator                                                                                                                                                                                                                           |
+| `creatorURL`  | No       | URL to the creator's profile (X/Twitter, GitHub, etc.)                                                                                                                                                                                                              |
+| `poweredBy`   | Yes      | Array of `{ name, href }` for library credits                                                                                                                                                                                                                       |
 
 ## Step 3: Create `examples.ts`
 
@@ -96,7 +93,16 @@ Each example has a `title` (displayed in the dropdown) and a `values` array (the
 
 ## Step 4: Create `MyC.vue`
 
-This is your interactive widget. The approach depends on what you are building.
+This is your interactive widget. Start by choosing a **building block**:
+
+| Approach          | When to use                                                                      | Docs                                                           |
+| ----------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------- |
+| **E-Component**   | An existing E-Component matches your use case (precompile, bytecode stepping, …) | [Available E-Components](/contributing/available-e-components) |
+| **Custom widget** | Unique behavior not covered by any E-Component                                   | Option A below                                                 |
+
+Check [Available E-Components](/contributing/available-e-components) first — most explorations can be built by wiring a config, examples, and execution logic, often in under 30 lines.
+
+One primary E-Component per exploration is the supported path today. See [Composing E-Components](/contributing/e-components#composing-e-components) for the longer-term direction.
 
 ### Option A: Custom Widget
 
@@ -145,7 +151,11 @@ await init()
         <ExamplesUIC v-model="example" :examples="examples" :change="selectExample" />
         <HexDataInputUIC v-model="data" rows="6" :formChange="onDataInputFormChange" />
         <!-- Your result display here -->
-        <PoweredByC :poweredBy="exploration.poweredBy" :creatorName="exploration.creatorName" :creatorURL="exploration.creatorURL" />
+        <PoweredByC
+          :poweredBy="exploration.poweredBy"
+          :creatorName="exploration.creatorName"
+          :creatorURL="exploration.creatorURL"
+        />
       </div>
     </template>
   </ExplorationC>
@@ -154,11 +164,13 @@ await init()
 
 The `ExplorationC` wrapper renders the title, info link, intro text, and usage text from your `info.ts`. You provide the interactive content via the `#content` slot.
 
-### Option B: Precompile Interface E-Component
+### Option B: E-Component
 
-If your exploration is about a precompile, you can use the Precompile Interface E-Component. It handles all input management while you provide the execution logic and result display:
+When an existing E-Component fits, your `MyC.vue` wires config, examples, exploration metadata, and execution. Define the config in a separate `config.ts` file — this keeps it testable and separate from library setup.
 
-First, define your precompile config in a separate `config.ts` file (this keeps the config testable):
+#### Precompile explorations
+
+If your exploration is about a precompile, use the Precompile Interface E-Component. It handles input management while you provide execution and result display:
 
 ```typescript
 // config.ts
@@ -174,8 +186,6 @@ export const config: PrecompileConfig = {
 }
 ```
 
-Then in `MyC.vue`:
-
 ```vue
 <script setup lang="ts">
 import { Hardfork } from '@ethereumjs/common'
@@ -189,13 +199,18 @@ import { examples } from './examples'
 import { INFO as exploration } from './info'
 
 const { run, execResultPre, execResultPost } = useStandardPrecompileRun(
-  Hardfork.Prague, Hardfork.Osaka, '0a',
+  Hardfork.Prague,
+  Hardfork.Osaka,
+  '0a',
 )
 </script>
 
 <template>
   <PrecompileInterfaceEC
-    :config="config" :examples="examples" :exploration="exploration" :run="run"
+    :config="config"
+    :examples="examples"
+    :exploration="exploration"
+    :run="run"
   >
     <template #result>
       <div class="e-grid-double">
@@ -207,7 +222,66 @@ const { run, execResultPre, execResultPost } = useStandardPrecompileRun(
 </template>
 ```
 
-The `useStandardPrecompileRun` helper covers the common EthereumJS pre/post hardfork comparison. For custom execution (different library, custom precompile, etc.), provide your own `run` function and `#result` slot — see [Available E-Components](/contributing/available-e-components) for the full API reference.
+The `useStandardPrecompileRun` helper covers the common EthereumJS pre/post hardfork comparison. For custom execution, provide your own `run` function and `#result` slot.
+
+**Reference:** [EIP-7951](https://github.com/feelyourprotocol/website/blob/main/src/explorations/eip-7951/MyC.vue)
+
+#### Bytecode / opcode explorations
+
+For explorations that step through raw EVM bytecode, use the Bytecode Stepper E-Component. The exploration creates and owns the EVM instance:
+
+```typescript
+// config.ts
+import type { BytecodeStepperConfig } from '@/eComponents/bytecodeStepperEC/types'
+
+export const config: BytecodeStepperConfig = {
+  explorationId: 'eip-XXXX',
+  defaultExample: 'basic',
+}
+```
+
+```vue
+<script setup lang="ts">
+import { Common, Hardfork, Mainnet } from '@ethereumjs/common'
+import { createEVM } from '@ethereumjs/evm'
+
+import BytecodeStepperEC from '@/eComponents/bytecodeStepperEC/BytecodeStepperEC.vue'
+
+import { config } from './config'
+import { examples } from './examples'
+import { INFO as exploration } from './info'
+
+const common = new Common({ chain: Mainnet, hardfork: Hardfork.Amsterdam })
+const evm = await createEVM({ common })
+</script>
+
+<template>
+  <BytecodeStepperEC :config="config" :examples="examples" :exploration="exploration" :evm="evm" />
+</template>
+```
+
+Example presets use `values[0]` as unprefixed hex bytecode. For programmatic bytecode construction, add helper modules in your exploration folder.
+
+**Reference:** [EIP-8024](https://github.com/feelyourprotocol/website/blob/main/src/explorations/eip-8024/MyC.vue)
+
+See [Available E-Components](/contributing/available-e-components) for the full API reference of each E-Component.
+
+### Extending When the Core E-Component Is Not Enough
+
+E-Components cover repeatable patterns. Explorations often need additional teaching UI, domain helpers, or custom visualization on top. Keep these additions in your **exploration folder** unless a second exploration needs the same thing.
+
+| Need                                                  | Approach                                                                              |
+| ----------------------------------------------------- | ------------------------------------------------------------------------------------- |
+| Custom result display                                 | Use the E-Component's scoped slot (e.g. `#result`)                                    |
+| Additional panel or region                            | Use a layout slot (e.g. `#below`) and render a companion `.vue` component inside it   |
+| React to live runtime state                           | Use the E-Component's inject context from a companion component mounted inside a slot |
+| Bytecode builders, domain decode logic, test fixtures | Add `.ts` modules in the exploration folder                                           |
+
+::: warning Slots and inject
+Provide/inject only works for **descendants**. Companion components must be mounted inside the E-Component's slot tree — not as siblings placed next to the E-Component in `MyC.vue`.
+:::
+
+Keep `MyC.vue` thin: config, library wiring, E-Component tag, and slot content. Push logic into testable modules. See [E-Components — Integration Contract](/contributing/e-components#integration-contract) for the full model.
 
 ## Step 5: Register in the Registry
 
@@ -232,7 +306,7 @@ If your widget needs additional libraries, install them:
 npm install some-library
 ```
 
-Import libraries only in your `MyC.vue` — never in shared code. This keeps each exploration's dependencies isolated via Vite's code splitting.
+Import libraries in your exploration folder (`MyC.vue`, `config.ts`, helpers) — not in shared E-Component code. This keeps each exploration's dependencies isolated via Vite's code splitting. E-Components accept library instances and callbacks as props instead.
 
 If you need a library that isn't in `package.json` yet, or need a customized version, see [Third-Party Libraries](/contributing/third-party-libraries).
 
@@ -247,9 +321,14 @@ Each exploration should have a `tests.spec.ts` file in its folder. Tests verify 
 - `info.ts` — correct `id`, `path`, `topic`, and `poweredBy`
 - `examples.ts` — each example has the right number of values, valid hex data, and a non-empty title
 
+**E-Component explorations** should additionally test:
+
+- `config.ts` — `defaultExample` exists in examples; config fields match expectations
+- Execution integration — e.g. round-trip through `run` or `runBytecode` where applicable
+- Companion components — if present, test via optional props (avoid requiring full E-Component mount when a slimmer test suffices)
+
 **Precompile explorations** should additionally test:
 
-- `config.ts` — `defaultExample` exists in examples, value field count and URL params match expectations
 - `assembleData`/`parseData` — if defined, verify they produce correct output and are inverse operations
 
 ### Example: Custom Exploration Test
@@ -343,6 +422,7 @@ npm run build        # verify production build
 - [ ] Created `src/explorations/<id>/MyC.vue` with interactive widget
 - [ ] Created `src/explorations/<id>/examples.ts` with example presets
 - [ ] Created `src/explorations/<id>/tests.spec.ts` with unit tests
+- [ ] Created `config.ts` and any companion components/helpers (if using an E-Component with extensions)
 - [ ] Added import and entry in `src/explorations/REGISTRY.ts`
 - [ ] Installed library dependencies (if needed)
 - [ ] All unit tests pass
