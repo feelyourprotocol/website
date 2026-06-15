@@ -1,4 +1,13 @@
+import { readFileSync } from 'node:fs'
+import { dirname, join } from 'node:path'
+import { fileURLToPath } from 'node:url'
+
 import { defineConfig } from 'vitepress'
+
+const __dirname = dirname(fileURLToPath(import.meta.url))
+const pkg = JSON.parse(readFileSync(join(__dirname, '../../package.json'), 'utf-8')) as {
+  version: string
+}
 
 export default defineConfig({
   title: 'Feel Your Protocol',
@@ -8,6 +17,7 @@ export default defineConfig({
     nav: [
       { text: 'Guide', link: '/guide/getting-started' },
       { text: 'Contributing', link: '/contributing/how-to-contribute' },
+      { text: 'Changelog', link: '/changelog' },
       { text: 'Website', link: 'https://feelyourprotocol.org' },
     ],
     sidebar: [
@@ -16,6 +26,7 @@ export default defineConfig({
         items: [
           { text: 'Getting Started', link: '/guide/getting-started' },
           { text: 'Architecture', link: '/guide/architecture' },
+          { text: 'Changelog', link: '/changelog' },
         ],
       },
       {
@@ -34,14 +45,13 @@ export default defineConfig({
         ],
       },
     ],
-    socialLinks: [
-      { icon: 'github', link: 'https://github.com/feelyourprotocol/website' },
-    ],
+    socialLinks: [{ icon: 'github', link: 'https://github.com/feelyourprotocol/website' }],
     search: {
       provider: 'local',
     },
     footer: {
-      message: 'This project and its documentation are under active development.',
+      message: `Structural base v${pkg.version} — latest docs always apply. See changelog for history.`,
+      copyright: 'Feel Your Protocol',
     },
   },
 })

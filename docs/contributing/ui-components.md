@@ -1,6 +1,6 @@
 # UI Components
 
-The project provides a set of generic, reusable UI components that you can use in any exploration or E-Component. They live in `src/eComponents/ui/` and are already styled with the exploration design system — colors adapt automatically to the current topic.
+The project provides a set of generic, reusable UI components that you can use in any exploration or E-Component. They live in `src/eComponents/ui/` and are already styled with the exploration design system — colors adapt automatically to the current topic. For the `e-*` CSS classes used in the examples below, see [Styling & Design](/contributing/styling).
 
 ## Where UI Components Live
 
@@ -9,24 +9,23 @@ UI components are organized by scope:
 ```
 src/eComponents/
 ├── ui/                          # Shared across all E-Components and explorations
-│   ├── resultBox/               # Result display components
+│   ├── resultBox/
 │   │   └── ResultBoxUIC.vue
 │   ├── ExamplesUIC.vue
 │   ├── HexDataInputUIC.vue
 │   ├── ActionButtonUIC.vue
 │   ├── ButtonUIC.vue
 │   └── TooltipUIC.vue
-└── precompileInterfaceEC/
-    └── ui/                      # (future) Components specific to this E-Component
+└── <name>EC/                    # E-Component folders (optional local ui/ subfolder)
 ```
 
 The placement rules:
 
-| Scope | Location | Example |
-|-------|----------|---------|
-| Used across multiple E-Components or explorations | `src/eComponents/ui/` | `ResultBoxUIC`, `ExamplesUIC` |
-| Specific to one E-Component | `src/eComponents/<name>/ui/` | (none yet) |
-| Specific to one exploration | `src/explorations/<id>/custom/ui/` | (none yet) |
+| Scope                                             | Location                       | Example                                    |
+| ------------------------------------------------- | ------------------------------ | ------------------------------------------ |
+| Used across multiple E-Components or explorations | `src/eComponents/ui/`          | `ResultBoxUIC`, `ExamplesUIC`              |
+| Specific to one E-Component                       | `src/eComponents/<name>EC/ui/` | (none yet)                                 |
+| Specific to one exploration                       | `src/explorations/<id>/`       | Companion `.vue` files alongside `MyC.vue` |
 
 ## Available Components
 
@@ -38,11 +37,11 @@ Example selector dropdown built on [Headless UI Listbox](https://headlessui.dev/
 <ExamplesUIC v-model="example" :examples="examples" :change="selectExample" />
 ```
 
-| Prop | Type | Description |
-|------|------|-------------|
-| `v-model` | `string` | Selected example key |
-| `examples` | `Examples` | Object mapping keys to `{ title, values }` |
-| `change` | `() => void` | Called when selection changes |
+| Prop       | Type         | Description                                |
+| ---------- | ------------ | ------------------------------------------ |
+| `v-model`  | `string`     | Selected example key                       |
+| `examples` | `Examples`   | Object mapping keys to `{ title, values }` |
+| `change`   | `() => void` | Called when selection changes              |
 
 ### HexDataInputUIC
 
@@ -52,10 +51,10 @@ Hex data input textarea for raw byte input.
 <HexDataInputUIC v-model="data" rows="6" :formChange="onDataInputFormChange" />
 ```
 
-| Prop | Type | Description |
-|------|------|-------------|
-| `v-model` | `string` | The hex data string |
-| `rows` | `number` | Textarea row count |
+| Prop         | Type         | Description            |
+| ------------ | ------------ | ---------------------- |
+| `v-model`    | `string`     | The hex data string    |
+| `rows`       | `number`     | Textarea row count     |
 | `formChange` | `() => void` | Called on input change |
 
 ### ResultBoxUIC
@@ -68,12 +67,12 @@ Result display box with a title label. Used for showing computation output. Has 
 </ResultBoxUIC>
 ```
 
-| Prop | Type | Description |
-|------|------|-------------|
-| `title` | `string` | Title label shown in the box |
-| `left` | `boolean` | Alignment: `true` for left, `false` for right |
-| `infoText` | `string?` | Placeholder text shown when no content is available |
-| `errorText` | `string?` | Error message (red) with a "Report on GitHub" hint |
+| Prop        | Type       | Description                                                    |
+| ----------- | ---------- | -------------------------------------------------------------- |
+| `title`     | `string`   | Title label shown in the box                                   |
+| `left`      | `boolean?` | Alignment: `true` for left, `false` for right (default: right) |
+| `infoText`  | `string?`  | Placeholder text shown when no content is available            |
+| `errorText` | `string?`  | Error message (red) with a "Report on GitHub" hint             |
 
 `errorText` takes precedence over `infoText`. Both render below the slot content, so conditionally pass them only when the slot is empty:
 
@@ -105,19 +104,24 @@ Async action button with loading state and tooltip. Disables itself and shows "L
 <ActionButtonUIC tooltip="Runs the computation" text="RUN" :onClick="run" />
 ```
 
-| Prop | Type | Description |
-|------|------|-------------|
-| `text` | `string` | Button label |
-| `tooltip` | `string` | Tooltip text on hover |
-| `onClick` | `() => Promise<void>` | Async click handler |
+| Prop      | Type                  | Description           |
+| --------- | --------------------- | --------------------- |
+| `text`    | `string`              | Button label          |
+| `tooltip` | `string`              | Tooltip text on hover |
+| `onClick` | `() => Promise<void>` | Async click handler   |
 
 ### ButtonUIC
 
-Small icon button with tooltip. Used internally by `ExplorationC` for share and external-link icons.
+Small icon button with tooltip. Used internally by `ExplorationC` for share and external-link icons. Wrap it in a clickable element when you need button behavior — the component itself renders the icon only.
 
 ```vue
 <ButtonUIC :icon="ShareIcon" tooltip="Share" />
 ```
+
+| Prop      | Type        | Description                                             |
+| --------- | ----------- | ------------------------------------------------------- |
+| `icon`    | `Component` | Vue component for the icon (e.g. from `@heroicons/vue`) |
+| `tooltip` | `string?`   | Tooltip text on hover                                   |
 
 ### TooltipUIC
 
@@ -128,6 +132,7 @@ CSS tooltip wrapper. Used internally by `ButtonUIC` and `ActionButtonUIC`. You t
 Some UI components use [Headless UI](https://headlessui.dev/) (`@headlessui/vue`) — a set of completely unstyled, accessible UI primitives designed for Tailwind CSS. Headless UI handles keyboard navigation, focus management, and ARIA attributes while we control all styling via the exploration design system.
 
 Currently used by:
+
 - `ExamplesUIC` — uses the Headless UI **Listbox** component
 
 As a contributor you don't need to interact with Headless UI directly — just use the UIC components as documented above.
@@ -137,7 +142,8 @@ As a contributor you don't need to interact with Headless UI directly — just u
 All shared UI components use the `@/eComponents/ui/` path:
 
 ```typescript
-import ExamplesUIC from '@/eComponents/ui/ExamplesUIC.vue'
-import ResultBoxUIC from '@/eComponents/ui/resultBox/ResultBoxUIC.vue'
 import ActionButtonUIC from '@/eComponents/ui/ActionButtonUIC.vue'
+import ExamplesUIC from '@/eComponents/ui/ExamplesUIC.vue'
+import HexDataInputUIC from '@/eComponents/ui/HexDataInputUIC.vue'
+import ResultBoxUIC from '@/eComponents/ui/resultBox/ResultBoxUIC.vue'
 ```

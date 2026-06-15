@@ -1,6 +1,24 @@
 # Available E-Components
 
-This page lists all E-Components that are ready to use in your explorations. For background on how E-Components work and how to create new ones, see [E-Components](/contributing/e-components).
+This page lists all E-Components that are ready to use in your explorations. For background on the integration model, extension points, and how to create new ones, see [E-Components](/contributing/e-components).
+
+Each E-Component section follows the same structure: what it does, how to wire it, its config type, and how to extend it when the core API is not enough.
+
+## Overview
+
+| E-Component          | Folder                  | Primary use case                                           | Reference exploration                                                                               |
+| -------------------- | ----------------------- | ---------------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
+| Precompile Interface | `precompileInterfaceEC` | EVM precompile input, execution, and result display        | [EIP-7951](https://github.com/feelyourprotocol/website/blob/main/src/explorations/eip-7951/MyC.vue) |
+| Bytecode Stepper     | `bytecodeStepperEC`     | Raw bytecode disassembly, run/step/reset, stack/memory/gas | [EIP-8024](https://github.com/feelyourprotocol/website/blob/main/src/explorations/eip-8024/MyC.vue) |
+
+### Extension Points at a Glance
+
+| E-Component          | Scoped slots                  | Layout slots | Inject context             |
+| -------------------- | ----------------------------- | ------------ | -------------------------- |
+| Precompile Interface | `#result` (with `{ result }`) | —            | —                          |
+| Bytecode Stepper     | —                             | `#below`     | `BYTECODE_STEPPER_CONTEXT` |
+
+---
 
 ## Precompile Interface (`precompileInterfaceEC`)
 
@@ -23,8 +41,6 @@ src/eComponents/precompileInterfaceEC/
 └── run.ts                             # EVM precompile execution utility + useStandardPrecompileRun
 ```
 
-**Used by:** [EIP-7951](https://github.com/feelyourprotocol/website/blob/main/src/explorations/eip-7951/MyC.vue) (secp256r1), [EIP-7883](https://github.com/feelyourprotocol/website/blob/main/src/explorations/eip-7883/MyC.vue) (ModExp gas cost)
-
 ### Basic Usage
 
 A precompile exploration provides a config for input layout, a `run` function for execution, and a `#result` slot for visualization. For the standard EthereumJS pre/post hardfork comparison, use the `useStandardPrecompileRun` helper:
@@ -36,8 +52,8 @@ import { Hardfork } from '@ethereumjs/common'
 import PrecompileInterfaceEC from '@/eComponents/precompileInterfaceEC/PrecompileInterfaceEC.vue'
 import PrecompileInterfaceResultEC from '@/eComponents/precompileInterfaceEC/PrecompileInterfaceResultEC.vue'
 import { useStandardPrecompileRun } from '@/eComponents/precompileInterfaceEC/run'
-import type { PrecompileConfig } from '@/eComponents/precompileInterfaceEC/types'
 
+import { config } from './config'
 import { examples } from './examples'
 import { INFO as exploration } from './info'
 
@@ -46,15 +62,6 @@ const { run, execResultPre, execResultPost } = useStandardPrecompileRun(
   Hardfork.Osaka,
   '0a',
 )
-
-const config: PrecompileConfig = {
-  explorationId: 'eip-XXXX',
-  defaultExample: 'basic',
-  values: [
-    { title: 'Input A', urlParam: 'a', expectedLen: 32n },
-    { title: 'Input B', urlParam: 'b', expectedLen: 32n },
-  ],
-}
 </script>
 
 <template>
@@ -72,6 +79,21 @@ const config: PrecompileConfig = {
     </template>
   </PrecompileInterfaceEC>
 </template>
+```
+
+Define the config in a separate `config.ts` file (keeps it testable):
+
+```typescript
+import type { PrecompileConfig } from '@/eComponents/precompileInterfaceEC/types'
+
+export const config: PrecompileConfig = {
+  explorationId: 'eip-XXXX',
+  defaultExample: 'basic',
+  values: [
+    { title: 'Input A', urlParam: 'a', expectedLen: 32n },
+    { title: 'Input B', urlParam: 'b', expectedLen: 32n },
+  ],
+}
 ```
 
 ### Component Props
@@ -129,33 +151,7 @@ interface PrecompileValueDef {
 
 ### Custom Data Assembly
 
-By default, individual values are simply concatenated to form the raw hex data. For precompiles with non-trivial data formats (like ModExp, which has length prefixes), provide custom `assembleData` and `parseData` functions:
-
-```typescript
-const config: PrecompileConfig = {
-  // ...
-  values: [
-    { title: 'Blen', expectedLen: 32n, initialHex: '00'.repeat(32), showInput: false },
-    { title: 'Elen', expectedLen: 32n, initialHex: '00'.repeat(32), showInput: false },
-    { title: 'Mlen', expectedLen: 32n, initialHex: '00'.repeat(32), showInput: false },
-    { title: 'B', urlParam: 'b' },
-    { title: 'E', urlParam: 'e' },
-    { title: 'M', urlParam: 'm' },
-  ],
-  assembleData: (hexVals, byteLengths) =>
-    toHex(byteLengths[3], 32 * 2) +
-    toHex(byteLengths[4], 32 * 2) +
-    toHex(byteLengths[5], 32 * 2) +
-    padHex(hexVals[3]) +
-    padHex(hexVals[4]) +
-    padHex(hexVals[5]),
-  parseData: (data, byteLengths) => {
-    byteLengths[3] = hexToBigInt(`0x${data.substring(0, 64)}`)
-    byteLengths[4] = hexToBigInt(`0x${data.substring(64, 128)}`)
-    byteLengths[5] = hexToBigInt(`0x${data.substring(128, 192)}`)
-  },
-}
-```
+By default, individual values are simply concatenated to form the raw hex data. For precompiles with non-trivial data formats (like ModExp, which has length prefixes), provide custom `assembleData` and `parseData` functions in your config — see the [EIP-7883 config](https://github.com/feelyourprotocol/website/blob/main/src/explorations/eip-7883/config.ts) for a working example.
 
 ### Execution: `run` Prop and `#result` Slot
 
@@ -166,7 +162,7 @@ The E-Component separates input management from execution. The exploration provi
 
 #### Standard: `useStandardPrecompileRun`
 
-For the common pre/post hardfork comparison using the EthereumJS EVM, use the provided helper:
+For the common pre/post hardfork comparison using the EthereumJS EVM:
 
 ```typescript
 import { useStandardPrecompileRun } from '@/eComponents/precompileInterfaceEC/run'
@@ -182,44 +178,13 @@ This returns a `run` function ready to pass as a prop and two reactive refs for 
 
 #### Custom Execution
 
-For explorations that need a different execution mechanism (custom precompile, different library, etc.), define your own `run` function and result state:
+For explorations that need a different execution mechanism, define your own `run` function and result state. The `#result` slot template lives in the exploration's scope, so it naturally accesses your own refs and computed properties. You can use `ResultBoxUIC` or any other UI component in the slot.
 
-```vue
-<script setup lang="ts">
-import { ref } from 'vue'
+### Extending Beyond the Core API
 
-import PrecompileInterfaceEC from '@/eComponents/precompileInterfaceEC/PrecompileInterfaceEC.vue'
-import ResultBoxUIC from '@/eComponents/ui/resultBox/ResultBoxUIC.vue'
+Use the `#result` slot for custom result visualization. For more elaborate teaching UI that still reacts to input changes, build companion components in your exploration folder and render them inside the slot. Keep domain-specific logic in the exploration — the E-Component handles input sync and page chrome only.
 
-import { myCustomExecution } from './run'
-
-const myResult = ref<string>()
-
-async function run(data: string) {
-  myResult.value = await myCustomExecution(data)
-}
-</script>
-
-<template>
-  <PrecompileInterfaceEC
-    :config="config"
-    :examples="examples"
-    :exploration="exploration"
-    :run="run"
-  >
-    <template #result>
-      <div class="e-grid-single">
-        <ResultBoxUIC title="My Result" :left="true">
-          <p v-if="myResult" class="e-result-text-lg">{{ myResult }}</p>
-          <p v-else class="e-result-text-md mt-5">Press enter or change input...</p>
-        </ResultBoxUIC>
-      </div>
-    </template>
-  </PrecompileInterfaceEC>
-</template>
-```
-
-The `#result` slot template lives in the exploration's scope, so it naturally accesses your own refs and computed properties.
+---
 
 ## Bytecode Stepper (`bytecodeStepperEC`)
 
@@ -231,13 +196,13 @@ A stepping debugger for raw EVM bytecode. The exploration injects a configured `
 src/eComponents/bytecodeStepperEC/
 ├── BytecodeStepperEC.vue          # Main component
 ├── BytecodeStepperResultEC.vue    # ExecResult summary
+├── bytecodeStepperContext.ts      # Typed inject key for extension panels
 ├── useBytecodeStepper.ts          # Composable: state machine + run/step/reset
 ├── disassemble.ts                 # Hex → instruction rows via getOpcodesForHF
 ├── runBytecode.ts                 # runCode orchestration + step event gate
+├── opcodeExplain.ts               # Per-instruction explanations
 └── types.ts                       # BytecodeStepperConfig and internal types
 ```
-
-**Used by:** [EIP-8024](https://github.com/feelyourprotocol/website/blob/main/src/explorations/eip-8024/MyC.vue) (DUPN/SWAPN/EXCHANGE stack opcodes)
 
 ### Basic Usage
 
@@ -262,6 +227,19 @@ const evm = await createEVM({ common })
   <BytecodeStepperEC :config="config" :examples="examples" :exploration="exploration" :evm="evm" />
 </template>
 ```
+
+Define the config in a separate `config.ts` file:
+
+```typescript
+import type { BytecodeStepperConfig } from '@/eComponents/bytecodeStepperEC/types'
+
+export const config: BytecodeStepperConfig = {
+  explorationId: 'eip-XXXX',
+  defaultExample: 'basic',
+}
+```
+
+Example presets use `values[0]` as unprefixed hex bytecode. For programmatic bytecode construction, add helper modules in your exploration folder (see [EIP-8024 bytecode.ts](https://github.com/feelyourprotocol/website/blob/main/src/explorations/eip-8024/bytecode.ts)).
 
 ### Component Props
 
@@ -294,10 +272,50 @@ interface BytecodeStepperConfig {
 
 ### Execution Modes
 
-| Action    | Behavior                                                                       |
-| --------- | ------------------------------------------------------------------------------ |
-| **Run**   | Execute bytecode to completion; record all step snapshots                      |
-| **Step**  | Advance one opcode (step mode is pre-armed when bytecode is valid)             |
-| **Reset** | Clear execution state, re-arm stepping; bytecode input is preserved            |
+| Action    | Behavior                                                            |
+| --------- | ------------------------------------------------------------------- |
+| **Run**   | Execute bytecode to completion; record all step snapshots           |
+| **Step**  | Advance one opcode (step mode is pre-armed when bytecode is valid)  |
+| **Reset** | Clear execution state, re-arm stepping; bytecode input is preserved |
 
 Valid bytecode automatically enters step mode paused before the first opcode, so the first **Step** click executes that opcode. Changing bytecode triggers a full reset and re-arms stepping.
+
+### Extending Beyond the Core API
+
+#### `#below` Slot
+
+Render exploration-local companion components below the stepper UI:
+
+```vue
+<template>
+  <BytecodeStepperEC :config="config" :examples="examples" :exploration="exploration" :evm="evm">
+    <template #below>
+      <MyCompanionPanel />
+    </template>
+  </BytecodeStepperEC>
+</template>
+```
+
+#### `BYTECODE_STEPPER_CONTEXT` Inject
+
+Companion components can read live stepper state via Vue's provide/inject. Import the typed key from `bytecodeStepperContext.ts`:
+
+```typescript
+import { inject } from 'vue'
+
+import { BYTECODE_STEPPER_CONTEXT } from '@/eComponents/bytecodeStepperEC/bytecodeStepperContext'
+
+const stepper = inject(BYTECODE_STEPPER_CONTEXT, null)
+// stepper?.activeInstruction — current instruction row (or undefined)
+// stepper?.mode — 'idle' | 'stepping' | 'running' | 'finished' | 'error'
+// stepper?.bytecodeHex — current bytecode input
+// stepper?.example — selected example key
+```
+
+::: warning Mount inside the slot tree
+Provide/inject only works for **descendants** of the component that calls `provide`. Companion panels must be rendered inside the `#below` slot (or another slot on `BytecodeStepperEC`), not as a sibling placed next to it in `MyC.vue`.
+:::
+
+For unit testing, companion components can accept the same values as optional props instead of relying on inject — see existing exploration panel tests for the pattern.
+
+Place domain-specific helpers, builders, and teaching UI in your exploration folder. Promote to shared code only when a second exploration needs the same pattern.

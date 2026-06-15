@@ -38,13 +38,13 @@ Topics are the high-level strategic pillars that group explorations by theme. Ea
 
 **Topics are a static, curated set — they are not meant to be added as part of regular contributions.** The current topics are:
 
-| ID | Title | Description |
-|----|-------|-------------|
-| `scaling` | Scaling | Data availability, throughput, and L2 enablement |
-| `privacy` | Privacy | ZK-proofs, homomorphic encryption, private mempools |
-| `ux` | UX | Account abstraction, wallet infrastructure, signature schemes |
-| `security` | Security | Validator incentives, cryptographic agility, MEV mitigations |
-| `robustness` | Robustness | Gas cost accuracy, EVM semantics hardening, spec clarity |
+| ID                 | Title            | Description                                                            |
+| ------------------ | ---------------- | ---------------------------------------------------------------------- |
+| `scaling`          | Scaling          | Data availability, throughput, and L2 enablement                       |
+| `privacy`          | Privacy          | ZK-proofs, homomorphic encryption, private mempools                    |
+| `ux`               | UX               | Account abstraction, wallet infrastructure, signature schemes          |
+| `security`         | Security         | Validator incentives, cryptographic agility, MEV mitigations           |
+| `robustness`       | Robustness       | Gas cost accuracy, EVM semantics hardening, spec clarity               |
 | `interoperability` | Interoperability | Cross-chain standards, bridge infrastructure, signature scheme support |
 
 When adding an exploration, pick the topic that best reflects the primary concern of the protocol change.
@@ -61,45 +61,45 @@ Tags enrich navigation by adding broader Ethereum technical concepts, protocol-r
 
 **Tags grow with contributions** — unlike topics and timeline, new tags can be proposed when adding an exploration. They must follow these rules:
 
-| Rule | Example |
-|------|---------|
-| Must be reusable beyond a single exploration | `EVM` ✅ — `EIP-7883` ❌ |
-| Short form preferred | `EVM` ✅ — `Ethereum Virtual Machine` ❌ |
-| No redundancy with existing tags | `Gas Costs` exists → don't add `Gas` |
-| When in doubt, choose the more generic concept | `Gas Costs` ✅ — `Gas Increases` ❌ |
+| Rule                                           | Example                                  |
+| ---------------------------------------------- | ---------------------------------------- |
+| Must be reusable beyond a single exploration   | `EVM` ✅ — `EIP-7883` ❌                 |
+| Short form preferred                           | `EVM` ✅ — `Ethereum Virtual Machine` ❌ |
+| No redundancy with existing tags               | `Gas Costs` exists → don't add `Gas`     |
+| When in doubt, choose the more generic concept | `Gas Costs` ✅ — `Gas Increases` ❌      |
 
 **Format:** Enum keys use CamelCase (`GasCosts`), all-caps for abbreviations (`EVM`). Members must be sorted alphabetically (enforced by lint).
 
 ## E-Components
 
-**E-Components** are reusable Ethereum-specific components that encapsulate common patterns across explorations. They live in `src/eComponents/` and follow a naming convention: folder and component names are post-fixed with `EC`.
+**E-Components** are reusable Ethereum-specific components that encapsulate common exploration patterns. They live in `src/eComponents/` — one folder per pattern, with folder and component names post-fixed with `EC`.
 
-The first E-Component is `precompileInterfaceEC`, which provides a complete precompile exploration interface — input parsing, hardfork comparison, result display — as a single component backed by a composable:
+Each E-Component packages a recurring kind of interactive widget: page chrome (`ExplorationC`), example selection, domain-specific inputs, and shared state in a composable. The exploration wires it up via a typed `config.ts`, passes in execution (a `run` callback, an EVM instance, …), and adds exploration-local UI through slots or companion components when the core API is not enough.
 
 ```
-src/eComponents/precompileInterfaceEC/
-├── PrecompileInterfaceEC.vue      # Full-featured precompile exploration template
-├── PrecompileInterfaceResultEC.vue # Result display (pre/post hardfork comparison)
-├── PrecompileValueInputEC.vue     # Value input with byte length validation
-├── usePrecompileState.ts          # Composable: all state and logic
-├── types.ts                       # PrecompileConfig and PrecompileValueDef interfaces
-└── run.ts                         # EVM precompile execution utility
+src/eComponents/<name>EC/
+├── <Name>EC.vue          # Main entry point
+├── types.ts              # Config interface
+├── use<Name>.ts          # Composable: state and logic
+└── …                     # Sub-components and utilities as needed
 ```
 
-Using the Precompile Interface E-Component, a precompile exploration widget can be as short as 30 lines — just a config object and a single component tag. See [Using E-Components](/contributing/e-components) for details.
+Examples in the codebase today include a **precompile testing interface** (`precompileInterfaceEC`) and a **bytecode stepper** (`bytecodeStepperEC`). More will follow as recurring patterns emerge — the set is meant to grow, not stay fixed on any one use case.
+
+For a typical E-Component-backed exploration, `MyC.vue` stays short: config, library setup, one component tag, and optional slot content. See [E-Components](/contributing/e-components) for the integration model and [Available E-Components](/contributing/available-e-components) for per-component API reference.
 
 ## UI Components
 
 Generic UI components live in `src/eComponents/ui/` alongside the E-Components they serve. These are reusable building blocks available for any exploration or E-Component:
 
-| Component | Purpose |
-|-----------|---------|
-| `ExamplesUIC` | Example selector dropdown |
-| `HexDataInputUIC` | Hex data input textarea |
-| `ResultBoxUIC` | Result display box with title, info text, and error text |
-| `ActionButtonUIC` | Async action button with loading state and tooltip |
-| `ButtonUIC` | Icon button with tooltip |
-| `TooltipUIC` | CSS tooltip wrapper |
+| Component         | Purpose                                                  |
+| ----------------- | -------------------------------------------------------- |
+| `ExamplesUIC`     | Example selector dropdown                                |
+| `HexDataInputUIC` | Hex data input textarea                                  |
+| `ResultBoxUIC`    | Result display box with title, info text, and error text |
+| `ActionButtonUIC` | Async action button with loading state and tooltip       |
+| `ButtonUIC`       | Icon button with tooltip                                 |
+| `TooltipUIC`      | CSS tooltip wrapper                                      |
 
 Import them from `@/eComponents/ui/`:
 
@@ -133,7 +133,7 @@ Each exploration is a separate chunk that is loaded on demand. Users only downlo
 ```typescript
 const componentModules = import.meta.glob('../explorations/*/MyC.vue')
 const ExplorationComponent = defineAsyncComponent(
-  componentModules[`../explorations/${explorationId}/MyC.vue`]
+  componentModules[`../explorations/${explorationId}/MyC.vue`],
 )
 ```
 
