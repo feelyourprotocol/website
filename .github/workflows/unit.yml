@@ -12,19 +12,27 @@ concurrency:
 
 jobs:
   run-unit-tests:
-    if: github.event_name != 'pull_request' || !contains(github.event.pull_request.labels.*.name, 'skip tests')
     runs-on: ubuntu-latest
 
     steps:
+      - name: Skip tests (label)
+        if: github.event_name == 'pull_request' && contains(github.event.pull_request.labels.*.name, 'skip tests')
+        run: echo "Unit tests skipped via 'skip tests' label."
+
       - uses: actions/checkout@v5
+        if: github.event_name != 'pull_request' || !contains(github.event.pull_request.labels.*.name, 'skip tests')
 
       - name: Use Node.js 22
+        if: github.event_name != 'pull_request' || !contains(github.event.pull_request.labels.*.name, 'skip tests')
         uses: actions/setup-node@v5
         with:
           node-version: 22
           cache: 'npm'
 
-      - run: npm ci
+      - name: Install dependencies
+        if: github.event_name != 'pull_request' || !contains(github.event.pull_request.labels.*.name, 'skip tests')
+        run: npm ci
 
       - name: Run unit tests
+        if: github.event_name != 'pull_request' || !contains(github.event.pull_request.labels.*.name, 'skip tests')
         run: npx vitest run

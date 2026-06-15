@@ -48,7 +48,8 @@ For docs-only, treasury/work-log, or other non-code PRs, add GitHub labels to sk
 | `skip tests` | Unit tests + E2E tests |
 
 Labels are defined in [`.github/labels.yml`](.github/labels.yml). Create them once under **Issues → Labels** if they do not exist yet.  
-**Note:** Skips apply to PR runs only — `master` pushes and tags always run the full CI suite.
+**Note:** Skips apply to PR runs only — `master` pushes and tags always run the full CI suite.  
+Skipped jobs still report **success** (green) so they satisfy required branch protection checks.
 
 ## Screenshots / recordings
 

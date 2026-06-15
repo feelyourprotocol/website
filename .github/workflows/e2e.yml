@@ -15,31 +15,42 @@ concurrency:
 
 jobs:
   run-e2e-tests:
-    if: github.event_name != 'pull_request' || !contains(github.event.pull_request.labels.*.name, 'skip tests')
     runs-on: ubuntu-latest
 
     steps:
+      - name: Skip tests (label)
+        if: github.event_name == 'pull_request' && contains(github.event.pull_request.labels.*.name, 'skip tests')
+        run: echo "E2E tests skipped via 'skip tests' label."
+
       - uses: actions/checkout@v5
+        if: github.event_name != 'pull_request' || !contains(github.event.pull_request.labels.*.name, 'skip tests')
 
       - name: Use Node.js 22
+        if: github.event_name != 'pull_request' || !contains(github.event.pull_request.labels.*.name, 'skip tests')
         uses: actions/setup-node@v5
         with:
           node-version: 22
           cache: 'npm'
 
-      - run: npm ci
+      - name: Install dependencies
+        if: github.event_name != 'pull_request' || !contains(github.event.pull_request.labels.*.name, 'skip tests')
+        run: npm ci
         working-directory: ${{github.workspace}}
-      
+
       - name: Build app
+        if: github.event_name != 'pull_request' || !contains(github.event.pull_request.labels.*.name, 'skip tests')
         run: npm run build
 
       - name: Start app
+        if: github.event_name != 'pull_request' || !contains(github.event.pull_request.labels.*.name, 'skip tests')
         run: npm run dev -- --host 0.0.0.0 &
         # The --host 0.0.0.0 flag for Vite ensures the server is accessible over the CI's network stack.
 
       - name: Wait for server to start
+        if: github.event_name != 'pull_request' || !contains(github.event.pull_request.labels.*.name, 'skip tests')
         run: npx wait-on http://127.0.0.1:5173
         # Explicitly use 127.0.0.1 to avoid localhost<->IPv6 mapping issues in CI.
 
       - name: Run Cypress tests
+        if: github.event_name != 'pull_request' || !contains(github.event.pull_request.labels.*.name, 'skip tests')
         run: npm run test:e2e
