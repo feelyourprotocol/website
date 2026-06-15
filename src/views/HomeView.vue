@@ -2,6 +2,7 @@
 import ExplorationC from '@/explorations/ExplorationC.vue'
 import { EXPLORATIONS, getRandomTopicExplorationImage } from '@/explorations/REGISTRY'
 import { TOPICS } from '@/explorations/TOPICS'
+import { DOCS_HOME } from '@/libs/docsUrls'
 
 import TagCloudView from './TagCloudView.vue'
 import TimelineNaviView from './TimelineNaviView.vue'
@@ -58,7 +59,7 @@ for (const topicId of activeTopicIds) {
           <p class="text-slate-300 text-sm leading-relaxed mt-2">
             Want to contribute?
             <a
-              href="https://docs.feelyourprotocol.org"
+              :href="DOCS_HOME"
               target="_blank"
               class="font-semibold text-white underline hover:text-slate-200"
               >Check the docs</a

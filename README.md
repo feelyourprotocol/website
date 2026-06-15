@@ -21,7 +21,7 @@ Production builds (`dist/website`, `dist/docs`, `dist/community-token`) are **no
 
 ## Documentation
 
-Full documentation is available at **[docs.feelyourprotocol.org](https://docs.feelyourprotocol.org)**.
+Full documentation is available at **[docs.feelyourprotocol.org](https://docs.feelyourprotocol.org/index.html)**.
 
 ## Community Token Site
 

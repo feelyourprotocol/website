@@ -8,7 +8,7 @@ body:
       value: |
         Use this template to request a new third-party dependency or a managed fork branch.
 
-        **Docs:** [Third-Party Libraries](https://docs.feelyourprotocol.org/contributing/third-party-libraries)
+        **Docs:** [Third-Party Libraries](https://docs.feelyourprotocol.org/contributing/third-party-libraries.html)
 
   - type: dropdown
     id: type

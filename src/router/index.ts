@@ -45,7 +45,16 @@ function loadRoutes() {
     })
   }
 
-  return [...homeRs, ...explorationRs, ...topicRs]
+  return [
+    ...homeRs,
+    ...explorationRs,
+    ...topicRs,
+    {
+      path: '/:pathMatch(.*)*',
+      name: 'not-found',
+      component: baseViews['../views/NotFoundView.vue'],
+    },
+  ]
 }
 
 const router = createRouter({
