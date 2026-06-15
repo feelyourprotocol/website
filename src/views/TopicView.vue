@@ -2,6 +2,7 @@
 import { computed } from 'vue'
 import { useRoute } from 'vue-router'
 
+import BreadcrumbNav from '@/components/BreadcrumbNav.vue'
 import ExplorationC from '@/explorations/ExplorationC.vue'
 import NoExplorationsC from '@/explorations/NoExplorationsC.vue'
 import {
@@ -11,6 +12,7 @@ import {
 } from '@/explorations/REGISTRY'
 import { Tag } from '@/explorations/TAGS'
 import { TOPICS } from '@/explorations/TOPICS'
+import { getBreadcrumbsForPath } from '@/libs/pageSeo'
 
 import TagCloudView from './TagCloudView.vue'
 import TimelineNaviView from './TimelineNaviView.vue'
@@ -20,6 +22,7 @@ const route = useRoute()
 const topicId = route.name as string
 const isAll = topicId === 'all'
 const topic = isAll ? undefined : TOPICS[topicId]
+const breadcrumbs = computed(() => getBreadcrumbsForPath(route.path))
 
 const allExplorationIds = isAll ? Object.keys(EXPLORATIONS) : getTopicExplorationIds(topicId)
 
@@ -53,6 +56,8 @@ const explorationIds = computed(() => {
 
 <template>
   <main>
+    <BreadcrumbNav :items="breadcrumbs" />
+    <h1 v-if="isAll" class="sr-only">All Explorations</h1>
     <div class="grid md:grid-cols-2 gap-4">
       <div>
         <template v-if="explorationIds.length > 0">
@@ -82,6 +87,7 @@ const explorationIds = computed(() => {
           :topic="topic!"
           :image="topicImage"
           :overviewMode="true"
+          pageTitle
         />
       </div>
     </div>

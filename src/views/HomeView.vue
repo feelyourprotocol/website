@@ -22,6 +22,7 @@ for (const topicId of activeTopicIds) {
 
 <template>
   <main>
+    <h1 class="sr-only">Feel Your Protocol — Interactive Ethereum Protocol Explorations</h1>
     <div class="grid md:grid-cols-2 gap-4">
       <div>
         <RouterLink

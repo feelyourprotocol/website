@@ -1,7 +1,14 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import BreadcrumbNav from '@/components/BreadcrumbNav.vue'
+import { getBreadcrumbsForPath } from '@/libs/pageSeo'
+
+const breadcrumbs = getBreadcrumbsForPath('/imprint')
+</script>
 
 <template>
   <main>
+    <BreadcrumbNav :items="breadcrumbs" />
+    <h1 class="sr-only">Imprint</h1>
     <div class="grid grid-cols-1 mb-3">
       <p class="text-right text-3xl tracking-widest text-slate-600">
         <span class="text-purple-500">◆</span>

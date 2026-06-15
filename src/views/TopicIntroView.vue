@@ -6,9 +6,11 @@ const props = withDefaults(
     topic: Topic
     image: string
     overviewMode?: boolean
+    pageTitle?: boolean
   }>(),
   {
     overviewMode: false,
+    pageTitle: false,
   },
 )
 
@@ -26,9 +28,13 @@ const getImageUrl = (image: string) =>
       TOPIC_COLORS[topic.color].classes.borderCard,
     ]"
   >
-    <h2 v-if="overviewMode" class="text-2xl md:text-3xl font-bold tracking-tight mb-4 e-text">
+    <component
+      :is="overviewMode && pageTitle ? 'h1' : 'h2'"
+      v-if="overviewMode"
+      class="text-2xl md:text-3xl font-bold tracking-tight mb-4 e-text"
+    >
       {{ topic.title }}
-    </h2>
+    </component>
     <h2 v-else class="text-lg md:text-xl font-bold tracking-tight mb-3 text-right e-text">
       <RouterLink :to="topic.path" class="hover:underline">{{ topic.title }} ↑</RouterLink>
     </h2>

@@ -37,13 +37,13 @@ watch(
 <template>
   <header class="mt-3 mb-8">
     <div class="grid grid-cols-2 mb-3">
-      <h1>
+      <div class="site-title">
         <RouterLink
           to="/"
           class="text-2xl md:text-4xl font-bold tracking-wider whitespace-nowrap bg-gradient-to-r from-purple-600 to-cyan-500 bg-clip-text text-transparent"
           >Feel Your Protocol</RouterLink
         >
-      </h1>
+      </div>
       <nav class="font-mono text-sm text-right flex justify-end items-center">
         <Listbox v-model="selectedRoute" @update:model-value="navigate">
           <div class="relative inline-block">
