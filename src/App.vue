@@ -125,6 +125,8 @@ watch(
         >Community Token</a
       >
       <span class="text-purple-500 mx-2">◆</span>
+      <a href="https://x.com/FeelEthereum" target="_blank" rel="noopener">X</a>
+      <span class="text-purple-500 mx-2">◆</span>
       <a href="https://github.com/feelyourprotocol/website" target="_blank" rel="noopener"
         >GitHub</a
       >

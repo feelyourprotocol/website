@@ -104,5 +104,11 @@ describe('App layout', () => {
       const ghLink = wrapper.find('footer a[href="https://github.com/feelyourprotocol/website"]')
       expect(ghLink.exists()).toBe(true)
     })
+
+    it('has X link', async () => {
+      const wrapper = await mountApp(makeRouter())
+      const xLink = wrapper.find('footer a[href="https://x.com/FeelEthereum"]')
+      expect(xLink.exists()).toBe(true)
+    })
   })
 })
