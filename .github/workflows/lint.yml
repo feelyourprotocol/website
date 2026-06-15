@@ -1,7 +1,7 @@
 name: Check Formatting/Linting
 on:
   pull_request:
-    types: [opened, reopened, synchronize]
+    types: [opened, reopened, synchronize, labeled, unlabeled]
   push:
     branches: [master]
     tags: ['*']
@@ -15,6 +15,7 @@ concurrency:
 
 jobs:
   check-formatting-linting:
+    if: github.event_name != 'pull_request' || !contains(github.event.pull_request.labels.*.name, 'skip lint')
     runs-on: ubuntu-latest
 
     steps:

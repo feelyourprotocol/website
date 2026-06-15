@@ -1,7 +1,7 @@
 name: Run Unit Tests
 on:
   pull_request:
-    types: [opened, reopened, synchronize]
+    types: [opened, reopened, synchronize, labeled, unlabeled]
   push:
     branches: [master]
     tags: ['*']
@@ -12,6 +12,7 @@ concurrency:
 
 jobs:
   run-unit-tests:
+    if: github.event_name != 'pull_request' || !contains(github.event.pull_request.labels.*.name, 'skip tests')
     runs-on: ubuntu-latest
 
     steps:

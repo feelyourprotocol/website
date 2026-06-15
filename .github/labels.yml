@@ -1,0 +1,10 @@
+# Repository labels (create once in GitHub → Issues → Labels, or sync with a label tool).
+# Used by CI to skip checks on lightweight PRs (docs, treasury/work logs, etc.).
+
+- name: skip lint
+  color: c2e0c6
+  description: Skip ESLint/Prettier CI on this PR (docs-only or non-code changes)
+
+- name: skip tests
+  color: fbca04
+  description: Skip unit and E2E test CI on this PR (docs-only or non-code changes)
