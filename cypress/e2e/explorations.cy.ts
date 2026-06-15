@@ -1,8 +1,8 @@
 describe('EIP-7883 ModExp', () => {
   it('loads and displays exploration content', () => {
     cy.visit('/eip-7883-modexp-gas-cost-increase')
-    cy.contains('h1', 'Feel Your Protocol')
-    cy.contains('h3', 'ModExp')
+    cy.get('header').contains('Feel Your Protocol')
+    cy.contains('h1', 'ModExp')
     cy.get('#eip-7883-c', { timeout: 10000 }).should('exist')
   })
 
@@ -22,8 +22,8 @@ describe('EIP-7883 ModExp', () => {
 describe('EIP-7594 PeerDAS', () => {
   it('loads and displays exploration content', () => {
     cy.visit('/eip-7594-peerdas-data-availability-sampling')
-    cy.contains('h1', 'Feel Your Protocol')
-    cy.contains('h3', 'Peer Data Availability Sampling')
+    cy.get('header').contains('Feel Your Protocol')
+    cy.contains('h1', 'Peer Data Availability Sampling')
     cy.get('#eip-7594-c', { timeout: 10000 }).should('exist')
   })
 
@@ -42,8 +42,8 @@ describe('EIP-7594 PeerDAS', () => {
 describe('EIP-7951 secp256r1', () => {
   it('loads and displays exploration content', () => {
     cy.visit('/eip-7951-secp256r1-precompile')
-    cy.contains('h1', 'Feel Your Protocol')
-    cy.contains('h3', 'secp256r1 Precompile Support')
+    cy.get('header').contains('Feel Your Protocol')
+    cy.contains('h1', 'secp256r1 Precompile Support')
     cy.get('#eip-7951-c', { timeout: 10000 }).should('exist')
   })
 
