@@ -12,7 +12,8 @@ import TopicIntroView from './TopicIntroView.vue'
 const route = useRoute()
 const explorationId = route.name as string
 const exploration = EXPLORATIONS[explorationId]
-const cc = TOPIC_COLORS[TOPICS[exploration.topic].color].classes
+const topic = TOPICS[exploration.topic]
+const cc = TOPIC_COLORS[topic.color].classes
 const breadcrumbs = getBreadcrumbsForPath(route.path)
 
 const componentModules = import.meta.glob('../explorations/*/MyC.vue')
@@ -40,8 +41,9 @@ const ExplorationComponent = defineAsyncComponent(
     </div>
     <TopicIntroView
       v-if="exploration.image"
-      :topic="TOPICS[exploration.topic]"
+      :topic="topic"
       :image="exploration.image"
     />
+    <div v-else-if="exploration.rightPanel" id="exploration-right-panel" />
   </div>
 </template>
