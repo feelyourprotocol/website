@@ -103,6 +103,12 @@ function buildAction(scenario: BalScenarioDefinition): TxActionBrief {
       detail: 'Write is rolled back · access list records a read, not a write',
     }
   }
+  if (scenario.id === '07-cross-contract-call') {
+    return {
+      headline: 'Sender calls contract A, which CALLs contract B',
+      detail: 'B reads slot 0 and returns · both contracts in one access list',
+    }
+  }
 
   return {
     headline: tx.label,

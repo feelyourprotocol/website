@@ -5,7 +5,9 @@ import { INFO } from './info'
 import { runScenario } from './run'
 import { SCENARIO_ORDER, SCENARIOS } from './scenarios'
 import {
+  CALLER_ADDRESS,
   COINBASE_ADDRESS,
+  CONTRACT_ADDRESS,
   CREATE_DEPLOYED_ADDRESS,
   DEFAULT_GAS_PRICE,
   RECIPIENT_ADDRESS,
@@ -192,6 +194,22 @@ describe('EIP-7928 BAL Exploration', () => {
       expect(contract!.storageReads.length).toBeGreaterThan(0)
       expect(contract!.storageChanges.length).toBe(0)
     })
+
+    it('records callee storageReads for nested CALL in one transaction', async () => {
+      const result = await runScenario('07-cross-contract-call')
+      expect(result.txCount).toBe(1)
+
+      const caller = result.balJson.find(
+        (a) => a.address.toLowerCase() === CALLER_ADDRESS.toLowerCase(),
+      )
+      const callee = result.balJson.find(
+        (a) => a.address.toLowerCase() === CONTRACT_ADDRESS.toLowerCase(),
+      )
+      expect(caller).toBeDefined()
+      expect(callee).toBeDefined()
+      expect(callee!.storageReads.length).toBeGreaterThan(0)
+      expect(callee!.storageChanges.length).toBe(0)
+    })
   })
 
   describe('buildTriggerGroups', () => {
@@ -280,6 +298,15 @@ describe('EIP-7928 BAL Exploration', () => {
       expect(peeks.items[0]!.addressLabel).toBe('contract')
       expect(peeks.items[0]!.summary).toMatch(/read slot/)
       expect(imprints.items).toHaveLength(0)
+    })
+
+    it('attributes nested CALL storage read to the callee contract', async () => {
+      const result = await runScenario('07-cross-contract-call')
+      const groups = buildTriggerGroups(result.balJson, result.preState)
+      const peeks = groups.find((g) => g.group.id === 'statePeeks')!
+      expect(peeks.items).toHaveLength(1)
+      expect(peeks.items[0]!.addressLabel).toBe('callee')
+      expect(peeks.items[0]!.summary).toMatch(/read slot/)
     })
 
     it('labels counter ticks with the sender on plain transfer', async () => {

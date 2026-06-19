@@ -12,6 +12,8 @@ export const RECIPIENT_PRIVATE_KEY = hexToBytes(`0x${'71'.repeat(32)}`)
 export const RECIPIENT_ADDRESS = createAddressFromPrivateKey(RECIPIENT_PRIVATE_KEY).toString() as PrefixedHexString
 export const CONTRACT_PRIVATE_KEY = hexToBytes(`0x${'42'.repeat(32)}`)
 export const CONTRACT_ADDRESS = createAddressFromPrivateKey(CONTRACT_PRIVATE_KEY).toString() as PrefixedHexString
+export const CALLER_PRIVATE_KEY = hexToBytes(`0x${'43'.repeat(32)}`)
+export const CALLER_ADDRESS = createAddressFromPrivateKey(CALLER_PRIVATE_KEY).toString() as PrefixedHexString
 /** Block fee recipient — kept distinct from other addresses so fee flow reads cleanly. */
 export const COINBASE_ADDRESS = '0x00000000000000000000000000000000000000c1' as PrefixedHexString
 
@@ -26,6 +28,13 @@ export const SSTORE_42_BYTECODE = `0x602a60005500` as PrefixedHexString
 
 /** PUSH1 42; PUSH1 0; SSTORE; PUSH1 0; PUSH1 0; REVERT */
 export const SSTORE_REVERT_BYTECODE = `0x602a60005560006000fd` as PrefixedHexString
+
+/**
+ * Caller runtime: CALL callee with empty calldata, copy 32-byte return to memory, STOP.
+ * Callee address is embedded as a PUSH20 immediate ({@link CONTRACT_ADDRESS}).
+ */
+export const CALL_FORWARD_BYTECODE =
+  `0x6020600060006000600073${CONTRACT_ADDRESS.slice(2).toLowerCase()}620186a0f100` as PrefixedHexString
 
 /** Init code: CODECOPY runtime into memory, RETURN — deploys {@link SSTORE_42_BYTECODE}. */
 export const CREATE_DEPLOY_INIT_BYTECODE =
@@ -42,3 +51,4 @@ export const DEFAULT_GAS_PRICE = 10n
 export const DEFAULT_BLOCK_GAS_LIMIT = 30_000_000n
 
 export const contractAddress = createAddressFromString(CONTRACT_ADDRESS)
+export const callerAddress = createAddressFromString(CALLER_ADDRESS)

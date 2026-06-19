@@ -4,6 +4,7 @@ import { sstoreWriteScenario } from './03-sstore-write'
 import { createDeployScenario } from './04-create-deploy'
 import { twoTransfersScenario } from './05-two-transfers'
 import { sstoreRevertScenario } from './06-sstore-revert'
+import { crossContractCallScenario } from './07-cross-contract-call'
 import type { BalScenarioDefinition } from './types'
 
 export const SCENARIOS: Record<string, BalScenarioDefinition> = {
@@ -13,6 +14,7 @@ export const SCENARIOS: Record<string, BalScenarioDefinition> = {
   [createDeployScenario.id]: createDeployScenario,
   [twoTransfersScenario.id]: twoTransfersScenario,
   [sstoreRevertScenario.id]: sstoreRevertScenario,
+  [crossContractCallScenario.id]: crossContractCallScenario,
 }
 
 /** Curriculum order for prev/next navigation in the UI. */
@@ -23,6 +25,7 @@ export const SCENARIO_ORDER = [
   createDeployScenario.id,
   twoTransfersScenario.id,
   sstoreRevertScenario.id,
+  crossContractCallScenario.id,
 ] as const
 
 export type ScenarioId = (typeof SCENARIO_ORDER)[number]
