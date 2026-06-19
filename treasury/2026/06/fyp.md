@@ -1,8 +1,8 @@
 ---
 month: 2026-06
 hourly_rate_eur: 50
-total_hours: 15
-total_eur: 750
+total_hours: 20
+total_eur: 1000
 ---
 
 # FYP work — June 2026
@@ -18,3 +18,6 @@ total_eur: 750
 | 2026-06-15 | 25 | 1 | Community/Admin |
 | 2026-06-15 | 25 | 1 | SEO |
 | 2026-06-15 | 25 | 1 | 404/Server |
+| 2026-06-18 | 25 | 1 | Community |
+| 2026-06-18 | 25 | 2 | BAL EIP-7928 exploration |
+| 2026-06-19 | 25 | 2 | BAL EIP-7928 exploration |

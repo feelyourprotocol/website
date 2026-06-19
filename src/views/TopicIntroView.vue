@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { computed } from 'vue'
+
 import { type Topic, TOPIC_COLORS, topicCSSVars } from '@/explorations/TOPICS'
 
 const props = withDefaults(
@@ -7,6 +9,8 @@ const props = withDefaults(
     image: string
     overviewMode?: boolean
     pageTitle?: boolean
+    /** Max height for the cover image (exploration sidebar); image scales down proportionally, fully visible. */
+    imageBoxHeight?: string
   }>(),
   {
     overviewMode: false,
@@ -15,6 +19,7 @@ const props = withDefaults(
 )
 
 const cssVars = topicCSSVars(props.topic.color)
+const isCompactImage = computed(() => props.imageBoxHeight !== undefined && !props.overviewMode)
 
 const getImageUrl = (image: string) =>
   image.includes('/') ? image : new URL(`../assets/imgs/dancers/${image}`, import.meta.url).href
@@ -24,7 +29,8 @@ const getImageUrl = (image: string) =>
   <div
     :style="cssVars"
     :class="[
-      'topic-intro-card bg-white rounded-lg p-5 shadow-sm',
+      'topic-intro-card bg-white rounded-lg shadow-sm',
+      isCompactImage ? 'px-3 pt-1.5 pb-1' : 'p-5',
       TOPIC_COLORS[topic.color].classes.borderCard,
     ]"
   >
@@ -35,7 +41,13 @@ const getImageUrl = (image: string) =>
     >
       {{ topic.title }}
     </component>
-    <h2 v-else class="text-lg md:text-xl font-bold tracking-tight mb-3 text-right e-text">
+    <h2
+      v-else
+      :class="[
+        'font-bold tracking-tight text-right e-text',
+        isCompactImage ? 'text-sm mb-1 leading-tight' : 'text-lg md:text-xl mb-3',
+      ]"
+    >
       <RouterLink :to="topic.path" class="hover:underline">{{ topic.title }} ↑</RouterLink>
     </h2>
 
@@ -57,7 +69,13 @@ const getImageUrl = (image: string) =>
     </template>
 
     <template v-else>
-      <img :src="getImageUrl(image)" class="rounded-md" />
+      <img
+        :src="getImageUrl(image)"
+        alt=""
+        class="rounded-md mx-auto block w-auto max-w-full leading-none"
+        :class="imageBoxHeight ? '' : 'w-full'"
+        :style="imageBoxHeight ? { maxHeight: imageBoxHeight } : undefined"
+      />
     </template>
   </div>
 </template>

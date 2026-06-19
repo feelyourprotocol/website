@@ -92,7 +92,7 @@ describe('HomeView', () => {
   })
 
   describe('Featured explorations', () => {
-    const featured = ['eip-8024', 'eip-7883', 'eip-7594', 'eip-7951']
+    const featured = ['eip-7928', 'eip-8024', 'eip-7883', 'eip-7594', 'eip-7951']
 
     it('shows "Latest" label', () => {
       expect(wrapper.text()).toContain('Latest')
