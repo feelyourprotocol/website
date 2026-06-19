@@ -91,6 +91,12 @@ function buildAction(scenario: BalScenarioDefinition): TxActionBrief {
       detail: 'Init code returns runtime bytecode · new account at deterministic address',
     }
   }
+  if (scenario.id === '05-two-transfers') {
+    return {
+      headline: 'Sender sends two transfers in one block',
+      detail: 'tx 1: 1 wei · tx 2: 2 wei to the same recipient · sequential nonces',
+    }
+  }
 
   return {
     headline: tx.label,

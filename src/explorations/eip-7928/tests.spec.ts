@@ -73,6 +73,7 @@ describe('EIP-7928 BAL Exploration', () => {
       expect(formatEth(1_000_000_000_000_000_000n)).toBe('1 ETH')
       expect(formatEth(1n)).toBe('1 wei')
       expect(formatIndexBadge('0x01')).toBe('tx 1')
+      expect(formatIndexBadge('0x02')).toBe('tx 2')
       expect(formatIndexBadge('0x00')).toBe('system')
       expect(formatSlotValue('0x2a')).toBe('42')
     })
@@ -159,6 +160,26 @@ describe('EIP-7928 BAL Exploration', () => {
       )
       expect(deployed!.codeChanges[0]!.blockAccessIndex).toBe('0x01')
     })
+
+    it('tags each change with the transaction index in a two-tx block', async () => {
+      const result = await runScenario('05-two-transfers')
+      expect(result.txCount).toBe(2)
+
+      const sender = result.balJson.find(
+        (a) => a.address.toLowerCase() === SENDER_ADDRESS.toLowerCase(),
+      )
+      expect(sender?.balanceChanges.map((c) => c.blockAccessIndex)).toEqual(['0x01', '0x02'])
+      expect(sender?.nonceChanges.map((c) => c.blockAccessIndex)).toEqual(['0x01', '0x02'])
+
+      const recipient = result.balJson.find(
+        (a) => a.address.toLowerCase() === RECIPIENT_ADDRESS.toLowerCase(),
+      )
+      expect(recipient?.balanceChanges).toHaveLength(2)
+      expect(recipient?.balanceChanges[0]!.blockAccessIndex).toBe('0x01')
+      expect(BigInt(recipient!.balanceChanges[0]!.postBalance)).toBe(1n)
+      expect(recipient?.balanceChanges[1]!.blockAccessIndex).toBe('0x02')
+      expect(BigInt(recipient!.balanceChanges[1]!.postBalance)).toBe(3n)
+    })
   })
 
   describe('buildTriggerGroups', () => {
@@ -217,6 +238,25 @@ describe('EIP-7928 BAL Exploration', () => {
       expect(births.items[0]!.summary).toBe('deployed (6 bytes)')
       expect(births.items[0]!.addressLabel).toBe('deployed contract')
       expect(births.items[0]!.indexBadge).toBe('tx 1')
+    })
+
+    it('labels each transfer with tx 1 and tx 2 in a two-tx block', async () => {
+      const result = await runScenario('05-two-transfers')
+      const groups = buildTriggerGroups(result.balJson, result.preState)
+      const valueFlow = groups.find((g) => g.group.id === 'valueFlow')!
+      const recipientItems = valueFlow.items.filter((i) => i.addressLabel === 'recipient')
+      expect(recipientItems).toHaveLength(2)
+      expect(recipientItems[0]!.indexBadge).toBe('tx 1')
+      expect(recipientItems[0]!.summary).toBe('0 ETH → 1 wei')
+      expect(recipientItems[1]!.indexBadge).toBe('tx 2')
+      expect(recipientItems[1]!.summary).toBe('1 wei → 3 wei')
+
+      const ticks = groups.find((g) => g.group.id === 'counterTicks')!
+      expect(ticks.items).toHaveLength(2)
+      expect(ticks.items[0]!.indexBadge).toBe('tx 1')
+      expect(ticks.items[0]!.summary).toBe('nonce 0 → 1')
+      expect(ticks.items[1]!.indexBadge).toBe('tx 2')
+      expect(ticks.items[1]!.summary).toBe('nonce 1 → 2')
     })
 
     it('labels counter ticks with the sender on plain transfer', async () => {
