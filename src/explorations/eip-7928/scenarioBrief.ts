@@ -1,13 +1,12 @@
 import type { BalExampleMeta } from './examples'
-import { getGroupByField } from './taxonomy'
-import { formatEth } from './transitions'
-
 import type {
   BalHighlightField,
   BalScenarioDefinition,
   PreStateAccount,
   ScenarioRunResult,
 } from './scenarios/types'
+import { getGroupByField } from './taxonomy'
+import { formatEth } from './transitions'
 
 export interface ActorBrief {
   label: string
@@ -70,8 +69,8 @@ function buildAction(scenario: BalScenarioDefinition): TxActionBrief {
 
   if (scenario.id === '01-plain-transfer') {
     return {
-      headline: 'Sender pays 1 wei to the zero address',
-      detail: 'Standard legacy transfer · 21,000 gas',
+      headline: 'Sender pays 1 wei to the recipient account',
+      detail: 'Legacy transfer · 21,000 gas · fees go to coinbase',
     }
   }
   if (scenario.id === '02-contract-sload') {

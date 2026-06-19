@@ -2,16 +2,15 @@ import { createLegacyTx } from '@ethereumjs/tx'
 
 import {
   CONTRACT_ADDRESS,
+  contractAddress,
   DEFAULT_GAS_PRICE,
   DEFAULT_SENDER_BALANCE,
   RETRIEVE_BYTECODE,
-  SENDER_PRIVATE_KEY,
   SENDER_ADDRESS,
+  SENDER_PRIVATE_KEY,
   SLOT_0,
   VALUE_42,
-  contractAddress,
 } from './constants'
-
 import type { BalScenarioDefinition } from './types'
 
 export const contractSloadScenario: BalScenarioDefinition = {

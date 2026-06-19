@@ -1,11 +1,11 @@
-import { createBlock } from '@ethereumjs/block'
 import type { Block } from '@ethereumjs/block'
+import { createBlock } from '@ethereumjs/block'
 import type { Common } from '@ethereumjs/common'
 import type { TypedTransaction } from '@ethereumjs/tx'
 import { Account, createAccount, createAddressFromString, hexToBytes } from '@ethereumjs/util'
 import type { VM } from '@ethereumjs/vm'
 
-import { DEFAULT_BLOCK_GAS_LIMIT } from './constants'
+import { COINBASE_ADDRESS, DEFAULT_BLOCK_GAS_LIMIT } from './constants'
 import type { BalScenarioDefinition, PreStateAccount } from './types'
 
 export async function applyPreState(vm: VM, accounts: PreStateAccount[]): Promise<void> {
@@ -43,7 +43,12 @@ export function buildAmsterdamBlock(
 
   const block = createBlock(
     {
-      header: { number: 2n, gasLimit: DEFAULT_BLOCK_GAS_LIMIT, baseFeePerGas: 1n },
+      header: {
+        number: 2n,
+        gasLimit: DEFAULT_BLOCK_GAS_LIMIT,
+        baseFeePerGas: 1n,
+        coinbase: createAddressFromString(COINBASE_ADDRESS),
+      },
       transactions,
     },
     {

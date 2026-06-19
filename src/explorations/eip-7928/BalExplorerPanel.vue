@@ -1,12 +1,11 @@
 <script setup lang="ts">
 import type { BALJSONBlockAccessList } from '@ethereumjs/util'
 
-import { TOPIC_COLORS, topicCSSVars, type Topic } from '@/explorations/TOPICS'
+import { type Topic,TOPIC_COLORS, topicCSSVars } from '@/explorations/TOPICS'
 
 import BalJsonView from './BalJsonView.vue'
-import TriggerGroupsView from './TriggerGroupsView.vue'
-
 import type { TriggerGroupViewModel } from './transitions'
+import TriggerGroupsView from './TriggerGroupsView.vue'
 
 defineProps<{
   topic: Topic

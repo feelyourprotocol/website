@@ -1,7 +1,6 @@
 import { plainTransferScenario } from './01-plain-transfer'
 import { contractSloadScenario } from './02-contract-sload'
 import { sstoreWriteScenario } from './03-sstore-write'
-
 import type { BalScenarioDefinition } from './types'
 
 export const SCENARIOS: Record<string, BalScenarioDefinition> = {

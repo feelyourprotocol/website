@@ -1,14 +1,13 @@
 import { createLegacyTx } from '@ethereumjs/tx'
-import { createZeroAddress } from '@ethereumjs/util'
+import { createAddressFromString } from '@ethereumjs/util'
 
 import {
   DEFAULT_GAS_PRICE,
   DEFAULT_SENDER_BALANCE,
   RECIPIENT_ADDRESS,
-  SENDER_PRIVATE_KEY,
   SENDER_ADDRESS,
+  SENDER_PRIVATE_KEY,
 } from './constants'
-
 import type { BalScenarioDefinition } from './types'
 
 export const plainTransferScenario: BalScenarioDefinition = {
@@ -27,6 +26,10 @@ export const plainTransferScenario: BalScenarioDefinition = {
       balance: DEFAULT_SENDER_BALANCE,
       nonce: 0n,
     },
+    {
+      label: 'recipient',
+      address: RECIPIENT_ADDRESS,
+    },
   ],
   txSummary: [
     {
@@ -41,7 +44,7 @@ export const plainTransferScenario: BalScenarioDefinition = {
           gasLimit: 21000n,
           gasPrice: DEFAULT_GAS_PRICE,
           value: 1n,
-          to: createZeroAddress(),
+          to: createAddressFromString(RECIPIENT_ADDRESS),
         },
         { common },
       ).sign(SENDER_PRIVATE_KEY),

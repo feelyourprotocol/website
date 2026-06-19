@@ -39,11 +39,20 @@ const ExplorationComponent = defineAsyncComponent(
         </template>
       </Suspense>
     </div>
+    <div v-if="exploration.rightPanel" class="flex flex-col gap-4 min-w-0">
+      <TopicIntroView
+        v-if="exploration.image"
+        :topic="topic"
+        :image="exploration.image"
+        :image-box-height="exploration.imageBoxHeight"
+      />
+      <div id="exploration-right-panel" class="min-w-0" />
+    </div>
     <TopicIntroView
-      v-if="exploration.image"
+      v-else-if="exploration.image"
       :topic="topic"
       :image="exploration.image"
+      :image-box-height="exploration.imageBoxHeight"
     />
-    <div v-else-if="exploration.rightPanel" id="exploration-right-panel" />
   </div>
 </template>

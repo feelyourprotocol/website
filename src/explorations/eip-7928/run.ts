@@ -2,10 +2,9 @@ import { Common, Hardfork, Mainnet } from '@ethereumjs/common'
 import { bytesToHex } from '@ethereumjs/util'
 import { createVM, runBlock } from '@ethereumjs/vm'
 
-import { applyPreState, buildAmsterdamBlock } from './scenarios/helpers'
 import { getScenario } from './scenarios'
-
-import type { PreStateAccount, ScenarioRunResult } from './scenarios/types'
+import { applyPreState, buildAmsterdamBlock } from './scenarios/helpers'
+import type { ScenarioRunResult } from './scenarios/types'
 
 export async function runScenario(scenarioId: string): Promise<ScenarioRunResult> {
   const scenario = getScenario(scenarioId)

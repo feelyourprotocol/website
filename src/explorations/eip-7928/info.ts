@@ -1,14 +1,18 @@
 import type { Exploration } from '@/explorations/REGISTRY'
 import { Tag } from '@/explorations/TAGS'
 
+import image from './image.webp'
+
 export const INFO: Exploration = {
   id: 'eip-7928',
   path: '/eip-7928-block-level-access-lists',
   title: 'EIP-7928 Block Level Access Lists',
   infoURL: 'https://eips.ethereum.org/EIPS/eip-7928',
-  topic: 'robustness',
+  topic: 'scaling',
   timeline: 'glamsterdam',
-  tags: [Tag.EVM],
+  tags: [Tag.BAL, Tag.EVM],
+  image,
+  imageBoxHeight: '19rem',
   rightPanel: true,
   introText:
     '<b>What does the block commit to besides state root?</b> ' +

@@ -1,10 +1,9 @@
 <script setup lang="ts">
-import { ArrowLongRightIcon } from '@heroicons/vue/24/outline'
 import { computed } from 'vue'
-
-import { buildScenarioBrief } from './scenarioBrief'
+import { ArrowLongRightIcon } from '@heroicons/vue/24/outline'
 
 import type { BalExampleMeta } from './examples'
+import { buildScenarioBrief } from './scenarioBrief'
 import type { BalScenarioDefinition, ScenarioRunResult } from './scenarios/types'
 
 const props = defineProps<{
@@ -72,9 +71,8 @@ const brief = computed(() => buildScenarioBrief(props.scenario, props.meta, prop
           v-else
           class="rounded-md border border-dashed e-border px-3 py-2 opacity-60 min-w-[8.5rem]"
         >
-          <p class="font-semibold text-sm">Recipient</p>
-          <p class="text-[0.65rem] font-mono opacity-50 mt-0.5">0x0000…0000</p>
-          <p class="text-xs font-mono opacity-70 mt-1.5">empty · touched on transfer</p>
+          <p class="font-semibold text-sm">Counterparty</p>
+          <p class="text-xs font-mono opacity-70 mt-1.5">touched during execution</p>
         </div>
       </div>
     </div>

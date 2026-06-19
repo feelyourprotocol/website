@@ -1,7 +1,6 @@
 import type { Examples } from '@/explorations/REGISTRY'
 
 import { SCENARIO_ORDER, SCENARIOS } from './scenarios'
-
 import type { BalHighlightField } from './scenarios/types'
 
 /** Extended metadata keyed by scenario id (values[0] in {@link examples}). */

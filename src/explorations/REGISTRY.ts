@@ -34,6 +34,8 @@ export interface Exploration {
   timeline: string
   tags: Tag[]
   image?: string
+  /** Optional max height for the cover image in the exploration sidebar (CSS length, e.g. `12rem`). */
+  imageBoxHeight?: string
   /** When set, exploration content may Teleport into `#exploration-right-panel`. */
   rightPanel?: boolean
   introText: string

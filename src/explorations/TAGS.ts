@@ -20,6 +20,7 @@
  * - Short form preferred (e.g. "EVM" not "Ethereum Virtual Machine").
  */
 export enum Tag {
+  BAL = 'BAL',
   EVM = 'EVM',
   GasCosts = 'Gas Costs',
   PeerDAS = 'PeerDAS',

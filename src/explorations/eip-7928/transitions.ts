@@ -1,13 +1,13 @@
 import type { BALJSONBlockAccessList } from '@ethereumjs/util'
 
+import { COINBASE_ADDRESS, RECIPIENT_ADDRESS } from './scenarios/constants'
+import type { PreStateAccount } from './scenarios/types'
 import {
   balPathFor,
   getGroupByField,
   TRIGGER_GROUPS,
   type TriggerGroupDefinition,
 } from './taxonomy'
-
-import type { PreStateAccount } from './scenarios/types'
 
 export interface TransitionItem {
   summary: string
@@ -42,14 +42,27 @@ function hexToBigInt(hex: string): bigint {
   return BigInt(hex)
 }
 
+const ONE_ETH = 1_000_000_000_000_000_000n
+const MIN_ETH_DISPLAY = 1_000_000_000_000_000n // 0.001 ETH
+
 export function formatEth(wei: bigint): string {
   if (wei === 0n) return '0 ETH'
-  const eth = Number(wei) / 1e18
-  if (eth >= 0.0001) {
-    const formatted = eth.toLocaleString(undefined, { maximumFractionDigits: 6 })
-    return `${formatted} ETH`
+  if (wei % ONE_ETH === 0n) return `${wei / ONE_ETH} ETH`
+  if (wei >= MIN_ETH_DISPLAY) {
+    const whole = wei / ONE_ETH
+    const fracWei = wei % ONE_ETH
+    const fracDigits = ((fracWei * 1_000_000_000n) / ONE_ETH).toString().padStart(9, '0').replace(/0+$/, '')
+    if (whole === 0n) {
+      return fracDigits.length > 0 ? `0.${fracDigits} ETH` : `${wei.toLocaleString()} wei`
+    }
+    return fracDigits.length > 0 ? `${whole}.${fracDigits} ETH` : `${whole} ETH`
   }
   return `${wei.toLocaleString()} wei`
+}
+
+export function formatBalanceTransition(pre: bigint, post: bigint): string {
+  if (pre === post) return `${formatEth(pre)} (unchanged)`
+  return `${formatEth(pre)} → ${formatEth(post)}`
 }
 
 export function formatSlotValue(hex: string): string {
@@ -72,6 +85,15 @@ export function formatShortSlot(slot: string): string {
 
 function shortAddress(address: string): string {
   return `${address.slice(0, 6)}…${address.slice(-4)}`
+}
+
+function getAddressLabel(preStateMap: Map<string, PreStateAccount>, address: string): string {
+  const account = preStateMap.get(normalizeAddress(address))
+  if (account !== undefined) return account.label
+  const normalized = normalizeAddress(address)
+  if (normalized === normalizeAddress(RECIPIENT_ADDRESS)) return 'recipient'
+  if (normalized === normalizeAddress(COINBASE_ADDRESS)) return 'coinbase'
+  return shortAddress(address)
 }
 
 function preStateByAddress(
@@ -125,12 +147,12 @@ function buildBalanceItems(
 
   return sorted.map((change, i) => {
     const post = hexToBigInt(change.postBalance)
-    const summary = `${formatEth(previous)} → ${formatEth(post)}`
+    const summary = formatBalanceTransition(previous, post)
     previous = post
     return {
       summary,
       address: account.address,
-      addressLabel: shortAddress(account.address),
+      addressLabel: getAddressLabel(preStateMap, account.address),
       balPath: balPathFor(account.address, 'balanceChanges', String(i)),
       indexBadge: formatIndexBadge(change.blockAccessIndex),
       groupId: group.id,
@@ -155,7 +177,7 @@ function buildNonceItems(
     return {
       summary,
       address: account.address,
-      addressLabel: shortAddress(account.address),
+      addressLabel: getAddressLabel(preStateMap, account.address),
       balPath: balPathFor(account.address, 'nonceChanges', String(i)),
       indexBadge: formatIndexBadge(change.blockAccessIndex),
       groupId: group.id,
@@ -163,14 +185,17 @@ function buildNonceItems(
   })
 }
 
-function buildCodeItems(account: BALJSONBlockAccessList[number]): TransitionItem[] {
+function buildCodeItems(
+  account: BALJSONBlockAccessList[number],
+  preStateMap: Map<string, PreStateAccount>,
+): TransitionItem[] {
   const group = getGroupByField('codeChanges')
   return account.codeChanges.map((change, i) => {
     const byteLen = change.newCode === '0x' ? 0 : (change.newCode.length - 2) / 2
     return {
       summary: `deployed (${byteLen} bytes)`,
       address: account.address,
-      addressLabel: shortAddress(account.address),
+      addressLabel: getAddressLabel(preStateMap, account.address),
       balPath: balPathFor(account.address, 'codeChanges', String(i)),
       indexBadge: formatIndexBadge(change.blockAccessIndex),
       groupId: group.id,
@@ -199,7 +224,7 @@ function buildStorageChangeItems(
       items.push({
         summary,
         address: account.address,
-        addressLabel: shortAddress(account.address),
+        addressLabel: getAddressLabel(preStateMap, account.address),
         balPath: balPathFor(
           account.address,
           'storageChanges',
@@ -215,12 +240,15 @@ function buildStorageChangeItems(
   return items
 }
 
-function buildStorageReadItems(account: BALJSONBlockAccessList[number]): TransitionItem[] {
+function buildStorageReadItems(
+  account: BALJSONBlockAccessList[number],
+  preStateMap: Map<string, PreStateAccount>,
+): TransitionItem[] {
   const group = getGroupByField('storageReads')
-  return account.storageReads.map((slot, i) => ({
+  return account.storageReads.map((slot) => ({
     summary: `read slot ${formatShortSlot(slot)}`,
     address: account.address,
-    addressLabel: shortAddress(account.address),
+    addressLabel: getAddressLabel(preStateMap, account.address),
     balPath: balPathFor(account.address, 'storageReads', normalizeSlotKey(slot)),
     indexBadge: '',
     groupId: group.id,
@@ -248,11 +276,11 @@ export function buildTriggerGroups(
   for (const account of balJson) {
     itemsByField.get('balanceChanges')!.push(...buildBalanceItems(account, preStateMap))
     itemsByField.get('nonceChanges')!.push(...buildNonceItems(account, preStateMap))
-    itemsByField.get('codeChanges')!.push(...buildCodeItems(account))
+    itemsByField.get('codeChanges')!.push(...buildCodeItems(account, preStateMap))
     itemsByField.get('storageChanges')!.push(
       ...buildStorageChangeItems(account, preStateMap),
     )
-    itemsByField.get('storageReads')!.push(...buildStorageReadItems(account))
+    itemsByField.get('storageReads')!.push(...buildStorageReadItems(account, preStateMap))
   }
 
   return TRIGGER_GROUPS.map((group) => ({

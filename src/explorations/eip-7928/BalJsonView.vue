@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import type { BALJSONBlockAccessList } from '@ethereumjs/util'
 import { computed } from 'vue'
+import type { BALJSONBlockAccessList } from '@ethereumjs/util'
 
 import { balPathFor, getGroupByField } from './taxonomy'
 import { formatIndexBadge, normalizeSlotKey } from './transitions'
@@ -55,6 +55,16 @@ function sortedCodeChanges(account: BALJSONBlockAccessList[number]) {
   return [...account.codeChanges].sort(
     (a, b) => parseAccessIndex(a.blockAccessIndex) - parseAccessIndex(b.blockAccessIndex),
   )
+}
+
+function formatCodeChangePreview(
+  change: BALJSONBlockAccessList[number]['codeChanges'][number],
+  index: number,
+  account: BALJSONBlockAccessList[number],
+): string {
+  const byteCount = change.newCode.length / 2 - 1
+  const comma = index < sortedCodeChanges(account).length - 1 ? ',' : ''
+  return `{ "blockAccessIndex": "${change.blockAccessIndex}", "newCode": "<${byteCount} bytes>" }${comma}`
 }
 
 function storageChangePaths(account: BALJSONBlockAccessList[number]) {
@@ -155,9 +165,7 @@ function storageChangePaths(account: BALJSONBlockAccessList[number]) {
           @mouseenter="onEnter(balPathFor(account.address, 'codeChanges', String(i)))"
           @mouseleave="onLeave"
         >
-          { "blockAccessIndex": "{{ change.blockAccessIndex }}", "newCode": "<{{
-            change.newCode.length / 2 - 1
-          }} bytes>" }}{{ i < sortedCodeChanges(account).length - 1 ? ',' : '' }}
+          {{ formatCodeChangePreview(change, i, account) }}
           <span class="text-slate-400 ml-2">({{ formatIndexBadge(change.blockAccessIndex) }})</span>
         </div>
         <div class="text-slate-500">]</div>
@@ -169,7 +177,7 @@ function storageChangePaths(account: BALJSONBlockAccessList[number]) {
         </div>
         <div class="text-slate-500">[</div>
         <div
-          v-for="(entry, i) in storageChangePaths(account)"
+          v-for="entry in storageChangePaths(account)"
           :key="`store-${entry.pathIndex}`"
           :class="
             nodeClass(

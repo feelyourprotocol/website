@@ -4,20 +4,31 @@ import { DEFAULT_SCENARIO_ID, exampleMeta, examples } from './examples'
 import { INFO } from './info'
 import { runScenario } from './run'
 import { SCENARIO_ORDER, SCENARIOS } from './scenarios'
-import { TRIGGER_GROUPS, getGroupByField } from './taxonomy'
+import {
+  COINBASE_ADDRESS,
+  DEFAULT_GAS_PRICE,
+  RECIPIENT_ADDRESS,
+  SENDER_ADDRESS,
+} from './scenarios/constants'
+import { getGroupByField, TRIGGER_GROUPS } from './taxonomy'
 import {
   buildTriggerGroups,
+  formatBalanceTransition,
   formatEth,
   formatIndexBadge,
   formatSlotValue,
 } from './transitions'
+
+const LEGACY_TRANSFER_GAS = 21_000n
+const LEGACY_TRANSFER_FEE = LEGACY_TRANSFER_GAS * DEFAULT_GAS_PRICE
+const LEGACY_PRIORITY_FEE = LEGACY_TRANSFER_GAS * (DEFAULT_GAS_PRICE - 1n)
 
 describe('EIP-7928 BAL Exploration', () => {
   describe('info', () => {
     it('has correct metadata', () => {
       expect(INFO.id).toBe('eip-7928')
       expect(INFO.path).toContain('eip-7928')
-      expect(INFO.topic).toBe('robustness')
+      expect(INFO.topic).toBe('scaling')
       expect(INFO.timeline).toBe('glamsterdam')
       expect(INFO.poweredBy.length).toBeGreaterThan(0)
     })
@@ -57,10 +68,20 @@ describe('EIP-7928 BAL Exploration', () => {
 
   describe('transitions', () => {
     it('formats ETH and index badges readably', () => {
-      expect(formatEth(1_000_000_000_000_000_000n)).toContain('ETH')
+      expect(formatEth(1_000_000_000_000_000_000n)).toBe('1 ETH')
+      expect(formatEth(1n)).toBe('1 wei')
       expect(formatIndexBadge('0x01')).toBe('tx 1')
       expect(formatIndexBadge('0x00')).toBe('system')
       expect(formatSlotValue('0x2a')).toBe('42')
+    })
+
+    it('shows sub-ETH balances with enough precision for gas deductions', () => {
+      const postSender = 1_000_000_000_000_000_000n - LEGACY_TRANSFER_FEE - 1n
+      expect(formatEth(postSender)).toContain('0.999999')
+      expect(formatEth(postSender)).not.toBe('1 ETH')
+      expect(formatBalanceTransition(1_000_000_000_000_000_000n, postSender)).toBe(
+        `1 ETH → ${formatEth(postSender)}`,
+      )
     })
   })
 
@@ -68,7 +89,7 @@ describe('EIP-7928 BAL Exploration', () => {
     it('runs plain transfer with balance and nonce BAL entries', async () => {
       const result = await runScenario('01-plain-transfer')
       expect(result.balHash).toMatch(/^0x[0-9a-f]+$/i)
-      expect(result.preState.length).toBeGreaterThan(0)
+      expect(result.preState.length).toBe(2)
       expect(result.txCount).toBe(1)
       expect(result.balJson.length).toBeGreaterThan(0)
 
@@ -76,6 +97,29 @@ describe('EIP-7928 BAL Exploration', () => {
       const hasNonce = result.balJson.some((a) => a.nonceChanges.length > 0)
       expect(hasBalance).toBe(true)
       expect(hasNonce).toBe(true)
+    })
+
+    it('records 1 wei on the recipient and fees on coinbase for plain transfer', async () => {
+      const result = await runScenario('01-plain-transfer')
+
+      const recipient = result.balJson.find(
+        (a) => a.address.toLowerCase() === RECIPIENT_ADDRESS.toLowerCase(),
+      )
+      expect(recipient?.balanceChanges).toHaveLength(1)
+      expect(BigInt(recipient!.balanceChanges[0]!.postBalance)).toBe(1n)
+
+      const coinbase = result.balJson.find(
+        (a) => a.address.toLowerCase() === COINBASE_ADDRESS.toLowerCase(),
+      )
+      expect(coinbase?.balanceChanges).toHaveLength(1)
+      expect(BigInt(coinbase!.balanceChanges[0]!.postBalance)).toBe(LEGACY_PRIORITY_FEE)
+
+      const sender = result.balJson.find(
+        (a) => a.address.toLowerCase() === SENDER_ADDRESS.toLowerCase(),
+      )
+      expect(BigInt(sender!.balanceChanges[0]!.postBalance)).toBe(
+        1_000_000_000_000_000_000n - LEGACY_TRANSFER_FEE - 1n,
+      )
     })
 
     it('records storageReads on contract SLOAD', async () => {
@@ -103,6 +147,25 @@ describe('EIP-7928 BAL Exploration', () => {
   })
 
   describe('buildTriggerGroups', () => {
+    it('describes plain transfer value flow matching the scenario', async () => {
+      const result = await runScenario('01-plain-transfer')
+      const groups = buildTriggerGroups(result.balJson, result.preState)
+      const valueFlow = groups.find((g) => g.group.id === 'valueFlow')!
+      const byLabel = Object.fromEntries(valueFlow.items.map((item) => [item.addressLabel, item]))
+
+      expect(byLabel.sender?.summary).toBe(
+        formatBalanceTransition(
+          1_000_000_000_000_000_000n,
+          1_000_000_000_000_000_000n - LEGACY_TRANSFER_FEE - 1n,
+        ),
+      )
+      expect(byLabel.recipient?.summary).toBe('0 ETH → 1 wei')
+      expect(byLabel.coinbase?.summary).toBe(
+        formatBalanceTransition(0n, LEGACY_PRIORITY_FEE),
+      )
+      expect(byLabel.sender?.indexBadge).toBe('tx 1')
+    })
+
     it('produces human-readable value flow transitions', async () => {
       const result = await runScenario('01-plain-transfer')
       const groups = buildTriggerGroups(result.balJson, result.preState)
@@ -110,7 +173,6 @@ describe('EIP-7928 BAL Exploration', () => {
       expect(valueFlow).toBeDefined()
       expect(valueFlow!.items.length).toBeGreaterThan(0)
       expect(valueFlow!.items[0]!.summary).toMatch(/→/)
-      expect(valueFlow!.items[0]!.summary).toContain('ETH')
       expect(valueFlow!.items[0]!.balPath).toContain('balanceChanges')
     })
 
@@ -120,6 +182,7 @@ describe('EIP-7928 BAL Exploration', () => {
       const peeks = groups.find((g) => g.group.id === 'statePeeks')
       expect(peeks!.items.length).toBeGreaterThan(0)
       expect(peeks!.items[0]!.summary).toMatch(/read slot/)
+      expect(peeks!.items[0]!.addressLabel).toBe('contract')
     })
 
     it('includes state imprints for SSTORE scenario', async () => {
@@ -128,6 +191,16 @@ describe('EIP-7928 BAL Exploration', () => {
       const imprints = groups.find((g) => g.group.id === 'stateImprints')
       expect(imprints!.items.length).toBeGreaterThan(0)
       expect(imprints!.items[0]!.summary).toMatch(/→/)
+      expect(imprints!.items[0]!.addressLabel).toBe('contract')
+    })
+
+    it('labels counter ticks with the sender on plain transfer', async () => {
+      const result = await runScenario('01-plain-transfer')
+      const groups = buildTriggerGroups(result.balJson, result.preState)
+      const ticks = groups.find((g) => g.group.id === 'counterTicks')!
+      expect(ticks.items).toHaveLength(1)
+      expect(ticks.items[0]!.summary).toBe('nonce 0 → 1')
+      expect(ticks.items[0]!.addressLabel).toBe('sender')
     })
 
     it('assigns stable balPath keys for cross-highlight', async () => {

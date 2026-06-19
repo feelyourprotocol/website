@@ -14,9 +14,8 @@ import { INFO as exploration } from './info'
 import { runScenario } from './run'
 import ScenarioBriefView from './ScenarioBriefView.vue'
 import { getAdjacentScenarioId, getScenario, SCENARIO_ORDER } from './scenarios'
-import { buildTriggerGroups } from './transitions'
-
 import type { ScenarioRunResult } from './scenarios/types'
+import { buildTriggerGroups } from './transitions'
 
 const topic = TOPICS[exploration.topic]
 

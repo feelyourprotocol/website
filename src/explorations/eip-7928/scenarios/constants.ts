@@ -1,11 +1,13 @@
-import { createAddressFromPrivateKey, createAddressFromString, hexToBytes } from '@ethereumjs/util'
-
 import type { PrefixedHexString } from '@ethereumjs/util'
+import { createAddressFromPrivateKey, createAddressFromString, hexToBytes } from '@ethereumjs/util'
 
 export const SENDER_PRIVATE_KEY = hexToBytes(`0x${'20'.repeat(32)}`)
 export const SENDER_ADDRESS = createAddressFromPrivateKey(SENDER_PRIVATE_KEY).toString()
+export const RECIPIENT_PRIVATE_KEY = hexToBytes(`0x${'71'.repeat(32)}`)
+export const RECIPIENT_ADDRESS = createAddressFromPrivateKey(RECIPIENT_PRIVATE_KEY).toString() as PrefixedHexString
 export const CONTRACT_ADDRESS = '0x00000000000000000000000000000000000000c0' as PrefixedHexString
-export const RECIPIENT_ADDRESS = '0x0000000000000000000000000000000000000000' as PrefixedHexString
+/** Block fee recipient — kept distinct from other addresses so fee flow reads cleanly. */
+export const COINBASE_ADDRESS = '0x00000000000000000000000000000000000000c1' as PrefixedHexString
 
 export const SLOT_0 = `0x${'00'.repeat(32)}` as PrefixedHexString
 export const VALUE_42 = `0x${'00'.repeat(31)}2a` as PrefixedHexString
