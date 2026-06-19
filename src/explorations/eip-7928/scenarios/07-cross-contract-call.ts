@@ -3,8 +3,8 @@ import { createLegacyTx } from '@ethereumjs/tx'
 import {
   CALL_FORWARD_BYTECODE,
   CALLER_ADDRESS,
-  CONTRACT_ADDRESS,
   callerAddress,
+  CONTRACT_ADDRESS,
   contractAddress,
   DEFAULT_GAS_PRICE,
   DEFAULT_SENDER_BALANCE,

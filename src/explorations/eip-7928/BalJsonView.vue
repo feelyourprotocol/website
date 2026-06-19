@@ -100,10 +100,7 @@ function storageChangePaths(account: BALJSONBlockAccessList[number]) {
     <div v-for="(account, ai) in sortedAccounts" :key="account.address" class="ml-3 mb-3">
       <div class="text-slate-600">{</div>
 
-      <div
-        class="ml-3 text-slate-800"
-        :data-bal-path="`${account.address.toLowerCase()}/address`"
-      >
+      <div class="ml-3 text-slate-800" :data-bal-path="`${account.address.toLowerCase()}/address`">
         "address": "{{ account.address }}"
       </div>
 
@@ -115,7 +112,9 @@ function storageChangePaths(account: BALJSONBlockAccessList[number]) {
         <div
           v-for="(change, i) in sortedBalanceChanges(account)"
           :key="`bal-${i}`"
-          :class="nodeClass(balPathFor(account.address, 'balanceChanges', String(i)), 'balanceChanges')"
+          :class="
+            nodeClass(balPathFor(account.address, 'balanceChanges', String(i)), 'balanceChanges')
+          "
           :data-bal-path="balPathFor(account.address, 'balanceChanges', String(i))"
           class="ml-3 cursor-default"
           @mouseenter="onEnter(balPathFor(account.address, 'balanceChanges', String(i)))"
@@ -143,8 +142,9 @@ function storageChangePaths(account: BALJSONBlockAccessList[number]) {
           @mouseenter="onEnter(balPathFor(account.address, 'nonceChanges', String(i)))"
           @mouseleave="onLeave"
         >
-          { "blockAccessIndex": "{{ change.blockAccessIndex }}", "postNonce": "{{ change.postNonce }}"
-          }}{{ i < sortedNonceChanges(account).length - 1 ? ',' : '' }}
+          { "blockAccessIndex": "{{ change.blockAccessIndex }}", "postNonce": "{{
+            change.postNonce
+          }}" }}{{ i < sortedNonceChanges(account).length - 1 ? ',' : '' }}
           <span class="text-slate-400 ml-2">({{ formatIndexBadge(change.blockAccessIndex) }})</span>
         </div>
         <div class="text-slate-500">]</div>
@@ -196,7 +196,9 @@ function storageChangePaths(account: BALJSONBlockAccessList[number]) {
           @mouseleave="onLeave"
         >
           slot {{ entry.slot }} → {{ entry.change.postValue }}
-          <span class="text-slate-400 ml-2">({{ formatIndexBadge(entry.change.blockAccessIndex) }})</span>
+          <span class="text-slate-400 ml-2"
+            >({{ formatIndexBadge(entry.change.blockAccessIndex) }})</span
+          >
         </div>
         <div class="text-slate-500">]</div>
       </div>

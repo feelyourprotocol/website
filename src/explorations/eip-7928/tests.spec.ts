@@ -157,9 +157,7 @@ describe('EIP-7928 BAL Exploration', () => {
       )
       expect(deployed).toBeDefined()
       expect(deployed!.codeChanges).toHaveLength(1)
-      expect(deployed!.codeChanges[0]!.newCode.toLowerCase()).toBe(
-        SSTORE_42_BYTECODE.toLowerCase(),
-      )
+      expect(deployed!.codeChanges[0]!.newCode.toLowerCase()).toBe(SSTORE_42_BYTECODE.toLowerCase())
       expect(deployed!.codeChanges[0]!.blockAccessIndex).toBe('0x01')
     })
 
@@ -226,9 +224,7 @@ describe('EIP-7928 BAL Exploration', () => {
         ),
       )
       expect(byLabel.recipient?.summary).toBe('0 ETH → 1 wei')
-      expect(byLabel.coinbase?.summary).toBe(
-        formatBalanceTransition(0n, LEGACY_PRIORITY_FEE),
-      )
+      expect(byLabel.coinbase?.summary).toBe(formatBalanceTransition(0n, LEGACY_PRIORITY_FEE))
       expect(byLabel.sender?.indexBadge).toBe('tx 1')
     })
 

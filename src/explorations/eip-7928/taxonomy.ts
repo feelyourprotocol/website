@@ -162,10 +162,6 @@ export function getGroupById(id: TriggerGroupId): TriggerGroupDefinition {
 }
 
 /** Stable path prefix for cross-highlight between cards and JSON view. */
-export function balPathFor(
-  address: string,
-  field: BalSourceField,
-  suffix: string,
-): string {
+export function balPathFor(address: string, field: BalSourceField, suffix: string): string {
   return `${address.toLowerCase()}/${field}/${suffix}`
 }

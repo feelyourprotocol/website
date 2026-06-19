@@ -9,11 +9,17 @@ import {
 export const SENDER_PRIVATE_KEY = hexToBytes(`0x${'20'.repeat(32)}`)
 export const SENDER_ADDRESS = createAddressFromPrivateKey(SENDER_PRIVATE_KEY).toString()
 export const RECIPIENT_PRIVATE_KEY = hexToBytes(`0x${'71'.repeat(32)}`)
-export const RECIPIENT_ADDRESS = createAddressFromPrivateKey(RECIPIENT_PRIVATE_KEY).toString() as PrefixedHexString
+export const RECIPIENT_ADDRESS = createAddressFromPrivateKey(
+  RECIPIENT_PRIVATE_KEY,
+).toString() as PrefixedHexString
 export const CONTRACT_PRIVATE_KEY = hexToBytes(`0x${'42'.repeat(32)}`)
-export const CONTRACT_ADDRESS = createAddressFromPrivateKey(CONTRACT_PRIVATE_KEY).toString() as PrefixedHexString
+export const CONTRACT_ADDRESS = createAddressFromPrivateKey(
+  CONTRACT_PRIVATE_KEY,
+).toString() as PrefixedHexString
 export const CALLER_PRIVATE_KEY = hexToBytes(`0x${'43'.repeat(32)}`)
-export const CALLER_ADDRESS = createAddressFromPrivateKey(CALLER_PRIVATE_KEY).toString() as PrefixedHexString
+export const CALLER_ADDRESS = createAddressFromPrivateKey(
+  CALLER_PRIVATE_KEY,
+).toString() as PrefixedHexString
 /** Block fee recipient — kept distinct from other addresses so fee flow reads cleanly. */
 export const COINBASE_ADDRESS = '0x00000000000000000000000000000000000000c1' as PrefixedHexString
 

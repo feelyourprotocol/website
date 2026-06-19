@@ -19,19 +19,23 @@ const brief = computed(() => buildScenarioBrief(props.scenario, props.meta, prop
 <template>
   <section class="rounded-lg border-2 e-border-dark overflow-hidden mb-5 bg-white/40">
     <header class="px-4 py-3 e-bg-medium border-b e-border">
-      <p class="text-xs font-mono uppercase tracking-widest opacity-50 mb-1">What runs in this block</p>
+      <p class="text-xs font-mono uppercase tracking-widest opacity-50 mb-1">
+        What runs in this block
+      </p>
       <h2 class="font-semibold e-text text-lg leading-snug">{{ brief.title }}</h2>
       <p class="text-sm leading-relaxed opacity-75 mt-1.5 max-w-3xl">{{ brief.lesson }}</p>
     </header>
 
     <div class="px-4 py-4 border-b e-border">
-      <p class="text-[0.65rem] font-mono uppercase tracking-widest opacity-45 mb-3">Accounts before execution</p>
+      <p class="text-[0.65rem] font-mono uppercase tracking-widest opacity-45 mb-3">
+        Accounts before execution
+      </p>
       <div class="flex flex-wrap items-center gap-2 sm:gap-3">
-        <div
-          class="rounded-md border e-border px-3 py-2 min-w-[8.5rem] e-bg-light shadow-sm"
-        >
+        <div class="rounded-md border e-border px-3 py-2 min-w-[8.5rem] e-bg-light shadow-sm">
           <p class="font-semibold e-text text-sm capitalize">{{ brief.actors[0]!.label }}</p>
-          <p class="text-[0.65rem] font-mono opacity-50 mt-0.5">{{ brief.actors[0]!.shortAddress }}</p>
+          <p class="text-[0.65rem] font-mono opacity-50 mt-0.5">
+            {{ brief.actors[0]!.shortAddress }}
+          </p>
           <ul class="mt-1.5 space-y-0.5">
             <li
               v-for="line in brief.actors[0]!.lines"
@@ -45,7 +49,9 @@ const brief = computed(() => buildScenarioBrief(props.scenario, props.meta, prop
 
         <div class="flex flex-col items-center gap-0.5 px-1 shrink-0">
           <ArrowLongRightIcon class="size-6 opacity-30" />
-          <span class="text-[0.6rem] font-mono uppercase tracking-wide opacity-40 text-center max-w-[5rem] leading-tight">
+          <span
+            class="text-[0.6rem] font-mono uppercase tracking-wide opacity-40 text-center max-w-[5rem] leading-tight"
+          >
             {{ brief.actors.length > 1 ? 'call' : 'transfer' }}
           </span>
         </div>
@@ -55,7 +61,9 @@ const brief = computed(() => buildScenarioBrief(props.scenario, props.meta, prop
           class="rounded-md border e-border px-3 py-2 min-w-[8.5rem] e-bg-light shadow-sm"
         >
           <p class="font-semibold e-text text-sm capitalize">{{ brief.actors[1]!.label }}</p>
-          <p class="text-[0.65rem] font-mono opacity-50 mt-0.5">{{ brief.actors[1]!.shortAddress }}</p>
+          <p class="text-[0.65rem] font-mono opacity-50 mt-0.5">
+            {{ brief.actors[1]!.shortAddress }}
+          </p>
           <ul class="mt-1.5 space-y-0.5">
             <li
               v-for="line in brief.actors[1]!.lines"
@@ -79,12 +87,16 @@ const brief = computed(() => buildScenarioBrief(props.scenario, props.meta, prop
 
     <div class="px-4 py-3 border-b e-border flex flex-wrap items-start gap-x-6 gap-y-2">
       <div class="min-w-0 flex-1">
-        <p class="text-[0.65rem] font-mono uppercase tracking-widest opacity-45 mb-1">Transaction</p>
+        <p class="text-[0.65rem] font-mono uppercase tracking-widest opacity-45 mb-1">
+          Transaction
+        </p>
         <p class="font-medium e-text text-sm">{{ brief.action.headline }}</p>
         <p class="text-xs opacity-60 mt-0.5">{{ brief.action.detail }}</p>
       </div>
       <div v-if="brief.watchFor.length > 0" class="shrink-0">
-        <p class="text-[0.65rem] font-mono uppercase tracking-widest opacity-45 mb-1.5">Expect in BAL</p>
+        <p class="text-[0.65rem] font-mono uppercase tracking-widest opacity-45 mb-1.5">
+          Expect in BAL
+        </p>
         <div class="flex flex-wrap gap-1.5">
           <span
             v-for="name in brief.watchFor"
@@ -98,7 +110,9 @@ const brief = computed(() => buildScenarioBrief(props.scenario, props.meta, prop
     </div>
 
     <div v-if="brief.bytecodeSteps" class="px-4 py-3 border-b e-border">
-      <p class="text-[0.65rem] font-mono uppercase tracking-widest opacity-45 mb-2">Contract logic</p>
+      <p class="text-[0.65rem] font-mono uppercase tracking-widest opacity-45 mb-2">
+        Contract logic
+      </p>
       <div class="flex flex-wrap gap-1.5">
         <span
           v-for="(step, i) in brief.bytecodeSteps"

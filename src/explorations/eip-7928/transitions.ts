@@ -1,10 +1,6 @@
 import type { BALJSONBlockAccessList } from '@ethereumjs/util'
 
-import {
-  COINBASE_ADDRESS,
-  CREATE_DEPLOYED_ADDRESS,
-  RECIPIENT_ADDRESS,
-} from './scenarios/constants'
+import { COINBASE_ADDRESS, CREATE_DEPLOYED_ADDRESS, RECIPIENT_ADDRESS } from './scenarios/constants'
 import type { PreStateAccount } from './scenarios/types'
 import {
   balPathFor,
@@ -55,7 +51,10 @@ export function formatEth(wei: bigint): string {
   if (wei >= MIN_ETH_DISPLAY) {
     const whole = wei / ONE_ETH
     const fracWei = wei % ONE_ETH
-    const fracDigits = ((fracWei * 1_000_000_000n) / ONE_ETH).toString().padStart(9, '0').replace(/0+$/, '')
+    const fracDigits = ((fracWei * 1_000_000_000n) / ONE_ETH)
+      .toString()
+      .padStart(9, '0')
+      .replace(/0+$/, '')
     if (whole === 0n) {
       return fracDigits.length > 0 ? `0.${fracDigits} ETH` : `${wei.toLocaleString()} wei`
     }
@@ -101,9 +100,7 @@ function getAddressLabel(preStateMap: Map<string, PreStateAccount>, address: str
   return shortAddress(address)
 }
 
-function preStateByAddress(
-  preState: PreStateAccount[],
-): Map<string, PreStateAccount> {
+function preStateByAddress(preState: PreStateAccount[]): Map<string, PreStateAccount> {
   return new Map(preState.map((a) => [normalizeAddress(a.address), a]))
 }
 
@@ -269,10 +266,7 @@ export function buildTriggerGroups(
   preState: PreStateAccount[],
 ): TriggerGroupViewModel[] {
   const preStateMap = preStateByAddress(preState)
-  const itemsByField = new Map<
-    TriggerGroupDefinition['sourceField'],
-    TransitionItem[]
-  >()
+  const itemsByField = new Map<TriggerGroupDefinition['sourceField'], TransitionItem[]>()
 
   for (const field of TRIGGER_GROUPS.map((g) => g.sourceField)) {
     itemsByField.set(field, [])
@@ -282,9 +276,7 @@ export function buildTriggerGroups(
     itemsByField.get('balanceChanges')!.push(...buildBalanceItems(account, preStateMap))
     itemsByField.get('nonceChanges')!.push(...buildNonceItems(account, preStateMap))
     itemsByField.get('codeChanges')!.push(...buildCodeItems(account, preStateMap))
-    itemsByField.get('storageChanges')!.push(
-      ...buildStorageChangeItems(account, preStateMap),
-    )
+    itemsByField.get('storageChanges')!.push(...buildStorageChangeItems(account, preStateMap))
     itemsByField.get('storageReads')!.push(...buildStorageReadItems(account, preStateMap))
   }
 

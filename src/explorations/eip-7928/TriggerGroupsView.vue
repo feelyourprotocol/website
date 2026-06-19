@@ -18,7 +18,11 @@ function onLeave() {
   emit('hoverPath', null)
 }
 
-function itemClass(path: string, activePath: string | null, groupClasses: TriggerGroupViewModel['group']['classes']) {
+function itemClass(
+  path: string,
+  activePath: string | null,
+  groupClasses: TriggerGroupViewModel['group']['classes'],
+) {
   const base = `rounded border px-2.5 py-2 cursor-default transition-all ${groupClasses.bgItem} ${groupClasses.border}`
   if (activePath === path) {
     return `${base} ring-2 ${groupClasses.ring} ${groupClasses.bg}`
@@ -50,10 +54,7 @@ function itemClass(path: string, activePath: string | null, groupClasses: Trigge
           <p :class="['font-semibold text-sm', group.classes.text]">{{ group.name }}</p>
           <p class="text-xs text-slate-500 truncate">{{ group.triggerLabel }}</p>
         </div>
-        <span
-          v-if="items.length === 0"
-          class="ml-auto text-xs font-mono text-slate-400 shrink-0"
-        >
+        <span v-if="items.length === 0" class="ml-auto text-xs font-mono text-slate-400 shrink-0">
           none
         </span>
         <span v-else class="ml-auto text-xs font-mono text-slate-500 shrink-0">
