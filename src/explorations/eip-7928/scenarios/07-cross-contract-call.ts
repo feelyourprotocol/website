@@ -5,7 +5,6 @@ import {
   CALLER_ADDRESS,
   callerAddress,
   CONTRACT_ADDRESS,
-  contractAddress,
   DEFAULT_GAS_PRICE,
   DEFAULT_SENDER_BALANCE,
   RETRIEVE_BYTECODE,
