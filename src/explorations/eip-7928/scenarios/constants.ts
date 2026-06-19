@@ -24,6 +24,9 @@ export const RETRIEVE_BYTECODE = `0x60005460005260206000f3` as PrefixedHexString
 /** PUSH1 42; PUSH1 0; SSTORE; STOP */
 export const SSTORE_42_BYTECODE = `0x602a60005500` as PrefixedHexString
 
+/** PUSH1 42; PUSH1 0; SSTORE; PUSH1 0; PUSH1 0; REVERT */
+export const SSTORE_REVERT_BYTECODE = `0x602a60005560006000fd` as PrefixedHexString
+
 /** Init code: CODECOPY runtime into memory, RETURN — deploys {@link SSTORE_42_BYTECODE}. */
 export const CREATE_DEPLOY_INIT_BYTECODE =
   `0x6006600c60003960066000f3${SSTORE_42_BYTECODE.slice(2)}` as PrefixedHexString

@@ -180,6 +180,18 @@ describe('EIP-7928 BAL Exploration', () => {
       expect(recipient?.balanceChanges[1]!.blockAccessIndex).toBe('0x02')
       expect(BigInt(recipient!.balanceChanges[1]!.postBalance)).toBe(3n)
     })
+
+    it('records storageReads but not storageChanges when SSTORE reverts', async () => {
+      const result = await runScenario('06-sstore-revert')
+      const contract = result.balJson.find(
+        (a) =>
+          a.address.toLowerCase() ===
+          SCENARIOS['06-sstore-revert'].preState[1]!.address.toLowerCase(),
+      )
+      expect(contract).toBeDefined()
+      expect(contract!.storageReads.length).toBeGreaterThan(0)
+      expect(contract!.storageChanges.length).toBe(0)
+    })
   })
 
   describe('buildTriggerGroups', () => {
@@ -257,6 +269,17 @@ describe('EIP-7928 BAL Exploration', () => {
       expect(ticks.items[0]!.summary).toBe('nonce 0 → 1')
       expect(ticks.items[1]!.indexBadge).toBe('tx 2')
       expect(ticks.items[1]!.summary).toBe('nonce 1 → 2')
+    })
+
+    it('includes state peeks but no imprints when SSTORE reverts', async () => {
+      const result = await runScenario('06-sstore-revert')
+      const groups = buildTriggerGroups(result.balJson, result.preState)
+      const peeks = groups.find((g) => g.group.id === 'statePeeks')!
+      const imprints = groups.find((g) => g.group.id === 'stateImprints')!
+      expect(peeks.items.length).toBeGreaterThan(0)
+      expect(peeks.items[0]!.addressLabel).toBe('contract')
+      expect(peeks.items[0]!.summary).toMatch(/read slot/)
+      expect(imprints.items).toHaveLength(0)
     })
 
     it('labels counter ticks with the sender on plain transfer', async () => {

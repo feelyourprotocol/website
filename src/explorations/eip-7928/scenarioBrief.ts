@@ -97,6 +97,12 @@ function buildAction(scenario: BalScenarioDefinition): TxActionBrief {
       detail: 'tx 1: 1 wei · tx 2: 2 wei to the same recipient · sequential nonces',
     }
   }
+  if (scenario.id === '06-sstore-revert') {
+    return {
+      headline: 'Sender calls a contract that reverts after SSTORE',
+      detail: 'Write is rolled back · access list records a read, not a write',
+    }
+  }
 
   return {
     headline: tx.label,
