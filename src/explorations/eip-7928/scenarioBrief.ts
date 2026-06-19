@@ -85,6 +85,12 @@ function buildAction(scenario: BalScenarioDefinition): TxActionBrief {
       detail: 'Slot 0 written with value 42 · 200,000 gas',
     }
   }
+  if (scenario.id === '04-create-deploy') {
+    return {
+      headline: 'Sender deploys a new contract via CREATE',
+      detail: 'Init code returns runtime bytecode · new account at deterministic address',
+    }
+  }
 
   return {
     headline: tx.label,

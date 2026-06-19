@@ -1,6 +1,10 @@
 import type { BALJSONBlockAccessList } from '@ethereumjs/util'
 
-import { COINBASE_ADDRESS, RECIPIENT_ADDRESS } from './scenarios/constants'
+import {
+  COINBASE_ADDRESS,
+  CREATE_DEPLOYED_ADDRESS,
+  RECIPIENT_ADDRESS,
+} from './scenarios/constants'
 import type { PreStateAccount } from './scenarios/types'
 import {
   balPathFor,
@@ -93,6 +97,7 @@ function getAddressLabel(preStateMap: Map<string, PreStateAccount>, address: str
   const normalized = normalizeAddress(address)
   if (normalized === normalizeAddress(RECIPIENT_ADDRESS)) return 'recipient'
   if (normalized === normalizeAddress(COINBASE_ADDRESS)) return 'coinbase'
+  if (normalized === normalizeAddress(CREATE_DEPLOYED_ADDRESS)) return 'deployed contract'
   return shortAddress(address)
 }
 

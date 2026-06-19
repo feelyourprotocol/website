@@ -6,9 +6,11 @@ import { runScenario } from './run'
 import { SCENARIO_ORDER, SCENARIOS } from './scenarios'
 import {
   COINBASE_ADDRESS,
+  CREATE_DEPLOYED_ADDRESS,
   DEFAULT_GAS_PRICE,
   RECIPIENT_ADDRESS,
   SENDER_ADDRESS,
+  SSTORE_42_BYTECODE,
 } from './scenarios/constants'
 import { getGroupByField, TRIGGER_GROUPS } from './taxonomy'
 import {
@@ -144,6 +146,19 @@ describe('EIP-7928 BAL Exploration', () => {
       expect(contract).toBeDefined()
       expect(contract!.storageChanges.length).toBeGreaterThan(0)
     })
+
+    it('records codeChanges on CREATE deploy', async () => {
+      const result = await runScenario('04-create-deploy')
+      const deployed = result.balJson.find(
+        (a) => a.address.toLowerCase() === CREATE_DEPLOYED_ADDRESS.toLowerCase(),
+      )
+      expect(deployed).toBeDefined()
+      expect(deployed!.codeChanges).toHaveLength(1)
+      expect(deployed!.codeChanges[0]!.newCode.toLowerCase()).toBe(
+        SSTORE_42_BYTECODE.toLowerCase(),
+      )
+      expect(deployed!.codeChanges[0]!.blockAccessIndex).toBe('0x01')
+    })
   })
 
   describe('buildTriggerGroups', () => {
@@ -192,6 +207,16 @@ describe('EIP-7928 BAL Exploration', () => {
       expect(imprints!.items.length).toBeGreaterThan(0)
       expect(imprints!.items[0]!.summary).toMatch(/→/)
       expect(imprints!.items[0]!.addressLabel).toBe('contract')
+    })
+
+    it('includes contract births for CREATE deploy', async () => {
+      const result = await runScenario('04-create-deploy')
+      const groups = buildTriggerGroups(result.balJson, result.preState)
+      const births = groups.find((g) => g.group.id === 'contractBirths')!
+      expect(births.items).toHaveLength(1)
+      expect(births.items[0]!.summary).toBe('deployed (6 bytes)')
+      expect(births.items[0]!.addressLabel).toBe('deployed contract')
+      expect(births.items[0]!.indexBadge).toBe('tx 1')
     })
 
     it('labels counter ticks with the sender on plain transfer', async () => {

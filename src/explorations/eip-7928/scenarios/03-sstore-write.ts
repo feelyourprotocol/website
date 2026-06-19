@@ -15,8 +15,9 @@ export const sstoreWriteScenario: BalScenarioDefinition = {
   id: '03-sstore-write',
   title: '3. Storage write (SSTORE)',
   lesson:
-    'When the contract writes slot 0, the BAL records storageChanges instead of storageReads. ' +
-    'A successful write subsumes any read of the same slot in that transaction.',
+    'The contract starts with empty storage. This call writes 42 into slot 0 — ' +
+    'the access list records that as a storage write. If the same slot was read earlier in ' +
+    'the transaction, only the write is listed.',
   step: 3,
   adjustable: false,
   highlightFields: ['storageChanges'],

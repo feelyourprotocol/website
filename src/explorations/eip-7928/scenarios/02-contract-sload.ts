@@ -17,8 +17,8 @@ export const contractSloadScenario: BalScenarioDefinition = {
   id: '02-contract-sload',
   title: '2. Contract read (SLOAD)',
   lesson:
-    'Calling a pre-deployed contract that only reads storage adds the contract to the BAL with ' +
-    'storageReads — not storageChanges.',
+    'The contract is already deployed with slot 0 set to 42. This call only reads that slot — ' +
+    'the access list records which slot was read, with no storage writes.',
   step: 2,
   adjustable: false,
   highlightFields: ['storageReads'],

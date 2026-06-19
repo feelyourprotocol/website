@@ -57,14 +57,13 @@ function sortedCodeChanges(account: BALJSONBlockAccessList[number]) {
   )
 }
 
-function formatCodeChangePreview(
+function formatCodeChangeJson(
   change: BALJSONBlockAccessList[number]['codeChanges'][number],
   index: number,
   account: BALJSONBlockAccessList[number],
 ): string {
-  const byteCount = change.newCode.length / 2 - 1
   const comma = index < sortedCodeChanges(account).length - 1 ? ',' : ''
-  return `{ "blockAccessIndex": "${change.blockAccessIndex}", "newCode": "<${byteCount} bytes>" }${comma}`
+  return `{ "blockAccessIndex": "${change.blockAccessIndex}", "newCode": "${change.newCode}" }${comma}`
 }
 
 function storageChangePaths(account: BALJSONBlockAccessList[number]) {
@@ -161,11 +160,11 @@ function storageChangePaths(account: BALJSONBlockAccessList[number]) {
           :key="`code-${i}`"
           :class="nodeClass(balPathFor(account.address, 'codeChanges', String(i)), 'codeChanges')"
           :data-bal-path="balPathFor(account.address, 'codeChanges', String(i))"
-          class="ml-3 cursor-default truncate max-w-full"
+          class="ml-3 cursor-default break-all"
           @mouseenter="onEnter(balPathFor(account.address, 'codeChanges', String(i)))"
           @mouseleave="onLeave"
         >
-          {{ formatCodeChangePreview(change, i, account) }}
+          {{ formatCodeChangeJson(change, i, account) }}
           <span class="text-slate-400 ml-2">({{ formatIndexBadge(change.blockAccessIndex) }})</span>
         </div>
         <div class="text-slate-500">]</div>
