@@ -97,6 +97,7 @@ body {
   --e-border: var(--color-blue-300);
   --e-border-dark: var(--color-blue-800);
   --e-accent: var(--color-blue-600);
+  --companion-peek-h: 3.5rem;
 }
 
 /* --- Topic text color utility --- */
@@ -240,4 +241,33 @@ body {
 .topic-intro-card {
   border-width: 1px;
   border-style: solid;
+}
+
+/* --- Mobile companion bottom sheet (ExplorationView right panel) --- */
+@keyframes companion-pulse {
+  0%,
+  100% {
+    box-shadow: 0 -8px 30px rgba(15, 23, 42, 0.12);
+  }
+  45% {
+    box-shadow:
+      0 -8px 30px rgba(15, 23, 42, 0.12),
+      0 0 18px 2px color-mix(in srgb, var(--e-accent) 50%, transparent);
+  }
+}
+
+@media (max-width: 767px) {
+  .companion-sheet-pulse {
+    animation: companion-pulse 0.65s ease-out;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .companion-sheet-pulse {
+    animation: none;
+  }
+
+  .companion-sheet {
+    transition: none !important;
+  }
 }

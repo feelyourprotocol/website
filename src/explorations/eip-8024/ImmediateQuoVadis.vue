@@ -17,6 +17,7 @@ import {
   opcodeKindFromByte,
 } from '@/eComponents/bytecodeStepperEC/eip8024Immediate'
 import type { InstructionRow, RunMode } from '@/eComponents/bytecodeStepperEC/types'
+import { useCompanionStatusPublisher } from '@/libs/companionStatus'
 import { TOPIC_COLORS, topicCSSVars, TOPICS } from '@/explorations/TOPICS'
 
 import wizardImage from './wizard_cows.png'
@@ -42,6 +43,7 @@ const example = computed(() => props.example ?? stepperContext?.example.value ??
 
 const latched = ref<AnyImmediateBreakdown | null>(null)
 const selectedTab = ref(0)
+const setCompanionStatus = useCompanionStatusPublisher()
 
 const calcDupnDepth = ref('17')
 const calcSwapnDepth = ref('18')
@@ -97,6 +99,24 @@ watch(
     if (!kind || immediate === undefined) return
 
     latched.value = explainEip8024Immediate(kind, immediate)
+  },
+  { immediate: true },
+)
+
+watch(
+  latched,
+  (value) => {
+    if (value) {
+      setCompanionStatus({
+        label: `${value.opcodeName}: ${value.summary}`,
+        state: 'active',
+      })
+      return
+    }
+    setCompanionStatus({
+      label: 'Step to DUPN, SWAPN, or EXCHANGE…',
+      state: 'idle',
+    })
   },
   { immediate: true },
 )
