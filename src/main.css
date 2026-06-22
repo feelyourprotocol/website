@@ -173,10 +173,12 @@ body {
 .e-listbox-options {
   background-color: var(--e-bg);
   border-color: var(--e-border);
+  @apply text-base md:text-xs;
 }
 
 .e-listbox-option {
   color: var(--e-text);
+  @apply px-3 py-2;
 }
 
 .e-listbox-option-active {

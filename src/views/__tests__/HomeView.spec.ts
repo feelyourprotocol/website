@@ -93,25 +93,26 @@ describe('HomeView', () => {
 
   describe('Featured explorations', () => {
     const featured = ['eip-7928', 'eip-8024', 'eip-7883', 'eip-7594', 'eip-7951']
+    const latest = featured.slice(0, 3)
 
     it('shows "Latest" label', () => {
       expect(wrapper.text()).toContain('Latest')
     })
 
     it('renders featured exploration cards', () => {
-      expect(wrapper.findAll('.exploration-c')).toHaveLength(featured.length)
+      expect(wrapper.findAll('.exploration-c')).toHaveLength(latest.length)
     })
 
     it('cards display exploration titles', () => {
       const titles = wrapper.findAll('.exploration-c').map((c) => c.find('h3').text())
-      for (const id of featured) {
+      for (const id of latest) {
         expect(titles).toContainEqual(EXPLORATIONS[id].title)
       }
     })
 
     it('cards link to correct exploration paths', () => {
       const links = wrapper.findAllComponents(RouterLinkStub)
-      for (const id of featured) {
+      for (const id of latest) {
         expect(links.some((l) => l.props('to') === EXPLORATIONS[id].path)).toBe(true)
       }
     })

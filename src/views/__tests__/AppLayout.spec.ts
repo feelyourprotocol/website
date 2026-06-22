@@ -56,7 +56,7 @@ describe('App layout', () => {
       const router = makeRouter()
       const wrapper = await mountApp(router)
 
-      const [firstId, firstExploration] = Object.entries(EXPLORATIONS)[0]
+      const [, firstExploration] = Object.entries(EXPLORATIONS)[0]
 
       // Open the listbox
       await wrapper.find('#exploration-navi').trigger('click')
@@ -64,7 +64,7 @@ describe('App layout', () => {
 
       // Find and click the first exploration option
       const options = wrapper.findAll('li')
-      const target = options.find((li) => li.text() === firstId.toUpperCase())
+      const target = options.find((li) => li.text() === firstExploration.title)
       expect(target).toBeDefined()
       await target!.trigger('click')
       await flushPromises()
@@ -76,13 +76,13 @@ describe('App layout', () => {
       const router = makeRouter()
       const wrapper = await mountApp(router)
 
-      const [firstId, firstExploration] = Object.entries(EXPLORATIONS)[0]
+      const [, firstExploration] = Object.entries(EXPLORATIONS)[0]
 
       await router.push(firstExploration.path)
       await flushPromises()
 
       const button = wrapper.find('#exploration-navi')
-      expect(button.text()).toContain(firstId.toUpperCase())
+      expect(button.text()).toContain(firstExploration.title)
     })
   })
 

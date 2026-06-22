@@ -11,6 +11,7 @@ import TopicIntroView from './TopicIntroView.vue'
 const allExplorationIds = Object.keys(EXPLORATIONS)
 
 const featured = ['eip-7928', 'eip-8024', 'eip-7883', 'eip-7594', 'eip-7951']
+const latestExplorations = featured.slice(0, 3)
 
 const activeTopicIds = Object.keys(TOPICS).filter((id) => TOPICS[id].explorations.length > 0)
 
@@ -83,7 +84,7 @@ for (const topicId of activeTopicIds) {
         </div>
 
         <RouterLink
-          v-for="explorationId in featured"
+          v-for="explorationId in latestExplorations"
           :key="explorationId"
           :to="EXPLORATIONS[explorationId].path"
           class="block mb-3 no-underline"
@@ -92,6 +93,7 @@ for (const topicId of activeTopicIds) {
             :explorationId="explorationId"
             :exploration="EXPLORATIONS[explorationId]"
             :topic="TOPICS[EXPLORATIONS[explorationId].topic]"
+            :showUsageInstructions="false"
           />
         </RouterLink>
       </div>

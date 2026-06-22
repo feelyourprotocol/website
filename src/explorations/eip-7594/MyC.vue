@@ -81,16 +81,16 @@ await init()
 <template>
   <ExplorationC asPageTitle explorationId="eip-7594" :exploration="exploration" :topic="topic">
     <template #content>
-      <div class="mt-3 text-right">
-        <ActionButtonUIC
-          tooltip="This is a bit slow (> 10 seconds)"
-          text="COMMIT/PROOF/RUN"
-          :onClick="run"
-          class="run-button"
-        />
-      </div>
       <div>
         <ExamplesUIC v-model="example" :examples="examples" :change="selectExample" />
+        <div class="text-right my-1.5">
+          <ActionButtonUIC
+            tooltip="This is a bit slow (> 10 seconds)"
+            text="COMMIT/PROOF/RUN"
+            :onClick="run"
+            class="run-button"
+          />
+        </div>
         <HexDataInputUIC v-model="data" rows="6" :formChange="onDataInputFormChange" />
 
         <div class="e-grid-single">

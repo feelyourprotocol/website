@@ -12,8 +12,8 @@ const selectedRoute = ref(route.path.includes('eip-') ? route.path : '')
 
 const selectedLabel = computed(() => {
   if (!selectedRoute.value) return 'All Explorations'
-  const entry = Object.entries(EXPLORATIONS).find(([, e]) => e.path === selectedRoute.value)
-  return entry ? entry[0].toUpperCase() : 'All Explorations'
+  const exploration = Object.values(EXPLORATIONS).find((e) => e.path === selectedRoute.value)
+  return exploration?.title ?? 'All Explorations'
 })
 
 function navigate(path: string) {
@@ -36,22 +36,34 @@ watch(
 
 <template>
   <header class="mt-3 mb-8">
-    <div class="flex flex-col gap-2 sm:grid sm:grid-cols-2 mb-3">
-      <div class="site-title">
+    <div class="flex flex-col gap-2 sm:grid sm:grid-cols-2">
+      <div class="site-title sm:col-start-1 sm:row-start-1">
         <RouterLink
           to="/"
           class="text-2xl md:text-4xl font-bold tracking-wider whitespace-nowrap bg-gradient-to-r from-purple-600 to-cyan-500 bg-clip-text text-transparent"
           >Feel Your Protocol</RouterLink
         >
       </div>
-      <nav class="font-mono text-sm sm:text-right flex sm:justify-end items-center">
+      <p
+        class="flex items-baseline text-sm md:text-xl text-slate-500 tracking-wide sm:col-span-2 sm:row-start-2"
+      >
+        <span class="shrink-0">Interactive Ethereum Protocol Explorations</span>
+        <span class="protocol-dots hidden sm:inline flex-1 overflow-hidden whitespace-nowrap"
+          >· · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · ·
+          · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · ·
+          · · · · · · · · · ·</span
+        >
+      </p>
+      <nav
+        class="font-mono text-sm sm:col-start-2 sm:row-start-1 sm:text-right flex sm:justify-end items-center"
+      >
         <Listbox v-model="selectedRoute" @update:model-value="navigate">
           <div class="relative inline-block w-full sm:w-auto">
             <ListboxButton
-              class="inline-flex items-center justify-center gap-1 w-full sm:w-auto text-sm sm:ml-6 border border-slate-400 bg-white rounded-md text-slate-500 px-3 py-2 min-h-11 cursor-pointer"
+              class="inline-flex items-center justify-between gap-2 w-full sm:w-auto sm:max-w-md text-sm sm:ml-6 border border-slate-400 bg-white rounded-md text-slate-500 px-3 py-2 min-h-11 cursor-pointer text-left"
               id="exploration-navi"
             >
-              {{ selectedLabel }}
+              <span class="min-w-0 line-clamp-2">{{ selectedLabel }}</span>
               <ChevronUpDownIcon class="size-3.5 opacity-50" />
             </ListboxButton>
 
@@ -64,12 +76,12 @@ watch(
               leave-to-class="opacity-0 scale-95"
             >
               <ListboxOptions
-                class="absolute right-0 z-20 mt-1 w-max max-h-60 overflow-auto rounded-md border border-slate-400 bg-white text-xs shadow-md focus:outline-none"
+                class="absolute right-0 z-20 mt-1 w-max max-h-60 overflow-auto rounded-md border border-slate-400 bg-white text-sm shadow-md focus:outline-none"
               >
                 <ListboxOption value="" v-slot="{ active, selected }" as="template">
                   <li
                     :class="[
-                      'cursor-pointer whitespace-nowrap px-3 py-1.5 select-none text-slate-500',
+                      'cursor-pointer whitespace-nowrap px-3 py-2 select-none text-slate-500',
                       active ? 'bg-slate-50 text-slate-700' : '',
                       selected ? 'font-bold text-slate-700' : '',
                     ]"
@@ -78,20 +90,20 @@ watch(
                   </li>
                 </ListboxOption>
                 <ListboxOption
-                  v-for="[id, exploration] in Object.entries(EXPLORATIONS)"
-                  :key="id"
+                  v-for="exploration in Object.values(EXPLORATIONS)"
+                  :key="exploration.id"
                   :value="exploration.path"
                   v-slot="{ active, selected }"
                   as="template"
                 >
                   <li
                     :class="[
-                      'cursor-pointer whitespace-nowrap px-3 py-1.5 select-none text-slate-500',
+                      'cursor-pointer text-left max-w-xs sm:max-w-md px-3 py-2 select-none text-slate-500',
                       active ? 'bg-slate-50 text-slate-700' : '',
                       selected ? 'font-bold text-slate-700' : '',
                     ]"
                   >
-                    {{ id.toUpperCase() }}
+                    {{ exploration.title }}
                   </li>
                 </ListboxOption>
               </ListboxOptions>
@@ -100,14 +112,6 @@ watch(
         </Listbox>
       </nav>
     </div>
-    <p class="flex items-baseline text-sm md:text-xl text-slate-500 tracking-wide">
-      <span class="shrink-0">Interactive Ethereum Protocol Explorations</span>
-      <span class="protocol-dots hidden sm:inline flex-1 overflow-hidden whitespace-nowrap"
-        >· · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · ·
-        · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · ·
-        · · · · · · · ·</span
-      >
-    </p>
   </header>
 
   <RouterView :key="route.fullPath" class="grid grid-cols-1" />

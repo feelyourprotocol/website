@@ -10,7 +10,7 @@ defineProps<{
 </script>
 
 <template>
-  <span class="group relative inline-block" :title="tooltip">
+  <span class="group relative inline-block">
     <component :is="icon" class="e-button-icon" />
     <TooltipUIC :tooltip="tooltip" />
   </span>

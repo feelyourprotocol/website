@@ -29,13 +29,7 @@ async function handleClick() {
 </script>
 
 <template>
-  <button
-    @click="handleClick"
-    type="button"
-    :disabled="isLoading"
-    :title="tooltip"
-    class="group e-action-button"
-  >
+  <button @click="handleClick" type="button" :disabled="isLoading" class="group e-action-button">
     {{ buttonText }}
     <TooltipUIC :tooltip="tooltip" />
   </button>

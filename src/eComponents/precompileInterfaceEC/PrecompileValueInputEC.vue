@@ -33,7 +33,7 @@ const tooltip = computed(() => {
   <div class="precompile-value-input">
     <div class="grid grid-cols-1 sm:grid-cols-6 items-center gap-y-1">
       <p class="font-bold text-lg sm:text-xl sm:col-span-1 e-text">{{ title }}</p>
-      <span class="group relative sm:col-span-5" :title="tooltip || undefined">
+      <span class="group relative sm:col-span-5">
         <input @input="input" v-model="val" :class="validation" class="e-input text-right" />
         <TooltipUIC :tooltip="tooltip" />
       </span>

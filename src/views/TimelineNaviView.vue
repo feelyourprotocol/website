@@ -71,7 +71,6 @@ function reset() {
         <div class="group relative flex items-center py-1">
           <button
             class="flex items-center gap-1.5 px-2 py-1 min-h-11 rounded-md text-sm cursor-pointer transition-all duration-300 hover:bg-slate-50"
-            :title="entry.shortDescription"
             @click="navigate(id)"
           >
             <span class="emoji-mono">{{ entry.emoji }}</span>
