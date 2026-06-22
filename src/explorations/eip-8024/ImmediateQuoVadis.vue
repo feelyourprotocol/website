@@ -115,12 +115,12 @@ function tabButtonClass(selected: boolean): string[] {
   <div
     :style="cssVars"
     :class="[
-      'topic-intro-card bg-white rounded-lg p-5 shadow-sm min-h-[22rem] flex flex-col',
+      'exploration-c bg-white rounded-lg p-4 shadow-sm min-h-[20rem] flex flex-col',
       TOPIC_COLORS[topic.color].classes.borderCard,
     ]"
     aria-label="EIP-8024 immediate decoder"
   >
-    <h2 class="text-lg md:text-xl font-bold tracking-tight mb-2 e-text">
+    <h2 class="text-lg font-bold tracking-tight mb-2 e-text">
       DUPN / SWAPN / EXCHANGE — immediate, quo vadis?
     </h2>
     <p class="font-mono text-xs leading-relaxed text-slate-600 mb-4">

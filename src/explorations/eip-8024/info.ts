@@ -12,6 +12,8 @@ export const INFO: Exploration = {
   timeline: 'glamsterdam',
   tags: [Tag.EVM],
   image,
+  imageBoxHeight: '19rem',
+  rightPanel: true,
   introText:
     '<b>How do you reach deep stack items without blowing the 1024 limit?</b> ' +
     'Solidity contracts often hit "stack too deep" when juggling many locals. EIP-8024 adds three ' +
@@ -20,7 +22,8 @@ export const INFO: Exploration = {
     '17–235 using a single-byte immediate.',
   usageText:
     'Pick an example, then use <b>Step</b> to walk opcode by opcode or <b>Run</b> for the full ' +
-    'sequence. Watch the stack panel update after each step. The DUPN demo uses a 17-item stack ' +
+    'sequence. Watch the stack panel update after each step; the immediate decoder on the right ' +
+    'latches when you rest on DUPN, SWAPN, or EXCHANGE. The DUPN demo uses a 17-item stack ' +
     '(the minimum for depth 16); SWAPN needs one slot more at the same depth; EXCHANGE fits in ' +
     'four pushes. Execution runs on an Amsterdam-fork EVM via EthereumJS.',
   creatorName: 'HolgerD77',

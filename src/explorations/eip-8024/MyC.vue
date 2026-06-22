@@ -16,7 +16,9 @@ const evm = await createEVM({ common })
 <template>
   <BytecodeStepperEC :config="config" :examples="examples" :exploration="exploration" :evm="evm">
     <template #below>
-      <ImmediateQuoVadis />
+      <Teleport to="#exploration-right-panel">
+        <ImmediateQuoVadis />
+      </Teleport>
     </template>
   </BytecodeStepperEC>
 </template>
