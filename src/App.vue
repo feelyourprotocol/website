@@ -43,7 +43,14 @@ watch(
           to="/"
           class="inline-flex items-center gap-2.5 md:gap-3 text-2xl md:text-4xl font-bold tracking-wider whitespace-nowrap no-underline"
         >
-          <img :src="logoUrl" alt="" class="h-[1em] w-auto shrink-0" width="108" height="128" />
+          <img
+            :src="logoUrl"
+            alt=""
+            class="h-[1em] w-auto shrink-0"
+            width="108"
+            height="128"
+            fetchpriority="high"
+          />
           <span class="bg-gradient-to-r from-purple-600 to-cyan-500 bg-clip-text text-transparent"
             >Feel Your Protocol</span
           >

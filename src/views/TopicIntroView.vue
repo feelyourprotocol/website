@@ -56,6 +56,8 @@ const getImageUrl = (image: string) =>
         :src="getImageUrl(image)"
         alt=""
         class="float-right ml-3 mb-2 w-[38%] max-w-[9rem] rounded-md"
+        loading="lazy"
+        decoding="async"
       />
       <p v-if="topic.introText" class="text-sm leading-relaxed text-slate-600">
         {{ topic.introText }}
@@ -70,6 +72,8 @@ const getImageUrl = (image: string) =>
         class="rounded-md mx-auto block w-auto max-w-full leading-none"
         :class="imageBoxHeight ? '' : 'w-full'"
         :style="imageBoxHeight ? { maxHeight: imageBoxHeight } : undefined"
+        loading="lazy"
+        decoding="async"
       />
     </template>
   </div>
