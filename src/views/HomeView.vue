@@ -41,12 +41,12 @@ for (const topicId of activeTopicIds) {
       </div>
 
       <div>
-        <div class="grid grid-cols-5 gap-3 mb-4">
-          <TagCloudView :explorationIds="allExplorationIds" basePath="/all" class="col-span-3" />
+        <div class="grid grid-cols-1 sm:grid-cols-5 gap-3 mb-4">
+          <TagCloudView :explorationIds="allExplorationIds" basePath="/all" class="sm:col-span-3" />
           <TimelineNaviView
             basePath="/all"
             :explorationIds="allExplorationIds"
-            class="col-span-2"
+            class="sm:col-span-2"
           />
         </div>
 

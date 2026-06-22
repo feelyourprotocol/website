@@ -36,7 +36,7 @@ watch(
 
 <template>
   <header class="mt-3 mb-8">
-    <div class="grid grid-cols-2 mb-3">
+    <div class="flex flex-col gap-2 sm:grid sm:grid-cols-2 mb-3">
       <div class="site-title">
         <RouterLink
           to="/"
@@ -44,11 +44,11 @@ watch(
           >Feel Your Protocol</RouterLink
         >
       </div>
-      <nav class="font-mono text-sm text-right flex justify-end items-center">
+      <nav class="font-mono text-sm sm:text-right flex sm:justify-end items-center">
         <Listbox v-model="selectedRoute" @update:model-value="navigate">
-          <div class="relative inline-block">
+          <div class="relative inline-block w-full sm:w-auto">
             <ListboxButton
-              class="inline-flex items-center gap-1 text-xs ml-6 border border-slate-400 bg-white rounded-md text-slate-500 px-2 py-1 cursor-pointer"
+              class="inline-flex items-center justify-center gap-1 w-full sm:w-auto text-sm sm:ml-6 border border-slate-400 bg-white rounded-md text-slate-500 px-3 py-2 min-h-11 cursor-pointer"
               id="exploration-navi"
             >
               {{ selectedLabel }}
@@ -102,7 +102,7 @@ watch(
     </div>
     <p class="flex items-baseline text-sm md:text-xl text-slate-500 tracking-wide">
       <span class="shrink-0">Interactive Ethereum Protocol Explorations</span>
-      <span class="protocol-dots flex-1 overflow-hidden whitespace-nowrap"
+      <span class="protocol-dots hidden sm:inline flex-1 overflow-hidden whitespace-nowrap"
         >· · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · ·
         · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · ·
         · · · · · · · ·</span
@@ -112,7 +112,7 @@ watch(
 
   <RouterView :key="route.fullPath" class="grid grid-cols-1" />
 
-  <footer class="grid grid-cols-2 pt-3 mt-10 mb-2">
+  <footer class="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-3 mt-10 mb-2">
     <h3 class="font-mono text-xs text-slate-500">
       <span class="text-purple-500">◆</span> Made with ❤️ and pure dedication by
       <a href="https://x.com/HolgerD77" target="_blank" rel="noopener">HolgerD77</a>
@@ -120,7 +120,7 @@ watch(
       <RouterLink to="/imprint">Imprint</RouterLink>
     </h3>
 
-    <h3 class="font-mono text-xs text-right text-slate-500">
+    <h3 class="font-mono text-xs text-slate-500 sm:text-right">
       <a href="https://community-token.feelyourprotocol.org/" target="_blank" rel="noopener"
         >Community Token</a
       >

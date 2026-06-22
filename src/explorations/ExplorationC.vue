@@ -26,14 +26,14 @@ const eipLabel = formatEipSpecLabel(props.explorationId)
 
 <template>
   <div :id="explorationId + '-c'" :style="cssVars" class="exploration-c">
-    <div class="grid grid-cols-4 mb-2 items-center">
+    <div class="flex flex-col gap-2 sm:grid sm:grid-cols-4 mb-2 sm:items-center">
       <component
         :is="asPageTitle ? 'h1' : 'h3'"
-        class="font-bold text-lg tracking-tight col-span-3 e-text"
+        class="font-bold text-lg tracking-tight sm:col-span-3 e-text"
       >
         {{ exploration.title }}
       </component>
-      <div class="flex justify-end items-center gap-1">
+      <div class="flex justify-end items-center gap-1 sm:col-span-1">
         <a v-if="shareURL" href="#" @click.prevent="shareURL" class="share-url-button">
           <ButtonUIC :icon="ShareIcon" tooltip="Open Shareable URL" />
         </a>

@@ -144,14 +144,14 @@ body {
 }
 
 .e-grid-double {
-  @apply grid grid-cols-2 gap-1.5 mt-3;
+  @apply grid grid-cols-1 md:grid-cols-2 gap-1.5 mt-3;
 }
 
 /* --- Form inputs --- */
 .e-textarea {
   background-color: var(--e-bg-light);
   border: 1px solid var(--e-border);
-  @apply block w-full mt-1.5 mb-2 font-mono text-xs rounded-md text-slate-600 p-2;
+  @apply block w-full mt-1.5 mb-2 font-mono text-base md:text-xs rounded-md text-slate-600 p-2;
   transition:
     border-color 0.15s ease,
     box-shadow 0.15s ease;
@@ -166,7 +166,7 @@ body {
 .e-select {
   color: var(--e-text);
   border-color: var(--e-border);
-  @apply text-xs border-1 px-2 py-1 mb-0.5 rounded-md cursor-pointer;
+  @apply text-base md:text-xs border-1 px-3 py-2 mb-0.5 min-h-11 rounded-md cursor-pointer;
   transition: border-color 0.15s ease;
 }
 
@@ -186,7 +186,7 @@ body {
 .e-input {
   background-color: var(--e-bg-light);
   border: 1px solid var(--e-border);
-  @apply font-mono text-xs rounded-md p-1 w-full;
+  @apply font-mono text-base md:text-xs rounded-md p-2 w-full;
   transition:
     border-color 0.15s ease,
     box-shadow 0.15s ease;
@@ -202,7 +202,7 @@ body {
 .e-button-icon {
   color: var(--e-text);
   border-color: var(--e-border);
-  @apply size-4 inline align-baseline border-1 p-0.5 rounded-sm;
+  @apply inline-flex items-center justify-center border-1 rounded-md min-h-11 min-w-11 p-2.5;
 }
 
 /* --- E-Component: Precompile Interface --- */
@@ -216,7 +216,7 @@ body {
   color: var(--e-text);
   background-color: var(--e-bg-medium);
   border-color: var(--e-border);
-  @apply relative inline-flex items-center justify-center border-1 rounded-md p-2 text-xs font-bold cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed;
+  @apply relative inline-flex items-center justify-center border-1 rounded-md min-h-11 px-3 py-2.5 text-sm font-bold cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed;
   transition:
     background-color 0.15s ease,
     transform 0.1s ease,
