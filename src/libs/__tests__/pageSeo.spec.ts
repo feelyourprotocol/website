@@ -100,7 +100,9 @@ describe('pageSeo', () => {
     expect(html).toContain('<title>Feel Your Protocol</title>')
     expect(html).toContain(`<meta name="description" content="${DEFAULT_DESCRIPTION}">`)
     expect(html).toContain(`<link rel="canonical" href="${SITE_ORIGIN}/">`)
-    expect(html).toContain(`<meta property="og:image" content="${SITE_ORIGIN}${DEFAULT_OG_IMAGE_PATH}">`)
+    expect(html).toContain(
+      `<meta property="og:image" content="${SITE_ORIGIN}${DEFAULT_OG_IMAGE_PATH}">`,
+    )
     expect(html).toContain('<meta property="og:image:width" content="1024">')
     expect(html).toContain('<meta name="twitter:card" content="summary_large_image">')
     expect(html).toContain('application/ld+json')
