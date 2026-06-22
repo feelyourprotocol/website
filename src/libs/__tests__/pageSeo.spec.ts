@@ -15,6 +15,7 @@ import {
   getSitemapPaths,
   getStaticShellHeading,
   getValidSpaPaths,
+  HOME_PAGE_TITLE,
   injectBuiltPageHtml,
   injectSeoIntoHtml,
   injectStaticShellIntoHtml,
@@ -56,8 +57,8 @@ describe('pageSeo', () => {
     expect(seo.description.length).toBeGreaterThan(20)
     expect(seo.canonicalUrl).toBe(`${SITE_ORIGIN}${exploration.path}`)
     expect(seo.imageUrl).toBe(`${SITE_ORIGIN}${DEFAULT_OG_IMAGE_PATH}`)
-    expect(seo.imageWidth).toBe(1024)
-    expect(seo.imageHeight).toBe(537)
+    expect(seo.imageWidth).toBe(1200)
+    expect(seo.imageHeight).toBe(630)
     expect(JSON.stringify(seo.jsonLd)).toContain(exploration.infoURL)
   })
 
@@ -97,13 +98,14 @@ describe('pageSeo', () => {
       getPageSeoForPath('/'),
     )
 
-    expect(html).toContain('<title>Feel Your Protocol</title>')
+    expect(html).toContain(`<title>${HOME_PAGE_TITLE}</title>`)
     expect(html).toContain(`<meta name="description" content="${DEFAULT_DESCRIPTION}">`)
     expect(html).toContain(`<link rel="canonical" href="${SITE_ORIGIN}/">`)
     expect(html).toContain(
       `<meta property="og:image" content="${SITE_ORIGIN}${DEFAULT_OG_IMAGE_PATH}">`,
     )
-    expect(html).toContain('<meta property="og:image:width" content="1024">')
+    expect(html).toContain('<meta property="og:image:width" content="1200">')
+    expect(html).toContain('<meta property="og:image:height" content="630">')
     expect(html).toContain('<meta name="twitter:card" content="summary_large_image">')
     expect(html).toContain('application/ld+json')
   })
