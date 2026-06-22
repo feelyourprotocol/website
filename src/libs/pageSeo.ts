@@ -4,14 +4,15 @@ import { TOPICS } from '@/explorations/TOPICS'
 export const SITE_ORIGIN = 'https://feelyourprotocol.org'
 export const SITE_NAME = 'Feel Your Protocol'
 
+export const HOME_PAGE_TITLE = `${SITE_NAME} — Interactive Ethereum Protocol Explorations`
+
 export const DEFAULT_DESCRIPTION =
-  'Collaborative open-source interactive explorations of upcoming Ethereum protocol changes. ' +
-  'Widgets are powered by real EVM and cryptography libraries running in the browser.'
+  'Interactive open-source explorations of Ethereum protocol changes. Real EVM and crypto libraries running in your browser.'
 
 /** Stable path under `public/og/` — copied verbatim to `dist/website/og/` on build. */
 export const DEFAULT_OG_IMAGE_PATH = '/og/default.png'
-export const DEFAULT_OG_IMAGE_WIDTH = 1024
-export const DEFAULT_OG_IMAGE_HEIGHT = 537
+export const DEFAULT_OG_IMAGE_WIDTH = 1200
+export const DEFAULT_OG_IMAGE_HEIGHT = 630
 
 export interface BreadcrumbItem {
   label: string
@@ -156,7 +157,7 @@ export function getPageSeoForPath(path: string): PageSeo {
   if (path === '/') {
     return withSocialImage({
       path,
-      title: SITE_NAME,
+      title: HOME_PAGE_TITLE,
       description: DEFAULT_DESCRIPTION,
       canonicalUrl,
       jsonLd: [
