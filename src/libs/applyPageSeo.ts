@@ -73,9 +73,16 @@ export function applyPageSeo(seo: PageSeo): void {
   setProperty('og:title', seo.title)
   setProperty('og:description', seo.description)
   setProperty('og:url', seo.canonicalUrl)
+  setProperty('og:image', seo.imageUrl)
+  setProperty('og:image:width', String(seo.imageWidth))
+  setProperty('og:image:height', String(seo.imageHeight))
+  setProperty('og:image:alt', seo.imageAlt)
 
+  setMeta('twitter:card', 'summary_large_image')
   setMeta('twitter:title', seo.title)
   setMeta('twitter:description', seo.description)
+  setMeta('twitter:image', seo.imageUrl)
+  setMeta('twitter:image:alt', seo.imageAlt)
 
   setJsonLd(seo.jsonLd)
 }

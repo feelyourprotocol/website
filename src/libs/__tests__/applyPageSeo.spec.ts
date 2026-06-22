@@ -24,6 +24,12 @@ describe('applyPageSeo', () => {
     expect(document.querySelector('link[rel="canonical"]')?.getAttribute('href')).toBe(
       seo.canonicalUrl,
     )
+    expect(document.querySelector('meta[property="og:image"]')?.getAttribute('content')).toBe(
+      seo.imageUrl,
+    )
+    expect(document.querySelector('meta[name="twitter:card"]')?.getAttribute('content')).toBe(
+      'summary_large_image',
+    )
     expect(document.getElementById('page-seo-jsonld')?.textContent).toContain('BreadcrumbList')
   })
 
