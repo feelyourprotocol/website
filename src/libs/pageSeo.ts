@@ -8,6 +8,11 @@ export const DEFAULT_DESCRIPTION =
   'Collaborative open-source interactive explorations of upcoming Ethereum protocol changes. ' +
   'Widgets are powered by real EVM and cryptography libraries running in the browser.'
 
+/** Stable path under `public/og/` — copied verbatim to `dist/website/og/` on build. */
+export const DEFAULT_OG_IMAGE_PATH = '/og/default.png'
+export const DEFAULT_OG_IMAGE_WIDTH = 1024
+export const DEFAULT_OG_IMAGE_HEIGHT = 537
+
 export interface BreadcrumbItem {
   label: string
   to?: string
@@ -18,6 +23,10 @@ export interface PageSeo {
   title: string
   description: string
   canonicalUrl: string
+  imageUrl: string
+  imageWidth: number
+  imageHeight: number
+  imageAlt: string
   noindex?: boolean
   jsonLd?: object | object[]
 }
@@ -39,6 +48,18 @@ function absoluteUrl(path: string): string {
 
 function formatDocumentTitle(pageTitle: string): string {
   return pageTitle === SITE_NAME ? SITE_NAME : `${pageTitle} — ${SITE_NAME}`
+}
+
+type PageSeoCore = Omit<PageSeo, 'imageUrl' | 'imageWidth' | 'imageHeight' | 'imageAlt'>
+
+function withSocialImage(seo: PageSeoCore): PageSeo {
+  return {
+    ...seo,
+    imageUrl: absoluteUrl(DEFAULT_OG_IMAGE_PATH),
+    imageWidth: DEFAULT_OG_IMAGE_WIDTH,
+    imageHeight: DEFAULT_OG_IMAGE_HEIGHT,
+    imageAlt: seo.title,
+  }
 }
 
 /** Strip HTML tags and collapse whitespace for meta descriptions. */
@@ -133,7 +154,7 @@ export function getPageSeoForPath(path: string): PageSeo {
   const breadcrumbs = getBreadcrumbsForPath(path)
 
   if (path === '/') {
-    return {
+    return withSocialImage({
       path,
       title: SITE_NAME,
       description: DEFAULT_DESCRIPTION,
@@ -148,14 +169,14 @@ export function getPageSeoForPath(path: string): PageSeo {
         },
         breadcrumbJsonLd(breadcrumbs, canonicalUrl),
       ],
-    }
+    })
   }
 
   if (path === '/imprint') {
     const description =
       'Imprint and contact information for Feel Your Protocol, an open-source Ethereum ' +
       'protocol exploration project by Holger Drewes.'
-    return {
+    return withSocialImage({
       path,
       title: formatDocumentTitle('Imprint'),
       description,
@@ -171,14 +192,14 @@ export function getPageSeoForPath(path: string): PageSeo {
         },
         breadcrumbJsonLd(breadcrumbs, canonicalUrl),
       ],
-    }
+    })
   }
 
   if (path === '/all') {
     const description =
       'Browse all interactive Ethereum protocol explorations on Feel Your Protocol — filter by ' +
       'research topic, timeline, and tags.'
-    return {
+    return withSocialImage({
       path,
       title: formatDocumentTitle('All Explorations'),
       description,
@@ -194,13 +215,13 @@ export function getPageSeoForPath(path: string): PageSeo {
         },
         breadcrumbJsonLd(breadcrumbs, canonicalUrl),
       ],
-    }
+    })
   }
 
   const topic = topicByPath.get(path)
   if (topic) {
     const description = truncateDescription(topic.introText ?? DEFAULT_DESCRIPTION)
-    return {
+    return withSocialImage({
       path,
       title: formatDocumentTitle(topic.title),
       description,
@@ -217,7 +238,7 @@ export function getPageSeoForPath(path: string): PageSeo {
         },
         breadcrumbJsonLd(breadcrumbs, canonicalUrl),
       ],
-    }
+    })
   }
 
   const entry = explorationByPath.get(path)
@@ -227,7 +248,7 @@ export function getPageSeoForPath(path: string): PageSeo {
     const description = truncateDescription(stripHtml(exploration.introText))
     const eipLabel = formatEipSpecLabel(id)
 
-    return {
+    return withSocialImage({
       path,
       title: formatDocumentTitle(exploration.title),
       description,
@@ -250,10 +271,10 @@ export function getPageSeoForPath(path: string): PageSeo {
         },
         breadcrumbJsonLd(breadcrumbs, canonicalUrl),
       ],
-    }
+    })
   }
 
-  return {
+  return withSocialImage({
     path,
     title: formatDocumentTitle('Page Not Found'),
     description:
@@ -264,7 +285,7 @@ export function getPageSeoForPath(path: string): PageSeo {
       [{ label: 'Home', to: '/' }, { label: 'Page Not Found' }],
       canonicalUrl,
     ),
-  }
+  })
 }
 
 export function getPageSeoForRoute(path: string, query: Record<string, unknown> = {}): PageSeo {
@@ -396,9 +417,15 @@ export function injectSeoIntoHtml(html: string, seo: PageSeo): string {
     `<meta property="og:title" content="${escapeHtml(seo.title)}">`,
     `<meta property="og:description" content="${escapeHtml(seo.description)}">`,
     `<meta property="og:url" content="${escapeHtml(seo.canonicalUrl)}">`,
-    `<meta name="twitter:card" content="summary">`,
+    `<meta property="og:image" content="${escapeHtml(seo.imageUrl)}">`,
+    `<meta property="og:image:width" content="${seo.imageWidth}">`,
+    `<meta property="og:image:height" content="${seo.imageHeight}">`,
+    `<meta property="og:image:alt" content="${escapeHtml(seo.imageAlt)}">`,
+    `<meta name="twitter:card" content="summary_large_image">`,
     `<meta name="twitter:title" content="${escapeHtml(seo.title)}">`,
     `<meta name="twitter:description" content="${escapeHtml(seo.description)}">`,
+    `<meta name="twitter:image" content="${escapeHtml(seo.imageUrl)}">`,
+    `<meta name="twitter:image:alt" content="${escapeHtml(seo.imageAlt)}">`,
   ]
 
   if (seo.noindex) {
