@@ -35,7 +35,7 @@ watch(
 </script>
 
 <template>
-  <header class="mt-3 mb-8">
+  <header class="mt-3 mb-4">
     <div class="flex flex-col gap-2 sm:grid sm:grid-cols-2">
       <div class="site-title sm:col-start-1 sm:row-start-1">
         <RouterLink

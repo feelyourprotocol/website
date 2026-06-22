@@ -14,12 +14,13 @@ export const INFO: Exploration = {
   image,
   introText:
     '<b>How are ModExp gas costs changing with Fusaka?</b> ' +
-    'EIP-7883 changes the gas calculation algorithm of the ModExp precompile.',
+    'EIP-7883 replaces the ModExp precompile gas formula with one that better reflects real ' +
+    'computational cost — especially for larger inputs. EIP-7823 (same fork) tightens allowed ' +
+    'input bounds.',
   usageText:
-    'Especially interesting to explore are values around 32 bytes. Also take note of the new base ' +
-    'costs. A major use case in smart contracts is to verify RSA signatures, e.g. in the context ' +
-    'of airdrops. You can find a realistic RSA value setup in the examples. The widget also ' +
-    'respects the new ModExp value boundaries set with EIP-7823 (also Fusaka).',
+    'Pick an example preset or enter your own ModExp input hex. Values around 32 bytes are ' +
+    'especially interesting — that size shows up often when verifying RSA signatures in ' +
+    'airdrop contracts. Compare the before/after gas costs side by side.',
   creatorName: 'HolgerD77',
   creatorURL: 'https://x.com/HolgerD77',
   poweredBy: [{ name: 'EthereumJS', href: 'https://github.com/ethereumjs/ethereumjs-monorepo' }],

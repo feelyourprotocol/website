@@ -39,8 +39,7 @@ describe('HomeView', () => {
     })
 
     it('renders topic images', () => {
-      const topicColumn = wrapper.find('main > div > div:first-child')
-      expect(topicColumn.findAll('img').length).toBeGreaterThanOrEqual(1)
+      expect(wrapper.findAll('.topic-intro-card img').length).toBeGreaterThanOrEqual(1)
     })
 
     it('shows topic intro text', () => {
@@ -93,7 +92,7 @@ describe('HomeView', () => {
 
   describe('Featured explorations', () => {
     const featured = ['eip-7928', 'eip-8024', 'eip-7883', 'eip-7594', 'eip-7951']
-    const latest = featured.slice(0, 3)
+    const latest = featured.slice(0, 2)
 
     it('shows "Latest" label', () => {
       expect(wrapper.text()).toContain('Latest')

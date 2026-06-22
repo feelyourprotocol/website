@@ -14,18 +14,16 @@ export const INFO: Exploration = {
   image,
   introText:
     '<b>How do blob transactions change with PeerDAS?</b> ' +
-    'Data availability sampling (DAS) - introduced along the Fusaka hardfork - comes with a new ' +
-    'proof format for blobs, dividing the previous per-blob proofs into 128 cell proofs per blob. ' +
-    'The network wrapper gets a new version 1 and the EIP-4844 blob transaction serialization ' +
-    'format changes when submitting a blob transaction to the network. Libraries like ' +
-    '<a href="https://github.com/ethers-io/ethers.js/issues/5062" target="_blank">Ethers</a> or ' +
-    '<a href="https://github.com/ethereumjs/ethereumjs-monorepo/blob/master/packages/tx/examples/blobTx.ts" target="_blank">EthereumJS</a> ' +
-    'give some illustration.',
+    'With the Fusaka hardfork, data availability sampling (DAS) replaces single blob proofs with ' +
+    '128 cell proofs per blob. Blob transactions get a new network wrapper (version 1) and an ' +
+    'updated EIP-4844 serialization format on the wire.',
   usageText:
-    'Below you can check if the values for versioned hashes, commitments and proofs (computed ' +
-    'using Noble <a href="https://github.com/paulmillr/micro-eth-signer?tab=readme-ov-file#kzg--peerdas" target="_blank">micro-eth-signer</a>) ' +
-    'match with your local values or values from blob explorers like ' +
-    '<a href="https://blobscan.org/" target="_blank">Blobscan</a>.',
+    'Choose a real blob from the examples (or paste your own hex), then press ' +
+    '<b>COMMIT/PROOF/RUN</b>. Compare the commitment, versioned hash, blob proof, and cell proofs ' +
+    'against your local tooling or explorers like ' +
+    '<a href="https://blobscan.org/" target="_blank">Blobscan</a>. ' +
+    'Proofs are computed with Noble ' +
+    '<a href="https://github.com/paulmillr/micro-eth-signer?tab=readme-ov-file#kzg--peerdas" target="_blank">micro-eth-signer</a>.',
   creatorName: 'HolgerD77',
   creatorURL: 'https://x.com/HolgerD77',
   poweredBy: [

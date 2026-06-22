@@ -1,9 +1,8 @@
 <script setup lang="ts">
-import { ArrowTopRightOnSquareIcon, ShareIcon } from '@heroicons/vue/24/solid'
 import { computed } from 'vue'
+import { ArrowTopRightOnSquareIcon, ShareIcon } from '@heroicons/vue/24/solid'
 
 import ButtonUIC from '@/eComponents/ui/ButtonUIC.vue'
-import { formatEipSpecLabel } from '@/libs/pageSeo'
 
 import type { Exploration } from './REGISTRY'
 import { type Topic, topicCSSVars } from './TOPICS'
@@ -24,7 +23,6 @@ const props = withDefaults(
 )
 
 const cssVars = topicCSSVars(props.topic.color)
-const eipLabel = formatEipSpecLabel(props.explorationId)
 const showUsage = computed(
   () => props.showUsageInstructions && (props.exploration.usageText?.trim() ?? '') !== '',
 )
@@ -52,7 +50,7 @@ const showUsage = computed(
       </div>
     </div>
 
-    <div class="font-mono text-xs leading-relaxed mb-5 text-slate-600">
+    <div class="font-mono text-xs leading-relaxed mb-3.5 text-slate-600">
       <p v-html="exploration.introText"></p>
       <details v-if="showUsage" class="mt-3 group">
         <summary
@@ -63,21 +61,10 @@ const showUsage = computed(
             aria-hidden="true"
             >›</span
           >
-          Usage instructions
+          Usage
         </summary>
         <div class="mt-2 pl-3 border-l-2" style="border-color: var(--e-border)">
           <p v-html="exploration.usageText"></p>
-          <p v-if="asPageTitle" class="mt-3">
-            Official spec:
-            <a
-              :href="exploration.infoURL"
-              target="_blank"
-              rel="noopener"
-              class="e-text underline underline-offset-2 hover:no-underline"
-            >
-              {{ eipLabel }} on eips.ethereum.org
-            </a>
-          </p>
         </div>
       </details>
     </div>

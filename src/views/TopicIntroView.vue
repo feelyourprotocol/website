@@ -52,20 +52,15 @@ const getImageUrl = (image: string) =>
     </h2>
 
     <template v-if="overviewMode">
-      <div class="md:hidden">
-        <img :src="getImageUrl(image)" class="mx-auto mb-4 max-w-xs rounded-md" />
-        <p v-if="topic.introText" class="text-sm leading-relaxed text-slate-600">
-          {{ topic.introText }}
-        </p>
-      </div>
-
-      <div class="hidden md:block">
-        <img :src="getImageUrl(image)" class="float-right ml-5 mb-3 max-w-[45%] rounded-md" />
-        <p v-if="topic.introText" class="text-sm leading-relaxed text-slate-600">
-          {{ topic.introText }}
-        </p>
-        <div class="clear-both"></div>
-      </div>
+      <img
+        :src="getImageUrl(image)"
+        alt=""
+        class="float-right ml-3 mb-2 w-[38%] max-w-[9rem] rounded-md"
+      />
+      <p v-if="topic.introText" class="text-sm leading-relaxed text-slate-600">
+        {{ topic.introText }}
+      </p>
+      <div class="clear-both"></div>
     </template>
 
     <template v-else>
