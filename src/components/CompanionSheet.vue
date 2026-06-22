@@ -91,10 +91,7 @@ function onViewportChange() {
 }
 
 function isMobileSheet(): boolean {
-  return (
-    typeof window.matchMedia === 'function' &&
-    window.matchMedia('(max-width: 767px)').matches
-  )
+  return typeof window.matchMedia === 'function' && window.matchMedia('(max-width: 767px)').matches
 }
 
 watch(

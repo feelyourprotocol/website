@@ -58,6 +58,7 @@ const explorationIds = computed(() => {
   <main>
     <BreadcrumbNav :items="breadcrumbs" />
     <h1 v-if="isAll" class="sr-only">All Explorations</h1>
+    <h1 v-else class="sr-only">{{ topic!.title }}</h1>
     <div class="grid md:grid-cols-2 gap-4">
       <div>
         <template v-if="explorationIds.length > 0">
@@ -87,7 +88,6 @@ const explorationIds = computed(() => {
           :topic="topic!"
           :image="topicImage"
           :overviewMode="true"
-          pageTitle
         />
       </div>
     </div>

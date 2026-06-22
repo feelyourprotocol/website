@@ -5,7 +5,6 @@ import CompanionSheet from '@/components/CompanionSheet.vue'
 import type { Exploration } from '@/explorations/REGISTRY'
 import { type Topic, topicCSSVars } from '@/explorations/TOPICS'
 import { useCompanionStatus } from '@/libs/companionStatus'
-
 import TopicIntroView from '@/views/TopicIntroView.vue'
 
 const props = defineProps<{
@@ -26,11 +25,7 @@ const pulseKey = computed(() => companion?.status.changeTick ?? 0)
     :style="cssVars"
     class="exploration-right-panel-host flex flex-col min-w-0 max-md:fixed max-md:inset-x-0 max-md:bottom-0 max-md:z-40 md:gap-4 lg:sticky lg:top-4 lg:self-start"
   >
-    <CompanionSheet
-      :label="statusLabel"
-      :active="statusActive"
-      :pulse-key="pulseKey"
-    >
+    <CompanionSheet :label="statusLabel" :active="statusActive" :pulse-key="pulseKey">
       <TopicIntroView
         v-if="exploration.image"
         class="max-md:hidden"

@@ -17,8 +17,8 @@ import {
   opcodeKindFromByte,
 } from '@/eComponents/bytecodeStepperEC/eip8024Immediate'
 import type { InstructionRow, RunMode } from '@/eComponents/bytecodeStepperEC/types'
-import { useCompanionStatusPublisher } from '@/libs/companionStatus'
 import { TOPIC_COLORS, topicCSSVars, TOPICS } from '@/explorations/TOPICS'
+import { useCompanionStatusPublisher } from '@/libs/companionStatus'
 
 import wizardImage from './wizard_cows.png'
 

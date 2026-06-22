@@ -1,4 +1,4 @@
-import { inject, provide, reactive, type InjectionKey } from 'vue'
+import { inject, type InjectionKey,provide, reactive } from 'vue'
 
 export interface CompanionStatus {
   label: string

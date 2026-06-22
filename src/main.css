@@ -145,7 +145,11 @@ body {
 }
 
 .e-grid-double {
-  @apply grid grid-cols-1 md:grid-cols-2 gap-1.5 mt-3;
+  @apply grid grid-cols-2 gap-1.5 mt-3;
+}
+
+.e-grid-double > * {
+  @apply min-w-0;
 }
 
 /* --- Form inputs --- */

@@ -371,7 +371,10 @@ export function injectStaticShellIntoHtml(
   assets: StaticShellAssets,
 ): string {
   const shell = buildStaticShellHtml(path, assets)
-  const withShell = html.replace(/<div id="app">\s*<\/div>/, `<div id="app">\n    ${shell}\n  </div>`)
+  const withShell = html.replace(
+    /<div id="app">\s*<\/div>/,
+    `<div id="app">\n    ${shell}\n  </div>`,
+  )
   if (withShell === html) {
     throw new Error('Could not inject static shell: #app placeholder not found')
   }
@@ -379,11 +382,7 @@ export function injectStaticShellIntoHtml(
 }
 
 /** SEO head tags + static above-the-fold shell for a built route HTML file. */
-export function injectBuiltPageHtml(
-  html: string,
-  seo: PageSeo,
-  assets: StaticShellAssets,
-): string {
+export function injectBuiltPageHtml(html: string, seo: PageSeo, assets: StaticShellAssets): string {
   return injectStaticShellIntoHtml(injectSeoIntoHtml(html, seo), seo.path, assets)
 }
 

@@ -95,6 +95,7 @@ for (const topicId of activeTopicIds) {
               :topic="TOPICS[topicId]"
               :image="topicImages[topicId]!"
               :overviewMode="true"
+              :showTopicHeading="true"
             />
           </RouterLink>
         </div>

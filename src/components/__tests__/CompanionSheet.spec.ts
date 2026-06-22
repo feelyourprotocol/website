@@ -1,5 +1,5 @@
-import { mount } from '@vue/test-utils'
 import { afterEach, describe, expect, it, vi } from 'vitest'
+import { mount } from '@vue/test-utils'
 
 import CompanionSheet from '@/components/CompanionSheet.vue'
 

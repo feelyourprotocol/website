@@ -1,8 +1,8 @@
+import { describe, expect, it } from 'vitest'
+import { defineComponent } from 'vue'
 import { Common, Hardfork, Mainnet } from '@ethereumjs/common'
 import { createEVM } from '@ethereumjs/evm'
 import { flushPromises, mount } from '@vue/test-utils'
-import { defineComponent, Suspense } from 'vue'
-import { describe, expect, it } from 'vitest'
 
 import BytecodeStepperEC from '@/eComponents/bytecodeStepperEC/BytecodeStepperEC.vue'
 
@@ -11,9 +11,7 @@ import { examples } from './examples'
 import ImmediateQuoVadis from './ImmediateQuoVadis.vue'
 import { INFO as exploration } from './info'
 
-async function createHost(
-  panelMount: 'below-slot' | 'sibling',
-): Promise<ReturnType<typeof mount>> {
+async function createHost(panelMount: 'below-slot' | 'sibling'): Promise<ReturnType<typeof mount>> {
   document.body.innerHTML = '<div id="root"></div><div id="exploration-right-panel"></div>'
 
   const common = new Common({ chain: Mainnet, hardfork: Hardfork.Amsterdam })
@@ -59,9 +57,9 @@ function rightPanelText(): string {
 
 async function waitForStepButton(): Promise<HTMLButtonElement> {
   for (let i = 0; i < 100; i++) {
-    const stepButton = Array.from(document.querySelectorAll('button.e-action-button')).find(
-      (button) => button.textContent?.includes('Step') && !button.disabled,
-    ) as HTMLButtonElement | undefined
+    const stepButton = Array.from(
+      document.querySelectorAll<HTMLButtonElement>('button.e-action-button'),
+    ).find((button) => button.textContent?.includes('Step') && !button.disabled)
     if (stepButton) return stepButton
     await flushPromises()
     await new Promise((resolve) => setTimeout(resolve, 10))
@@ -69,10 +67,7 @@ async function waitForStepButton(): Promise<HTMLButtonElement> {
   throw new Error('Step button did not become ready')
 }
 
-async function clickStepUntil(
-  predicate: () => boolean,
-  maxSteps = 20,
-): Promise<void> {
+async function clickStepUntil(predicate: () => boolean, maxSteps = 20): Promise<void> {
   for (let i = 0; i < maxSteps; i++) {
     if (predicate()) return
     const stepButton = await waitForStepButton()

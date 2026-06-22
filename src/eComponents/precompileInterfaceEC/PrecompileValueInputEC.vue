@@ -31,17 +31,15 @@ const tooltip = computed(() => {
 
 <template>
   <div class="precompile-value-input">
-    <div class="grid grid-cols-1 sm:grid-cols-6 items-center gap-y-1">
-      <p class="font-bold text-lg sm:text-xl sm:col-span-1 e-text">{{ title }}</p>
-      <span class="group relative sm:col-span-5">
+    <div class="grid grid-cols-6 items-center gap-y-1">
+      <p class="col-span-1 font-bold text-lg sm:text-xl e-text">{{ title }}</p>
+      <span class="group relative col-span-5 min-w-0">
         <input @input="input" v-model="val" :class="validation" class="e-input text-right" />
         <TooltipUIC :tooltip="tooltip" />
       </span>
 
-      <p class="sm:col-span-1 text-xs">{{ len }} Bytes</p>
-      <p
-        class="text-right font-mono sm:col-span-5 text-xs mt-0.5 break-words w-full overflow-hidden"
-      >
+      <p class="col-span-1 text-xs shrink-0">{{ len }} Bytes</p>
+      <p class="col-span-5 text-right font-mono text-xs break-words min-w-0 overflow-hidden">
         {{ bigIntVal }}
       </p>
     </div>
