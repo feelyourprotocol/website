@@ -4,13 +4,14 @@
  * nginx serves static files with `try_files $uri $uri/ =404` (no blanket index.html
  * fallback). This script materializes what nginx needs:
  *
- * - Per-route `index.html` with injected title, meta, canonical, Open Graph, JSON-LD
+ * - Per-route `index.html` with injected title, meta, canonical, Open Graph, JSON-LD,
+ *   and a minimal static above-the-fold shell inside `#app` (early LCP paint)
  * - `404.html` — same app shell with noindex meta
  * - `sitemap.xml` and `robots.txt`
  *
  * Route logic lives in `pageSeo.ts` (testable); this file handles filesystem writes.
  */
-import { mkdirSync, readFileSync, statSync, writeFileSync } from 'node:fs'
+import { mkdirSync, readdirSync, readFileSync, statSync, writeFileSync } from 'node:fs'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
@@ -22,7 +23,8 @@ import {
   getPageSeoForPath,
   getSpaFallbackDirectories,
   getValidSpaPaths,
-  injectSeoIntoHtml,
+  injectBuiltPageHtml,
+  type StaticShellAssets,
 } from '../src/libs/pageSeo'
 
 const scriptDir = dirname(fileURLToPath(import.meta.url))
@@ -59,22 +61,36 @@ function lastmodForPath(path: string): string {
   return toLastmod(statSync(join(websiteRoot, 'package.json')).mtime)
 }
 
+function findBuiltAsset(prefix: string): string {
+  const assetsDir = join(outDir, 'assets')
+  const file = readdirSync(assetsDir).find((entry) => entry.startsWith(`${prefix}-`))
+  if (!file) {
+    throw new Error(`Built asset not found in ${assetsDir}: ${prefix}-*`)
+  }
+  return `/assets/${file}`
+}
+
 const shellHtml = readFileSync(indexPath, 'utf8')
+const staticShellAssets: StaticShellAssets = { logoSrc: findBuiltAsset('logo') }
 const lastmodByPath = Object.fromEntries(getValidSpaPaths().map((path) => [path, lastmodForPath(path)]))
 
-writeFileSync(indexPath, injectSeoIntoHtml(shellHtml, getPageSeoForPath('/')))
+function writeBuiltPageHtml(targetPath: string, routePath: string): void {
+  writeFileSync(
+    targetPath,
+    injectBuiltPageHtml(shellHtml, getPageSeoForPath(routePath), staticShellAssets),
+  )
+}
+
+writeBuiltPageHtml(indexPath, '/')
 
 for (const dir of getSpaFallbackDirectories()) {
   const path = `/${dir}`
   const targetDir = join(outDir, dir)
   mkdirSync(targetDir, { recursive: true })
-  writeFileSync(join(targetDir, 'index.html'), injectSeoIntoHtml(shellHtml, getPageSeoForPath(path)))
+  writeBuiltPageHtml(join(targetDir, 'index.html'), path)
 }
 
-writeFileSync(
-  join(outDir, '404.html'),
-  injectSeoIntoHtml(shellHtml, { ...getPageSeoForPath('/404-not-found'), noindex: true }),
-)
+writeBuiltPageHtml(join(outDir, '404.html'), '/404-not-found')
 writeFileSync(join(outDir, 'sitemap.xml'), generateSitemapXml(lastmodByPath))
 writeFileSync(join(outDir, 'robots.txt'), generateRobotsTxt())
 

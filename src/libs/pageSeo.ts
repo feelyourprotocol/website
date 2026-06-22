@@ -322,6 +322,70 @@ function escapeHtml(text: string): string {
     .replace(/"/g, '&quot;')
 }
 
+export interface StaticShellAssets {
+  /** Hashed logo path from the Vite build, e.g. `/assets/logo-BGFR8iZG.png`. */
+  logoSrc: string
+}
+
+/** Screen-reader page heading for the static shell — mirrors in-app `<h1>` / breadcrumb context. */
+export function getStaticShellHeading(path: string): string {
+  if (path === '/') {
+    return `${SITE_NAME} — Interactive Ethereum Protocol Explorations`
+  }
+
+  const crumbs = getBreadcrumbsForPath(path)
+  return crumbs[crumbs.length - 1]!.label
+}
+
+/** Minimal above-the-fold markup painted before Vue mounts (replaced on `mount('#app')`). */
+export function buildStaticShellHtml(path: string, assets: StaticShellAssets): string {
+  const heading = escapeHtml(getStaticShellHeading(path))
+  const logoSrc = escapeHtml(assets.logoSrc)
+
+  return [
+    '<div id="static-shell" data-static-shell>',
+    '  <header class="mt-3 mb-4">',
+    '    <div class="flex flex-col gap-2 sm:grid sm:grid-cols-2">',
+    '      <div class="site-title sm:col-start-1 sm:row-start-1">',
+    '        <a href="/" class="inline-flex items-center gap-2.5 md:gap-3 text-2xl md:text-4xl font-bold tracking-wider whitespace-nowrap no-underline">',
+    `          <img src="${logoSrc}" alt="" class="h-[1em] w-auto shrink-0" width="108" height="128" fetchpriority="high">`,
+    '          <span class="bg-gradient-to-r from-purple-600 to-cyan-500 bg-clip-text text-transparent">Feel Your Protocol</span>',
+    '        </a>',
+    '      </div>',
+    '      <p class="flex items-baseline text-sm md:text-xl text-slate-500 tracking-wide sm:col-span-2 sm:row-start-2">',
+    '        <span class="shrink-0">Interactive Ethereum Protocol Explorations</span>',
+    '      </p>',
+    '    </div>',
+    '  </header>',
+    '  <main>',
+    `    <h1 class="sr-only">${heading}</h1>`,
+    '  </main>',
+    '</div>',
+  ].join('\n')
+}
+
+/** Inject visible static shell into `#app` for early LCP paint. */
+export function injectStaticShellIntoHtml(
+  html: string,
+  path: string,
+  assets: StaticShellAssets,
+): string {
+  const shell = buildStaticShellHtml(path, assets)
+  const withShell = html.replace(
+    /<div id="app">\s*<\/div>/,
+    `<div id="app">\n    ${shell}\n  </div>`,
+  )
+  if (withShell === html) {
+    throw new Error('Could not inject static shell: #app placeholder not found')
+  }
+  return withShell
+}
+
+/** SEO head tags + static above-the-fold shell for a built route HTML file. */
+export function injectBuiltPageHtml(html: string, seo: PageSeo, assets: StaticShellAssets): string {
+  return injectStaticShellIntoHtml(injectSeoIntoHtml(html, seo), seo.path, assets)
+}
+
 /** Inject title, meta, canonical, Open Graph, and JSON-LD into the Vite-built index.html shell. */
 export function injectSeoIntoHtml(html: string, seo: PageSeo): string {
   const headTags: string[] = [

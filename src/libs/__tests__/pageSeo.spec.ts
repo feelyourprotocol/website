@@ -12,8 +12,11 @@ import {
   getPageSeoForPath,
   getPageSeoForRoute,
   getSitemapPaths,
+  getStaticShellHeading,
   getValidSpaPaths,
+  injectBuiltPageHtml,
   injectSeoIntoHtml,
+  injectStaticShellIntoHtml,
   SITE_ORIGIN,
   stripHtml,
   truncateDescription,
@@ -94,6 +97,39 @@ describe('pageSeo', () => {
     expect(html).toContain(`<meta name="description" content="${DEFAULT_DESCRIPTION}">`)
     expect(html).toContain(`<link rel="canonical" href="${SITE_ORIGIN}/">`)
     expect(html).toContain('application/ld+json')
+  })
+
+  it('builds static shell headings from route context', () => {
+    const exploration = Object.values(EXPLORATIONS)[0]!
+    const topic = TOPICS[exploration.topic]
+
+    expect(getStaticShellHeading('/')).toBe(
+      'Feel Your Protocol — Interactive Ethereum Protocol Explorations',
+    )
+    expect(getStaticShellHeading('/robustness')).toBe('Robustness')
+    expect(getStaticShellHeading(exploration.path)).toBe(exploration.title)
+    expect(getBreadcrumbsForPath(exploration.path).at(-1)?.label).toBe(exploration.title)
+    expect(getStaticShellHeading(topic.path)).toBe(topic.title)
+  })
+
+  it('injects static above-the-fold shell into #app', () => {
+    const html = injectBuiltPageHtml(
+      '<!DOCTYPE html><html><head><title>Old</title></head><body><div id="app"></div></body></html>',
+      getPageSeoForPath('/scaling'),
+      { logoSrc: '/assets/logo-TEST.png' },
+    )
+
+    expect(html).toContain('data-static-shell')
+    expect(html).toContain('fetchpriority="high"')
+    expect(html).toContain('/assets/logo-TEST.png')
+    expect(html).toContain('<h1 class="sr-only">Scaling</h1>')
+    expect(html).toContain('<title>Scaling — Feel Your Protocol</title>')
+  })
+
+  it('throws when static shell injection cannot find #app', () => {
+    expect(() =>
+      injectStaticShellIntoHtml('<html><body></body></html>', '/', { logoSrc: '/assets/logo.png' }),
+    ).toThrow('#app placeholder not found')
   })
 
   it('formats helper utilities', () => {

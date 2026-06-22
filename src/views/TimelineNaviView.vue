@@ -70,7 +70,7 @@ function reset() {
         <!-- Clickable emoji + name -->
         <div class="group relative flex items-center py-1">
           <button
-            class="flex items-center gap-1.5 px-2 py-0.5 rounded-md text-sm cursor-pointer transition-all duration-300 hover:bg-slate-50"
+            class="flex items-center gap-1.5 px-2 py-1 min-h-11 rounded-md text-sm cursor-pointer transition-all duration-300 hover:bg-slate-50"
             @click="navigate(id)"
           >
             <span class="emoji-mono">{{ entry.emoji }}</span>

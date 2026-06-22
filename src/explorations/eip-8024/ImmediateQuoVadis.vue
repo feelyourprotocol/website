@@ -18,6 +18,7 @@ import {
 } from '@/eComponents/bytecodeStepperEC/eip8024Immediate'
 import type { InstructionRow, RunMode } from '@/eComponents/bytecodeStepperEC/types'
 import { TOPIC_COLORS, topicCSSVars, TOPICS } from '@/explorations/TOPICS'
+import { useCompanionStatusPublisher } from '@/libs/companionStatus'
 
 import wizardImage from './wizard_cows.png'
 
@@ -42,6 +43,7 @@ const example = computed(() => props.example ?? stepperContext?.example.value ??
 
 const latched = ref<AnyImmediateBreakdown | null>(null)
 const selectedTab = ref(0)
+const setCompanionStatus = useCompanionStatusPublisher()
 
 const calcDupnDepth = ref('17')
 const calcSwapnDepth = ref('18')
@@ -101,6 +103,24 @@ watch(
   { immediate: true },
 )
 
+watch(
+  latched,
+  (value) => {
+    if (value) {
+      setCompanionStatus({
+        label: `${value.opcodeName}: ${value.summary}`,
+        state: 'active',
+      })
+      return
+    }
+    setCompanionStatus({
+      label: 'Step to DUPN, SWAPN, or EXCHANGE…',
+      state: 'idle',
+    })
+  },
+  { immediate: true },
+)
+
 function tabButtonClass(selected: boolean): string[] {
   return [
     'rounded-md px-2.5 py-1 font-mono text-xs transition',
@@ -115,12 +135,12 @@ function tabButtonClass(selected: boolean): string[] {
   <div
     :style="cssVars"
     :class="[
-      'topic-intro-card bg-white rounded-lg p-5 shadow-sm min-h-[22rem] flex flex-col',
+      'exploration-c bg-white rounded-lg p-4 shadow-sm min-h-[20rem] flex flex-col',
       TOPIC_COLORS[topic.color].classes.borderCard,
     ]"
     aria-label="EIP-8024 immediate decoder"
   >
-    <h2 class="text-lg md:text-xl font-bold tracking-tight mb-2 e-text">
+    <h2 class="text-lg font-bold tracking-tight mb-2 e-text">
       DUPN / SWAPN / EXCHANGE — immediate, quo vadis?
     </h2>
     <p class="font-mono text-xs leading-relaxed text-slate-600 mb-4">

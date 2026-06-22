@@ -16,13 +16,13 @@ export const INFO: Exploration = {
   rightPanel: true,
   introText:
     '<b>What does the block commit to besides state root?</b> ' +
-    'EIP-7928 adds a block-level access list (BAL): a structured record of balance, nonce, code, ' +
-    'and storage touches during block execution, hashed into <code>blockAccessListHash</code>. ' +
-    'This exploration runs real Amsterdam blocks via EthereumJS and inspects the generated BAL step by step.',
+    'EIP-7928 adds a block-level access list (BAL): a structured record of every balance, nonce, ' +
+    'code, and storage touch during block execution. The list is hashed into ' +
+    '<code>blockAccessListHash</code> in the block header.',
   usageText:
-    'Pick a curriculum step, read the scenario summary, then press <b>Run block</b>. ' +
-    'The highlighted panel shows what changed in the BAL compared to the previous step. ' +
-    'Expand the full JSON for details. Work through the examples in order for the guided tour.',
+    'Work through the curriculum steps in order — each builds on the previous one. Read the ' +
+    'scenario summary, then press <b>Run block</b>. The highlighted panel shows what changed in ' +
+    'the BAL; expand the JSON on the right for the full structure.',
   creatorName: 'HolgerD77',
   creatorURL: 'https://x.com/HolgerD77',
   poweredBy: [{ name: 'EthereumJS', href: 'https://github.com/ethereumjs/ethereumjs-monorepo' }],

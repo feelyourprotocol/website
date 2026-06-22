@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { computed, ref, watch } from 'vue'
 
 import ActionButtonUIC from '@/eComponents/ui/ActionButtonUIC.vue'
 import ExamplesUIC from '@/eComponents/ui/ExamplesUIC.vue'
@@ -7,6 +7,7 @@ import ResultBoxUIC from '@/eComponents/ui/resultBox/ResultBoxUIC.vue'
 import ExplorationC from '@/explorations/ExplorationC.vue'
 import PoweredByC from '@/explorations/PoweredByC.vue'
 import { TOPICS } from '@/explorations/TOPICS'
+import { useCompanionStatusPublisher } from '@/libs/companionStatus'
 
 import BalExplorerPanel from './BalExplorerPanel.vue'
 import { DEFAULT_SCENARIO_ID, exampleMeta, examples } from './examples'
@@ -40,6 +41,7 @@ const stepPosition = computed(() => {
 
 const canGoPrev = computed(() => getAdjacentScenarioId(example.value, -1) !== undefined)
 const canGoNext = computed(() => getAdjacentScenarioId(example.value, 1) !== undefined)
+const setCompanionStatus = useCompanionStatusPublisher()
 
 function resetRunState() {
   result.value = null
@@ -78,6 +80,25 @@ async function runBlock(): Promise<void> {
 async function init() {
   example.value = DEFAULT_SCENARIO_ID
 }
+
+watch(
+  () => [result.value, triggerGroups.value] as const,
+  ([runResult, groups]) => {
+    if (runResult) {
+      const changeCount = groups.reduce((sum, group) => sum + group.items.length, 0)
+      setCompanionStatus({
+        label: `Access list · ${changeCount} change${changeCount === 1 ? '' : 's'}`,
+        state: 'active',
+      })
+      return
+    }
+    setCompanionStatus({
+      label: 'Run the block to explore the access list',
+      state: 'idle',
+    })
+  },
+  { immediate: true, deep: true },
+)
 
 await init()
 </script>

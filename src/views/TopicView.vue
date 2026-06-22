@@ -58,6 +58,7 @@ const explorationIds = computed(() => {
   <main>
     <BreadcrumbNav :items="breadcrumbs" />
     <h1 v-if="isAll" class="sr-only">All Explorations</h1>
+    <h1 v-else class="sr-only">{{ topic!.title }}</h1>
     <div class="grid md:grid-cols-2 gap-4">
       <div>
         <template v-if="explorationIds.length > 0">
@@ -78,16 +79,15 @@ const explorationIds = computed(() => {
       </div>
 
       <div>
-        <div v-if="isAll" class="grid grid-cols-5 gap-3 mb-4">
-          <TagCloudView :explorationIds="tagCloudExplorationIds" class="col-span-3" />
-          <TimelineNaviView :explorationIds="tagFilteredIds" class="col-span-2" />
+        <div v-if="isAll" class="grid grid-cols-1 sm:grid-cols-5 gap-3 mb-4">
+          <TagCloudView :explorationIds="tagCloudExplorationIds" class="sm:col-span-3" />
+          <TimelineNaviView :explorationIds="tagFilteredIds" class="sm:col-span-2" />
         </div>
         <TopicIntroView
           v-if="topicImage"
           :topic="topic!"
           :image="topicImage"
           :overviewMode="true"
-          pageTitle
         />
       </div>
     </div>

@@ -13,21 +13,21 @@ export const INFO: Exploration = {
   tags: [Tag.Precompiles, Tag.Signatures],
   image,
   introText:
-    '<b>How can I interact with the new curve precompile?</b> The ' +
-    '<a href="https://www.nervos.org/knowledge-base/what_is_secp256r1" target="_blank">secp256r1</a> ' +
-    "(also know as P-256) precompile improves Ethereum's UX by allowing efficient " +
-    'in-contract-signature verification (e.g. for multisig wallets) from ' +
-    '<a href="https://developer.apple.com/documentation/cryptokit/p256" target="_blank">Apple</a> and ' +
-    '<a href="https://developer.android.com/privacy-and-security/keystore" target="_blank">Android</a> ' +
-    'devices as well as <a href="https://webauthn.io/" target="_blank">FIDO2/WebAuthn</a> supporting browsers.',
+    '<b>Why add a secp256r1 precompile?</b> ' +
+    'The curve (also known as P-256) is the native signing algorithm on ' +
+    '<a href="https://developer.apple.com/documentation/cryptokit/p256" target="_blank">Apple</a> ' +
+    'and <a href="https://developer.android.com/privacy-and-security/keystore" target="_blank">Android</a> ' +
+    'devices and in ' +
+    '<a href="https://webauthn.io/" target="_blank">FIDO2/WebAuthn</a> browsers. ' +
+    'EIP-7951 exposes it at precompile address <code>0x100</code> so contracts can verify these ' +
+    'signatures on-chain — useful for passkey-backed wallets and multisig flows.',
   usageText:
-    'The interface below lets you explore how to directly interact with the precompile (at ' +
-    'address <code>0x100</code>). You can use libraries like ' +
+    'Select an example or paste a valid signature payload into the input fields, then run the ' +
+    'precompile. A valid signature returns <code>0x01</code> (32 bytes). To generate your own ' +
+    'test vectors, see ' +
     '<a href="https://github.com/paulmillr/noble-curves?tab=readme-ov-file#secp256k1-p256-p384-p521-ed25519-ed448-brainpool" target="_blank">Noble Curves</a> ' +
-    'to generate a valid signature to test - see ' +
-    '<a href="https://github.com/ethereumjs/ethereumjs-monorepo/tree/master/packages/evm#eip-7951-precompile-for-secp256r1-curve-support-osaka" target="_blank">here</a> ' +
-    'for example code - or use one of the examples provided. The precompile will return ' +
-    '<code>0x01</code> (as 32-bytes) if the signature is valid.',
+    'or the ' +
+    '<a href="https://github.com/ethereumjs/ethereumjs-monorepo/tree/master/packages/evm#eip-7951-precompile-for-secp256r1-curve-support-osaka" target="_blank">EthereumJS example</a>.',
   creatorName: 'HolgerD77',
   creatorURL: 'https://x.com/HolgerD77',
   poweredBy: [

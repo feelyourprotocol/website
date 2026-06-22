@@ -8,13 +8,14 @@ const props = withDefaults(
     topic: Topic
     image: string
     overviewMode?: boolean
-    pageTitle?: boolean
+    /** Show topic heading above intro (home topic cards only). */
+    showTopicHeading?: boolean
     /** Max height for the cover image (exploration sidebar); image scales down proportionally, fully visible. */
     imageBoxHeight?: string
   }>(),
   {
     overviewMode: false,
-    pageTitle: false,
+    showTopicHeading: false,
   },
 )
 
@@ -34,38 +35,25 @@ const getImageUrl = (image: string) =>
       TOPIC_COLORS[topic.color].classes.borderCard,
     ]"
   >
-    <component
-      :is="overviewMode && pageTitle ? 'h1' : 'h2'"
-      v-if="overviewMode"
+    <h2
+      v-if="overviewMode && showTopicHeading"
       class="text-2xl md:text-3xl font-bold tracking-tight mb-4 e-text"
     >
       {{ topic.title }}
-    </component>
-    <h2
-      v-else
-      :class="[
-        'font-bold tracking-tight text-right e-text',
-        isCompactImage ? 'text-sm mb-1 leading-tight' : 'text-lg md:text-xl mb-3',
-      ]"
-    >
-      <RouterLink :to="topic.path" class="hover:underline">{{ topic.title }} ↑</RouterLink>
     </h2>
 
     <template v-if="overviewMode">
-      <div class="md:hidden">
-        <img :src="getImageUrl(image)" class="mx-auto mb-4 max-w-xs rounded-md" />
-        <p v-if="topic.introText" class="text-sm leading-relaxed text-slate-600">
-          {{ topic.introText }}
-        </p>
-      </div>
-
-      <div class="hidden md:block">
-        <img :src="getImageUrl(image)" class="float-right ml-5 mb-3 max-w-[45%] rounded-md" />
-        <p v-if="topic.introText" class="text-sm leading-relaxed text-slate-600">
-          {{ topic.introText }}
-        </p>
-        <div class="clear-both"></div>
-      </div>
+      <img
+        :src="getImageUrl(image)"
+        alt=""
+        class="float-right ml-3 mb-2 w-[38%] max-w-[9rem] rounded-md"
+        loading="lazy"
+        decoding="async"
+      />
+      <p v-if="topic.introText" class="text-sm leading-relaxed text-slate-600">
+        {{ topic.introText }}
+      </p>
+      <div class="clear-both"></div>
     </template>
 
     <template v-else>
@@ -75,6 +63,8 @@ const getImageUrl = (image: string) =>
         class="rounded-md mx-auto block w-auto max-w-full leading-none"
         :class="imageBoxHeight ? '' : 'w-full'"
         :style="imageBoxHeight ? { maxHeight: imageBoxHeight } : undefined"
+        loading="lazy"
+        decoding="async"
       />
     </template>
   </div>

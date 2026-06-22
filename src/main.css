@@ -97,6 +97,7 @@ body {
   --e-border: var(--color-blue-300);
   --e-border-dark: var(--color-blue-800);
   --e-accent: var(--color-blue-600);
+  --companion-peek-h: 3.5rem;
 }
 
 /* --- Topic text color utility --- */
@@ -147,11 +148,15 @@ body {
   @apply grid grid-cols-2 gap-1.5 mt-3;
 }
 
+.e-grid-double > * {
+  @apply min-w-0;
+}
+
 /* --- Form inputs --- */
 .e-textarea {
   background-color: var(--e-bg-light);
   border: 1px solid var(--e-border);
-  @apply block w-full mt-1.5 mb-2 font-mono text-xs rounded-md text-slate-600 p-2;
+  @apply block w-full mt-1.5 mb-2 font-mono text-base md:text-xs rounded-md text-slate-600 p-2;
   transition:
     border-color 0.15s ease,
     box-shadow 0.15s ease;
@@ -166,17 +171,19 @@ body {
 .e-select {
   color: var(--e-text);
   border-color: var(--e-border);
-  @apply text-xs border-1 px-2 py-1 mb-0.5 rounded-md cursor-pointer;
+  @apply text-base md:text-xs border-1 px-3 py-2 mb-0.5 min-h-11 rounded-md cursor-pointer;
   transition: border-color 0.15s ease;
 }
 
 .e-listbox-options {
   background-color: var(--e-bg);
   border-color: var(--e-border);
+  @apply text-base md:text-xs;
 }
 
 .e-listbox-option {
   color: var(--e-text);
+  @apply px-3 py-2;
 }
 
 .e-listbox-option-active {
@@ -186,7 +193,7 @@ body {
 .e-input {
   background-color: var(--e-bg-light);
   border: 1px solid var(--e-border);
-  @apply font-mono text-xs rounded-md p-1 w-full;
+  @apply font-mono text-base md:text-xs rounded-md p-2 w-full;
   transition:
     border-color 0.15s ease,
     box-shadow 0.15s ease;
@@ -202,7 +209,7 @@ body {
 .e-button-icon {
   color: var(--e-text);
   border-color: var(--e-border);
-  @apply size-4 inline align-baseline border-1 p-0.5 rounded-sm;
+  @apply inline-flex items-center justify-center border-1 rounded-md min-h-11 min-w-11 p-2.5;
 }
 
 /* --- E-Component: Precompile Interface --- */
@@ -216,7 +223,7 @@ body {
   color: var(--e-text);
   background-color: var(--e-bg-medium);
   border-color: var(--e-border);
-  @apply relative inline-flex items-center justify-center border-1 rounded-md p-2 text-xs font-bold cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed;
+  @apply relative inline-flex items-center justify-center border-1 rounded-md min-h-11 px-3 py-2.5 text-sm font-bold cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed;
   transition:
     background-color 0.15s ease,
     transform 0.1s ease,
@@ -238,4 +245,33 @@ body {
 .topic-intro-card {
   border-width: 1px;
   border-style: solid;
+}
+
+/* --- Mobile companion bottom sheet (ExplorationView right panel) --- */
+@keyframes companion-pulse {
+  0%,
+  100% {
+    box-shadow: 0 -8px 30px rgba(15, 23, 42, 0.12);
+  }
+  45% {
+    box-shadow:
+      0 -8px 30px rgba(15, 23, 42, 0.12),
+      0 0 18px 2px color-mix(in srgb, var(--e-accent) 50%, transparent);
+  }
+}
+
+@media (max-width: 767px) {
+  .companion-sheet-pulse {
+    animation: companion-pulse 0.65s ease-out;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .companion-sheet-pulse {
+    animation: none;
+  }
+
+  .companion-sheet {
+    transition: none !important;
+  }
 }
