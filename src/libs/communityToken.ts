@@ -1,1 +1,1 @@
-export const COMMUNITY_TOKEN_HOME = 'https://community-token.feelyourprotocol.org/'
+export const COMMUNITY_TOKEN_HOME = 'https://community-token.feelyourprotocol.org/#intro'

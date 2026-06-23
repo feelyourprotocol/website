@@ -33,7 +33,14 @@ import { GUIDELINE_TABS, INTRO } from '@ct/content/topics'
               {{ INTRO.lead }}
             </p>
             <p
-              class="mt-3 rounded-lg border border-purple-100 bg-purple-50/60 px-3 py-2.5 text-sm leading-relaxed text-slate-600"
+              v-for="(paragraph, index) in INTRO.explainer"
+              :key="index"
+              class="mt-3 text-sm leading-relaxed text-slate-600"
+            >
+              {{ paragraph }}
+            </p>
+            <p
+              class="mt-4 rounded-lg border border-purple-100 bg-purple-50/60 px-3 py-2.5 text-sm leading-relaxed text-slate-600"
             >
               {{ INTRO.gratitude }}
             </p>
