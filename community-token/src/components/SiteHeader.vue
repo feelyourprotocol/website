@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { SITE_LOGO } from '@ct/content/brand'
 import { SITE_VERSION } from '@ct/content/version'
 
 const MAIN_SITE_URL = 'https://feelyourprotocol.org'
@@ -7,23 +8,32 @@ const MAIN_SITE_URL = 'https://feelyourprotocol.org'
 <template>
   <header class="ct-card sticky top-2 z-10 px-4 py-3 md:px-6">
     <div class="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
-      <div>
-        <p class="font-mono text-[0.65rem] uppercase tracking-[0.2em] text-slate-400">
-          Feel Your Protocol
-        </p>
-        <h1 class="flex items-center gap-2 text-xl font-bold tracking-wide md:text-2xl">
-          <span class="ct-gradient-text">Community Token</span>
-          <span
-            class="rounded-md border border-slate-300 bg-slate-100 px-1.5 py-0.5 font-mono text-[0.6rem] uppercase tracking-[0.15em] text-slate-600"
-          >
-            {{ SITE_VERSION }}
-          </span>
-          <span
-            class="rounded-md border border-amber-300 bg-amber-50 px-1.5 py-0.5 font-mono text-[0.6rem] uppercase tracking-[0.15em] text-amber-700"
-          >
-            Draft
-          </span>
-        </h1>
+      <div class="flex min-w-0 items-center gap-3">
+        <img
+          :src="SITE_LOGO.src"
+          :alt="SITE_LOGO.alt"
+          :width="SITE_LOGO.width"
+          :height="SITE_LOGO.height"
+          class="size-[3.5rem] shrink-0 object-contain md:size-[4.25rem]"
+        />
+        <div class="min-w-0">
+          <p class="font-mono text-[0.65rem] uppercase tracking-[0.2em] text-slate-400">
+            Feel Your Protocol
+          </p>
+          <h1 class="flex flex-wrap items-center gap-2 text-xl font-bold tracking-wide md:text-2xl">
+            <span class="ct-gradient-text">Community Token</span>
+            <span
+              class="rounded-md border border-slate-300 bg-slate-100 px-1.5 py-0.5 font-mono text-[0.6rem] uppercase tracking-[0.15em] text-slate-600"
+            >
+              {{ SITE_VERSION }}
+            </span>
+            <span
+              class="rounded-md border border-amber-300 bg-amber-50 px-1.5 py-0.5 font-mono text-[0.6rem] uppercase tracking-[0.15em] text-amber-700"
+            >
+              Draft
+            </span>
+          </h1>
+        </div>
       </div>
 
       <nav class="flex flex-wrap items-center gap-2 font-mono text-xs">
