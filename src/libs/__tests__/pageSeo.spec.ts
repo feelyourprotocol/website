@@ -10,6 +10,7 @@ import {
   generateRobotsTxt,
   generateSitemapXml,
   getBreadcrumbsForPath,
+  getExplorationDiscoveryDescription,
   getPageSeoForPath,
   getPageSeoForRoute,
   getSitemapPaths,
@@ -49,17 +50,34 @@ describe('pageSeo', () => {
     expect(sitemapPaths.length).toBeLessThan(getValidSpaPaths().length)
   })
 
-  it('builds exploration page meta with EIP-specific title and description', () => {
-    const exploration = Object.values(EXPLORATIONS)[0]!
+  it('builds exploration page meta with seoDescription and EIP-specific title', () => {
+    const exploration = EXPLORATIONS['eip-8024']!
     const seo = getPageSeoForPath(exploration.path)
 
     expect(seo.title).toContain(exploration.title)
+    expect(seo.description).toBe(exploration.seoDescription)
     expect(seo.description.length).toBeGreaterThan(20)
     expect(seo.canonicalUrl).toBe(`${SITE_ORIGIN}${exploration.path}`)
     expect(seo.imageUrl).toBe(`${SITE_ORIGIN}${DEFAULT_OG_IMAGE_PATH}`)
     expect(seo.imageWidth).toBe(1200)
     expect(seo.imageHeight).toBe(630)
     expect(JSON.stringify(seo.jsonLd)).toContain(exploration.infoURL)
+  })
+
+  it('falls back to generated discovery copy when seoDescription is omitted', () => {
+    const exploration = { ...EXPLORATIONS['eip-8024']!, seoDescription: undefined }
+    const description = getExplorationDiscoveryDescription('eip-8024', exploration)
+
+    expect(description).toContain('EIP-8024')
+    expect(description).toContain('Interactive Ethereum explainer')
+  })
+
+  it('uses Ethereum-prefixed topic titles and discovery descriptions', () => {
+    const seo = getPageSeoForPath('/scaling')
+
+    expect(seo.title).toBe('Ethereum Scaling — Feel Your Protocol')
+    expect(seo.description).toContain('Interactive Ethereum scaling explorations')
+    expect(seo.description).toContain('Throughput and cost efficiency')
   })
 
   it('marks filtered list views as noindex with a clean canonical URL', () => {
@@ -134,7 +152,8 @@ describe('pageSeo', () => {
     expect(html).toContain('fetchpriority="high"')
     expect(html).toContain('/assets/logo-TEST.png')
     expect(html).toContain('<h1 class="sr-only">Scaling</h1>')
-    expect(html).toContain('<title>Scaling — Feel Your Protocol</title>')
+    expect(html).toContain('Interactive Ethereum scaling explorations')
+    expect(html).toContain('<title>Ethereum Scaling — Feel Your Protocol</title>')
   })
 
   it('throws when static shell injection cannot find #app', () => {

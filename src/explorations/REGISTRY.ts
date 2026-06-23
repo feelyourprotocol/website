@@ -38,6 +38,8 @@ export interface Exploration {
   imageBoxHeight?: string
   /** When set, exploration content may Teleport into `#exploration-right-panel`. */
   rightPanel?: boolean
+  /** Plain-text discovery copy for meta tags and static prerender (~120–160 chars). See contributing guide. */
+  seoDescription?: string
   introText: string
   usageText: string
   creatorName?: string

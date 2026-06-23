@@ -1,12 +1,11 @@
-import { EXPLORATIONS } from '@/explorations/REGISTRY'
-import { TOPICS } from '@/explorations/TOPICS'
+import { type Exploration, EXPLORATIONS } from '@/explorations/REGISTRY'
+import { type Topic, TOPICS } from '@/explorations/TOPICS'
 
 import {
   DEFAULT_SITE_NAME,
   escapeHtml,
   injectSeoIntoHtml,
   type PageSeo,
-  stripHtml,
   truncateDescription,
 } from './seoCore'
 
@@ -71,6 +70,70 @@ function withSocialImage(seo: PageSeoCore): PageSeo {
 export function formatEipSpecLabel(explorationId: string): string {
   const match = /^eip-(\d+)$/i.exec(explorationId)
   return match ? `EIP-${match[1]}` : explorationId.toUpperCase()
+}
+
+function formatTopicPageTitle(topic: Topic): string {
+  return `Ethereum ${topic.title}`
+}
+
+function buildExplorationDiscoveryFallback(
+  explorationId: string,
+  exploration: Exploration,
+): string {
+  const eipLabel = formatEipSpecLabel(explorationId)
+  const titleWithoutEip = exploration.title.replace(new RegExp(`^${eipLabel}\\s*`, 'i'), '').trim()
+  const subject = titleWithoutEip || exploration.title
+  return truncateDescription(
+    `Interactive Ethereum explainer for ${eipLabel}: ${subject}. Run real protocol libraries in your browser.`,
+  )
+}
+
+export function getExplorationDiscoveryDescription(
+  explorationId: string,
+  exploration: Exploration,
+): string {
+  if (exploration.seoDescription) {
+    return truncateDescription(exploration.seoDescription)
+  }
+  return buildExplorationDiscoveryFallback(explorationId, exploration)
+}
+
+function getTopicDiscoveryDescription(topic: Topic): string {
+  const lead = `Interactive Ethereum ${topic.title.toLowerCase()} explorations. `
+  return truncateDescription(lead + (topic.introText ?? DEFAULT_DESCRIPTION))
+}
+
+/** Shared discovery copy for meta tags, JSON-LD, and static prerender body text. */
+export function getDiscoveryDescription(path: string): string {
+  if (path === '/') {
+    return DEFAULT_DESCRIPTION
+  }
+
+  if (path === '/imprint') {
+    return (
+      'Imprint and contact information for Feel Your Protocol, an open-source Ethereum ' +
+      'protocol exploration project by Holger Drewes.'
+    )
+  }
+
+  if (path === '/all') {
+    return (
+      'Browse all interactive Ethereum protocol explorations on Feel Your Protocol — filter by ' +
+      'research topic, timeline, and tags.'
+    )
+  }
+
+  const topic = topicByPath.get(path)
+  if (topic) {
+    return getTopicDiscoveryDescription(topic)
+  }
+
+  const entry = explorationByPath.get(path)
+  if (entry) {
+    return getExplorationDiscoveryDescription(entry.id, entry.exploration)
+  }
+
+  return DEFAULT_DESCRIPTION
 }
 
 function breadcrumbJsonLd(items: BreadcrumbItem[], pageUrl: string): object {
@@ -164,9 +227,7 @@ export function getPageSeoForPath(path: string): PageSeo {
   }
 
   if (path === '/imprint') {
-    const description =
-      'Imprint and contact information for Feel Your Protocol, an open-source Ethereum ' +
-      'protocol exploration project by Holger Drewes.'
+    const description = getDiscoveryDescription(path)
     return withSocialImage({
       path,
       title: formatDocumentTitle('Imprint'),
@@ -187,9 +248,7 @@ export function getPageSeoForPath(path: string): PageSeo {
   }
 
   if (path === '/all') {
-    const description =
-      'Browse all interactive Ethereum protocol explorations on Feel Your Protocol — filter by ' +
-      'research topic, timeline, and tags.'
+    const description = getDiscoveryDescription(path)
     return withSocialImage({
       path,
       title: formatDocumentTitle('All Explorations'),
@@ -211,10 +270,10 @@ export function getPageSeoForPath(path: string): PageSeo {
 
   const topic = topicByPath.get(path)
   if (topic) {
-    const description = truncateDescription(topic.introText ?? DEFAULT_DESCRIPTION)
+    const description = getDiscoveryDescription(path)
     return withSocialImage({
       path,
-      title: formatDocumentTitle(topic.title),
+      title: formatDocumentTitle(formatTopicPageTitle(topic)),
       description,
       canonicalUrl,
       noindex: topic.explorations.length === 0 ? true : undefined,
@@ -236,7 +295,7 @@ export function getPageSeoForPath(path: string): PageSeo {
   if (entry) {
     const { id, exploration } = entry
     const topicForExploration = TOPICS[exploration.topic]
-    const description = truncateDescription(stripHtml(exploration.introText))
+    const description = getDiscoveryDescription(path)
     const eipLabel = formatEipSpecLabel(id)
 
     return withSocialImage({
@@ -344,6 +403,7 @@ export function getStaticShellHeading(path: string): string {
 /** Minimal above-the-fold markup painted before Vue mounts (replaced on `mount('#app')`). */
 export function buildStaticShellHtml(path: string, assets: StaticShellAssets): string {
   const heading = escapeHtml(getStaticShellHeading(path))
+  const discovery = escapeHtml(getDiscoveryDescription(path))
   const logoSrc = escapeHtml(assets.logoSrc)
 
   return [
@@ -363,6 +423,7 @@ export function buildStaticShellHtml(path: string, assets: StaticShellAssets): s
     '  </header>',
     '  <main>',
     `    <h1 class="sr-only">${heading}</h1>`,
+    `    <p class="text-sm text-slate-600 max-w-3xl">${discovery}</p>`,
     '  </main>',
     '</div>',
   ].join('\n')
