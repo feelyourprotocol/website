@@ -1,4 +1,4 @@
-import type { PageSeo } from './pageSeo'
+import type { PageSeo } from './seoCore'
 
 const JSON_LD_ID = 'page-seo-jsonld'
 

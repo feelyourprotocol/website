@@ -12,6 +12,9 @@
     },
     {
       "path": "./scripts/tsconfig.json"
+    },
+    {
+      "path": "./tsconfig.community-token.json"
     }
   ],
   "compilerOptions": {

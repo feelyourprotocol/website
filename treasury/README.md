@@ -49,13 +49,13 @@ Frontmatter: `total_claimed_eur`
 
 ### `withdrawals.md` — money out
 
-Monthly take-outs from treasury to the developer. Each row should be backed by the month's `fyp.md`, `ethereumjs.md`, and `expenses.md` totals — except the initial catch-up row, which covers pre-tracking work and expenses in one lump sum.
+Monthly take-outs from treasury to the developer. Each row should be backed by that month's `fyp.md`, `ethereumjs.md`, and `expenses.md` totals.
 
 | Date | Work (€) | Expenses (€) | Total (€) | Period | Status | Tx | Note |
 
 - **Work (€):** `fyp.total_eur + ethereumjs.total_eur` for that period
 - **Expenses (€):** `expenses.total_eur` for that period
-- **Period:** `YYYY-MM` or `pre-log` for the initial catch-up
+- **Period:** `YYYY-MM`
 - **Status:** `pending` (planned) or `completed` (on-chain take-out; add Tx when done)
 
 Frontmatter: `total_withdrawn_eur` — sum of **completed** rows only

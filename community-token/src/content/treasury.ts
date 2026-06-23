@@ -36,7 +36,7 @@ export const TREASURY_SNAPSHOT_2026 = {
   year: 2026,
   claimedEur: 2650,
   withdrawnEur: 0,
-  pendingWithdrawalEur: 2500,
+  pendingWithdrawalEur: 0,
 } as const
 
 /**
@@ -48,7 +48,7 @@ export const ALLOCATION_CHART_2026: TreasuryChartSpec = {
   chartId: 'treasury-allocation-2026',
   title: 'Claimed fees (2026)',
   subtitle: 'Earmarked use',
-  generatedAt: '2026-06-08',
+  generatedAt: '2026-06-23',
   basis: {
     description: 'Sum of claims in treasury/2026/claims.md',
     totalEur: 2650,
@@ -62,29 +62,28 @@ export const ALLOCATION_CHART_2026: TreasuryChartSpec = {
   },
   reproduce: [
     'totalEur = claims.md frontmatter total_claimed_eur',
-    'pre-log slice = sum of withdrawals.md rows where status is pending (Work + Expenses)',
     'work slice = sum of current-month fyp.md + ethereumjs.md frontmatter total_eur',
     'expenses slice = current-month expenses.md frontmatter total_eur',
-    'unallocated = totalEur − pre-log − work − expenses (omit slice if zero)',
+    'unallocated = totalEur − work − expenses (omit slice if zero)',
     'Regenerate chart when claims or month detail files change; bump generatedAt',
   ],
   slices: [
     {
-      id: 'pre-log',
-      label: 'Pre-log (planned)',
-      eur: 2500,
-      color: '#9333ea',
-    },
-    {
       id: 'work-jun',
       label: 'June work',
-      eur: 200,
+      eur: 1350,
       color: '#06b6d4',
+    },
+    {
+      id: 'expenses-jun',
+      label: 'June expenses',
+      eur: 61.4,
+      color: '#f59e0b',
     },
     {
       id: 'unallocated',
       label: 'Unallocated',
-      eur: 0,
+      eur: 1238.6,
       color: '#94a3b8',
     },
   ],

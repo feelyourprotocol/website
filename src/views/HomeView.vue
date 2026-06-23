@@ -3,6 +3,7 @@ import SectionLabel from '@/components/SectionLabel.vue'
 import ExplorationC from '@/explorations/ExplorationC.vue'
 import { EXPLORATIONS, getRandomTopicExplorationImage } from '@/explorations/REGISTRY'
 import { TOPICS } from '@/explorations/TOPICS'
+import { COMMUNITY_TOKEN_HOME } from '@/libs/communityToken'
 import { DOCS_HOME } from '@/libs/docsUrls'
 
 import TagCloudView from './TagCloudView.vue'
@@ -78,6 +79,17 @@ for (const topicId of activeTopicIds) {
                 target="_blank"
                 class="font-semibold text-white underline hover:text-slate-200"
                 >code on GitHub</a
+              >.
+            </p>
+            <p class="text-slate-300 text-sm leading-relaxed mt-2">
+              These explorations are about where Ethereum heads next — a community token is one way
+              to take part in that work and what keeps it going.
+              <a
+                :href="COMMUNITY_TOKEN_HOME"
+                target="_blank"
+                rel="noopener"
+                class="font-semibold text-white underline hover:text-slate-200"
+                >How it works</a
               >.
             </p>
           </div>

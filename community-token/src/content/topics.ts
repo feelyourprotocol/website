@@ -1,4 +1,4 @@
-/** Tabbed "How this works" content — good-faith framing with optional intro prose. */
+/** Tabbed guideline content — good-faith framing with optional intro prose. */
 export type GuidelineTab = {
   id: string
   tabLabel: string
@@ -9,16 +9,21 @@ export type GuidelineTab = {
 }
 
 export const INTRO = {
-  eyebrow: 'Community Token · In good faith',
-  title: 'What you can expect',
-  lead: 'This page explains how creator fees from the community token relate to Feel Your Protocol — so it is clear how I intend to handle things.',
+  eyebrow: 'Community Token · Feel Your Protocol',
+  title: 'How it works',
+  lead: 'Feel Your Protocol is about exploring where Ethereum heads next. A community token on Base is one way to take part in that work — not by buying project equity, but by routing on-chain activity toward the open-source stack behind these explorations.',
+  explainer: [
+    'The token (FYP) was launched independently by community members on Bankr — a platform for deploying tokens on Base. I did not issue it, but I engage with it in good faith and document how I handle it here.',
+    'When people buy, sell, or transfer the token, a portion of trading fees (creator fees) accrues to a claimable balance. I use those fees — tracked in the Treasury section — to fund time on FYP explorations and related EthereumJS library work that keeps them running.',
+    'New to this model? Think community-driven support for public-good Ethereum tooling: participation through market activity, not ownership of the code, a roadmap, or a promise of returns.',
+  ],
   gratitude:
-    'Thank you to everyone in the Bankr community who showed interest. This space exists so expectations stay clear on both sides.',
+    'Thank you to everyone in the Bankr community who showed interest. This page exists so expectations stay clear on both sides.',
 } as const
 
 export const HOW_IT_WORKS = {
-  title: 'How this works',
-  subtitle: 'Scope, relationship, and the rest.',
+  title: 'Guidelines',
+  subtitle: 'Scope, relationship, terms, and community.',
   footnote: 'If anything here changes, the updates land on this page.',
 } as const
 

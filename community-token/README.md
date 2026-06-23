@@ -22,6 +22,24 @@ npm run community-token:preview
 
 Production output: `dist/community-token/`
 
+## SEO & social preview (Tier 1)
+
+Same pattern as the main site: meta tags are injected at build time (`scripts/generate-community-token-seo.ts` → `robots.txt`, `sitemap.xml`, Open Graph / Twitter in `index.html`). Dev applies the same tags client-side via `applyPageSeo` in `src/main.ts`.
+
+**Open Graph / Twitter image** — place your artwork here (not in git until you add it):
+
+```
+community-token/public/og/default.png
+```
+
+| Requirement | Value                                                         |
+| ----------- | ------------------------------------------------------------- |
+| Format      | **PNG** (real PNG bytes — not JPEG renamed)                   |
+| Size        | **1200 × 630** px                                             |
+| Served at   | `https://community-token.feelyourprotocol.org/og/default.png` |
+
+Main site equivalent: `public/og/default.png` → `feelyourprotocol.org/og/default.png`. Each subdomain keeps its own copy under its own `public/` folder.
+
 Full deploy build (main site + community token + docs, rebuilt on server — `dist/` is not in git):
 
 ```bash

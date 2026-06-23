@@ -9,4 +9,3 @@ Take-outs from the [treasury wallet on Base](https://basescan.org/address/0x1595
 
 | Date | Work (€) | Expenses (€) | Total (€) | Period | Status | Tx | Note |
 | ---- | -------- | ------------ | --------- | ------ | ------ | -- | ---- |
-| 2026-06-06 | 2500 | 0 | 2500 | pre-log | pending | | Planned initial catch-up for work and expenses accrued before treasury tracking started (not itemized hourly) — **not yet withdrawn** |

@@ -5,6 +5,7 @@ import { mount, RouterLinkStub } from '@vue/test-utils'
 import { EXPLORATIONS } from '@/explorations/REGISTRY'
 import { Tag } from '@/explorations/TAGS'
 import { TOPICS } from '@/explorations/TOPICS'
+import { COMMUNITY_TOKEN_HOME } from '@/libs/communityToken'
 import { DOCS_HOME } from '@/libs/docsUrls'
 
 import HomeView from '../HomeView.vue'
@@ -66,6 +67,13 @@ describe('HomeView', () => {
     it('has GitHub link pointing to repo', () => {
       const link = wrapper.find('a[href="https://github.com/feelyourprotocol/website"]')
       expect(link.exists()).toBe(true)
+      expect(link.attributes('target')).toBe('_blank')
+    })
+
+    it('has community token link in about section', () => {
+      const link = wrapper.find(`a[href="${COMMUNITY_TOKEN_HOME}"]`)
+      expect(link.exists()).toBe(true)
+      expect(link.text()).toBe('How it works')
       expect(link.attributes('target')).toBe('_blank')
     })
   })

@@ -133,7 +133,7 @@ const generatedLabel = computed(() => {
             :style="{ backgroundColor: segment.color }"
             aria-hidden="true"
           />
-          <span class="text-slate-600">
+          <span class="inline-flex flex-wrap items-baseline gap-x-1 text-slate-600">
             <span class="text-slate-700">{{ segment.label }}</span>
             <span class="font-mono text-slate-500">
               {{ segment.eur.toLocaleString('en-GB') }} € · {{ segment.percent.toFixed(0) }}%

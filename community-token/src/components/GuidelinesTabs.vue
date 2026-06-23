@@ -23,7 +23,7 @@ function syncFromHash(id: string, scroll: boolean): void {
   if (index < 0) return
   selectedIndex.value = index
   if (scroll) {
-    document.getElementById('how-it-works')?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    document.getElementById('guidelines')?.scrollIntoView({ behavior: 'smooth', block: 'start' })
   }
 }
 
@@ -45,16 +45,13 @@ watch(
 </script>
 
 <template>
-  <section
-    id="how-it-works"
-    class="ct-section-anchor ct-card flex min-h-64 flex-col overflow-hidden"
-  >
+  <section id="guidelines" class="ct-section-anchor ct-card flex min-h-64 flex-col overflow-hidden">
     <div class="border-b border-slate-100 px-4 py-3 md:px-5">
       <div class="group flex items-baseline gap-2">
         <h2 class="font-mono text-sm font-bold uppercase tracking-[0.15em] text-slate-600">
           {{ HOW_IT_WORKS.title }}
         </h2>
-        <SectionAnchorLink id="how-it-works" />
+        <SectionAnchorLink id="guidelines" />
       </div>
       <p class="mt-0.5 text-xs text-slate-500">{{ HOW_IT_WORKS.subtitle }}</p>
     </div>
