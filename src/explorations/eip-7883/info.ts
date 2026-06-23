@@ -2,6 +2,7 @@ import type { Exploration } from '@/explorations/REGISTRY'
 import { Tag } from '@/explorations/TAGS'
 
 import image from './image.webp'
+import imageSmall from './image_small.webp'
 
 export const INFO: Exploration = {
   id: 'eip-7883',
@@ -14,6 +15,7 @@ export const INFO: Exploration = {
   timeline: 'fusaka',
   tags: [Tag.GasCosts, Tag.Precompiles],
   image,
+  imageSmall,
   introText:
     '<b>How are ModExp gas costs changing with Fusaka?</b> ' +
     'EIP-7883 replaces the ModExp precompile gas formula with one that better reflects real ' +

@@ -2,6 +2,7 @@ import type { Exploration } from '@/explorations/REGISTRY'
 import { Tag } from '@/explorations/TAGS'
 
 import image from './image.webp'
+import imageSmall from './image_small.webp'
 
 export const INFO: Exploration = {
   id: 'eip-7951',
@@ -14,6 +15,7 @@ export const INFO: Exploration = {
   timeline: 'fusaka',
   tags: [Tag.Precompiles, Tag.Signatures],
   image,
+  imageSmall,
   introText:
     '<b>Why add a secp256r1 precompile?</b> ' +
     'The curve (also known as P-256) is the native signing algorithm on ' +

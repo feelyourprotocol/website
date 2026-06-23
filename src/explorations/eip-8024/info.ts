@@ -2,6 +2,7 @@ import type { Exploration } from '@/explorations/REGISTRY'
 import { Tag } from '@/explorations/TAGS'
 
 import image from './image.jpg'
+import imageSmall from './image_small.jpg'
 
 export const INFO: Exploration = {
   id: 'eip-8024',
@@ -14,6 +15,7 @@ export const INFO: Exploration = {
   timeline: 'glamsterdam',
   tags: [Tag.EVM],
   image,
+  imageSmall,
   imageBoxHeight: '19rem',
   rightPanel: true,
   introText:

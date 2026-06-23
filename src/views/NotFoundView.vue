@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { getRandomExplorationWithImage } from '@/explorations/REGISTRY'
+import { getRandomExplorationWithImage, getExplorationThumbnailImage } from '@/explorations/REGISTRY'
 import { TOPIC_COLORS, topicCSSVars, TOPICS } from '@/explorations/TOPICS'
 import { DOCS_ADD_EXPLORATION } from '@/libs/docsUrls'
 
@@ -69,7 +69,7 @@ function getImageUrl(image: string): string {
           class="block shrink-0 mt-6 md:mt-0 no-underline group"
         >
           <img
-            :src="getImageUrl(pick.image)"
+            :src="getImageUrl(getExplorationThumbnailImage(pick)!)"
             :alt="pick.title"
             class="rounded-md max-w-[14rem] mx-auto md:mx-0 transition group-hover:opacity-90"
           />
