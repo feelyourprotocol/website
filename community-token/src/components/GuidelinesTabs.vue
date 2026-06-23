@@ -45,10 +45,7 @@ watch(
 </script>
 
 <template>
-  <section
-    id="guidelines"
-    class="ct-section-anchor ct-card flex min-h-64 flex-col overflow-hidden"
-  >
+  <section id="guidelines" class="ct-section-anchor ct-card flex min-h-64 flex-col overflow-hidden">
     <div class="border-b border-slate-100 px-4 py-3 md:px-5">
       <div class="group flex items-baseline gap-2">
         <h2 class="font-mono text-sm font-bold uppercase tracking-[0.15em] text-slate-600">

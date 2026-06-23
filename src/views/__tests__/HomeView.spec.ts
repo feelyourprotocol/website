@@ -5,8 +5,8 @@ import { mount, RouterLinkStub } from '@vue/test-utils'
 import { EXPLORATIONS } from '@/explorations/REGISTRY'
 import { Tag } from '@/explorations/TAGS'
 import { TOPICS } from '@/explorations/TOPICS'
-import { DOCS_HOME } from '@/libs/docsUrls'
 import { COMMUNITY_TOKEN_HOME } from '@/libs/communityToken'
+import { DOCS_HOME } from '@/libs/docsUrls'
 
 import HomeView from '../HomeView.vue'
 

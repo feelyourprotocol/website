@@ -1,9 +1,9 @@
 import './main.css'
-import { applyPageSeo } from '@shared/libs/applyPageSeo'
 import { createApp } from 'vue'
+import { getCommunityPageSeo } from '@ct/content/pageSeo'
+import { applyPageSeo } from '@shared/libs/applyPageSeo'
 
 import App from './App.vue'
-import { getCommunityPageSeo } from '@ct/content/pageSeo'
 
 applyPageSeo(getCommunityPageSeo())
 

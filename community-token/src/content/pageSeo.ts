@@ -1,4 +1,4 @@
-import { truncateDescription, type PageSeo } from '../../../src/libs/seoCore'
+import { type PageSeo,truncateDescription } from '../../../src/libs/seoCore'
 
 export const CT_SITE_ORIGIN = 'https://community-token.feelyourprotocol.org' as const
 export const CT_SITE_NAME = 'Feel Your Protocol' as const
@@ -44,11 +44,5 @@ export function generateCommunitySitemapXml(lastmod?: string): string {
 }
 
 export function generateCommunityRobotsTxt(): string {
-  return [
-    'User-agent: *',
-    'Allow: /',
-    '',
-    `Sitemap: ${CT_SITE_ORIGIN}/sitemap.xml`,
-    '',
-  ].join('\n')
+  return ['User-agent: *', 'Allow: /', '', `Sitemap: ${CT_SITE_ORIGIN}/sitemap.xml`, ''].join('\n')
 }

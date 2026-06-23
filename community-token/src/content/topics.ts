@@ -11,8 +11,7 @@ export type GuidelineTab = {
 export const INTRO = {
   eyebrow: 'Community Token · Feel Your Protocol',
   title: 'How it works',
-  lead:
-    'Feel Your Protocol is about exploring where Ethereum heads next. A community token on Base is one way to take part in that work — not by buying project equity, but by routing on-chain activity toward the open-source stack behind these explorations.',
+  lead: 'Feel Your Protocol is about exploring where Ethereum heads next. A community token on Base is one way to take part in that work — not by buying project equity, but by routing on-chain activity toward the open-source stack behind these explorations.',
   explainer: [
     'The token (FYP) was launched independently by community members on Bankr — a platform for deploying tokens on Base. I did not issue it, but I engage with it in good faith and document how I handle it here.',
     'When people buy, sell, or transfer the token, a portion of trading fees (creator fees) accrues to a claimable balance. I use those fees — tracked in the Treasury section — to fund time on FYP explorations and related EthereumJS library work that keeps them running.',
