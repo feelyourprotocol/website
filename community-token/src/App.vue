@@ -7,7 +7,6 @@ import SiteFooter from '@ct/components/SiteFooter.vue'
 import SiteHeader from '@ct/components/SiteHeader.vue'
 import TokenInfoCard from '@ct/components/TokenInfoCard.vue'
 import TreasurySection from '@ct/components/TreasurySection.vue'
-import VisualPlaceholder from '@ct/components/VisualPlaceholder.vue'
 import { GUIDELINE_TABS, INTRO } from '@ct/content/topics'
 </script>
 
@@ -47,8 +46,6 @@ import { GUIDELINE_TABS, INTRO } from '@ct/content/topics'
           </section>
 
           <TokenInfoCard />
-
-          <VisualPlaceholder class="hidden lg:flex lg:min-h-32 lg:flex-1" />
 
           <TreasurySection />
         </div>
