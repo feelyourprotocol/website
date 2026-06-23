@@ -7,6 +7,8 @@ export const INFO: Exploration = {
   id: 'eip-8024',
   path: '/eip-8024-stack-opcodes-dupn-swapn-exchange',
   title: 'EIP-8024 DUPN, SWAPN & EXCHANGE Stack Opcodes',
+  seoDescription:
+    'Interactive EVM explainer for EIP-8024 DUPN, SWAPN, and EXCHANGE stack opcodes — step through deep stack access in an Amsterdam-fork EVM in your browser.',
   infoURL: 'https://eips.ethereum.org/EIPS/eip-8024',
   topic: 'robustness',
   timeline: 'glamsterdam',

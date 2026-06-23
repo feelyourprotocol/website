@@ -40,6 +40,8 @@ export const INFO: Exploration = {
   id: 'eip-XXXX',
   path: '/eip-XXXX-short-description',
   title: 'Human-Readable Title',
+  seoDescription:
+    'Interactive Ethereum explainer for EIP-XXXX — plain-language summary with key search terms and what the widget demonstrates.',
   infoURL: 'https://eips.ethereum.org/EIPS/eip-XXXX',
   topic: 'scaling',
   timeline: 'fusaka',
@@ -59,6 +61,7 @@ export const INFO: Exploration = {
 | `id`          | Yes      | Unique identifier, matches the folder name                                                                                                                                                                                                                          |
 | `path`        | Yes      | URL path for the exploration page                                                                                                                                                                                                                                   |
 | `title`       | Yes      | Display title                                                                                                                                                                                                                                                       |
+| `seoDescription` | Recommended | Plain-text discovery copy (~120–160 chars) for search engines and static prerender. See [Discovery & SEO](#discovery--seo) below. |
 | `infoURL`     | Yes      | Link to the specification or reference material                                                                                                                                                                                                                     |
 | `topic`       | Yes      | Topic ID this exploration belongs to. Must be one of the fixed set: `scaling`, `privacy`, `ux`, `security`, `robustness`, `interoperability`. Topics are static and not added via contributions — see [Architecture](/guide/architecture#topics) for the full list. |
 | `timeline`    | Yes      | Timeline ID for this exploration (e.g. `fusaka`, `glamsterdam`, `ready`, `research`, `ideas`). See [Architecture](/guide/architecture) for details.                                                                                                                 |
@@ -69,6 +72,41 @@ export const INFO: Exploration = {
 | `creatorName` | No       | Display name of the exploration's creator                                                                                                                                                                                                                           |
 | `creatorURL`  | No       | URL to the creator's profile (X/Twitter, GitHub, etc.)                                                                                                                                                                                                              |
 | `poweredBy`   | Yes      | Array of `{ name, href }` for library credits                                                                                                                                                                                                                       |
+
+## Discovery & SEO
+
+Feel Your Protocol targets people who heard about an Ethereum protocol change and want to **understand how it behaves** — not generic “what is Ethereum” queries. Discovery copy should match how they search: EIP numbers, acronyms, mechanism names, and “interactive explainer” intent.
+
+### `seoDescription`
+
+Add one plain-text sentence in `info.ts` (~120–160 characters, no HTML). It powers the page meta description, JSON-LD, and the static prerender paragraph crawlers see before JavaScript runs.
+
+**Write for discovery, not the widget UI.** Keep `introText` as the pedagogical question on the page; use `seoDescription` for search-friendly terms.
+
+Good example (EIP-8024):
+
+```
+Interactive EVM explainer for EIP-8024 DUPN, SWAPN, and EXCHANGE stack opcodes — step through deep stack access in an Amsterdam-fork EVM in your browser.
+```
+
+Include where natural:
+
+- **EIP/ERC number** and plain-language name
+- **Synonyms and acronyms** people search for (BAL, PeerDAS, ModExp, secp256r1)
+- **“Interactive”** or **“explainer”** — FYP’s differentiator
+
+If omitted, a generic fallback is generated from the title; prefer writing `seoDescription` explicitly.
+
+### Other fields that help discovery
+
+| Field | Role |
+| ----- | ---- |
+| `path` | Keyword-rich slug (`/eip-8024-stack-opcodes-dupn-swapn-exchange`) |
+| `title` | EIP number plus human-readable terms |
+| `tags` | Reusable concepts (EVM, BAL, PeerDAS) for future category pages |
+| `infoURL` | Canonical spec link (used in structured data) |
+
+Topic pages use their `introText` with an “Ethereum {topic}” document title — explorations inherit topic context via breadcrumbs.
 
 ## Step 3: Create `examples.ts`
 

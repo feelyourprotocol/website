@@ -7,6 +7,8 @@ export const INFO: Exploration = {
   id: 'eip-7951',
   path: '/eip-7951-secp256r1-precompile',
   title: 'EIP-7951 secp256r1 Precompile Support',
+  seoDescription:
+    'EIP-7951 secp256r1 precompile — try passkey-friendly signature verification on Ethereum with an interactive precompile demo.',
   infoURL: 'https://eips.ethereum.org/EIPS/eip-7951',
   topic: 'ux',
   timeline: 'fusaka',

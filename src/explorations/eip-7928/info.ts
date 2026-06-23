@@ -7,6 +7,8 @@ export const INFO: Exploration = {
   id: 'eip-7928',
   path: '/eip-7928-block-level-access-lists',
   title: 'EIP-7928 Block Level Access Lists',
+  seoDescription:
+    'Explore Ethereum block-level access lists (BAL) with EIP-7928 — interactive walkthrough of block access patterns and blockAccessListHash.',
   infoURL: 'https://eips.ethereum.org/EIPS/eip-7928',
   topic: 'scaling',
   timeline: 'glamsterdam',

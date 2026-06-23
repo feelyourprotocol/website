@@ -7,6 +7,8 @@ export const INFO: Exploration = {
   id: 'eip-7594',
   path: '/eip-7594-peerdas-data-availability-sampling',
   title: 'EIP-7594 Peer Data Availability Sampling',
+  seoDescription:
+    'Interactive PeerDAS explainer for EIP-7594 — Ethereum data availability sampling with real cryptography in your browser.',
   infoURL: 'https://eips.ethereum.org/EIPS/eip-7594',
   topic: 'scaling',
   timeline: 'fusaka',
