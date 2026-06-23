@@ -1,0 +1,45 @@
+# Feel Your Protocol — Community Token
+
+> A transparency page for the FYP community token on Base. It explains, in good faith, how the
+> token relates to Feel Your Protocol (an open-source Ethereum protocol exploration project),
+> how creator fees are used to fund open-source work, and — just as clearly — what the token
+> is not. It is not an investment offer, a security, or project equity.
+
+The token (FYP) was launched independently by community members on Bankr, a platform for
+deploying tokens on Base. The maintainer (Holger Drewes, @HolgerD77) did not issue it but
+engages with it in good faith and documents the handling here. A portion of trading fees
+(creator fees) accrues to a claimable balance, which is used to fund time on Feel Your
+Protocol explorations and related EthereumJS upkeep. Participation is through on-chain
+activity in support of public-good Ethereum tooling — not ownership of the code, a roadmap,
+or any promise of returns.
+
+## Page sections
+
+- [How it works](https://community-token.feelyourprotocol.org/#intro): Plain-language intro to the token, creator fees, and the relationship to FYP
+- [Which token](https://community-token.feelyourprotocol.org/#token-info): On-chain identity — name, symbol (FYP), network (Base), and contract address
+- [Developer Fund](https://community-token.feelyourprotocol.org/#fund): How claimed fees are intended to be used (development at 50 €/h, LLM/API costs, infrastructure, conferences)
+- [Treasury](https://community-token.feelyourprotocol.org/#treasury): Live snapshot of claims, withdrawals, and a work log; full books on GitHub
+- [Guidelines](https://community-token.feelyourprotocol.org/#guidelines): Scope, token relationship, terms, and community — what helps and what does not
+
+## Key facts
+
+- Token: Feel Your Protocol (symbol FYP), deployed on Base via Bankr.
+- Relationship: related to, but not the same as, the Feel Your Protocol project.
+- Not a financial product, security, or equity; holding/trading grants no ownership, voting
+  rights, or claims on the code or repositories.
+- Creator fees fund open-source work; token price and volume do not set the work or the hours.
+- All accounting (claims, withdrawals, hours, expenses) is tracked openly in the `treasury/`
+  folder of the GitHub repository.
+
+## Related
+
+- [Main site](https://feelyourprotocol.org/): The interactive Ethereum protocol explorations this funds
+- [Documentation](https://docs.feelyourprotocol.org/index.html): Architecture and contributor guide
+- [Treasury ledgers on GitHub](https://github.com/feelyourprotocol/website/tree/main/treasury): Open books backing the Treasury section
+
+## Notes
+
+- This page is the reference for how the token is handled; it is documentation, not financial
+  advice or an investment pitch, and carries no liability for market risk from holding the token.
+- Experimental, open-source project; direction may change, pause, or wind down. If it winds
+  down, anything unspent is intended for a charity or public-good cause.

@@ -1,0 +1,52 @@
+# Feel Your Protocol
+
+> Feel Your Protocol is a collaborative, open-source project offering interactive, hands-on
+> explorations of upcoming Ethereum protocol changes. Each exploration runs real EVM and
+> cryptography library code directly in the browser — no backend, no mocks — so you can feel
+> how an EIP, ERC, or piece of protocol research actually behaves with real inputs.
+
+The goal is understanding through interaction: instead of only reading a specification, you
+change inputs and watch real Ethereum libraries (notably EthereumJS) produce real results.
+Explorations are organized through three taxonomies — Topics (strategic pillars like Scaling
+or UX), Timeline (maturity / hardfork placement like Fusaka or Research), and Tags (reusable
+technical concepts like EVM or Precompiles).
+
+The project is built and maintained by Holger Drewes (@HolgerD77) and is open to community
+contributions. It is educational and non-commercial in character.
+
+## Site
+
+- [Home](https://feelyourprotocol.org/): Latest explorations, topics, timeline, and tags
+- [All explorations](https://feelyourprotocol.org/all): Full list, filterable by topic, timeline, and tag
+- [Imprint](https://feelyourprotocol.org/imprint): Contact and legal information
+
+## Explorations
+
+- [EIP-7928 — Block-Level Access Lists](https://feelyourprotocol.org/eip-7928-block-level-access-lists)
+- [EIP-8024 — Stack Opcodes (DUPN / SWAPN / EXCHANGE)](https://feelyourprotocol.org/eip-8024-stack-opcodes-dupn-swapn-exchange)
+- [EIP-7883 — ModExp Gas Cost Increase](https://feelyourprotocol.org/eip-7883-modexp-gas-cost-increase)
+- [EIP-7594 — PeerDAS Data Availability Sampling](https://feelyourprotocol.org/eip-7594-peerdas-data-availability-sampling)
+- [EIP-7951 — secp256r1 Precompile](https://feelyourprotocol.org/eip-7951-secp256r1-precompile)
+
+## Topics
+
+- [Scaling](https://feelyourprotocol.org/scaling)
+- [Privacy](https://feelyourprotocol.org/privacy)
+- [UX](https://feelyourprotocol.org/ux)
+- [Security](https://feelyourprotocol.org/security)
+- [Robustness](https://feelyourprotocol.org/robustness)
+- [Interoperability](https://feelyourprotocol.org/interoperability)
+
+## Related
+
+- [Documentation](https://docs.feelyourprotocol.org/index.html): Architecture, contributor guide, and reusable E-Components
+- [Community Token](https://community-token.feelyourprotocol.org/): How a community token on Base supports this open-source work, in good faith
+- [Source on GitHub](https://github.com/feelyourprotocol/website): Full source, each exploration is a self-contained folder
+
+## Notes
+
+- Built with Vue 3 + Vite. Interactive widgets run client-side, so the full behavior of an
+  exploration appears after JavaScript executes; the page intro text summarizes each one.
+- Powered in large part by EthereumJS (https://github.com/ethereumjs/ethereumjs-monorepo).
+- This is experimental, educational software provided as-is. It is not financial advice and
+  not affiliated with the Ethereum Foundation.

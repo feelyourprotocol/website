@@ -1,0 +1,44 @@
+# Feel Your Protocol — Documentation
+
+> Contributor and architecture documentation for Feel Your Protocol, an open-source project
+> of interactive, hands-on explorations of Ethereum protocol changes. These docs explain how
+> the project is structured, how to add a new exploration, and how the reusable building
+> blocks (E-Components) and UI components fit together.
+
+Feel Your Protocol turns Ethereum protocol changes (EIPs, ERCs, research) into interactive
+widgets that run real Ethereum library code in the browser. Each exploration is a
+self-contained folder with metadata (`info.ts`) and an interactive widget. The docs are aimed
+at contributors and developers who want to understand or extend the project.
+
+## Guide
+
+- [Getting Started](https://docs.feelyourprotocol.org/guide/getting-started.html): What the project is, prerequisites, local setup, and quality checks
+- [Architecture](https://docs.feelyourprotocol.org/guide/architecture.html): Folder-per-exploration model, taxonomies (Topics, Timeline, Tags), and lazy-loaded widgets
+- [Changelog](https://docs.feelyourprotocol.org/changelog.html): History of the structural base (contribution model, components, project structure)
+
+## Contributing
+
+- [How to Contribute](https://docs.feelyourprotocol.org/contributing/how-to-contribute.html): Ways to help; adding an exploration is the most impactful
+- [AI-Assisted Development](https://docs.feelyourprotocol.org/contributing/ai-assisted-development.html): Using AI tools to build explorations, and what to double-check
+- [Adding an Exploration](https://docs.feelyourprotocol.org/contributing/adding-an-exploration.html): Step-by-step from `info.ts` metadata to interactive widget and tests
+- [Images](https://docs.feelyourprotocol.org/contributing/images.html): Cover images and the color system
+- [UI Components](https://docs.feelyourprotocol.org/contributing/ui-components.html): Shared UI primitives (e.g. ResultBoxUIC, example selectors)
+- [E-Components](https://docs.feelyourprotocol.org/contributing/e-components.html): The reusable Ethereum building-block model
+- [Available E-Components](https://docs.feelyourprotocol.org/contributing/available-e-components.html): Catalog of ready-to-use E-Components and their APIs
+- [Styling & Design](https://docs.feelyourprotocol.org/contributing/styling.html): The exploration design system and class conventions
+- [Code Conventions](https://docs.feelyourprotocol.org/contributing/code-conventions.html): Coding standards and test commands
+- [Third-Party Libraries](https://docs.feelyourprotocol.org/contributing/third-party-libraries.html): How new library dependencies are evaluated and added
+
+## Related
+
+- [Main site](https://feelyourprotocol.org/): The live, interactive explorations
+- [Community Token](https://community-token.feelyourprotocol.org/): How a community token on Base supports this open-source work
+- [Source on GitHub](https://github.com/feelyourprotocol/website): Full source for site, docs, and explorations
+
+## Notes
+
+- Built with VitePress; pages are static HTML and the Markdown sources live in the `docs/`
+  folder of the GitHub repository.
+- The project is in beta: APIs of reusable components are still evolving. Latest docs always
+  apply — there is no version switching.
+- Educational, open-source software provided as-is; not affiliated with the Ethereum Foundation.
