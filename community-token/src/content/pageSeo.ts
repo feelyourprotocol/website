@@ -1,4 +1,4 @@
-import { type PageSeo,truncateDescription } from '../../../src/libs/seoCore'
+import { type PageSeo, truncateDescription } from '../../../src/libs/seoCore'
 
 export const CT_SITE_ORIGIN = 'https://community-token.feelyourprotocol.org' as const
 export const CT_SITE_NAME = 'Feel Your Protocol' as const
