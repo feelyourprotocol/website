@@ -73,7 +73,7 @@ export function injectSeoIntoHtml(
   }
 
   let out = html.replace(/<title>[^<]*<\/title>/, `<title>${escapeHtml(seo.title)}</title>`)
-  out = out.replace(/<meta[\s\S]*?name="description"[\s\S]*?\/?>\s*/g, '')
+  out = out.replace(/<meta\s+name="description"[^>]*>\s*/g, '')
   out = out.replace(/<link rel="canonical"[^>]*>\s*/g, '')
   out = out.replace(/<meta property="og:[^"]+"[^>]*>\s*/g, '')
   out = out.replace(/<meta name="twitter:[^"]+"[^>]*>\s*/g, '')

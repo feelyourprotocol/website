@@ -128,6 +128,26 @@ describe('pageSeo', () => {
     expect(html).toContain('application/ld+json')
   })
 
+  it('preserves viewport and charset when replacing description meta', () => {
+    const html = injectSeoIntoHtml(
+      [
+        '<!DOCTYPE html><html><head>',
+        '<meta charset="UTF-8">',
+        '<link rel="icon" href="/assets/favicon.png">',
+        '<meta name="viewport" content="width=device-width, initial-scale=1.0">',
+        '<meta name="description" content="Old description">',
+        '<title>Old</title>',
+        '</head><body></body></html>',
+      ].join(''),
+      getPageSeoForPath('/'),
+    )
+
+    expect(html).toContain('<meta charset="UTF-8">')
+    expect(html).toContain('<meta name="viewport" content="width=device-width, initial-scale=1.0">')
+    expect(html).toContain('<link rel="icon" href="/assets/favicon.png">')
+    expect(html).not.toContain('Old description')
+  })
+
   it('builds static shell headings from route context', () => {
     const exploration = Object.values(EXPLORATIONS)[0]!
     const topic = TOPICS[exploration.topic]
