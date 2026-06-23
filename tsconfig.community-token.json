@@ -4,7 +4,9 @@
   "exclude": ["community-token/src/**/__tests__/*"],
   "compilerOptions": {
     "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.community-token.tsbuildinfo",
+    "baseUrl": ".",
     "paths": {
+      "@/*": ["./src/*"],
       "@ct/*": ["./community-token/src/*"],
       "@shared/*": ["./src/*"]
     }
