@@ -48,7 +48,7 @@ export const ALLOCATION_CHART_2026: TreasuryChartSpec = {
   chartId: 'treasury-allocation-2026',
   title: 'Claimed fees (2026)',
   subtitle: 'Earmarked use',
-  generatedAt: '2026-06-23',
+  generatedAt: '2026-06-24',
   basis: {
     description: 'Sum of claims in treasury/2026/claims.md',
     totalEur: 2650,
@@ -71,7 +71,7 @@ export const ALLOCATION_CHART_2026: TreasuryChartSpec = {
     {
       id: 'work-jun',
       label: 'June work',
-      eur: 1350,
+      eur: 1550,
       color: '#06b6d4',
     },
     {
@@ -83,7 +83,7 @@ export const ALLOCATION_CHART_2026: TreasuryChartSpec = {
     {
       id: 'unallocated',
       label: 'Unallocated',
-      eur: 1238.6,
+      eur: 1038.6,
       color: '#94a3b8',
     },
   ],
