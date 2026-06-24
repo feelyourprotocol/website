@@ -17,7 +17,7 @@ const DOCS_DESCRIPTION =
   'Contributor guide and architecture docs for Feel Your Protocol — interactive Ethereum protocol explorations, E-Components, and open-source development.'
 
 /** Stable path under `docs/public/og/` — copied to `dist/docs/og/` on build. */
-const DOCS_OG_IMAGE_PATH = '/og/default.png'
+const DOCS_OG_IMAGE_PATH = '/og/default.webp'
 const DOCS_OG_IMAGE = `${DOCS_ORIGIN}${DOCS_OG_IMAGE_PATH}`
 const DOCS_OG_IMAGE_WIDTH = '1200'
 const DOCS_OG_IMAGE_HEIGHT = '630'
@@ -46,6 +46,7 @@ export default defineConfig({
     ['meta', { property: 'og:image:width', content: DOCS_OG_IMAGE_WIDTH }],
     ['meta', { property: 'og:image:height', content: DOCS_OG_IMAGE_HEIGHT }],
     ['meta', { property: 'og:image:alt', content: DOCS_OG_IMAGE_ALT }],
+    ['meta', { property: 'og:image:type', content: 'image/webp' }],
     ['meta', { name: 'twitter:image', content: DOCS_OG_IMAGE }],
     ['meta', { name: 'twitter:image:alt', content: DOCS_OG_IMAGE_ALT }],
   ],

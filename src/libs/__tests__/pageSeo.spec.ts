@@ -124,6 +124,7 @@ describe('pageSeo', () => {
     )
     expect(html).toContain('<meta property="og:image:width" content="1200">')
     expect(html).toContain('<meta property="og:image:height" content="630">')
+    expect(html).toContain('<meta property="og:image:type" content="image/webp">')
     expect(html).toContain('<meta name="twitter:card" content="summary_large_image">')
     expect(html).toContain('application/ld+json')
   })

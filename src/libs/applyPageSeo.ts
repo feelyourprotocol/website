@@ -1,4 +1,5 @@
 import type { PageSeo } from './seoCore'
+import { inferOgImageType } from './seoCore'
 
 const JSON_LD_ID = 'page-seo-jsonld'
 
@@ -77,6 +78,9 @@ export function applyPageSeo(seo: PageSeo): void {
   setProperty('og:image:width', String(seo.imageWidth))
   setProperty('og:image:height', String(seo.imageHeight))
   setProperty('og:image:alt', seo.imageAlt)
+
+  const imageType = inferOgImageType(seo.imageUrl)
+  setProperty('og:image:type', imageType)
 
   setMeta('twitter:card', 'summary_large_image')
   setMeta('twitter:title', seo.title)
