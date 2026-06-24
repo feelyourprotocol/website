@@ -29,16 +29,16 @@ Same pattern as the main site: meta tags are injected at build time (`scripts/ge
 **Open Graph / Twitter image** — place your artwork here (not in git until you add it):
 
 ```
-community-token/public/og/default.png
+community-token/public/og/default.webp
 ```
 
-| Requirement | Value                                                         |
-| ----------- | ------------------------------------------------------------- |
-| Format      | **PNG** (real PNG bytes — not JPEG renamed)                   |
-| Size        | **1200 × 630** px                                             |
-| Served at   | `https://community-token.feelyourprotocol.org/og/default.png` |
+| Requirement | Value                                                             |
+| ----------- | ----------------------------------------------------------------- |
+| Format      | **WebP** (1200×630; PNG/JPEG source OK — export as WebP for size) |
+| Size        | **1200 × 630** px                                                 |
+| Served at   | `https://community-token.feelyourprotocol.org/og/default.webp`    |
 
-Main site equivalent: `public/og/default.png` → `feelyourprotocol.org/og/default.png`. Each subdomain keeps its own copy under its own `public/` folder.
+Main site equivalent: `public/og/default.webp` → `feelyourprotocol.org/og/default.webp`. Each subdomain keeps its own copy under its own `public/` folder.
 
 Full deploy build (main site + community token + docs, rebuilt on server — `dist/` is not in git):
 

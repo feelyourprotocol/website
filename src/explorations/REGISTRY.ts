@@ -34,6 +34,8 @@ export interface Exploration {
   timeline: string
   tags: Tag[]
   image?: string
+  /** Optional thumbnail (~300px) for topic cards and compact layouts; same basename as `image` with `_small` suffix. */
+  imageSmall?: string
   /** Optional max height for the cover image in the exploration sidebar (CSS length, e.g. `12rem`). */
   imageBoxHeight?: string
   /** When set, exploration content may Teleport into `#exploration-right-panel`. */
@@ -55,6 +57,16 @@ export function pickRandom<T>(items: T[]): T | undefined {
   return items[Math.floor(Math.random() * items.length)]
 }
 
+export function getExplorationCoverImage(exploration: Exploration): string | undefined {
+  return exploration.image
+}
+
+/** Thumbnail for home/topic cards and other compact layouts; falls back to cover image. */
+export function getExplorationThumbnailImage(exploration: Exploration): string | undefined {
+  if (!exploration.image) return undefined
+  return exploration.imageSmall ?? exploration.image
+}
+
 export function getRandomExplorationWithImage(): Exploration | undefined {
   return pickRandom(Object.values(EXPLORATIONS).filter((e) => e.image))
 }
@@ -62,7 +74,7 @@ export function getRandomExplorationWithImage(): Exploration | undefined {
 export function getRandomTopicExplorationImage(topicId: string): string | undefined {
   const images = Object.values(EXPLORATIONS)
     .filter((e) => e.topic === topicId && e.image)
-    .map((e) => e.image!)
+    .map((e) => getExplorationThumbnailImage(e)!)
   return pickRandom(images)
 }
 

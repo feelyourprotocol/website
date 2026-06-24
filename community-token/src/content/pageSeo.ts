@@ -10,7 +10,7 @@ export const CT_DESCRIPTION = truncateDescription(
 )
 
 /** Stable path under `community-token/public/og/` — copied to `dist/community-token/og/` on build. */
-export const CT_OG_IMAGE_PATH = '/og/default.png' as const
+export const CT_OG_IMAGE_PATH = '/og/default.webp' as const
 export const CT_OG_IMAGE_WIDTH = 1200
 export const CT_OG_IMAGE_HEIGHT = 630
 

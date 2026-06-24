@@ -38,6 +38,14 @@ export function escapeHtml(text: string): string {
     .replace(/"/g, '&quot;')
 }
 
+export function inferOgImageType(imageUrl: string): string | undefined {
+  const path = imageUrl.split('?')[0]?.toLowerCase() ?? ''
+  if (path.endsWith('.webp')) return 'image/webp'
+  if (path.endsWith('.png')) return 'image/png'
+  if (path.endsWith('.jpg') || path.endsWith('.jpeg')) return 'image/jpeg'
+  return undefined
+}
+
 /** Inject title, meta, canonical, Open Graph, and JSON-LD into a Vite-built index.html shell. */
 export function injectSeoIntoHtml(
   html: string,
@@ -56,12 +64,20 @@ export function injectSeoIntoHtml(
     `<meta property="og:image:width" content="${seo.imageWidth}">`,
     `<meta property="og:image:height" content="${seo.imageHeight}">`,
     `<meta property="og:image:alt" content="${escapeHtml(seo.imageAlt)}">`,
+  ]
+
+  const imageType = inferOgImageType(seo.imageUrl)
+  if (imageType) {
+    headTags.push(`<meta property="og:image:type" content="${imageType}">`)
+  }
+
+  headTags.push(
     `<meta name="twitter:card" content="summary_large_image">`,
     `<meta name="twitter:title" content="${escapeHtml(seo.title)}">`,
     `<meta name="twitter:description" content="${escapeHtml(seo.description)}">`,
     `<meta name="twitter:image" content="${escapeHtml(seo.imageUrl)}">`,
     `<meta name="twitter:image:alt" content="${escapeHtml(seo.imageAlt)}">`,
-  ]
+  )
 
   if (seo.noindex) {
     headTags.push('<meta name="robots" content="noindex, follow">')

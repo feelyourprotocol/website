@@ -2,6 +2,7 @@ import type { Exploration } from '@/explorations/REGISTRY'
 import { Tag } from '@/explorations/TAGS'
 
 import image from './image.webp'
+import imageSmall from './image_small.webp'
 
 export const INFO: Exploration = {
   id: 'eip-7594',
@@ -14,6 +15,7 @@ export const INFO: Exploration = {
   timeline: 'fusaka',
   tags: [Tag.PeerDAS],
   image,
+  imageSmall,
   introText:
     '<b>How do blob transactions change with PeerDAS?</b> ' +
     'With the Fusaka hardfork, data availability sampling (DAS) replaces single blob proofs with ' +

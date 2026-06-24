@@ -27,7 +27,7 @@ export const DEFAULT_DESCRIPTION =
   'Interactive open-source explorations of Ethereum protocol changes. Real EVM and crypto libraries running in your browser.'
 
 /** Stable path under `public/og/` — copied verbatim to `dist/website/og/` on build. */
-export const DEFAULT_OG_IMAGE_PATH = '/og/default.png'
+export const DEFAULT_OG_IMAGE_PATH = '/og/default.webp'
 export const DEFAULT_OG_IMAGE_WIDTH = 1200
 export const DEFAULT_OG_IMAGE_HEIGHT = 630
 

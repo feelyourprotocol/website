@@ -34,13 +34,34 @@ The image file goes into your exploration folder as `image.webp` (or `.png`, `.j
 
 ```typescript
 import image from './image.webp'
+import imageSmall from './image_small.webp'
 
 export const INFO: Exploration = {
   // ...
   image,
+  imageSmall, // optional — see Thumbnail below
   // ...
 }
 ```
+
+### Thumbnail (`image_small`)
+
+Exploration pages use the full cover image; **home page topic cards**, **topic overview pages**, and similar compact layouts use a smaller variant when available.
+
+| File | Role |
+|------|------|
+| `image.webp` (or `.jpg`, …) | Full cover — exploration sidebar and detail pages |
+| `image_small.webp` | Optional thumbnail — same format, `_small` suffix |
+
+Naming: if the cover is `image.webp`, the thumbnail is `image_small.webp`; for `image.jpg` use `image_small.jpg`.
+
+| Property | Recommendation |
+|----------|---------------|
+| **Width** | ~300px (matches max display ~144–224px at 2× retina) |
+| **Aspect ratio** | Same as cover |
+| **File size** | Under 40 KB |
+
+If `image_small` is omitted, compact layouts fall back to the full cover image.
 
 ## Color Palette
 
@@ -395,8 +416,8 @@ Colors — strict:
 | Rule | Detail |
 |------|--------|
 | Format | WebP preferred; PNG, JPEG, SVG also accepted |
-| Orientation | Portrait (3:4) |
-| Resolution | 768×1024 recommended; min 512px short side, max 1536px long side |
+| Cover | `image.webp` — 768×1024 recommended |
+| Thumbnail | `image_small.webp` — optional ~300px for cards |
 | File size | < 200 KB (WebP) or < 400 KB (PNG/JPEG) |
 | Colors | Greyscale + topic color shades only; keep the two clearly separated |
 | Composition | Abstract, one focal point, generous white margins at edges |
