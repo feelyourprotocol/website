@@ -32,11 +32,11 @@ Same pattern as the main site: meta tags are injected at build time (`scripts/ge
 community-token/public/og/default.webp
 ```
 
-| Requirement | Value                                                         |
-| ----------- | ------------------------------------------------------------- |
+| Requirement | Value                                                             |
+| ----------- | ----------------------------------------------------------------- |
 | Format      | **WebP** (1200×630; PNG/JPEG source OK — export as WebP for size) |
-| Size        | **1200 × 630** px                                             |
-| Served at   | `https://community-token.feelyourprotocol.org/og/default.webp` |
+| Size        | **1200 × 630** px                                                 |
+| Served at   | `https://community-token.feelyourprotocol.org/og/default.webp`    |
 
 Main site equivalent: `public/og/default.webp` → `feelyourprotocol.org/og/default.webp`. Each subdomain keeps its own copy under its own `public/` folder.
 

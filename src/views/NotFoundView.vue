@@ -1,5 +1,8 @@
 <script setup lang="ts">
-import { getRandomExplorationWithImage, getExplorationThumbnailImage } from '@/explorations/REGISTRY'
+import {
+  getExplorationThumbnailImage,
+  getRandomExplorationWithImage,
+} from '@/explorations/REGISTRY'
 import { TOPIC_COLORS, topicCSSVars, TOPICS } from '@/explorations/TOPICS'
 import { DOCS_ADD_EXPLORATION } from '@/libs/docsUrls'
 
