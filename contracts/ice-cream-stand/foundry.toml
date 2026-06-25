@@ -13,3 +13,9 @@ remappings = [
 
 [fmt]
 line_length = 120
+
+[rpc_endpoints]
+base = "${BASE_RPC_URL}"
+
+[etherscan]
+base = { key = "${ETHERSCAN_API_KEY}", chain = "base" }

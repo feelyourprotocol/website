@@ -2,8 +2,8 @@
 
 Temporary home-page gag (see [Special Actions overview](/special-actions/)): a meme ice cream stand where visitors buy a scoop with **$FYP on Base** and receive a **soulbound NFT** receipt.
 
-::: warning Summer gag, real on-chain flow (soon)
-Playful sandbox — not financial advice, not a product roadmap. Code lives in `src/ice-cream/` and stays in the repo after the stand comes down; only the home integration is removed.
+::: warning Summer gag, real on-chain flow
+Playful sandbox — not financial advice, not a product roadmap. **IceCreamStand** is deployed on Base; wallet integration on the home page is the remaining step. Code lives in `src/ice-cream/` and stays in the repo after the stand comes down; only the home integration is removed.
 :::
 
 ## Scope
@@ -11,11 +11,29 @@ Playful sandbox — not financial advice, not a product roadmap. Code lives in `
 | Item | Detail |
 | ---- | ------ |
 | Duration | ~1–2 weeks (“Ice Cream Week”) |
-| Network | Base mainnet |
+| Network | Base mainnet (chain ID `8453`) |
 | Token | FYP `0x8eae800ff67778057941792acdbab29904962ba3` |
 | Price | 10 FYP per scoop |
+| **Contract** | `IceCreamStand` — [`0xac39d6219C5e45Ba37C64F1604919ff80040eF7e`](https://basescan.org/address/0xac39d6219C5e45Ba37C64F1604919ff80040eF7e) |
 | Revenue wallet | FYP Special Actions `0x4AEef6965A4cBcddb2e96555dCD0cB1afA7Bd202` ([Base](https://basescan.org/address/0x4AEef6965A4cBcddb2e96555dCD0cB1afA7Bd202)) — separate from main treasury |
 | NFT | ERC-1155 soulbound receipt (per vendor `nftId`) |
+
+## On-chain deployment (Base mainnet)
+
+Public record for **IceCreamStand** — also mirrored in `src/ice-cream/constants.ts` and `contracts/ice-cream-stand/README.md`.
+
+| Field | Value |
+| ----- | ----- |
+| Contract | [`0xac39d6219C5e45Ba37C64F1604919ff80040eF7e`](https://basescan.org/address/0xac39d6219C5e45Ba37C64F1604919ff80040eF7e) |
+| Deploy transaction | [`0xa537550cb1a54230c652c34838e60dcdd45249d973c9fa22fe5759bca0e42e86`](https://basescan.org/tx/0xa537550cb1a54230c652c34838e60dcdd45249d973c9fa22fe5759bca0e42e86) |
+| Block | `47812253` |
+| Owner | `0x4AEef6965A4cBcddb2e96555dCD0cB1afA7Bd202` (FYP Special Actions wallet) |
+| FYP token | `0x8eAE800Ff67778057941792aCdBAB29904962bA3` |
+| Scoop revenue | `0x4AEef6965A4cBcddb2e96555dCD0cB1afA7Bd202` (immutable in contract) |
+| Metadata base URI | `https://feelyourprotocol.org/ice-cream/metadata/{id}.json` |
+| Allowed token IDs | `2, 3, 9, 10, 13, 14, 16, 18` |
+
+Source verification on Basescan is optional transparency (not required for purchases). If needed: `forge verify-contract` — see [contract README](https://github.com/feelyourprotocol/website/tree/main/contracts/ice-cream-stand#verify-failed-etherscan-api-v2).
 
 ## Architecture
 
