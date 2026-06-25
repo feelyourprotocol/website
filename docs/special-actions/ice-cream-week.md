@@ -14,6 +14,7 @@ Playful sandbox — not financial advice, not a product roadmap. Code lives in `
 | Network | Base mainnet |
 | Token | FYP `0x8eae800ff67778057941792acdbab29904962ba3` |
 | Price | 10 FYP per scoop |
+| Revenue wallet | FYP Special Actions `0x4AEef6965A4cBcddb2e96555dCD0cB1afA7Bd202` ([Base](https://basescan.org/address/0x4AEef6965A4cBcddb2e96555dCD0cB1afA7Bd202)) — separate from main treasury |
 | NFT | ERC-1155 soulbound receipt (per vendor `nftId`) |
 
 ## Architecture

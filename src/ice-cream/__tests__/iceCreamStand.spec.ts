@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest'
 
+import { FYP_SPECIAL_ACTIONS_WALLET_ADDRESS } from '../constants'
 import { getIceCreamErrorView } from '../errors'
 import { ICE_CREAM_MEMES } from '../memes'
 import { canPurchase, canShuffleVendor, pickRandomMeme } from '../pickMeme'
@@ -123,6 +124,12 @@ describe('useIceCreamStand', () => {
     stand.activeMeme.value = testMemes[0]!
     stand.shuffleVendor()
     expect(stand.activeMeme.value.id).toBe('b')
+  })
+})
+
+describe('ice-cream constants', () => {
+  it('wires FYP Special Actions revenue wallet', () => {
+    expect(FYP_SPECIAL_ACTIONS_WALLET_ADDRESS).toBe('0x4AEef6965A4cBcddb2e96555dCD0cB1afA7Bd202')
   })
 })
 
