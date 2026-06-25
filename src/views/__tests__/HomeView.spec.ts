@@ -98,6 +98,23 @@ describe('HomeView', () => {
     })
   })
 
+  describe('Ice Cream Week', () => {
+    it('renders the ice cream stand above Latest', () => {
+      expect(wrapper.text()).toContain('Ice Cream')
+      expect(wrapper.find('[data-ice-cream-week]').exists()).toBe(true)
+      expect(wrapper.text()).toContain('Buy Ice Cream')
+    })
+
+    it('lists Latest after the ice cream section in the DOM', () => {
+      const ice = wrapper.find('[data-ice-cream-week]').element
+      const latestLabel = wrapper.findAll('span').find((s) => s.text() === 'Latest')
+      expect(latestLabel).toBeDefined()
+      expect(
+        ice.compareDocumentPosition(latestLabel!.element) & Node.DOCUMENT_POSITION_FOLLOWING,
+      ).toBeTruthy()
+    })
+  })
+
   describe('Featured explorations', () => {
     const featured = ['eip-7928', 'eip-8024', 'eip-7883', 'eip-7594', 'eip-7951']
     const latest = featured.slice(0, 2)

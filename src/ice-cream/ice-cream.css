@@ -1,0 +1,113 @@
+@import 'tailwindcss';
+
+/* Special Actions — Ice Cream Week (removable visual block; code stays in src/ice-cream/) */
+
+.ice-cream-stand {
+  border: 1px solid #e2e8f0;
+  background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+}
+
+.ice-cream-stand__hero {
+  @apply overflow-hidden rounded-md border border-slate-100 bg-slate-50/80;
+}
+
+.ice-cream-stand__hero img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  object-position: center;
+}
+
+.ice-cream-stand__success img {
+  display: block;
+  width: 100%;
+  max-width: min(100%, 20rem);
+  height: auto;
+  margin-inline: auto;
+  object-fit: contain;
+  object-position: center;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+  @apply rounded-md border border-slate-100 bg-slate-50/80;
+}
+
+.ice-cream-stand__price {
+  @apply inline-flex items-center gap-1 rounded-full border border-purple-200 bg-purple-50 px-3 py-1 font-mono text-xs font-bold text-purple-800;
+}
+
+.ice-cream-stand__buy {
+  @apply inline-flex min-h-11 items-center justify-center rounded-md border border-purple-500 bg-gradient-to-r from-purple-600 to-cyan-500 px-5 py-2.5 font-mono text-sm font-bold text-white shadow-sm transition hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-50;
+}
+
+.ice-cream-stand__secondary {
+  @apply font-mono text-xs text-slate-500 underline decoration-slate-300 underline-offset-2 hover:text-purple-700 disabled:cursor-not-allowed disabled:opacity-40;
+}
+
+.ice-cream-stand__fyp-faq {
+  @apply border-t border-slate-100 pt-2;
+}
+
+.ice-cream-stand__fyp-topics {
+  @apply flex flex-wrap items-center justify-center gap-x-1.5 gap-y-1 text-center;
+}
+
+.ice-cream-stand__fyp-sep {
+  @apply select-none text-slate-300;
+}
+
+.ice-cream-stand__fyp-topic {
+  @apply rounded px-0.5 py-0.5 text-xs font-medium text-slate-500 transition hover:text-purple-800;
+}
+
+.ice-cream-stand__fyp-topic.is-active {
+  @apply text-purple-800 underline decoration-purple-200 underline-offset-2;
+}
+
+.ice-cream-stand__fyp-panel {
+  @apply mt-2 space-y-2 text-xs leading-relaxed text-slate-600;
+}
+
+.ice-cream-stand__fyp-actions {
+  @apply flex flex-wrap items-center gap-x-3 gap-y-1;
+}
+
+.ice-cream-stand__fyp-add {
+  @apply inline-flex min-h-7 items-center justify-center rounded border border-slate-200 bg-white px-2.5 py-1 font-mono text-[0.65rem] font-semibold text-slate-600 transition hover:border-purple-200 hover:text-purple-800 disabled:cursor-not-allowed disabled:opacity-50;
+}
+
+.ice-cream-stand__fyp-status {
+  @apply text-[0.65rem] text-slate-400;
+}
+
+.ice-cream-stand__fyp-link {
+  @apply font-semibold text-purple-700 underline decoration-purple-200 underline-offset-2 hover:text-purple-900;
+}
+
+.ice-cream-stand__error {
+  @apply rounded-md border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-950;
+}
+
+.ice-cream-stand__success-badge {
+  @apply inline-block rounded-md border border-cyan-200 bg-cyan-50 px-2 py-0.5 font-mono text-[0.65rem] uppercase tracking-wider text-cyan-800;
+}
+
+.ice-cream-purchasing {
+  animation: ice-cream-pulse 1.1s ease-in-out infinite;
+}
+
+@keyframes ice-cream-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.55;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ice-cream-purchasing {
+    animation: none;
+  }
+}

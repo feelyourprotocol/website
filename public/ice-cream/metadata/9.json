@@ -1,0 +1,12 @@
+{
+  "name": "FYP Ice Cream — Self-Own Surprise Swirl",
+  "description": "Soulbound receipt for one scoop from Feel Your Protocol Ice Cream Week. Non-transferable summer gag on Base.",
+  "image": "https://feelyourprotocol.org/ice-cream/images/clown-master.png",
+  "external_url": "https://feelyourprotocol.org/",
+  "attributes": [
+    { "trait_type": "Vendor", "value": "Clown Makeup" },
+    { "trait_type": "Flavor", "value": "Self-Own Surprise Swirl" },
+    { "trait_type": "Season", "value": "Ice Cream Week 2026" },
+    { "trait_type": "Soulbound", "value": "Yes" }
+  ]
+}

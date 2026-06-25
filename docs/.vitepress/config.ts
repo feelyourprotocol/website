@@ -99,6 +99,12 @@ export default defineConfig({
           { text: 'Third-Party Libraries', link: '/contributing/third-party-libraries' },
         ],
       },
+      {
+        text: 'Special Actions',
+        link: '/special-actions/',
+        collapsed: true,
+        items: [{ text: 'Ice Cream Week', link: '/special-actions/ice-cream-week' }],
+      },
     ],
     socialLinks: [{ icon: 'github', link: 'https://github.com/feelyourprotocol/website' }],
     search: {

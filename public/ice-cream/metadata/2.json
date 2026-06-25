@@ -1,0 +1,12 @@
+{
+  "name": "FYP Ice Cream — Encrypted Vanilla Beam",
+  "description": "Soulbound receipt for one scoop from Feel Your Protocol Ice Cream Week. Non-transferable summer gag on Base.",
+  "image": "https://feelyourprotocol.org/ice-cream/images/neon-cypher-cat-master.png",
+  "external_url": "https://feelyourprotocol.org/",
+  "attributes": [
+    { "trait_type": "Vendor", "value": "Neon Cypher Cat" },
+    { "trait_type": "Flavor", "value": "Encrypted Vanilla Beam" },
+    { "trait_type": "Season", "value": "Ice Cream Week 2026" },
+    { "trait_type": "Soulbound", "value": "Yes" }
+  ]
+}
