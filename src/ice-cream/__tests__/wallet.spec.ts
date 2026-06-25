@@ -14,10 +14,7 @@ describe('addFypToWallet', () => {
   })
 
   it('requests wallet_watchAsset for FYP on Base', async () => {
-    const request = vi
-      .fn()
-      .mockResolvedValueOnce(undefined)
-      .mockResolvedValueOnce(true)
+    const request = vi.fn().mockResolvedValueOnce(undefined).mockResolvedValueOnce(true)
     vi.stubGlobal('window', { ethereum: { request } })
 
     await expect(addFypToWallet()).resolves.toBe('added')

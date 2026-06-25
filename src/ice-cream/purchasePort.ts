@@ -1,5 +1,5 @@
-import type { IceCreamMeme, IceCreamPurchasePort, PurchaseOutcome } from './types'
 import { createViemPurchasePort } from './createViemPurchasePort'
+import type { IceCreamMeme, IceCreamPurchasePort, PurchaseOutcome } from './types'
 
 export type SimulatedPurchaseOptions = {
   delayMs?: number

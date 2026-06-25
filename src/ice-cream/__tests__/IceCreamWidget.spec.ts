@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest'
 import { flushPromises, mount } from '@vue/test-utils'
 
 import { COMMUNITY_TOKEN_HOME } from '@/libs/communityToken'
+
 import IceCreamWidget from '../IceCreamWidget.vue'
 import { createSimulatedPurchasePort } from '../purchasePort'
 import type { IceCreamMeme } from '../types'

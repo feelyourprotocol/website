@@ -1,20 +1,20 @@
-import { ICE_CREAM_PRICE_FYP } from './constants'
-import clownNft from './assets/nft/clown-master.png'
 import clownVendor from './assets/clown-vendor.webp'
-import dealWithItNft from './assets/nft/deal-with-it-master.png'
 import dealWithItVendor from './assets/deal-with-it-vendor.webp'
-import dogeNft from './assets/nft/doge-master.png'
 import dogeVendor from './assets/doge-vendor.webp'
-import galaxyBrainNft from './assets/nft/galaxy-brain-master.png'
 import galaxyBrainVendor from './assets/galaxy-brain-vendor.webp'
-import laserEyesNft from './assets/nft/laser-eyes-master.png'
 import laserEyesVendor from './assets/laser-eyes-vendor.webp'
-import monkeNft from './assets/nft/return-to-monke-master.png'
-import monkeVendor from './assets/return-to-monke-vendor.webp'
-import neonCatNft from './assets/nft/neon-cypher-cat-master.png'
 import neonCatVendor from './assets/neon-cypher-cat-vendor.webp'
+import clownNft from './assets/nft/clown-master.png'
+import dealWithItNft from './assets/nft/deal-with-it-master.png'
+import dogeNft from './assets/nft/doge-master.png'
+import galaxyBrainNft from './assets/nft/galaxy-brain-master.png'
+import laserEyesNft from './assets/nft/laser-eyes-master.png'
+import neonCatNft from './assets/nft/neon-cypher-cat-master.png'
 import partyParrotNft from './assets/nft/party-parrot-master.png'
+import monkeNft from './assets/nft/return-to-monke-master.png'
 import partyParrotVendor from './assets/party-parrot-vendor.webp'
+import monkeVendor from './assets/return-to-monke-vendor.webp'
+import { ICE_CREAM_PRICE_FYP } from './constants'
 import type { IceCreamMeme } from './types'
 
 export const ICE_CREAM_MEMES: IceCreamMeme[] = [
@@ -113,10 +113,8 @@ export const ICE_CREAM_MEMES: IceCreamMeme[] = [
       'FULL SEND. Rainbow feathers, tropical beats, scoops that dance. $FYP at the counter — ' +
       'squawk if you minted.',
     flavor: 'Full Send Squawk Split',
-    flavorBlurb:
-      'Neon feathers, confetti crunch. One soulbound scoop — party never stops on Base.',
-    successLine:
-      'Parrot spins. Receipt minted. Soulbound party cone — full send on Base.',
+    flavorBlurb: 'Neon feathers, confetti crunch. One soulbound scoop — party never stops on Base.',
+    successLine: 'Parrot spins. Receipt minted. Soulbound party cone — full send on Base.',
     vendorImg: partyParrotVendor,
     successImg: partyParrotNft,
     priceFyp: ICE_CREAM_PRICE_FYP,
@@ -131,8 +129,7 @@ export const ICE_CREAM_MEMES: IceCreamMeme[] = [
     flavor: 'Pixel Shade Crunch',
     flavorBlurb:
       '8-bit shades, zero chill needed. One soulbound scoop — transfer is not your problem.',
-    successLine:
-      'Shades slide down. Receipt minted. Soulbound cool cone — deal with it on Base.',
+    successLine: 'Shades slide down. Receipt minted. Soulbound cool cone — deal with it on Base.',
     vendorImg: dealWithItVendor,
     successImg: dealWithItNft,
     priceFyp: ICE_CREAM_PRICE_FYP,

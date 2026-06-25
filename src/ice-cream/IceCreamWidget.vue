@@ -1,13 +1,13 @@
 <script setup lang="ts">
+import './ice-cream.css'
 import { ref } from 'vue'
 
-import { ICE_CREAM_PRICE_FYP, FYP_TOKEN_SYMBOL } from './constants'
 import { COMMUNITY_TOKEN_HOME } from '@/libs/communityToken'
+
+import { FYP_TOKEN_SYMBOL, ICE_CREAM_PRICE_FYP } from './constants'
 import type { IceCreamMeme, IceCreamPurchasePort } from './types'
 import { useIceCreamStand } from './useIceCreamStand'
 import { addFypToWallet, type AddFypToWalletResult } from './wallet'
-
-import './ice-cream.css'
 
 type FypTopicId = 'about' | 'why' | 'wallet'
 
@@ -180,11 +180,7 @@ function toggleFypTopic(id: FypTopicId) {
               </template>
             </div>
 
-            <div
-              v-if="activeFypTopic"
-              class="ice-cream-stand__fyp-panel"
-              role="tabpanel"
-            >
+            <div v-if="activeFypTopic" class="ice-cream-stand__fyp-panel" role="tabpanel">
               <template v-if="activeFypTopic === 'about'">
                 <p>
                   Community token for live on-chain experiments.
@@ -204,8 +200,8 @@ function toggleFypTopic(id: FypTopicId) {
                   A summer gag and our first live on-chain experiment with
                   {{ FYP_TOKEN_SYMBOL }} on Base — real wallet flow: approve, pay
                   {{ ICE_CREAM_PRICE_FYP }} {{ FYP_TOKEN_SYMBOL }}, mint a soulbound meme receipt.
-                  {{ FYP_TOKEN_SYMBOL }} is the community token we use to try protocol ideas in public.
-                  Not financial advice — do your own research.
+                  {{ FYP_TOKEN_SYMBOL }} is the community token we use to try protocol ideas in
+                  public. Not financial advice — do your own research.
                 </p>
               </template>
 

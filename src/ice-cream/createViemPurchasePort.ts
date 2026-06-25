@@ -9,11 +9,7 @@ import {
 import { base } from 'viem/chains'
 
 import { iceCreamStandAbi } from './abi'
-import {
-  FYP_TOKEN_ADDRESS,
-  ICE_CREAM_PRICE_FYP,
-  ICE_CREAM_STAND_ADDRESS,
-} from './constants'
+import { FYP_TOKEN_ADDRESS, ICE_CREAM_PRICE_FYP, ICE_CREAM_STAND_ADDRESS } from './constants'
 import { mapPurchaseError } from './mapPurchaseError'
 import type { IceCreamMeme, IceCreamPurchasePort, PurchaseOutcome } from './types'
 import { ensureBaseChain, getInjectedProvider } from './wallet'

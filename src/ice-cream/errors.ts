@@ -13,8 +13,7 @@ const ERROR_VIEWS: Record<IceCreamErrorCode, IceCreamErrorView> = {
     title: 'Not enough $FYP in the cone',
     message:
       'Your wallet is light on $FYP. We cannot hand over premium meme ice cream on credit — house rules.',
-    hint:
-      'Grab $FYP on Base, then come back hungry. Balance hidden? Tap “FYP not in wallet?” below.',
+    hint: 'Grab $FYP on Base, then come back hungry. Balance hidden? Tap “FYP not in wallet?” below.',
   },
   already_scooped: {
     code: 'already_scooped',
