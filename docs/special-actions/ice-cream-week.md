@@ -1,0 +1,140 @@
+# Ice Cream Week
+
+Temporary home-page gag (see [Special Actions overview](/special-actions/)): a meme ice cream stand where visitors buy a scoop with **$FYP on Base** and receive a **soulbound NFT** receipt.
+
+::: warning Summer gag, real on-chain flow (soon)
+Playful sandbox — not financial advice, not a product roadmap. Code lives in `src/ice-cream/` and stays in the repo after the stand comes down; only the home integration is removed.
+:::
+
+## Scope
+
+| Item | Detail |
+| ---- | ------ |
+| Duration | ~1–2 weeks (“Ice Cream Week”) |
+| Network | Base mainnet |
+| Token | FYP `0x8eae800ff67778057941792acdbab29904962ba3` |
+| Price | 10 FYP per scoop |
+| NFT | ERC-1155 soulbound receipt (per vendor `nftId`) |
+
+## Architecture
+
+```
+src/ice-cream/
+├── index.ts                 # export IceCreamHomeSection only
+├── IceCreamHomeSection.vue  # SectionLabel + widget
+├── IceCreamWidget.vue       # UI + flow states
+├── useIceCreamStand.ts      # composable (phase, vendor, purchase)
+├── purchasePort.ts          # IceCreamPurchasePort — viem later
+├── memes.ts                 # vendor + NFT image pairs
+├── assets/                  # vendor WebP + nft/ PNG masters
+└── __tests__/               # remove folder with feature if desired
+```
+
+**Home integration (single point):**
+
+```vue
+import { IceCreamHomeSection } from '@/ice-cream'
+<!-- … -->
+<IceCreamHomeSection />
+```
+
+To end Ice Cream Week: delete the import and `<IceCreamHomeSection />` line in `HomeView.vue`. Optionally remove `describe('Ice Cream Week')` from `HomeView.spec.ts`.
+
+## Purchase flow (phases)
+
+1. **idle** — random vendor, promotional copy, Buy / Different vendor
+2. **purchasing** — wallet + transfer + mint (simulated in round 1)
+3. **success** — soulbound NFT art (same PNG as on-chain master)
+4. **error** — humorous FYP-side feedback + retry
+
+The `IceCreamPurchasePort` interface is the seam for real wallet code:
+
+```typescript
+interface IceCreamPurchasePort {
+  buy(meme: IceCreamMeme): Promise<PurchaseOutcome>
+}
+```
+
+Round 1 uses `createSimulatedPurchasePort()` (delay + configurable outcome).
+
+## Meme data
+
+Each entry in `memes.ts`:
+
+| Field | Purpose |
+| ----- | ------- |
+| `vendorImg` | Landscape stand banner (`{id}-vendor.webp`) |
+| `successImg` | Soulbound receipt — `{id}-master.png` (shared with on-chain metadata) |
+| `nftId` | ERC-1155 token id |
+| `quote` | In-character sales pitch |
+| `flavor` | Collectible flavor name |
+
+## Meme & NFT assets
+
+Notes for creating vendor banners and pixel NFTs (image generators / AI prompts).
+
+### Meme identity (both assets)
+
+Every vendor pair should read as the **same joke** in two formats: a cinematic stand and a wallet-sized scoop.
+
+| Rule | Detail |
+| ---- | ------ |
+| **Character** | Keep the meme's recognizable look, palette, and focal character. |
+| **Recontext** | Original meme energy, but as an ice cream pitch. |
+| **Text in images** | **English only.** Short, legible signage. No `$` or fiat. **Price lives in the UI** (`10 FYP`) — omit from stand art if easier. |
+| **Continuity** | The scoop the vendor holds in the stand **is** the NFT. |
+
+### Vendor banner — `{id}-vendor.webp`
+
+Wide landscape storefront (`vendorImg`); aspect ratio follows source art (~16:9).
+
+- Meme character **behind a stand**, facing the viewer — no customer in frame.
+- **Signage:** promo line + tip jar **“FYP TOKEN PAYMENTS”**. Price board optional.
+- Vendor **holds the exact scoop** that becomes the NFT.
+
+| Property | Value |
+| -------- | ----- |
+| **File** | `src/ice-cream/assets/{id}-vendor.webp` |
+| **Format** | WebP q85 or PNG |
+| **Size** | ~1024 px wide; keep headroom |
+| **Reference** | `this-is-fine-vendor.webp`, 1024×571, ~96 KB |
+
+### Soulbound NFT — `assets/nft/{id}-master.png`
+
+Same PNG for **on-chain metadata** and the **success screen**.
+
+| Property | Value |
+| -------- | ----- |
+| **Native** | 64×64 px pixel grid → `{id}-native.png` |
+| **Master** | 512×512, nearest-neighbor upscale → `{id}-master.png` |
+| **Style** | 8-bit / CryptoPunks; transparent PNG OK; no text in art |
+| **Reference** | This is Fine: 64×64 → 512×512, ~1.3 KB |
+
+Metadata template (`metadata/{tokenId}.json`):
+
+```json
+{
+  "name": "FYP Ice Cream — Smoky Resilience Ripple",
+  "description": "Soulbound receipt for one scoop from Feel Your Protocol Ice Cream Week. Non-transferable summer gag on Base.",
+  "image": "ipfs://REPLACE/this-is-fine-master.png",
+  "external_url": "https://feelyourprotocol.org/",
+  "attributes": [
+    { "trait_type": "Vendor", "value": "This is Fine Dog" },
+    { "trait_type": "Flavor", "value": "Smoky Resilience Ripple" },
+    { "trait_type": "Season", "value": "Ice Cream Week 2026" },
+    { "trait_type": "Soulbound", "value": "Yes" }
+  ]
+}
+```
+
+## Boundaries
+
+- **No imports** from `community-token/` or treasury modules into `ice-cream/`
+- **No shared eComponents** unless reused elsewhere later
+- Generic libs (`viem`, optional `wagmi`) only when wallet integration lands
+
+## Tests
+
+```bash
+npm run test:unit -- src/ice-cream
+```
