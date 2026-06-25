@@ -1,9 +1,25 @@
 <script setup lang="ts">
+import { ref } from 'vue'
+
 import { ICE_CREAM_PRICE_FYP, FYP_TOKEN_SYMBOL } from './constants'
+import { COMMUNITY_TOKEN_HOME } from '@/libs/communityToken'
 import type { IceCreamMeme, IceCreamPurchasePort } from './types'
 import { useIceCreamStand } from './useIceCreamStand'
+import { addFypToWallet, type AddFypToWalletResult } from './wallet'
 
 import './ice-cream.css'
+
+type FypTopicId = 'about' | 'why' | 'wallet'
+
+const FYP_TOPICS: { id: FypTopicId; label: string }[] = [
+  { id: 'about', label: 'What is FYP?' },
+  { id: 'why', label: 'WTF, why ice cream?' },
+  { id: 'wallet', label: 'FYP not in wallet?' },
+]
+
+const fypWalletStatus = ref<string | null>(null)
+const addingFyp = ref(false)
+const activeFypTopic = ref<FypTopicId | null>(null)
 
 const props = defineProps<{
   /** Test / story injection — production uses defaults. */
@@ -21,6 +37,28 @@ const {
   canPurchase,
   canShuffleVendor,
 } = useIceCreamStand({ purchasePort: props.purchasePort, memes: props.memes })
+
+const FYP_WALLET_STATUS: Record<AddFypToWalletResult, string | null> = {
+  added: 'Added — check MetaMask on Base.',
+  rejected: 'Dismissed — you can add manually anytime.',
+  unavailable: 'Needs MetaMask (or another Base wallet).',
+}
+
+async function onAddFypToWallet() {
+  if (addingFyp.value) return
+  addingFyp.value = true
+  fypWalletStatus.value = null
+  try {
+    const result = await addFypToWallet()
+    fypWalletStatus.value = FYP_WALLET_STATUS[result]
+  } finally {
+    addingFyp.value = false
+  }
+}
+
+function toggleFypTopic(id: FypTopicId) {
+  activeFypTopic.value = activeFypTopic.value === id ? null : id
+}
 </script>
 
 <template>
@@ -123,6 +161,71 @@ const {
             >
               Different vendor
             </button>
+          </div>
+
+          <div class="ice-cream-stand__fyp-faq">
+            <div class="ice-cream-stand__fyp-topics" role="tablist" aria-label="FYP help">
+              <template v-for="(topic, index) in FYP_TOPICS" :key="topic.id">
+                <span v-if="index > 0" class="ice-cream-stand__fyp-sep" aria-hidden="true">·</span>
+                <button
+                  type="button"
+                  role="tab"
+                  class="ice-cream-stand__fyp-topic"
+                  :class="{ 'is-active': activeFypTopic === topic.id }"
+                  :aria-selected="activeFypTopic === topic.id"
+                  @click="toggleFypTopic(topic.id)"
+                >
+                  {{ topic.label }}
+                </button>
+              </template>
+            </div>
+
+            <div
+              v-if="activeFypTopic"
+              class="ice-cream-stand__fyp-panel"
+              role="tabpanel"
+            >
+              <template v-if="activeFypTopic === 'about'">
+                <p>
+                  Community token for live on-chain experiments.
+                  <a
+                    :href="COMMUNITY_TOKEN_HOME"
+                    target="_blank"
+                    rel="noopener"
+                    class="ice-cream-stand__fyp-link"
+                  >
+                    About {{ FYP_TOKEN_SYMBOL }}
+                  </a>
+                </p>
+              </template>
+
+              <template v-else-if="activeFypTopic === 'why'">
+                <p>
+                  A summer gag and our first live on-chain experiment with
+                  {{ FYP_TOKEN_SYMBOL }} on Base — real wallet flow: approve, pay
+                  {{ ICE_CREAM_PRICE_FYP }} {{ FYP_TOKEN_SYMBOL }}, mint a soulbound meme receipt.
+                  {{ FYP_TOKEN_SYMBOL }} is the community token we use to try protocol ideas in public.
+                  Not financial advice — do your own research.
+                </p>
+              </template>
+
+              <template v-else-if="activeFypTopic === 'wallet'">
+                <p>Transfers can land before MetaMask lists the token on Base.</p>
+                <div class="ice-cream-stand__fyp-actions">
+                  <button
+                    type="button"
+                    class="ice-cream-stand__fyp-add"
+                    :disabled="addingFyp"
+                    @click="onAddFypToWallet"
+                  >
+                    {{ addingFyp ? 'Opening wallet…' : 'Add to wallet' }}
+                  </button>
+                  <span v-if="fypWalletStatus" class="ice-cream-stand__fyp-status">{{
+                    fypWalletStatus
+                  }}</span>
+                </div>
+              </template>
+            </div>
           </div>
         </div>
       </div>

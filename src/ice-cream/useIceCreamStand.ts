@@ -3,7 +3,7 @@ import { ref } from 'vue'
 import { getIceCreamErrorView } from './errors'
 import { ICE_CREAM_MEMES } from './memes'
 import { canPurchase, canShuffleVendor, pickRandomMeme } from './pickMeme'
-import { createSimulatedPurchasePort } from './purchasePort'
+import { createDefaultPurchasePort } from './purchasePort'
 import type { IceCreamErrorView, IceCreamMeme, IceCreamPhase, IceCreamPurchasePort } from './types'
 
 export type UseIceCreamStandOptions = {
@@ -13,7 +13,7 @@ export type UseIceCreamStandOptions = {
 
 export function useIceCreamStand(options: UseIceCreamStandOptions = {}) {
   const memes = options.memes ?? ICE_CREAM_MEMES
-  const purchasePort = options.purchasePort ?? createSimulatedPurchasePort()
+  const purchasePort = options.purchasePort ?? createDefaultPurchasePort()
 
   const phase = ref<IceCreamPhase>('idle')
   const activeMeme = ref<IceCreamMeme>(pickRandomMeme(memes))

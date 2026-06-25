@@ -13,7 +13,15 @@ const ERROR_VIEWS: Record<IceCreamErrorCode, IceCreamErrorView> = {
     title: 'Not enough $FYP in the cone',
     message:
       'Your wallet is light on $FYP. We cannot hand over premium meme ice cream on credit — house rules.',
-    hint: 'Grab $FYP on Base, then come back hungry. The freezer stays cold.',
+    hint:
+      'Grab $FYP on Base, then come back hungry. Balance hidden? Tap “FYP not in wallet?” below.',
+  },
+  already_scooped: {
+    code: 'already_scooped',
+    title: 'You already have this flavor',
+    message:
+      'This wallet already minted a soulbound receipt for that scoop. One per flavor — try a different vendor.',
+    hint: 'Hit “Different vendor” and pick a flavor you have not scooped yet.',
   },
   network: {
     code: 'network',
@@ -24,10 +32,10 @@ const ERROR_VIEWS: Record<IceCreamErrorCode, IceCreamErrorView> = {
   },
   mint_failed: {
     code: 'mint_failed',
-    title: 'Payment landed, NFT did not',
+    title: 'Scoop did not mint',
     message:
-      'We got your $FYP, but the soulbound receipt mint tripped. Rare, annoying, and entirely our problem to fix.',
-    hint: 'Ping us on X (@FeelEthereum) with your tx hash. We will make the receipt right.',
+      'The on-chain mint did not finish. If MetaMask shows a failed transaction, your $FYP was not taken — only gas may apply.',
+    hint: 'Try again in a moment. If MetaMask keeps failing, ping us on X (@FeelEthereum) with the tx hash.',
   },
   unknown: {
     code: 'unknown',

@@ -19,6 +19,7 @@ export type IceCreamPhase = 'idle' | 'purchasing' | 'success' | 'error'
 export type IceCreamErrorCode =
   | 'wallet_rejected'
   | 'insufficient_fyp'
+  | 'already_scooped'
   | 'network'
   | 'mint_failed'
   | 'unknown'

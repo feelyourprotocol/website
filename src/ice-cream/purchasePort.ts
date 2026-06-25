@@ -1,4 +1,5 @@
 import type { IceCreamMeme, IceCreamPurchasePort, PurchaseOutcome } from './types'
+import { createViemPurchasePort } from './createViemPurchasePort'
 
 export type SimulatedPurchaseOptions = {
   delayMs?: number
@@ -13,7 +14,12 @@ function resolveOutcome(
   return typeof outcome === 'function' ? outcome(meme) : outcome
 }
 
-/** Stand-in until viem/wagmi wallet flow lands — same port shape as production. */
+/** Production port — MetaMask / injected wallet on Base. */
+export function createDefaultPurchasePort(): IceCreamPurchasePort {
+  return createViemPurchasePort()
+}
+
+/** Stand-in for unit tests — same port shape as production. */
 export function createSimulatedPurchasePort(
   options: SimulatedPurchaseOptions = {},
 ): IceCreamPurchasePort {

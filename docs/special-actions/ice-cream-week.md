@@ -74,7 +74,7 @@ interface IceCreamPurchasePort {
 }
 ```
 
-Round 1 uses `createSimulatedPurchasePort()` (delay + configurable outcome).
+Round 1 used `createSimulatedPurchasePort()` (delay + configurable outcome). Production uses `createViemPurchasePort()` via `createDefaultPurchasePort()` — MetaMask on Base, `approve` + `buyScoop`.
 
 ## Meme data
 
@@ -131,11 +131,20 @@ Same PNG for **on-chain metadata** and the **success screen**.
 
 Metadata template (`metadata/{tokenId}.json`):
 
+Hosted at deploy time under `public/ice-cream/` (Vite static assets):
+
+| Path | Purpose |
+| ---- | ------- |
+| `public/ice-cream/metadata/{id}.json` | On-chain `uri(tokenId)` target |
+| `public/ice-cream/images/{slug}-master.png` | NFT image referenced in JSON |
+
+Source copies live in `src/ice-cream/assets/nft/metadata/` — keep in sync when regenerating art.
+
 ```json
 {
   "name": "FYP Ice Cream — Smoky Resilience Ripple",
   "description": "Soulbound receipt for one scoop from Feel Your Protocol Ice Cream Week. Non-transferable summer gag on Base.",
-  "image": "ipfs://REPLACE/this-is-fine-master.png",
+  "image": "https://feelyourprotocol.org/ice-cream/images/this-is-fine-master.png",
   "external_url": "https://feelyourprotocol.org/",
   "attributes": [
     { "trait_type": "Vendor", "value": "This is Fine Dog" },
