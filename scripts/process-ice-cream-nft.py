@@ -19,9 +19,9 @@ Two responsibilities:
 
 Usage:
   python3 scripts/process-ice-cream-nft.py generate-all --out src/ice-cream/assets/nft
-  python3 scripts/process-ice-cream-nft.py preview --slug pepe
+  python3 scripts/process-ice-cream-nft.py preview --slug doge
   python3 scripts/process-ice-cream-nft.py contact-sheet --out /tmp/ice-cream-sheet.png
-  python3 scripts/process-ice-cream-nft.py process --src raw.png --slug pepe --bg chroma --out ...
+  python3 scripts/process-ice-cream-nft.py process --src raw.png --slug doge --bg chroma --out ...
 """
 
 from __future__ import annotations
@@ -448,33 +448,7 @@ def monke_extras(c: Canvas) -> None:
     c.disc(CX, CY - SCOOP_RY - 4, 3, 'R')                    # red ball
 
 
-def success_fist(c: Canvas) -> None:
-    """A raised clenched fist rising above the scoop (drawn before outline)."""
-    fy = CY - SCOOP_RY - 1
-    c.fill_ellipse(CX, fy + 2, 6, 5, SCOOP)      # hand mass
-    c.fill_ellipse(CX, fy - 1, 6, 3, SCOOP)      # knuckle row
-    for kx in (-4, -1, 2, 5):
-        c.vline(CX + kx, fy - 3, fy, 'n')        # knuckle creases
-    c.hline(CX - 6, CX - 2, fy + 3, SCOOP)       # thumb
-
-
 # =====================  FACES  =====================
-
-@meme('pepe', (120, 185, 92, 255), {'M': (70, 48, 36, 255)})
-def face_pepe(c: Canvas) -> None:
-    # Big bulging frog eyes high on the head, one clean wide smile, nostrils.
-    ey = CY - 9
-
-    def eye(ex: int) -> None:
-        c.disc(ex, ey, 7, WHITE)
-        c.arc(ex, ey, 7, 7, OUTLINE)
-        c.disc(ex + (2 if ex > CX else -2), ey + 1, 3, EYEBLK)
-
-    pair(CX, 10, eye)
-    pair(CX, 3, lambda x: c.put(x, CY + 1, EYEBLK))      # nostrils
-    # single clean wide smile
-    c.curve(CX, CY + 9, 14, 3, 'M', up=True, thick=2)
-
 
 @meme('doge', (240, 196, 70, 255), {
     'T': (250, 232, 180, 255), 'n': (40, 28, 20, 255)}, silhouette=cat_ears('T'))
@@ -504,25 +478,10 @@ def face_neon(c: Canvas) -> None:
     pair(CX, 9, eye)
     pair(CX, 15, lambda x: c.disc(x, CY + 2, 2, 'p'))   # cheeks
     c.put(CX, CY + 3, 'P')                               # nose
-    c.curve(CX - 3, CY + 5, 3, 2, 'P', up=False)
-    c.curve(CX + 3, CY + 5, 3, 2, 'P', up=False)
+    c.curve(CX, CY + 6, 5, 2, 'P', up=True, thick=1)     # friendly upturned smile
     for sy in (0, 1):
         c.line(CX + 7, CY + 4 + sy, CX + 18, CY + 2 + sy, 'N')
         c.line(CX - 7, CY + 4 + sy, CX - 18, CY + 2 + sy, 'N')
-
-
-@meme('cool-cat', (255, 165, 70, 255), {
-    'D': (28, 28, 34, 255), 'm': (150, 70, 40, 255)}, silhouette=cat_ears('m'))
-def face_cool_cat(c: Canvas) -> None:
-    # Clean look: sleek sunglasses (two lenses + bridge + temple arms) and a
-    # single relaxed grin. Nothing else — keeps it uncluttered.
-    for s in (-1, 1):
-        ex = CX + s * 8
-        c.fill_ellipse(ex, CY - 3, 6, 4, 'D')            # lens
-        c.put(ex - 2, CY - 4, GLOSS)                     # glint
-        c.hline(CX + s * 13, CX + s * 17, CY - 4, 'D')   # temple arm
-    c.hline(CX - 2, CX + 2, CY - 4, 'D')                 # bridge
-    c.curve(CX, CY + 7, 10, 4, 'm', up=True, thick=2)    # relaxed grin
 
 
 @meme('clown', (250, 250, 252, 255), {
@@ -600,36 +559,7 @@ def face_laser(c: Canvas) -> None:
     for sx in (CX - SCOOP_RX - 2, CX + SCOOP_RX + 2):
         for dx, dy in ((0, -2), (0, 2), (-1, 0), (1, 0)):
             c.put(sx + dx, ey + dy, 'y')
-    c.curve(CX, CY + 11, 8, 2, EYEBLK, up=False, thick=1)  # gritted mouth
-
-
-@meme('nyan-cat', (255, 150, 205, 255), {
-    'G': (175, 178, 185, 255), 'g': (120, 124, 132, 255), 'q': (255, 130, 170, 255),
-    'r': (255, 60, 60, 255), 'o': (255, 150, 40, 255), 'y': (255, 225, 60, 255),
-    'e': (70, 210, 90, 255), 'b': (70, 140, 255, 255), 'v': (150, 70, 220, 255)})
-def face_nyan(c: Canvas) -> None:
-    # Thick rainbow filling the lower scoop + a single-tone grey cat head with
-    # a simple smiling face (no extra cheek colour — keeps it clean).
-    rainbow = ['r', 'o', 'y', 'e', 'b', 'v']
-    c.band(CY + 4, CY + SCOOP_RY - 1, rainbow, only=frozenset({SCOOP}))
-    c.fill_ellipse(CX, CY - 6, 14, 11, 'G')         # cat head
-    pair(CX, 9, lambda x: c.disc(x, CY - 9, 3, SCOOP))  # ears
-    pair(CX, 6, lambda x: c.disc(x, CY - 7, 2, EYEBLK))  # eyes
-    c.put(CX, CY - 4, EYEBLK)                            # nose
-    c.curve(CX - 2, CY - 2, 2, 1, EYEBLK, up=True)       # smiling mouth
-    c.curve(CX + 2, CY - 2, 2, 1, EYEBLK, up=True)
-
-
-@meme('success-kid', (245, 205, 165, 255), {
-    'H': (90, 64, 40, 255), 'm': (150, 90, 70, 255), 'n': (60, 40, 30, 255)},
-    silhouette=success_fist)
-def face_success(c: Canvas) -> None:
-    # Determined baby face — the iconic clenched fist now rises ABOVE the
-    # scoop (see success_fist silhouette).
-    pair(CX, 7, lambda x: c.disc(x, CY - 3, 2, EYEBLK))    # focused eyes
-    pair(CX, 7, lambda x: c.hline(x - 2, x + 1, CY - 7, 'H'))  # brows
-    c.put(CX, CY + 1, 'm')                                 # nose
-    c.curve(CX, CY + 6, 5, 1, 'm', up=False, thick=2)      # pressed determined mouth
+    c.curve(CX, CY + 9, 8, 2, EYEBLK, up=True, thick=1)  # friendly upturned smile
 
 
 @meme('party-parrot', (60, 200, 90, 255), {

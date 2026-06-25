@@ -1,8 +1,6 @@
 import { ICE_CREAM_PRICE_FYP } from './constants'
 import clownNft from './assets/nft/clown-master.png'
 import clownVendor from './assets/clown-vendor.webp'
-import coolCatNft from './assets/nft/cool-cat-master.png'
-import coolCatVendor from './assets/cool-cat-vendor.webp'
 import dealWithItNft from './assets/nft/deal-with-it-master.png'
 import dealWithItVendor from './assets/deal-with-it-vendor.webp'
 import dogeNft from './assets/nft/doge-master.png'
@@ -15,14 +13,8 @@ import monkeNft from './assets/nft/return-to-monke-master.png'
 import monkeVendor from './assets/return-to-monke-vendor.webp'
 import neonCatNft from './assets/nft/neon-cypher-cat-master.png'
 import neonCatVendor from './assets/neon-cypher-cat-vendor.webp'
-import nyanCatNft from './assets/nft/nyan-cat-master.png'
-import nyanCatVendor from './assets/nyan-cat-vendor.webp'
 import partyParrotNft from './assets/nft/party-parrot-master.png'
 import partyParrotVendor from './assets/party-parrot-vendor.webp'
-import pepeNft from './assets/nft/pepe-master.png'
-import pepeVendor from './assets/pepe-vendor.webp'
-import successKidNft from './assets/nft/success-kid-master.png'
-import successKidVendor from './assets/success-kid-vendor.webp'
 import type { IceCreamMeme } from './types'
 
 export const ICE_CREAM_MEMES: IceCreamMeme[] = [
@@ -57,22 +49,6 @@ export const ICE_CREAM_MEMES: IceCreamMeme[] = [
     successImg: dogeNft,
     priceFyp: ICE_CREAM_PRICE_FYP,
     nftId: 3,
-  },
-  {
-    id: 'pepe',
-    name: 'Pepe',
-    quote:
-      'Rain on the window, mint-green in the cup. Cozy scoops for grey evenings — wrap up, pay in $FYP, ' +
-      'feels good man.',
-    flavor: 'Comfy Frog Ripple',
-    flavorBlurb:
-      'Blanket-soft serve for soft nights. One soulbound scoop — stay comfy, stay on-chain.',
-    successLine:
-      'Feels good, man. Pepe passes you the cone. Non-transferable, infinitely cozy — yours on Base.',
-    vendorImg: pepeVendor,
-    successImg: pepeNft,
-    priceFyp: ICE_CREAM_PRICE_FYP,
-    nftId: 4,
   },
   {
     id: 'clown',
@@ -131,38 +107,6 @@ export const ICE_CREAM_MEMES: IceCreamMeme[] = [
     nftId: 14,
   },
   {
-    id: 'nyan-cat',
-    name: 'Nyan Cat',
-    quote:
-      'Rainbow trail, pop-tart body, infinite loop of joy. Nyan scoops never stop — pay $FYP, ' +
-      'fly through the sky with sugar and synth.',
-    flavor: 'Rainbow Pop-Tart Loop',
-    flavorBlurb:
-      'Pink pastry, rainbow stripe, purring pixels. One soulbound scoop — nyaaan forever on Base.',
-    successLine:
-      'Rainbow streak across the counter. Receipt minted. Soulbound Nyan cone — loop locked on Base.',
-    vendorImg: nyanCatVendor,
-    successImg: nyanCatNft,
-    priceFyp: ICE_CREAM_PRICE_FYP,
-    nftId: 8,
-  },
-  {
-    id: 'success-kid',
-    name: 'Success Kid',
-    quote:
-      'Tiny fist, huge win. Sandcastle summer stand — you showed up, you paid $FYP, ' +
-      'you absolutely crushed this scoop.',
-    flavor: 'Victory Fist Swirl',
-    flavorBlurb:
-      'Wholesome triumph in every bite. One soulbound scoop — winner energy, non-transferable.',
-    successLine:
-      'Fist pump. Mint confirmed. Soulbound victory cone — yours on Base, still winning.',
-    vendorImg: successKidVendor,
-    successImg: successKidNft,
-    priceFyp: ICE_CREAM_PRICE_FYP,
-    nftId: 15,
-  },
-  {
     id: 'party-parrot',
     name: 'Party Parrot',
     quote:
@@ -193,21 +137,5 @@ export const ICE_CREAM_MEMES: IceCreamMeme[] = [
     successImg: dealWithItNft,
     priceFyp: ICE_CREAM_PRICE_FYP,
     nftId: 18,
-  },
-  {
-    id: 'cool-cat',
-    name: 'Cool Cat',
-    quote:
-      'Thumbs up, orange sunshine, good vibes only. Friendly stand, happy scoop — $FYP well spent, ' +
-      'no notes.',
-    flavor: 'Thumbs Up Orange Beam',
-    flavorBlurb:
-      'Orange cat energy, pixel approval. One soulbound scoop — thumbs up forever on Base.',
-    successLine:
-      'Thumbs up. Mint confirmed. Soulbound cool-cat cone — positive vibes locked on Base.',
-    vendorImg: coolCatVendor,
-    successImg: coolCatNft,
-    priceFyp: ICE_CREAM_PRICE_FYP,
-    nftId: 19,
   },
 ]
