@@ -121,8 +121,8 @@ describe('useIceCreamStand', () => {
 })
 
 describe('ice-cream memes registry', () => {
-  it('ships four vendor sets', () => {
-    expect(ICE_CREAM_MEMES).toHaveLength(4)
+  it('ships five vendor sets', () => {
+    expect(ICE_CREAM_MEMES).toHaveLength(5)
     for (const meme of ICE_CREAM_MEMES) {
       expect(meme.vendorImg).toBeTruthy()
       expect(meme.successImg).toBeTruthy()

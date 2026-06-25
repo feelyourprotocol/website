@@ -1,0 +1,12 @@
+{
+  "name": "FYP Ice Cream — Nothing Matters Ripple",
+  "description": "Soulbound receipt for one scoop from Feel Your Protocol Ice Cream Week. Non-transferable summer gag on Base.",
+  "image": "ipfs://REPLACE_AFTER_UPLOAD/doomer-master.png",
+  "external_url": "https://feelyourprotocol.org/",
+  "attributes": [
+    { "trait_type": "Vendor", "value": "Doomer" },
+    { "trait_type": "Flavor", "value": "Nothing Matters Ripple" },
+    { "trait_type": "Season", "value": "Ice Cream Week 2026" },
+    { "trait_type": "Soulbound", "value": "Yes" }
+  ]
+}

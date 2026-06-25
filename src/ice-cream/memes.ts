@@ -1,4 +1,6 @@
 import { ICE_CREAM_PRICE_FYP } from './constants'
+import doomerNft from './assets/nft/doomer-master.png'
+import doomerVendor from './assets/doomer-vendor.webp'
 import pepeNft from './assets/nft/pepe-master.png'
 import pepeVendor from './assets/pepe-vendor.webp'
 import dogeNft from './assets/nft/doge-master.png'
@@ -71,5 +73,21 @@ export const ICE_CREAM_MEMES: IceCreamMeme[] = [
     successImg: neonCatNft,
     priceFyp: ICE_CREAM_PRICE_FYP,
     nftId: 2,
+  },
+  {
+    id: 'doomer',
+    name: 'Doomer',
+    quote:
+      'Rain on the stand, grey scoop in hand. He does not expect you to enjoy it — you will pay in $FYP ' +
+      'anyway. Nothing matters. The cone is still good.',
+    flavor: 'Nothing Matters Ripple',
+    flavorBlurb:
+      'Mild despair, extra cold. One soulbound scoop — non-transferable, like your outlook.',
+    successLine:
+      'He slides the cone across without eye contact. Soulbound on Base. Nothing matters — except you minted.',
+    vendorImg: doomerVendor,
+    successImg: doomerNft,
+    priceFyp: ICE_CREAM_PRICE_FYP,
+    nftId: 5,
   },
 ]
