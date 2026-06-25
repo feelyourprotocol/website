@@ -1,0 +1,12 @@
+{
+  "name": "FYP Ice Cream — Victory Fist Swirl",
+  "description": "Soulbound receipt for one scoop from Feel Your Protocol Ice Cream Week. Non-transferable summer gag on Base.",
+  "image": "ipfs://REPLACE_AFTER_UPLOAD/success-kid-master.png",
+  "external_url": "https://feelyourprotocol.org/",
+  "attributes": [
+    { "trait_type": "Vendor", "value": "Success Kid" },
+    { "trait_type": "Flavor", "value": "Victory Fist Swirl" },
+    { "trait_type": "Season", "value": "Ice Cream Week 2026" },
+    { "trait_type": "Soulbound", "value": "Yes" }
+  ]
+}

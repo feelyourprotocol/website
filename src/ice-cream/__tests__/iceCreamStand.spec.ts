@@ -81,7 +81,10 @@ describe('ice-cream errors', () => {
 
 describe('useIceCreamStand', () => {
   it('starts with a random vendor', () => {
-    const stand = useIceCreamStand({ memes: testMemes, purchasePort: createSimulatedPurchasePort() })
+    const stand = useIceCreamStand({
+      memes: testMemes,
+      purchasePort: createSimulatedPurchasePort(),
+    })
     expect(testMemes.some((m) => m.id === stand.activeMeme.value.id)).toBe(true)
   })
 
@@ -113,7 +116,10 @@ describe('useIceCreamStand', () => {
   })
 
   it('shuffles to the other vendor', () => {
-    const stand = useIceCreamStand({ memes: testMemes, purchasePort: createSimulatedPurchasePort() })
+    const stand = useIceCreamStand({
+      memes: testMemes,
+      purchasePort: createSimulatedPurchasePort(),
+    })
     stand.activeMeme.value = testMemes[0]!
     stand.shuffleVendor()
     expect(stand.activeMeme.value.id).toBe('b')
@@ -121,8 +127,8 @@ describe('useIceCreamStand', () => {
 })
 
 describe('ice-cream memes registry', () => {
-  it('ships five vendor sets', () => {
-    expect(ICE_CREAM_MEMES).toHaveLength(5)
+  it('ships thirteen vendor sets', () => {
+    expect(ICE_CREAM_MEMES).toHaveLength(12)
     for (const meme of ICE_CREAM_MEMES) {
       expect(meme.vendorImg).toBeTruthy()
       expect(meme.successImg).toBeTruthy()

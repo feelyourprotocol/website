@@ -32,10 +32,7 @@ const {
     <template v-if="phase === 'success'">
       <div class="ice-cream-stand__success flex flex-col gap-3">
         <div class="ice-cream-stand__hero">
-          <img
-            :src="activeMeme.successImg"
-            :alt="`${activeMeme.flavor} soulbound ice cream`"
-          />
+          <img :src="activeMeme.successImg" :alt="`${activeMeme.flavor} soulbound ice cream`" />
         </div>
         <div class="text-center">
           <p class="ice-cream-stand__success-badge mb-2">Soulbound receipt minted</p>
@@ -59,10 +56,7 @@ const {
         <p class="mt-2 text-xs text-amber-900/80">{{ errorView.hint }}</p>
       </div>
       <div class="ice-cream-stand__hero mb-4">
-        <img
-          :src="activeMeme.vendorImg"
-          :alt="`${activeMeme.name} ice cream stand`"
-        />
+        <img :src="activeMeme.vendorImg" :alt="`${activeMeme.name} ice cream stand`" />
       </div>
       <div class="flex flex-wrap gap-3">
         <button type="button" class="ice-cream-stand__buy" @click="buyIceCream">Try again</button>

@@ -4,12 +4,7 @@ import { getIceCreamErrorView } from './errors'
 import { ICE_CREAM_MEMES } from './memes'
 import { canPurchase, canShuffleVendor, pickRandomMeme } from './pickMeme'
 import { createSimulatedPurchasePort } from './purchasePort'
-import type {
-  IceCreamErrorView,
-  IceCreamMeme,
-  IceCreamPhase,
-  IceCreamPurchasePort,
-} from './types'
+import type { IceCreamErrorView, IceCreamMeme, IceCreamPhase, IceCreamPurchasePort } from './types'
 
 export type UseIceCreamStandOptions = {
   memes?: IceCreamMeme[]

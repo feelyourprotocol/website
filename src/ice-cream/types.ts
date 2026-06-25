@@ -30,9 +30,7 @@ export interface IceCreamErrorView {
   hint: string
 }
 
-export type PurchaseOutcome =
-  | { status: 'success' }
-  | { status: 'error'; code: IceCreamErrorCode }
+export type PurchaseOutcome = { status: 'success' } | { status: 'error'; code: IceCreamErrorCode }
 
 export interface IceCreamPurchasePort {
   buy(meme: IceCreamMeme): Promise<PurchaseOutcome>
