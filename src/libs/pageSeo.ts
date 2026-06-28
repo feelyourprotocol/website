@@ -1,6 +1,7 @@
 import { type Exploration, EXPLORATIONS } from '@/explorations/REGISTRY'
 import { type Topic, TOPICS } from '@/explorations/TOPICS'
 
+import ogManifest from '../../public/og/manifest.json'
 import {
   DEFAULT_SITE_NAME,
   escapeHtml,
@@ -31,6 +32,16 @@ export const DEFAULT_OG_IMAGE_PATH = '/og/default.webp'
 export const DEFAULT_OG_IMAGE_WIDTH = 1200
 export const DEFAULT_OG_IMAGE_HEIGHT = 630
 
+export const explorationOgImagePath = (id: string): string => `/og/explorations/${id}.webp`
+export const topicOgImagePath = (topicId: string): string => `/og/topics/${topicId}.webp`
+
+interface OgManifest {
+  explorations: string[]
+  topics: string[]
+}
+
+const manifest = ogManifest as OgManifest
+
 export interface BreadcrumbItem {
   label: string
   to?: string
@@ -46,6 +57,7 @@ const explorationByPath = new Map(
 )
 
 const topicByPath = new Map(Object.values(TOPICS).map((topic) => [topic.path, topic]))
+const topicIdByPath = new Map(Object.entries(TOPICS).map(([id, topic]) => [topic.path, id]))
 
 function absoluteUrl(path: string): string {
   return path === '/' ? `${SITE_ORIGIN}/` : `${SITE_ORIGIN}${path}`
@@ -57,13 +69,44 @@ function formatDocumentTitle(pageTitle: string): string {
 
 type PageSeoCore = Omit<PageSeo, 'imageUrl' | 'imageWidth' | 'imageHeight' | 'imageAlt'>
 
-function withSocialImage(seo: PageSeoCore): PageSeo {
+type SocialImageFields = Pick<PageSeo, 'imageUrl' | 'imageWidth' | 'imageHeight' | 'imageAlt'>
+
+function defaultSocialImage(title: string): SocialImageFields {
   return {
-    ...seo,
     imageUrl: absoluteUrl(DEFAULT_OG_IMAGE_PATH),
     imageWidth: DEFAULT_OG_IMAGE_WIDTH,
     imageHeight: DEFAULT_OG_IMAGE_HEIGHT,
-    imageAlt: seo.title,
+    imageAlt: title,
+  }
+}
+
+function socialImageFromPath(path: string, title: string): SocialImageFields {
+  return {
+    imageUrl: absoluteUrl(path),
+    imageWidth: DEFAULT_OG_IMAGE_WIDTH,
+    imageHeight: DEFAULT_OG_IMAGE_HEIGHT,
+    imageAlt: title,
+  }
+}
+
+function socialImageForExploration(id: string, title: string): SocialImageFields {
+  if (manifest.explorations.includes(id)) {
+    return socialImageFromPath(explorationOgImagePath(id), title)
+  }
+  return defaultSocialImage(title)
+}
+
+function socialImageForTopic(topicId: string, title: string): SocialImageFields {
+  if (manifest.topics.includes(topicId)) {
+    return socialImageFromPath(topicOgImagePath(topicId), title)
+  }
+  return defaultSocialImage(title)
+}
+
+function withSocialImage(seo: PageSeoCore, image?: SocialImageFields): PageSeo {
+  return {
+    ...seo,
+    ...(image ?? defaultSocialImage(seo.title)),
   }
 }
 
@@ -271,24 +314,28 @@ export function getPageSeoForPath(path: string): PageSeo {
   const topic = topicByPath.get(path)
   if (topic) {
     const description = getDiscoveryDescription(path)
-    return withSocialImage({
-      path,
-      title: formatDocumentTitle(formatTopicPageTitle(topic)),
-      description,
-      canonicalUrl,
-      noindex: topic.explorations.length === 0 ? true : undefined,
-      jsonLd: [
-        {
-          '@context': 'https://schema.org',
-          '@type': 'CollectionPage',
-          name: topic.title,
-          url: canonicalUrl,
-          description,
-          isPartOf: { '@type': 'WebSite', name: SITE_NAME, url: SITE_ORIGIN },
-        },
-        breadcrumbJsonLd(breadcrumbs, canonicalUrl),
-      ],
-    })
+    const topicId = topicIdByPath.get(path)
+    return withSocialImage(
+      {
+        path,
+        title: formatDocumentTitle(formatTopicPageTitle(topic)),
+        description,
+        canonicalUrl,
+        noindex: topic.explorations.length === 0 ? true : undefined,
+        jsonLd: [
+          {
+            '@context': 'https://schema.org',
+            '@type': 'CollectionPage',
+            name: topic.title,
+            url: canonicalUrl,
+            description,
+            isPartOf: { '@type': 'WebSite', name: SITE_NAME, url: SITE_ORIGIN },
+          },
+          breadcrumbJsonLd(breadcrumbs, canonicalUrl),
+        ],
+      },
+      topicId ? socialImageForTopic(topicId, formatTopicPageTitle(topic)) : undefined,
+    )
   }
 
   const entry = explorationByPath.get(path)
@@ -298,30 +345,33 @@ export function getPageSeoForPath(path: string): PageSeo {
     const description = getDiscoveryDescription(path)
     const eipLabel = formatEipSpecLabel(id)
 
-    return withSocialImage({
-      path,
-      title: formatDocumentTitle(exploration.title),
-      description,
-      canonicalUrl,
-      jsonLd: [
-        {
-          '@context': 'https://schema.org',
-          '@type': 'LearningResource',
-          name: exploration.title,
-          url: canonicalUrl,
-          description,
-          learningResourceType: 'InteractiveResource',
-          about: { '@type': 'Thing', name: eipLabel },
-          sameAs: exploration.infoURL,
-          isPartOf: {
-            '@type': 'CollectionPage',
-            name: topicForExploration.title,
-            url: absoluteUrl(topicForExploration.path),
+    return withSocialImage(
+      {
+        path,
+        title: formatDocumentTitle(exploration.title),
+        description,
+        canonicalUrl,
+        jsonLd: [
+          {
+            '@context': 'https://schema.org',
+            '@type': 'LearningResource',
+            name: exploration.title,
+            url: canonicalUrl,
+            description,
+            learningResourceType: 'InteractiveResource',
+            about: { '@type': 'Thing', name: eipLabel },
+            sameAs: exploration.infoURL,
+            isPartOf: {
+              '@type': 'CollectionPage',
+              name: topicForExploration.title,
+              url: absoluteUrl(topicForExploration.path),
+            },
           },
-        },
-        breadcrumbJsonLd(breadcrumbs, canonicalUrl),
-      ],
-    })
+          breadcrumbJsonLd(breadcrumbs, canonicalUrl),
+        ],
+      },
+      socialImageForExploration(id, exploration.title),
+    )
   }
 
   return withSocialImage({

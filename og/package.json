@@ -1,0 +1,17 @@
+{
+  "name": "fyp-og",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "description": "Isolated pipeline that renders exploration and topic OG/Twitter preview images from HTML templates. Kept out of the main website package.json so CI never installs Playwright.",
+  "engines": {
+    "node": ">=22.6.0"
+  },
+  "scripts": {
+    "generate": "node src/cli.ts"
+  },
+  "dependencies": {
+    "playwright": "^1.61.1",
+    "sharp": "^0.34.3"
+  }
+}
