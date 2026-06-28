@@ -3,9 +3,11 @@ import { describe, expect, it } from 'vitest'
 import { EXPLORATIONS } from '@/explorations/REGISTRY'
 import { TOPICS } from '@/explorations/TOPICS'
 
+import ogManifest from '../../../public/og/manifest.json'
 import {
   DEFAULT_DESCRIPTION,
   DEFAULT_OG_IMAGE_PATH,
+  explorationOgImagePath,
   formatEipSpecLabel,
   generateRobotsTxt,
   generateSitemapXml,
@@ -22,8 +24,11 @@ import {
   injectStaticShellIntoHtml,
   SITE_ORIGIN,
   stripHtml,
+  topicOgImagePath,
   truncateDescription,
 } from '../pageSeo'
+
+const manifest = ogManifest as { explorations: string[]; topics: string[] }
 
 describe('pageSeo', () => {
   it('lists all router paths except the catch-all 404 route', () => {
@@ -58,7 +63,10 @@ describe('pageSeo', () => {
     expect(seo.description).toBe(exploration.seoDescription)
     expect(seo.description.length).toBeGreaterThan(20)
     expect(seo.canonicalUrl).toBe(`${SITE_ORIGIN}${exploration.path}`)
-    expect(seo.imageUrl).toBe(`${SITE_ORIGIN}${DEFAULT_OG_IMAGE_PATH}`)
+    const expectedImage = manifest.explorations.includes('eip-8024')
+      ? `${SITE_ORIGIN}${explorationOgImagePath('eip-8024')}`
+      : `${SITE_ORIGIN}${DEFAULT_OG_IMAGE_PATH}`
+    expect(seo.imageUrl).toBe(expectedImage)
     expect(seo.imageWidth).toBe(1200)
     expect(seo.imageHeight).toBe(630)
     expect(JSON.stringify(seo.jsonLd)).toContain(exploration.infoURL)
@@ -70,6 +78,14 @@ describe('pageSeo', () => {
 
     expect(description).toContain('EIP-8024')
     expect(description).toContain('Interactive Ethereum explainer')
+  })
+
+  it('uses topic OG image when present in manifest', () => {
+    const seo = getPageSeoForPath('/scaling')
+    const expectedImage = manifest.topics.includes('scaling')
+      ? `${SITE_ORIGIN}${topicOgImagePath('scaling')}`
+      : `${SITE_ORIGIN}${DEFAULT_OG_IMAGE_PATH}`
+    expect(seo.imageUrl).toBe(expectedImage)
   })
 
   it('uses Ethereum-prefixed topic titles and discovery descriptions', () => {

@@ -1,0 +1,255 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  width: 1200px;
+  height: 630px;
+  overflow: hidden;
+  font-family:
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    'Segoe UI',
+    Roboto,
+    Helvetica,
+    Arial,
+    sans-serif;
+}
+
+.card {
+  width: 1200px;
+  height: 630px;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(135deg, #ffffff 0%, {{BG}} 100%);
+  color: #0f172a;
+  position: relative;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border: 4px solid {{ACCENT}};
+  pointer-events: none;
+}
+
+.accent-bar {
+  height: 8px;
+  background: linear-gradient(90deg, {{ACCENT}} 0%, #06b6d4 100%);
+}
+
+.content {
+  flex: 1;
+  display: flex;
+  padding: 36px 44px 28px;
+  gap: 40px;
+  min-height: 0;
+}
+
+.cover {
+  width: 280px;
+  flex-shrink: 0;
+  border: 3px solid;
+  border-radius: 16px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 18px 40px -24px rgba(15, 23, 42, 0.35);
+  align-self: center;
+}
+
+.cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  aspect-ratio: 3 / 4;
+}
+
+.cover--empty {
+  aspect-ratio: 3 / 4;
+  display: grid;
+  place-items: center;
+  background: #fff;
+}
+
+.cover-placeholder {
+  font-size: 48px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-width: 0;
+}
+
+.spec-label {
+  display: inline-block;
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: {{ACCENT}};
+  margin-bottom: 14px;
+}
+
+.title {
+  font-size: 46px;
+  line-height: 1.08;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: #0f172a;
+  margin-bottom: 18px;
+}
+
+.description {
+  font-size: 24px;
+  line-height: 1.45;
+  color: #475569;
+  max-width: 720px;
+}
+
+.topic-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 16px;
+  border-radius: 999px;
+  background: {{BADGE_BG}};
+  color: {{TEXT}};
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.main .topic-badge {
+  margin-top: 22px;
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 18px 44px 24px;
+  border-top: 1px solid rgba(15, 23, 42, 0.08);
+  background: rgba(255, 255, 255, 0.72);
+}
+
+.footer img {
+  width: 34px;
+  height: 40px;
+  object-fit: contain;
+}
+
+.brand {
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background: linear-gradient(90deg, #9333ea 0%, #06b6d4 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.tagline {
+  margin-left: auto;
+  font-size: 18px;
+  color: #64748b;
+  letter-spacing: 0.02em;
+}
+
+/* Topic layout */
+.topic-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 48px 56px 28px;
+  gap: 18px;
+}
+
+.topic-kicker {
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: {{ACCENT}};
+}
+
+.topic-title {
+  font-size: 64px;
+  line-height: 1.02;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: #0f172a;
+}
+
+.topic-description {
+  font-size: 26px;
+  line-height: 1.45;
+  color: #475569;
+  max-width: 900px;
+}
+
+.topic-meta {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-top: 8px;
+}
+
+.topic-meta .count-badge,
+.topic-meta .topic-badge {
+  margin: 0;
+  padding: 10px 18px;
+  line-height: 1;
+}
+
+.count-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 10px 18px;
+  border-radius: 999px;
+  background: {{BADGE_BG}};
+  color: {{TEXT}};
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.thumb-row {
+  display: flex;
+  gap: 14px;
+  margin-top: 8px;
+}
+
+.thumb-row--empty {
+  display: none;
+}
+
+.thumb {
+  width: 88px;
+  height: 118px;
+  border: 2px solid;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 10px 24px -18px rgba(15, 23, 42, 0.45);
+}
+
+.thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}

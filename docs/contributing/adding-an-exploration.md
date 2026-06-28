@@ -446,7 +446,21 @@ npx vitest run                              # run all unit tests
 npx vitest run src/explorations/eip-XXXX    # run tests for one exploration
 ```
 
-## Step 8: Verify
+## Step 8: Generate Social Preview Image
+
+After your cover image and metadata are in place, generate the exploration-specific Open Graph / Twitter card image (1200×630). Without this step, link previews fall back to the generic site-wide card.
+
+```bash
+npm run generate:og:exploration -- eip-XXXX
+```
+
+This writes `public/og/explorations/eip-XXXX.webp` and updates `public/og/manifest.json`. Commit both files along with your exploration.
+
+Regenerate when you change the exploration title, `seoDescription`, topic, or cover image — the template pulls from those fields.
+
+See [Images — Social preview](/contributing/images#social-preview-og-images) for details.
+
+## Step 9: Verify
 
 ```bash
 npm run dev          # check your exploration locally
@@ -464,6 +478,7 @@ npm run build        # verify production build
 - [ ] Created `config.ts` and any companion components/helpers (if using an E-Component with extensions)
 - [ ] Added import and entry in `src/explorations/REGISTRY.ts`
 - [ ] Installed library dependencies (if needed)
+- [ ] Generated social preview image (`npm run generate:og:exploration -- <id>`)
 - [ ] All unit tests pass
 - [ ] Linting and type checking pass
 - [ ] Production build succeeds

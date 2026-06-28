@@ -1,0 +1,17 @@
+{
+  "explorations": [
+    "eip-7594",
+    "eip-7883",
+    "eip-7928",
+    "eip-7951",
+    "eip-8024"
+  ],
+  "topics": [
+    "interoperability",
+    "privacy",
+    "robustness",
+    "scaling",
+    "security",
+    "ux"
+  ]
+}

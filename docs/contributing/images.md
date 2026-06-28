@@ -411,6 +411,30 @@ Colors — strict:
   drawn in black/grey OR rendered in color, not mixed together
 ```
 
+## Social Preview (OG Images)
+
+Cover images (3:4 portrait) and social preview images (1200×630 landscape) serve different purposes. Cover art lives in your exploration folder; OG/Twitter cards are **generated** from HTML templates and shared metadata.
+
+| Property | Detail |
+|----------|--------|
+| Size | 1200×630 (standard Open Graph / Twitter large card) |
+| Format | WebP |
+| Location | `public/og/explorations/<id>.webp` |
+| Generator | `npm run generate:og:exploration -- <id>` (from `website/`) |
+| Fallback | Site-wide `public/og/default.webp` until generated |
+
+The template includes your exploration title, EIP label, `seoDescription`, topic badge, and cover image inset. Regenerate after changing any of those fields.
+
+Topic pages use a separate template:
+
+```bash
+npm run generate:og:topic -- scaling
+```
+
+Output: `public/og/topics/<topicId>.webp`. Batch-regenerate everything with `npm run generate:og:all`.
+
+The generator lives in the isolated `website/og/` package (Playwright). Install it once locally — see `website/og/README.md`.
+
 ## Quick Reference
 
 | Rule | Detail |
