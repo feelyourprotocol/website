@@ -1,0 +1,325 @@
+/* ============================================================
+ * Feel Your Protocol — Roadmap theme skin
+ *
+ * Extends the default VitePress theme. Goal: read clearly as the
+ * "business / organizational" side of the project while keeping the
+ * cypherpunk character of the main site — JetBrains Mono, the
+ * purple→cyan protocol gradient, and the subtle dot-grid texture.
+ * Tuned via on-board VitePress CSS variables wherever possible.
+ * ============================================================ */
+
+/* --- Self-hosted JetBrains Mono (SIL OFL, see public/fonts) --- */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/JetBrainsMono-Regular.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/fonts/JetBrainsMono-Bold.woff2') format('woff2');
+}
+
+:root {
+  /* Brand palette — purple primary, cyan secondary (protocol sparks). */
+  --fyp-purple: #7c3aed;
+  --fyp-cyan: #06b6d4;
+
+  --vp-c-brand-1: #7c3aed;
+  --vp-c-brand-2: #6d28d9;
+  --vp-c-brand-3: #5b21b6;
+  --vp-c-brand-soft: rgba(124, 58, 237, 0.14);
+
+  /* Headings keep the mono character; body stays default-readable. */
+  --vp-font-family-mono:
+    'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono',
+    'Courier New', monospace;
+
+  /* Home hero — purple→cyan gradient name, matching the main site. */
+  --vp-home-hero-name-color: transparent;
+  --vp-home-hero-name-background: linear-gradient(120deg, #7c3aed 30%, #06b6d4);
+  --vp-home-hero-image-background-image: linear-gradient(
+    -45deg,
+    rgba(124, 58, 237, 0.5),
+    rgba(6, 182, 212, 0.4)
+  );
+  --vp-home-hero-image-filter: blur(48px);
+}
+
+.dark {
+  --vp-c-brand-1: #a78bfa;
+  --vp-c-brand-2: #8b5cf6;
+  --vp-c-brand-3: #7c3aed;
+  --vp-c-brand-soft: rgba(167, 139, 250, 0.16);
+}
+
+/* Brand titles and section labels use the mono face for protocol feel. */
+.VPNavBarTitle .title,
+.vp-doc h1,
+.vp-doc h2 {
+  font-family: var(--vp-font-family-mono);
+  letter-spacing: -0.01em;
+}
+
+/* Subtle dot-grid texture — network topology underneath (matches main site). */
+.VPContent {
+  background-image: radial-gradient(circle, rgba(124, 58, 237, 0.08) 0.5px, transparent 0.5px);
+  background-size: 24px 24px;
+}
+
+.dark .VPContent {
+  background-image: radial-gradient(circle, rgba(167, 139, 250, 0.07) 0.5px, transparent 0.5px);
+}
+
+/* ============================================================
+ * Timeline.vue — linear left→right project timeline
+ * ============================================================ */
+.fyp-timeline {
+  --track-color: var(--vp-c-divider);
+  margin: 2rem 0 2.5rem;
+  overflow-x: auto;
+  padding: 1rem 0 0.5rem;
+}
+
+.fyp-timeline__track {
+  position: relative;
+  display: flex;
+  min-width: 640px;
+  align-items: stretch;
+  gap: 0;
+}
+
+.fyp-timeline__phase {
+  position: relative;
+  flex: 1 1 0;
+  padding: 0 0.75rem 2.75rem;
+  min-width: 140px;
+}
+
+.fyp-timeline__phase-label {
+  font-family: var(--vp-font-family-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--phase-color, var(--vp-c-brand-1));
+}
+
+.fyp-timeline__phase-range {
+  font-size: 0.72rem;
+  color: var(--vp-c-text-3);
+  margin-bottom: 0.6rem;
+}
+
+/* The horizontal axis line, segmented per phase. */
+.fyp-timeline__bar {
+  position: relative;
+  height: 4px;
+  border-radius: 2px;
+  background: var(--phase-color, var(--vp-c-brand-1));
+  opacity: 0.6;
+}
+
+.fyp-timeline__events {
+  position: relative;
+  margin-top: 0.9rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.fyp-timeline__event {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  font-size: 0.8rem;
+  line-height: 1.3;
+}
+
+.fyp-timeline__dot {
+  margin-top: 0.2rem;
+  width: 0.7rem;
+  height: 0.7rem;
+  flex: 0 0 auto;
+  border-radius: 999px;
+  background: var(--vp-c-bg);
+  border: 2px solid var(--phase-color, var(--vp-c-brand-1));
+}
+
+.fyp-timeline__event--done .fyp-timeline__dot {
+  background: var(--phase-color, var(--vp-c-brand-1));
+}
+
+.fyp-timeline__event-date {
+  font-family: var(--vp-font-family-mono);
+  font-size: 0.7rem;
+  color: var(--vp-c-text-3);
+  display: block;
+}
+
+/* ============================================================
+ * RoadmapBoard.vue — flexible track × horizon grid (2–5 tracks)
+ * ============================================================ */
+.fyp-roadmap {
+  margin: 2rem 0 2.5rem;
+  overflow-x: auto;
+}
+
+.fyp-roadmap__grid {
+  display: grid;
+  /* First column = track label, remaining = one per horizon. */
+  grid-template-columns: minmax(120px, 0.7fr) repeat(var(--horizon-count, 3), minmax(180px, 1fr));
+  gap: 0.6rem;
+  min-width: 720px;
+}
+
+.fyp-roadmap__corner {
+  border-bottom: 1px solid var(--vp-c-divider);
+}
+
+.fyp-roadmap__horizon {
+  font-family: var(--vp-font-family-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--vp-c-text-2);
+  padding: 0 0.25rem 0.5rem;
+  border-bottom: 1px solid var(--vp-c-divider);
+}
+
+.fyp-roadmap__track-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 700;
+  font-size: 0.85rem;
+  padding-right: 0.5rem;
+}
+
+.fyp-roadmap__track-swatch {
+  width: 0.8rem;
+  height: 0.8rem;
+  flex: 0 0 auto;
+  border-radius: 3px;
+  background: var(--track-accent, var(--vp-c-brand-1));
+}
+
+.fyp-roadmap__cell {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.fyp-roadmap__item {
+  border: 1px solid var(--vp-c-divider);
+  border-left: 3px solid var(--track-accent, var(--vp-c-brand-1));
+  border-radius: 6px;
+  padding: 0.5rem 0.6rem;
+  font-size: 0.8rem;
+  line-height: 1.3;
+  background: var(--vp-c-bg-soft);
+}
+
+.fyp-roadmap__item-title {
+  font-weight: 600;
+}
+
+.fyp-roadmap__item-note {
+  color: var(--vp-c-text-3);
+  font-size: 0.72rem;
+  margin-top: 0.15rem;
+}
+
+.fyp-roadmap__status {
+  display: inline-block;
+  margin-top: 0.35rem;
+  font-family: var(--vp-font-family-mono);
+  font-size: 0.62rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 0.05rem 0.4rem;
+  border-radius: 4px;
+}
+
+.fyp-roadmap__status--done {
+  color: #047857;
+  background: rgba(16, 185, 129, 0.14);
+}
+
+.fyp-roadmap__status--in-progress {
+  color: #6d28d9;
+  background: rgba(124, 58, 237, 0.14);
+}
+
+.fyp-roadmap__status--planned {
+  color: var(--vp-c-text-2);
+  background: var(--vp-c-default-soft);
+}
+
+/* ============================================================
+ * Changelog.vue — per-section micro-versioning trail
+ * ============================================================ */
+.fyp-changelog {
+  margin: 1.5rem 0;
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.fyp-changelog__head {
+  padding: 0.6rem 1rem;
+  border-bottom: 1px solid var(--vp-c-divider);
+  font-family: var(--vp-font-family-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--vp-c-text-2);
+}
+
+.fyp-changelog__list {
+  list-style: none;
+  margin: 0;
+  padding: 0.25rem 1rem;
+}
+
+.fyp-changelog__entry {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  padding: 0.5rem 0;
+  font-size: 0.85rem;
+}
+
+.fyp-changelog__entry + .fyp-changelog__entry {
+  border-top: 1px solid var(--vp-c-divider);
+}
+
+.fyp-changelog__version {
+  flex: 0 0 auto;
+  font-family: var(--vp-font-family-mono);
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: var(--vp-c-text-2);
+  background: var(--vp-c-default-soft);
+  padding: 0.1rem 0.4rem;
+  border-radius: 4px;
+}
+
+.fyp-changelog__date {
+  flex: 0 0 auto;
+  font-family: var(--vp-font-family-mono);
+  font-size: 0.7rem;
+  color: var(--vp-c-text-3);
+}
+
+.fyp-changelog__summary {
+  color: var(--vp-c-text-1);
+}

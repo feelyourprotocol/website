@@ -1,0 +1,128 @@
+import { defineConfig } from 'vitepress'
+
+/** Production roadmap origin — static `.html` paths on nginx. */
+const ROADMAP_ORIGIN = 'https://roadmap.feelyourprotocol.org'
+
+const ROADMAP_TITLE = 'Feel Your Protocol Roadmap'
+const ROADMAP_DESCRIPTION =
+  'Vision, milestones and roadmap for Feel Your Protocol — the evolution from an educational explorations site into a sustainable Ethereum protocol API and MCP server for humans and AI agents.'
+
+/** Stable path under `roadmap/public/og/` — copied to `dist/roadmap/og/` on build. */
+const ROADMAP_OG_IMAGE_PATH = '/og/default.webp'
+const ROADMAP_OG_IMAGE = `${ROADMAP_ORIGIN}${ROADMAP_OG_IMAGE_PATH}`
+const ROADMAP_OG_IMAGE_WIDTH = '1200'
+const ROADMAP_OG_IMAGE_HEIGHT = '630'
+const ROADMAP_OG_IMAGE_ALT = 'Feel Your Protocol Roadmap — vision, milestones and tracks'
+
+function roadmapCanonicalUrl(relativePath: string): string {
+  if (relativePath === 'index.md') return `${ROADMAP_ORIGIN}/index.html`
+  return `${ROADMAP_ORIGIN}/${relativePath.replace(/\.md$/, '.html')}`
+}
+
+function roadmapPageTitle(pageTitle: string | undefined): string {
+  if (!pageTitle || pageTitle === ROADMAP_TITLE) return ROADMAP_TITLE
+  return `${pageTitle} | Feel Your Protocol`
+}
+
+export default defineConfig({
+  lang: 'en',
+  title: ROADMAP_TITLE,
+  titleTemplate: ':title | Feel Your Protocol',
+  description: ROADMAP_DESCRIPTION,
+  /** README + scratch notes are contributor-facing only — keep them out of the built site + sitemap. */
+  srcExclude: ['README.md', 'tmp.md'],
+  head: [
+    ['meta', { name: 'twitter:card', content: 'summary_large_image' }],
+    ['meta', { property: 'og:type', content: 'website' }],
+    ['meta', { property: 'og:site_name', content: 'Feel Your Protocol' }],
+    ['meta', { property: 'og:image', content: ROADMAP_OG_IMAGE }],
+    ['meta', { property: 'og:image:width', content: ROADMAP_OG_IMAGE_WIDTH }],
+    ['meta', { property: 'og:image:height', content: ROADMAP_OG_IMAGE_HEIGHT }],
+    ['meta', { property: 'og:image:alt', content: ROADMAP_OG_IMAGE_ALT }],
+    ['meta', { property: 'og:image:type', content: 'image/webp' }],
+    ['meta', { name: 'twitter:image', content: ROADMAP_OG_IMAGE }],
+    ['meta', { name: 'twitter:image:alt', content: ROADMAP_OG_IMAGE_ALT }],
+  ],
+  sitemap: {
+    hostname: ROADMAP_ORIGIN,
+  },
+  transformHead({ pageData }) {
+    const canonical = roadmapCanonicalUrl(pageData.relativePath)
+    const title = roadmapPageTitle(pageData.title)
+    const description = pageData.description || ROADMAP_DESCRIPTION
+
+    return [
+      ['link', { rel: 'canonical', href: canonical }],
+      ['meta', { property: 'og:url', content: canonical }],
+      ['meta', { property: 'og:title', content: title }],
+      ['meta', { property: 'og:description', content: description }],
+      ['meta', { name: 'twitter:title', content: title }],
+      ['meta', { name: 'twitter:description', content: description }],
+    ]
+  },
+  outDir: '../dist/roadmap',
+  themeConfig: {
+    nav: [
+      { text: 'Vision', link: '/vision/problem-vision' },
+      { text: 'Roadmap', link: '/roadmap/roadmap' },
+      { text: 'Concepts', link: '/concepts/api-mcp' },
+      { text: 'Docs', link: 'https://docs.feelyourprotocol.org' },
+      { text: 'Website', link: 'https://feelyourprotocol.org' },
+    ],
+    sidebar: [
+      {
+        text: 'Overview',
+        items: [{ text: 'Introduction', link: '/' }],
+      },
+      {
+        text: 'Vision & Strategy',
+        items: [
+          { text: 'Problem & Vision', link: '/vision/problem-vision' },
+          { text: 'Two Legs, One Engine', link: '/vision/two-legs' },
+          { text: 'Principles & Operating Discipline', link: '/vision/principles' },
+        ],
+      },
+      {
+        text: 'Roadmap',
+        items: [
+          { text: 'Roadmap & Tracks', link: '/roadmap/roadmap' },
+          { text: 'Timeline', link: '/roadmap/timeline' },
+        ],
+      },
+      {
+        text: 'Core Concepts',
+        items: [
+          { text: 'The Agent API & MCP Server', link: '/concepts/api-mcp' },
+          { text: 'x402 & the Agent Economy', link: '/concepts/x402' },
+        ],
+      },
+      {
+        text: 'Monetization & Community',
+        items: [
+          { text: 'Pricing & Cost Model', link: '/monetization/pricing' },
+          { text: 'Token Utility', link: '/monetization/token' },
+        ],
+      },
+      {
+        text: 'Infrastructure',
+        items: [{ text: 'AWS & Hosting', link: '/infrastructure/aws' }],
+      },
+      {
+        text: 'Go-to-Market',
+        items: [{ text: 'Distribution & DevRel', link: '/gtm/distribution' }],
+      },
+    ],
+    socialLinks: [
+      { icon: 'github', link: 'https://github.com/feelyourprotocol/website' },
+      { icon: 'x', link: 'https://x.com/feelyourprotocol' },
+    ],
+    search: {
+      provider: 'local',
+    },
+    footer: {
+      message:
+        'A living document — each section carries its own micro-changelog. Latest version always applies.',
+      copyright: 'Feel Your Protocol',
+    },
+  },
+})
