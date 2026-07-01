@@ -81,7 +81,7 @@ export const TIMELINE_EVENTS: TimelineEvent[] = [
     date: '2026-06',
     label: 'Phase 3 begins',
     phase: 3,
-    note: 'Evolve into a sustainable business: protocol API + MCP server alongside the website.',
+    note: 'Conceptualization + early build: protocol API + MCP server alongside the website.',
     done: true,
   },
   {

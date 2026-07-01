@@ -4,7 +4,7 @@ The shift from "fun side project" to "sustainable business" is a vulnerable mome
 
 ## Operating principles
 
-- **Deterministic truth above all.** The product's entire value is exactness. Correctness, reproducibility and transparent traces beat speed and breadth.
+- **Deterministic truth above all.** The target product's entire value is exactness. Correctness, reproducibility and transparent traces beat speed and breadth.
 - **Scope discipline.** Be the best at one thing — isolated, stateless EVM simulation and cryptographic primitives. Say no to archive-node territory, `solc`, ERC-app-layer logic, and consensus-layer mechanics. (See [boundaries](/concepts/api-mcp#tech-readiness-boundaries).)
 - **Frictionless for outsiders, rewarding for insiders.** Never put the community token in the critical path of a paying agent; let it be a [discount and a perk](/monetization/token), not a gate.
 - **Cypherpunk character.** Permissionless access, open standards, privacy-respecting, code-first — carried forward from the side-project era into the business.

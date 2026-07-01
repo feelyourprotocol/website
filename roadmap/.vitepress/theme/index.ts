@@ -1,19 +1,23 @@
-import './custom.css'
 import type { Theme } from 'vitepress'
 import DefaultTheme from 'vitepress/theme'
+import { onMounted } from 'vue'
 
 import Changelog from './components/Changelog.vue'
 import RoadmapBoard from './components/RoadmapBoard.vue'
 import Timeline from './components/Timeline.vue'
+import './custom.css'
 
 /**
- * Roadmap theme — the default VitePress theme with a Feel Your Protocol skin
- * (see `custom.css`) plus a few globally-registered building blocks so the
- * Markdown pages can drop in `<Timeline />`, `<RoadmapBoard />` and
- * `<Changelog :entries="…" />` without per-page imports.
+ * Roadmap theme — "Strategy HQ" skin (see custom.css) plus globally-
+ * registered visualization components for Markdown pages.
  */
 export default {
   extends: DefaultTheme,
+  setup() {
+    onMounted(() => {
+      document.documentElement.classList.add('fyp-site-roadmap')
+    })
+  },
   enhanceApp({ app }) {
     app.component('Timeline', Timeline)
     app.component('RoadmapBoard', RoadmapBoard)

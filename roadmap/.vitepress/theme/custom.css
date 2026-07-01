@@ -1,79 +1,130 @@
 /* ============================================================
- * Feel Your Protocol — Roadmap theme skin
+ * Feel Your Protocol Roadmap — "Strategy HQ" skin
  *
- * Extends the default VitePress theme. Goal: read clearly as the
- * "business / organizational" side of the project while keeping the
- * cypherpunk character of the main site — JetBrains Mono, the
- * purple→cyan protocol gradient, and the subtle dot-grid texture.
- * Tuned via on-board VitePress CSS variables wherever possible.
+ * Purple-forward, mono-led headlines, purple wash + brand dot grid.
+ * Editorial / business character — structured, forward-looking.
  * ============================================================ */
 
-/* --- Self-hosted JetBrains Mono (SIL OFL, see public/fonts) --- */
-@font-face {
-  font-family: 'JetBrains Mono';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url('/fonts/JetBrainsMono-Regular.woff2') format('woff2');
-}
+@import '../../../shared/vitepress/fyp-tokens.css';
 
-@font-face {
-  font-family: 'JetBrains Mono';
-  font-style: normal;
-  font-weight: 700;
-  font-display: swap;
-  src: url('/fonts/JetBrainsMono-Bold.woff2') format('woff2');
-}
-
-:root {
-  /* Brand palette — purple primary, cyan secondary (protocol sparks). */
-  --fyp-purple: #7c3aed;
-  --fyp-cyan: #06b6d4;
+:root.fyp-site-roadmap,
+.fyp-site-roadmap {
+  --fyp-accent: var(--fyp-purple);
 
   --vp-c-brand-1: #7c3aed;
   --vp-c-brand-2: #6d28d9;
   --vp-c-brand-3: #5b21b6;
   --vp-c-brand-soft: rgba(124, 58, 237, 0.14);
 
-  /* Headings keep the mono character; body stays default-readable. */
-  --vp-font-family-mono:
-    'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono',
-    'Courier New', monospace;
+  --vp-c-bg: #faf8ff;
+  --vp-c-bg-soft: #f3f0ff;
 
-  /* Home hero — purple→cyan gradient name, matching the main site. */
-  --vp-home-hero-name-color: transparent;
-  --vp-home-hero-name-background: linear-gradient(120deg, #7c3aed 30%, #06b6d4);
   --vp-home-hero-image-background-image: linear-gradient(
     -45deg,
     rgba(124, 58, 237, 0.5),
-    rgba(6, 182, 212, 0.4)
+    rgba(6, 182, 212, 0.35)
   );
   --vp-home-hero-image-filter: blur(48px);
 }
 
-.dark {
+.dark.fyp-site-roadmap,
+.fyp-site-roadmap.dark {
   --vp-c-brand-1: #a78bfa;
   --vp-c-brand-2: #8b5cf6;
   --vp-c-brand-3: #7c3aed;
   --vp-c-brand-soft: rgba(167, 139, 250, 0.16);
+
+  --vp-c-bg: #13111a;
+  --vp-c-bg-soft: #1a1724;
 }
 
-/* Brand titles and section labels use the mono face for protocol feel. */
-.VPNavBarTitle .title,
-.vp-doc h1,
-.vp-doc h2 {
-  font-family: var(--vp-font-family-mono);
+/* Protocol pulse bar under the nav */
+.fyp-site-roadmap .VPNav {
+  border-bottom: none !important;
+}
+
+.fyp-site-roadmap .VPNavBar::after {
+  content: '';
+  display: block;
+  height: 2px;
+  background: var(--fyp-gradient);
+  opacity: 0.85;
+}
+
+/* Nav title — compact two-line stack (fits sidebar column) */
+.fyp-site-roadmap .VPNavBarTitle .title {
+  font-size: inherit;
+  font-weight: inherit;
+  min-width: 0;
+}
+
+.fyp-site-roadmap .fyp-nav-title-main {
+  color: var(--vp-c-brand-1);
+}
+
+.fyp-site-roadmap .fyp-nav-title-sub {
+  color: var(--vp-c-text-2);
+}
+
+/* Headings + hero headline in mono (mission-statement feel) */
+.fyp-site-roadmap .vp-doc h1,
+.fyp-site-roadmap .vp-doc h2,
+.fyp-site-roadmap .VPHomeHero .text {
+  font-family: var(--fyp-font-mono);
   letter-spacing: -0.01em;
 }
 
-/* Subtle dot-grid texture — network topology underneath (matches main site). */
-.VPContent {
-  background-image: radial-gradient(circle, rgba(124, 58, 237, 0.08) 0.5px, transparent 0.5px);
-  background-size: 24px 24px;
+/* Purple-tinted dot grid */
+.fyp-site-roadmap .VPContent {
+  background-color: var(--vp-c-bg);
+  background-image: var(--fyp-dot-grid-brand);
+  background-size: var(--fyp-dot-size);
 }
 
-.dark .VPContent {
-  background-image: radial-gradient(circle, rgba(167, 139, 250, 0.07) 0.5px, transparent 0.5px);
+/* Feature cards — left accent stripe (echoes RoadmapBoard items) */
+.fyp-site-roadmap .VPHomeFeatures .VPFeature {
+  border-radius: 6px;
+  border-left: 3px solid var(--fyp-purple);
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.fyp-site-roadmap .VPHomeFeatures .VPFeature:nth-child(4n + 2) {
+  border-left-color: var(--fyp-cyan);
+}
+
+.fyp-site-roadmap .VPHomeFeatures .VPFeature:nth-child(4n + 3) {
+  border-left-color: #0ea5e9;
+}
+
+.fyp-site-roadmap .VPHomeFeatures .VPFeature:nth-child(4n + 4) {
+  border-left-color: var(--fyp-amber);
+}
+
+.fyp-site-roadmap .VPHomeFeatures .VPFeature .title {
+  font-family: var(--fyp-font-mono);
+  font-size: 0.9rem;
+}
+
+.fyp-site-roadmap .VPHomeFeatures .VPFeature.link:hover,
+.fyp-site-roadmap .VPHomeFeatures .VPFeature:hover {
+  box-shadow: 0 2px 12px rgba(124, 58, 237, 0.1);
+}
+
+/* Callouts — purple left border instead of default blue */
+.fyp-site-roadmap .vp-doc .tip,
+.fyp-site-roadmap .vp-doc .info {
+  border-left-color: var(--fyp-purple);
+}
+
+.fyp-site-roadmap .vp-doc .warning {
+  border-left-color: var(--fyp-amber);
+}
+
+.fyp-site-roadmap .vp-doc :not(pre) > code {
+  font-family: var(--fyp-font-mono);
+  font-size: 0.88em;
 }
 
 /* ============================================================
@@ -102,7 +153,7 @@
 }
 
 .fyp-timeline__phase-label {
-  font-family: var(--vp-font-family-mono);
+  font-family: var(--fyp-font-mono);
   font-size: 0.72rem;
   font-weight: 700;
   text-transform: uppercase;
@@ -116,7 +167,6 @@
   margin-bottom: 0.6rem;
 }
 
-/* The horizontal axis line, segmented per phase. */
 .fyp-timeline__bar {
   position: relative;
   height: 4px;
@@ -156,7 +206,7 @@
 }
 
 .fyp-timeline__event-date {
-  font-family: var(--vp-font-family-mono);
+  font-family: var(--fyp-font-mono);
   font-size: 0.7rem;
   color: var(--vp-c-text-3);
   display: block;
@@ -172,7 +222,6 @@
 
 .fyp-roadmap__grid {
   display: grid;
-  /* First column = track label, remaining = one per horizon. */
   grid-template-columns: minmax(120px, 0.7fr) repeat(var(--horizon-count, 3), minmax(180px, 1fr));
   gap: 0.6rem;
   min-width: 720px;
@@ -183,7 +232,7 @@
 }
 
 .fyp-roadmap__horizon {
-  font-family: var(--vp-font-family-mono);
+  font-family: var(--fyp-font-mono);
   font-size: 0.72rem;
   font-weight: 700;
   text-transform: uppercase;
@@ -239,7 +288,7 @@
 .fyp-roadmap__status {
   display: inline-block;
   margin-top: 0.35rem;
-  font-family: var(--vp-font-family-mono);
+  font-family: var(--fyp-font-mono);
   font-size: 0.62rem;
   font-weight: 700;
   text-transform: uppercase;
@@ -276,7 +325,7 @@
 .fyp-changelog__head {
   padding: 0.6rem 1rem;
   border-bottom: 1px solid var(--vp-c-divider);
-  font-family: var(--vp-font-family-mono);
+  font-family: var(--fyp-font-mono);
   font-size: 0.75rem;
   font-weight: 700;
   text-transform: uppercase;
@@ -304,7 +353,7 @@
 
 .fyp-changelog__version {
   flex: 0 0 auto;
-  font-family: var(--vp-font-family-mono);
+  font-family: var(--fyp-font-mono);
   font-size: 0.68rem;
   font-weight: 700;
   color: var(--vp-c-text-2);
@@ -315,7 +364,7 @@
 
 .fyp-changelog__date {
   flex: 0 0 auto;
-  font-family: var(--vp-font-family-mono);
+  font-family: var(--fyp-font-mono);
   font-size: 0.7rem;
   color: var(--vp-c-text-3);
 }

@@ -1,6 +1,6 @@
 # Token Utility
 
-How the Bankr community token relates to the API — without ever becoming a barrier to adoption.
+How the Bankr community token **would relate** to the API once it exists — without ever becoming a barrier to adoption. All of this is **directional**; nothing is wired up yet.
 
 ## The core rule
 
@@ -8,14 +8,14 @@ How the Bankr community token relates to the API — without ever becoming a bar
 
 The community's energy sparked this whole direction, so cutting them out would be wrong — but forcing a stranger to bridge to Base and swap for a niche token just to try the API would kill conversion. We resolve this by keeping the token **out of the critical path** and attaching value *around* it.
 
-## The dual-lane model
+## The dual-lane model _(planned)_
 
-| Lane | Who | How they pay |
+| Lane | Who | How they would pay |
 | --- | --- | --- |
 | **Enterprise / outsider** | MEV bots, auditors, institutions, any new agent | Plain USDC via [x402](/monetization/pricing) — no token, no friction |
 | **Community / insider** | Existing token holders | Same x402 flow, but with a **gas-price discount** |
 
-Holders get the discount with a single gasless wallet check; non-holders never see the token at all.
+Holders would get the discount with a single gasless wallet check; non-holders would never see the token at all.
 
 ## Discount tiers _(indicative, under discussion)_
 
@@ -26,7 +26,7 @@ Holders get the discount with a single gasless wallet check; non-holders never s
 | > $20 | 30% |
 | > $100 | 50% |
 
-This turns the token into a **non-speculative volume discount**: heavy API users find it rational to hold it (it pays for itself), creating genuine, usage-driven demand — the on-chain analogue of a B2B volume contract.
+This would turn the token into a **non-speculative volume discount**: heavy API users find it rational to hold it (it pays for itself), creating genuine, usage-driven demand — the on-chain analogue of a B2B volume contract.
 
 ## Optional value-capture & alignment _(later / "when they come")_
 
@@ -34,8 +34,8 @@ This turns the token into a **non-speculative volume discount**: heavy API users
 - **Roadmap governance:** let holders vote on which fork/endpoint to prioritize next.
 - **Visualization bounties:** pay the community in tokens to build explorations on top of new API capabilities — funding [Leg A](/vision/two-legs) from token utility.
 
-## Why this is risk-free
+## Why this is risk-free _(in design)_
 
-Because the base layer is always plain USDC, the discount model adds upside for the community **without** introducing onboarding friction, token-gated errors, or compliance headaches for enterprises. Permissionless access stays intact; the community is rewarded for being early.
+Because the base layer would always be plain USDC, the discount model adds upside for the community **without** introducing onboarding friction, token-gated errors, or compliance headaches for enterprises. Permissionless access stays intact; the community is rewarded for being early.
 
-_Tier numbers and the buyback/governance/bounty mechanics are directional — to be finalized in a later round._
+_Tier numbers and the buyback/governance/bounty mechanics are directional — to be finalized once the API and payment flow exist._

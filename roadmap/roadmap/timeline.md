@@ -2,6 +2,8 @@
 
 A linear, left→right view of the project's journey, grouped into phases. It is **data-driven** — edit [`roadmap/data/timeline.ts`](https://github.com/feelyourprotocol/website/blob/main/roadmap/data/timeline.ts) to add events or open a new phase. Filled dots are reached events; hollow dots are upcoming.
 
+Forward markers in Phase 3 are **targets and planning notes** — the Agent API, MCP server, and x402 payment layer do not exist yet.
+
 <Timeline />
 
 ## Phases
@@ -22,11 +24,11 @@ The Bankr community token launched at the start of June and was claimed on **Fri
 
 ### Phase 3 · Sustainable Business _(Jun 2026 →)_
 
-Evolve into a sustainable business: the deterministic [Ethereum protocol API & MCP server](/concepts/api-mcp) for AI agents, built in parallel to the website. The forward markers below are **targets**, not commitments:
+Evolve into a sustainable business: a deterministic [Ethereum protocol API & MCP server](/concepts/api-mcp) for AI agents, built in parallel to the website. Right now this phase is mostly **conceptualization** — turning the strategy into concrete designs, then into code. The forward markers below are **targets**, not commitments:
 
-- **2026-07** — Local zero-crypto MCP PoC (prove the LLM↔EthereumJS round-trip).
+- **2026-07** — Local zero-crypto MCP PoC _(target)_ — prove the LLM↔EthereumJS round-trip with one wrapped tool.
 - **2026-09-01 (target)** — First pipeline live on the already-implemented Amsterdam EIPs.
-- **2026-Q4** — [x402 linear pricing](/monetization/pricing) on Base + tiered [token discounts](/monetization/token).
+- **2026-Q4 (target)** — [x402 linear pricing](/monetization/pricing) on Base + tiered [token discounts](/monetization/token).
 - **Later** — Enterprise annual tier and revenue→token loop, "when they come".
 
 _As Phase 3 milestones land (or shift), update them in the data file so the chart and this page stay in sync._

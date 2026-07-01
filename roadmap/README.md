@@ -1,8 +1,8 @@
 # Roadmap Site
 
-VitePress site for **roadmap.feelyourprotocol.org** — the organizational home for Feel Your Protocol: problem & vision, milestones, roadmap tracks, timeline, and high-level outlines of the core concepts (API design, x402, pricing/cost model) and infrastructure (AWS).
+VitePress site for **roadmap.feelyourprotocol.org** — the organizational home and **conceptualization workspace** for Feel Your Protocol Phase 3: problem & vision, milestones, roadmap tracks, timeline, and draft outlines of core concepts (Agent API, x402, pricing/cost model) and infrastructure (AWS). Nothing here documents a shipped API yet.
 
-It shares the Feel Your Protocol design language (JetBrains Mono, purple/cyan protocol sparks, dot grid) but uses a customized VitePress theme so it reads as the "business" side of the project — separate from the [contributor docs](https://docs.feelyourprotocol.org) and the [explorations website](https://feelyourprotocol.org).
+It shares the Feel Your Protocol design language (JetBrains Mono, purple/cyan protocol sparks, dot grid) but uses a customized VitePress theme so it reads as the "business" side of the project — separate from the [website docs](https://docs.feelyourprotocol.org) and the [explorations website](https://feelyourprotocol.org).
 
 ## Development
 

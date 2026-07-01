@@ -12,16 +12,16 @@ const pkg = JSON.parse(readFileSync(join(__dirname, '../../package.json'), 'utf-
 /** Production docs origin — static `.html` paths on nginx. */
 const DOCS_ORIGIN = 'https://docs.feelyourprotocol.org'
 
-const DOCS_TITLE = 'Feel Your Protocol Docs'
+const DOCS_TITLE = 'Feel Your Protocol Website Docs'
 const DOCS_DESCRIPTION =
-  'Contributor guide and architecture docs for Feel Your Protocol — interactive Ethereum protocol explorations, E-Components, and open-source development.'
+  'Website docs for Feel Your Protocol — contributor guide and architecture for interactive Ethereum protocol explorations, E-Components, and open-source development.'
 
 /** Stable path under `docs/public/og/` — copied to `dist/docs/og/` on build. */
 const DOCS_OG_IMAGE_PATH = '/og/default.webp'
 const DOCS_OG_IMAGE = `${DOCS_ORIGIN}${DOCS_OG_IMAGE_PATH}`
 const DOCS_OG_IMAGE_WIDTH = '1200'
 const DOCS_OG_IMAGE_HEIGHT = '630'
-const DOCS_OG_IMAGE_ALT = 'Feel Your Protocol Docs — contributor guide and architecture'
+const DOCS_OG_IMAGE_ALT = 'Feel Your Protocol Website Docs — contributor guide and architecture'
 
 function docsCanonicalUrl(relativePath: string): string {
   if (relativePath === 'index.md') return `${DOCS_ORIGIN}/index.html`
@@ -39,6 +39,7 @@ export default defineConfig({
   titleTemplate: ':title | Feel Your Protocol',
   description: DOCS_DESCRIPTION,
   head: [
+    ['script', {}, 'document.documentElement.classList.add("fyp-site-docs")'],
     ['meta', { name: 'twitter:card', content: 'summary_large_image' }],
     ['meta', { property: 'og:type', content: 'website' }],
     ['meta', { property: 'og:site_name', content: 'Feel Your Protocol' }],
@@ -69,6 +70,8 @@ export default defineConfig({
   },
   outDir: '../dist/docs',
   themeConfig: {
+    siteTitle:
+      '<span class="fyp-nav-title"><span class="fyp-nav-title-main">Feel Your Protocol</span><span class="fyp-nav-title-sub">Website Docs</span></span>',
     nav: [
       { text: 'Guide', link: '/guide/getting-started' },
       { text: 'Contributing', link: '/contributing/how-to-contribute' },

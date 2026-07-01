@@ -1,0 +1,116 @@
+/* ============================================================
+ * Feel Your Protocol Website Docs — "Builder's Workshop" skin
+ *
+ * Cyan-forward, sans-led body, neutral dot grid. Contributor
+ * handbook character — open, practical, hands-on.
+ * ============================================================ */
+
+@import '../../../shared/vitepress/fyp-tokens.css';
+
+:root.fyp-site-docs,
+.fyp-site-docs {
+  --fyp-accent: var(--fyp-cyan);
+
+  --vp-c-brand-1: #0891b2;
+  --vp-c-brand-2: #0e7490;
+  --vp-c-brand-3: #155e75;
+  --vp-c-brand-soft: rgba(6, 182, 212, 0.14);
+
+  --vp-c-bg: #ffffff;
+  --vp-c-bg-soft: #f8fafc;
+
+  --vp-home-hero-image-background-image: linear-gradient(
+    -45deg,
+    rgba(6, 182, 212, 0.45),
+    rgba(124, 58, 237, 0.25)
+  );
+  --vp-home-hero-image-filter: blur(48px);
+}
+
+.dark.fyp-site-docs,
+.fyp-site-docs.dark {
+  --vp-c-brand-1: #22d3ee;
+  --vp-c-brand-2: #06b6d4;
+  --vp-c-brand-3: #0891b2;
+  --vp-c-brand-soft: rgba(34, 211, 238, 0.14);
+}
+
+/* Nav title — compact two-line stack (fits sidebar column) */
+.fyp-site-docs .VPNavBarTitle .title {
+  font-size: inherit;
+  font-weight: inherit;
+  min-width: 0;
+}
+
+.fyp-site-docs .fyp-nav-title-main {
+  color: var(--vp-c-brand-1);
+}
+
+.fyp-site-docs .fyp-nav-title-sub {
+  color: var(--vp-c-text-2);
+}
+
+/* Headings h1–h2 in mono; body stays default sans for long guides */
+.fyp-site-docs .vp-doc h1,
+.fyp-site-docs .vp-doc h2 {
+  font-family: var(--fyp-font-mono);
+  letter-spacing: -0.01em;
+}
+
+/* Neutral dot grid (matches main site) */
+.fyp-site-docs .VPContent {
+  background-color: var(--vp-c-bg);
+  background-image: var(--fyp-dot-grid-neutral);
+  background-size: var(--fyp-dot-size);
+}
+
+/* Hero name — animated protocol gradient */
+.fyp-site-docs .VPHomeHero .name {
+  background: var(--fyp-gradient-shift);
+  background-size: 200% 100%;
+  animation: fyp-gradient-shift 10s ease-in-out infinite;
+}
+
+/* Hero headline stays sans — readable, welcoming */
+.fyp-site-docs .VPHomeHero .text {
+  font-family: var(--vp-font-family-base);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+/* Feature cards — soft cyan hover, rounder corners */
+.fyp-site-docs .VPHomeFeatures .VPFeature {
+  border-radius: 12px;
+  border-top: 2px solid transparent;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.15s ease;
+}
+
+.fyp-site-docs .VPHomeFeatures .VPFeature.link:hover,
+.fyp-site-docs .VPHomeFeatures .VPFeature:hover {
+  border-top-color: var(--fyp-cyan);
+  border-color: rgba(6, 182, 212, 0.35);
+  box-shadow:
+    0 4px 14px rgba(6, 182, 212, 0.1),
+    0 0 0 1px rgba(6, 182, 212, 0.08);
+  transform: translateY(-1px);
+}
+
+.fyp-site-docs .VPHomeFeatures .VPFeature .title {
+  font-family: var(--fyp-font-mono);
+  font-size: 0.95rem;
+}
+
+/* Sidebar active item — cyan soft */
+.fyp-site-docs .VPSidebarItem.is-active > .item .link {
+  color: var(--vp-c-brand-1);
+}
+
+/* Inline code slightly more prominent */
+.fyp-site-docs .vp-doc :not(pre) > code {
+  font-family: var(--fyp-font-mono);
+  font-size: 0.88em;
+  color: var(--vp-c-brand-2);
+}

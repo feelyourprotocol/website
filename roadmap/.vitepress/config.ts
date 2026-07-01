@@ -5,7 +5,7 @@ const ROADMAP_ORIGIN = 'https://roadmap.feelyourprotocol.org'
 
 const ROADMAP_TITLE = 'Feel Your Protocol Roadmap'
 const ROADMAP_DESCRIPTION =
-  'Vision, milestones and roadmap for Feel Your Protocol — the evolution from an educational explorations site into a sustainable Ethereum protocol API and MCP server for humans and AI agents.'
+  'Living roadmap and conceptualization workspace for Feel Your Protocol Phase 3 — vision, milestones, and draft concepts toward a sustainable Ethereum protocol API and MCP server for AI agents.'
 
 /** Stable path under `roadmap/public/og/` — copied to `dist/roadmap/og/` on build. */
 const ROADMAP_OG_IMAGE_PATH = '/og/default.webp'
@@ -32,6 +32,7 @@ export default defineConfig({
   /** README + scratch notes are contributor-facing only — keep them out of the built site + sitemap. */
   srcExclude: ['README.md', 'tmp.md'],
   head: [
+    ['script', {}, 'document.documentElement.classList.add("fyp-site-roadmap")'],
     ['meta', { name: 'twitter:card', content: 'summary_large_image' }],
     ['meta', { property: 'og:type', content: 'website' }],
     ['meta', { property: 'og:site_name', content: 'Feel Your Protocol' }],
@@ -62,11 +63,13 @@ export default defineConfig({
   },
   outDir: '../dist/roadmap',
   themeConfig: {
+    siteTitle:
+      '<span class="fyp-nav-title"><span class="fyp-nav-title-main">Feel Your Protocol</span><span class="fyp-nav-title-sub">Roadmap</span></span>',
     nav: [
       { text: 'Vision', link: '/vision/problem-vision' },
       { text: 'Roadmap', link: '/roadmap/roadmap' },
       { text: 'Concepts', link: '/concepts/api-mcp' },
-      { text: 'Docs', link: 'https://docs.feelyourprotocol.org' },
+      { text: 'Website Docs', link: 'https://docs.feelyourprotocol.org' },
       { text: 'Website', link: 'https://feelyourprotocol.org' },
     ],
     sidebar: [
@@ -92,8 +95,8 @@ export default defineConfig({
       {
         text: 'Core Concepts',
         items: [
-          { text: 'The Agent API & MCP Server', link: '/concepts/api-mcp' },
-          { text: 'x402 & the Agent Economy', link: '/concepts/x402' },
+          { text: 'Agent API & MCP (Concept)', link: '/concepts/api-mcp' },
+          { text: 'x402 & Agent Economy (Concept)', link: '/concepts/x402' },
         ],
       },
       {
@@ -121,7 +124,7 @@ export default defineConfig({
     },
     footer: {
       message:
-        'A living document — each section carries its own micro-changelog. Latest version always applies.',
+        'A living conceptualization workspace — each section carries its own micro-changelog. Latest thinking always applies.',
       copyright: 'Feel Your Protocol',
     },
   },
