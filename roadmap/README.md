@@ -69,7 +69,7 @@ Served at `https://roadmap.feelyourprotocol.org/og/default.webp`.
 
 ## Subdomain deployment
 
-Nginx block is prepared in `../server-config/config/fyp_nginx` (BLOCK 11–12).
+Nginx block is prepared in `../server-config/config/fyp_nginx` (BLOCK 8–9).
 
 After first deploy, expand the existing certificate to cover the subdomain:
 
