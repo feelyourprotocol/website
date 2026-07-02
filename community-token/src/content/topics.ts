@@ -15,7 +15,7 @@ export const INTRO = {
   explainer: [
     'The token (FYP) was launched independently by community members on Bankr — a platform for deploying tokens on Base. I did not issue it, but I engage with it in good faith and document how I handle it here.',
     'When people buy, sell, or transfer the token, a portion of trading fees (creator fees) accrues to a claimable balance. I use those fees — tracked in the Treasury section — to fund time on FYP explorations and related EthereumJS library work that keeps them running.',
-    'New to this model? Think community-driven support for public-good Ethereum tooling: participation through market activity, not ownership of the code, a roadmap, or a promise of returns.',
+    'New to this model? Think community-driven support for public-good Ethereum tooling: participation through market activity, not ownership of the code or a promise of returns. For where the project is headed next, see the Phase 3 roadmap — a future-protocol API & MCP for upcoming forks and EIPs; the token is designed as a volume discount on that usage, not a gate.',
   ],
   gratitude:
     'Thank you to everyone in the Bankr community who showed interest. This page exists so expectations stay clear on both sides.',
@@ -76,7 +76,7 @@ export const GUIDELINE_TABS: GuidelineTab[] = [
     status: 'ready',
     bullets: [
       'Curiosity, feedback, and trying out explorations are always welcome.',
-      'Visibility and sharing help the project — they just do not buy a roadmap.',
+      'Visibility and sharing help the project — the Phase 3 roadmap shows where we are headed; token activity does not buy promises or set priorities.',
       'Feel free to reach out on X (@HolgerD77) or via the Feel Your Protocol GitHub to contribute or ask questions.',
     ],
   },

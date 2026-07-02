@@ -6,6 +6,7 @@ import { TOPICS } from '@/explorations/TOPICS'
 import { IceCreamHomeSection } from '@/ice-cream'
 import { COMMUNITY_TOKEN_HOME } from '@/libs/communityToken'
 import { DOCS_HOME } from '@/libs/docsUrls'
+import { ROADMAP_HOME } from '@/libs/roadmapUrls'
 
 import TagCloudView from './TagCloudView.vue'
 import TimelineNaviView from './TimelineNaviView.vue'
@@ -82,6 +83,17 @@ for (const topicId of activeTopicIds) {
                 target="_blank"
                 class="font-semibold text-white underline hover:text-slate-200"
                 >code on GitHub</a
+              >.
+            </p>
+            <p class="text-slate-300 text-sm leading-relaxed mt-2">
+              Phase 3 is taking shape: a deterministic API &amp; MCP server for the future Ethereum
+              protocol (upcoming forks &amp; EIPs) — the explorations site stays the front door.
+              <a
+                :href="ROADMAP_HOME"
+                target="_blank"
+                rel="noopener"
+                class="font-semibold text-white underline hover:text-slate-200"
+                >See the roadmap</a
               >.
             </p>
             <p class="text-slate-300 text-sm leading-relaxed mt-2">

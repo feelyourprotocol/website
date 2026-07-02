@@ -1,0 +1,374 @@
+/* ============================================================
+ * Feel Your Protocol Roadmap — "Strategy HQ" skin
+ *
+ * Purple-forward, mono-led headlines, purple wash + brand dot grid.
+ * Editorial / business character — structured, forward-looking.
+ * ============================================================ */
+
+@import '../../../shared/vitepress/fyp-tokens.css';
+
+:root.fyp-site-roadmap,
+.fyp-site-roadmap {
+  --fyp-accent: var(--fyp-purple);
+
+  --vp-c-brand-1: #7c3aed;
+  --vp-c-brand-2: #6d28d9;
+  --vp-c-brand-3: #5b21b6;
+  --vp-c-brand-soft: rgba(124, 58, 237, 0.14);
+
+  --vp-c-bg: #faf8ff;
+  --vp-c-bg-soft: #f3f0ff;
+
+  --vp-home-hero-image-background-image: linear-gradient(
+    -45deg,
+    rgba(124, 58, 237, 0.5),
+    rgba(6, 182, 212, 0.35)
+  );
+  --vp-home-hero-image-filter: blur(48px);
+}
+
+.dark.fyp-site-roadmap,
+.fyp-site-roadmap.dark {
+  --vp-c-brand-1: #a78bfa;
+  --vp-c-brand-2: #8b5cf6;
+  --vp-c-brand-3: #7c3aed;
+  --vp-c-brand-soft: rgba(167, 139, 250, 0.16);
+
+  --vp-c-bg: #13111a;
+  --vp-c-bg-soft: #1a1724;
+}
+
+/* Protocol pulse bar under the nav */
+.fyp-site-roadmap .VPNav {
+  border-bottom: none !important;
+}
+
+.fyp-site-roadmap .VPNavBar::after {
+  content: '';
+  display: block;
+  height: 2px;
+  background: var(--fyp-gradient);
+  opacity: 0.85;
+}
+
+/* Nav title — compact two-line stack (fits sidebar column) */
+.fyp-site-roadmap .VPNavBarTitle .title {
+  font-size: inherit;
+  font-weight: inherit;
+  min-width: 0;
+}
+
+.fyp-site-roadmap .fyp-nav-title-main {
+  color: var(--vp-c-brand-1);
+}
+
+.fyp-site-roadmap .fyp-nav-title-sub {
+  color: var(--vp-c-text-2);
+}
+
+/* Headings + hero headline in mono (mission-statement feel) */
+.fyp-site-roadmap .vp-doc h1,
+.fyp-site-roadmap .vp-doc h2,
+.fyp-site-roadmap .VPHomeHero .text {
+  font-family: var(--fyp-font-mono);
+  letter-spacing: -0.01em;
+}
+
+/* Purple-tinted dot grid */
+.fyp-site-roadmap .VPContent {
+  background-color: var(--vp-c-bg);
+  background-image: var(--fyp-dot-grid-brand);
+  background-size: var(--fyp-dot-size);
+}
+
+/* Feature cards — left accent stripe (echoes RoadmapBoard items) */
+.fyp-site-roadmap .VPHomeFeatures .VPFeature {
+  border-radius: 6px;
+  border-left: 3px solid var(--fyp-purple);
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.fyp-site-roadmap .VPHomeFeatures .VPFeature:nth-child(4n + 2) {
+  border-left-color: var(--fyp-cyan);
+}
+
+.fyp-site-roadmap .VPHomeFeatures .VPFeature:nth-child(4n + 3) {
+  border-left-color: #0ea5e9;
+}
+
+.fyp-site-roadmap .VPHomeFeatures .VPFeature:nth-child(4n + 4) {
+  border-left-color: var(--fyp-amber);
+}
+
+.fyp-site-roadmap .VPHomeFeatures .VPFeature .title {
+  font-family: var(--fyp-font-mono);
+  font-size: 0.9rem;
+}
+
+.fyp-site-roadmap .VPHomeFeatures .VPFeature.link:hover,
+.fyp-site-roadmap .VPHomeFeatures .VPFeature:hover {
+  box-shadow: 0 2px 12px rgba(124, 58, 237, 0.1);
+}
+
+/* Callouts — purple left border instead of default blue */
+.fyp-site-roadmap .vp-doc .tip,
+.fyp-site-roadmap .vp-doc .info {
+  border-left-color: var(--fyp-purple);
+}
+
+.fyp-site-roadmap .vp-doc .warning {
+  border-left-color: var(--fyp-amber);
+}
+
+.fyp-site-roadmap .vp-doc :not(pre) > code {
+  font-family: var(--fyp-font-mono);
+  font-size: 0.88em;
+}
+
+/* ============================================================
+ * Timeline.vue — linear left→right project timeline
+ * ============================================================ */
+.fyp-timeline {
+  --track-color: var(--vp-c-divider);
+  margin: 2rem 0 2.5rem;
+  overflow-x: auto;
+  padding: 1rem 0 0.5rem;
+}
+
+.fyp-timeline__track {
+  position: relative;
+  display: flex;
+  min-width: 640px;
+  align-items: stretch;
+  gap: 0;
+}
+
+.fyp-timeline__phase {
+  position: relative;
+  flex: 1 1 0;
+  padding: 0 0.75rem 2.75rem;
+  min-width: 140px;
+}
+
+.fyp-timeline__phase-label {
+  font-family: var(--fyp-font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--phase-color, var(--vp-c-brand-1));
+}
+
+.fyp-timeline__phase-range {
+  font-size: 0.72rem;
+  color: var(--vp-c-text-3);
+  margin-bottom: 0.6rem;
+}
+
+.fyp-timeline__bar {
+  position: relative;
+  height: 4px;
+  border-radius: 2px;
+  background: var(--phase-color, var(--vp-c-brand-1));
+  opacity: 0.6;
+}
+
+.fyp-timeline__events {
+  position: relative;
+  margin-top: 0.9rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.fyp-timeline__event {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  font-size: 0.8rem;
+  line-height: 1.3;
+}
+
+.fyp-timeline__dot {
+  margin-top: 0.2rem;
+  width: 0.7rem;
+  height: 0.7rem;
+  flex: 0 0 auto;
+  border-radius: 999px;
+  background: var(--vp-c-bg);
+  border: 2px solid var(--phase-color, var(--vp-c-brand-1));
+}
+
+.fyp-timeline__event--done .fyp-timeline__dot {
+  background: var(--phase-color, var(--vp-c-brand-1));
+}
+
+.fyp-timeline__event-date {
+  font-family: var(--fyp-font-mono);
+  font-size: 0.7rem;
+  color: var(--vp-c-text-3);
+  display: block;
+}
+
+/* ============================================================
+ * RoadmapBoard.vue — flexible track × horizon grid (2–5 tracks)
+ * ============================================================ */
+.fyp-roadmap {
+  margin: 2rem 0 2.5rem;
+  overflow-x: auto;
+}
+
+.fyp-roadmap__grid {
+  display: grid;
+  grid-template-columns: minmax(120px, 0.7fr) repeat(var(--horizon-count, 3), minmax(180px, 1fr));
+  gap: 0.6rem;
+  min-width: 720px;
+}
+
+.fyp-roadmap__corner {
+  border-bottom: 1px solid var(--vp-c-divider);
+}
+
+.fyp-roadmap__horizon {
+  font-family: var(--fyp-font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--vp-c-text-2);
+  padding: 0 0.25rem 0.5rem;
+  border-bottom: 1px solid var(--vp-c-divider);
+}
+
+.fyp-roadmap__track-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 700;
+  font-size: 0.85rem;
+  padding-right: 0.5rem;
+}
+
+.fyp-roadmap__track-swatch {
+  width: 0.8rem;
+  height: 0.8rem;
+  flex: 0 0 auto;
+  border-radius: 3px;
+  background: var(--track-accent, var(--vp-c-brand-1));
+}
+
+.fyp-roadmap__cell {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.fyp-roadmap__item {
+  border: 1px solid var(--vp-c-divider);
+  border-left: 3px solid var(--track-accent, var(--vp-c-brand-1));
+  border-radius: 6px;
+  padding: 0.5rem 0.6rem;
+  font-size: 0.8rem;
+  line-height: 1.3;
+  background: var(--vp-c-bg-soft);
+}
+
+.fyp-roadmap__item-title {
+  font-weight: 600;
+}
+
+.fyp-roadmap__item-note {
+  color: var(--vp-c-text-3);
+  font-size: 0.72rem;
+  margin-top: 0.15rem;
+}
+
+.fyp-roadmap__status {
+  display: inline-block;
+  margin-top: 0.35rem;
+  font-family: var(--fyp-font-mono);
+  font-size: 0.62rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 0.05rem 0.4rem;
+  border-radius: 4px;
+}
+
+.fyp-roadmap__status--done {
+  color: #047857;
+  background: rgba(16, 185, 129, 0.14);
+}
+
+.fyp-roadmap__status--in-progress {
+  color: #6d28d9;
+  background: rgba(124, 58, 237, 0.14);
+}
+
+.fyp-roadmap__status--planned {
+  color: var(--vp-c-text-2);
+  background: var(--vp-c-default-soft);
+}
+
+/* ============================================================
+ * Changelog.vue — per-section micro-versioning trail
+ * ============================================================ */
+.fyp-changelog {
+  margin: 1.5rem 0;
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.fyp-changelog__head {
+  padding: 0.6rem 1rem;
+  border-bottom: 1px solid var(--vp-c-divider);
+  font-family: var(--fyp-font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--vp-c-text-2);
+}
+
+.fyp-changelog__list {
+  list-style: none;
+  margin: 0;
+  padding: 0.25rem 1rem;
+}
+
+.fyp-changelog__entry {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  padding: 0.5rem 0;
+  font-size: 0.85rem;
+}
+
+.fyp-changelog__entry + .fyp-changelog__entry {
+  border-top: 1px solid var(--vp-c-divider);
+}
+
+.fyp-changelog__version {
+  flex: 0 0 auto;
+  font-family: var(--fyp-font-mono);
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: var(--vp-c-text-2);
+  background: var(--vp-c-default-soft);
+  padding: 0.1rem 0.4rem;
+  border-radius: 4px;
+}
+
+.fyp-changelog__date {
+  flex: 0 0 auto;
+  font-family: var(--fyp-font-mono);
+  font-size: 0.7rem;
+  color: var(--vp-c-text-3);
+}
+
+.fyp-changelog__summary {
+  color: var(--vp-c-text-1);
+}

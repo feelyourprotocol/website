@@ -1,8 +1,8 @@
 ---
 month: 2026-06
 hourly_rate_eur: 50
-total_hours: 29
-total_eur: 1450
+total_hours: 44
+total_eur: 2200
 ---
 
 # FYP work — June 2026
@@ -25,3 +25,8 @@ total_eur: 1450
 | 2026-06-19 | 25 | 2 | BAL EIP-7928 exploration |
 | 2026-06-22 | 26 | 4 | Mobile/Responsiveness |
 | 2026-06-23 | 26 | 3 | Community/Marketing/SEO |
+| 2026-06-24 | 26 | 3 | SEO/llms.txt, exploration images, OG WebP |
+| 2026-06-25 | 26 | 4 | Ice Cream Week (contract + site integration) |
+| 2026-06-26 | 26 | 1 | Ice Cream assets |
+| 2026-06-28 | 26 | 3 | Topic/exploration OG image pipeline |
+| 2026-06-30 | 27 | 4 | Roadmap site (first draft) |

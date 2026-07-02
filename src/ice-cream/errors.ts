@@ -1,3 +1,5 @@
+import { FYP_X_HANDLE } from '@/libs/roadmapUrls'
+
 import type { IceCreamErrorCode, IceCreamErrorView } from './types'
 
 const ERROR_VIEWS: Record<IceCreamErrorCode, IceCreamErrorView> = {
@@ -34,7 +36,7 @@ const ERROR_VIEWS: Record<IceCreamErrorCode, IceCreamErrorView> = {
     title: 'Scoop did not mint',
     message:
       'The on-chain mint did not finish. If MetaMask shows a failed transaction, your $FYP was not taken — only gas may apply.',
-    hint: 'Try again in a moment. If MetaMask keeps failing, ping us on X (@FeelEthereum) with the tx hash.',
+    hint: `Try again in a moment. If MetaMask keeps failing, ping us on X (${FYP_X_HANDLE}) with the tx hash.`,
   },
   unknown: {
     code: 'unknown',

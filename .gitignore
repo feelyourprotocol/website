@@ -15,6 +15,7 @@ coverage
 
 # VitePress cache
 docs/.vitepress/cache
+roadmap/.vitepress/cache
 
 /cypress/videos/
 /cypress/screenshots/

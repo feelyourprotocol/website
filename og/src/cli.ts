@@ -1,3 +1,4 @@
+import { assertChromiumReady } from './check-browsers.ts'
 import { generateAllOgImages, generateExplorationOg, generateTopicOg } from './generate.ts'
 
 function usage(): never {
@@ -9,6 +10,8 @@ function usage(): never {
 }
 
 async function main(): Promise<void> {
+  await assertChromiumReady()
+
   const [command, id] = process.argv.slice(2)
   if (!command) usage()
 

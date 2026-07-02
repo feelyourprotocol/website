@@ -105,6 +105,14 @@ describe('App layout', () => {
       expect(ghLink.exists()).toBe(true)
     })
 
+    it('has Roadmap link', async () => {
+      const wrapper = await mountApp(makeRouter())
+      const roadmapLink = wrapper.find(
+        'footer a[href="https://roadmap.feelyourprotocol.org/index.html"]',
+      )
+      expect(roadmapLink.exists()).toBe(true)
+    })
+
     it('has X link', async () => {
       const wrapper = await mountApp(makeRouter())
       const xLink = wrapper.find('footer a[href="https://x.com/FeelEthereum"]')

@@ -1,0 +1,96 @@
+/* ============================================================
+ * Feel Your Protocol — shared VitePress design tokens
+ *
+ * Imported by docs/.vitepress/theme/custom.css and
+ * roadmap/.vitepress/theme/custom.css. Each site overrides
+ * --vp-c-brand-* and adds its own accent via --fyp-accent.
+ *
+ * Requires JetBrains Mono under {site}/public/fonts/ (copied
+ * from src/assets/fonts/ at build/dev time — both sites ship
+ * their own copy under public/).
+ * ============================================================ */
+
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/JetBrainsMono-Regular.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/fonts/JetBrainsMono-Bold.woff2') format('woff2');
+}
+
+:root {
+  /* Brand palette (main site + community-token) */
+  --fyp-purple: #7c3aed;
+  --fyp-cyan: #06b6d4;
+  --fyp-amber: #f59e0b;
+  --fyp-gradient: linear-gradient(120deg, var(--fyp-purple) 30%, var(--fyp-cyan));
+  --fyp-gradient-shift: linear-gradient(90deg, var(--fyp-purple), var(--fyp-cyan), var(--fyp-purple));
+
+  --fyp-font-mono:
+    'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono',
+    'Courier New', monospace;
+
+  /* Dot grids — neutral (main site) vs brand-tinted (roadmap) */
+  --fyp-dot-grid-neutral: radial-gradient(circle, #cbd5e1 0.5px, transparent 0.5px);
+  --fyp-dot-grid-brand: radial-gradient(circle, rgba(124, 58, 237, 0.08) 0.5px, transparent 0.5px);
+  --fyp-dot-size: 24px 24px;
+
+  --vp-font-family-mono: var(--fyp-font-mono);
+
+  /* Hero name — shared purple→cyan gradient on both doc sites */
+  --vp-home-hero-name-color: transparent;
+  --vp-home-hero-name-background: var(--fyp-gradient);
+}
+
+.dark {
+  --fyp-dot-grid-neutral: radial-gradient(circle, rgba(148, 163, 184, 0.12) 0.5px, transparent 0.5px);
+  --fyp-dot-grid-brand: radial-gradient(circle, rgba(167, 139, 250, 0.07) 0.5px, transparent 0.5px);
+}
+
+/* Protocol pulse — animated gradient (hero name on docs) */
+@keyframes fyp-gradient-shift {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+/* Compact two-line nav title — sidebar column is only 272px wide */
+.fyp-nav-title {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  line-height: 1.15;
+  min-width: 0;
+  max-width: 100%;
+}
+
+.fyp-nav-title-main {
+  font-family: var(--fyp-font-mono);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.fyp-nav-title-sub {
+  font-family: var(--fyp-font-mono);
+  font-size: 0.625rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  line-height: 1;
+}
