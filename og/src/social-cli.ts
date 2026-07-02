@@ -1,4 +1,5 @@
 import './bootstrap-playwright-env.ts'
+
 import { captureSocialCards } from './social/capture.ts'
 
 function usage(): never {

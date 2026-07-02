@@ -2,8 +2,8 @@ import { describe, expect, it } from 'vitest'
 import { mount } from '@vue/test-utils'
 
 import { ROADMAP_HORIZONS, ROADMAP_TRACKS } from '../../../data/roadmap.ts'
-import BoardSocialCard from '../components/BoardSocialCard.vue'
 import { SOCIAL_CARDS } from '../cards.ts'
+import BoardSocialCard from '../components/BoardSocialCard.vue'
 
 describe('BoardSocialCard', () => {
   it('renders banner with horizon and track chips plus board body', () => {

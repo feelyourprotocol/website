@@ -1,7 +1,6 @@
 import { accessSync, constants, existsSync, readFileSync, writeFileSync } from 'node:fs'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
-
 import { chromium } from 'playwright'
 
 const here = dirname(fileURLToPath(import.meta.url))

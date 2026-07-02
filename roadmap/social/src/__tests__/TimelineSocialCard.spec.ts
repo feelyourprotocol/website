@@ -2,8 +2,8 @@ import { describe, expect, it } from 'vitest'
 import { mount } from '@vue/test-utils'
 
 import { TIMELINE_PHASES } from '../../../data/timeline.ts'
-import TimelineSocialCard from '../components/TimelineSocialCard.vue'
 import { SOCIAL_CARDS } from '../cards.ts'
+import TimelineSocialCard from '../components/TimelineSocialCard.vue'
 
 describe('TimelineSocialCard', () => {
   it('renders banner with phase chips and timeline body', () => {

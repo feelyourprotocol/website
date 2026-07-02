@@ -1,12 +1,12 @@
 import { readFileSync } from 'node:fs'
 import { describe, expect, it } from 'vitest'
 
+import { OG_HEIGHT, OG_WIDTH, WEBSITE_ROOT } from '../config.ts'
 import {
   ROADMAP_OG_OUTPUT,
   ROADMAP_OG_PUBLIC_DIR,
   ROADMAP_OG_RENDER_HTML,
 } from '../generate-roadmap-og.ts'
-import { OG_HEIGHT, OG_WIDTH, WEBSITE_ROOT } from '../config.ts'
 
 describe('roadmap OG generator paths', () => {
   it('render template and output resolve under roadmap/public/og', () => {

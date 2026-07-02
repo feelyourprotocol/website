@@ -1,8 +1,9 @@
 import './bootstrap-playwright-env.ts'
+
 import {
+  type ChromiumStatusKind,
   formatChromiumStatus,
   inspectChromiumEnvironment,
-  type ChromiumStatusKind,
 } from './chromium-status.ts'
 
 function statusForAgent(kind: ChromiumStatusKind): string {

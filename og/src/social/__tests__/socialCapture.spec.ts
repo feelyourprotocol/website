@@ -1,14 +1,13 @@
-import { describe, expect, it } from 'vitest'
-
 import { resolve } from 'node:path'
+import { describe, expect, it } from 'vitest'
 
 import { SOCIAL_CARD_IDS } from '../../../../roadmap/social/src/cards.ts'
 import {
   SOCIAL_CAPTURE_WIDTH,
   SOCIAL_DIST_DIR,
   SOCIAL_OUTPUT_DIR,
-  WEBSITE_ROOT,
   socialCardOutputBase,
+  WEBSITE_ROOT,
 } from '../config.ts'
 import { parseSocialCardIds } from '../parseCardIds.ts'
 

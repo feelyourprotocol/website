@@ -1,14 +1,11 @@
 import { mkdirSync } from 'node:fs'
-import { dirname, resolve } from 'node:path'
-import { fileURLToPath } from 'node:url'
-
+import { resolve } from 'node:path'
 import { chromium } from 'playwright'
 import sharp from 'sharp'
 
 import { OG_HEIGHT, OG_WIDTH, WEBSITE_ROOT } from './config.ts'
 import { startStaticServer } from './server.ts'
 
-const here = dirname(fileURLToPath(import.meta.url))
 export const ROADMAP_OG_PUBLIC_DIR = resolve(WEBSITE_ROOT, 'roadmap', 'public', 'og')
 export const ROADMAP_OG_RENDER_HTML = resolve(ROADMAP_OG_PUBLIC_DIR, 'render.html')
 export const ROADMAP_OG_OUTPUT = resolve(ROADMAP_OG_PUBLIC_DIR, 'default.webp')

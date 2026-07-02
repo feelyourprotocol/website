@@ -1,9 +1,9 @@
 import { describe, expect, it } from 'vitest'
 import { mount } from '@vue/test-utils'
 
-import { HERO_FEATURES } from '../heroFeatures.ts'
-import HeroSocialCard from '../components/HeroSocialCard.vue'
 import { SOCIAL_CARDS } from '../cards.ts'
+import HeroSocialCard from '../components/HeroSocialCard.vue'
+import { HERO_FEATURES } from '../heroFeatures.ts'
 
 describe('HeroSocialCard', () => {
   it('renders docs-style hero with capture id and feature tiles', () => {

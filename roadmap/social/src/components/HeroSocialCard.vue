@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { HERO_FEATURES } from '../heroFeatures.ts'
 import { SOCIAL_CARDS } from '../cards.ts'
+import { HERO_FEATURES } from '../heroFeatures.ts'
 
 const meta = SOCIAL_CARDS.hero
 </script>

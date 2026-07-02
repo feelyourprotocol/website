@@ -1,8 +1,9 @@
 import './bootstrap-playwright-env.ts'
+
 import { assertChromiumReady } from './check-browsers.ts'
 import { OG_HEIGHT, OG_WIDTH } from './config.ts'
-import { generateRoadmapOg } from './generate-roadmap-og.ts'
 import { generateAllOgImages, generateExplorationOg, generateTopicOg } from './generate.ts'
+import { generateRoadmapOg } from './generate-roadmap-og.ts'
 
 function usage(): never {
   console.error(`Usage:
