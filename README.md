@@ -26,6 +26,14 @@ npm run og:check
 
 See [og/README.md](./og/README.md).
 
+### Roadmap Twitter cards
+
+Thread visuals (timeline, roadmap board, hero) — see [roadmap/social/README.md](./roadmap/social/README.md):
+
+```bash
+npm run capture:social
+```
+
 ## Deployment
 
 Production builds (`dist/website`, `dist/docs`, `dist/community-token`, `dist/roadmap`) are **not** in the repo — the server runs `npm run build:deploy` after `git pull`. See `server-config/deployment/fyp_deploy.sh`.

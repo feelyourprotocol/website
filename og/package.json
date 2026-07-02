@@ -10,6 +10,8 @@
   "scripts": {
     "setup": "npm install && npx playwright install chromium",
     "check": "node --experimental-strip-types src/check-cli.ts",
+    "preflight": "node --experimental-strip-types src/preflight-cli.ts",
+    "capture:social:run": "node --experimental-strip-types src/social-cli.ts",
     "generate": "node --experimental-strip-types src/cli.ts"
   },
   "dependencies": {

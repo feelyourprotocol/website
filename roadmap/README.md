@@ -59,17 +59,30 @@ There are no full doc versions. Instead, fast-moving sections embed a `<Changelo
 
 Meta tags (canonical, Open Graph, Twitter) are injected at build time via `transformHead` in `.vitepress/config.ts`, plus a generated `sitemap.xml`. Same pattern as the docs site.
 
-**Open Graph / Twitter image** — place artwork here (not in git until added):
+**Open Graph / Twitter image** — generate at standard 1200×630 from `public/og/render.html`:
 
-```
-roadmap/public/og/default.webp     (1200 × 630, WebP)
+```bash
+npm run generate:og:roadmap    # from website/ — requires og:setup once
 ```
 
-Served at `https://roadmap.feelyourprotocol.org/og/default.webp`.
+Output: `roadmap/public/og/default.webp` — served at `https://roadmap.feelyourprotocol.org/og/default.webp`.
+
+## Twitter / thread images
+
+Reusable cards (timeline, roadmap board, hero) — same Vue components + data as the site:
+
+```bash
+npm run capture:social              # builds preview + writes PNG/WebP
+npm run social:dev                  # preview at localhost:5175/?card=timeline
+```
+
+See [social/README.md](./social/README.md). Output: `roadmap/social/out/` (gitignored).
+
+Tests: `npx vitest run roadmap/social/src/__tests__/ og/src/social/__tests__/`
 
 ## Subdomain deployment
 
-Nginx block is prepared in `../server-config/config/fyp_nginx` (BLOCK 11–12).
+Nginx block is prepared in `../server-config/config/fyp_nginx` (BLOCK 8–9).
 
 After first deploy, expand the existing certificate to cover the subdomain:
 
