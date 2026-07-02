@@ -5,7 +5,7 @@ const ROADMAP_ORIGIN = 'https://roadmap.feelyourprotocol.org'
 
 const ROADMAP_TITLE = 'Feel Your Protocol Roadmap'
 const ROADMAP_DESCRIPTION =
-  'Living roadmap and conceptualization workspace for Feel Your Protocol Phase 3 — vision, milestones, and draft concepts toward a sustainable Ethereum protocol API and MCP server for AI agents.'
+  'Living roadmap and conceptualization workspace for Feel Your Protocol Phase 3 — vision, milestones, and draft concepts toward a sustainable API and MCP server for the future Ethereum protocol (upcoming forks, EIPs, and research).'
 
 /** Stable path under `roadmap/public/og/` — copied to `dist/roadmap/og/` on build. */
 const ROADMAP_OG_IMAGE_PATH = '/og/default.webp'
@@ -13,6 +13,9 @@ const ROADMAP_OG_IMAGE = `${ROADMAP_ORIGIN}${ROADMAP_OG_IMAGE_PATH}`
 const ROADMAP_OG_IMAGE_WIDTH = '1200'
 const ROADMAP_OG_IMAGE_HEIGHT = '630'
 const ROADMAP_OG_IMAGE_ALT = 'Feel Your Protocol Roadmap — vision, milestones and tracks'
+
+/** Project X — keep in sync with `src/libs/roadmapUrls.ts` (@FeelEthereum, not @feelyourprotocol). */
+const FYP_X_URL = 'https://x.com/FeelEthereum'
 
 function roadmapCanonicalUrl(relativePath: string): string {
   if (relativePath === 'index.md') return `${ROADMAP_ORIGIN}/index.html`
@@ -117,7 +120,7 @@ export default defineConfig({
     ],
     socialLinks: [
       { icon: 'github', link: 'https://github.com/feelyourprotocol/website' },
-      { icon: 'x', link: 'https://x.com/feelyourprotocol' },
+      { icon: 'x', link: FYP_X_URL },
     ],
     search: {
       provider: 'local',

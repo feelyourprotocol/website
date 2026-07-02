@@ -4,7 +4,7 @@
 
 ## What we're aiming for
 
-The working name is **Feel Your Protocol API / MCP server**: a headless service that would wrap the EthereumJS stack so an AI agent can run **exact, deterministic protocol simulations** — and get back not just a result, but a step-by-step trace it can reason over.
+The working name is **Feel Your Protocol API / MCP server**: a headless service that would wrap the EthereumJS stack so an AI agent can run **exact, deterministic simulations of the future Ethereum protocol** — upcoming forks, EIPs, and research — and get back not just a result, but a step-by-step trace it can reason over.
 
 **Current lean:** deliver primarily as an **MCP server** rather than a bare REST API. [MCP](https://modelcontextprotocol.io) (Model Context Protocol) is the emerging standard for agent↔tool communication: it lets an agent discover which tools exist, what arguments they take, and how to format calls — without custom prompt engineering. The same core could also be exposed over plain HTTP for non-agent callers. We haven't finalized tool names, schemas, or the HTTP/MCP split yet.
 

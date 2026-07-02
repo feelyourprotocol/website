@@ -6,6 +6,8 @@ Feel Your Protocol is an interactive website that lets you explore Ethereum prot
 
 Each protocol change — called an **Exploration** — gets its own page with a dedicated interactive widget. Explorations cover EIPs, ERCs, and protocol research. They are organized through three taxonomies: **Topics** (static strategic pillars like "Scaling" or "UX"), **Timeline** (maturity and hardfork placement like "Fusaka" or "Research"), and **Tags** (reusable technical concepts like "EVM" or "Precompiles") — making it easy to discover and navigate related protocol changes.
 
+**Phase 3** is taking shape on the [roadmap site](https://roadmap.feelyourprotocol.org/index.html): a deterministic API and MCP server for the future Ethereum protocol — upcoming forks, EIPs, and research — with the explorations website as its front door. Nothing there is shipped yet — it is a living conceptualization workspace.
+
 ## Prerequisites
 
 - [Node.js](https://nodejs.org/) v20.19+ or v22.12+
@@ -35,6 +37,12 @@ Start the docs dev server:
 npm run docs:dev
 ```
 
+Start the roadmap dev server:
+
+```bash
+npm run roadmap:dev
+```
+
 ## Quality Checks
 
 ```bash
@@ -54,13 +62,14 @@ npm run test:e2e     # E2E tests (Cypress, requires build first)
 ## Building
 
 ```bash
-npm run build          # all three, with website type-check
-npm run build:deploy   # all three (website vite-only; used on the server after git pull)
+npm run build          # all four, with website type-check
+npm run build:deploy   # all four (website vite-only; used on the server after git pull)
 
 # Individual targets:
 npm run website:build           # dist/website
 npm run community-token:build   # dist/community-token
 npm run docs:build              # dist/docs
+npm run roadmap:build           # dist/roadmap
 ```
 
 `dist/` is not committed — production output is rebuilt on deploy.

@@ -7,6 +7,7 @@ import { Tag } from '@/explorations/TAGS'
 import { TOPICS } from '@/explorations/TOPICS'
 import { COMMUNITY_TOKEN_HOME } from '@/libs/communityToken'
 import { DOCS_HOME } from '@/libs/docsUrls'
+import { ROADMAP_HOME } from '@/libs/roadmapUrls'
 
 import HomeView from '../HomeView.vue'
 
@@ -75,6 +76,12 @@ describe('HomeView', () => {
       expect(link.exists()).toBe(true)
       expect(link.text()).toBe('How it works')
       expect(link.attributes('target')).toBe('_blank')
+    })
+
+    it('has roadmap link in about section', () => {
+      const roadmap = wrapper.find(`a[href="${ROADMAP_HOME}"]`)
+      expect(roadmap.exists()).toBe(true)
+      expect(roadmap.text()).toBe('See the roadmap')
     })
   })
 

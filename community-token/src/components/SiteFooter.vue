@@ -1,8 +1,9 @@
 <script setup lang="ts">
 const MAIN_SITE_URL = 'https://feelyourprotocol.org'
 const DOCS_URL = 'https://docs.feelyourprotocol.org/index.html'
+const ROADMAP_URL = 'https://roadmap.feelyourprotocol.org/index.html'
 const GITHUB_URL = 'https://github.com/feelyourprotocol/website'
-const LAST_UPDATED = 'June 5, 2026'
+const LAST_UPDATED = 'June 30, 2026'
 </script>
 
 <template>
@@ -18,6 +19,10 @@ const LAST_UPDATED = 'June 5, 2026'
         >
         <span class="text-slate-300">·</span>
         <a :href="DOCS_URL" target="_blank" rel="noopener" class="hover:text-slate-700">Docs</a>
+        <span class="text-slate-300">·</span>
+        <a :href="ROADMAP_URL" target="_blank" rel="noopener" class="hover:text-slate-700"
+          >Roadmap</a
+        >
         <span class="text-slate-300">·</span>
         <a :href="GITHUB_URL" target="_blank" rel="noopener" class="hover:text-slate-700">GitHub</a>
       </p>

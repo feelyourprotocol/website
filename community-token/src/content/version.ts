@@ -1,4 +1,4 @@
-export const SITE_VERSION = 'v0.3' as const
+export const SITE_VERSION = 'v0.4' as const
 
 export type ChangelogEntry = {
   version: string
@@ -6,6 +6,11 @@ export type ChangelogEntry = {
 }
 
 export const CHANGELOG: ChangelogEntry[] = [
+  {
+    version: 'v0.4',
+    summary:
+      'Phase 3 roadmap links in header and footer; intro updated for token-as-volume-discount framing; Draft badge removed',
+  },
   {
     version: 'v0.3',
     summary:

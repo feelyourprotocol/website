@@ -1,10 +1,10 @@
 # Two Legs, One Engine
 
-Feel Your Protocol is designed around **two legs that share one engine**. The same EthereumJS core would power both the educational website (which exists today) and a headless agent API (which we're still designing) — but each leg serves a different audience and is framed differently.
+Feel Your Protocol is designed around **two legs that share one engine**. The same EthereumJS core would power both the educational website (which exists today) and a headless agent API for the future Ethereum protocol (which we're still designing) — but each leg serves a different audience and is framed differently.
 
 ## The two legs
 
-| | **Leg A — Website** _(live)_ | **Leg B — Agent API & MCP server** _(planned)_ |
+| | **Leg A — Website** _(live)_ | **Leg B — Future-protocol API & MCP server** _(planned)_ |
 | --- | --- | --- |
 | Audience | Humans: protocol enthusiasts, devs, the Bankr community | Machines: AI agents, and the researchers/teams behind them |
 | Experience | Interactive, visual, educational explorations | Headless, deterministic, well-documented; pre-built LLM tool bindings |

@@ -32,6 +32,7 @@ at contributors and developers who want to understand or extend the project.
 ## Related
 
 - [Main site](https://feelyourprotocol.org/): The live, interactive explorations
+- [Phase 3 Roadmap](https://roadmap.feelyourprotocol.org/index.html): Future Ethereum protocol API & MCP — upcoming forks, EIPs, research (conceptualization workspace — not shipped API docs)
 - [Community Token](https://community-token.feelyourprotocol.org/): How a community token on Base supports this open-source work
 - [Source on GitHub](https://github.com/feelyourprotocol/website): Full source for site, docs, and explorations
 

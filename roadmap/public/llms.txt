@@ -1,0 +1,46 @@
+# Feel Your Protocol — Phase 3 Roadmap
+
+> Conceptualization workspace for Feel Your Protocol Phase 3: problem & vision, milestones,
+> roadmap tracks, timeline, and draft outlines of core concepts (deterministic API & MCP for the
+> future Ethereum protocol — upcoming forks, EIPs, and research; x402, pricing/cost model) and
+> infrastructure. Nothing here documents a shipped API yet — it records where thinking stands
+> a shipped API yet — it records where thinking stands today, including open questions.
+
+The explorations website (feelyourprotocol.org) is the front door; this roadmap site is the
+organizational home for where the project is headed. The FYP community token is intended as a
+volume discount on future API usage, not a gate. Educational, open-source character throughout.
+
+## Vision
+
+- [Problem & Vision](https://roadmap.feelyourprotocol.org/vision/problem-vision.html): Why a deterministic oracle for upcoming protocol changes; about this site
+- [Two Legs](https://roadmap.feelyourprotocol.org/vision/two-legs.html): Explorations website + future-protocol API/MCP as complementary legs
+
+## Roadmap
+
+- [Roadmap Board](https://roadmap.feelyourprotocol.org/roadmap/roadmap.html): Tracks and horizons (data-driven board)
+- [Timeline](https://roadmap.feelyourprotocol.org/roadmap/timeline.html): Project phases and milestones
+
+## Concepts (draft)
+
+- [Agent API & MCP](https://roadmap.feelyourprotocol.org/concepts/api-mcp.html): Target-state sketch for simulating future fork rules and EIPs
+- [x402](https://roadmap.feelyourprotocol.org/concepts/x402.html): Payment rails concept for agent usage
+
+## Monetization & infra
+
+- [Token role](https://roadmap.feelyourprotocol.org/monetization/token.html): FYP as volume discount, not gate
+- [Pricing](https://roadmap.feelyourprotocol.org/monetization/pricing.html): Draft cost model
+- [AWS / hosting](https://roadmap.feelyourprotocol.org/infrastructure/aws.html): Strato vs cloud for API MVP
+- [Distribution](https://roadmap.feelyourprotocol.org/go-to-market/distribution.html): Go-to-market notes
+
+## Related
+
+- [Main site](https://feelyourprotocol.org/): Interactive Ethereum protocol explorations
+- [Website Docs](https://docs.feelyourprotocol.org/index.html): Contributor guide and architecture
+- [Community Token](https://community-token.feelyourprotocol.org/): Transparency page for FYP on Base
+- [Source on GitHub](https://github.com/feelyourprotocol/website): Roadmap content lives in the `roadmap/` folder
+
+## Notes
+
+- Built with VitePress; static HTML on roadmap.feelyourprotocol.org after deploy.
+- Board and timeline are data-driven (`roadmap/data/roadmap.ts`, `roadmap/data/timeline.ts`).
+- Conceptualization only — not financial advice; not affiliated with the Ethereum Foundation.

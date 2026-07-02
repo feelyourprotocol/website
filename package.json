@@ -23,6 +23,8 @@
     "generate:og:exploration": "npm run generate --prefix og -- exploration",
     "generate:og:topic": "npm run generate --prefix og -- topic",
     "generate:og:all": "npm run generate --prefix og -- all",
+    "og:setup": "npm run setup --prefix og",
+    "og:check": "npm run check --prefix og",
     "website:preview": "vite preview --outDir dist/website",
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",

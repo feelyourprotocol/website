@@ -15,6 +15,17 @@ npm install
 npm run dev
 ```
 
+### OG images (optional, one-time)
+
+Social preview cards for explorations/topics use Playwright in the isolated `og/` package. **Not required for `npm run dev`.** Once per machine:
+
+```bash
+npm run og:setup
+npm run og:check
+```
+
+See [og/README.md](./og/README.md).
+
 ## Deployment
 
 Production builds (`dist/website`, `dist/docs`, `dist/community-token`, `dist/roadmap`) are **not** in the repo — the server runs `npm run build:deploy` after `git pull`. See `server-config/deployment/fyp_deploy.sh`.
@@ -40,6 +51,10 @@ Organizational home — vision, milestones, roadmap tracks, timeline, and core c
 - **Local dev:** `npm run roadmap:dev`
 
 See [roadmap/README.md](./roadmap/README.md) for structure, the data-driven visualizations, and deployment notes.
+
+## Cross-site constants
+
+Shared fleet URLs (roadmap origin, project X handle, etc.) live in [`src/libs/roadmapUrls.ts`](./src/libs/roadmapUrls.ts). **Project X is @FeelEthereum** — not `@feelyourprotocol` (domain name ≠ handle). VitePress configs duplicate the X URL with a comment pointing there.
 
 ## License
 

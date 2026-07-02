@@ -76,6 +76,7 @@ export default defineConfig({
       { text: 'Guide', link: '/guide/getting-started' },
       { text: 'Contributing', link: '/contributing/how-to-contribute' },
       { text: 'Changelog', link: '/changelog' },
+      { text: 'Roadmap', link: 'https://roadmap.feelyourprotocol.org' },
       { text: 'Website', link: 'https://feelyourprotocol.org' },
     ],
     sidebar: [

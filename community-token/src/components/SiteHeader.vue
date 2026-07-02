@@ -3,6 +3,7 @@ import { SITE_LOGO } from '@ct/content/brand'
 import { SITE_VERSION } from '@ct/content/version'
 
 const MAIN_SITE_URL = 'https://feelyourprotocol.org'
+const ROADMAP_URL = 'https://roadmap.feelyourprotocol.org/index.html'
 </script>
 
 <template>
@@ -27,11 +28,6 @@ const MAIN_SITE_URL = 'https://feelyourprotocol.org'
             >
               {{ SITE_VERSION }}
             </span>
-            <span
-              class="rounded-md border border-amber-300 bg-amber-50 px-1.5 py-0.5 font-mono text-[0.6rem] uppercase tracking-[0.15em] text-amber-700"
-            >
-              Draft
-            </span>
           </h1>
         </div>
       </div>
@@ -44,6 +40,14 @@ const MAIN_SITE_URL = 'https://feelyourprotocol.org'
           rel="noopener"
         >
           Main site ↗
+        </a>
+        <a
+          :href="ROADMAP_URL"
+          class="rounded-md border border-slate-300 px-3 py-1.5 text-slate-600 transition hover:border-purple-300 hover:text-purple-700"
+          target="_blank"
+          rel="noopener"
+        >
+          Roadmap ↗
         </a>
         <a
           href="#token-info"

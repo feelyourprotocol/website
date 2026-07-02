@@ -10,8 +10,9 @@ deploying tokens on Base. The maintainer (Holger Drewes, @HolgerD77) did not iss
 engages with it in good faith and documents the handling here. A portion of trading fees
 (creator fees) accrues to a claimable balance, which is used to fund time on Feel Your
 Protocol explorations and related EthereumJS upkeep. Participation is through on-chain
-activity in support of public-good Ethereum tooling — not ownership of the code, a roadmap,
-or any promise of returns.
+activity in support of public-good Ethereum tooling — not ownership of the code or any promise
+of returns. For project direction, see the Phase 3 roadmap; the token is intended as a volume
+discount on future API usage, not a gate.
 
 ## Page sections
 
@@ -34,6 +35,7 @@ or any promise of returns.
 ## Related
 
 - [Main site](https://feelyourprotocol.org/): The interactive Ethereum protocol explorations this funds
+- [Phase 3 Roadmap](https://roadmap.feelyourprotocol.org/index.html): Future Ethereum protocol API & MCP — upcoming forks, EIPs, token role (conceptualization, not promises)
 - [Documentation](https://docs.feelyourprotocol.org/index.html): Architecture and contributor guide
 - [Treasury ledgers on GitHub](https://github.com/feelyourprotocol/website/tree/main/treasury): Open books backing the Treasury section
 

@@ -40,6 +40,7 @@ contributions. It is educational and non-commercial in character.
 ## Related
 
 - [Documentation](https://docs.feelyourprotocol.org/index.html): Architecture, contributor guide, and reusable E-Components
+- [Phase 3 Roadmap](https://roadmap.feelyourprotocol.org/index.html): Vision, tracks, and draft concepts toward a deterministic API & MCP server for the future Ethereum protocol — upcoming forks, EIPs, and research (conceptualization — nothing shipped yet)
 - [Community Token](https://community-token.feelyourprotocol.org/): How a community token on Base supports this open-source work, in good faith
 - [Source on GitHub](https://github.com/feelyourprotocol/website): Full source, each exploration is a self-contained folder
 

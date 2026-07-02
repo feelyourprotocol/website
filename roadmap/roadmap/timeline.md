@@ -24,7 +24,7 @@ The Bankr community token launched at the start of June and was claimed on **Fri
 
 ### Phase 3 · Sustainable Business _(Jun 2026 →)_
 
-Evolve into a sustainable business: a deterministic [Ethereum protocol API & MCP server](/concepts/api-mcp) for AI agents, built in parallel to the website. Right now this phase is mostly **conceptualization** — turning the strategy into concrete designs, then into code. The forward markers below are **targets**, not commitments:
+Evolve into a sustainable business: a deterministic [future Ethereum protocol API & MCP server](/concepts/api-mcp) for AI agents — simulating upcoming forks, EIPs, and research, not today's mainnet — built in parallel to the website. Right now this phase is mostly **conceptualization** — turning the strategy into concrete designs, then into code. The forward markers below are **targets**, not commitments:
 
 - **2026-07** — Local zero-crypto MCP PoC _(target)_ — prove the LLM↔EthereumJS round-trip with one wrapped tool.
 - **2026-09-01 (target)** — First pipeline live on the already-implemented Amsterdam EIPs.

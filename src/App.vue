@@ -6,6 +6,7 @@ import { ChevronUpDownIcon } from '@heroicons/vue/20/solid'
 
 import { EXPLORATIONS } from '@/explorations/REGISTRY'
 import logoUrl from '@/logo.png'
+import { FYP_X_URL, ROADMAP_HOME } from '@/libs/roadmapUrls'
 
 const router = useRouter()
 const route = useRoute()
@@ -126,6 +127,23 @@ watch(
     </div>
   </header>
 
+  <aside
+    class="mb-4 rounded-lg border border-purple-200/80 bg-gradient-to-r from-purple-50/90 to-cyan-50/70 px-4 py-3 shadow-sm"
+  >
+    <p class="font-mono text-xs leading-relaxed text-slate-700 sm:text-sm">
+      <span class="font-bold text-purple-700">Phase 3</span>
+      — we're designing a deterministic API &amp; MCP server for the future Ethereum protocol
+      (upcoming forks &amp; EIPs) for AI agents.
+      <a
+        :href="ROADMAP_HOME"
+        target="_blank"
+        rel="noopener"
+        class="ml-1 font-semibold text-purple-700 underline decoration-purple-300 underline-offset-2 hover:text-purple-900"
+        >Read the roadmap ↗</a
+      >
+    </p>
+  </aside>
+
   <RouterView :key="route.fullPath" class="grid grid-cols-1" />
 
   <footer class="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-3 mt-10 mb-2">
@@ -137,11 +155,13 @@ watch(
     </h3>
 
     <h3 class="font-mono text-xs text-slate-500 sm:text-right">
+      <a :href="ROADMAP_HOME" target="_blank" rel="noopener">Roadmap</a>
+      <span class="text-purple-500 mx-2">◆</span>
       <a href="https://community-token.feelyourprotocol.org/" target="_blank" rel="noopener"
         >Community Token</a
       >
       <span class="text-purple-500 mx-2">◆</span>
-      <a href="https://x.com/FeelEthereum" target="_blank" rel="noopener">X</a>
+      <a :href="FYP_X_URL" target="_blank" rel="noopener">X</a>
       <span class="text-purple-500 mx-2">◆</span>
       <a href="https://github.com/feelyourprotocol/website" target="_blank" rel="noopener"
         >GitHub</a

@@ -20,7 +20,7 @@ A V-Server uses shared (KVM) virtualization — fine for bursty web traffic, but
 
 ```
 feelyourprotocol.org (website, docs, …)  →  Strato V-Server (nginx, low cost)
-Agent API + MCP server                   →  AWS EC2 c7g (dedicated compute)  [planned]
+Agent API + MCP server (future protocol)       →  AWS EC2 c7g (dedicated compute)  [planned]
 ```
 
 This would put enterprise-grade reliability exactly where agents are paying for it, without over-engineering the educational pages. Migration should be straightforward — the stack is modular and built to be portable, and the EC2 experience is already there — but we haven't cut over yet.
