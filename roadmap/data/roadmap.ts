@@ -52,7 +52,7 @@ export const ROADMAP_TRACKS: RoadmapTrack[] = [
       { title: 'Local zero-crypto MCP PoC', horizon: 'now', status: 'in-progress', note: 'Wrap one EthereumJS function as an MCP tool; prove the LLM round-trip.' },
       { title: 'Amsterdam EIP pipeline', horizon: 'now', status: 'in-progress', note: 'First full pipeline on already-implemented Amsterdam EIPs.' },
       { title: 'Glamsterdam scope (BAL, pricing)', horizon: 'next', status: 'planned' },
-      { title: 'Hegota scope (Verkle, precompiles)', horizon: 'later', status: 'planned' },
+      { title: 'Hegota scope (FOCIL, frame txs, EL)', horizon: 'later', status: 'planned' },
     ],
   },
   {

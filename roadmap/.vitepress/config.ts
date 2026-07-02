@@ -112,7 +112,7 @@ export default defineConfig({
       },
       {
         text: 'Go-to-Market',
-        items: [{ text: 'Distribution & DevRel', link: '/gtm/distribution' }],
+        items: [{ text: 'Distribution & DevRel', link: '/go-to-market/distribution' }],
       },
     ],
     socialLinks: [

@@ -10,10 +10,10 @@ The board is **data-driven** — edit [`roadmap/data/roadmap.ts`](https://github
 
 ## The tracks
 
-- **Engine & API** — the EthereumJS pipeline and the planned [MCP server](/concepts/api-mcp): local PoC first, then the Amsterdam EIP pipeline, then expanding fork coverage (Glamsterdam → Hegota).
+- **Engine & API** — the EthereumJS pipeline and the planned [MCP server](/concepts/api-mcp): local PoC first, then the Amsterdam EIP pipeline, then expanding fork coverage (Glamsterdam → Hegota: FOCIL, frame txs, EL EIPs per [EIP-8081](https://eips.ethereum.org/EIPS/eip-8081)).
 - **Website & Education** — explorations and the [visual funnel](/vision/two-legs) that will eventually link each exploration to its API capability.
 - **Infrastructure** — keeping the website on Strato while planning to move the headless API to [AWS](/infrastructure/aws), plus the payments plumbing.
-- **Business & Community** — [pricing](/monetization/pricing), [token utility](/monetization/token), [distribution](/gtm/distribution), and community alignment. (Granular as separate doc pages; grouped here for board readability.)
+- **Business & Community** — [pricing](/monetization/pricing), [token utility](/monetization/token), [distribution](/go-to-market/distribution), and community alignment. (Granular as separate doc pages; grouped here for board readability.)
 
 ## Phasing
 

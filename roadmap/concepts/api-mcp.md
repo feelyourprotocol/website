@@ -23,7 +23,7 @@ Three scopes we're mapping onto existing libraries — immediate → advanced. W
 
 1. **Future-fork gas & access-list simulator** — simulate a payload under current vs. upcoming fork rules; generate Block-level Access Lists (EIP-7928). _Audience:_ DeFi engineers, MEV searchers, auditors.
 2. **Deep-state security tracer** — return the exact stack/memory at every `DELEGATECALL`/`SSTORE` to verify an auditor agent's assumptions step-by-step.
-3. **Data-structure & cryptography sandbox** — insert state into a Verkle/Hegota-configured manager, generate inclusion proofs, expose Noble crypto primitives. _Audience:_ rollup/ZK/infra researchers.
+3. **Hegotá-era execution sandbox** — simulate EL rule changes still scoping under [EIP-8081](https://eips.ethereum.org/EIPS/eip-8081) / [Forkcast](https://forkcast.org/upgrade/hegota/) (e.g. state tiering by write age, `SELFDESTRUCT` deactivation, call/return opcodes); expose Noble crypto primitives where relevant. _Audience:_ infra researchers, protocol engineers.
 
 ## Likely first users _(hypothesis)_
 
