@@ -33,7 +33,7 @@ export default defineConfig({
   titleTemplate: ':title | Feel Your Protocol',
   description: ROADMAP_DESCRIPTION,
   /** README + scratch notes are contributor-facing only — keep them out of the built site + sitemap. */
-  srcExclude: ['README.md', 'tmp.md'],
+  srcExclude: ['README.md', 'tmp.md', 'social/README.md'],
   head: [
     ['script', {}, 'document.documentElement.classList.add("fyp-site-roadmap")'],
     ['meta', { name: 'twitter:card', content: 'summary_large_image' }],

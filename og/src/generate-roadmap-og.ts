@@ -1,14 +1,12 @@
 import { mkdirSync } from 'node:fs'
-import { resolve } from 'node:path'
 import { chromium } from 'playwright'
 import sharp from 'sharp'
 
-import { OG_HEIGHT, OG_WIDTH, WEBSITE_ROOT } from './config.ts'
+import { OG_HEIGHT, OG_WIDTH } from './config.ts'
+import { ROADMAP_OG_OUTPUT, ROADMAP_OG_PUBLIC_DIR } from './roadmap-og-paths.ts'
 import { startStaticServer } from './server.ts'
 
-export const ROADMAP_OG_PUBLIC_DIR = resolve(WEBSITE_ROOT, 'roadmap', 'public', 'og')
-export const ROADMAP_OG_RENDER_HTML = resolve(ROADMAP_OG_PUBLIC_DIR, 'render.html')
-export const ROADMAP_OG_OUTPUT = resolve(ROADMAP_OG_PUBLIC_DIR, 'default.webp')
+export { ROADMAP_OG_OUTPUT, ROADMAP_OG_PUBLIC_DIR, ROADMAP_OG_RENDER_HTML } from './roadmap-og-paths.ts'
 
 /** Capture roadmap/public/og/render.html at standard OG dimensions. */
 export async function generateRoadmapOg(): Promise<string> {

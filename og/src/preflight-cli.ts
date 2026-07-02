@@ -23,7 +23,7 @@ function statusForAgent(kind: ChromiumStatusKind): string {
 }
 
 async function main(): Promise<void> {
-  const env = inspectChromiumEnvironment()
+  const env = await inspectChromiumEnvironment()
   const agentStatus = statusForAgent(env.kind)
 
   console.log(`status: ${agentStatus}`)

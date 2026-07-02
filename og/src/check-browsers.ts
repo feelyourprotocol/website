@@ -9,7 +9,7 @@ import {
 
 /** Fail fast with a clear message when Chromium was never installed for this package. */
 export async function assertChromiumReady(): Promise<void> {
-  const env = inspectChromiumEnvironment()
+  const env = await inspectChromiumEnvironment()
 
   if (env.kind === 'og_deps_missing' || env.kind === 'browser_missing') {
     throw new Error(formatChromiumStatus(env))
@@ -32,7 +32,7 @@ export async function assertChromiumReady(): Promise<void> {
 
 export async function printChromiumStatus(): Promise<void> {
   await assertChromiumReady()
-  const env = inspectChromiumEnvironment()
+  const env = await inspectChromiumEnvironment()
   if (env.executablePath) writeChromiumStamp(env.executablePath)
   console.log('OK: Playwright Chromium is installed and launchable.')
 }

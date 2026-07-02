@@ -1,29 +1,23 @@
 import { existsSync, mkdirSync, rmSync, writeFileSync } from 'node:fs'
-import { join } from 'node:path'
 import { afterEach, describe, expect, it } from 'vitest'
 
 import {
   AGENT_PERMISSIONS_HINT,
   CHROMIUM_STAMP_PATH,
   formatChromiumStatus,
-  inspectChromiumEnvironment,
   launchFailureStatus,
   OG_PACKAGE_ROOT,
+  playwrightPackageRoot,
   readChromiumStamp,
-} from '../chromium-status.ts'
+} from '../chromium-status-core.ts'
 
-describe('inspectChromiumEnvironment', () => {
+describe('chromium status (CI-safe — no playwright import)', () => {
   afterEach(() => {
     if (existsSync(CHROMIUM_STAMP_PATH)) rmSync(CHROMIUM_STAMP_PATH)
   })
 
-  it('reports og deps present on this machine', () => {
-    expect(existsSync(join(OG_PACKAGE_ROOT, 'node_modules', 'playwright'))).toBe(true)
-    const status = inspectChromiumEnvironment()
-    expect(['ready', 'browser_missing', 'browser_not_executable', 'needs_agent_permissions']).toContain(
-      status.kind,
-    )
-    expect(status.kind).not.toBe('og_deps_missing')
+  it('playwrightPackageRoot resolves under og/', () => {
+    expect(playwrightPackageRoot()).toBe(`${OG_PACKAGE_ROOT}/node_modules/playwright`)
   })
 
   it('reads and writes chromium stamp', () => {
