@@ -1,10 +1,14 @@
+import './bootstrap-playwright-env.ts'
 import { assertChromiumReady } from './check-browsers.ts'
+import { OG_HEIGHT, OG_WIDTH } from './config.ts'
+import { generateRoadmapOg } from './generate-roadmap-og.ts'
 import { generateAllOgImages, generateExplorationOg, generateTopicOg } from './generate.ts'
 
 function usage(): never {
   console.error(`Usage:
   npm run generate -- exploration <id>   e.g.  npm run generate -- exploration eip-7594
   npm run generate -- topic <id>         e.g.  npm run generate -- topic scaling
+  npm run generate -- roadmap            e.g.  npm run generate -- roadmap
   npm run generate -- all`)
   process.exit(1)
 }
@@ -17,6 +21,12 @@ async function main(): Promise<void> {
 
   if (command === 'all') {
     await generateAllOgImages()
+    return
+  }
+
+  if (command === 'roadmap') {
+    const outPath = await generateRoadmapOg()
+    console.log(`Wrote ${outPath} (${OG_WIDTH}×${OG_HEIGHT})`)
     return
   }
 

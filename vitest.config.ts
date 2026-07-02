@@ -15,6 +15,13 @@ export default mergeConfig(
     test: {
       environment: 'jsdom',
       exclude: [...configDefaults.exclude, 'e2e/**'],
+      /** Entire repo — src, community-token, roadmap, og tooling; CI runs all via `npm run test:unit:ci`. */
+      include: [
+        'src/**/*.spec.ts',
+        'community-token/**/*.spec.ts',
+        'roadmap/**/*.spec.ts',
+        'og/**/*.spec.ts',
+      ],
       root: fileURLToPath(new URL('./', import.meta.url)),
     },
   }),

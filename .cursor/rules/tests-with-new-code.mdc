@@ -1,0 +1,39 @@
+---
+description: Add focused tests when introducing new modules or tooling
+alwaysApply: true
+---
+
+# Tests with new code
+
+When you add **new modules, scripts, or non-trivial features** (not one-line fixes or copy-only edits), include a **solid but proportionate** test layer before calling the task done.
+
+## What to test
+
+- **Pure logic** — parsers, URL builders, config, data transforms: unit tests with clear inputs/outputs.
+- **Vue components** — mount with `@vue/test-utils`; stub heavy children; assert structure, links, and key copy.
+- **Cross-package contracts** — one source of truth (e.g. shared ids/enums); test that consumers stay aligned.
+- **Skip** — one-off scripts, pure config/docs, or UI tweaks with no testable logic.
+
+## Where tests live
+
+Mirror production code:
+
+```
+src/libs/foo.ts           → src/libs/__tests__/foo.spec.ts
+roadmap/social/src/…      → roadmap/social/src/__tests__/…spec.ts
+og/src/social/…           → og/src/social/__tests__/…spec.ts
+```
+
+## Before finishing
+
+1. Run targeted tests: `npx vitest run path/to/__tests__/`
+2. Run the **full CI suite locally**: `npm run test:unit:ci` (all `src/`, `community-token/`, `roadmap/`, `og/` specs).
+3. Run `npm run lf:ci` from `feelyourprotocol/website/`.
+
+Prefer **few well-named tests** over exhaustive coverage — test behavior that would hurt if it regressed.
+
+GitHub Actions (`.github/workflows/unit.yml`) runs `npm run test:unit:ci` on every push/PR — no per-folder CI wiring; match the include globs in `vitest.config.ts`.
+
+## Playwright / capture pipelines
+
+Do **not** require Playwright in CI for screenshot tools. Unit-test parsing, paths, and component rendering; leave browser capture as a documented manual/`og:setup` step (see `.cursor/rules/og-playwright.mdc`).

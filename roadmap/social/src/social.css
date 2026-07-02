@@ -1,0 +1,732 @@
+@import '../../../shared/vitepress/fyp-tokens.css';
+
+/* Roadmap palette + viz styles (subset of .vitepress/theme/custom.css) */
+:root.fyp-site-roadmap,
+.fyp-site-roadmap {
+  --fyp-accent: var(--fyp-purple);
+  --vp-c-brand-1: #7c3aed;
+  --vp-c-brand-2: #6d28d9;
+  --vp-c-brand-3: #5b21b6;
+  --vp-c-brand-soft: rgba(124, 58, 237, 0.14);
+  --vp-c-bg: #faf8ff;
+  --vp-c-bg-soft: #f3f0ff;
+  --vp-c-text-1: #0f172a;
+  --vp-c-text-2: #475569;
+  --vp-c-text-3: #64748b;
+  --vp-c-divider: rgba(124, 58, 237, 0.12);
+  --vp-c-default-soft: rgba(15, 23, 42, 0.06);
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: #e2e8f0;
+  color: var(--vp-c-text-1);
+  font-family:
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    'Segoe UI',
+    Roboto,
+    Helvetica,
+    Arial,
+    sans-serif;
+}
+
+body.fyp-site-roadmap {
+  min-height: 100vh;
+}
+
+.fyp-social-shell {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+.fyp-social-shell--capture {
+  padding: 0;
+  background: transparent;
+}
+
+/* --- Social card frame --- */
+.fyp-social-card {
+  width: 1200px;
+  box-sizing: border-box;
+  background-color: var(--vp-c-bg);
+  background-image: var(--fyp-dot-grid-brand);
+  background-size: var(--fyp-dot-size);
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(124, 58, 237, 0.08);
+}
+
+.fyp-social-card__bar {
+  height: 4px;
+  background: var(--fyp-gradient);
+}
+
+.fyp-social-card__header {
+  padding: 1.35rem 1.75rem 0.85rem;
+  border-bottom: 1px solid var(--vp-c-divider);
+}
+
+.fyp-social-card__eyebrow {
+  font-family: var(--fyp-font-mono);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--vp-c-brand-1);
+  margin-bottom: 0.35rem;
+}
+
+.fyp-social-card__title {
+  font-family: var(--fyp-font-mono);
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+  margin: 0;
+}
+
+.fyp-social-card__subtitle {
+  margin: 0.45rem 0 0;
+  font-size: 0.92rem;
+  line-height: 1.45;
+  color: var(--vp-c-text-2);
+  max-width: 52rem;
+}
+
+.fyp-social-card__body {
+  padding: 0.5rem 1.25rem 1rem;
+}
+
+.fyp-social-card__body .fyp-timeline,
+.fyp-social-card__body .fyp-roadmap {
+  margin: 0.75rem 0 0.5rem;
+}
+
+.fyp-social-card__footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.75rem 1.75rem;
+  border-top: 1px solid var(--vp-c-divider);
+  font-family: var(--fyp-font-mono);
+  font-size: 0.72rem;
+  color: var(--vp-c-text-3);
+}
+
+.fyp-social-card__brand {
+  font-weight: 700;
+  color: var(--vp-c-brand-1);
+}
+
+/* --- Banner cards (hero + timeline — docs-home inspired) --- */
+.fyp-social-card--banner {
+  background-color: #ffffff;
+  background-image: var(--fyp-dot-grid-neutral);
+  box-shadow:
+    0 12px 40px rgba(15, 23, 42, 0.08),
+    0 0 0 1px rgba(124, 58, 237, 0.06);
+}
+
+.fyp-social-banner {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.fyp-social-banner--hero {
+  padding: 2rem 2.25rem 1.75rem;
+  min-height: 420px;
+}
+
+.fyp-social-banner--timeline {
+  padding: 1.65rem 2.25rem 1.35rem;
+}
+
+.fyp-social-banner__glow {
+  position: absolute;
+  border-radius: 999px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.fyp-social-banner__glow--primary {
+  width: 520px;
+  height: 520px;
+  top: -220px;
+  right: -80px;
+  background: linear-gradient(-45deg, rgba(124, 58, 237, 0.5), rgba(6, 182, 212, 0.35));
+  filter: blur(72px);
+  opacity: 0.85;
+}
+
+.fyp-social-banner__glow--secondary {
+  width: 360px;
+  height: 360px;
+  bottom: -120px;
+  left: -60px;
+  background: linear-gradient(135deg, rgba(6, 182, 212, 0.35), rgba(124, 58, 237, 0.2));
+  filter: blur(56px);
+  opacity: 0.7;
+}
+
+.fyp-social-card--timeline .fyp-social-banner__glow--primary {
+  background: linear-gradient(-45deg, rgba(124, 58, 237, 0.42), rgba(6, 182, 212, 0.38));
+}
+
+.fyp-social-card--timeline .fyp-social-banner__glow--secondary {
+  top: -80px;
+  bottom: auto;
+  left: -40px;
+  background: linear-gradient(135deg, rgba(100, 116, 139, 0.28), rgba(124, 58, 237, 0.18));
+}
+
+.fyp-social-banner__content {
+  position: relative;
+  z-index: 1;
+}
+
+.fyp-social-banner__eyebrow {
+  display: inline-block;
+  margin: 0 0 1rem;
+  font-family: var(--fyp-font-mono);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--vp-c-brand-1);
+  padding: 0.35rem 0.75rem;
+  border-radius: 999px;
+  border: 1px solid rgba(124, 58, 237, 0.22);
+  background: rgba(124, 58, 237, 0.06);
+}
+
+.fyp-social-banner__headline {
+  margin: 0 0 0.75rem;
+  max-width: 52rem;
+  font-family: var(--fyp-font-mono);
+  font-size: 1.65rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+  color: var(--vp-c-text-1);
+}
+
+.fyp-social-banner--timeline .fyp-social-banner__headline,
+.fyp-social-banner--board .fyp-social-banner__headline {
+  font-size: 1.55rem;
+}
+
+.fyp-social-banner__tagline {
+  margin: 0;
+  max-width: 54rem;
+  font-size: 1.05rem;
+  line-height: 1.55;
+  color: var(--vp-c-text-2);
+}
+
+.fyp-social-card--banner .fyp-social-card__footer {
+  background: rgba(248, 250, 252, 0.92);
+  backdrop-filter: blur(4px);
+}
+
+/* --- Hero-only banner extras --- */
+.fyp-social-hero__name {
+  margin: 0 0 0.65rem;
+  font-family: var(--fyp-font-mono);
+  font-size: 2.35rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  background: var(--fyp-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.fyp-social-banner--hero .fyp-social-banner__tagline {
+  margin-bottom: 1rem;
+}
+
+.fyp-social-hero__thesis {
+  margin: 0 0 1.5rem;
+  max-width: 44rem;
+  font-family: var(--fyp-font-mono);
+  font-size: 0.92rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.4;
+  color: var(--vp-c-brand-2);
+}
+
+.fyp-social-hero__features {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.85rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.fyp-social-hero__feature {
+  border-radius: 10px;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-left: 3px solid var(--fyp-purple);
+  padding: 0.85rem 0.95rem;
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(6px);
+  box-shadow:
+    0 4px 14px rgba(6, 182, 212, 0.06),
+    0 0 0 1px rgba(255, 255, 255, 0.6) inset;
+}
+
+.fyp-social-hero__feature:nth-child(4n + 2) {
+  border-left-color: var(--fyp-cyan);
+}
+
+.fyp-social-hero__feature:nth-child(4n + 3) {
+  border-left-color: #0ea5e9;
+}
+
+.fyp-social-hero__feature:nth-child(4n + 4) {
+  border-left-color: var(--fyp-amber);
+}
+
+.fyp-social-hero__feature-title {
+  margin: 0 0 0.35rem;
+  font-family: var(--fyp-font-mono);
+  font-size: 0.82rem;
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--vp-c-text-1);
+}
+
+.fyp-social-hero__feature-detail {
+  margin: 0;
+  font-size: 0.78rem;
+  line-height: 1.4;
+  color: var(--vp-c-text-2);
+}
+
+/* --- Timeline banner extras --- */
+.fyp-social-timeline__phases {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.85rem;
+  margin: 1.25rem 0 0.85rem;
+  padding: 0;
+  list-style: none;
+}
+
+.fyp-social-timeline__phase {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding: 0.8rem 0.95rem;
+  border-radius: 10px;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(6px);
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.04);
+}
+
+.fyp-social-timeline__phase-bar {
+  display: block;
+  width: 100%;
+  height: 4px;
+  border-radius: 999px;
+  background: var(--phase-color, var(--fyp-purple));
+  margin-bottom: 0.35rem;
+}
+
+.fyp-social-timeline__phase-label {
+  font-family: var(--fyp-font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--phase-color, var(--vp-c-text-1));
+}
+
+.fyp-social-timeline__phase-range {
+  font-size: 0.78rem;
+  color: var(--vp-c-text-2);
+}
+
+.fyp-social-timeline__legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin: 0;
+  font-family: var(--fyp-font-mono);
+  font-size: 0.72rem;
+  color: var(--vp-c-text-3);
+}
+
+.fyp-social-timeline__legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.fyp-social-timeline__legend-dot {
+  width: 0.65rem;
+  height: 0.65rem;
+  border-radius: 999px;
+  flex: 0 0 auto;
+}
+
+.fyp-social-timeline__legend-dot--done {
+  background: var(--fyp-purple);
+}
+
+.fyp-social-timeline__legend-dot--upcoming {
+  background: #ffffff;
+  border: 2px solid var(--fyp-cyan);
+}
+
+.fyp-social-timeline__body {
+  padding: 0.35rem 1.75rem 1.1rem;
+  background: rgba(255, 255, 255, 0.96);
+  border-top: 1px solid rgba(15, 23, 42, 0.06);
+}
+
+.fyp-social-timeline__body .fyp-timeline {
+  margin: 0.35rem 0 0;
+}
+
+/* --- Board banner extras --- */
+.fyp-social-banner--board {
+  padding: 1.65rem 2.25rem 1.35rem;
+}
+
+.fyp-social-card--board .fyp-social-banner__glow--primary {
+  background: linear-gradient(-45deg, rgba(124, 58, 237, 0.42), rgba(6, 182, 212, 0.32));
+}
+
+.fyp-social-card--board .fyp-social-banner__glow--secondary {
+  top: auto;
+  bottom: -100px;
+  right: 120px;
+  left: auto;
+  width: 320px;
+  height: 320px;
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.28), rgba(124, 58, 237, 0.16));
+}
+
+.fyp-social-board__banner-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  margin-top: 1.25rem;
+}
+
+.fyp-social-board__horizons {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.85rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.fyp-social-board__horizon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1rem;
+  border-radius: 10px;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(6px);
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.04);
+  border-top: 3px solid var(--fyp-purple);
+}
+
+.fyp-social-board__horizon--2 {
+  border-top-color: var(--fyp-cyan);
+}
+
+.fyp-social-board__horizon--3 {
+  border-top-color: var(--fyp-amber);
+}
+
+.fyp-social-board__horizon-label {
+  font-family: var(--fyp-font-mono);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--vp-c-text-1);
+}
+
+.fyp-social-board__tracks {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.85rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.fyp-social-board__track {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.7rem 0.85rem;
+  border-radius: 10px;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-left: 3px solid var(--track-accent, var(--fyp-purple));
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(6px);
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.04);
+}
+
+.fyp-social-board__track-swatch {
+  width: 0.75rem;
+  height: 0.75rem;
+  flex: 0 0 auto;
+  border-radius: 3px;
+  background: var(--track-accent, var(--fyp-purple));
+}
+
+.fyp-social-board__track-label {
+  font-family: var(--fyp-font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--vp-c-text-1);
+}
+
+.fyp-social-board__legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  margin: 0.85rem 0 0;
+}
+
+.fyp-social-board__legend-item {
+  display: inline-flex;
+}
+
+.fyp-social-board__status {
+  display: inline-block;
+  font-family: var(--fyp-font-mono);
+  font-size: 0.62rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 0.2rem 0.45rem;
+  border-radius: 4px;
+}
+
+.fyp-social-board__status--done {
+  color: #047857;
+  background: rgba(16, 185, 129, 0.14);
+}
+
+.fyp-social-board__status--in-progress {
+  color: #6d28d9;
+  background: rgba(124, 58, 237, 0.14);
+}
+
+.fyp-social-board__status--planned {
+  color: var(--vp-c-text-2);
+  background: var(--vp-c-default-soft);
+}
+
+.fyp-social-board__body {
+  padding: 0.35rem 1.75rem 1.1rem;
+  background: rgba(255, 255, 255, 0.96);
+  border-top: 1px solid rgba(15, 23, 42, 0.06);
+}
+
+.fyp-social-board__body .fyp-roadmap {
+  margin: 0.35rem 0 0;
+}
+
+.fyp-timeline {
+  --track-color: var(--vp-c-divider);
+  overflow-x: visible;
+  padding: 0.25rem 0 0;
+}
+
+.fyp-timeline__track {
+  position: relative;
+  display: flex;
+  min-width: 640px;
+  align-items: stretch;
+  gap: 0;
+}
+
+.fyp-timeline__phase {
+  position: relative;
+  flex: 1 1 0;
+  padding: 0 0.75rem 1.5rem;
+  min-width: 140px;
+}
+
+.fyp-timeline__phase-label {
+  font-family: var(--fyp-font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--phase-color, var(--vp-c-brand-1));
+}
+
+.fyp-timeline__phase-range {
+  font-size: 0.72rem;
+  color: var(--vp-c-text-3);
+  margin-bottom: 0.6rem;
+}
+
+.fyp-timeline__bar {
+  position: relative;
+  height: 4px;
+  border-radius: 2px;
+  background: var(--phase-color, var(--vp-c-brand-1));
+  opacity: 0.6;
+}
+
+.fyp-timeline__events {
+  position: relative;
+  margin-top: 0.9rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.fyp-timeline__event {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  font-size: 0.8rem;
+  line-height: 1.3;
+}
+
+.fyp-timeline__dot {
+  margin-top: 0.2rem;
+  width: 0.7rem;
+  height: 0.7rem;
+  flex: 0 0 auto;
+  border-radius: 999px;
+  background: var(--vp-c-bg);
+  border: 2px solid var(--phase-color, var(--vp-c-brand-1));
+}
+
+.fyp-timeline__event--done .fyp-timeline__dot {
+  background: var(--phase-color, var(--vp-c-brand-1));
+}
+
+.fyp-timeline__event-date {
+  font-family: var(--fyp-font-mono);
+  font-size: 0.7rem;
+  color: var(--vp-c-text-3);
+  display: block;
+}
+
+/* --- Roadmap board (from custom.css) --- */
+.fyp-roadmap {
+  overflow-x: visible;
+}
+
+.fyp-roadmap__grid {
+  display: grid;
+  grid-template-columns: minmax(120px, 0.7fr) repeat(var(--horizon-count, 3), minmax(180px, 1fr));
+  gap: 0.6rem;
+  min-width: 720px;
+}
+
+.fyp-roadmap__corner {
+  border-bottom: 1px solid var(--vp-c-divider);
+}
+
+.fyp-roadmap__horizon {
+  font-family: var(--fyp-font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--vp-c-text-2);
+  padding: 0 0.25rem 0.5rem;
+  border-bottom: 1px solid var(--vp-c-divider);
+}
+
+.fyp-roadmap__track-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 700;
+  font-size: 0.85rem;
+  padding-right: 0.5rem;
+}
+
+.fyp-roadmap__track-swatch {
+  width: 0.8rem;
+  height: 0.8rem;
+  flex: 0 0 auto;
+  border-radius: 3px;
+  background: var(--track-accent, var(--vp-c-brand-1));
+}
+
+.fyp-roadmap__cell {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.fyp-roadmap__item {
+  border: 1px solid var(--vp-c-divider);
+  border-left: 3px solid var(--track-accent, var(--vp-c-brand-1));
+  border-radius: 6px;
+  padding: 0.5rem 0.6rem;
+  font-size: 0.8rem;
+  line-height: 1.3;
+  background: var(--vp-c-bg-soft);
+}
+
+.fyp-roadmap__item-title {
+  font-weight: 600;
+}
+
+.fyp-roadmap__item-note {
+  color: var(--vp-c-text-3);
+  font-size: 0.72rem;
+  margin-top: 0.15rem;
+}
+
+.fyp-roadmap__status {
+  display: inline-block;
+  margin-top: 0.35rem;
+  font-family: var(--fyp-font-mono);
+  font-size: 0.62rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 0.05rem 0.4rem;
+  border-radius: 4px;
+}
+
+.fyp-roadmap__status--done {
+  color: #047857;
+  background: rgba(16, 185, 129, 0.14);
+}
+
+.fyp-roadmap__status--in-progress {
+  color: #6d28d9;
+  background: rgba(124, 58, 237, 0.14);
+}
+
+.fyp-roadmap__status--planned {
+  color: var(--vp-c-text-2);
+  background: var(--vp-c-default-soft);
+}
