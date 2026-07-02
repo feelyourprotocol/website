@@ -5,8 +5,8 @@ import { Listbox, ListboxButton, ListboxOption, ListboxOptions } from '@headless
 import { ChevronUpDownIcon } from '@heroicons/vue/20/solid'
 
 import { EXPLORATIONS } from '@/explorations/REGISTRY'
-import logoUrl from '@/logo.png'
 import { FYP_X_URL, ROADMAP_HOME } from '@/libs/roadmapUrls'
+import logoUrl from '@/logo.png'
 
 const router = useRouter()
 const route = useRoute()

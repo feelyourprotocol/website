@@ -1,5 +1,6 @@
-import type { IceCreamErrorCode, IceCreamErrorView } from './types'
 import { FYP_X_HANDLE } from '@/libs/roadmapUrls'
+
+import type { IceCreamErrorCode, IceCreamErrorView } from './types'
 
 const ERROR_VIEWS: Record<IceCreamErrorCode, IceCreamErrorView> = {
   wallet_rejected: {

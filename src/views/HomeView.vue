@@ -86,9 +86,8 @@ for (const topicId of activeTopicIds) {
               >.
             </p>
             <p class="text-slate-300 text-sm leading-relaxed mt-2">
-              Phase 3 is taking shape: a deterministic API &amp; MCP server for the future
-              Ethereum protocol (upcoming forks &amp; EIPs) — the explorations site stays the front
-              door.
+              Phase 3 is taking shape: a deterministic API &amp; MCP server for the future Ethereum
+              protocol (upcoming forks &amp; EIPs) — the explorations site stays the front door.
               <a
                 :href="ROADMAP_HOME"
                 target="_blank"

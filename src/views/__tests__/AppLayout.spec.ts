@@ -107,7 +107,9 @@ describe('App layout', () => {
 
     it('has Roadmap link', async () => {
       const wrapper = await mountApp(makeRouter())
-      const roadmapLink = wrapper.find('footer a[href="https://roadmap.feelyourprotocol.org/index.html"]')
+      const roadmapLink = wrapper.find(
+        'footer a[href="https://roadmap.feelyourprotocol.org/index.html"]',
+      )
       expect(roadmapLink.exists()).toBe(true)
     })
 

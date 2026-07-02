@@ -1,6 +1,12 @@
 import { describe, expect, it } from 'vitest'
 
-import { FYP_X_HANDLE, FYP_X_URL, ROADMAP_HOME, ROADMAP_ORIGIN, roadmapPage } from '@/libs/roadmapUrls'
+import {
+  FYP_X_HANDLE,
+  FYP_X_URL,
+  ROADMAP_HOME,
+  ROADMAP_ORIGIN,
+  roadmapPage,
+} from '@/libs/roadmapUrls'
 
 describe('roadmapUrls', () => {
   it('ROADMAP_HOME points at roadmap index', () => {
