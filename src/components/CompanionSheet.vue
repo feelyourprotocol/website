@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { computed, onMounted, onUnmounted, ref, watch } from 'vue'
 
+import { COMPANION_EXPAND_EVENT, type CompanionExpandMode } from '@/video/companionSheetEvents'
+
 const PEEK_PX = 56
 const HALF_RATIO = 0.5
 const FULL_RATIO = 0.92
@@ -56,6 +58,16 @@ function expandToHalf() {
   if (snap.value === 'peek') snap.value = 'half'
 }
 
+function expandToFull() {
+  snap.value = 'full'
+}
+
+function onCompanionExpand(event: Event) {
+  const mode = (event as CustomEvent<{ mode: CompanionExpandMode }>).detail?.mode
+  if (mode === 'full') expandToFull()
+  else if (mode === 'half') expandToHalf()
+}
+
 let dragStartY = 0
 let dragStartHeight = 0
 
@@ -91,6 +103,9 @@ function onViewportChange() {
 }
 
 function isMobileSheet(): boolean {
+  if (typeof document !== 'undefined' && document.documentElement.classList.contains('fyp-video-capture')) {
+    return true
+  }
   return typeof window.matchMedia === 'function' && window.matchMedia('(max-width: 767px)').matches
 }
 
@@ -130,18 +145,21 @@ onMounted(() => {
     window.matchMedia('(prefers-reduced-motion: reduce)').matches
   if (prefersReducedMotion.value) snap.value = 'half'
   window.addEventListener('resize', onViewportChange)
+  window.addEventListener(COMPANION_EXPAND_EVENT, onCompanionExpand)
 })
 
 onUnmounted(() => {
   window.removeEventListener('resize', onViewportChange)
+  window.removeEventListener(COMPANION_EXPAND_EVENT, onCompanionExpand)
 })
 
-defineExpose({ snap, expandToHalf })
+defineExpose({ snap, expandToHalf, expandToFull })
 </script>
 
 <template>
   <div
     class="companion-sheet flex flex-col min-h-0 max-md:bg-white max-md:border-t max-md:border-slate-200 max-md:shadow-[0_-8px_30px_rgba(15,23,42,0.12)] max-md:rounded-t-xl max-md:overflow-hidden md:contents"
+    data-testid="companion-sheet"
     :class="[
       pulsing ? 'companion-sheet-pulse' : '',
       dragging ? '' : 'max-md:transition-[height] max-md:duration-300 max-md:ease-out',
@@ -161,6 +179,7 @@ defineExpose({ snap, expandToHalf })
       <button
         type="button"
         class="companion-sheet-peek w-full px-3 pb-2 text-left font-mono text-xs leading-snug truncate"
+        data-testid="companion-peek"
         :class="active ? 'text-slate-700 font-semibold' : 'text-slate-400'"
         @click="expandToHalf"
       >

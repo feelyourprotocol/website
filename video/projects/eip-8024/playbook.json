@@ -1,0 +1,85 @@
+{
+  "format": "shorts",
+  "exploration": "eip-8024",
+  "defaultExample": "dupn",
+  "steps": [
+    {
+      "beat": "hook",
+      "overlay": "title-card",
+      "wait": 4500
+    },
+    {
+      "beat": "context",
+      "overlay": "glamsterdam",
+      "annotate": "guide-example",
+      "placement": "top-banner",
+      "focus": "example-select",
+      "cue": 3400,
+      "hideOverlay": true,
+      "wait": 600
+    },
+    {
+      "beat": "opcodes",
+      "overlay": "three-opcodes",
+      "annotate": "guide-example",
+      "placement": "top-banner",
+      "focus": "example-select",
+      "cue": 4200,
+      "selectExample": "dupn",
+      "wait": 1200
+    },
+    {
+      "beat": "stack-grow",
+      "overlay": "stack-cue",
+      "annotate": "guide-stack",
+      "placement": "top-banner",
+      "focus": "stack",
+      "cue": 3000,
+      "step": { "count": 9, "interval": 360 },
+      "wait": 1600
+    },
+    {
+      "beat": "dupn-hit",
+      "overlay": "dupn-cue",
+      "annotate": "guide-disassembly",
+      "placement": "top-banner",
+      "focus": "disassembly",
+      "cue": 3000,
+      "step": {
+        "count": 9,
+        "interval": 380,
+        "climaxFrom": 9,
+        "climaxInterval": 1050,
+        "climaxPauseMs": 550,
+        "highlightSet": "dupn-windup",
+        "highlightAfterStep": 9,
+        "highlightSetAfter": "dupn-payoff",
+        "holdAfterClimaxMs": 1500
+      },
+      "wait": 2200
+    },
+    {
+      "beat": "calculator",
+      "overlay": "calculator-tease",
+      "annotate": "guide-companion",
+      "placement": "top-banner",
+      "focus": "companion",
+      "cue": 2800,
+      "expandCompanion": "half",
+      "wait": 2400
+    },
+    {
+      "beat": "recap",
+      "overlay": "old-limit-cue",
+      "annotate": "guide-stack",
+      "placement": "top-banner",
+      "focus": "stack",
+      "wait": 4200
+    },
+    {
+      "beat": "outro",
+      "overlay": "outro-card",
+      "wait": 5000
+    }
+  ]
+}

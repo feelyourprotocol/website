@@ -32,7 +32,7 @@ function onSelect(key: string) {
   <div class="text-right">
     <Listbox :model-value="example" @update:model-value="onSelect">
       <div class="relative inline-block">
-        <ListboxButton class="e-select inline-flex items-center gap-1">
+        <ListboxButton class="e-select inline-flex items-center gap-1" data-testid="example-select">
           {{ selectedTitle }}
           <ChevronUpDownIcon class="size-3.5 opacity-60" />
         </ListboxButton>
@@ -56,6 +56,7 @@ function onSelect(key: string) {
               as="template"
             >
               <li
+                :data-testid="`example-${key}`"
                 :class="[
                   'e-listbox-option cursor-pointer whitespace-nowrap select-none first:rounded-t-sm last:rounded-b-sm',
                   active ? 'e-listbox-option-active' : '',

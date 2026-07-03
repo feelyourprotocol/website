@@ -1,0 +1,39 @@
+{
+  "format": { "width": 540, "height": 960 },
+  "focusAreas": {
+    "example-select": {
+      "selector": "[data-testid=\"example-select\"]",
+      "description": "Example dropdown — opcode preset picker"
+    },
+    "step-controls": {
+      "selector": "[data-testid=\"bytecode-step\"]",
+      "description": "Run / Step / Reset row"
+    },
+    "disassembly": {
+      "selector": "[data-testid=\"bytecode-disassembly\"]",
+      "description": "Opcode list with PC highlight"
+    },
+    "stack": {
+      "selector": "[data-testid=\"bytecode-stack\"]",
+      "description": "Live stack panel"
+    },
+    "companion": {
+      "selector": "[data-testid=\"companion-sheet\"]",
+      "description": "Bottom companion — calculators & visuals"
+    }
+  },
+  "placements": {
+    "top-banner": {
+      "anchor": "top",
+      "insetPx": 36,
+      "maxHeightPx": 168,
+      "description": "Compact bar above exploration content"
+    },
+    "bottom-banner": {
+      "anchor": "bottom",
+      "insetPx": 72,
+      "maxHeightPx": 140,
+      "description": "Bar above companion peek strip"
+    }
+  }
+}

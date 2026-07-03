@@ -1,0 +1,123 @@
+{
+  "meta": {
+    "exploration": "eip-8024",
+    "defaultExample": "dupn"
+  },
+  "overlays": {
+    "title-card": {
+      "type": "title-card",
+      "eyebrow": "Ethereum · Glamsterdam",
+      "title": "EIP-8024",
+      "subtitle": "DUPN · SWAPN ·\nEXCHANGE",
+      "hook": ["Solidity stack too deep!", "GONE SOON…"]
+    },
+    "glamsterdam": {
+      "type": "punch",
+      "layout": "banner",
+      "placement": "top-banner",
+      "text": "GLAMSTERDAM",
+      "sub": "Three opcodes extend the EVM stack",
+      "invert": true
+    },
+    "three-opcodes": {
+      "type": "list-flash",
+      "placement": "top-banner",
+      "headline": "3 NEW OPCODES",
+      "items": ["DUPN — copy deep", "SWAPN — swap deep", "EXCHANGE — two depths"]
+    },
+    "stack-cue": {
+      "type": "split",
+      "layout": "banner",
+      "placement": "top-banner",
+      "segments": [
+        { "text": "17 pushes first", "size": "lg" },
+        { "text": "Watch the stack grow ↓", "size": "md", "emphasis": false }
+      ]
+    },
+    "dupn-cue": {
+      "type": "punch",
+      "layout": "banner",
+      "placement": "top-banner",
+      "text": "ONE OPCODE",
+      "sub": "Copies item at depth 17 — watch the stack",
+      "invert": true
+    },
+    "calculator-tease": {
+      "type": "punch",
+      "layout": "banner",
+      "placement": "top-banner",
+      "text": "MAGIC BYTE?",
+      "sub": "Calculator in the panel below ↓",
+      "invert": false
+    },
+    "old-limit-cue": {
+      "type": "split",
+      "layout": "banner",
+      "placement": "top-banner",
+      "segments": [
+        { "text": "Classic DUP: depth 16 max", "size": "lg" },
+        { "text": "You just copied depth 17", "size": "lg", "emphasis": true }
+      ]
+    },
+    "outro-card": {
+      "type": "outro-card",
+      "closing": "EIP-8024 is part of the Glamsterdam hardfork.",
+      "ctas": [
+        {
+          "label": "READ ABOUT THE EIP",
+          "url": "FORKCAST.ORG",
+          "variant": "secondary"
+        },
+        {
+          "label": "TRY IT YOURSELF",
+          "url": "FEELYOURPROTOCOL.ORG",
+          "variant": "primary"
+        }
+      ]
+    }
+  },
+  "annotations": {
+    "guide-example": {
+      "target": "example-select",
+      "label": "Example presets",
+      "hint": "Switch scenarios here"
+    },
+    "guide-step": {
+      "target": "step-controls",
+      "label": "Step button",
+      "hint": "One opcode per click"
+    },
+    "guide-stack": {
+      "target": "stack",
+      "label": "Live stack",
+      "hint": "Watch depth grow",
+      "side": "top"
+    },
+    "guide-disassembly": {
+      "target": "disassembly",
+      "label": "Active opcode",
+      "hint": "Highlighted row = now",
+      "side": "bottom"
+    },
+    "guide-companion": {
+      "target": "companion",
+      "label": "Companion panel",
+      "hint": "Calculator decodes the immediate",
+      "side": "top"
+    }
+  },
+  "highlightSets": {
+    "dupn-windup": {
+      "marks": [
+        { "target": "disassembly-active", "pad": 3 },
+        { "target": "stack-depth-17", "pad": 2, "tilt": 0.35 }
+      ]
+    },
+    "dupn-payoff": {
+      "marks": [
+        { "target": "disassembly-active", "pad": 3 },
+        { "target": "stack-top", "pad": 2, "tilt": -0.4 }
+      ]
+    }
+  }
+}

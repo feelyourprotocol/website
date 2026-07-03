@@ -1,0 +1,55 @@
+---
+description: Video recording uses the isolated video/ Playwright package — never ad-hoc installs
+alwaysApply: true
+---
+
+# Short-form videos & Playwright
+
+Exploration videos (9:16 vertical) are recorded by the **isolated** `website/video/` package.
+Playwright is intentionally **not** in the root `package.json` (CI stays lean).
+
+Chromium is **shared with the OG pipeline** — if `npm run og:check` passes, video recording
+can use the same browser cache.
+
+## One-time human setup (Holger's machine only)
+
+From `feelyourprotocol/website/`:
+
+```bash
+npm run og:setup       # if not done yet — downloads Chromium (~once per machine)
+npm run video:setup    # npm install in video/ only
+npm run video:check    # should print: OK: Playwright Chromium is installed...
+```
+
+**Holger has already run og:setup.** Do not run setup again unless he explicitly asks.
+
+`video/` CLIs reuse `og/` bootstrap — redirect Cursor's sandbox `PLAYWRIGHT_BROWSERS_PATH`
+to the developer's real browser cache. Use `required_permissions: ["all"]` and **never**
+run `video:setup` / `playwright install` as the first fix.
+
+## Agent rules (mandatory)
+
+### NEVER do these
+
+- `npm run video:setup`, `npm run og:setup`, or any `playwright install`
+- Ad-hoc `npx playwright install` or sandbox browser downloads
+- Retry setup when record fails — that is almost never the fix
+
+### ALWAYS do these
+
+1. Run video commands with **`required_permissions: ["all"]`**
+2. Use npm scripts from `website/`:
+   - `npm run video:preflight`
+   - `npm run video:record -- <project-id>`
+3. Optional fast check: `npm run video:preflight` with `required_permissions: ["all"]`
+   - `status: ready` → proceed
+   - `status: needs_agent_permissions` → re-run with `required_permissions: ["all"]`
+   - `status: needs_human_setup` → ask user to run `npm run og:check` locally
+
+### When record fails
+
+1. Permission errors → re-run with `required_permissions: ["all"]`
+2. Still fails → ask user for `npm run og:check` output; do **not** run setup
+3. Selector timeout / 404 → fix app or playbook, not Playwright setup
+
+See `video/README.md` and `docs/contributing/video-pipeline.md`.

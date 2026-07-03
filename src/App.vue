@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, ref, watch } from 'vue'
+import { computed, onUnmounted, ref, watch } from 'vue'
 import { RouterLink, RouterView, useRoute, useRouter } from 'vue-router'
 import { Listbox, ListboxButton, ListboxOption, ListboxOptions } from '@headlessui/vue'
 import { ChevronUpDownIcon } from '@heroicons/vue/20/solid'
@@ -7,9 +7,12 @@ import { ChevronUpDownIcon } from '@heroicons/vue/20/solid'
 import { EXPLORATIONS } from '@/explorations/REGISTRY'
 import { FYP_X_URL, ROADMAP_HOME } from '@/libs/roadmapUrls'
 import logoUrl from '@/logo.png'
+import VideoShell from '@/video/VideoShell.vue'
+import { useVideoMode } from '@/video/useVideoMode'
 
 const router = useRouter()
 const route = useRoute()
+const isVideoMode = useVideoMode()
 const selectedRoute = ref(route.path.includes('eip-') ? route.path : '')
 
 const selectedLabel = computed(() => {
@@ -34,10 +37,23 @@ watch(
     }
   },
 )
+
+watch(
+  isVideoMode,
+  (active) => {
+    document.documentElement.classList.toggle('fyp-video-capture', active)
+  },
+  { immediate: true },
+)
+
+onUnmounted(() => {
+  document.documentElement.classList.remove('fyp-video-capture', 'fyp-video-band-active')
+})
 </script>
 
 <template>
-  <header class="mt-3 mb-4">
+  <div :class="isVideoMode ? 'fyp-video-mode min-h-dvh bg-black' : ''">
+    <header v-if="!isVideoMode" class="mt-3 mb-4">
     <div class="flex flex-col gap-2 sm:grid sm:grid-cols-2">
       <div class="site-title sm:col-start-1 sm:row-start-1">
         <RouterLink
@@ -128,6 +144,7 @@ watch(
   </header>
 
   <aside
+    v-if="!isVideoMode"
     class="mb-4 rounded-lg border border-purple-200/80 bg-gradient-to-r from-purple-50/90 to-cyan-50/70 px-4 py-3 shadow-sm"
   >
     <p class="font-mono text-xs leading-relaxed text-slate-700 sm:text-sm">
@@ -146,7 +163,9 @@ watch(
 
   <RouterView :key="route.fullPath" class="grid grid-cols-1" />
 
-  <footer class="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-3 mt-10 mb-2">
+  <VideoShell v-if="isVideoMode" />
+
+  <footer v-if="!isVideoMode" class="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-3 mt-10 mb-2">
     <h3 class="font-mono text-xs text-slate-500">
       <span class="text-purple-500">◆</span> Made with ❤️ and pure dedication by
       <a href="https://x.com/HolgerD77" target="_blank" rel="noopener">HolgerD77</a>
@@ -168,4 +187,5 @@ watch(
       >
     </h3>
   </footer>
+  </div>
 </template>

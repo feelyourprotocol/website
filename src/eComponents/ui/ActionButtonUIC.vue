@@ -7,6 +7,7 @@ const props = defineProps<{
   text: string
   tooltip: string
   onClick: () => Promise<void>
+  testId?: string
 }>()
 
 const buttonText = ref(props.text)
@@ -29,7 +30,13 @@ async function handleClick() {
 </script>
 
 <template>
-  <button @click="handleClick" type="button" :disabled="isLoading" class="group e-action-button">
+  <button
+    @click="handleClick"
+    type="button"
+    :disabled="isLoading"
+    class="group e-action-button"
+    :data-testid="testId"
+  >
     {{ buttonText }}
     <TooltipUIC :tooltip="tooltip" />
   </button>

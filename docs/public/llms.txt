@@ -28,6 +28,8 @@ at contributors and developers who want to understand or extend the project.
 - [Styling & Design](https://docs.feelyourprotocol.org/contributing/styling.html): The exploration design system and class conventions
 - [Code Conventions](https://docs.feelyourprotocol.org/contributing/code-conventions.html): Coding standards and test commands
 - [Third-Party Libraries](https://docs.feelyourprotocol.org/contributing/third-party-libraries.html): How new library dependencies are evaluated and added
+- [Video Pipeline](https://docs.feelyourprotocol.org/contributing/video-pipeline.html): Short-form exploration videos — architecture, overlays, recording
+- [Authoring a Video Short](https://docs.feelyourprotocol.org/contributing/video-authoring.html): How to plan, write, and record exploration shorts
 
 ## Related
 

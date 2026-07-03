@@ -1,11 +1,19 @@
 import { computed, ref, type ShallowRef, shallowRef } from 'vue'
-import { useRoute, useRouter } from 'vue-router'
+import { useRouter } from 'vue-router'
 import type { PrefixedHexString } from '@ethereumjs/util'
 
 import type { Examples } from '@/explorations/REGISTRY'
+import { parseExampleQueryParam, resolveInitialExample } from '@/libs/exampleFromQuery'
 
 import type { PrecompileConfig } from './types'
 import { dataToValueInput, isValidByteInputForm, valueToDataInput } from './utils'
+
+export interface PrecompileInitOptions {
+  /** Value from `?example=` (parsed or raw string from route). */
+  queryExample?: string
+  /** Current route query — used for field-level share URL params on init. */
+  routeQuery?: Record<string, unknown>
+}
 
 function createState(config: PrecompileConfig) {
   return {
@@ -27,9 +35,6 @@ export function usePrecompileState<T = unknown>(
 ) {
   const { data, hexVals, bigIntVals, lengthsMask, byteLengths, example } = createState(config)
   const result: ShallowRef<T | undefined> = shallowRef()
-
-  const router = useRouter()
-  const route = useRoute()
 
   const editableIndices = config.values.map((v, i) => (v.urlParam ? i : -1)).filter((i) => i !== -1)
 
@@ -73,6 +78,7 @@ export function usePrecompileState<T = unknown>(
   }
 
   function shareURL() {
+    const router = useRouter()
     const query: Record<string, string> = {}
     for (const i of editableIndices) {
       query[config.values[i].urlParam!] = hexVals.value[i]
@@ -93,14 +99,24 @@ export function usePrecompileState<T = unknown>(
 
   // --- Initialization ---
 
-  async function init() {
+  async function init(options: PrecompileInitOptions = {}) {
+    const routeQuery = options.routeQuery ?? {}
+    const resolvedExample = parseExampleQueryParam(
+      options.queryExample ?? routeQuery.example,
+    )
+    if (resolvedExample !== undefined) {
+      example.value = resolveInitialExample(examples, config.defaultExample, resolvedExample)
+      await selectExample()
+      return
+    }
+
     const urlParams = editableIndices.map((i) => config.values[i].urlParam!)
-    const hasAllParams = urlParams.length > 0 && urlParams.every((p) => p in route.query)
+    const hasAllParams = urlParams.length > 0 && urlParams.every((p) => p in routeQuery)
 
     if (hasAllParams) {
       try {
         for (const i of editableIndices) {
-          hexVals.value[i] = route.query[config.values[i].urlParam!]!.toString()
+          hexVals.value[i] = routeQuery[config.values[i].urlParam!]!.toString()
         }
         await values2Data()
       } catch {

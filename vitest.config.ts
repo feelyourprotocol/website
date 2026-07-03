@@ -21,6 +21,7 @@ export default mergeConfig(
         'community-token/**/*.spec.ts',
         'roadmap/**/*.spec.ts',
         'og/**/*.spec.ts',
+        'video/**/*.spec.ts',
       ],
       root: fileURLToPath(new URL('./', import.meta.url)),
     },

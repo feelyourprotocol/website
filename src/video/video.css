@@ -1,0 +1,686 @@
+/* Video capture overlays — separate visual language from the main site. */
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:ital,wght@0,700;0,800;0,900;1,700&display=block');
+
+.video-shell {
+  --video-accent: #a855f7;
+  --video-display: 'Bebas Neue', 'Arial Black', Impact, sans-serif;
+  --video-condensed: 'Barlow Condensed', 'Arial Narrow', sans-serif;
+  /* Match zones.json top-banner (540×960 reference) */
+  --video-top-banner-inset: 36px;
+  --video-top-banner-max-h: 168px;
+  --video-focus-gap: 12px;
+}
+
+/* --- Title / outro band cards (middle 3/5 black, top+bottom peek at live UI) --- */
+.video-card-band {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  display: grid;
+  grid-template-rows: 1fr 3fr 1fr;
+  pointer-events: none;
+  animation: video-flash-in 0.55s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.video-card-band__peek {
+  background: transparent;
+}
+
+.video-card-band__content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: stretch;
+  background: #000;
+  padding: 1.25rem 1.25rem 1rem;
+  overflow: hidden;
+}
+
+.video-card-band__content--outro {
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.video-card-band__eyebrow {
+  font-family: var(--video-condensed);
+  font-weight: 800;
+  font-size: clamp(0.85rem, 3.5vw, 1.1rem);
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--video-accent);
+  margin-bottom: 0.75rem;
+}
+
+.video-card-band__title {
+  font-family: var(--video-display);
+  font-size: clamp(3.2rem, 14vw, 5.5rem);
+  line-height: 0.92;
+  letter-spacing: 0.02em;
+  color: #fff;
+  text-transform: uppercase;
+}
+
+.video-card-band__subtitle {
+  font-family: var(--video-display);
+  font-size: clamp(1.8rem, 8vw, 3rem);
+  line-height: 0.95;
+  letter-spacing: 0.06em;
+  color: var(--video-accent);
+  margin-top: 0.35rem;
+  text-transform: uppercase;
+  white-space: pre-line;
+}
+
+.video-card-band__hook {
+  margin-top: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.video-card-band__hook-line {
+  font-family: var(--video-condensed);
+  font-weight: 900;
+  font-size: clamp(1.4rem, 6vw, 2.25rem);
+  line-height: 1.05;
+  text-transform: uppercase;
+  color: #fff;
+}
+
+.video-card-band__hook-line--accent {
+  color: var(--video-accent);
+  font-size: clamp(1.9rem, 8.5vw, 3.2rem);
+  font-style: italic;
+}
+
+.video-card-band__closing {
+  font-family: var(--video-condensed);
+  font-weight: 700;
+  font-style: italic;
+  font-size: clamp(1rem, 4.2vw, 1.35rem);
+  line-height: 1.25;
+  color: rgba(255, 255, 255, 0.82);
+  text-align: center;
+  margin: 0 0 1rem;
+  letter-spacing: 0.02em;
+}
+
+.video-card-band__ctas {
+  display: flex;
+  flex-direction: column;
+  gap: 1.35rem;
+  margin-top: 0.25rem;
+}
+
+.video-card-band__cta {
+  text-align: center;
+}
+
+.video-card-band__cta-label {
+  font-family: var(--video-condensed);
+  font-weight: 800;
+  font-size: clamp(0.95rem, 4vw, 1.2rem);
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.72);
+  margin: 0;
+}
+
+.video-card-band__cta-url {
+  font-family: var(--video-display);
+  font-size: clamp(1.85rem, 8vw, 2.85rem);
+  line-height: 1;
+  letter-spacing: 0.04em;
+  color: var(--video-accent);
+  text-transform: uppercase;
+  margin: 0.2rem 0 0;
+}
+
+.video-card-band__cta--secondary .video-card-band__cta-label {
+  font-size: clamp(0.63rem, 2.65vw, 0.8rem);
+  letter-spacing: 0.22em;
+}
+
+.video-card-band__cta--secondary .video-card-band__cta-url {
+  font-size: clamp(1.23rem, 5.35vw, 1.9rem);
+}
+
+/* --- UI annotation callouts (parallel guide layer) --- */
+.video-annotation-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 57;
+  pointer-events: none;
+}
+
+.video-annotation-highlight {
+  position: fixed;
+  box-sizing: border-box;
+  border: 2px solid var(--video-accent);
+  border-radius: 0.45rem;
+  box-shadow:
+    0 0 0 2px rgba(0, 0, 0, 0.55),
+    0 0 18px rgba(168, 85, 247, 0.45);
+  animation: video-annotation-pulse 1.6s ease-in-out infinite;
+}
+
+.video-annotation-callout {
+  position: fixed;
+  z-index: 1;
+  max-width: min(78vw, 280px);
+  padding: 0.45rem 0.65rem 0.5rem;
+  background: rgba(0, 0, 0, 0.88);
+  border: 1px solid rgba(168, 85, 247, 0.65);
+  border-radius: 0.4rem;
+  animation: video-annotation-in 0.35s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.video-annotation-callout__label {
+  font-family: var(--video-condensed);
+  font-weight: 900;
+  font-size: clamp(0.95rem, 4vw, 1.15rem);
+  line-height: 1.05;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #fff;
+  margin: 0;
+}
+
+.video-annotation-callout__hint {
+  font-family: var(--video-condensed);
+  font-weight: 700;
+  font-size: clamp(0.78rem, 3.2vw, 0.92rem);
+  line-height: 1.15;
+  color: rgba(255, 255, 255, 0.72);
+  margin: 0.2rem 0 0;
+}
+
+.video-annotation-callout__arrow {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border: 7px solid transparent;
+}
+
+.video-annotation-callout--bottom .video-annotation-callout__arrow {
+  top: -14px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-bottom-color: rgba(168, 85, 247, 0.65);
+}
+
+.video-annotation-callout--top .video-annotation-callout__arrow {
+  bottom: -14px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-top-color: rgba(168, 85, 247, 0.65);
+}
+
+.video-annotation-callout--right .video-annotation-callout__arrow {
+  left: -14px;
+  top: 50%;
+  transform: translateY(-50%);
+  border-right-color: rgba(168, 85, 247, 0.65);
+}
+
+.video-annotation-callout--left .video-annotation-callout__arrow {
+  right: -14px;
+  top: 50%;
+  transform: translateY(-50%);
+  border-left-color: rgba(168, 85, 247, 0.65);
+}
+
+@keyframes video-annotation-pulse {
+  0%,
+  100% {
+    box-shadow:
+      0 0 0 2px rgba(0, 0, 0, 0.55),
+      0 0 14px rgba(168, 85, 247, 0.35);
+  }
+  50% {
+    box-shadow:
+      0 0 0 2px rgba(0, 0, 0, 0.55),
+      0 0 22px rgba(168, 85, 247, 0.65);
+  }
+}
+
+@keyframes video-annotation-in {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+.video-annotation-callout--top.video-annotation-callout {
+  animation-name: video-annotation-in-top;
+}
+
+.video-annotation-callout--left.video-annotation-callout,
+.video-annotation-callout--right.video-annotation-callout {
+  animation-name: video-annotation-in-side;
+}
+
+@keyframes video-annotation-in-top {
+  from {
+    opacity: 0;
+    transform: translate(-50%, calc(-100% + 6px));
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -100%);
+  }
+}
+
+@keyframes video-annotation-in-side {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* --- Climax highlight marks (neon marker strokes — separate from site UI) --- */
+.video-highlight-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 58;
+  pointer-events: none;
+}
+
+.video-highlight-mark {
+  position: fixed;
+  box-sizing: border-box;
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  overflow: visible;
+  transform: rotate(var(--mark-tilt, -0.5deg));
+  animation: video-highlight-marker-breathe 1.35s ease-in-out infinite;
+}
+
+.video-highlight-mark::before,
+.video-highlight-mark::after {
+  content: '';
+  position: absolute;
+  border: none;
+  border-radius: 0;
+  pointer-events: none;
+}
+
+/* Main marker stroke */
+.video-highlight-mark::before {
+  inset: -1px -4px 0 2px;
+  background: linear-gradient(
+    92deg,
+    rgba(255, 244, 60, 0.08) 0%,
+    rgba(255, 235, 0, 0.72) 18%,
+    rgba(255, 255, 80, 0.78) 52%,
+    rgba(255, 228, 0, 0.68) 84%,
+    rgba(255, 244, 60, 0.12) 100%
+  );
+  mix-blend-mode: multiply;
+  filter: saturate(1.35);
+}
+
+/* Second pass — uneven highlighter overlap */
+.video-highlight-mark::after {
+  inset: 1px -2px -2px -1px;
+  background: linear-gradient(
+    88deg,
+    transparent 0%,
+    rgba(255, 255, 120, 0.42) 35%,
+    rgba(255, 240, 0, 0.55) 70%,
+    transparent 100%
+  );
+  mix-blend-mode: multiply;
+  opacity: 0.9;
+  transform: rotate(calc(var(--mark-tilt, -0.5deg) * -1.6));
+}
+
+@keyframes video-highlight-marker-breathe {
+  0%,
+  100% {
+    opacity: 0.82;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* --- Floating black bars (in-exploration overlays) --- */
+.video-float-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 55;
+  pointer-events: none;
+}
+
+.video-punch {
+  position: absolute;
+  left: 0;
+  right: 0;
+  padding: 0.85rem 1rem;
+  background: #000;
+  animation: video-slide-up 0.45s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.video-punch--top {
+  top: 12%;
+}
+
+.video-punch--center {
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.video-punch--bottom {
+  bottom: 18%;
+}
+
+.video-punch--top-banner {
+  top: var(--video-top-banner-inset);
+  bottom: auto;
+  transform: none;
+  max-height: var(--video-top-banner-max-h);
+  overflow: hidden;
+}
+
+.video-punch--bottom-banner {
+  top: auto;
+  bottom: calc(var(--companion-peek-h, 56px) + 4%);
+  transform: none;
+  max-height: 18vh;
+  overflow: hidden;
+}
+
+.video-punch--top-banner .video-punch__text,
+.video-punch--bottom-banner .video-punch__text {
+  font-size: clamp(1.35rem, 5.5vw, 2rem);
+  line-height: 1;
+}
+
+.video-punch--top-banner .video-punch__sub,
+.video-punch--bottom-banner .video-punch__sub {
+  font-size: clamp(0.85rem, 3.5vw, 1.1rem);
+  margin-top: 0.25rem;
+}
+
+/* --- Compact banner (story beats — keeps focus area clear) --- */
+.video-banner {
+  position: absolute;
+  left: 0;
+  right: 0;
+  z-index: 56;
+  background: #000;
+  padding: 0.6rem 1rem;
+  pointer-events: none;
+}
+
+.video-banner--top-banner {
+  top: var(--video-top-banner-inset);
+  max-height: var(--video-top-banner-max-h);
+  overflow: hidden;
+}
+
+.video-banner--bottom-banner {
+  bottom: calc(var(--companion-peek-h, 56px) + 4%);
+}
+
+.video-banner__line {
+  font-family: var(--video-condensed);
+  font-weight: 900;
+  font-size: clamp(1.1rem, 4.8vw, 1.45rem);
+  line-height: 1.1;
+  text-transform: uppercase;
+  color: #fff;
+  margin: 0;
+}
+
+.video-banner__line--accent {
+  font-family: var(--video-display);
+  font-size: clamp(1.35rem, 5.5vw, 2rem);
+  color: var(--video-accent);
+  letter-spacing: 0.03em;
+}
+
+.video-banner__line--sub {
+  font-weight: 800;
+  font-size: clamp(0.9rem, 3.8vw, 1.15rem);
+  color: rgba(255, 255, 255, 0.88);
+  margin-top: 0.2rem;
+}
+
+.video-banner--list .video-banner__line--sub {
+  margin-top: 0.1rem;
+  line-height: 1.05;
+  font-size: clamp(0.78rem, 3.2vw, 0.98rem);
+}
+
+.video-banner--list .video-banner__line--accent {
+  line-height: 1;
+  margin-bottom: 0.15rem;
+}
+
+.video-punch__text {
+  font-family: var(--video-display);
+  font-size: clamp(2.4rem, 11vw, 4.2rem);
+  line-height: 0.95;
+  letter-spacing: 0.03em;
+  color: var(--video-accent);
+  text-transform: uppercase;
+}
+
+.video-punch__text--white {
+  color: #fff;
+}
+
+.video-punch__sub {
+  font-family: var(--video-condensed);
+  font-weight: 800;
+  font-size: clamp(1rem, 4.5vw, 1.5rem);
+  color: rgba(255, 255, 255, 0.85);
+  margin-top: 0.35rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+/* --- Staggered split read flow --- */
+.video-split {
+  position: absolute;
+  inset: 0;
+}
+
+.video-split__part {
+  position: absolute;
+  background: #000;
+  padding: 0.75rem 1rem;
+  max-width: 88%;
+  animation: video-split-in 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.video-split__part--a {
+  top: 10%;
+  left: 4%;
+  animation-delay: 0s;
+}
+
+.video-split__part--b {
+  top: 22%;
+  right: 4%;
+  left: auto;
+  animation-delay: 0.12s;
+}
+
+.video-split__part--c {
+  bottom: 28%;
+  left: 6%;
+  animation-delay: 0.24s;
+}
+
+.video-split__text {
+  font-family: var(--video-condensed);
+  font-weight: 900;
+  line-height: 1.05;
+  text-transform: uppercase;
+  color: #fff;
+}
+
+.video-split__text--lg {
+  font-size: clamp(1.5rem, 6.5vw, 2.4rem);
+}
+
+.video-split__text--xl {
+  font-size: clamp(1.9rem, 8.5vw, 3rem);
+}
+
+.video-split__text--hero {
+  font-family: var(--video-display);
+  font-size: clamp(2.8rem, 13vw, 5rem);
+  color: var(--video-accent);
+  letter-spacing: 0.02em;
+}
+
+.video-split__text--accent {
+  color: var(--video-accent);
+}
+
+/* --- Flash list --- */
+.video-list-flash {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 11%;
+  padding: 0 0.5rem;
+}
+
+.video-list-flash__head {
+  background: #000;
+  padding: 0.65rem 1rem;
+  margin-bottom: 0.5rem;
+  animation: video-slide-up 0.4s ease-out both;
+}
+
+.video-list-flash__head-text {
+  font-family: var(--video-display);
+  font-size: clamp(1.8rem, 8vw, 2.8rem);
+  color: var(--video-accent);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.video-list-flash__item {
+  background: #000;
+  padding: 0.5rem 1rem;
+  margin-bottom: 0.35rem;
+  animation: video-slide-up 0.4s ease-out both;
+}
+
+.video-list-flash__item-text {
+  font-family: var(--video-condensed);
+  font-weight: 800;
+  font-size: clamp(1.05rem, 4.5vw, 1.45rem);
+  color: #fff;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+@keyframes video-flash-in {
+  from {
+    opacity: 0;
+    transform: scale(1.04);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes video-slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes video-split-in {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.video-split__part--b.video-split__part {
+  animation-name: video-split-in-right;
+}
+
+@keyframes video-split-in-right {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Recording: no entrance animations — first frame must match final overlay look. */
+html.fyp-video-capture .video-shell {
+  width: 100%;
+  height: 100%;
+  min-height: 100dvh;
+}
+
+html.fyp-video-capture .video-card-band,
+html.fyp-video-capture .video-punch,
+html.fyp-video-capture .video-banner,
+html.fyp-video-capture .video-split__part,
+html.fyp-video-capture .video-list-flash__head,
+html.fyp-video-capture .video-list-flash__item,
+html.fyp-video-capture .video-annotation-highlight,
+html.fyp-video-capture .video-annotation-callout,
+html.fyp-video-capture .video-highlight-mark,
+html.fyp-video-capture .video-highlight-mark::before,
+html.fyp-video-capture .video-highlight-mark::after {
+  animation: none !important;
+  opacity: 1 !important;
+}
+
+html.fyp-video-capture .video-card-band {
+  width: 100%;
+  height: 100%;
+  min-height: 100dvh;
+}
+
+/* Title card: locked hero sizing in capture (matches loaded display fonts, not fallbacks). */
+html.fyp-video-capture .video-card-band__content:not(.video-card-band__content--outro) .video-card-band__title {
+  font-size: clamp(3.8rem, 16.5vw, 6.5rem);
+}
+
+html.fyp-video-capture .video-card-band__content:not(.video-card-band__content--outro) .video-card-band__subtitle {
+  font-size: clamp(2.2rem, 10vw, 3.6rem);
+  line-height: 0.95;
+}
+
+html.fyp-video-capture .video-card-band__content:not(.video-card-band__content--outro) .video-card-band__hook-line {
+  font-size: clamp(1.55rem, 6.8vw, 2.55rem);
+}
+
+html.fyp-video-capture
+  .video-card-band__content:not(.video-card-band__content--outro)
+  .video-card-band__hook-line--accent {
+  font-size: clamp(2.15rem, 9.5vw, 3.6rem);
+}

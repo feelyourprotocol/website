@@ -145,3 +145,15 @@ The project uses a hybrid testing approach:
 - **E2E tests** (Cypress) as lean smoke tests for critical navigation flows and page-level integration
 
 Unit tests live alongside their components in `__tests__/` folders. E2E tests are consolidated in `cypress/e2e/`.
+
+## Video pipeline (short-form)
+
+Vertical exploration videos for YouTube Shorts, Reels, and X are recorded via an
+isolated Playwright package in `video/` (same pattern as `og/` for social preview images).
+
+- **Website overlay shell** — `src/video/`, activated with `?fyp-video=1`
+- **Content & playbooks** — `video/projects/<id>/` (JSON, separate from the site)
+- **Deep-linking** — `?example=<key>` pre-selects example presets on all explorations
+
+See [Video pipeline](/contributing/video-pipeline) for the workflow and
+[Authoring a video short](/contributing/video-authoring) for how to write a project.

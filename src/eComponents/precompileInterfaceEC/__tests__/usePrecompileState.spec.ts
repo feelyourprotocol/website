@@ -1,10 +1,5 @@
 import { describe, expect, it, vi } from 'vitest'
 
-vi.mock('vue-router', () => ({
-  useRoute: () => ({ query: {} }),
-  useRouter: () => ({ resolve: vi.fn(() => ({ href: '' })) }),
-}))
-
 import type { Examples } from '@/explorations/REGISTRY'
 
 import type { PrecompileConfig } from '../types'
@@ -18,6 +13,7 @@ const config: PrecompileConfig = {
 
 const examples: Examples = {
   ex1: { title: 'Example 1', values: ['deadbeef'] },
+  ex2: { title: 'Example 2', values: ['cafebabe'] },
 }
 
 describe('usePrecompileState', () => {
@@ -91,5 +87,43 @@ describe('usePrecompileState', () => {
     expect(state.result).toBeDefined()
     expect(state).not.toHaveProperty('execResultPre')
     expect(state).not.toHaveProperty('execResultPost')
+  })
+
+  it('loads example from ?example= query on init', async () => {
+    const run = vi.fn().mockResolvedValue(undefined)
+    const state = usePrecompileState(config, examples, run)
+
+    await state.init({ queryExample: 'ex2' })
+
+    expect(state.example.value).toBe('ex2')
+    expect(run).toHaveBeenCalledWith('0xcafebabe')
+  })
+
+  it('prefers ?example= over field url params on init', async () => {
+    const run = vi.fn().mockResolvedValue(undefined)
+    const state = usePrecompileState(config, examples, run)
+
+    await state.init({ queryExample: 'ex2', routeQuery: { a: 'deadbeef' } })
+
+    expect(run).toHaveBeenCalledWith('0xcafebabe')
+  })
+
+  it('falls back to default when ?example= is unknown', async () => {
+    const run = vi.fn().mockResolvedValue(undefined)
+    const state = usePrecompileState(config, examples, run)
+
+    await state.init({ queryExample: 'missing' })
+
+    expect(state.example.value).toBe('ex1')
+    expect(run).toHaveBeenCalledWith('0xdeadbeef')
+  })
+
+  it('loads field url params when ?example= is absent', async () => {
+    const run = vi.fn().mockResolvedValue(undefined)
+    const state = usePrecompileState(config, examples, run)
+
+    await state.init({ routeQuery: { a: 'aabbccdd' } })
+
+    expect(run).toHaveBeenCalledWith('0xaabbccdd')
   })
 })

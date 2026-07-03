@@ -1,10 +1,5 @@
 import { describe, expect, it, vi } from 'vitest'
 
-vi.mock('vue-router', () => ({
-  useRoute: () => ({ query: {} }),
-  useRouter: () => ({ resolve: vi.fn(() => ({ href: '' })) }),
-}))
-
 import { Common, Hardfork, Mainnet } from '@ethereumjs/common'
 import { createEVM } from '@ethereumjs/evm'
 
@@ -177,5 +172,25 @@ describe('useBytecodeStepper', () => {
       { timeout: 2000 },
     )
     expect(state.mode.value).toBe('stepping')
+  })
+
+  it('loads example from ?example= query on init', async () => {
+    const evm = await createEvm()
+    const state = useBytecodeStepper(config, evm)
+
+    await state.init(examples, 'push-stop')
+
+    expect(state.bytecodeHex.value).toBe('60016000')
+    expect(state.example.value).toBe('push-stop')
+  })
+
+  it('falls back to default when ?example= is unknown', async () => {
+    const evm = await createEvm()
+    const state = useBytecodeStepper(config, evm)
+
+    await state.init(examples, 'not-real')
+
+    expect(state.bytecodeHex.value).toBe('600160020100')
+    expect(state.example.value).toBe('push-add')
   })
 })

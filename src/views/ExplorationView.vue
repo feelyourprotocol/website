@@ -8,10 +8,12 @@ import { EXPLORATIONS } from '@/explorations/REGISTRY'
 import { TOPIC_COLORS, TOPICS } from '@/explorations/TOPICS'
 import { provideCompanionStatus } from '@/libs/companionStatus'
 import { getBreadcrumbsForPath } from '@/libs/pageSeo'
+import { useVideoMode } from '@/video/useVideoMode'
 
 import TopicIntroView from './TopicIntroView.vue'
 
 const route = useRoute()
+const isVideoMode = useVideoMode()
 const explorationId = route.name as string
 const exploration = EXPLORATIONS[explorationId]
 const topic = TOPICS[exploration.topic]
@@ -36,13 +38,14 @@ const ExplorationComponent = defineAsyncComponent(
 </script>
 
 <template>
-  <BreadcrumbNav :items="breadcrumbs" />
-  <div class="grid md:grid-cols-2 gap-4">
+  <BreadcrumbNav v-if="!isVideoMode" :items="breadcrumbs" />
+  <div class="grid md:grid-cols-2 gap-4" :class="isVideoMode ? 'fyp-video-exploration' : ''">
     <div :class="exploration.rightPanel ? 'max-md:pb-[var(--companion-peek-h)]' : ''">
       <Suspense>
         <ExplorationComponent />
         <template #fallback>
-          <div class="flex justify-center pt-32">
+          <div v-if="isVideoMode" class="min-h-[50dvh]" aria-hidden="true" />
+          <div v-else class="flex justify-center pt-32">
             <span class="font-mono font-bold text-lg animate-pulse" :class="cc.text"
               >Loading...</span
             >

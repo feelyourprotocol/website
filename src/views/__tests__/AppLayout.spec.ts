@@ -119,4 +119,23 @@ describe('App layout', () => {
       expect(xLink.exists()).toBe(true)
     })
   })
+
+  describe('Video mode', () => {
+    it('hides header, roadmap banner, and footer when ?fyp-video=1', async () => {
+      const router = makeRouter()
+      await router.push('/?fyp-video=1')
+      await router.isReady()
+      const wrapper = mount(App, {
+        global: {
+          plugins: [router],
+          stubs: { RouterLink: RouterLinkStub },
+        },
+      })
+      await flushPromises()
+
+      expect(wrapper.find('header').exists()).toBe(false)
+      expect(wrapper.find('footer').exists()).toBe(false)
+      expect(wrapper.find('[data-testid="video-shell"]').exists()).toBe(true)
+    })
+  })
 })
