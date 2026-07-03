@@ -142,9 +142,20 @@ the elements you annotate (see `BytecodeStepperEC` for the EIP-8024 pattern).
 
 ## 5. Climax highlights (`content.json` → `highlightSets`)
 
-Use a third layer for the **peak moment** — neon-yellow marker strokes over exact UI
-elements. No labels, no borders, no rounded corners (visually separate from site UI and
-from annotation callouts).
+Use a third layer for the **peak moment** — translucent yellow **area boxes** over the
+exact text cells (opcode mnemonic, stack value). No labels, no full-row width, no site chrome.
+
+Target the **text cell**, not the full row:
+
+| Target key | Highlights |
+|------------|------------|
+| `disassembly-active-opcode` | Opcode text on the active PC row (windup) |
+| `disassembly-dupn` | `DUPN …` mnemonic row (payoff — PC may have moved on) |
+| `stack-top-value` | `[0x…]` on stack depth 1 |
+| `stack-depth-{n}-value` | Value cell at depth *n* |
+
+Requires `data-disassembly-opcode`, `data-stack-value` on exploration widgets (see
+`BytecodeStepperEC`).
 
 Define sets in `content.json`:
 
@@ -152,14 +163,14 @@ Define sets in `content.json`:
 "highlightSets": {
   "dupn-windup": {
     "marks": [
-      { "target": "disassembly-active", "pad": 3 },
-      { "target": "stack-depth-17", "pad": 2, "tilt": 0.35 }
+      { "target": "disassembly-active-opcode", "padX": 12, "padY": 10 },
+      { "target": "stack-depth-17-value", "padX": 12, "padY": 10 }
     ]
   },
   "dupn-payoff": {
     "marks": [
-      { "target": "disassembly-active", "pad": 3 },
-      { "target": "stack-top", "pad": 2, "tilt": -0.4 }
+      { "target": "disassembly-dupn", "padX": 14, "padY": 12 },
+      { "target": "stack-top-value", "padX": 14, "padY": 12 }
     ]
   }
 }
@@ -272,9 +283,12 @@ shallow-stack revert, a different concept).
 
 ```bash
 npm run website:build
-npm run video:record -- <project-id> --preview   # 540×960, faster iteration
-npm run video:record -- <project-id>             # 1080×1920 final
+npm run video:record -- <project-id> --preview   # 540×960 — fast iteration
+npm run video:record -- <project-id>             # 1080×1920 — YouTube Shorts upload
 ```
+
+Preview uses half resolution but the same layout scale (`--video-capture-scale` = viewport ÷ 540).
+Always **re-record at full resolution** before publishing; do not upscale the preview file.
 
 After recording:
 
@@ -306,7 +320,7 @@ and post-trims lead-in with ffmpeg. Requires `ffmpeg` on PATH.
 ## Guidelines
 
 - Keep **three layers separate**: story overlays, annotations, climax highlights.
-- Use **marker strokes** for highlights — not labeled boxes or site purple chrome.
+- Use **area highlights** on text cells (`*-opcode`, `*-value`) — not full rows.
 - Give **dense overlays ≥ 3 s** cue time; run storyboard before recording.
 - Make **frame 0** the title card; verify after every record.
 - Put **`data-testid`** on controls the playbook clicks.

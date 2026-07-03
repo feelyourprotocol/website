@@ -22,10 +22,17 @@ describe('resolveTargetSelector', () => {
   })
 
   it('resolves built-in climax targets', () => {
-    expect(resolveTargetSelector('disassembly-active', undefined)).toBe(
-      '[data-disassembly-active="true"]',
+    expect(resolveTargetSelector('disassembly-active-opcode', undefined)).toBe(
+      '[data-disassembly-active="true"] [data-disassembly-opcode]',
     )
-    expect(resolveTargetSelector('stack-top', undefined)).toBe('[data-stack-depth="1"]')
-    expect(resolveTargetSelector('stack-depth-17', undefined)).toBe('[data-stack-depth="17"]')
+    expect(resolveTargetSelector('disassembly-dupn', undefined)).toBe(
+      '[data-disassembly-opcode][data-disassembly-mnemonic*="DUPN"]',
+    )
+    expect(resolveTargetSelector('stack-top-value', undefined)).toBe(
+      '[data-stack-depth="1"] [data-stack-value]',
+    )
+    expect(resolveTargetSelector('stack-depth-17-value', undefined)).toBe(
+      '[data-stack-depth="17"] [data-stack-value]',
+    )
   })
 })

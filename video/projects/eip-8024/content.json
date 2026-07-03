@@ -109,14 +109,14 @@
   "highlightSets": {
     "dupn-windup": {
       "marks": [
-        { "target": "disassembly-active", "pad": 3 },
-        { "target": "stack-depth-17", "pad": 2, "tilt": 0.35 }
+        { "target": "disassembly-active-opcode", "padX": 12, "padY": 10 },
+        { "target": "stack-depth-17-value", "padX": 12, "padY": 10 }
       ]
     },
     "dupn-payoff": {
       "marks": [
-        { "target": "disassembly-active", "pad": 3 },
-        { "target": "stack-top", "pad": 2, "tilt": -0.4 }
+        { "target": "disassembly-dupn", "padX": 14, "padY": 12 },
+        { "target": "stack-top-value", "padX": 14, "padY": 12 }
       ]
     }
   }

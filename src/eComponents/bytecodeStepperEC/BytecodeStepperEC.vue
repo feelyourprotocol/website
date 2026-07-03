@@ -290,6 +290,8 @@ function formatStackWord(word: bigint): string {
                   </span>
                   <span
                     :class="row.pc === activePc ? 'text-purple-900 font-bold' : 'text-slate-800'"
+                    :data-disassembly-opcode="row.name ? '' : undefined"
+                    :data-disassembly-mnemonic="row.name || undefined"
                   >
                     {{ row.name }}
                   </span>
@@ -330,7 +332,7 @@ function formatStackWord(word: bigint): string {
                   >
                     {{ item.depth }}
                   </span>
-                  <span>[{{ formatStackWord(item.word) }}]</span>
+                  <span data-stack-value>[{{ formatStackWord(item.word) }}]</span>
                 </div>
                 <p v-if="displayedStack.length === 0" class="text-slate-400">(empty)</p>
               </div>

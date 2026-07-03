@@ -277,20 +277,26 @@ body {
 }
 
 /* --- Video capture mode (?fyp-video=1) --- */
+html.fyp-video-capture {
+  /* Design reference: 540×960 preview; scale fixed sizes at 1080×1920. */
+  --video-capture-scale: calc(100vw / 540);
+  --video-top-banner-inset: calc(36px * var(--video-capture-scale));
+  --video-top-banner-max-h: calc(168px * var(--video-capture-scale));
+  --video-focus-gap: calc(12px * var(--video-capture-scale));
+  --video-focus-scroll-margin: calc(
+    var(--video-top-banner-inset) + var(--video-top-banner-max-h) + var(--video-focus-gap)
+  );
+  height: 100vh;
+  overflow-x: hidden;
+}
+
 html.fyp-video-capture,
 html.fyp-video-capture body {
   margin: 0 !important;
   padding: 0 !important;
   max-width: none !important;
   width: 100% !important;
-  overflow-x: hidden;
   background: #000 !important;
-  --video-top-banner-inset: 36px;
-  --video-top-banner-max-h: 168px;
-  --video-focus-gap: 12px;
-  --video-focus-scroll-margin: calc(
-    var(--video-top-banner-inset) + var(--video-top-banner-max-h) + var(--video-focus-gap)
-  );
 }
 
 html.fyp-video-capture [data-testid='example-select'] {
@@ -304,7 +310,8 @@ html.fyp-video-capture body.container {
 }
 
 html.fyp-video-capture #app {
-  min-height: 100dvh;
+  height: 100vh;
+  min-height: 100vh;
   width: 100%;
   max-width: none;
   padding: 0;
@@ -313,7 +320,8 @@ html.fyp-video-capture #app {
 }
 
 .fyp-video-mode {
-  min-height: 100dvh;
+  height: 100vh;
+  min-height: 100vh;
   width: 100%;
   max-width: none;
   padding: 0 !important;
@@ -324,11 +332,21 @@ html.fyp-video-capture #app {
 .fyp-video-mode .fyp-video-exploration {
   grid-template-columns: 1fr !important;
   gap: 0 !important;
-  min-height: 100dvh;
+  height: 100vh;
+  min-height: 100vh;
   width: 100%;
   max-width: none;
   padding: 0 !important;
   margin: 0 !important;
+}
+
+/* Preview uses 540px (stacked); at 1080px lg: breakpoints would side-by-side and shrink vertical fill. */
+html.fyp-video-capture .fyp-video-mode .lg\:grid-cols-2 {
+  grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
+}
+
+html.fyp-video-capture .fyp-video-mode .grid.lg\:grid-cols-2 {
+  grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
 }
 
 .fyp-video-mode .fyp-video-exploration > div:first-child {
@@ -345,8 +363,9 @@ html.fyp-video-capture #app {
 .fyp-video-mode .exploration-c {
   border: none !important;
   border-radius: 0 !important;
-  padding-left: 0.5rem;
-  padding-right: 0.5rem;
+  padding-left: calc(0.5rem * var(--video-capture-scale, 1));
+  padding-right: calc(0.5rem * var(--video-capture-scale, 1));
+  font-size: calc(0.75rem * var(--video-capture-scale, 1));
 }
 
 html.fyp-video-capture:not(.fyp-video-band-active) .exploration-right-panel-host {
@@ -394,15 +413,16 @@ html.fyp-video-capture .companion-sheet .bg-slate-300 {
 
 /* More room for disassembly + stack during capture (auto-scroll keeps active rows visible). */
 html.fyp-video-capture [data-testid='bytecode-disassembly'] {
-  max-height: min(32vh, 240px) !important;
+  max-height: min(36vh, calc(240px * var(--video-capture-scale))) !important;
 }
 
 html.fyp-video-capture [data-testid='bytecode-stack'] {
-  max-height: min(26vh, 200px) !important;
+  max-height: min(30vh, calc(200px * var(--video-capture-scale))) !important;
 }
 
 html.fyp-video-capture .fyp-video-mode textarea {
-  min-height: 3.5rem;
+  min-height: calc(3.5rem * var(--video-capture-scale));
+  font-size: calc(0.75rem * var(--video-capture-scale));
 }
 
 html.fyp-video-capture .companion-sheet > .flex-1 {

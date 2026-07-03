@@ -57,6 +57,9 @@ export interface VideoAnnotationDefinition {
 export interface VideoHighlightMarkDefinition {
   target: string
   pad?: number
+  padX?: number
+  padY?: number
+  /** @deprecated No longer used */
   tilt?: number
   /** @deprecated Labels removed — marker-only highlights */
   label?: string

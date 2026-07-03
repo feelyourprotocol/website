@@ -88,12 +88,12 @@ Parallel **guide callouts** point at exploration regions while story text may hi
 ```
 
 Reference playbook step: `"annotate": "guide-stack"`. Targets use `zones.json` focus area keys
-or built-in aliases (`disassembly-active`, `stack-top`, `stack-depth-{n}`).
+or built-in aliases (`disassembly-active-opcode`, `disassembly-dupn`, `stack-top-value`, …).
 
 ### Climax highlights (`content.json` → `highlightSets`)
 
-Third overlay layer — **neon-yellow marker strokes** over exact UI elements during peak
-moments (no labels, no site-style borders). Playbook climax fields on `step`:
+Third overlay layer — translucent yellow **area boxes** over text cells during peak
+moments (opcode mnemonic, stack value — not full rows). Playbook climax fields on `step`:
 
 | Field | Purpose |
 |-------|---------|

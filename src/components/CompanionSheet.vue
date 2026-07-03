@@ -3,9 +3,18 @@ import { computed, onMounted, onUnmounted, ref, watch } from 'vue'
 
 import { COMPANION_EXPAND_EVENT, type CompanionExpandMode } from '@/video/companionSheetEvents'
 
-const PEEK_PX = 56
 const HALF_RATIO = 0.5
 const FULL_RATIO = 0.92
+
+function videoCaptureScale(): number {
+  if (typeof document === 'undefined' || typeof window === 'undefined') return 1
+  if (!document.documentElement.classList.contains('fyp-video-capture')) return 1
+  return window.innerWidth / 540
+}
+
+function peekPx(): number {
+  return Math.round(56 * videoCaptureScale())
+}
 
 export type CompanionSnap = 'peek' | 'half' | 'full'
 
@@ -25,7 +34,7 @@ const prefersReducedMotion = ref(false)
 
 function snapHeightPx(target: CompanionSnap): number {
   const vh = viewportHeight.value
-  if (target === 'peek') return PEEK_PX
+  if (target === 'peek') return peekPx()
   if (target === 'half') return Math.round(vh * HALF_RATIO)
   return Math.round(vh * FULL_RATIO)
 }
@@ -38,7 +47,7 @@ const sheetHeightPx = computed(() => {
 function nearestSnap(heightPx: number): CompanionSnap {
   const vh = viewportHeight.value
   const candidates: [CompanionSnap, number][] = [
-    ['peek', PEEK_PX],
+    ['peek', peekPx()],
     ['half', Math.round(vh * HALF_RATIO)],
     ['full', Math.round(vh * FULL_RATIO)],
   ]
@@ -83,7 +92,7 @@ function onHandlePointerMove(event: PointerEvent) {
   if (!dragging.value) return
   const delta = dragStartY - event.clientY
   const vh = viewportHeight.value
-  const min = PEEK_PX
+  const min = peekPx()
   const max = Math.round(vh * FULL_RATIO)
   dragHeightPx.value = Math.min(max, Math.max(min, dragStartHeight + delta))
 }
@@ -164,7 +173,7 @@ defineExpose({ snap, expandToHalf, expandToFull })
       pulsing ? 'companion-sheet-pulse' : '',
       dragging ? '' : 'max-md:transition-[height] max-md:duration-300 max-md:ease-out',
     ]"
-    :style="{ height: `${sheetHeightPx}px`, '--companion-peek-h': `${PEEK_PX}px` }"
+    :style="{ height: `${sheetHeightPx}px`, '--companion-peek-h': `${peekPx()}px` }"
   >
     <div
       class="md:hidden shrink-0 touch-none select-none"

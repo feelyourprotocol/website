@@ -62,12 +62,14 @@ export interface VideoAnnotationDefinition {
   side?: AnnotationCalloutSide | 'auto'
 }
 
-/** Climax mark — neon marker stroke over a live UI element. */
+/** Climax mark — translucent area box over a text cell or UI element. */
 export interface VideoHighlightMarkDefinition {
   target: string
-  /** Extra px around the element (default 2 horizontal, 1 vertical). */
+  /** Uniform padding (px) when padX / padY omitted. */
   pad?: number
-  /** Slight marker slant in degrees. */
+  padX?: number
+  padY?: number
+  /** @deprecated No longer used. */
   tilt?: number
   /** @deprecated Labels removed — marker-only highlights. */
   label?: string
