@@ -147,10 +147,6 @@ export function extractCenterLuminanceStats(videoPath: string, timeSec: number):
   }
 }
 
-function extractCenterMaxLuminance(videoPath: string, timeSec: number): number {
-  return extractCenterLuminanceStats(videoPath, timeSec).max
-}
-
 /** Title/outro band: bright text on a dark center panel at hero size (rejects exploration UI). */
 export function isTitleBandFrame(
   stats: CenterLuminanceStats,

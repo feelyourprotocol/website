@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 
-import type { VideoOutroCta,VideoOverlayDefinition } from '../types'
+import type { VideoOutroCta, VideoOverlayDefinition } from '../types'
 import VideoBandShell from './VideoBandShell.vue'
 
 const props = defineProps<{

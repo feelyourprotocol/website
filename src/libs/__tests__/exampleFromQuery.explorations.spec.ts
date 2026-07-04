@@ -27,7 +27,7 @@ const EXPLORATION_EXAMPLE_SETS = [
 
 describe('?example= query param across explorations', () => {
   for (const { id, defaultKey, examples } of EXPLORATION_EXAMPLE_SETS) {
-    describe(id, () => {
+    describe(`exploration ${id}`, () => {
       it('default example key exists in examples', () => {
         expect(examples[defaultKey]).toBeDefined()
       })

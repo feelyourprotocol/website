@@ -2,7 +2,7 @@ import './bootstrap-playwright-env.ts'
 import { existsSync } from 'node:fs'
 import { join } from 'node:path'
 
-import { estimatePlaybookDurationMs, loadVideoProject, resolvePlaybook } from './loadProject.ts'
+import { estimatePlaybookDurationMs, loadVideoProject } from './loadProject.ts'
 import { parseRecordCliArgs } from './parseRecordArgs.ts'
 import { buildStoryboard, printStoryboard, validateStoryboard } from './storyboard.ts'
 

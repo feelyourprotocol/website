@@ -38,11 +38,6 @@ function stepAction(step: PlaybookStep): PlaybookStepAction | undefined {
   return typeof step.step === 'number' ? { count: step.step } : step.step
 }
 
-function stepUsesHighlights(step: PlaybookStep): boolean {
-  const action = stepAction(step)
-  return Boolean(action?.highlightSet || action?.highlightSetAfter)
-}
-
 function actionDuration(step: PlaybookStep): number {
   let total = 0
   if (step.selectExample) total += 800

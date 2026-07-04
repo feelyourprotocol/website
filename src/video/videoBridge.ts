@@ -1,4 +1,4 @@
-import { type CompanionExpandMode,dispatchCompanionExpand } from './companionSheetEvents'
+import { type CompanionExpandMode, dispatchCompanionExpand } from './companionSheetEvents'
 import type {
   ActiveVideoAnnotation,
   ActiveVideoHighlightSet,
