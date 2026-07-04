@@ -142,10 +142,10 @@ Annotations are black callouts with a ring on a UI target. They answer: *where s
 ```
 
 In the playbook: `"annotate": "guide-stack"`. The annotation **stays visible** while the
-beat runs, unless a **top-banner story overlay** covers the target — then the callout is
-suppressed automatically (avoids collisions like “Example presets” over “3 NEW OPCODES”).
-story overlay hides and steps run — use it whenever the banner alone does not point at
-the action area.
+beat runs — including after the story overlay hides and steps begin — whenever the banner
+alone does not point at the action area. If a **top-banner story overlay** covers the
+annotation target, the callout is suppressed automatically (avoids collisions like
+“Example presets” over “3 NEW OPCODES”).
 
 Targets are keys from `zones.json` `focusAreas`, or built-in aliases:
 

@@ -89,6 +89,8 @@ Parallel **guide callouts** point at exploration regions while story text may hi
 
 Reference playbook step: `"annotate": "guide-stack"`. Targets use `zones.json` focus area keys
 or built-in aliases (`disassembly-active-opcode`, `disassembly-dupn`, `stack-top-value`, …).
+Callouts are **auto-suppressed** when a top-banner overlay covers the target — see
+[Authoring § annotations](/contributing/video-authoring#4-ui-annotations-contentjson--annotations).
 
 ### Climax highlights (`content.json` → `highlightSets`)
 
@@ -133,6 +135,9 @@ npm run video:record -- eip-8024 --dry-run   # storyboard + validation
 ### Safe zones (`zones.json`)
 
 Per-project map of exploration focus areas and overlay placements (540×960 reference).
+Black ribbon backgrounds stay edge-to-edge; text is inset horizontally and vertically via
+`--video-safe-*` and `--video-ribbon-*` CSS vars — details in
+[Authoring § safe zone](/contributing/video-authoring#zonesjson--focus-areas--youtube-shorts-safe-zone).
 Author overlays in `top-banner` so stack, disassembly, or companion stay visible below.
 
 ## Playbook format
