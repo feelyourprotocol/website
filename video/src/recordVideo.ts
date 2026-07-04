@@ -13,6 +13,10 @@ export interface RecordVideoOptions {
   preview?: boolean
   distDir: string
   projectsRoot: string
+  /** When true, ignore voice/manifest.json for playbook timing */
+  noVoice?: boolean
+  /** Internal: called from generateVideo — adjusts console hints */
+  fromGenerate?: boolean
 }
 
 export interface RecordVideoResult {
@@ -50,7 +54,9 @@ export async function recordVideo(
   projectId: string,
   options: RecordVideoOptions,
 ): Promise<RecordVideoResult> {
-  const project = loadVideoProject(projectId, options.projectsRoot)
+  const project = loadVideoProject(projectId, options.projectsRoot, {
+    useVoiceTiming: !options.noVoice,
+  })
   const formatId = parseVideoFormatId(
     options.preview ? 'shorts-preview' : project.playbook.format,
   )
@@ -59,6 +65,9 @@ export async function recordVideo(
 
   console.log(`Project: ${projectId}`)
   console.log(`Format:  ${formatId} (${format.width}×${format.height})`)
+  if (project.voiceManifest) {
+    console.log(`Voice:   ~${Math.round(project.voiceManifest.totalDurationMs / 1000)}s (synced playbook)`)
+  }
   console.log(`Est. duration: ~${Math.round(estimatedDurationMs / 1000)}s`)
 
   await assertChromiumReady()
@@ -167,7 +176,13 @@ export async function recordVideo(
       console.log(`  Lead-in OK (luminance ${trim.maxLuminanceAfter})`)
     }
 
-    console.log(`Saved: ${finalPath}`)
+    console.log(`Saved (silent intermediate — no audio): ${finalPath}`)
+    if (project.voiceManifest && !options.fromGenerate && !options.noVoice) {
+      const flags = [options.preview ? '--preview' : '', '--skip-synth'].filter(Boolean).join(' ')
+      console.log(
+        `\nTo mux voice into the final upload file:\n  npm run video:generate -- ${projectId} ${flags}`.trimEnd(),
+      )
+    }
     return { project, outputPath: finalPath, estimatedDurationMs }
   } finally {
     await browser.close()

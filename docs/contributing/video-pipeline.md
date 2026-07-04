@@ -185,21 +185,42 @@ npm run dev
 From `website/`:
 
 ```bash
-npm run website:build
-npm run video:record -- eip-8024 --dry-run   # print playbook steps
-npm run video:record -- eip-8024 --preview   # 540×960 .webm (faster)
-npm run video:record -- eip-8024             # 1080×1920 .webm
+# ── Final (video + voice) — upload / listen with audio ──
+npm run video:generate:preview -- eip-8024   # 540×960 → *-final.mp4
+npm run video:generate -- eip-8024           # 1080×1920 → *-final.mp4
+
+# ── Silent intermediate only (no audio) ──
+npm run video:record -- eip-8024 --preview --no-voice
+npm run video:record -- eip-8024 --dry-run
 ```
 
-Output: `video/projects/eip-8024/output/eip-8024-<timestamp>.webm`
+Final: `video/projects/eip-8024/output/<id>-<timestamp>-final.mp4`  
+Intermediate: same stem with `.webm` (Playwright capture, no audio track).
 
-**Always run `npm run website:build` before recording** if `src/video/` changed.
+**Always run `npm run website:build` before recording** if `src/video/` changed (`video:generate` does this automatically).
 
 Recordings auto-trim lead-in (Playwright captures black/hidden frames before the title
 card renders) and verify frame 0 shows the title band for preview thumbnails. Detection
 uses center-crop dark-pixel ratio — not brightness alone. Requires `ffmpeg` on PATH.
 
 Details: [Record and verify](/contributing/video-authoring#record-and-verify).
+
+## Voice-over (ElevenLabs)
+
+Narration is synthesized first; character timestamps drive playbook timing; silent video is
+muxed with audio at the end. Full workflow: [Voice-over pipeline](/contributing/video-voice).
+
+```bash
+npm run video:voice:synth -- <project-id>   # ElevenLabs → voice/
+npm run video:voice:plan -- <project-id>    # voice-aligned storyboard
+
+# Final (video + audio):
+npm run video:generate:preview -- <project-id>
+npm run video:generate -- <project-id>
+
+# Silent webm only:
+npm run video:record -- <project-id> --preview --no-voice
+```
 
 ## Tests
 

@@ -14,6 +14,7 @@ describe('loadVideoProject eip-8024', () => {
 
     expect(project.content.explorationId).toBe('eip-8024')
     expect(project.playbook.exploration).toBe('eip-8024')
+    expect(project.playbookBase.steps.length).toBe(project.playbook.steps.length)
     expect(project.explorationPath).toContain('eip-8024')
     expect(project.content.overlays['title-card']?.type).toBe('title-card')
     expect(project.content.theme?.accent).toBe('#a855f7')
@@ -41,10 +42,11 @@ describe('themeForExploration', () => {
 
 describe('parseRecordCliArgs', () => {
   it('parses project id and flags', () => {
-    expect(parseRecordCliArgs(['eip-8024', '--preview', '--dry-run'])).toEqual({
+    expect(parseRecordCliArgs(['eip-8024', '--preview', '--dry-run', '--no-voice'])).toEqual({
       projectId: 'eip-8024',
       preview: true,
       dryRun: true,
+      noVoice: true,
     })
   })
 

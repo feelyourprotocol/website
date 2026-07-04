@@ -19,7 +19,7 @@ export const LEAD_IN_MIN_DARK_PIXEL_RATIO = 0.35
 /** Mean luminance cap — exploration UI center crop averages ~240+ on white/lavender. */
 export const LEAD_IN_MAX_MEAN_LUMINANCE = 120
 /** Title at hero size spans at least this many px vertically in the center crop. */
-export const LEAD_IN_MIN_TEXT_SPAN_PX = 150
+export const LEAD_IN_MIN_TEXT_SPAN_PX = 100
 
 export interface CenterLuminanceStats {
   min: number
@@ -68,7 +68,7 @@ function getVideoDimensions(videoPath: string): { width: number; height: number 
   return { width: 540, height: 960 }
 }
 
-function extractCenterLuminanceStats(videoPath: string, timeSec: number): CenterLuminanceStats {
+export function extractCenterLuminanceStats(videoPath: string, timeSec: number): CenterLuminanceStats {
   const tmp = join(tmpdir(), `fyp-vframe-${process.pid}-${Date.now()}.raw`)
   const empty: CenterLuminanceStats = {
     min: 255,

@@ -3,7 +3,7 @@ import './bootstrap-playwright-env.ts'
 import { existsSync } from 'node:fs'
 import { join } from 'node:path'
 
-import { estimatePlaybookDurationMs, loadVideoProject } from './loadProject.ts'
+import { estimatePlaybookDurationMs, loadVideoProject, resolvePlaybook } from './loadProject.ts'
 import { buildStoryboard, printStoryboard, validateStoryboard } from './storyboard.ts'
 import { parseRecordCliArgs } from './parseRecordArgs.ts'
 
@@ -13,6 +13,9 @@ const PROJECTS_ROOT = join(import.meta.dirname, '../projects')
 
 function runDryRun(projectId: string): void {
   const project = loadVideoProject(projectId, PROJECTS_ROOT)
+  if (project.voiceManifest) {
+    console.log(`Voice timing: ${join(project.projectDir, 'voice/manifest.json')}`)
+  }
   const timeline = buildStoryboard(project.playbook, project.content)
 
   console.log(`Project: ${projectId}`)
@@ -59,6 +62,7 @@ async function main(): Promise<void> {
     dryRun: false,
     distDir: DIST_DIR,
     projectsRoot: PROJECTS_ROOT,
+    noVoice: args.noVoice,
   })
 }
 

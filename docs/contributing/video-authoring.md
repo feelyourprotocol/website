@@ -27,11 +27,14 @@ Run `npm run website:build` before recording whenever overlay components change.
 ```
 Plan story arc → content.json (overlays, annotations, highlights)
               → zones.json (focus areas)
-              → playbook.json (beats + timing)
-              → video:storyboard (validate timeline)
-              → website:build → video:record
-              → verify frame 0 thumbnail
+              → playbook.json (beats + structure)
+              → npm run video:generate   ← final *-final.mp4 (video + voice)
+              → npm run video:record --no-voice   ← silent .webm only
+              → verify frame 0 thumbnail + audio sync
 ```
+
+Silent-only path (no voice): omit `narration.json` / `voice/` and set manual `cue`/`wait` in `playbook.json`.
+See [Voice-over pipeline](/contributing/video-voice).
 
 ---
 
@@ -360,5 +363,6 @@ Files: `video/projects/eip-8024/{content,playbook,zones}.json`.
 ## Related
 
 - [Video pipeline](/contributing/video-pipeline) — architecture, overlay types, selectors
+- [Voice-over pipeline](/contributing/video-voice) — ElevenLabs narration, timing, mux
 - [Architecture — Video pipeline](/guide/architecture#video-pipeline-short-form)
 - `video/README.md` — CLI and Playwright selectors

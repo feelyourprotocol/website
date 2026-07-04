@@ -182,6 +182,9 @@ export interface LoadedVideoProject {
   projectDir: string
   content: VideoContentConfig
   playbook: PlaybookConfig
+  /** Original playbook before voice timing merge */
+  playbookBase: PlaybookConfig
+  voiceManifest?: import('./voice/types.ts').VoiceManifest
   zones?: ZonesFile
   explorationPath: string
 }

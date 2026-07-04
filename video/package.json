@@ -12,7 +12,12 @@
     "check": "node --experimental-strip-types src/check-cli.ts",
     "preflight": "node --experimental-strip-types src/preflight-cli.ts",
     "record": "node --experimental-strip-types src/record-cli.ts",
-    "storyboard": "node --experimental-strip-types src/storyboard-cli.ts"
+    "storyboard": "node --experimental-strip-types src/storyboard-cli.ts",
+    "voice:synth": "node --experimental-strip-types src/voice/synth-cli.ts",
+    "voice:plan": "node --experimental-strip-types src/voice/plan-cli.ts",
+    "voice:mux": "node --experimental-strip-types src/voice/mux-cli.ts",
+    "generate": "node --experimental-strip-types src/generate-cli.ts",
+    "render": "npm run generate"
   },
   "dependencies": {
     "playwright": "^1.61.1"

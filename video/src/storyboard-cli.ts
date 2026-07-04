@@ -3,7 +3,7 @@ import './bootstrap-playwright-env.ts'
 import { existsSync } from 'node:fs'
 import { join } from 'node:path'
 
-import { loadVideoProject } from './loadProject.ts'
+import { loadVideoProject, resolvePlaybook } from './loadProject.ts'
 import { buildStoryboard, printStoryboard, validateStoryboard } from './storyboard.ts'
 
 const PROJECTS_ROOT = join(import.meta.dirname, '../projects')
@@ -22,10 +22,14 @@ function main(): void {
   }
 
   const project = loadVideoProject(projectId, PROJECTS_ROOT)
-  const timeline = buildStoryboard(project.playbook, project.content)
-  const issues = validateStoryboard(project.playbook, project.content, project.zones)
+  const playbook = resolvePlaybook(project)
+  const timeline = buildStoryboard(playbook, project.content)
+  const issues = validateStoryboard(playbook, project.content, project.zones)
 
   console.log(`Project: ${projectId}`)
+  if (project.voiceManifest) {
+    console.log(`Voice timing: manifest (${Math.round(project.voiceManifest.totalDurationMs / 1000)}s)`)
+  }
   printStoryboard(timeline)
 
   if (issues.length > 0) {

@@ -12,6 +12,8 @@ import type {
   VideoHighlightSetDefinition,
   ZonesFile,
 } from './types.ts'
+import { mergeVoiceTiming } from './voice/mergeTiming.ts'
+import { loadVoiceManifest } from './voice/synthesize.ts'
 
 function readJsonFile<T>(path: string): T {
   const raw = readFileSync(path, 'utf8')
@@ -62,7 +64,11 @@ function loadZones(projectDir: string): ZonesFile | undefined {
   }
 }
 
-export function loadVideoProject(projectId: string, projectsRoot: string): LoadedVideoProject {
+export function loadVideoProject(
+  projectId: string,
+  projectsRoot: string,
+  options: { useVoiceTiming?: boolean } = {},
+): LoadedVideoProject {
   const projectDir = join(projectsRoot, projectId)
   const contentPath = join(projectDir, 'content.json')
   const playbookPath = join(projectDir, 'playbook.json')
@@ -78,15 +84,26 @@ export function loadVideoProject(projectId: string, projectsRoot: string): Loade
 
   const explorationMeta = getExplorationMeta(playbook.exploration)
   const zones = loadZones(projectDir)
+  const voiceManifest = loadVoiceManifest(projectDir)
+  const playbookBase = playbook
+  const useVoice = options.useVoiceTiming !== false && voiceManifest !== undefined
+  const playbookResolved = useVoice ? mergeVoiceTiming(playbookBase, voiceManifest) : playbookBase
 
   return {
     projectId,
     projectDir,
     content: buildContentConfig(contentFile, zones),
-    playbook,
+    playbook: playbookResolved,
+    playbookBase,
+    voiceManifest,
     zones,
     explorationPath: explorationMeta.path,
   }
+}
+
+/** Playbook with voice timing applied when manifest exists. */
+export function resolvePlaybook(project: LoadedVideoProject): PlaybookConfig {
+  return project.playbook
 }
 
 export function estimatePlaybookDurationMs(playbook: PlaybookConfig): number {

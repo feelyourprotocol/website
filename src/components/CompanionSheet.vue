@@ -9,6 +9,7 @@ const FULL_RATIO = 0.92
 function videoCaptureScale(): number {
   if (typeof document === 'undefined' || typeof window === 'undefined') return 1
   if (!document.documentElement.classList.contains('fyp-video-capture')) return 1
+  if (window.innerWidth <= 540) return 1
   return window.innerWidth / 540
 }
 

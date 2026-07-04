@@ -22,11 +22,20 @@ Otherwise run `npm run og:setup` once from `website/` (covers both pipelines).
 
 ```bash
 npm run website:build
-npm run video:preflight
+
+# Final output (video + voice) — use these for upload / review with audio:
+npm run video:generate:preview -- eip-8024   # 540×960 *-final.mp4
+npm run video:generate -- eip-8024           # 1080×1920 *-final.mp4
+
+# Silent intermediate only (no audio) — visual iteration:
+npm run video:record -- eip-8024 --preview --no-voice
+
 npm run video:record -- eip-8024 --dry-run   # inspect playbook steps
-npm run video:record -- eip-8024 --preview   # 540×960 .webm (faster iteration)
-npm run video:record -- eip-8024             # 1080×1920 .webm
 ```
+
+Output: `video/projects/<id>/output/<id>-<timestamp>-final.mp4` (upload) and `.webm` (silent intermediate).
+
+Step-by-step voice tooling: `video:voice:synth`, `video:voice:plan`, `video:voice:mux`. See `docs/contributing/video-voice.md`.
 
 Output: `video/projects/<id>/output/<id>-<timestamp>.webm`
 

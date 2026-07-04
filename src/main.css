@@ -278,16 +278,14 @@ body {
 
 /* --- Video capture mode (?fyp-video=1) --- */
 html.fyp-video-capture {
-  /* Design reference: 540×960 preview; scale fixed sizes at 1080×1920. */
-  --video-capture-scale: calc(100vw / 540);
-  --video-top-banner-inset: calc(36px * var(--video-capture-scale));
-  --video-top-banner-max-h: calc(168px * var(--video-capture-scale));
-  --video-focus-gap: calc(12px * var(--video-capture-scale));
+  /* 540×960 preview — scale 1 (layout tuned for this reference size). */
+  --video-capture-scale: 1;
+  --video-top-banner-inset: 36px;
+  --video-top-banner-max-h: 168px;
+  --video-focus-gap: 12px;
   --video-focus-scroll-margin: calc(
     var(--video-top-banner-inset) + var(--video-top-banner-max-h) + var(--video-focus-gap)
   );
-  height: 100vh;
-  overflow-x: hidden;
 }
 
 html.fyp-video-capture,
@@ -310,8 +308,6 @@ html.fyp-video-capture body.container {
 }
 
 html.fyp-video-capture #app {
-  height: 100vh;
-  min-height: 100vh;
   width: 100%;
   max-width: none;
   padding: 0;
@@ -319,34 +315,13 @@ html.fyp-video-capture #app {
   background: #000;
 }
 
-.fyp-video-mode {
-  height: 100vh;
-  min-height: 100vh;
-  width: 100%;
-  max-width: none;
-  padding: 0 !important;
-  margin: 0 !important;
-  background: #000;
-}
-
 .fyp-video-mode .fyp-video-exploration {
   grid-template-columns: 1fr !important;
   gap: 0 !important;
-  height: 100vh;
-  min-height: 100vh;
   width: 100%;
   max-width: none;
   padding: 0 !important;
   margin: 0 !important;
-}
-
-/* Preview uses 540px (stacked); at 1080px lg: breakpoints would side-by-side and shrink vertical fill. */
-html.fyp-video-capture .fyp-video-mode .lg\:grid-cols-2 {
-  grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
-}
-
-html.fyp-video-capture .fyp-video-mode .grid.lg\:grid-cols-2 {
-  grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
 }
 
 .fyp-video-mode .fyp-video-exploration > div:first-child {
@@ -363,16 +338,12 @@ html.fyp-video-capture .fyp-video-mode .grid.lg\:grid-cols-2 {
 .fyp-video-mode .exploration-c {
   border: none !important;
   border-radius: 0 !important;
-  padding-left: calc(0.5rem * var(--video-capture-scale, 1));
-  padding-right: calc(0.5rem * var(--video-capture-scale, 1));
-  font-size: calc(0.75rem * var(--video-capture-scale, 1));
 }
 
 html.fyp-video-capture:not(.fyp-video-band-active) .exploration-right-panel-host {
   visibility: hidden;
 }
 
-/* Title/outro band cards: top + bottom 1/5 show live exploration UI through transparent peek zones. */
 html.fyp-video-band-active .fyp-video-mode .fyp-video-exploration {
   visibility: visible;
 }
@@ -381,58 +352,99 @@ html.fyp-video-band-active .exploration-right-panel-host {
   visibility: visible;
 }
 
-/* Force mobile companion bottom-sheet layout at any capture width (incl. 1080px) */
-html.fyp-video-capture .exploration-right-panel-host {
-  position: fixed !important;
-  inset-inline: 0 !important;
-  bottom: 0 !important;
-  top: auto !important;
-  z-index: 40 !important;
-  align-self: auto !important;
-}
+/* 1080×1920 full-res capture — scale fixed sizes from 540 reference. */
+@media (min-width: 541px) {
+  html.fyp-video-capture {
+    --video-capture-scale: calc(100vw / 540);
+    --video-top-banner-inset: calc(36px * var(--video-capture-scale));
+    --video-top-banner-max-h: calc(168px * var(--video-capture-scale));
+    --video-focus-gap: calc(12px * var(--video-capture-scale));
+    height: 100vh;
+    overflow-x: hidden;
+  }
 
-html.fyp-video-capture .companion-sheet {
-  display: flex !important;
-  flex-direction: column !important;
-  min-height: 0 !important;
-  max-height: none !important;
-  background: #0a0a0a !important;
-  border-top: 1px solid rgb(38 38 38) !important;
-  border-radius: 0.75rem 0.75rem 0 0 !important;
-  box-shadow: 0 -8px 30px rgba(0, 0, 0, 0.45) !important;
-  overflow: hidden !important;
-}
+  html.fyp-video-capture #app {
+    height: 100vh;
+    min-height: 100vh;
+  }
 
-html.fyp-video-capture .companion-sheet-peek {
-  color: rgb(163 163 163) !important;
-}
+  .fyp-video-mode {
+    height: 100vh;
+    min-height: 100vh;
+    width: 100%;
+    background: #000;
+  }
 
-html.fyp-video-capture .companion-sheet .bg-slate-300 {
-  background-color: rgb(64 64 64) !important;
-}
+  .fyp-video-mode .fyp-video-exploration {
+    height: 100vh;
+    min-height: 100vh;
+  }
 
-/* More room for disassembly + stack during capture (auto-scroll keeps active rows visible). */
-html.fyp-video-capture [data-testid='bytecode-disassembly'] {
-  max-height: min(36vh, calc(240px * var(--video-capture-scale))) !important;
-}
+  html.fyp-video-capture .fyp-video-mode .lg\:grid-cols-2 {
+    grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
+  }
 
-html.fyp-video-capture [data-testid='bytecode-stack'] {
-  max-height: min(30vh, calc(200px * var(--video-capture-scale))) !important;
-}
+  html.fyp-video-capture .fyp-video-mode .grid.lg\:grid-cols-2 {
+    grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
+  }
 
-html.fyp-video-capture .fyp-video-mode textarea {
-  min-height: calc(3.5rem * var(--video-capture-scale));
-  font-size: calc(0.75rem * var(--video-capture-scale));
-}
+  .fyp-video-mode .exploration-c {
+    padding-left: calc(0.5rem * var(--video-capture-scale));
+    padding-right: calc(0.5rem * var(--video-capture-scale));
+    font-size: calc(0.75rem * var(--video-capture-scale));
+  }
 
-html.fyp-video-capture .companion-sheet > .flex-1 {
-  display: flex !important;
-  flex-direction: column !important;
-  flex: 1 1 auto !important;
-  min-height: 0 !important;
-  overflow-y: auto !important;
-}
+  html.fyp-video-capture .exploration-right-panel-host {
+    position: fixed !important;
+    inset-inline: 0 !important;
+    bottom: 0 !important;
+    top: auto !important;
+    z-index: 40 !important;
+    align-self: auto !important;
+  }
 
-html.fyp-video-capture .companion-sheet > .shrink-0.touch-none {
-  display: block !important;
+  html.fyp-video-capture .companion-sheet {
+    display: flex !important;
+    flex-direction: column !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    background: #0a0a0a !important;
+    border-top: 1px solid rgb(38 38 38) !important;
+    border-radius: 0.75rem 0.75rem 0 0 !important;
+    box-shadow: 0 -8px 30px rgba(0, 0, 0, 0.45) !important;
+    overflow: hidden !important;
+  }
+
+  html.fyp-video-capture .companion-sheet-peek {
+    color: rgb(163 163 163) !important;
+  }
+
+  html.fyp-video-capture .companion-sheet .bg-slate-300 {
+    background-color: rgb(64 64 64) !important;
+  }
+
+  html.fyp-video-capture [data-testid='bytecode-disassembly'] {
+    max-height: min(36vh, calc(240px * var(--video-capture-scale))) !important;
+  }
+
+  html.fyp-video-capture [data-testid='bytecode-stack'] {
+    max-height: min(30vh, calc(200px * var(--video-capture-scale))) !important;
+  }
+
+  html.fyp-video-capture .fyp-video-mode textarea {
+    min-height: calc(3.5rem * var(--video-capture-scale));
+    font-size: calc(0.75rem * var(--video-capture-scale));
+  }
+
+  html.fyp-video-capture .companion-sheet > .flex-1 {
+    display: flex !important;
+    flex-direction: column !important;
+    flex: 1 1 auto !important;
+    min-height: 0 !important;
+    overflow-y: auto !important;
+  }
+
+  html.fyp-video-capture .companion-sheet > .shrink-0.touch-none {
+    display: block !important;
+  }
 }
