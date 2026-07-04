@@ -1,5 +1,12 @@
 {
   "format": { "width": 540, "height": 960 },
+  "safeZone": {
+    "topPx": 56,
+    "bottomPx": 120,
+    "leftPx": 32,
+    "rightPx": 48,
+    "description": "YouTube Shorts — keep readable text/UI inside; black bars may bleed to edges"
+  },
   "focusAreas": {
     "example-select": {
       "selector": "[data-testid=\"example-select\"]",
@@ -25,15 +32,15 @@
   "placements": {
     "top-banner": {
       "anchor": "top",
-      "insetPx": 36,
-      "maxHeightPx": 168,
-      "description": "Compact bar above exploration content"
+      "insetPx": 0,
+      "maxHeightPx": 184,
+      "description": "Full-bleed black bar; text inset via CSS safe zone + --video-ribbon-pad-*"
     },
     "bottom-banner": {
       "anchor": "bottom",
-      "insetPx": 72,
+      "insetPx": 120,
       "maxHeightPx": 140,
-      "description": "Bar above companion peek strip"
+      "description": "Bar above companion — clears Shorts bottom action row"
     }
   }
 }

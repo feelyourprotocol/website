@@ -1,11 +1,10 @@
 import './bootstrap-playwright-env.ts'
-
 import { existsSync } from 'node:fs'
 import { join } from 'node:path'
 
 import { estimatePlaybookDurationMs, loadVideoProject, resolvePlaybook } from './loadProject.ts'
-import { buildStoryboard, printStoryboard, validateStoryboard } from './storyboard.ts'
 import { parseRecordCliArgs } from './parseRecordArgs.ts'
+import { buildStoryboard, printStoryboard, validateStoryboard } from './storyboard.ts'
 
 const WEBSITE_ROOT = join(import.meta.dirname, '../..')
 const DIST_DIR = join(WEBSITE_ROOT, 'dist')

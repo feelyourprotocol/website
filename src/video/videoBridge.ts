@@ -1,4 +1,4 @@
-import { dispatchCompanionExpand, type CompanionExpandMode } from './companionSheetEvents'
+import { type CompanionExpandMode,dispatchCompanionExpand } from './companionSheetEvents'
 import type {
   ActiveVideoAnnotation,
   ActiveVideoHighlightSet,
@@ -106,9 +106,7 @@ export function resolveActiveOverlay(
   const definition = config.overlays[overlayId]
   if (!definition) return null
   const placement =
-    options?.placement ??
-    definition.placement ??
-    defaultPlacementForOverlay(definition.type)
+    options?.placement ?? definition.placement ?? defaultPlacementForOverlay(definition.type)
   return { id: overlayId, definition, placement }
 }
 

@@ -21,7 +21,6 @@
     {
       "beat": "opcodes",
       "overlay": "three-opcodes",
-      "annotate": "guide-example",
       "placement": "top-banner",
       "focus": "example-select",
       "cue": 4200,

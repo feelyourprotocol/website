@@ -113,7 +113,10 @@ function onViewportChange() {
 }
 
 function isMobileSheet(): boolean {
-  if (typeof document !== 'undefined' && document.documentElement.classList.contains('fyp-video-capture')) {
+  if (
+    typeof document !== 'undefined' &&
+    document.documentElement.classList.contains('fyp-video-capture')
+  ) {
     return true
   }
   return typeof window.matchMedia === 'function' && window.matchMedia('(max-width: 767px)').matches

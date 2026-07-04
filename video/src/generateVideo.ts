@@ -1,10 +1,10 @@
 import { join } from 'node:path'
 
 import { loadVideoEnv } from './loadEnv.ts'
-import { formatOutputBanner, finalMp4Path } from './outputPaths.ts'
+import { finalMp4Path,formatOutputBanner } from './outputPaths.ts'
 import { recordVideo } from './recordVideo.ts'
 import { muxVideoAudio } from './voice/ffmpeg.ts'
-import { synthesizeProjectVoice, voiceDir, loadVoiceManifest } from './voice/synthesize.ts'
+import { loadVoiceManifest,synthesizeProjectVoice, voiceDir } from './voice/synthesize.ts'
 import type { VoiceManifest } from './voice/types.ts'
 
 export interface GenerateVideoOptions {

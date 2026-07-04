@@ -101,9 +101,7 @@ export function usePrecompileState<T = unknown>(
 
   async function init(options: PrecompileInitOptions = {}) {
     const routeQuery = options.routeQuery ?? {}
-    const resolvedExample = parseExampleQueryParam(
-      options.queryExample ?? routeQuery.example,
-    )
+    const resolvedExample = parseExampleQueryParam(options.queryExample ?? routeQuery.example)
     if (resolvedExample !== undefined) {
       example.value = resolveInitialExample(examples, config.defaultExample, resolvedExample)
       await selectExample()

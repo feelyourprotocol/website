@@ -2,9 +2,9 @@ import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { describe, expect, it } from 'vitest'
 
+import { themeForExploration } from '../explorationRegistry.ts'
 import { estimatePlaybookDurationMs, loadVideoProject } from '../loadProject.ts'
 import { parseRecordCliArgs } from '../parseRecordArgs.ts'
-import { themeForExploration } from '../explorationRegistry.ts'
 
 const PROJECTS_ROOT = join(dirname(fileURLToPath(import.meta.url)), '../../projects')
 

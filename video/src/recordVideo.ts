@@ -1,12 +1,12 @@
 import { mkdirSync, readdirSync, renameSync, statSync } from 'node:fs'
 import { join } from 'node:path'
 
+import { startStaticServer } from '../../og/src/server.ts'
 import { assertChromiumReady } from './chromium.ts'
 import { parseVideoFormatId, VIDEO_FORMATS } from './formats.ts'
 import { estimatePlaybookDurationMs, loadVideoProject } from './loadProject.ts'
 import { ensureVideoFontsReady, runPlaybook, showLeadInOverlay, waitForExplorationReady } from './playbookRunner.ts'
 import { trimVideoLeadIn } from './trimLeadIn.ts'
-import { startStaticServer } from '../../og/src/server.ts'
 import type { LoadedVideoProject } from './types.ts'
 
 export interface RecordVideoOptions {

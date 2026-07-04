@@ -1,10 +1,10 @@
+import { dirname, join } from 'node:path'
+import { fileURLToPath } from 'node:url'
 import { describe, expect, it } from 'vitest'
 
 import { loadVideoProject } from '../loadProject.ts'
 import { mergeVoiceTiming, voiceTimingSummary } from '../voice/mergeTiming.ts'
 import type { VoiceManifest } from '../voice/types.ts'
-import { dirname, join } from 'node:path'
-import { fileURLToPath } from 'node:url'
 
 const PROJECTS_ROOT = join(dirname(fileURLToPath(import.meta.url)), '../../projects')
 

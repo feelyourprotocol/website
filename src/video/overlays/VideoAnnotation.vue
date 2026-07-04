@@ -1,7 +1,12 @@
 <script setup lang="ts">
 import { computed, onMounted, onUnmounted, ref, watch } from 'vue'
 
-import { pickCalloutSide, resolveTargetSelector } from '../annotationTarget'
+import {
+  collectTopBannerRects,
+  pickCalloutSide,
+  resolveTargetSelector,
+  targetOverlapsTopBanner,
+} from '../annotationTarget'
 import type { VideoAnnotationDefinition, VideoFocusAreaRef } from '../types'
 
 const props = defineProps<{
@@ -11,10 +16,9 @@ const props = defineProps<{
 
 const targetRect = ref<DOMRect | null>(null)
 const calloutSide = ref<'top' | 'bottom' | 'left' | 'right'>('bottom')
+const suppressedByBanner = ref(false)
 
-const selector = computed(() =>
-  resolveTargetSelector(props.annotation.target, props.focusAreas),
-)
+const selector = computed(() => resolveTargetSelector(props.annotation.target, props.focusAreas))
 
 function measure() {
   const el = document.querySelector(selector.value)
@@ -29,7 +33,10 @@ function measure() {
   }
   targetRect.value = rect
   calloutSide.value = pickCalloutSide(rect, window.innerHeight, props.annotation.side)
+  suppressedByBanner.value = targetOverlapsTopBanner(rect, collectTopBannerRects())
 }
+
+const visible = computed(() => targetRect.value !== null && !suppressedByBanner.value)
 
 let observer: ResizeObserver | undefined
 let raf = 0
@@ -47,6 +54,8 @@ watch(selector, () => {
   scheduleMeasure()
 })
 
+let overlayObserver: MutationObserver | undefined
+
 onMounted(() => {
   scheduleMeasure()
   window.addEventListener('scroll', scheduleMeasure, { passive: true, capture: true })
@@ -54,11 +63,18 @@ onMounted(() => {
   observer = new ResizeObserver(scheduleMeasure)
   const el = document.querySelector(selector.value)
   if (el) observer.observe(el)
+
+  const floatLayer = document.querySelector('.video-float-layer')
+  if (floatLayer) {
+    overlayObserver = new MutationObserver(scheduleMeasure)
+    overlayObserver.observe(floatLayer, { childList: true, subtree: true, attributes: true })
+  }
 })
 
 onUnmounted(() => {
   cancelAnimationFrame(raf)
   observer?.disconnect()
+  overlayObserver?.disconnect()
   window.removeEventListener('scroll', scheduleMeasure, true)
   window.removeEventListener('resize', scheduleMeasure)
 })
@@ -110,18 +126,15 @@ const calloutStyle = computed(() => {
 </script>
 
 <template>
-  <div
-    class="video-annotation-layer"
-    :data-testid="`video-annotation-${annotation.id}`"
-  >
+  <div class="video-annotation-layer" :data-testid="`video-annotation-${annotation.id}`">
     <div
-      v-if="targetRect"
+      v-if="visible"
       class="video-annotation-highlight"
       :style="highlightStyle"
       aria-hidden="true"
     />
     <div
-      v-if="targetRect"
+      v-if="visible"
       class="video-annotation-callout"
       :class="`video-annotation-callout--${calloutSide}`"
       :style="calloutStyle"

@@ -2,8 +2,8 @@
 import { existsSync, readdirSync, statSync } from 'node:fs'
 import { join } from 'node:path'
 
-import { parseMuxArgs } from '../parseProjectArgs.ts'
 import { finalMp4Path, formatOutputBanner } from '../outputPaths.ts'
+import { parseMuxArgs } from '../parseProjectArgs.ts'
 import { muxVideoAudio } from '../voice/ffmpeg.ts'
 import { voiceDir } from '../voice/synthesize.ts'
 

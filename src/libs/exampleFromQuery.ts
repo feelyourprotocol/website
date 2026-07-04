@@ -26,5 +26,5 @@ export function resolveInitialExample(
   if (queryExample !== undefined && queryExample in examples) {
     return queryExample
   }
-  return defaultExample in examples ? defaultExample : Object.keys(examples)[0] ?? ''
+  return defaultExample in examples ? defaultExample : (Object.keys(examples)[0] ?? '')
 }

@@ -51,3 +51,32 @@ export function pickCalloutSide(
   }
   return spaceBelow >= spaceAbove ? 'bottom' : 'top'
 }
+
+const TOP_BANNER_SELECTORS = [
+  '.video-float-layer .video-banner--top-banner',
+  '.video-float-layer .video-punch--top-banner',
+]
+
+/** Story overlays at the top — annotations must not draw over these. */
+export function collectTopBannerRects(root: ParentNode = document): DOMRect[] {
+  const rects: DOMRect[] = []
+  for (const sel of TOP_BANNER_SELECTORS) {
+    for (const el of root.querySelectorAll(sel)) {
+      const rect = el.getBoundingClientRect()
+      if (rect.width > 0 && rect.height > 0) rects.push(rect)
+    }
+  }
+  return rects
+}
+
+export function targetOverlapsTopBanner(
+  target: DOMRect,
+  bannerRects: DOMRect[],
+  gapPx = 12,
+): boolean {
+  for (const banner of bannerRects) {
+    const hOverlap = target.left < banner.right && target.right > banner.left
+    if (hOverlap && target.top < banner.bottom + gapPx) return true
+  }
+  return false
+}

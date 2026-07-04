@@ -1,9 +1,15 @@
 <script setup lang="ts">
+import './video.css'
 import { computed, onMounted, onUnmounted, ref, shallowRef, watch } from 'vue'
 
 import VideoAnnotation from './overlays/VideoAnnotation.vue'
 import VideoHighlights from './overlays/VideoHighlights.vue'
-import VideoOverlay from './VideoOverlay.vue'
+import type {
+  ActiveVideoAnnotation,
+  ActiveVideoHighlightSet,
+  ActiveVideoOverlay,
+  ShowOverlayOptions,
+} from './types'
 import {
   installVideoBridge,
   readVideoConfigFromWindow,
@@ -11,13 +17,7 @@ import {
   resolveActiveHighlightSet,
   resolveActiveOverlay,
 } from './videoBridge'
-import type {
-  ActiveVideoAnnotation,
-  ActiveVideoHighlightSet,
-  ActiveVideoOverlay,
-  ShowOverlayOptions,
-} from './types'
-import './video.css'
+import VideoOverlay from './VideoOverlay.vue'
 
 const activeOverlay = shallowRef<ActiveVideoOverlay | null>(null)
 const activeAnnotation = shallowRef<ActiveVideoAnnotation | null>(null)
@@ -103,10 +103,7 @@ onUnmounted(() => {
   >
     <VideoOverlay v-if="activeOverlay && isFullScreenCard" :overlay="activeOverlay.definition" />
     <div v-else-if="activeOverlay" class="video-float-layer">
-      <VideoOverlay
-        :overlay="activeOverlay.definition"
-        :placement="activeOverlay.placement"
-      />
+      <VideoOverlay :overlay="activeOverlay.definition" :placement="activeOverlay.placement" />
     </div>
     <VideoHighlights
       v-if="showGuideLayers && activeHighlightSet"

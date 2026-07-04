@@ -280,11 +280,15 @@ body {
 html.fyp-video-capture {
   /* 540×960 preview — scale 1 (layout tuned for this reference size). */
   --video-capture-scale: 1;
-  --video-top-banner-inset: 36px;
-  --video-top-banner-max-h: 168px;
+  --video-safe-top: 56px;
+  --video-safe-bottom: 120px;
+  --video-safe-left: 32px;
+  --video-safe-right: 48px;
+  --video-top-banner-inset: 0px;
+  --video-top-banner-max-h: 184px;
   --video-focus-gap: 12px;
   --video-focus-scroll-margin: calc(
-    var(--video-top-banner-inset) + var(--video-top-banner-max-h) + var(--video-focus-gap)
+    var(--video-safe-top) + var(--video-top-banner-max-h) + var(--video-focus-gap)
   );
 }
 
@@ -331,7 +335,9 @@ html.fyp-video-capture #app {
 .fyp-video-mode .exploration-c h1,
 .fyp-video-mode .exploration-c .hidden.md\:flex,
 .fyp-video-mode .exploration-c [class*='usage'],
-.fyp-video-mode .exploration-right-panel-host .max-md\:hidden {
+.fyp-video-mode .exploration-right-panel-host .max-md\:hidden,
+.fyp-video-mode .exploration-c > .items-start.gap-2,
+.fyp-video-mode .exploration-c > .font-mono {
   display: none !important;
 }
 
@@ -356,8 +362,12 @@ html.fyp-video-band-active .exploration-right-panel-host {
 @media (min-width: 541px) {
   html.fyp-video-capture {
     --video-capture-scale: calc(100vw / 540);
-    --video-top-banner-inset: calc(36px * var(--video-capture-scale));
-    --video-top-banner-max-h: calc(168px * var(--video-capture-scale));
+    --video-safe-top: calc(56px * var(--video-capture-scale));
+    --video-safe-bottom: calc(120px * var(--video-capture-scale));
+    --video-safe-left: calc(32px * var(--video-capture-scale));
+    --video-safe-right: calc(48px * var(--video-capture-scale));
+    --video-top-banner-inset: 0px;
+    --video-top-banner-max-h: calc(184px * var(--video-capture-scale));
     --video-focus-gap: calc(12px * var(--video-capture-scale));
     height: 100vh;
     overflow-x: hidden;
@@ -397,10 +407,13 @@ html.fyp-video-band-active .exploration-right-panel-host {
   html.fyp-video-capture .exploration-right-panel-host {
     position: fixed !important;
     inset-inline: 0 !important;
-    bottom: 0 !important;
+    bottom: var(--video-safe-bottom) !important;
     top: auto !important;
     z-index: 40 !important;
     align-self: auto !important;
+    padding-left: var(--video-safe-left);
+    padding-right: var(--video-safe-right);
+    box-sizing: border-box;
   }
 
   html.fyp-video-capture .companion-sheet {

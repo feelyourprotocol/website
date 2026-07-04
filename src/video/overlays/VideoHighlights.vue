@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import type { VideoFocusAreaRef, VideoHighlightMarkDefinition } from '../types'
-
 import VideoHighlightMark from './VideoHighlightMark.vue'
 
 defineProps<{

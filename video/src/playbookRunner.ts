@@ -162,16 +162,22 @@ export async function applyFocus(page: Page, focusKey: string, zones: ZonesFile)
   const area = zones.focusAreas[focusKey]
   if (!area) return
 
+  const safeTop = zones.safeZone?.topPx ?? 0
+  const safeBottom = zones.safeZone?.bottomPx ?? 0
   const topBanner = zones.placements['top-banner']
   const reservedTop = topBanner
-    ? topBanner.insetPx + topBanner.maxHeightPx + 12
-    : 200
+    ? safeTop + topBanner.insetPx + topBanner.maxHeightPx + 12
+    : safeTop + 200
 
   await page.evaluate(
-    ({ selector, padTop }) => {
+    ({ selector, padTop, padBottom }) => {
       const el = document.querySelector(selector)
       if (!el) return
-      const maxY = window.innerHeight * 0.78
+      const peek =
+        Number.parseFloat(
+          getComputedStyle(document.documentElement).getPropertyValue('--companion-peek-h'),
+        ) || 56
+      const maxY = window.innerHeight - padBottom - peek
 
       const rect = el.getBoundingClientRect()
       if (rect.top < padTop) {
@@ -182,7 +188,7 @@ export async function applyFocus(page: Page, focusKey: string, zones: ZonesFile)
         el.scrollIntoView({ block: 'nearest', behavior: 'instant' })
       }
     },
-    { selector: area.selector, padTop: reservedTop },
+    { selector: area.selector, padTop: reservedTop, padBottom: safeBottom },
   )
   await page.waitForTimeout(350)
 }

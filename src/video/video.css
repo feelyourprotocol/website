@@ -9,6 +9,7 @@
   --video-top-banner-inset: calc(36px * var(--video-capture-scale, 1));
   --video-top-banner-max-h: calc(168px * var(--video-capture-scale, 1));
   --video-focus-gap: calc(12px * var(--video-capture-scale, 1));
+  /* --video-safe-* live on html.fyp-video-capture only (must not reset here — overlays inherit from html) */
 }
 
 /* --- Title / outro band cards (middle 3/5 black, top+bottom peek at live UI) --- */
@@ -412,6 +413,7 @@
 }
 
 .video-banner--list .video-banner__line--accent {
+  font-size: clamp(1.8rem, 8vw, 2.8rem);
   line-height: 1;
   margin-bottom: 0.15rem;
 }
@@ -587,6 +589,89 @@
   }
 }
 
+/* --- YouTube Shorts safe zone (capture only) ---
+   Backgrounds (black bars) stay edge-to-edge; readable content sits inset.
+   Reference: 540×960 preview; scales at 1080 via --video-capture-scale. */
+html.fyp-video-capture {
+  --video-safe-top: 56px;
+  --video-safe-bottom: 120px;
+  --video-safe-left: 32px;
+  --video-safe-right: 48px;
+  --video-top-banner-inset: 0px;
+  --video-top-banner-max-h: 184px;
+  /* Ribbon text rhythm (540×960 ref; scales via --video-capture-scale on html) */
+  --video-ribbon-clear-top: calc(var(--video-safe-top) * 0.6);
+  --video-ribbon-pad-top: calc(8px * var(--video-capture-scale, 1));
+  --video-ribbon-pad-bottom: calc(20px * var(--video-capture-scale, 1));
+  --video-focus-scroll-margin: calc(
+    var(--video-safe-top) + var(--video-top-banner-max-h) + var(--video-focus-gap)
+  );
+}
+
+html.fyp-video-capture .video-banner,
+html.fyp-video-capture .video-punch {
+  /* Full-bleed black bar; text sits below Shorts chrome with balanced inner padding */
+  padding-top: calc(var(--video-ribbon-clear-top) + var(--video-ribbon-pad-top));
+  padding-bottom: var(--video-ribbon-pad-bottom);
+  padding-left: 0;
+  padding-right: 0;
+  box-sizing: border-box;
+}
+
+/* Readable copy inset — matches exploration horizontal safe zone */
+html.fyp-video-capture .video-banner__line,
+html.fyp-video-capture .video-punch__text,
+html.fyp-video-capture .video-punch__sub {
+  padding-left: var(--video-safe-left);
+  padding-right: var(--video-safe-right);
+  box-sizing: border-box;
+}
+
+html.fyp-video-capture .video-banner--bottom-banner,
+html.fyp-video-capture .video-punch--bottom-banner {
+  padding-top: var(--video-ribbon-pad-top);
+  padding-bottom: calc(var(--video-ribbon-pad-bottom) + var(--video-safe-bottom));
+}
+
+html.fyp-video-capture .video-card-band__content {
+  padding-top: 1.25rem;
+  padding-bottom: 1rem;
+  padding-left: var(--video-safe-left);
+  padding-right: var(--video-safe-right);
+  box-sizing: border-box;
+}
+
+html.fyp-video-capture .video-split__part {
+  padding-left: calc(0.75rem + var(--video-safe-left));
+  padding-right: calc(0.75rem + var(--video-safe-right));
+  max-width: calc(100% - var(--video-safe-left) - var(--video-safe-right));
+}
+
+html.fyp-video-capture .video-split__part--a {
+  left: var(--video-safe-left);
+  max-width: calc(88% - var(--video-safe-left) - var(--video-safe-right));
+}
+
+html.fyp-video-capture .video-split__part--b {
+  right: var(--video-safe-right);
+  left: auto;
+  max-width: calc(88% - var(--video-safe-left) - var(--video-safe-right));
+}
+
+html.fyp-video-capture .fyp-video-mode .exploration-c {
+  padding-left: var(--video-safe-left);
+  padding-right: var(--video-safe-right);
+  box-sizing: border-box;
+}
+
+html.fyp-video-capture .fyp-video-mode .fyp-video-exploration > div:first-child {
+  padding-bottom: calc(var(--companion-peek-h, 56px) + var(--video-safe-bottom));
+}
+
+html.fyp-video-capture .video-annotation-callout {
+  max-width: calc(100vw - var(--video-safe-left) - var(--video-safe-right) - 16px);
+}
+
 /* Recording: no entrance animations — first frame must match final overlay look. */
 html.fyp-video-capture .video-shell {
   width: 100%;
@@ -615,7 +700,9 @@ html.fyp-video-capture .video-card-band {
 
 /* Full-res only: scale hero/banner type from 540 reference (preview keeps vw clamps above). */
 @media (min-width: 541px) {
-  html.fyp-video-capture .video-card-band__content:not(.video-card-band__content--outro) .video-card-band__title {
+  html.fyp-video-capture
+    .video-card-band__content:not(.video-card-band__content--outro)
+    .video-card-band__title {
     font-size: clamp(
       calc(3.8rem * var(--video-capture-scale, 1)),
       16.5vw,
@@ -623,7 +710,9 @@ html.fyp-video-capture .video-card-band {
     );
   }
 
-  html.fyp-video-capture .video-card-band__content:not(.video-card-band__content--outro) .video-card-band__subtitle {
+  html.fyp-video-capture
+    .video-card-band__content:not(.video-card-band__content--outro)
+    .video-card-band__subtitle {
     font-size: clamp(
       calc(2.2rem * var(--video-capture-scale, 1)),
       10vw,
@@ -632,7 +721,9 @@ html.fyp-video-capture .video-card-band {
     line-height: 0.95;
   }
 
-  html.fyp-video-capture .video-card-band__content:not(.video-card-band__content--outro) .video-card-band__hook-line {
+  html.fyp-video-capture
+    .video-card-band__content:not(.video-card-band__content--outro)
+    .video-card-band__hook-line {
     font-size: clamp(
       calc(1.55rem * var(--video-capture-scale, 1)),
       6.8vw,
@@ -656,6 +747,14 @@ html.fyp-video-capture .video-card-band {
       calc(1.35rem * var(--video-capture-scale, 1)),
       5.5vw,
       calc(2rem * var(--video-capture-scale, 1))
+    );
+  }
+
+  html.fyp-video-capture .video-banner--list .video-banner__line--accent {
+    font-size: clamp(
+      calc(1.8rem * var(--video-capture-scale, 1)),
+      8vw,
+      calc(2.8rem * var(--video-capture-scale, 1))
     );
   }
 

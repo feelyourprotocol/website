@@ -1,12 +1,12 @@
 import { describe, expect, it, vi } from 'vitest'
 
+import type { VideoContentConfig } from '../types'
 import {
   createVideoBridge,
   resolveActiveHighlightSet,
   resolveActiveOverlay,
   type VideoBridgeHandlers,
 } from '../videoBridge'
-import type { VideoContentConfig } from '../types'
 
 const sampleConfig: VideoContentConfig = {
   explorationId: 'eip-8024',

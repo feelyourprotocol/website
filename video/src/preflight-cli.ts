@@ -1,6 +1,6 @@
 import './bootstrap-playwright-env.ts'
 
-import { formatChromiumStatus, inspectChromiumEnvironment, type ChromiumStatusKind } from './chromium.ts'
+import { type ChromiumStatusKind,formatChromiumStatus, inspectChromiumEnvironment } from './chromium.ts'
 
 function statusForAgent(kind: ChromiumStatusKind): string {
   switch (kind) {

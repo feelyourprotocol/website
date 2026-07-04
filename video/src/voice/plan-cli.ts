@@ -3,8 +3,8 @@ import { existsSync } from 'node:fs'
 import { join } from 'node:path'
 
 import { estimatePlaybookDurationMs, loadVideoProject, resolvePlaybook } from '../loadProject.ts'
-import { buildStoryboard, printStoryboard, validateStoryboard } from '../storyboard.ts'
 import { parseProjectArgs } from '../parseProjectArgs.ts'
+import { buildStoryboard, printStoryboard, validateStoryboard } from '../storyboard.ts'
 import { voiceTimingSummary } from '../voice/mergeTiming.ts'
 import { loadVoiceManifest } from '../voice/synthesize.ts'
 

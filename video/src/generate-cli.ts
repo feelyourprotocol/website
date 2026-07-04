@@ -1,5 +1,4 @@
 import './bootstrap-playwright-env.ts'
-
 import { existsSync } from 'node:fs'
 import { join } from 'node:path'
 

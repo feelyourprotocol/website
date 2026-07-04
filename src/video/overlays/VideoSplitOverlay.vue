@@ -11,7 +11,9 @@ const props = defineProps<{
 
 const SLOT_ORDER: Array<'a' | 'b' | 'c'> = ['a', 'b', 'c']
 
-function sizeClass(size: NonNullable<typeof props.overlay.segments>[number]['size'] = 'lg'): string {
+function sizeClass(
+  size: NonNullable<typeof props.overlay.segments>[number]['size'] = 'lg',
+): string {
   if (size === 'hero') return 'video-split__text--hero'
   if (size === 'xl') return 'video-split__text--xl'
   if (size === 'md') return 'video-banner__line--sub'
@@ -43,12 +45,7 @@ const bannerClass = computed(() =>
 </script>
 
 <template>
-  <div
-    v-if="useBannerLayout"
-    class="video-banner"
-    :class="bannerClass"
-    data-testid="video-banner"
-  >
+  <div v-if="useBannerLayout" class="video-banner" :class="bannerClass" data-testid="video-banner">
     <p
       v-for="(seg, i) in segments"
       :key="i"
@@ -71,10 +68,7 @@ const bannerClass = computed(() =>
     >
       <p
         class="video-split__text"
-        :class="[
-          sizeClass(seg.size),
-          seg.emphasis ? 'video-split__text--accent' : '',
-        ]"
+        :class="[sizeClass(seg.size), seg.emphasis ? 'video-split__text--accent' : '']"
       >
         {{ seg.text }}
       </p>

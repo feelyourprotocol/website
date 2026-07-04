@@ -76,6 +76,21 @@ Create `video/projects/<exploration-id>/`:
 
 Add the exploration to `video/src/explorationRegistry.ts` if not already listed.
 
+### `zones.json` — focus areas + YouTube Shorts safe zone
+
+`focusAreas` / `placements` drive playbook `focus` scrolling. Add **`safeZone`** (540×960 px) so readable content clears Shorts platform chrome:
+
+| Edge | Default | Notes |
+|------|---------|-------|
+| top | 56px | Username / top controls (text sits lower inside black bars) |
+| bottom | 120px | Like / comment / caption row |
+| left | 32px | Edge crop — e.g. keep “3 NEW OPCODES” fully visible |
+| right | 48px | Right-side action column |
+
+Black overlay bars stay **edge-to-edge**; only the **text inside** is inset (same horizontal safe zone as exploration UI). CSS applies `--video-safe-left` / `--video-safe-right` to `.video-banner__line`, punch lines, and title/outro band content — not as outer margin on the black box.
+
+Vertical rhythm inside top/bottom ribbons uses `--video-ribbon-clear-top` (Shorts chrome clearance, ~60% of `--video-safe-top`), `--video-ribbon-pad-top`, and `--video-ribbon-pad-bottom` (top still larger than bottom). Tune in `src/video/video.css` if a project’s banner feels cramped.
+
 ---
 
 ## 3. Story overlays (`content.json` → `overlays`)
@@ -127,6 +142,8 @@ Annotations are black callouts with a ring on a UI target. They answer: *where s
 ```
 
 In the playbook: `"annotate": "guide-stack"`. The annotation **stays visible** while the
+beat runs, unless a **top-banner story overlay** covers the target — then the callout is
+suppressed automatically (avoids collisions like “Example presets” over “3 NEW OPCODES”).
 story overlay hides and steps run — use it whenever the banner alone does not point at
 the action area.
 

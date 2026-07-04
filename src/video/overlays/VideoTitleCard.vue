@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import type { VideoOverlayDefinition } from '../types'
-
 import VideoBandShell from './VideoBandShell.vue'
 
 defineProps<{

@@ -18,10 +18,7 @@ const positionClass = computed(() => {
 
 <template>
   <div class="video-punch" :class="positionClass">
-    <p
-      class="video-punch__text"
-      :class="overlay.invert ? 'video-punch__text--white' : ''"
-    >
+    <p class="video-punch__text" :class="overlay.invert ? 'video-punch__text--white' : ''">
       {{ overlay.text }}
     </p>
     <p v-if="overlay.sub" class="video-punch__sub">{{ overlay.sub }}</p>

@@ -1,16 +1,19 @@
 import { describe, expect, it } from 'vitest'
 
+import {
+  DEFAULT_EXAMPLE as eip7594Default,
+  examples as eip7594Examples,
+} from '@/explorations/eip-7594/examples'
 import { config as eip7883Config } from '@/explorations/eip-7883/config'
 import { examples as eip7883Examples } from '@/explorations/eip-7883/examples'
-import { DEFAULT_EXAMPLE as eip7594Default, examples as eip7594Examples } from '@/explorations/eip-7594/examples'
 import {
   DEFAULT_SCENARIO_ID as eip7928Default,
   examples as eip7928Examples,
 } from '@/explorations/eip-7928/examples'
-import { config as eip8024Config } from '@/explorations/eip-8024/config'
-import { examples as eip8024Examples } from '@/explorations/eip-8024/examples'
 import { config as eip7951Config } from '@/explorations/eip-7951/config'
 import { examples as eip7951Examples } from '@/explorations/eip-7951/examples'
+import { config as eip8024Config } from '@/explorations/eip-8024/config'
+import { examples as eip8024Examples } from '@/explorations/eip-8024/examples'
 import { resolveInitialExample } from '@/libs/exampleFromQuery'
 
 /** Every live exploration and its default example key. */

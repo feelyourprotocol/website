@@ -2,8 +2,8 @@
 import { computed, toRef } from 'vue'
 
 import { resolveTargetSelector } from '../annotationTarget'
-import { useTargetRect } from '../useTargetRect'
 import type { VideoFocusAreaRef, VideoHighlightMarkDefinition } from '../types'
+import { useTargetRect } from '../useTargetRect'
 
 const props = defineProps<{
   mark: VideoHighlightMarkDefinition
@@ -11,9 +11,7 @@ const props = defineProps<{
   index?: number
 }>()
 
-const selector = computed(() =>
-  resolveTargetSelector(props.mark.target, props.focusAreas),
-)
+const selector = computed(() => resolveTargetSelector(props.mark.target, props.focusAreas))
 
 const targetRect = useTargetRect(toRef(selector))
 

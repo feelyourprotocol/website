@@ -171,8 +171,18 @@ export interface PlacementDef {
   description?: string
 }
 
+export interface SafeZoneDef {
+  topPx: number
+  bottomPx: number
+  leftPx: number
+  rightPx: number
+  description?: string
+}
+
 export interface ZonesFile {
   format: { width: number; height: number }
+  /** YouTube Shorts / platform chrome — matches CSS --video-safe-* in capture mode */
+  safeZone?: SafeZoneDef
   focusAreas: Record<string, FocusAreaDef>
   placements: Record<string, PlacementDef>
 }

@@ -8,8 +8,8 @@ import {
   findLeadInTrimSec,
   isTitleBandFrame,
   LEAD_IN_LUMINANCE_THRESHOLD,
-  LEAD_IN_MIN_DARK_PIXEL_RATIO,
   LEAD_IN_MAX_MEAN_LUMINANCE,
+  LEAD_IN_MIN_DARK_PIXEL_RATIO,
   trimVideoLeadIn,
   verifyVideoLeadIn,
 } from '../trimLeadIn.ts'

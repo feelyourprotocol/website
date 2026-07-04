@@ -14,12 +14,7 @@ export type VideoOverlayType =
   | 'outro'
 
 /** Where floating overlays sit so they avoid the focus area on screen. */
-export type VideoOverlayPlacement =
-  | 'top-banner'
-  | 'bottom-banner'
-  | 'top'
-  | 'center'
-  | 'bottom'
+export type VideoOverlayPlacement = 'top-banner' | 'bottom-banner' | 'top' | 'center' | 'bottom'
 
 export interface VideoTheme {
   bg: string

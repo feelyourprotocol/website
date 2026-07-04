@@ -1,5 +1,4 @@
 import { describe, expect, it, vi } from 'vitest'
-
 import { Common, Hardfork, Mainnet } from '@ethereumjs/common'
 import { createEVM } from '@ethereumjs/evm'
 

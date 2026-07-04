@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest'
 
+import { targetOverlapsTopBanner } from '../../../src/video/annotationTarget.ts'
 import { resolveTargetSelector } from '../annotationTarget.ts'
 
 describe('resolveTargetSelector', () => {
@@ -34,5 +35,19 @@ describe('resolveTargetSelector', () => {
     expect(resolveTargetSelector('stack-depth-17-value', undefined)).toBe(
       '[data-stack-depth="17"] [data-stack-value]',
     )
+  })
+})
+
+describe('targetOverlapsTopBanner', () => {
+  const banner = { top: 56, bottom: 180, left: 0, right: 540, width: 540, height: 124 } as DOMRect
+
+  it('suppresses when target sits under the banner', () => {
+    const target = { top: 120, bottom: 150, left: 32, right: 200, width: 168, height: 30 } as DOMRect
+    expect(targetOverlapsTopBanner(target, [banner])).toBe(true)
+  })
+
+  it('allows when target is below the banner', () => {
+    const target = { top: 200, bottom: 230, left: 32, right: 200, width: 168, height: 30 } as DOMRect
+    expect(targetOverlapsTopBanner(target, [banner])).toBe(false)
   })
 })

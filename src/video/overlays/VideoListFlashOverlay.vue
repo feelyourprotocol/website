@@ -24,7 +24,11 @@ const bannerClass = computed(() =>
     <p v-if="overlay.headline" class="video-banner__line video-banner__line--accent">
       {{ overlay.headline }}
     </p>
-    <p v-for="(item, i) in overlay.items" :key="i" class="video-banner__line video-banner__line--sub">
+    <p
+      v-for="(item, i) in overlay.items"
+      :key="i"
+      class="video-banner__line video-banner__line--sub"
+    >
       {{ item }}
     </p>
   </div>

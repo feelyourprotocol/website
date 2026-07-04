@@ -6,10 +6,10 @@ import type {
   ContentFile,
   LoadedVideoProject,
   PlaybookConfig,
-  VideoContentConfig,
-  VideoOverlayDefinition,
   VideoAnnotationDefinition,
+  VideoContentConfig,
   VideoHighlightSetDefinition,
+  VideoOverlayDefinition,
   ZonesFile,
 } from './types.ts'
 import { mergeVoiceTiming } from './voice/mergeTiming.ts'
