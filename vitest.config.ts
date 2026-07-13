@@ -14,6 +14,7 @@ export default mergeConfig(
     },
     test: {
       environment: 'jsdom',
+      setupFiles: ['./vitest.setup.ts'],
       exclude: [...configDefaults.exclude, 'e2e/**'],
       /** Entire repo — src, community-token, roadmap, og tooling; CI runs all via `npm run test:unit:ci`. */
       include: [
