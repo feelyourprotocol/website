@@ -3,7 +3,6 @@ import SectionLabel from '@/components/SectionLabel.vue'
 import ExplorationC from '@/explorations/ExplorationC.vue'
 import { EXPLORATIONS, getRandomTopicExplorationImage } from '@/explorations/REGISTRY'
 import { TOPICS } from '@/explorations/TOPICS'
-import { IceCreamHomeSection } from '@/ice-cream'
 import { COMMUNITY_TOKEN_HOME } from '@/libs/communityToken'
 import { DOCS_HOME } from '@/libs/docsUrls'
 import { ROADMAP_HOME } from '@/libs/roadmapUrls'
@@ -30,8 +29,6 @@ for (const topicId of activeTopicIds) {
     <h1 class="sr-only">Feel Your Protocol — Interactive Ethereum Protocol Explorations</h1>
     <div class="grid md:grid-cols-2 gap-4 items-start">
       <div class="flex flex-col gap-4">
-        <IceCreamHomeSection />
-
         <section>
           <SectionLabel>Latest</SectionLabel>
 

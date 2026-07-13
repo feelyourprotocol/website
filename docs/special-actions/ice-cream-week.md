@@ -2,8 +2,8 @@
 
 Temporary home-page gag (see [Special Actions overview](/special-actions/)): a meme ice cream stand where visitors buy a scoop with **$FYP on Base** and receive a **soulbound NFT** receipt.
 
-::: warning Summer gag, real on-chain flow
-Playful sandbox — not financial advice, not a product roadmap. **IceCreamStand** is deployed on Base; wallet integration on the home page is the remaining step. Code lives in `src/ice-cream/` and stays in the repo after the stand comes down; only the home integration is removed.
+::: info Archived on home (July 2026)
+The stand is **off the home page**. **IceCreamStand** remains on Base; `public/ice-cream/` metadata URLs stay live for soulbound receipts. Code lives in `src/ice-cream/` for reference and possible reuse.
 :::
 
 ## Scope
@@ -46,10 +46,10 @@ src/ice-cream/
 ├── purchasePort.ts          # IceCreamPurchasePort — viem later
 ├── memes.ts                 # vendor + NFT image pairs
 ├── assets/                  # vendor WebP + nft/ PNG masters
-└── __tests__/               # remove folder with feature if desired
+└── __tests__/               # module + IceCreamHomeSection.spec.ts (keep when archived)
 ```
 
-**Home integration (single point):**
+**Home integration (single point — currently removed):**
 
 ```vue
 import { IceCreamHomeSection } from '@/ice-cream'
@@ -57,7 +57,9 @@ import { IceCreamHomeSection } from '@/ice-cream'
 <IceCreamHomeSection />
 ```
 
-To end Ice Cream Week: delete the import and `<IceCreamHomeSection />` line in `HomeView.vue`. Optionally remove `describe('Ice Cream Week')` from `HomeView.spec.ts`.
+To **activate:** add the import and `<IceCreamHomeSection />` in `HomeView.vue` (above Latest).
+
+To **deactivate:** remove those two lines only. Keep `src/ice-cream/` and its tests. Do **not** add special-action assertions to `HomeView.spec.ts` — home placement is covered by `IceCreamHomeSection.spec.ts`. See [Special Actions lifecycle](/special-actions/#lifecycle).
 
 ## Purchase flow (phases)
 
