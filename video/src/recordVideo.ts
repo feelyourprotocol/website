@@ -3,7 +3,7 @@ import { join } from 'node:path'
 
 import { startStaticServer } from '../../og/src/server.ts'
 import { assertChromiumReady } from './chromium.ts'
-import { parseVideoFormatId, VIDEO_FORMATS } from './formats.ts'
+import { parseVideoFormatId, VIDEO_FORMATS, VIDEO_RECORD_FORMAT } from './formats.ts'
 import { estimatePlaybookDurationMs, loadVideoProject } from './loadProject.ts'
 import { ensureVideoFontsReady, runPlaybook, showLeadInOverlay, waitForExplorationReady } from './playbookRunner.ts'
 import { trimVideoLeadIn } from './trimLeadIn.ts'
@@ -57,14 +57,16 @@ export async function recordVideo(
   const project = loadVideoProject(projectId, options.projectsRoot, {
     useVoiceTiming: !options.noVoice,
   })
-  const formatId = parseVideoFormatId(
+  const deliverableId = parseVideoFormatId(
     options.preview ? 'shorts-preview' : project.playbook.format,
   )
-  const format = VIDEO_FORMATS[formatId]
+  const deliverable = VIDEO_FORMATS[deliverableId]
+  const recordFormat = VIDEO_RECORD_FORMAT
   const estimatedDurationMs = estimatePlaybookDurationMs(project.playbook)
 
   console.log(`Project: ${projectId}`)
-  console.log(`Format:  ${formatId} (${format.width}×${format.height})`)
+  console.log(`Record:  ${recordFormat.viewportWidth}×${recordFormat.viewportHeight} (layout reference)`)
+  console.log(`Output:  ${deliverable.width}×${deliverable.height}${options.preview ? '' : ' (2× upscale on mux)'}`)
   if (project.voiceManifest) {
     console.log(`Voice:   ~${Math.round(project.voiceManifest.totalDurationMs / 1000)}s (synced playbook)`)
   }
@@ -84,13 +86,12 @@ export async function recordVideo(
 
   try {
     const context = await browser.newContext({
-      viewport: { width: format.viewportWidth, height: format.viewportHeight },
-      deviceScaleFactor: format.deviceScaleFactor,
+      viewport: { width: recordFormat.viewportWidth, height: recordFormat.viewportHeight },
+      deviceScaleFactor: recordFormat.deviceScaleFactor,
       recordVideo: {
         dir: outputDir,
-        // Must match viewport exactly — larger size causes gray letterboxing;
-        // omitting size downscales to fit Playwright's 800×800 cap (540×960 → 450×800).
-        size: { width: format.width, height: format.height },
+        // Must match reference viewport — deliverable upscale happens at mux time.
+        size: { width: recordFormat.viewportWidth, height: recordFormat.viewportHeight },
       },
     })
 

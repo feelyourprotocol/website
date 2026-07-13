@@ -16,6 +16,7 @@ export function parseMuxArgs(argv: string[]): {
   projectId: string
   input?: string
   output?: string
+  preview?: boolean
 } {
   const { projectId, flags } = parseProjectArgs(argv)
   let input: string | undefined
@@ -26,8 +27,8 @@ export function parseMuxArgs(argv: string[]): {
   }
   if (flags.includes('--help')) {
     throw new Error(
-      'Usage: npm run voice:mux -- <project-id> [--input path/to/video.webm] [--output path/to/out.mp4]',
+      'Usage: npm run voice:mux -- <project-id> [--preview] [--input path/to/video.webm] [--output path/to/out.mp4]',
     )
   }
-  return { projectId, input, output }
+  return { projectId, input, output, preview: flags.includes('--preview') }
 }

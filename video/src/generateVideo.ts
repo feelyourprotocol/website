@@ -1,5 +1,6 @@
 import { join } from 'node:path'
 
+import { parseVideoFormatId, VIDEO_FORMATS } from './formats.ts'
 import { loadVideoEnv } from './loadEnv.ts'
 import { finalMp4Path,formatOutputBanner } from './outputPaths.ts'
 import { recordVideo } from './recordVideo.ts'
@@ -64,8 +65,14 @@ export async function generateVideo(
   const audioPath = join(voiceDir(projectDir), 'full.mp3')
   const finalPath = finalMp4Path(recorded.outputPath)
 
+  const formatId = parseVideoFormatId(options.preview ? 'shorts-preview' : 'shorts')
+  const deliverable = VIDEO_FORMATS[formatId]
+
   console.log('\n── 3/3 Mux → final (video + audio) ──')
-  muxVideoAudio(recorded.outputPath, audioPath, finalPath)
+  muxVideoAudio(recorded.outputPath, audioPath, finalPath, {
+    videoWidth: deliverable.width,
+    videoHeight: deliverable.height,
+  })
 
   console.log(formatOutputBanner(finalPath, recorded.outputPath))
 

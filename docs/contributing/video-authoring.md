@@ -304,11 +304,12 @@ shallow-stack revert, a different concept).
 ```bash
 npm run website:build
 npm run video:record -- <project-id> --preview   # 540×960 — fast iteration
-npm run video:record -- <project-id>             # 1080×1920 — YouTube Shorts upload
+npm run video:generate -- <project-id>           # 1080×1920 *-final.mp4 (2× upscale on mux)
 ```
 
-Preview uses half resolution but the same layout scale (`--video-capture-scale` = viewport ÷ 540).
-Always **re-record at full resolution** before publishing; do not upscale the preview file.
+All captures use a **540×960 Playwright viewport** — the layout reference. Preview and
+full-res differ only at mux: `video:generate` upscales 2× to 1080×1920 (lanczos). Composition
+is identical; do not hand-upscale a preview file.
 
 After recording:
 

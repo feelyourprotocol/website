@@ -25,9 +25,9 @@ npm run website:build
 
 # Final output (video + voice) — use these for upload / review with audio:
 npm run video:generate:preview -- eip-8024   # 540×960 *-final.mp4
-npm run video:generate -- eip-8024           # 1080×1920 *-final.mp4
+npm run video:generate -- eip-8024           # 1080×1920 *-final.mp4 (2× upscale, same layout)
 
-# Silent intermediate only (no audio) — visual iteration:
+# Silent intermediate only (no audio) — always 540×960 capture:
 npm run video:record -- eip-8024 --preview --no-voice
 
 npm run video:record -- eip-8024 --dry-run   # inspect playbook steps

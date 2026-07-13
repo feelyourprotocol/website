@@ -192,12 +192,15 @@ From `website/`:
 ```bash
 # ── Final (video + voice) — upload / listen with audio ──
 npm run video:generate:preview -- eip-8024   # 540×960 → *-final.mp4
-npm run video:generate -- eip-8024           # 1080×1920 → *-final.mp4
+npm run video:generate -- eip-8024           # 1080×1920 → *-final.mp4 (same layout, 2× upscale)
 
-# ── Silent intermediate only (no audio) ──
+# ── Silent intermediate only (no audio) — always 540×960 capture ──
 npm run video:record -- eip-8024 --preview --no-voice
 npm run video:record -- eip-8024 --dry-run
 ```
+
+Playwright always records at **540×960** (layout reference). Full-res deliverables are
+upscaled to 1080×1920 during mux — never a separate 1080px CSS viewport.
 
 Final: `video/projects/eip-8024/output/<id>-<timestamp>-final.mp4`  
 Intermediate: same stem with `.webm` (Playwright capture, no audio track).

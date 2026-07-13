@@ -57,10 +57,42 @@ export function concatMp3Files(outputPath: string, parts: string[], gapMs: numbe
   )
 }
 
+export interface MuxVideoAudioOptions {
+  /** When set and different from source, video is upscaled/downscaled with lanczos. */
+  videoWidth?: number
+  videoHeight?: number
+}
+
+export function probeVideoSize(mediaPath: string): { width: number; height: number } | undefined {
+  try {
+    const raw = execFileSync(
+      'ffprobe',
+      [
+        '-v',
+        'error',
+        '-select_streams',
+        'v:0',
+        '-show_entries',
+        'stream=width,height',
+        '-of',
+        'csv=p=0:s=x',
+        mediaPath,
+      ],
+      { encoding: 'utf8' },
+    ).trim()
+    const [w, h] = raw.split('x').map((n) => Number.parseInt(n, 10))
+    if (!Number.isFinite(w) || !Number.isFinite(h)) return undefined
+    return { width: w!, height: h! }
+  } catch {
+    return undefined
+  }
+}
+
 export function muxVideoAudio(
   videoPath: string,
   audioPath: string,
   outputPath: string,
+  options: MuxVideoAudioOptions = {},
 ): void {
   assertFfmpeg()
 
@@ -68,35 +100,48 @@ export function muxVideoAudio(
   const audioSec = probeDurationMs(audioPath) / 1000
   const padSec = Math.max(0, videoSec - audioSec)
 
-  const filter =
-    padSec > 0.02 ? `[1:a]apad=pad_dur=${padSec.toFixed(3)}[aout]` : '[1:a]anull[aout]'
+  const source = probeVideoSize(videoPath)
+  const targetW = options.videoWidth ?? source?.width
+  const targetH = options.videoHeight ?? source?.height
+  const needsScale =
+    source !== undefined &&
+    targetW !== undefined &&
+    targetH !== undefined &&
+    (source.width !== targetW || source.height !== targetH)
 
-  execFileSync(
-    'ffmpeg',
-    [
-      '-y',
-      '-i',
-      videoPath,
-      '-i',
-      audioPath,
-      '-filter_complex',
-      filter,
-      '-map',
-      '0:v:0',
-      '-map',
-      '[aout]',
-      '-c:v',
-      'copy',
-      '-c:a',
-      'aac',
-      '-b:a',
-      '192k',
-      '-t',
-      String(videoSec),
-      outputPath,
-    ],
-    { stdio: 'ignore' },
+  const filterParts: string[] = []
+  if (needsScale) {
+    filterParts.push(`[0:v]scale=${targetW}:${targetH}:flags=lanczos[vout]`)
+  }
+  filterParts.push(
+    padSec > 0.02 ? `[1:a]apad=pad_dur=${padSec.toFixed(3)}[aout]` : '[1:a]anull[aout]',
   )
+
+  const args = [
+    '-y',
+    '-i',
+    videoPath,
+    '-i',
+    audioPath,
+    '-filter_complex',
+    filterParts.join(';'),
+    '-map',
+    needsScale ? '[vout]' : '0:v:0',
+    '-map',
+    '[aout]',
+    '-c:v',
+    needsScale ? 'libx264' : 'copy',
+    ...(needsScale ? ['-preset', 'fast', '-crf', '18', '-pix_fmt', 'yuv420p'] : []),
+    '-c:a',
+    'aac',
+    '-b:a',
+    '192k',
+    '-t',
+    String(videoSec),
+    outputPath,
+  ]
+
+  execFileSync('ffmpeg', args, { stdio: 'ignore' })
 }
 
 export function probeDurationMs(mediaPath: string): number {

@@ -2,6 +2,7 @@
 import { existsSync, readdirSync, statSync } from 'node:fs'
 import { join } from 'node:path'
 
+import { VIDEO_FORMATS } from '../formats.ts'
 import { finalMp4Path, formatOutputBanner } from '../outputPaths.ts'
 import { parseMuxArgs } from '../parseProjectArgs.ts'
 import { muxVideoAudio } from '../voice/ffmpeg.ts'
@@ -43,11 +44,16 @@ function main(): void {
   }
 
   const outPath = args.output ?? finalMp4Path(videoPath)
+  const deliverable = VIDEO_FORMATS[args.preview ? 'shorts-preview' : 'shorts']
 
   console.log(`Video: ${videoPath}`)
   console.log(`Audio: ${audioPath}`)
+  console.log(`Output: ${deliverable.width}×${deliverable.height}`)
   console.log('Muxing…')
-  muxVideoAudio(videoPath, audioPath, outPath)
+  muxVideoAudio(videoPath, audioPath, outPath, {
+    videoWidth: deliverable.width,
+    videoHeight: deliverable.height,
+  })
   console.log(formatOutputBanner(outPath, videoPath))
 }
 
