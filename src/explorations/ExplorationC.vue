@@ -29,7 +29,12 @@ const showUsage = computed(
 </script>
 
 <template>
-  <div :id="explorationId + '-c'" :style="cssVars" class="exploration-c">
+  <div
+    :id="explorationId + '-c'"
+    :style="cssVars"
+    class="exploration-c"
+    data-testid="exploration-ready"
+  >
     <div class="items-start gap-2 mb-2" :class="asPageTitle ? 'hidden md:flex' : 'flex'">
       <component
         :is="asPageTitle ? 'h1' : 'h3'"

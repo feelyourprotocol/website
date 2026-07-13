@@ -1,0 +1,37 @@
+{
+  "segmentGapMs": 350,
+  "segments": [
+    {
+      "beat": "hook",
+      "text": "EIP-8024. Three new stack opcodes. Glamsterdam is coming."
+    },
+    {
+      "beat": "context",
+      "text": "Solidity developers know this one — stack too deep."
+    },
+    {
+      "beat": "opcodes",
+      "text": "DUPN, SWAPN, and EXCHANGE let the EVM reach deeper into the stack."
+    },
+    {
+      "beat": "stack-grow",
+      "text": "Watch the stack grow — seventeen values pushed."
+    },
+    {
+      "beat": "dupn-hit",
+      "text": "Now DUPN copies from depth seventeen. No compiler gymnastics."
+    },
+    {
+      "beat": "calculator",
+      "text": "Peek at the companion — a magic-byte calculator for these opcodes."
+    },
+    {
+      "beat": "recap",
+      "text": "Classic DUP stops at depth sixteen. You just copied depth seventeen."
+    },
+    {
+      "beat": "outro",
+      "text": "Read the EIP on Forkcast. Explore it on Feel Your Protocol."
+    }
+  ]
+}

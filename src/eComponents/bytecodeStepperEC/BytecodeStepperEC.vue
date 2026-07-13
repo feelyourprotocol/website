@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, provide, ref } from 'vue'
+import { computed, nextTick, provide, ref, watch } from 'vue'
 import type { EVM } from '@ethereumjs/evm'
 import { bytesToHex } from '@ethereumjs/util'
 
@@ -24,6 +24,8 @@ const props = defineProps<{
   examples: Examples
   exploration: Exploration
   evm: EVM
+  /** Parsed `?example=` query value — pass from exploration MyC when deep-linking. */
+  exampleQuery?: string
 }>()
 
 const topic = TOPICS[props.exploration.topic]
@@ -49,7 +51,7 @@ const {
   reset,
 } = useBytecodeStepper(props.config, props.evm)
 
-await init(props.examples)
+await init(props.examples, props.exampleQuery)
 
 const activePc = computed(() => currentSnapshot.value?.pc ?? -1)
 
@@ -123,6 +125,57 @@ function scrollPanelsToTop() {
   }
 }
 
+function scrollDisassemblyToActivePc() {
+  const panel = disassemblyPanel.value
+  if (!panel || activePc.value < 0) return
+  const row = panel.querySelector(`[data-disassembly-pc="${activePc.value}"]`)
+  if (row instanceof HTMLElement) {
+    row.scrollIntoView({ block: 'nearest', inline: 'nearest' })
+  }
+}
+
+function scrollStackToRelevantDepths() {
+  const panel = stackPanel.value
+  if (!panel) return
+  const depth = displayedStack.value.length
+  const opcode = activeInstruction.value?.opcodeByte
+  const opName = activeInstruction.value?.name ?? ''
+
+  if (mode.value === 'finished' || mode.value === 'error' || /^STOP|RETURN|REVERT/i.test(opName)) {
+    panel.scrollTop = 0
+    return
+  }
+
+  // About to run DUPN / SWAPN / EXCHANGE — keep deep stack entries in view (depth 17 area).
+  if (opcode === 0xe6 || opcode === 0xe7 || opcode === 0xe8) {
+    panel.scrollTop = Math.max(0, panel.scrollHeight - panel.clientHeight)
+    return
+  }
+
+  if (depth >= 10) {
+    panel.scrollTop = Math.max(0, panel.scrollHeight - panel.clientHeight)
+    return
+  }
+
+  panel.scrollTop = 0
+}
+
+function scrollPanelsToExecutionFocus() {
+  scrollDisassemblyToActivePc()
+  scrollStackToRelevantDepths()
+}
+
+watch(activePc, () => {
+  void nextTick().then(scrollPanelsToExecutionFocus)
+})
+
+watch(
+  () => currentSnapshot.value?.stack.length ?? 0,
+  () => {
+    void nextTick().then(scrollStackToRelevantDepths)
+  },
+)
+
 async function onExampleChange() {
   await selectExample(props.examples)
   scrollPanelsToTop()
@@ -164,16 +217,19 @@ function formatStackWord(word: bigint): string {
 
           <div class="flex flex-wrap gap-2 mb-4 items-center">
             <ActionButtonUIC
+              test-id="bytecode-run"
               text="Run"
               tooltip="Execute bytecode to completion"
               :onClick="runAll"
             />
             <ActionButtonUIC
+              test-id="bytecode-step"
               text="Step"
               tooltip="Execute one opcode at a time"
               :onClick="stepOnce"
             />
             <ActionButtonUIC
+              test-id="bytecode-reset"
               text="Reset"
               tooltip="Clear execution state (keeps bytecode)"
               :onClick="onReset"
@@ -196,6 +252,7 @@ function formatStackWord(word: bigint): string {
               <h4 class="font-mono text-xs font-bold mb-2 text-slate-700">Disassembly</h4>
               <div
                 ref="disassemblyPanel"
+                data-testid="bytecode-disassembly"
                 class="font-mono text-xs bg-slate-50 border border-slate-200 rounded-md p-2 max-h-64 overflow-y-auto"
               >
                 <div
@@ -209,6 +266,8 @@ function formatStackWord(word: bigint): string {
                 <div
                   v-for="row in instructions"
                   :key="row.pc"
+                  :data-disassembly-pc="row.pc"
+                  :data-disassembly-active="row.pc === activePc ? 'true' : undefined"
                   :class="[
                     'grid grid-cols-[2.5rem_1fr_1fr] gap-x-2 py-0.5 px-1 rounded items-baseline',
                     row.pc === activePc ? 'bg-purple-100' : '',
@@ -231,6 +290,8 @@ function formatStackWord(word: bigint): string {
                   </span>
                   <span
                     :class="row.pc === activePc ? 'text-purple-900 font-bold' : 'text-slate-800'"
+                    :data-disassembly-opcode="row.name ? '' : undefined"
+                    :data-disassembly-mnemonic="row.name || undefined"
                   >
                     {{ row.name }}
                   </span>
@@ -250,6 +311,7 @@ function formatStackWord(word: bigint): string {
               </h4>
               <div
                 ref="stackPanel"
+                data-testid="bytecode-stack"
                 class="font-mono text-xs bg-slate-50 border border-slate-200 rounded-md p-2 min-h-[6rem] max-h-40 overflow-y-auto"
               >
                 <div
@@ -262,6 +324,7 @@ function formatStackWord(word: bigint): string {
                 <div
                   v-for="item in displayedStack"
                   :key="item.depth"
+                  :data-stack-depth="item.depth"
                   class="grid grid-cols-[2.5rem_1fr] gap-x-2 py-0.5 break-all items-baseline"
                 >
                   <span
@@ -269,7 +332,7 @@ function formatStackWord(word: bigint): string {
                   >
                     {{ item.depth }}
                   </span>
-                  <span>[{{ formatStackWord(item.word) }}]</span>
+                  <span data-stack-value>[{{ formatStackWord(item.word) }}]</span>
                 </div>
                 <p v-if="displayedStack.length === 0" class="text-slate-400">(empty)</p>
               </div>

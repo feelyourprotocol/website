@@ -1,9 +1,21 @@
 <script setup lang="ts">
 import { computed, onMounted, onUnmounted, ref, watch } from 'vue'
 
-const PEEK_PX = 56
+import { COMPANION_EXPAND_EVENT, type CompanionExpandMode } from '@/video/companionSheetEvents'
+
 const HALF_RATIO = 0.5
 const FULL_RATIO = 0.92
+
+function videoCaptureScale(): number {
+  if (typeof document === 'undefined' || typeof window === 'undefined') return 1
+  if (!document.documentElement.classList.contains('fyp-video-capture')) return 1
+  if (window.innerWidth <= 540) return 1
+  return window.innerWidth / 540
+}
+
+function peekPx(): number {
+  return Math.round(56 * videoCaptureScale())
+}
 
 export type CompanionSnap = 'peek' | 'half' | 'full'
 
@@ -23,7 +35,7 @@ const prefersReducedMotion = ref(false)
 
 function snapHeightPx(target: CompanionSnap): number {
   const vh = viewportHeight.value
-  if (target === 'peek') return PEEK_PX
+  if (target === 'peek') return peekPx()
   if (target === 'half') return Math.round(vh * HALF_RATIO)
   return Math.round(vh * FULL_RATIO)
 }
@@ -36,7 +48,7 @@ const sheetHeightPx = computed(() => {
 function nearestSnap(heightPx: number): CompanionSnap {
   const vh = viewportHeight.value
   const candidates: [CompanionSnap, number][] = [
-    ['peek', PEEK_PX],
+    ['peek', peekPx()],
     ['half', Math.round(vh * HALF_RATIO)],
     ['full', Math.round(vh * FULL_RATIO)],
   ]
@@ -56,6 +68,16 @@ function expandToHalf() {
   if (snap.value === 'peek') snap.value = 'half'
 }
 
+function expandToFull() {
+  snap.value = 'full'
+}
+
+function onCompanionExpand(event: Event) {
+  const mode = (event as CustomEvent<{ mode: CompanionExpandMode }>).detail?.mode
+  if (mode === 'full') expandToFull()
+  else if (mode === 'half') expandToHalf()
+}
+
 let dragStartY = 0
 let dragStartHeight = 0
 
@@ -71,7 +93,7 @@ function onHandlePointerMove(event: PointerEvent) {
   if (!dragging.value) return
   const delta = dragStartY - event.clientY
   const vh = viewportHeight.value
-  const min = PEEK_PX
+  const min = peekPx()
   const max = Math.round(vh * FULL_RATIO)
   dragHeightPx.value = Math.min(max, Math.max(min, dragStartHeight + delta))
 }
@@ -91,6 +113,12 @@ function onViewportChange() {
 }
 
 function isMobileSheet(): boolean {
+  if (
+    typeof document !== 'undefined' &&
+    document.documentElement.classList.contains('fyp-video-capture')
+  ) {
+    return true
+  }
   return typeof window.matchMedia === 'function' && window.matchMedia('(max-width: 767px)').matches
 }
 
@@ -130,23 +158,26 @@ onMounted(() => {
     window.matchMedia('(prefers-reduced-motion: reduce)').matches
   if (prefersReducedMotion.value) snap.value = 'half'
   window.addEventListener('resize', onViewportChange)
+  window.addEventListener(COMPANION_EXPAND_EVENT, onCompanionExpand)
 })
 
 onUnmounted(() => {
   window.removeEventListener('resize', onViewportChange)
+  window.removeEventListener(COMPANION_EXPAND_EVENT, onCompanionExpand)
 })
 
-defineExpose({ snap, expandToHalf })
+defineExpose({ snap, expandToHalf, expandToFull })
 </script>
 
 <template>
   <div
     class="companion-sheet flex flex-col min-h-0 max-md:bg-white max-md:border-t max-md:border-slate-200 max-md:shadow-[0_-8px_30px_rgba(15,23,42,0.12)] max-md:rounded-t-xl max-md:overflow-hidden md:contents"
+    data-testid="companion-sheet"
     :class="[
       pulsing ? 'companion-sheet-pulse' : '',
       dragging ? '' : 'max-md:transition-[height] max-md:duration-300 max-md:ease-out',
     ]"
-    :style="{ height: `${sheetHeightPx}px`, '--companion-peek-h': `${PEEK_PX}px` }"
+    :style="{ height: `${sheetHeightPx}px`, '--companion-peek-h': `${peekPx()}px` }"
   >
     <div
       class="md:hidden shrink-0 touch-none select-none"
@@ -161,6 +192,7 @@ defineExpose({ snap, expandToHalf })
       <button
         type="button"
         class="companion-sheet-peek w-full px-3 pb-2 text-left font-mono text-xs leading-snug truncate"
+        data-testid="companion-peek"
         :class="active ? 'text-slate-700 font-semibold' : 'text-slate-400'"
         @click="expandToHalf"
       >

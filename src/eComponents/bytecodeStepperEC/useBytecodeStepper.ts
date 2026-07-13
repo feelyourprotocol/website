@@ -3,6 +3,7 @@ import type { EVM, ExecResult } from '@ethereumjs/evm'
 import { hexToBytes } from '@ethereumjs/util'
 
 import type { Examples } from '@/explorations/REGISTRY'
+import { resolveInitialExample } from '@/libs/exampleFromQuery'
 
 import { isValidByteInputForm } from '../precompileInterfaceEC/utils'
 import { disassembleBytecode } from './disassemble'
@@ -105,8 +106,8 @@ export function useBytecodeStepper(config: BytecodeStepperConfig, evm: EVM) {
     await rearm()
   }
 
-  async function init(examples: Examples) {
-    example.value = config.defaultExample
+  async function init(examples: Examples, queryExample?: string) {
+    example.value = resolveInitialExample(examples, config.defaultExample, queryExample)
     await selectExample(examples)
   }
 

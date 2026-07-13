@@ -36,3 +36,9 @@ SERVER_NOTES.md
 
 # Dist
 dist/
+
+# Isolated Playwright packages (local node_modules + artifacts)
+og/node_modules
+og/.chromium-ready.json
+video/node_modules
+video/projects/*/output/

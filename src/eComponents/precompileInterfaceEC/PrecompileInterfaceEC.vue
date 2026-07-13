@@ -1,4 +1,5 @@
 <script setup lang="ts" generic="T">
+import { useRoute } from 'vue-router'
 import type { PrefixedHexString } from '@ethereumjs/util'
 
 import ExamplesUIC from '@/eComponents/ui/ExamplesUIC.vue'
@@ -8,6 +9,7 @@ import PoweredByC from '@/explorations/PoweredByC.vue'
 import type { Examples } from '@/explorations/REGISTRY'
 import type { Exploration } from '@/explorations/REGISTRY'
 import { TOPICS } from '@/explorations/TOPICS'
+import { parseExampleQueryParam } from '@/libs/exampleFromQuery'
 
 import PrecompileValueInputEC from './PrecompileValueInputEC.vue'
 import type { PrecompileConfig } from './types'
@@ -25,6 +27,7 @@ defineSlots<{
 }>()
 
 const topic = TOPICS[props.exploration.topic]
+const route = useRoute()
 
 const {
   data,
@@ -41,7 +44,10 @@ const {
   init,
 } = usePrecompileState(props.config, props.examples, props.run)
 
-await init()
+await init({
+  queryExample: parseExampleQueryParam(route.query?.example),
+  routeQuery: route.query,
+})
 </script>
 
 <template>

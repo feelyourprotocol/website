@@ -1,0 +1,25 @@
+{
+  "name": "fyp-video",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "description": "Isolated Playwright pipeline for recording Feel Your Protocol short-form exploration videos. Kept out of the main website package.json so CI never installs Playwright.",
+  "engines": {
+    "node": ">=22.6.0"
+  },
+  "scripts": {
+    "setup": "npm install && npx playwright install chromium",
+    "check": "node --experimental-strip-types src/check-cli.ts",
+    "preflight": "node --experimental-strip-types src/preflight-cli.ts",
+    "record": "node --experimental-strip-types src/record-cli.ts",
+    "storyboard": "node --experimental-strip-types src/storyboard-cli.ts",
+    "voice:synth": "node --experimental-strip-types src/voice/synth-cli.ts",
+    "voice:plan": "node --experimental-strip-types src/voice/plan-cli.ts",
+    "voice:mux": "node --experimental-strip-types src/voice/mux-cli.ts",
+    "generate": "node --experimental-strip-types src/generate-cli.ts",
+    "render": "npm run generate"
+  },
+  "dependencies": {
+    "playwright": "^1.61.1"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "format": { "width": 540, "height": 960 },
+  "safeZone": {
+    "topPx": 56,
+    "bottomPx": 120,
+    "leftPx": 32,
+    "rightPx": 48,
+    "description": "YouTube Shorts — keep readable text/UI inside; black bars may bleed to edges"
+  },
+  "focusAreas": {
+    "example-select": {
+      "selector": "[data-testid=\"example-select\"]",
+      "description": "Example dropdown — opcode preset picker"
+    },
+    "step-controls": {
+      "selector": "[data-testid=\"bytecode-step\"]",
+      "description": "Run / Step / Reset row"
+    },
+    "disassembly": {
+      "selector": "[data-testid=\"bytecode-disassembly\"]",
+      "description": "Opcode list with PC highlight"
+    },
+    "stack": {
+      "selector": "[data-testid=\"bytecode-stack\"]",
+      "description": "Live stack panel"
+    },
+    "companion": {
+      "selector": "[data-testid=\"companion-sheet\"]",
+      "description": "Bottom companion — calculators & visuals"
+    }
+  },
+  "placements": {
+    "top-banner": {
+      "anchor": "top",
+      "insetPx": 0,
+      "maxHeightPx": 184,
+      "description": "Full-bleed black bar; text inset via CSS safe zone + --video-ribbon-pad-*"
+    },
+    "bottom-banner": {
+      "anchor": "bottom",
+      "insetPx": 120,
+      "maxHeightPx": 140,
+      "description": "Bar above companion — clears Shorts bottom action row"
+    }
+  }
+}

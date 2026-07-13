@@ -16,8 +16,10 @@ import ResultBoxUIC from '@/eComponents/ui/resultBox/ResultBoxUIC.vue'
 import ExplorationC from '@/explorations/ExplorationC.vue'
 import PoweredByC from '@/explorations/PoweredByC.vue'
 import { TOPICS } from '@/explorations/TOPICS'
+import { resolveInitialExample } from '@/libs/exampleFromQuery'
+import { useExplorationExampleQuery } from '@/libs/useExplorationExampleQuery'
 
-import { examples } from './examples'
+import { DEFAULT_EXAMPLE, examples } from './examples'
 import { INFO as exploration } from './info'
 
 const kzg = new microEthKZG(trustedSetup)
@@ -32,6 +34,7 @@ const errorMsg = ref('')
 const example = ref('')
 
 const topic = TOPICS[exploration.topic]
+const exampleQuery = useExplorationExampleQuery()
 const hasResult = computed(() => commitment.value !== '')
 
 function resetResults() {
@@ -71,7 +74,7 @@ async function run() {
 }
 
 async function init() {
-  example.value = 'blob1'
+  example.value = resolveInitialExample(examples, DEFAULT_EXAMPLE, exampleQuery)
   await selectExample()
 }
 

@@ -8,6 +8,8 @@ import ExplorationC from '@/explorations/ExplorationC.vue'
 import PoweredByC from '@/explorations/PoweredByC.vue'
 import { TOPICS } from '@/explorations/TOPICS'
 import { useCompanionStatusPublisher } from '@/libs/companionStatus'
+import { resolveInitialExample } from '@/libs/exampleFromQuery'
+import { useExplorationExampleQuery } from '@/libs/useExplorationExampleQuery'
 
 import BalExplorerPanel from './BalExplorerPanel.vue'
 import { DEFAULT_SCENARIO_ID, exampleMeta, examples } from './examples'
@@ -19,6 +21,7 @@ import type { ScenarioRunResult } from './scenarios/types'
 import { buildTriggerGroups } from './transitions'
 
 const topic = TOPICS[exploration.topic]
+const exampleQuery = useExplorationExampleQuery()
 
 const example = ref('')
 const errorMsg = ref('')
@@ -78,7 +81,7 @@ async function runBlock(): Promise<void> {
 }
 
 async function init() {
-  example.value = DEFAULT_SCENARIO_ID
+  example.value = resolveInitialExample(examples, DEFAULT_SCENARIO_ID, exampleQuery)
 }
 
 watch(
@@ -129,6 +132,7 @@ await init()
         <div class="flex items-center gap-2">
           <ExamplesUIC v-model="example" :examples="examples" :change="selectExample" />
           <ActionButtonUIC
+            test-id="run-block"
             text="Run block"
             tooltip="Execute block on Amsterdam VM and generate BAL"
             :onClick="runBlock"
