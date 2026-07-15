@@ -20,7 +20,7 @@
 
 ## Taxonomy (new explorations only)
 
-<!-- Fill in if adding a new exploration. See https://docs.feelyourprotocol.org/guide/architecture.html -->
+<!-- Fill in if adding a new exploration. See https://website-docs.feelyourprotocol.org/guide/architecture.html -->
 
 - **Topic:** <!-- e.g. Scaling -->
 - **Timeline:** <!-- e.g. Fusaka -->
@@ -30,13 +30,13 @@
 
 <!-- Tick off what applies. Not every item is required for every PR. -->
 
-- [ ] I have read the [contributing guide](https://docs.feelyourprotocol.org/contributing/how-to-contribute.html)
+- [ ] I have read the [contributing guide](https://website-docs.feelyourprotocol.org/contributing/how-to-contribute.html)
 - [ ] Linting and type checking pass (`npm run lf && npm run type-check`)
 - [ ] Unit tests pass (`npx vitest run`)
 - [ ] E2E tests pass (`npm run test:e2e`)
-- [ ] Production build succeeds (`npm run build` — website + community-token + docs)
+- [ ] Production build succeeds (`npm run build` — website + community-token + docs hub + website-docs)
 - [ ] New exploration is registered in `REGISTRY.ts`
-- [ ] Library needs were discussed in a separate issue (if applicable — see [Third-Party Libraries](https://docs.feelyourprotocol.org/contributing/third-party-libraries.html))
+- [ ] Library needs were discussed in a separate issue (if applicable — see [Third-Party Libraries](https://website-docs.feelyourprotocol.org/contributing/third-party-libraries.html))
 
 ## Lightweight PRs (optional)
 

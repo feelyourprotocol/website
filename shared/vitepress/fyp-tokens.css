@@ -30,6 +30,7 @@
   /* Brand palette (main site + community-token) */
   --fyp-purple: #7c3aed;
   --fyp-cyan: #06b6d4;
+  --fyp-terminal-green: #22c55e;
   --fyp-amber: #f59e0b;
   --fyp-gradient: linear-gradient(120deg, var(--fyp-purple) 30%, var(--fyp-cyan));
   --fyp-gradient-shift: linear-gradient(90deg, var(--fyp-purple), var(--fyp-cyan), var(--fyp-purple));
@@ -41,6 +42,7 @@
   /* Dot grids — neutral (main site) vs brand-tinted (roadmap) */
   --fyp-dot-grid-neutral: radial-gradient(circle, #cbd5e1 0.5px, transparent 0.5px);
   --fyp-dot-grid-brand: radial-gradient(circle, rgba(124, 58, 237, 0.08) 0.5px, transparent 0.5px);
+  --fyp-dot-grid-terminal: radial-gradient(circle, rgba(34, 197, 94, 0.1) 0.5px, transparent 0.5px);
   --fyp-dot-size: 24px 24px;
 
   --vp-font-family-mono: var(--fyp-font-mono);

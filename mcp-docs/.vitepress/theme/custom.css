@@ -1,0 +1,198 @@
+/* ============================================================
+ * Feel Your Protocol MCP Docs — "Machine Room" skin
+ *
+ * Terminal-green accent, mono-led headlines, green-tinted dot grid.
+ * Concrete reference character — precise, agent-facing, operational.
+ * ============================================================ */
+
+@import '../../../shared/vitepress/fyp-tokens.css';
+
+:root.fyp-site-mcp,
+.fyp-site-mcp {
+  --fyp-accent: var(--fyp-terminal-green);
+
+  --vp-c-brand-1: #16a34a;
+  --vp-c-brand-2: #15803d;
+  --vp-c-brand-3: #166534;
+  --vp-c-brand-soft: rgba(34, 197, 94, 0.14);
+
+  --vp-c-bg: #f7fdf9;
+  --vp-c-bg-soft: #ecfdf3;
+
+  --vp-home-hero-image-background-image: linear-gradient(
+    -45deg,
+    rgba(34, 197, 94, 0.45),
+    rgba(6, 182, 212, 0.2)
+  );
+  --vp-home-hero-image-filter: blur(48px);
+}
+
+.dark.fyp-site-mcp,
+.fyp-site-mcp.dark {
+  --vp-c-brand-1: #4ade80;
+  --vp-c-brand-2: #22c55e;
+  --vp-c-brand-3: #16a34a;
+  --vp-c-brand-soft: rgba(74, 222, 128, 0.14);
+
+  --vp-c-bg: #0a0f0c;
+  --vp-c-bg-soft: #111a14;
+}
+
+/* Protocol pulse bar under the nav — green gradient */
+.fyp-site-mcp .VPNav {
+  border-bottom: none !important;
+}
+
+.fyp-site-mcp .VPNavBar::after {
+  content: '';
+  display: block;
+  height: 2px;
+  background: linear-gradient(90deg, var(--fyp-terminal-green), var(--fyp-cyan), var(--fyp-terminal-green));
+  opacity: 0.85;
+}
+
+/* Nav title — compact two-line stack */
+.fyp-site-mcp .VPNavBarTitle .title {
+  font-size: inherit;
+  font-weight: inherit;
+  min-width: 0;
+}
+
+.fyp-site-mcp .fyp-nav-title-main {
+  color: var(--vp-c-brand-1);
+}
+
+.fyp-site-mcp .fyp-nav-title-sub {
+  color: var(--vp-c-text-2);
+}
+
+/* Headings + hero in mono — terminal / lab reference feel */
+.fyp-site-mcp .vp-doc h1,
+.fyp-site-mcp .vp-doc h2,
+.fyp-site-mcp .vp-doc h3,
+.fyp-site-mcp .VPHomeHero .text {
+  font-family: var(--fyp-font-mono);
+  letter-spacing: -0.01em;
+}
+
+/* Green-tinted dot grid */
+.fyp-site-mcp .VPContent {
+  background-color: var(--vp-c-bg);
+  background-image: var(--fyp-dot-grid-terminal);
+  background-size: var(--fyp-dot-size);
+}
+
+/* Hero name — animated protocol gradient */
+.fyp-site-mcp .VPHomeHero .name {
+  background: linear-gradient(90deg, var(--fyp-terminal-green), var(--fyp-cyan), var(--fyp-terminal-green));
+  background-size: 200% 100%;
+  animation: fyp-gradient-shift 10s ease-in-out infinite;
+}
+
+/* Feature cards — left accent stripe (echoes roadmap board items) */
+.fyp-site-mcp .VPHomeFeatures .VPFeature {
+  border-radius: 6px;
+  border-left: 3px solid var(--fyp-terminal-green);
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.fyp-site-mcp .VPHomeFeatures .VPFeature:nth-child(4n + 2) {
+  border-left-color: var(--fyp-cyan);
+}
+
+.fyp-site-mcp .VPHomeFeatures .VPFeature:nth-child(4n + 3) {
+  border-left-color: #0ea5e9;
+}
+
+.fyp-site-mcp .VPHomeFeatures .VPFeature:nth-child(4n + 4) {
+  border-left-color: var(--fyp-amber);
+}
+
+.fyp-site-mcp .VPHomeFeatures .VPFeature .title {
+  font-family: var(--fyp-font-mono);
+  font-size: 0.9rem;
+}
+
+.fyp-site-mcp .VPHomeFeatures .VPFeature.link:hover,
+.fyp-site-mcp .VPHomeFeatures .VPFeature:hover {
+  box-shadow: 0 2px 12px rgba(34, 197, 94, 0.12);
+}
+
+/* Callouts */
+.fyp-site-mcp .vp-doc .tip,
+.fyp-site-mcp .vp-doc .info {
+  border-left-color: var(--fyp-terminal-green);
+}
+
+.fyp-site-mcp .vp-doc .warning {
+  border-left-color: var(--fyp-amber);
+}
+
+.fyp-site-mcp .vp-doc :not(pre) > code {
+  font-family: var(--fyp-font-mono);
+  font-size: 0.88em;
+  color: var(--vp-c-brand-2);
+}
+
+/* ============================================================
+ * Changelog.vue — per-section micro-versioning trail
+ * ============================================================ */
+.fyp-changelog {
+  margin: 1.5rem 0;
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.fyp-changelog__head {
+  padding: 0.6rem 1rem;
+  border-bottom: 1px solid var(--vp-c-divider);
+  font-family: var(--fyp-font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--vp-c-text-2);
+}
+
+.fyp-changelog__list {
+  list-style: none;
+  margin: 0;
+  padding: 0.25rem 1rem;
+}
+
+.fyp-changelog__entry {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  padding: 0.5rem 0;
+  font-size: 0.85rem;
+}
+
+.fyp-changelog__entry + .fyp-changelog__entry {
+  border-top: 1px solid var(--vp-c-divider);
+}
+
+.fyp-changelog__version {
+  flex: 0 0 auto;
+  font-family: var(--fyp-font-mono);
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: var(--vp-c-text-2);
+  background: var(--vp-c-default-soft);
+  padding: 0.1rem 0.4rem;
+  border-radius: 4px;
+}
+
+.fyp-changelog__date {
+  flex: 0 0 auto;
+  font-family: var(--fyp-font-mono);
+  font-size: 0.7rem;
+  color: var(--vp-c-text-3);
+}
+
+.fyp-changelog__summary {
+  color: var(--vp-c-text-1);
+}

@@ -4,7 +4,7 @@
 
 **roadmap.feelyourprotocol.org** is the Phase 3 **conceptualization workspace** — not a product manual for something that already ships. It records where our thinking stands right now, including open questions and placeholders, so we have a stable place to iterate over the coming weeks.
 
-**What exists today:** the [explorations website](https://feelyourprotocol.org), the [website docs](https://docs.feelyourprotocol.org), and years of EthereumJS work behind both. **What we're still designing step by step:** a deterministic API and MCP server for the future Ethereum protocol — upcoming forks, EIPs, and research — for AI agents; how it connects to the website; and how it gets paid for. Nothing here is final until it's built and checked.
+**What exists today:** the [explorations website](https://feelyourprotocol.org), the [website docs](https://website-docs.feelyourprotocol.org), and years of EthereumJS work behind both. **What we're still designing step by step:** a deterministic API and MCP server for the future Ethereum protocol — upcoming forks, EIPs, and research — for AI agents; how it connects to the website; and how it gets paid for. Nothing here is final until it's built and checked.
 
 This scope is deliberate: we are **not** building general mainnet infrastructure, RPC, or testnet ops — that work lives elsewhere in the ecosystem. FYP targets the gap between probabilistic LLMs and **deterministic simulation of protocol changes not yet on mainnet**.
 

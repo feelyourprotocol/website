@@ -72,7 +72,9 @@ export default defineConfig({
       { text: 'Vision', link: '/vision/problem-vision' },
       { text: 'Roadmap', link: '/roadmap/roadmap' },
       { text: 'Concepts', link: '/concepts/api-mcp' },
-      { text: 'Website Docs', link: 'https://docs.feelyourprotocol.org' },
+      { text: 'All Docs', link: 'https://docs.feelyourprotocol.org' },
+      { text: 'MCP Docs', link: 'https://mcp-docs.feelyourprotocol.org' },
+      { text: 'Website Docs', link: 'https://website-docs.feelyourprotocol.org' },
       { text: 'Website', link: 'https://feelyourprotocol.org' },
     ],
     sidebar: [

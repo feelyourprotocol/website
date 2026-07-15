@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+# Hub landing only — deep links redirect to fleet subdomains (see nginx).

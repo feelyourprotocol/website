@@ -36,11 +36,24 @@ npm run capture:social
 
 ## Deployment
 
-Production builds (`dist/website`, `dist/docs`, `dist/community-token`, `dist/roadmap`) are **not** in the repo — the server runs `npm run build:deploy` after `git pull`. See `server-config/deployment/fyp_deploy.sh`.
+Production builds (`dist/website`, `dist/docs`, `dist/website-docs`, `dist/community-token`, `dist/roadmap`, `dist/mcp-docs`) are **not** in the repo — the server runs `npm run build:deploy` after `git pull`. See `server-config/deployment/fyp_deploy.sh`.
 
 ## Documentation
 
-Full **website docs** (contributor guide & architecture) are at **[docs.feelyourprotocol.org](https://docs.feelyourprotocol.org/index.html)**. API docs will follow on a separate subdomain.
+The **[docs hub](https://docs.feelyourprotocol.org)** is the entry point to all FYP documentation.
+
+**Website docs** (contributor guide & architecture) live at **[website-docs.feelyourprotocol.org](https://website-docs.feelyourprotocol.org/index.html)**.
+
+**MCP server docs** (concrete tool reference & technical setup) are at **[mcp-docs.feelyourprotocol.org](https://mcp-docs.feelyourprotocol.org)** — grows as the MCP server ships.
+
+### Local dev
+
+```bash
+npm run docs:dev           # docs hub landing → http://localhost:5176
+npm run website-docs:dev   # website contributor docs (VitePress)
+npm run mcp-docs:dev       # MCP docs (VitePress)
+npm run roadmap:dev        # roadmap (VitePress)
+```
 
 ## Community Token Site
 
@@ -59,6 +72,15 @@ Organizational home — vision, milestones, roadmap tracks, timeline, and core c
 - **Local dev:** `npm run roadmap:dev`
 
 See [roadmap/README.md](./roadmap/README.md) for structure, the data-driven visualizations, and deployment notes.
+
+## MCP Docs Site
+
+Concrete reference for the Feel Your Protocol MCP server — tool docs and technical setup (present-tense, as capabilities ship):
+
+- **Production:** [mcp-docs.feelyourprotocol.org](https://mcp-docs.feelyourprotocol.org) (after deploy)
+- **Local dev:** `npm run mcp-docs:dev`
+
+See [mcp-docs/README.md](./mcp-docs/README.md) for structure, the terminal-green skin, and deployment notes.
 
 ## Cross-site constants
 

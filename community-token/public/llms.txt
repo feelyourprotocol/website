@@ -36,7 +36,7 @@ discount on future API usage, not a gate.
 
 - [Main site](https://feelyourprotocol.org/): The interactive Ethereum protocol explorations this funds
 - [Phase 3 Roadmap](https://roadmap.feelyourprotocol.org/index.html): Future Ethereum protocol API & MCP — upcoming forks, EIPs, token role (conceptualization, not promises)
-- [Documentation](https://docs.feelyourprotocol.org/index.html): Architecture and contributor guide
+- [Documentation hub](https://docs.feelyourprotocol.org/): Entry point to all FYP documentation
 - [Treasury ledgers on GitHub](https://github.com/feelyourprotocol/website/tree/main/treasury): Open books backing the Treasury section
 
 ## Notes

@@ -5,7 +5,7 @@ import IceCreamHomeSection from '../IceCreamHomeSection.vue'
 
 /**
  * Home placement tests for this special action — keep here, not in HomeView.spec.ts.
- * HomeView only tests permanent content; see docs/special-actions/index.md.
+ * HomeView only tests permanent content; see website-docs/special-actions/index.md.
  */
 describe('IceCreamHomeSection', () => {
   it('renders the section label and stand widget', () => {

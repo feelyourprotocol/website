@@ -14,7 +14,7 @@ Pay **10 FYP** → mint one receipt per flavor per wallet (Option A: up to 8 fla
 | Chain | Base (`8453`) |
 | Owner + scoop revenue | `0x4AEef6965A4cBcddb2e96555dCD0cB1afA7Bd202` |
 
-Canonical mirrors: `src/ice-cream/constants.ts`, `docs/special-actions/ice-cream-week.md`.
+Canonical mirrors: `src/ice-cream/constants.ts`, `website-docs/special-actions/ice-cream-week.md`.
 
 ## What lives here
 

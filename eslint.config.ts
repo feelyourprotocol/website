@@ -23,8 +23,9 @@ export default defineConfigWithVueTs(
     '**/dist/**',
     '**/dist-ssr/**',
     '**/coverage/**',
-    'docs/.vitepress/**',
+    'website-docs/.vitepress/**',
     'roadmap/.vitepress/**',
+    'mcp-docs/.vitepress/**',
     'contracts/**/lib/**',
   ]),
 

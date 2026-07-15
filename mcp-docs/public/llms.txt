@@ -1,0 +1,32 @@
+# Feel Your Protocol — MCP Server Docs
+
+> Concrete documentation for the Feel Your Protocol MCP server: deterministic
+> future-Ethereum-protocol simulations for AI agents, tool reference, and technical setup.
+> Present-tense "what we have" — for humans and AI. Vision and draft concepts live on the roadmap site.
+
+## Guide
+
+- [Overview](https://mcp-docs.feelyourprotocol.org/guide/overview.html): What we are building, repos, status, design principles
+- [Roadmap vs MCP Docs](https://mcp-docs.feelyourprotocol.org/guide/roadmap-relationship.html): How this site relates to roadmap.feelyourprotocol.org
+
+## Related (fleet)
+
+- [Main site](https://feelyourprotocol.org/): Interactive Ethereum protocol explorations (Leg A)
+- [Roadmap](https://roadmap.feelyourprotocol.org/): Vision, strategy, draft Agent API / x402 concepts
+- [Website Docs](https://website-docs.feelyourprotocol.org/index.html): Contributor guide for the explorations website
+- [Community Token](https://community-token.feelyourprotocol.org/): FYP token transparency on Base
+
+## Planned endpoint
+
+- MCP server (HTTP): `https://mcp.feelyourprotocol.org/mcp` — not live yet; documented here as it ships.
+
+## Source
+
+- [GitHub — website repo](https://github.com/feelyourprotocol/website): MCP docs content lives in the `mcp-docs/` folder
+- Execution engine + gateway: separate repos (`mcp-execution-engine`, `mcp-gateway`) — coming in build steps 2–3
+
+## Notes
+
+- Built with VitePress; static HTML on mcp-docs.feelyourprotocol.org after deploy.
+- Sensitive server configs (nginx details, secrets) live in the private `server-config` repository.
+- Not financial advice; not affiliated with the Ethereum Foundation.
