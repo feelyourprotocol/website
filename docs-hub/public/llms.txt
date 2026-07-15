@@ -1,0 +1,27 @@
+# Feel Your Protocol — Documentation Hub
+
+> Entry point at docs.feelyourprotocol.org. Four doors, one protocol — pick where you belong, then dive deep.
+
+## Fleet
+
+- [Website Docs](https://website-docs.feelyourprotocol.org/index.html) — **For contributors.** Ship the next exploration. E-Components, workflow, architecture. Cyan "Builder's Workshop". Live.
+- [MCP Server Docs](https://mcp-docs.feelyourprotocol.org/index.html) — **For agents & integrators.** Simulate tomorrow's chain today. Tool reference and setup as the server ships. Terminal-green "Machine Room". Docs live; server coming soon.
+- [Roadmap & Vision](https://roadmap.feelyourprotocol.org/index.html) — **For strategists & the curious.** See where this is headed. Vision, tracks, Phase 3 thinking. Purple "Strategy HQ". Live.
+- [Community Token](https://community-token.feelyourprotocol.org/index.html) — **For holders & observers.** Radical transparency, plain language. Independently launched token on Base — not corporate-controlled. Amber community accent. Live.
+
+## Binding ground
+
+- [Main explorations website](https://feelyourprotocol.org/): Interactive Ethereum protocol explorations (Leg A)
+
+## SEO note
+
+Legacy URLs under docs.feelyourprotocol.org (except this landing page) permanently redirect to website-docs.feelyourprotocol.org with the same path.
+
+## Source
+
+- Hub: `website/docs-hub/` in [feelyourprotocol/website](https://github.com/feelyourprotocol/website)
+- Illustrations: `website/docs-hub/public/illustrations/`
+- Website docs: `website/website-docs/`
+- MCP docs: `website/mcp-docs/`
+- Roadmap: `website/roadmap/`
+- Community token: `website/community-token/`

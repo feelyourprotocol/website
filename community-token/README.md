@@ -66,5 +66,6 @@ After first deploy:
 sudo certbot certonly --nginx -d community-token.feelyourprotocol.org
 # or expand existing cert:
 # sudo certbot -d feelyourprotocol.org -d www.feelyourprotocol.org \
-#   -d docs.feelyourprotocol.org -d community-token.feelyourprotocol.org
+#   -d docs.feelyourprotocol.org -d website-docs.feelyourprotocol.org \
+#   -d community-token.feelyourprotocol.org
 ```

@@ -1,6 +1,6 @@
 # Agent API & MCP Server (Concept)
 
-> **Concept in progress — nothing shipped yet.** There is no Agent API, no MCP server, and no separate API docs subdomain today. This page captures our **current thinking** on shape and boundaries so we can iterate over the next 8–12 weeks. When something is built and stable enough to document properly, it will get its own API docs site — until then, the roadmap is the source of truth.
+> **Concept in progress — MCP docs site live; server not shipped yet.** There is no live MCP endpoint today. **Concrete documentation** (as capabilities ship) lives at **[mcp-docs.feelyourprotocol.org](https://mcp-docs.feelyourprotocol.org)**. This roadmap page keeps the strategic sketch and open questions.
 
 ## What we're aiming for
 
@@ -67,6 +67,7 @@ const result = await vm.evm.runCode({ code, gasLimit: BigInt(gasLimit) })
 <Changelog
   title="Agent API Concept Changelog"
   :entries="[
+    { version: 'v0.3', date: '2026-07-15', summary: 'MCP docs site live at mcp-docs.feelyourprotocol.org — this page remains the strategic sketch; concrete docs move there as capabilities ship.' },
     { version: 'v0.2', date: '2026-06-30', summary: 'Reframed as in-progress concept — no shipped API; removed references to separate API docs as existing destination.' },
     { version: 'v0.1', date: '2026-06-30', summary: 'Initial outline — MCP-first delivery, stateless/BYOS design, three use-case scopes, TypeScript + worker-pool boundaries.' },
   ]"

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://website-docs.feelyourprotocol.org/sitemap.xml

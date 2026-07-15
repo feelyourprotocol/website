@@ -11,7 +11,7 @@ export interface TopicPalette {
   badgeBg: string
 }
 
-/** Hex values aligned with docs/contributing/images.md topic palettes. */
+/** Hex values aligned with website-docs/contributing/images.md topic palettes. */
 export const TOPIC_PALETTES: Record<TopicColor, TopicPalette> = {
   orange: {
     accent: '#f97316',

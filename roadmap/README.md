@@ -2,7 +2,7 @@
 
 VitePress site for **roadmap.feelyourprotocol.org** — the organizational home and **conceptualization workspace** for Feel Your Protocol Phase 3: problem & vision, milestones, roadmap tracks, timeline, and draft outlines of core concepts (future-protocol Agent API & MCP, x402, pricing/cost model) and infrastructure (AWS). Nothing here documents a shipped API yet.
 
-It shares the Feel Your Protocol design language (JetBrains Mono, purple/cyan protocol sparks, dot grid) but uses a customized VitePress theme so it reads as the "business" side of the project — separate from the [website docs](https://docs.feelyourprotocol.org) and the [explorations website](https://feelyourprotocol.org).
+It shares the Feel Your Protocol design language (JetBrains Mono, purple/cyan protocol sparks, dot grid) but uses a customized VitePress theme so it reads as the "business" side of the project — separate from the [website docs](https://website-docs.feelyourprotocol.org) and the [explorations website](https://feelyourprotocol.org).
 
 ## Development
 
@@ -82,12 +82,13 @@ Tests: `npx vitest run roadmap/social/src/__tests__/ og/src/social/__tests__/`
 
 ## Subdomain deployment
 
-Nginx block is prepared in `../server-config/config/fyp_nginx` (BLOCK 8–9).
+Nginx block is prepared in `../server-config/config/fyp_nginx` (BLOCK 10–11).
 
 After first deploy, expand the existing certificate to cover the subdomain:
 
 ```bash
 sudo certbot -d feelyourprotocol.org -d www.feelyourprotocol.org \
-  -d docs.feelyourprotocol.org -d community-token.feelyourprotocol.org \
-  -d roadmap.feelyourprotocol.org
+  -d docs.feelyourprotocol.org -d website-docs.feelyourprotocol.org \
+  -d community-token.feelyourprotocol.org \
+  -d roadmap.feelyourprotocol.org -d mcp-docs.feelyourprotocol.org
 ```

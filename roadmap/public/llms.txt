@@ -35,7 +35,8 @@ volume discount on future API usage, not a gate. Educational, open-source charac
 ## Related
 
 - [Main site](https://feelyourprotocol.org/): Interactive Ethereum protocol explorations
-- [Website Docs](https://docs.feelyourprotocol.org/index.html): Contributor guide and architecture
+- [Website Docs](https://website-docs.feelyourprotocol.org/index.html): Contributor guide and architecture
+- [MCP Docs](https://mcp-docs.feelyourprotocol.org/): Concrete MCP server reference (as capabilities ship)
 - [Community Token](https://community-token.feelyourprotocol.org/): Transparency page for FYP on Base
 - [Source on GitHub](https://github.com/feelyourprotocol/website): Roadmap content lives in the `roadmap/` folder
 

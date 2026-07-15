@@ -8,7 +8,7 @@ body:
       value: |
         Use this template for questions, feature ideas, or anything that doesn't fit the other templates.
 
-        **Docs:** [How to Contribute](https://docs.feelyourprotocol.org/contributing/how-to-contribute.html) · [Architecture](https://docs.feelyourprotocol.org/guide/architecture.html)
+        **Docs:** [How to Contribute](https://website-docs.feelyourprotocol.org/contributing/how-to-contribute.html) · [Architecture](https://website-docs.feelyourprotocol.org/guide/architecture.html)
 
   - type: textarea
     id: description
