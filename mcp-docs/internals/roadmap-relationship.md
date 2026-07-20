@@ -8,7 +8,7 @@ Feel Your Protocol maintains **two documentation layers** with different jobs. B
 | --- | --- | --- |
 | **Tense** | Future-facing — vision, strategy, draft concepts | Present-facing — what exists, how to use it |
 | **Audience** | Community, investors, strategic readers | Agent operators, integrators, us (human + AI) replicating setup |
-| **Content** | Problem/vision, tracks, timeline, pricing *concepts*, AWS *targets* | Tool reference, repo layout, deploy shape, local quickstart |
+| **Content** | Problem/vision, tracks, timeline, pricing *concepts*, AWS *targets* | Tool reference ([Use](/use/introduction)), repo layout ([Internals](/internals/architecture)) |
 | **Character** | Purple "Strategy HQ" skin | Terminal-green "Machine Room" skin |
 | **Changes when** | Thinking evolves | Capabilities ship |
 
@@ -19,8 +19,8 @@ Feel Your Protocol maintains **two documentation layers** with different jobs. B
 When a roadmap concept graduates to shipped reality:
 
 1. **Implement** the capability in `mcp-execution-engine` / `mcp-gateway`.
-2. **Document** the concrete outcome here (tool reference, setup page, changelog entry).
-3. **Update** the roadmap concept page with a short status note — e.g. _"Now shipped — see [MCP docs](https://mcp-docs.feelyourprotocol.org/guide/overview.html)"_ — without duplicating the full technical detail.
+2. **Document** the concrete outcome under [Use](/use/introduction) (tool reference) and [Internals](/internals/architecture) (setup, changelog).
+3. **Update** the roadmap concept page with a short status note — e.g. _"Now shipped — see [MCP docs](https://mcp-docs.feelyourprotocol.org/use/introduction.html)"_ — without duplicating the full technical detail.
 
 The roadmap [Agent API & MCP concept](https://roadmap.feelyourprotocol.org/concepts/api-mcp.html) remains the strategic sketch; this site becomes the operational manual as pieces land.
 
@@ -52,8 +52,7 @@ All sites are separate subdomains; the [main website](https://feelyourprotocol.o
 <Changelog
   title="Roadmap Relationship Changelog"
   :entries="[
+    { version: 'v0.3', date: '2026-07-20', summary: 'Moved to internals/; updated links for use/ split.' },
     { version: 'v0.1', date: '2026-07-15', summary: 'Initial split definition — roadmap vs MCP docs vs server-config.' },
   ]"
 />
-
-_Add a one-line entry here when the documentation split or fleet map changes._

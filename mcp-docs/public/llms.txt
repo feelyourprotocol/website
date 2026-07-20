@@ -1,13 +1,28 @@
 # Feel Your Protocol — MCP Server Docs
 
 > Concrete documentation for the Feel Your Protocol MCP server: deterministic
-> future-Ethereum-protocol simulations for AI agents, tool reference, and technical setup.
+> future-Ethereum-protocol simulations for AI agents.
 > Present-tense "what we have" — for humans and AI. Vision and draft concepts live on the roadmap site.
 
-## Guide
+## Use (end-user)
 
-- [Overview](https://mcp-docs.feelyourprotocol.org/guide/overview.html): What we are building, repos, status, design principles
-- [Roadmap vs MCP Docs](https://mcp-docs.feelyourprotocol.org/guide/roadmap-relationship.html): How this site relates to roadmap.feelyourprotocol.org
+- [Introduction](https://mcp-docs.feelyourprotocol.org/use/introduction.html): What the MCP server is
+- [Capabilities](https://mcp-docs.feelyourprotocol.org/use/capabilities.html): Simulate, compare, generate, probe
+- [Connect](https://mcp-docs.feelyourprotocol.org/use/connect.html): Endpoint and connection (when live)
+- [Simulate Bytecode](https://mcp-docs.feelyourprotocol.org/use/tools/simulate-bytecode.html): Tool reference
+- [Coverage](https://mcp-docs.feelyourprotocol.org/use/coverage.html): Supported forks and EIPs
+- [Guarantees](https://mcp-docs.feelyourprotocol.org/use/guarantees.html): Determinism, provenance, limits
+- [For AI Agents](https://mcp-docs.feelyourprotocol.org/use/for-ai-agents.html): How LLMs should read this site
+
+## Internals
+
+- [Architecture](https://mcp-docs.feelyourprotocol.org/internals/architecture.html): Engine, gateway, docs, build status
+- [Execution Engine](https://mcp-docs.feelyourprotocol.org/internals/execution-engine.html): TypeScript API and registry
+- [Roadmap vs MCP Docs](https://mcp-docs.feelyourprotocol.org/internals/roadmap-relationship.html): Documentation split
+
+## AI ingestion
+
+- [llms-full.txt](https://mcp-docs.feelyourprotocol.org/llms-full.txt): Concatenated use-layer documentation
 
 ## Related (fleet)
 
@@ -18,12 +33,12 @@
 
 ## Planned endpoint
 
-- MCP server (HTTP): `https://mcp.feelyourprotocol.org/mcp` — not live yet; documented here as it ships.
+- MCP server (HTTP): `https://mcp.feelyourprotocol.org/mcp` — not live yet; documented under Connect as it ships.
 
 ## Source
 
 - [GitHub — website repo](https://github.com/feelyourprotocol/website): MCP docs content lives in the `mcp-docs/` folder
-- Execution engine + gateway: separate repos (`mcp-execution-engine`, `mcp-gateway`) — coming in build steps 2–3
+- Execution engine + gateway: separate repos (`mcp-execution-engine`, `mcp-gateway`)
 
 ## Notes
 

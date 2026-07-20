@@ -25,17 +25,33 @@ Production output: `dist/mcp-docs/` (rebuilt on deploy via `npm run build:deploy
 ```
 mcp-docs/
 ├── .vitepress/
-│   ├── config.ts                 # Site config, SEO, nav + sidebar
+│   ├── config.ts                 # Site config, SEO, nav + path-scoped sidebars
 │   └── theme/
 │       ├── index.ts              # "Machine Room" skin; registers Changelog
 │       ├── custom.css            # Terminal-green FYP skin
 │       └── components/
 │           └── Changelog.vue     # Per-section micro-changelog
-├── guide/
-│   ├── overview.md               # What we are building, status, repos
-│   └── roadmap-relationship.md   # Roadmap vs MCP docs vs server-config
-├── index.md                      # Home (hero + features)
-└── public/                       # robots.txt, llms.txt, fonts/, og/
+├── use/                          # End-user: capabilities, tools, connection
+│   ├── introduction.md
+│   ├── capabilities.md
+│   ├── connect.md
+│   ├── tools/                    # One page per MCP tool (grows as tools ship)
+│   ├── coverage.md
+│   ├── guarantees.md
+│   ├── pricing.md
+│   └── for-ai-agents.md
+├── internals/                    # Architecture, engine API, quality, deploy
+│   ├── architecture.md
+│   ├── repositories.md
+│   ├── execution-engine.md
+│   ├── gateway.md
+│   ├── quality.md
+│   ├── deployment.md
+│   ├── design-principles.md
+│   ├── roadmap-relationship.md
+│   └── contributing.md
+├── index.md                      # Home (three doors: Use / Internals / AI)
+└── public/                       # robots.txt, llms.txt, llms-full.txt, fonts/, og/
 ```
 
 ## Visual skin

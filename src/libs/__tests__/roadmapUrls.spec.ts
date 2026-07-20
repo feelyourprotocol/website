@@ -45,13 +45,13 @@ describe('mcpDocsUrls', () => {
   })
 
   it('mcpDocsPage builds slug paths', () => {
-    expect(mcpDocsPage('guide/overview')).toBe(
-      'https://mcp-docs.feelyourprotocol.org/guide/overview.html',
+    expect(mcpDocsPage('use/introduction')).toBe(
+      'https://mcp-docs.feelyourprotocol.org/use/introduction.html',
     )
   })
 
   it('MCP_DOCS_OVERVIEW is stable', () => {
-    expect(MCP_DOCS_OVERVIEW).toBe('https://mcp-docs.feelyourprotocol.org/guide/overview.html')
+    expect(MCP_DOCS_OVERVIEW).toBe('https://mcp-docs.feelyourprotocol.org/use/introduction.html')
   })
 
   it('MCP_DOCS_ORIGIN is stable', () => {
