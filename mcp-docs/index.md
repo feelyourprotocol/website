@@ -4,33 +4,33 @@ layout: home
 hero:
   name: Feel Your Protocol
   text: MCP Server Documentation
-  tagline: Concrete reference for the deterministic future-Ethereum-protocol MCP server — what exists, how to connect, and how we build and operate it.
+  tagline: Deterministic future-Ethereum-protocol simulations for AI agents — what you can use, and how we build and operate it.
   actions:
     - theme: brand
-      text: Overview
-      link: /guide/overview
+      text: Use the server
+      link: /use/introduction
     - theme: alt
-      text: Roadmap vs MCP Docs
-      link: /guide/roadmap-relationship
+      text: Look inside
+      link: /internals/architecture
     - theme: alt
-      text: Vision (Roadmap)
-      link: https://roadmap.feelyourprotocol.org/concepts/api-mcp
+      text: For AI agents
+      link: /use/for-ai-agents
 
 features:
-  - title: What we have
-    details: Present-tense documentation of the MCP server, tools, and setup — for humans configuring agents and for agents reading structured reference material.
-    link: /guide/overview
-  - title: Tool reference
-    details: Intent-driven MCP tools (bytecode simulation, access lists, and more as they ship) with schemas, examples, and guardrails. Sections appear as capabilities land.
-    link: /guide/overview#status
-  - title: Technical setup
-    details: How the execution engine and gateway fit together, how to run locally, and how we deploy on AWS. Sensitive server configs live in the private server-config repo.
-    link: /guide/overview#repositories
-  - title: Roadmap context
-    details: High-level vision and future plans stay on the roadmap site. This site documents shipped or in-progress reality and links back when concepts graduate.
-    link: /guide/roadmap-relationship
+  - title: Use the server
+    details: Capabilities, tool reference, connection, coverage, and guarantees — for agent operators and integrators. No TypeScript internals.
+    link: /use/introduction
+  - title: Look inside
+    details: Architecture, repositories, execution engine API, quality procedures, deployment shape, and how this site relates to the roadmap.
+    link: /internals/architecture
+  - title: For AI agents
+    details: llms.txt index, full use-layer text dump, provenance conventions, and per-tool pages with predictable structure.
+    link: /use/for-ai-agents
+  - title: Vision (Roadmap)
+    details: Strategic sketches and draft concepts stay on the roadmap site. This site documents shipped or in-progress reality.
+    link: /internals/roadmap-relationship
 ---
 
-::: info Work in progress
-**Step 1 (July 2026):** this docs site is live; the MCP server repositories (`mcp-execution-engine`, `mcp-gateway`) and remote endpoint are **not shipped yet**. Pages will grow as each build step lands.
+::: info July 2026
+**Local stdio gateway v0.1 is live** — `describe_capabilities` and `simulate_evm_bytecode`. See [Connect](/use/connect). Remote HTTP at `mcp.feelyourprotocol.org` is planned (Step 5).
 :::

@@ -1,0 +1,143 @@
+# Feel Your Protocol MCP Server — Use Layer (full text)
+# Source: mcp-docs/use/ — end-user documentation for humans and AI agents
+# https://mcp-docs.feelyourprotocol.org/llms-full.txt
+# Updated: 2026-07-22 — gateway v0.1 stdio live
+
+================================================================================
+LIVE MCP TOOLS (stdio v0.1) — READ FIRST
+================================================================================
+
+When the feel-your-protocol MCP server is connected, use these tools directly.
+Do NOT fall back to mcp-execution-engine lab scripts or npm run lab unless MCP
+is unavailable. Trust listTools on the connected server over stale repo text.
+
+Tools:
+- describe_capabilities (probe) — registry: forks, EIPs, ceilings, presets
+- simulate_evm_bytecode (simulate) — run raw bytecode under fork config
+
+Server: FeelYourProtocol-EVM v0.1.0
+Setup: see CONNECT section below
+
+JSON schemas:
+- /schemas/describe_capabilities.input.json
+- /schemas/simulate_evm_bytecode.input.json
+
+================================================================================
+INTRODUCTION
+================================================================================
+
+Status: MCP docs site live. Local stdio gateway v0.1 LIVE. Remote HTTP Step 5.
+
+Headless MCP server wrapping EthereumJS for exact, deterministic simulations of
+the future Ethereum protocol. Rich JSON traces for agent reasoning.
+
+Mental model: explorations website = textbook; MCP server = lab equipment.
+Vision: roadmap.feelyourprotocol.org
+
+================================================================================
+CAPABILITIES
+================================================================================
+
+Query shapes and MCP tools:
+
+- Probe → describe_capabilities — LIVE (stdio)
+- Simulate → simulate_evm_bytecode — LIVE (stdio)
+- Compare — engine only; MCP tool planned
+- Generate (BAL) — planned Step 6
+
+Scope: stateless/BYOS, raw bytecode only, no Solidity compile, no archive node,
+no multi-block historical backtesting.
+
+================================================================================
+CONNECT
+================================================================================
+
+Local stdio: LIVE. Remote https://mcp.feelyourprotocol.org/mcp — planned.
+
+Build:
+  cd mcp-execution-engine && npm ci && npm run build
+  cd ../mcp-gateway && npm ci && npm run build
+
+Cursor mcp.json:
+{
+  "mcpServers": {
+    "feel-your-protocol": {
+      "command": "node",
+      "args": ["/absolute/path/to/mcp-gateway/dist/index.js"]
+    }
+  }
+}
+
+After gateway code changes: npm run build + restart MCP in Cursor (Settings → MCP).
+
+Startup stderr should show:
+  [fyp-mcp] FeelYourProtocol-EVM v0.1.0 ready — tools: describe_capabilities, simulate_evm_bytecode
+
+================================================================================
+TOOL: DESCRIBE_CAPABILITIES (LIVE)
+================================================================================
+
+MCP tool name: describe_capabilities
+Input: {} (no required fields)
+Output: engineVersion, ceilings, namedForks, eips, allowedBaseHardforks, presets
+
+Use first to learn supported forks (e.g. amsterdam) and registered EIPs (8024, 7928, …).
+
+================================================================================
+TOOL: SIMULATE_EVM_BYTECODE (LIVE)
+================================================================================
+
+MCP tool name: simulate_evm_bytecode
+
+Purpose: Run raw EVM bytecode under fork/EIP config. Returns gas, stack, optional
+trace, provenance.
+
+Inputs:
+- bytecode (required): hex, max 24576 bytes
+- fork (optional): { baseHardfork, eips[] } — default amsterdam
+- gasLimit (optional): string, default 1000000, max 30000000
+- trace (optional): boolean, max 10000 steps
+
+Outputs: success, gasUsed, returnValue, finalStack, error, steps?, provenance
+
+Amsterdam note: eips: [] on amsterdam is correct — EIP-8024 bundled in hardfork.
+
+Examples:
+- PUSH1 STOP: bytecode 0x600100 → gasUsed 3
+- EIP-8024 EXCHANGE: 0x6001600260036004e88e00, trace true → ~15 gas
+- EIP-8024 DUPN deep stack: 0x600160026003600460056006600760086009600a600b600c600d600e600f60106011e68000
+
+================================================================================
+COVERAGE
+================================================================================
+
+Named fork: amsterdam (bundled EL fork). Registered EIPs (seed): 8024, 7883,
+7928, 7951, 8141 (8141 not implemented in engine).
+
+================================================================================
+GUARANTEES
+================================================================================
+
+Deterministic execution. Provenance on every result. Limits:
+- Max gas 30000000, default 1000000
+- Max bytecode 24576 bytes
+- Max trace steps 10000
+
+Out of scope: Solidity compile, ERC layer, multi-block backtesting.
+
+================================================================================
+PRICING
+================================================================================
+
+Not shipped. x402 planned Steps 8-9. See roadmap.feelyourprotocol.org.
+
+================================================================================
+FOR AI AGENTS
+================================================================================
+
+1. If feel-your-protocol MCP connected → use describe_capabilities and
+   simulate_evm_bytecode. Do not use local lab as substitute.
+2. Cite provenance.engineVersion and provenance.forkConfig in answers.
+3. Index: /llms.txt. Schemas: /schemas/*.input.json
+
+Vision on roadmap; this file is operational reference.

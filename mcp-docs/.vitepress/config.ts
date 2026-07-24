@@ -70,21 +70,53 @@ export default defineConfig({
     siteTitle:
       '<span class="fyp-nav-title"><span class="fyp-nav-title-main">Feel Your Protocol</span><span class="fyp-nav-title-sub">MCP Docs</span></span>',
     nav: [
-      { text: 'Guide', link: '/guide/overview' },
+      { text: 'Use', link: '/use/introduction' },
+      { text: 'Internals', link: '/internals/architecture' },
       { text: 'All Docs', link: 'https://docs.feelyourprotocol.org' },
       { text: 'Roadmap', link: 'https://roadmap.feelyourprotocol.org' },
       { text: 'Website Docs', link: 'https://website-docs.feelyourprotocol.org' },
       { text: 'Website', link: 'https://feelyourprotocol.org' },
     ],
-    sidebar: [
-      {
-        text: 'Guide',
-        items: [
-          { text: 'Overview', link: '/guide/overview' },
-          { text: 'Roadmap vs MCP Docs', link: '/guide/roadmap-relationship' },
-        ],
-      },
-    ],
+    sidebar: {
+      '/use/': [
+        {
+          text: 'Use',
+          items: [
+            { text: 'Introduction', link: '/use/introduction' },
+            { text: 'Capabilities', link: '/use/capabilities' },
+            { text: 'Connect', link: '/use/connect' },
+            {
+              text: 'Tools',
+              collapsed: false,
+              items: [
+                { text: 'Describe Capabilities', link: '/use/tools/describe-capabilities' },
+                { text: 'Simulate Bytecode', link: '/use/tools/simulate-bytecode' },
+              ],
+            },
+            { text: 'Coverage', link: '/use/coverage' },
+            { text: 'Guarantees', link: '/use/guarantees' },
+            { text: 'Pricing', link: '/use/pricing' },
+            { text: 'For AI Agents', link: '/use/for-ai-agents' },
+          ],
+        },
+      ],
+      '/internals/': [
+        {
+          text: 'Internals',
+          items: [
+            { text: 'Architecture', link: '/internals/architecture' },
+            { text: 'Repositories', link: '/internals/repositories' },
+            { text: 'Execution Engine', link: '/internals/execution-engine' },
+            { text: 'Gateway', link: '/internals/gateway' },
+            { text: 'Quality', link: '/internals/quality' },
+            { text: 'Deployment', link: '/internals/deployment' },
+            { text: 'Design Principles', link: '/internals/design-principles' },
+            { text: 'Roadmap vs MCP Docs', link: '/internals/roadmap-relationship' },
+            { text: 'Contributing', link: '/internals/contributing' },
+          ],
+        },
+      ],
+    },
     socialLinks: [
       { icon: 'github', link: 'https://github.com/feelyourprotocol/website' },
       { icon: 'x', link: FYP_X_URL },
@@ -94,7 +126,7 @@ export default defineConfig({
     },
     footer: {
       message:
-        'Concrete MCP server documentation — each section carries its own micro-changelog as capabilities ship.',
+        'Use = end-user reference. Internals = architecture and operations. Each section carries its own micro-changelog.',
       copyright: 'Feel Your Protocol',
     },
   },

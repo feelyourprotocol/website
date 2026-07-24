@@ -13,9 +13,8 @@ dist-ssr
 coverage
 *.local
 
-# VitePress cache
-docs/.vitepress/cache
-roadmap/.vitepress/cache
+# VitePress cache (all sites: docs, roadmap, website-docs, mcp-docs, …)
+**/.vitepress/cache
 
 /cypress/videos/
 /cypress/screenshots/
