@@ -4,9 +4,9 @@
 
 The **`mcp-execution-engine`** is a pure TypeScript library: stateless EthereumJS v10 simulations with no HTTP, MCP transport, or payments. The gateway (Step 3+) depends on it one-way.
 
-Repository: local scaffold at `feelyourprotocol/mcp-execution-engine` (GitHub publish planned).
+Repository: [feelyourprotocol/mcp-execution-engine](https://github.com/feelyourprotocol/mcp-execution-engine) (v0.1.0). Consumed by `mcp-gateway` via `LocalTaskProcessor`.
 
-End-user tool semantics: [Simulate Bytecode](/use/tools/simulate-bytecode), [Coverage](/use/coverage), [Guarantees](/use/guarantees).
+End-user tool semantics: [Describe Capabilities](/use/tools/describe-capabilities), [Simulate Bytecode](/use/tools/simulate-bytecode), [Coverage](/use/coverage), [Guarantees](/use/guarantees).
 
 ## Design principles
 
@@ -23,7 +23,7 @@ See also [Design Principles](/internals/design-principles).
 | --- | --- |
 | `simulateBytecode(input)` | Run bytecode under a fork config; optional opcode trace |
 | `compareVariants(input)` | N variants (each with own fork + bytecode) → diff |
-| `describeCapabilities()` | Registry snapshot for future `describe_capabilities` MCP tool |
+| `describeCapabilities()` | Registry snapshot — wired to gateway `describe_capabilities` MCP tool |
 | `buildCommon(config)` | Resolve `(baseHardfork, eips[])` → EthereumJS `Common` |
 | `listPresets()` | Seed preset definitions (light curation) |
 

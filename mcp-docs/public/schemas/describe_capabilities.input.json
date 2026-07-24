@@ -1,0 +1,8 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mcp-docs.feelyourprotocol.org/schemas/describe_capabilities.input.json",
+  "title": "describe_capabilities input",
+  "type": "object",
+  "properties": {},
+  "additionalProperties": false
+}

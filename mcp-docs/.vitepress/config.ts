@@ -88,7 +88,10 @@ export default defineConfig({
             {
               text: 'Tools',
               collapsed: false,
-              items: [{ text: 'Simulate Bytecode', link: '/use/tools/simulate-bytecode' }],
+              items: [
+                { text: 'Describe Capabilities', link: '/use/tools/describe-capabilities' },
+                { text: 'Simulate Bytecode', link: '/use/tools/simulate-bytecode' },
+              ],
             },
             { text: 'Coverage', link: '/use/coverage' },
             { text: 'Guarantees', link: '/use/guarantees' },

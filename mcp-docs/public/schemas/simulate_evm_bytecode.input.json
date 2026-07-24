@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mcp-docs.feelyourprotocol.org/schemas/simulate_evm_bytecode.input.json",
+  "title": "simulate_evm_bytecode input",
+  "type": "object",
+  "required": ["bytecode"],
+  "properties": {
+    "bytecode": {
+      "type": "string",
+      "description": "Hex-encoded EVM bytecode (0x prefix optional). Max 24576 bytes."
+    },
+    "fork": {
+      "type": "object",
+      "properties": {
+        "baseHardfork": { "type": "string" },
+        "eips": {
+          "type": "array",
+          "items": { "type": "integer" }
+        }
+      },
+      "required": ["baseHardfork"]
+    },
+    "gasLimit": {
+      "type": "string",
+      "description": "Execution gas limit as decimal string. Default 1000000. Max 30000000."
+    },
+    "trace": {
+      "type": "boolean",
+      "description": "Include stack-only opcode trace when true (max 10000 steps)."
+    }
+  },
+  "additionalProperties": false
+}

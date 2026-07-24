@@ -1,21 +1,44 @@
 # Gateway
 
-> **Status:** **Planned** (Step 3+).
+> **Status:** **v0.1 shipped** — stdio MCP server with two tools. HTTP on AWS planned (Steps 4–5).
 
-The **`mcp-gateway`** is the public face of the MCP server on AWS:
+The **`mcp-gateway`** repo is the public face of the MCP server:
 
-- MCP transport (stdio first, HTTP later)
-- Tool registry mapping intent-driven tools to the execution engine
-- Observability
-- x402 payments (later)
+- **MCP transport** — stdio today; HTTP `/mcp` on EC2 later
+- **Tool registry** — intent-driven tools → `mcp-execution-engine`
+- **TaskProcessor seam** — `LocalTaskProcessor` now; worker pool / queue later
+- **Observability** — planned (Step 7)
+- **x402 payments** — planned (Steps 8–9)
 
-It depends one-way on **`mcp-execution-engine`**. End-user connection docs will live under [Connect](/use/connect) as the gateway ships.
+It depends one-way on **`mcp-execution-engine`**. End-user connection: [Connect](/use/connect).
+
+## Live tools (v0.1)
+
+| MCP tool | Engine call |
+| --- | --- |
+| `describe_capabilities` | `describeCapabilities()` |
+| `simulate_evm_bytecode` | `simulateBytecode()` |
+
+Server name: `FeelYourProtocol-EVM` v0.1.0. Entry: `node dist/index.js` (bin: `fyp-mcp`).
+
+## Repository layout
+
+```
+mcp-gateway/
+├── src/
+│   ├── index.ts                 # stdio entry
+│   ├── engine/TaskProcessor.ts  # scaling seam
+│   ├── tools/                   # MCP tool registration
+│   └── schemas/                 # zod (mirrored in public/schemas on docs site)
+└── schemas/                     # JSON Schema copies for docs
+```
 
 ## Changelog
 
 <Changelog
   title="Gateway Changelog"
   :entries="[
+    { version: 'v0.1.0', date: '2026-07-22', summary: 'Stdio gateway — describe_capabilities + simulate_evm_bytecode, TaskProcessor seam, integration tests.' },
     { version: 'v0.3', date: '2026-07-20', summary: 'Placeholder under internals/.' },
   ]"
 />

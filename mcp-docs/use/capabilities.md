@@ -1,17 +1,17 @@
 # Capabilities
 
-> **Status:** Bytecode simulation is in progress (engine v0.1 local). Gateway tools and remote endpoint — not live yet.
+> **Status:** Gateway v0.1 **live (stdio)** — `describe_capabilities` + `simulate_evm_bytecode`. Remote HTTP planned.
 
 The MCP server exposes **intent-driven tools** — verbs that match how agents and integrators think about protocol work, not raw library APIs one-to-one.
 
 ## Query shapes
 
-| Shape | What it does | Status |
-| --- | --- | --- |
-| **Simulate** | Run raw bytecode under a fork / EIP configuration; optional execution trace | Engine v0.1 (local) |
-| **Compare** | Run multiple variants (each with its own fork + bytecode) and diff results | Engine v0.1 (local) |
-| **Generate** | Produce structured outputs such as block-level access lists | Planned |
-| **Probe** | Describe what the server supports — forks, EIPs, limits | Planned |
+| Shape | MCP tool | What it does | Status |
+| --- | --- | --- | --- |
+| **Probe** | `describe_capabilities` | Supported forks, EIPs, ceilings, presets | **Live** (stdio) |
+| **Simulate** | `simulate_evm_bytecode` | Run raw bytecode under a fork; optional trace | **Live** (stdio) |
+| **Compare** | — | N variants (each with own fork + bytecode) → diff | Engine only (MCP tool planned) |
+| **Generate** | — | Block-level access lists (EIP-7928) | Planned (Step 6) |
 
 ## Scope boundaries
 
@@ -27,6 +27,7 @@ See [Guarantees](/use/guarantees) for limits and provenance details.
 <Changelog
   title="Capabilities Changelog"
   :entries="[
+    { version: 'v0.4', date: '2026-07-22', summary: 'Probe + simulate MCP tools live on stdio gateway v0.1.' },
     { version: 'v0.3', date: '2026-07-20', summary: 'Split from overview — end-user capability summary under use/.' },
   ]"
 />

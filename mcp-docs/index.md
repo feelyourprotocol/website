@@ -31,6 +31,6 @@ features:
     link: /internals/roadmap-relationship
 ---
 
-::: info Work in progress
-**July 2026:** this docs site is live; the remote MCP endpoint (`mcp.feelyourprotocol.org`) and gateway are **not shipped yet**. Tool pages grow as each build step lands.
+::: info July 2026
+**Local stdio gateway v0.1 is live** — `describe_capabilities` and `simulate_evm_bytecode`. See [Connect](/use/connect). Remote HTTP at `mcp.feelyourprotocol.org` is planned (Step 5).
 :::
