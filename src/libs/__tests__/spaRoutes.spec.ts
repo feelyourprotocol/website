@@ -38,10 +38,9 @@ describe('spaRoutes re-exports', () => {
     expect(xml).toContain(`${SITE_ORIGIN}/scaling`)
     expect(xml).not.toContain('/404')
 
-    for (const topic of Object.values(TOPICS)) {
-      if (topic.explorations.length === 0) {
-        expect(xml).not.toContain(`${SITE_ORIGIN}${topic.path}`)
-      }
+    const emptyTopics = Object.values(TOPICS).filter((topic) => topic.explorations.length === 0)
+    for (const topic of emptyTopics) {
+      expect(xml).not.toContain(`${SITE_ORIGIN}${topic.path}`)
     }
 
     const robots = generateRobotsTxt()

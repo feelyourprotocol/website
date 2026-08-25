@@ -23,9 +23,11 @@ import {
   formatSlotValue,
 } from './transitions'
 
-const LEGACY_TRANSFER_GAS = 21_000n
-const LEGACY_TRANSFER_FEE = LEGACY_TRANSFER_GAS * DEFAULT_GAS_PRICE
-const LEGACY_PRIORITY_FEE = LEGACY_TRANSFER_GAS * (DEFAULT_GAS_PRICE - 1n)
+function transferFees(totalGasSpent: bigint) {
+  const totalFee = totalGasSpent * DEFAULT_GAS_PRICE
+  const priorityFee = totalGasSpent * (DEFAULT_GAS_PRICE - 1n)
+  return { totalFee, priorityFee }
+}
 
 describe('EIP-7928 BAL Exploration', () => {
   describe('info', () => {
@@ -80,8 +82,10 @@ describe('EIP-7928 BAL Exploration', () => {
       expect(formatSlotValue('0x2a')).toBe('42')
     })
 
-    it('shows sub-ETH balances with enough precision for gas deductions', () => {
-      const postSender = 1_000_000_000_000_000_000n - LEGACY_TRANSFER_FEE - 1n
+    it('shows sub-ETH balances with enough precision for gas deductions', async () => {
+      const result = await runScenario('01-plain-transfer')
+      const { totalFee } = transferFees(result.txGasSpent[0]!)
+      const postSender = 1_000_000_000_000_000_000n - totalFee - 1n
       expect(formatEth(postSender)).toContain('0.999999')
       expect(formatEth(postSender)).not.toBe('1 ETH')
       expect(formatBalanceTransition(1_000_000_000_000_000_000n, postSender)).toBe(
@@ -106,6 +110,7 @@ describe('EIP-7928 BAL Exploration', () => {
 
     it('records 1 wei on the recipient and fees on coinbase for plain transfer', async () => {
       const result = await runScenario('01-plain-transfer')
+      const { totalFee, priorityFee } = transferFees(result.txGasSpent[0]!)
 
       const recipient = result.balJson.find(
         (a) => a.address.toLowerCase() === RECIPIENT_ADDRESS.toLowerCase(),
@@ -117,13 +122,13 @@ describe('EIP-7928 BAL Exploration', () => {
         (a) => a.address.toLowerCase() === COINBASE_ADDRESS.toLowerCase(),
       )
       expect(coinbase?.balanceChanges).toHaveLength(1)
-      expect(BigInt(coinbase!.balanceChanges[0]!.postBalance)).toBe(LEGACY_PRIORITY_FEE)
+      expect(BigInt(coinbase!.balanceChanges[0]!.postBalance)).toBe(priorityFee)
 
       const sender = result.balJson.find(
         (a) => a.address.toLowerCase() === SENDER_ADDRESS.toLowerCase(),
       )
       expect(BigInt(sender!.balanceChanges[0]!.postBalance)).toBe(
-        1_000_000_000_000_000_000n - LEGACY_TRANSFER_FEE - 1n,
+        1_000_000_000_000_000_000n - totalFee - 1n,
       )
     })
 
@@ -213,6 +218,7 @@ describe('EIP-7928 BAL Exploration', () => {
   describe('buildTriggerGroups', () => {
     it('describes plain transfer value flow matching the scenario', async () => {
       const result = await runScenario('01-plain-transfer')
+      const { totalFee, priorityFee } = transferFees(result.txGasSpent[0]!)
       const groups = buildTriggerGroups(result.balJson, result.preState)
       const valueFlow = groups.find((g) => g.group.id === 'valueFlow')!
       const byLabel = Object.fromEntries(valueFlow.items.map((item) => [item.addressLabel, item]))
@@ -220,11 +226,11 @@ describe('EIP-7928 BAL Exploration', () => {
       expect(byLabel.sender?.summary).toBe(
         formatBalanceTransition(
           1_000_000_000_000_000_000n,
-          1_000_000_000_000_000_000n - LEGACY_TRANSFER_FEE - 1n,
+          1_000_000_000_000_000_000n - totalFee - 1n,
         ),
       )
       expect(byLabel.recipient?.summary).toBe('0 ETH → 1 wei')
-      expect(byLabel.coinbase?.summary).toBe(formatBalanceTransition(0n, LEGACY_PRIORITY_FEE))
+      expect(byLabel.coinbase?.summary).toBe(formatBalanceTransition(0n, priorityFee))
       expect(byLabel.sender?.indexBadge).toBe('tx 1')
     })
 

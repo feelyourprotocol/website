@@ -8,6 +8,7 @@ import {
   SENDER_ADDRESS,
   SENDER_PRIVATE_KEY,
 } from './constants'
+import { buildFirstTouchLegacyTransfer, legacyExistingRecipientGasLimit } from './helpers'
 import type { BalScenarioDefinition } from './types'
 
 export const twoTransfersScenario: BalScenarioDefinition = {
@@ -16,7 +17,8 @@ export const twoTransfersScenario: BalScenarioDefinition = {
   lesson:
     'This block runs two transfers back-to-back from the same sender. Each access-list ' +
     'entry is tagged with which transaction caused it — tx 1 or tx 2 — so effects from ' +
-    'different transactions stay distinguishable.',
+    'different transactions stay distinguishable. The first transfer pays first-touch state gas; ' +
+    'the second reuses the recipient account.',
   step: 5,
   adjustable: false,
   highlightFields: ['balanceChanges', 'nonceChanges'],
@@ -35,26 +37,28 @@ export const twoTransfersScenario: BalScenarioDefinition = {
   txSummary: [
     {
       label: 'tx 1',
-      detail: `legacy transfer: 1 wei → ${RECIPIENT_ADDRESS}, gasLimit 21000`,
+      detail: `legacy transfer: 1 wei → ${RECIPIENT_ADDRESS}, Amsterdam first-touch gas`,
     },
     {
       label: 'tx 2',
-      detail: `legacy transfer: 2 wei → ${RECIPIENT_ADDRESS}, gasLimit 21000`,
+      detail: `legacy transfer: 2 wei → ${RECIPIENT_ADDRESS}, recipient already exists`,
     },
   ],
   buildTransactions(common) {
     const to = createAddressFromString(RECIPIENT_ADDRESS)
-    return [0n, 1n].map((nonce, i) =>
+    const secondGasLimit = legacyExistingRecipientGasLimit(common, 2n, 1n)
+    return [
+      buildFirstTouchLegacyTransfer(common, 1n, 0n),
       createLegacyTx(
         {
-          nonce,
-          gasLimit: 21_000n,
+          nonce: 1n,
+          gasLimit: secondGasLimit,
           gasPrice: DEFAULT_GAS_PRICE,
-          value: BigInt(i + 1),
+          value: 2n,
           to,
         },
         { common },
       ).sign(SENDER_PRIVATE_KEY),
-    )
+    ]
   },
 }

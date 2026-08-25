@@ -45,10 +45,9 @@ describe('HomeView', () => {
     })
 
     it('shows topic intro text', () => {
-      for (const topic of activeTopics) {
-        if (topic.introText) {
-          expect(wrapper.text()).toContain(topic.introText)
-        }
+      const topicsWithIntro = activeTopics.filter((topic) => topic.introText)
+      for (const topic of topicsWithIntro) {
+        expect(wrapper.text()).toContain(topic.introText)
       }
     })
   })
@@ -95,12 +94,10 @@ describe('HomeView', () => {
 
     it('does not render unused tags in the tag cloud', () => {
       const usedTags = new Set(Object.values(EXPLORATIONS).flatMap((e) => e.tags))
-      const allTags = Object.values(Tag)
+      const unusedTags = Object.values(Tag).filter((tag) => !usedTags.has(tag))
       const tagLabels = wrapper.findAll('.tag-item').map((b) => b.text())
-      for (const tag of allTags) {
-        if (!usedTags.has(tag)) {
-          expect(tagLabels).not.toContainEqual(tag)
-        }
+      for (const tag of unusedTags) {
+        expect(tagLabels).not.toContainEqual(tag)
       }
     })
   })

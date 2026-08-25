@@ -70,7 +70,7 @@ function buildAction(scenario: BalScenarioDefinition): TxActionBrief {
   if (scenario.id === '01-plain-transfer') {
     return {
       headline: 'Sender pays 1 wei to the recipient account',
-      detail: 'Legacy transfer · 21,000 gas · fees go to coinbase',
+      detail: 'Legacy transfer · Amsterdam first-touch gas · fees go to coinbase',
     }
   }
   if (scenario.id === '02-contract-sload') {

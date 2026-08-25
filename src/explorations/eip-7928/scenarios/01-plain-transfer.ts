@@ -1,13 +1,5 @@
-import { createLegacyTx } from '@ethereumjs/tx'
-import { createAddressFromString } from '@ethereumjs/util'
-
-import {
-  DEFAULT_GAS_PRICE,
-  DEFAULT_SENDER_BALANCE,
-  RECIPIENT_ADDRESS,
-  SENDER_ADDRESS,
-  SENDER_PRIVATE_KEY,
-} from './constants'
+import { DEFAULT_SENDER_BALANCE, RECIPIENT_ADDRESS, SENDER_ADDRESS } from './constants'
+import { buildFirstTouchLegacyTransfer } from './helpers'
 import type { BalScenarioDefinition } from './types'
 
 export const plainTransferScenario: BalScenarioDefinition = {
@@ -15,7 +7,8 @@ export const plainTransferScenario: BalScenarioDefinition = {
   title: '1. Plain ETH transfer',
   lesson:
     'A simple value transfer touches sender and recipient balances and bumps the sender nonce. ' +
-    'No contract code or storage is involved.',
+    'On Amsterdam, a first-touch recipient also needs enough gas for EIP-8037 state creation — ' +
+    '21,000 alone is not enough. EIP-7708 adds a Transfer log in the receipt.',
   step: 1,
   adjustable: false,
   highlightFields: ['balanceChanges', 'nonceChanges'],
@@ -34,20 +27,10 @@ export const plainTransferScenario: BalScenarioDefinition = {
   txSummary: [
     {
       label: 'tx 1',
-      detail: `legacy transfer: 1 wei → ${RECIPIENT_ADDRESS}, gasLimit 21000`,
+      detail: `legacy transfer: 1 wei → ${RECIPIENT_ADDRESS}, gasLimit sized for Amsterdam first-touch`,
     },
   ],
   buildTransactions(common) {
-    return [
-      createLegacyTx(
-        {
-          gasLimit: 21000n,
-          gasPrice: DEFAULT_GAS_PRICE,
-          value: 1n,
-          to: createAddressFromString(RECIPIENT_ADDRESS),
-        },
-        { common },
-      ).sign(SENDER_PRIVATE_KEY),
-    ]
+    return [buildFirstTouchLegacyTransfer(common, 1n, 0n)]
   },
 }
