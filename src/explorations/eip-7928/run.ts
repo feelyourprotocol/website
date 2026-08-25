@@ -33,6 +33,7 @@ export async function runScenario(scenarioId: string): Promise<ScenarioRunResult
     balJson: bal.toJSON(),
     balHash: bytesToHex(bal.hash()),
     gasUsed: result.gasUsed,
+    txGasSpent: result.results.map((txResult) => txResult.totalGasSpent),
     txCount: transactions.length,
   }
 }

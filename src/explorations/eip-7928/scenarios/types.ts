@@ -56,6 +56,9 @@ export interface ScenarioRunResult {
   preState: PreStateAccount[]
   balJson: BALJSONBlockAccessList
   balHash: PrefixedHexString
+  /** Block header gas used (`max(regular, state)` under EIP-8037). */
   gasUsed: bigint
+  /** Per-transaction gas paid by the sender (`totalGasSpent`). */
+  txGasSpent: bigint[]
   txCount: number
 }
