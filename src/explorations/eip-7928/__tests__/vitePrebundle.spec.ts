@@ -13,7 +13,10 @@ import { describe, expect, it } from 'vitest'
 
 describe('Vite prebundle parity (@ethereumjs/tx)', () => {
   it('createLegacyTx exposes getIntrinsicGas on the optimized client bundle', async () => {
-    const { createLegacyTx } = await import('../../../../node_modules/.vite/deps/@ethereumjs_tx.js')
+    const prebundlePath = '../../../../node_modules/.vite/deps/@ethereumjs_tx.js'
+    const { createLegacyTx } = (await import(
+      /* @vite-ignore */ prebundlePath
+    )) as typeof import('@ethereumjs/tx')
     const common = new Common({ chain: Mainnet, hardfork: Hardfork.Amsterdam })
     const tx = createLegacyTx(
       {
