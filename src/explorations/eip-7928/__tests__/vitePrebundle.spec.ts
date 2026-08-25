@@ -7,9 +7,9 @@
  * After bumping @ethereumjs/*: `rm -rf node_modules/.vite` and restart dev, or
  * `npx vite optimize --force`.
  */
+import { describe, expect, it } from 'vitest'
 import { Common, Hardfork, Mainnet } from '@ethereumjs/common'
 import { createAddressFromString } from '@ethereumjs/util'
-import { describe, expect, it } from 'vitest'
 
 describe('Vite prebundle parity (@ethereumjs/tx)', () => {
   it('createLegacyTx exposes getIntrinsicGas on the optimized client bundle', async () => {

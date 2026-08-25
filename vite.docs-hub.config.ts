@@ -12,7 +12,7 @@ export default defineConfig({
   build: {
     outDir,
     emptyOutDir: true,
-    rollupOptions: {
+    rolldownOptions: {
       input: {
         main: fileURLToPath(new URL('./docs-hub/index.html', import.meta.url)),
       },
