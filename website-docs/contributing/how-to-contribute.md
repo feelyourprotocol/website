@@ -1,6 +1,6 @@
 # How to Contribute
 
-Contributions are what make Feel Your Protocol useful. Whether you are adding a brand-new exploration, polishing an existing one, or improving the shared components — every contribution helps the Ethereum community understand protocol changes better.
+Feel Your Protocol is open source. The primary extension point is **adding or improving explorations** — interactive widgets that help people understand protocol changes. Most new work is expected to be **agent-assisted**; these docs (and [AI-Assisted Development](/contributing/ai-assisted-development)) are written so an LLM can follow them end-to-end with a short human review pass.
 
 ## Ways to Contribute
 
@@ -21,7 +21,7 @@ This is the most impactful contribution. Each exploration is a self-contained fo
 
 ### Improve Documentation
 
-Fix typos, add guides, clarify explanations. Documentation lives in the `website-docs/` folder as standard markdown files. Preview locally with:
+Fix typos, add guides, clarify explanations. **Website** documentation lives in `website-docs/` only — do not add dev notes for roadmap, MCP docs, or community token here (each has its own README). Preview locally with:
 
 ```bash
 npm run website-docs:dev
@@ -84,7 +84,7 @@ npm run test:e2e     # E2E tests
 | Shared UI components    | `src/eComponents/ui/`                               |
 | Unit tests              | `src/views/__tests__/` (or co-located `__tests__/`) |
 | E2E tests               | `cypress/e2e/`                                      |
-| Documentation           | `website-docs/`                                     |
+| Website documentation   | `website-docs/` (explorations site only)            |
 
 ## Further Reading
 

@@ -1,6 +1,6 @@
 # AI-Assisted Development
 
-Most explorations on Feel Your Protocol are — and are expected to be — built with AI coding assistants. This is a feature, not a caveat: the project's folder-per-exploration structure, typed interfaces, and reusable components are designed to be AI-friendly. This page collects practical guidance on how to get the best results.
+Explorations are built — and increasingly **generated** — with AI coding assistants. The folder-per-exploration structure, typed interfaces, and compact docs under `website-docs/` exist so agents can scaffold, wire, and verify work with minimal context. This page is the practical playbook; repo-wide boundaries (which folder documents which site) are in [AGENTS.md](https://github.com/feelyourprotocol/website/blob/main/AGENTS.md) and `.cursor/rules/repo-structure.mdc`.
 
 ## Recommended Workflow
 
@@ -19,7 +19,7 @@ npm run dev
 
 Before writing any code, instruct your agent to read the project documentation. The docs are compact and self-contained — an agent can absorb them in one pass:
 
-> _Read all files under `website-docs/` to understand the project structure, contribution guidelines, and component APIs. Then follow the step-by-step guide in "Adding an Exploration" to create a new exploration for EIP-XXXX._
+> _Read `AGENTS.md`, `.cursor/rules/repo-structure.mdc`, and the pages under `website-docs/` (especially Architecture and Adding an Exploration). Scope: explorations website only — do not edit roadmap, community-token, or mcp-docs unless explicitly asked. Then create a new exploration for EIP-XXXX following the step-by-step guide._
 
 Key pages the agent should internalize:
 
@@ -120,7 +120,7 @@ When adding companion panels to an E-Component, agents often mount them as sibli
 If you are using [Cursor](https://cursor.com/) or a similar AI-native IDE:
 
 - **Add the docs as context.** Use `@website-docs/` to reference the documentation folder so the agent has the full contribution guidelines in scope.
-- **Use the existing `.cursorrules` or project rules** if available — they encode project-specific conventions the agent should follow.
+- **Use project rules in `.cursor/rules/`** — start with `repo-structure.mdc` (multi-site boundaries) and `lint-before-done.mdc`.
 - **Run terminal commands through the agent.** Let the agent run `npm run lf`, `npm run type-check`, and `npx vitest run` directly so it can read and fix errors in the same session.
 
 ## What to Review as a Human

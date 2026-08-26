@@ -6,7 +6,7 @@ Feel Your Protocol is an interactive website that lets you explore Ethereum prot
 
 Each protocol change — called an **Exploration** — gets its own page with a dedicated interactive widget. Explorations cover EIPs, ERCs, and protocol research. They are organized through three taxonomies: **Topics** (static strategic pillars like "Scaling" or "UX"), **Timeline** (maturity and hardfork placement like "Fusaka" or "Research"), and **Tags** (reusable technical concepts like "EVM" or "Precompiles") — making it easy to discover and navigate related protocol changes.
 
-**Phase 3** is taking shape on the [roadmap site](https://roadmap.feelyourprotocol.org/index.html): a deterministic API and MCP server for the future Ethereum protocol — upcoming forks, EIPs, and research — with the explorations website as its front door. Nothing there is shipped yet — it is a living conceptualization workspace.
+Broader project direction (Phase 3 API, MCP server) lives on the public [roadmap site](https://roadmap.feelyourprotocol.org/index.html). **This documentation covers only the explorations website** — how it is built and how to add or change explorations.
 
 ## Prerequisites
 
@@ -25,29 +25,19 @@ npm install
 
 ## Development
 
-Start the website dev server:
+Start the explorations website dev server:
 
 ```bash
 npm run dev
 ```
 
-Start the docs hub dev server:
-
-```bash
-npm run docs:dev
-```
-
-Start the website docs dev server:
+To edit **these** contributor docs locally:
 
 ```bash
 npm run website-docs:dev
 ```
 
-Start the roadmap dev server:
-
-```bash
-npm run roadmap:dev
-```
+Other sites in this repo (docs hub, MCP docs, roadmap, community token) have their own READMEs with dev commands. See [Repo layout](#repo-layout-sibling-sites) below.
 
 ## Quality Checks
 
@@ -68,17 +58,11 @@ npm run test:e2e     # E2E tests (Cypress, requires build first)
 ## Building
 
 ```bash
-npm run build          # all five, with website type-check
-npm run build:deploy   # all five (website vite-only; used on the server after git pull)
-
-# Individual targets:
-npm run website:build           # dist/website
-npm run community-token:build   # dist/community-token
-npm run docs:build              # dist/docs (docs hub landing)
-npm run website-docs:build      # dist/website-docs
-npm run roadmap:build           # dist/roadmap
-npm run mcp-docs:build          # dist/mcp-docs
+npm run website:build          # dist/website (explorations site)
+npm run website-docs:build     # dist/website-docs (this documentation)
 ```
+
+Production deploy rebuilds every site target from the repo root (`npm run build:deploy`). That full matrix is documented in the root [README.md](https://github.com/feelyourprotocol/website/blob/main/README.md) for maintainers — not repeated here.
 
 `dist/` is not committed — production output is rebuilt on deploy.
 
@@ -121,11 +105,20 @@ website/
 │   │   ├── TagCloudView.vue       # Tag cloud navigation component
 │   │   └── __tests__/             # Unit tests
 │   └── router/                    # Vue Router config
-├── website-docs/                  # Website contributor docs (VitePress)
-├── docs-hub/                      # Docs fleet landing page (static, Vite)
-├── roadmap/                       # Roadmap site (VitePress)
-├── mcp-docs/                      # MCP server docs (VitePress)
-├── community-token/               # Community token transparency site
+├── website-docs/                  # This site — explorations contributor docs (VitePress)
 ├── cypress/                       # E2E tests
 └── .github/workflows/             # CI workflows
 ```
+
+### Repo layout (sibling sites)
+
+The same git repository also builds other Feel Your Protocol sites (docs hub, MCP docs, roadmap, community token) for deployment convenience. **Their development documentation lives only in each folder's README** — not in website-docs:
+
+| Folder | README |
+| --- | --- |
+| `docs-hub/` | [docs-hub/README.md](https://github.com/feelyourprotocol/website/blob/main/docs-hub/README.md) |
+| `mcp-docs/` | [mcp-docs/README.md](https://github.com/feelyourprotocol/website/blob/main/mcp-docs/README.md) |
+| `roadmap/` | [roadmap/README.md](https://github.com/feelyourprotocol/website/blob/main/roadmap/README.md) |
+| `community-token/` | [community-token/README.md](https://github.com/feelyourprotocol/website/blob/main/community-token/README.md) |
+
+Agents and contributors working on explorations should stay under `src/` and `website-docs/` unless explicitly tasked with another site.
