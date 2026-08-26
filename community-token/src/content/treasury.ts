@@ -34,7 +34,7 @@ export const TREASURY_SECTION = {
 /** Snapshot aligned with treasury/2026/*.md — update when ledgers change. */
 export const TREASURY_SNAPSHOT_2026 = {
   year: 2026,
-  claimedEur: 2650,
+  claimedEur: 5752.34,
   withdrawnEur: 0,
   pendingWithdrawalEur: 0,
 } as const
@@ -48,10 +48,10 @@ export const ALLOCATION_CHART_2026: TreasuryChartSpec = {
   chartId: 'treasury-allocation-2026',
   title: 'Claimed fees (2026)',
   subtitle: 'Earmarked use',
-  generatedAt: '2026-07-01',
+  generatedAt: '2026-08-26',
   basis: {
     description: 'Sum of claims in treasury/2026/claims.md',
-    totalEur: 2650,
+    totalEur: 5752.34,
     sources: [
       'treasury/2026/claims.md',
       'treasury/2026/withdrawals.md',
@@ -59,6 +59,10 @@ export const ALLOCATION_CHART_2026: TreasuryChartSpec = {
       'treasury/2026/06/ethereumjs.md',
       'treasury/2026/06/expenses.md',
       'treasury/2026/07/fyp.md',
+      'treasury/2026/07/expenses.md',
+      'treasury/2026/08/fyp.md',
+      'treasury/2026/08/ethereumjs.md',
+      'treasury/2026/08/expenses.md',
     ],
   },
   reproduce: [
@@ -78,8 +82,14 @@ export const ALLOCATION_CHART_2026: TreasuryChartSpec = {
     {
       id: 'work-jul',
       label: 'July work',
-      eur: 150,
+      eur: 1450,
       color: '#0891b2',
+    },
+    {
+      id: 'work-aug',
+      label: 'August work',
+      eur: 1150,
+      color: '#0e7490',
     },
     {
       id: 'expenses-jun',
@@ -88,9 +98,21 @@ export const ALLOCATION_CHART_2026: TreasuryChartSpec = {
       color: '#f59e0b',
     },
     {
+      id: 'expenses-jul',
+      label: 'July expenses',
+      eur: 61.4,
+      color: '#d97706',
+    },
+    {
+      id: 'expenses-aug',
+      label: 'August expenses',
+      eur: 61.4,
+      color: '#b45309',
+    },
+    {
       id: 'unallocated',
       label: 'Unallocated',
-      eur: 138.6,
+      eur: 668.14,
       color: '#94a3b8',
     },
   ],
