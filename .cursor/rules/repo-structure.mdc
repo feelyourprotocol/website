@@ -1,0 +1,39 @@
+---
+description: Monorepo layout — which site each folder belongs to and where dev docs live
+alwaysApply: true
+---
+
+# Repo structure (multi-site monorepo)
+
+This repository builds **several deployed sites** from one tree (deployment convenience). Each site has its **own dev docs** — do not mix them.
+
+## Sites and doc homes
+
+| Site | Source | Dev docs | Audience |
+| --- | --- | --- | --- |
+| Explorations website | `src/`, `public/`, `cypress/` | **`website-docs/`** (VitePress) | Primary — explorations, E-Components, video |
+| Website docs | `website-docs/` | `website-docs/README.md` | LLMs and humans extending the explorations site |
+| Docs hub (fleet landing) | `docs-hub/` | `docs-hub/README.md` | Entry card page only |
+| MCP server docs | `mcp-docs/` | `mcp-docs/README.md` | Shipped MCP tools and setup |
+| Roadmap | `roadmap/` | `roadmap/README.md` | Internal strategy / Phase 3 conceptualization |
+| Community token | `community-token/` | `community-token/README.md` | Internal transparency mini-site |
+
+Fleet overview for humans: [docs.feelyourprotocol.org](https://docs.feelyourprotocol.org).
+
+## Rules when editing docs
+
+1. **`website-docs/` is website-only.** Cover `src/`, explorations, E-Components, styling, video, and this VitePress site. Do **not** add build/dev instructions for roadmap, community-token, mcp-docs, or docs-hub here — link to that folder's README instead.
+2. **Do not encourage contributions to internal sites.** Roadmap and community-token may be public, but their READMEs are maintainer-facing; do not invite drive-by PRs there in website-docs.
+3. **Cross-links are fine; cross-docs are not.** Nav/footer may link to live URLs. Do not copy sibling-site dev content into website-docs.
+4. **Shared constants** — fleet URLs live in `src/libs/docsUrls.ts` and `src/libs/roadmapUrls.ts`. The main site may reference roadmap URLs (e.g. banner); that is product wiring, not roadmap dev docs.
+
+## Rules when editing code
+
+- Explorations and shared UI → `src/`
+- New exploration → `src/explorations/<id>/` per `website-docs/contributing/adding-an-exploration.md`
+- Do not import from `community-token/`, `roadmap/`, or `mcp-docs/` into `src/` (except shared libs under `src/libs/` or `shared/`)
+- Full deploy builds all targets (`npm run build:deploy`); when working on the explorations site, `npm run dev` and `npm run website:build` are enough
+
+## Direction of travel
+
+Exploration creation is moving toward **LLM/agent automation** (including MCP integration). Prefer extending **`website-docs/`** and **`.cursor/rules/`** so agents can run end-to-end with minimal human steps.
