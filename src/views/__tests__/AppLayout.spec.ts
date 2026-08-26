@@ -40,7 +40,9 @@ describe('App layout', () => {
 
     it('renders subtitle', async () => {
       const wrapper = await mountApp(makeRouter())
-      expect(wrapper.find('header').text()).toContain('Interactive Ethereum Protocol Explorations')
+      expect(wrapper.find('header').text()).toContain(
+        'Ethereum Protocol Explorations for Humans and AI',
+      )
     })
 
     it('exploration dropdown button is rendered', async () => {

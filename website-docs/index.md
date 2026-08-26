@@ -3,7 +3,7 @@ layout: home
 
 hero:
   name: Feel Your Protocol
-  text: Interactive Ethereum Protocol Explorations
+  text: Ethereum Protocol Explorations for Humans and AI
   tagline: Explore, visualize and understand Ethereum protocol changes — hands on.
   actions:
     - theme: brand

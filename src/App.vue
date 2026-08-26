@@ -76,7 +76,7 @@ onUnmounted(() => {
         <p
           class="flex items-baseline text-sm md:text-xl text-slate-500 tracking-wide sm:col-span-2 sm:row-start-2"
         >
-          <span class="shrink-0">Interactive Ethereum Protocol Explorations</span>
+          <span class="shrink-0">Ethereum Protocol Explorations for Humans and AI</span>
           <span class="protocol-dots hidden sm:inline flex-1 overflow-hidden whitespace-nowrap"
             >· · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · ·
             · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · ·
