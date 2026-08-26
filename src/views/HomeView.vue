@@ -62,29 +62,29 @@ for (const topicId of activeTopicIds) {
           <SectionLabel>About the Project</SectionLabel>
           <div class="bg-slate-700 rounded-lg p-5 shadow-md">
             <p class="text-slate-300 text-sm leading-relaxed">
-              Feel Your Protocol is a collaborative open-source project providing interactive
-              explorations of upcoming Ethereum protocol changes. Widgets are powered by real EVM
-              and cryptography libraries running directly in the browser — no backend needed.
+              Feel Your Protocol turns upcoming Ethereum protocol changes into interactive
+              explorations you can run in the browser. Each widget uses real EVM and cryptography
+              libraries — no backend, no mocks.
             </p>
             <p class="text-slate-300 text-sm leading-relaxed mt-2">
-              Want to contribute?
+              The project is open source.
               <a
                 :href="DOCS_HOME"
                 target="_blank"
                 class="font-semibold text-white underline hover:text-slate-200"
-                >Check the docs</a
+                >Website docs</a
               >
-              or jump straight into the
+              cover architecture and how explorations are built; the full codebase is on
               <a
                 href="https://github.com/feelyourprotocol/website"
                 target="_blank"
                 class="font-semibold text-white underline hover:text-slate-200"
-                >code on GitHub</a
+                >GitHub</a
               >.
             </p>
             <p class="text-slate-300 text-sm leading-relaxed mt-2">
               Phase 3 is taking shape: a deterministic API &amp; MCP server for the future Ethereum
-              protocol (upcoming forks &amp; EIPs) — the explorations site stays the front door.
+              protocol (upcoming forks &amp; EIPs) — this explorations site stays the front door.
               <a
                 :href="ROADMAP_HOME"
                 target="_blank"
@@ -94,8 +94,7 @@ for (const topicId of activeTopicIds) {
               >.
             </p>
             <p class="text-slate-300 text-sm leading-relaxed mt-2">
-              These explorations are about where Ethereum heads next — a community token is one way
-              to take part in that work and what keeps it going.
+              A community token on Base helps fund ongoing exploration work.
               <a
                 :href="COMMUNITY_TOKEN_HOME"
                 target="_blank"

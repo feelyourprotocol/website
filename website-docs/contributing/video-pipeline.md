@@ -22,7 +22,7 @@ website:build → static server → Playwright recordVideo
 
 | Param | Scope | Description |
 |-------|-------|-------------|
-| `fyp-video=1` | Any route | Video capture mode — hides header, footer, roadmap banner |
+| `fyp-video=1` | Any route | Video capture mode — hides header and footer |
 | `example=<key>` | Explorations | Pre-selects an example preset on load |
 
 Example deep link:

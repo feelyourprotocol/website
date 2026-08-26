@@ -121,7 +121,7 @@ describe('App layout', () => {
   })
 
   describe('Video mode', () => {
-    it('hides header, roadmap banner, and footer when ?fyp-video=1', async () => {
+    it('hides header and footer when ?fyp-video=1', async () => {
       const router = makeRouter()
       await router.push('/?fyp-video=1')
       await router.isReady()

@@ -55,7 +55,9 @@ describe('HomeView', () => {
   describe('About section', () => {
     it('renders project description', () => {
       expect(wrapper.text()).toContain('About the Project')
-      expect(wrapper.text()).toContain('Feel Your Protocol is a collaborative open-source project')
+      expect(wrapper.text()).toContain(
+        'Feel Your Protocol turns upcoming Ethereum protocol changes',
+      )
     })
 
     it('has contributor docs link pointing to docs site', () => {
