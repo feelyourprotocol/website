@@ -43,10 +43,16 @@ const showUsage = computed(
         {{ exploration.title }}
       </component>
       <div class="flex shrink-0 items-center gap-1">
-        <a v-if="shareURL" href="#" @click.prevent="shareURL" class="share-url-button">
+        <a v-if="shareURL" href="#" class="share-url-button" @click.stop.prevent="shareURL">
           <ButtonUIC :icon="ShareIcon" tooltip="Open Shareable URL" />
         </a>
-        <a :href="exploration.infoURL" target="_blank" class="visit-exploration-button">
+        <a
+          :href="exploration.infoURL"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="visit-exploration-button"
+          @click.stop
+        >
           <ButtonUIC
             :icon="ArrowTopRightOnSquareIcon"
             tooltip="External Link with more information"

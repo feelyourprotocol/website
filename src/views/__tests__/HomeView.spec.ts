@@ -129,5 +129,15 @@ describe('HomeView', () => {
         expect(links.some((l) => l.props('to') === EXPLORATIONS[id].path)).toBe(true)
       }
     })
+
+    it('external info link on latest cards points to EIP spec, not detail route', () => {
+      for (const id of latest) {
+        const link = wrapper.find(
+          `#${id}-c a.visit-exploration-button[href="${EXPLORATIONS[id].infoURL}"]`,
+        )
+        expect(link.exists()).toBe(true)
+        expect(link.attributes('target')).toBe('_blank')
+      }
+    })
   })
 })
