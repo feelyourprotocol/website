@@ -24,7 +24,7 @@ features:
   - title: Reusable E-Components
     details: Common Ethereum patterns like precompile interfaces are packaged as reusable E-Components with stable APIs, so you can build new explorations fast.
   - title: Built for Agents
-    details: Folder-per-exploration structure, typed configs, and compact docs are designed so LLMs and coding agents can scaffold, wire, and verify explorations with minimal hand-holding.
+    details: AGENTS.md, the add-exploration skill, and compact website-docs let coding agents scaffold, wire, and verify explorations — with a human review pass on pedagogy and copy.
 ---
 
 ::: info Beta — structural base still evolving

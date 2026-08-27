@@ -15,6 +15,27 @@ New explorations are listed under **Explorations** for visibility but do not dri
 
 ---
 
+## [0.1.2] — 2026-08-27
+
+### Added
+
+- **Agent hub** — [AGENTS.md](https://github.com/feelyourprotocol/website/blob/main/AGENTS.md) as tool-agnostic entry for coding agents
+- **add-exploration skill** — [`.cursor/skills/add-exploration/SKILL.md`](https://github.com/feelyourprotocol/website/blob/main/.cursor/skills/add-exploration/SKILL.md) — sequenced workflow with human review gate
+- **explorations.mdc** — glob-scoped invariants for `src/explorations/` and `src/eComponents/`
+
+### Changed
+
+- Docs IA: **Building** section ([Overview](/building/overview)) replaces standalone How to Contribute / AI-Assisted pages
+- [Adding an Exploration](/contributing/adding-an-exploration) — agent skill pointer, human review subsection, verify aligned with CI (`lf:ci`)
+- [llms.txt](/public/llms.txt) — AGENTS.md + skill paths instead of AI-Assisted page
+- [repo-structure.mdc](https://github.com/feelyourprotocol/website/blob/main/.cursor/rules/repo-structure.mdc) — rules vs skills catalog
+
+### Removed
+
+- Standalone **AI-Assisted Development** page (content split into skill, glob rule, and adding-an-exploration review)
+
+---
+
 ## [0.1.1] — 2026-06-08
 
 ### Added
@@ -29,7 +50,7 @@ New explorations are listed under **Explorations** for visibility but do not dri
 - [Available E-Components](/contributing/available-e-components) — equal-weight reference for all E-Components
 - [Adding an Exploration](/contributing/adding-an-exploration) — building-block choice, extension guidance, E-Component test notes
 - [Architecture](/guide/architecture) — E-Components described as a growing set, not precompile-only
-- [AI-Assisted Development](/contributing/ai-assisted-development) — check Available E-Components first; slot/inject pitfall
+- **AI-Assisted Development** (retired in 0.1.2) — check Available E-Components first; slot/inject pitfall
 - [UI Components](/contributing/ui-components) — placement rules aligned with exploration-folder companions
 
 ### Explorations _(no version bump)_

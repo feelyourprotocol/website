@@ -34,16 +34,21 @@ Fleet overview for humans: [docs.feelyourprotocol.org](https://docs.feelyourprot
 - Do not import from `community-token/`, `roadmap/`, or `mcp-docs/` into `src/` (except shared libs under `src/libs/` or `shared/`)
 - Full deploy builds all targets (`npm run build:deploy`); when working on the explorations site, `npm run dev` and `npm run website:build` are enough
 
-## Cursor rules catalog
+## Cursor rules and skills catalog
 
-`.cursor/rules/` should stay a **small, scalable set**. Prefer **task-focused names** (`testing.mdc`, `video-recording.mdc`) over tool- or command-specific ones.
+`.cursor/rules/` stays **small**. `.cursor/skills/` holds **task playbooks**. Prefer task-focused names (`testing.mdc`, `add-exploration` skill) over tool-specific ones.
 
-**Core SWE primitives** (always-on, one concern each): `repo-structure.mdc`, `quality.mdc`, `testing.mdc`. Keep these generic enough to apply to any folder.
+| Layer | Examples | When to use |
+| --- | --- | --- |
+| **Rules — primitives** (always-on) | `repo-structure.mdc`, `quality.mdc`, `testing.mdc` | Cheap invariants on every session |
+| **Rules — task invariants** (glob-scoped) | `explorations.mdc` on `src/explorations/**`, `src/eComponents/**` | Failure modes for one domain — not a fourth primitive |
+| **Rules — specialized** | `video-recording.mdc`, `og-images.mdc` | Long capture/setup playbooks; do not fold into primitives |
+| **Skills** | `.cursor/skills/add-exploration/` | Ordered workflows; point at website-docs + source, do not duplicate catalogs |
 
-**Specialized task rules** (justified when the workflow is large and easy to get wrong): `video-recording.mdc`, `og-images.mdc`. Do **not** fold those into a primitive — and do not grow new always-on files for one-off commands.
+New work: invariants → rule or glob rule; executable procedure → skill; concepts and API tables → website-docs only.
 
-New rules: same split. Put invariants in a primitive; put long capture/setup playbooks in a named task file.
+Entry hub for agents: [AGENTS.md](../AGENTS.md).
 
 ## Direction of travel
 
-Exploration creation is moving toward **LLM/agent automation** (including MCP integration). Prefer extending **`website-docs/`** and **`.cursor/rules/`** so agents can run end-to-end with minimal human steps.
+Exploration creation is **agent-first** (including future MCP integration). Extend **website-docs**, **skills**, and **short rules** — not monolithic always-on rule files.

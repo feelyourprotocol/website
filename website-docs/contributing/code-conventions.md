@@ -96,15 +96,7 @@ Remove all `console.log` statements before submitting. Use error handling with `
 
 ## Linting & Formatting
 
-The project uses ESLint 9 (flat config) and Prettier:
-
-```bash
-npm run lf           # format with Prettier, then lint with ESLint (auto-fix)
-npm run lf:ci        # check only, no auto-fix (used in CI)
-npm run lint         # ESLint auto-fix only
-npm run format       # Prettier only
-npm run type-check   # vue-tsc type checking
-```
+The project uses ESLint 9 (flat config) and Prettier. **CI runs `npm run lf:ci`** (check only) plus `npm run type-check`. For the full finish checklist, see `.cursor/rules/quality.mdc` in the repo — do not duplicate command lists here.
 
 The ESLint config (`eslint.config.ts`) includes:
 - Vue essential rules
@@ -116,37 +108,13 @@ The ESLint config (`eslint.config.ts`) includes:
 
 ## Testing
 
-### Unit Tests
+Exploration and component tests use [Vitest](https://vitest.dev/) with [Vue Test Utils](https://test-utils.vuejs.org/). Co-locate `tests.spec.ts` in exploration folders or use `__tests__/` next to shared components.
 
-Unit tests use [Vitest](https://vitest.dev/) with [Vue Test Utils](https://test-utils.vuejs.org/) and a JSDOM environment. They live in `__tests__/` folders alongside their source:
+E2E smoke tests use [Cypress](https://www.cypress.io/) in `cypress/e2e/` for critical navigation only.
 
-```
-src/views/__tests__/
-├── HomeView.spec.ts
-├── TopicView.spec.ts
-├── ImprintView.spec.ts
-└── AppLayout.spec.ts
-```
-
-Run unit tests:
-
-```bash
-npx vitest run       # single run
-npm run test:unit    # watch mode
-```
-
-### E2E Tests
-
-E2E tests use [Cypress](https://www.cypress.io/) and are kept as lean smoke tests for critical navigation and integration flows. They live in `cypress/e2e/`:
-
-```bash
-npm run test:e2e     # headless run (requires build)
-npm run test:e2e:dev # interactive mode with dev server
-```
-
-### What to Test Where
+**What to test where** — see `.cursor/rules/testing.mdc` in the repo for scope and finish gates. Typical split:
 
 | Test type | Tool | What to test |
 |-----------|------|-------------|
-| Unit | Vitest | Component rendering, content, props, computed values |
+| Unit | Vitest | Component rendering, config/examples, domain helpers |
 | E2E | Cypress | Page loading, navigation flows, critical user journeys |

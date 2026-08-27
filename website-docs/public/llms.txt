@@ -11,6 +11,7 @@ Each exploration is a self-contained folder under `src/explorations/` with metad
 in the browser.
 
 Repo agent entrypoint: https://github.com/feelyourprotocol/website/blob/main/AGENTS.md
+Add-exploration skill: https://github.com/feelyourprotocol/website/blob/main/.cursor/skills/add-exploration/SKILL.md
 
 ## Guide
 
@@ -18,17 +19,16 @@ Repo agent entrypoint: https://github.com/feelyourprotocol/website/blob/main/AGE
 - [Architecture](https://website-docs.feelyourprotocol.org/guide/architecture.html): Folder-per-exploration model, taxonomies (Topics, Timeline, Tags), lazy-loaded widgets
 - [Changelog](https://website-docs.feelyourprotocol.org/changelog.html): History of the structural base (contribution model, components, project structure)
 
-## Contributing / automation
+## Building
 
-- [AI-Assisted Development](https://website-docs.feelyourprotocol.org/contributing/ai-assisted-development.html): Recommended agent workflow, prompts, and review checklist
+- [Overview](https://website-docs.feelyourprotocol.org/building/overview.html): How the explorations site is extended — file map, quality gates, agent entry
 - [Adding an Exploration](https://website-docs.feelyourprotocol.org/contributing/adding-an-exploration.html): Step-by-step from `info.ts` metadata to interactive widget and tests
-- [How to Contribute](https://website-docs.feelyourprotocol.org/contributing/how-to-contribute.html): Where files live; quality gates before a PR
 - [Images](https://website-docs.feelyourprotocol.org/contributing/images.html): Cover images and the color system
 - [UI Components](https://website-docs.feelyourprotocol.org/contributing/ui-components.html): Shared UI primitives (e.g. ResultBoxUIC, example selectors)
 - [E-Components](https://website-docs.feelyourprotocol.org/contributing/e-components.html): The reusable Ethereum building-block model
 - [Available E-Components](https://website-docs.feelyourprotocol.org/contributing/available-e-components.html): Catalog of ready-to-use E-Components and their APIs
 - [Styling & Design](https://website-docs.feelyourprotocol.org/contributing/styling.html): The exploration design system and class conventions
-- [Code Conventions](https://website-docs.feelyourprotocol.org/contributing/code-conventions.html): Coding standards and test commands
+- [Code Conventions](https://website-docs.feelyourprotocol.org/contributing/code-conventions.html): Coding standards and naming
 - [Third-Party Libraries](https://website-docs.feelyourprotocol.org/contributing/third-party-libraries.html): How new library dependencies are evaluated and added
 - [Video Pipeline](https://website-docs.feelyourprotocol.org/contributing/video-pipeline.html): Short-form exploration videos — architecture, overlays, recording
 - [Authoring a Video Short](https://website-docs.feelyourprotocol.org/contributing/video-authoring.html): How to plan, write, and record exploration shorts

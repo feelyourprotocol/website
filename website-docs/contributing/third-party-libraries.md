@@ -2,9 +2,7 @@
 
 Feel Your Protocol runs real Ethereum library code in the browser. Most explorations need protocol-level functionality — EVM execution, cryptographic primitives, transaction encoding — that comes from third-party libraries. This page explains how to use them, from the simplest case to deep customizations.
 
-::: tip Open an issue first
-If your exploration needs a library that isn't already in `package.json`, or requires a custom fork, **open a GitHub issue before you start coding**. This lets us settle the library situation up front and avoids frustration later. The issue templates will guide you through the relevant questions.
-:::
+**Prefer existing dependencies.** New runtime packages need an **explicit human ask** before adding — keep the dependency list lean (actively maintained, reasonably sized, needed by at least one exploration). For managed-fork or security-sensitive library work, align with a maintainer via GitHub issue.
 
 ## 1. Use an Existing Dependency
 
@@ -20,10 +18,10 @@ Thanks to Vite's code splitting, each exploration's imports are loaded on demand
 
 ## 2. Request a New Dependency
 
-If a well-maintained, popular library exists for what you need but isn't in `package.json` yet, you can request its addition:
+If a well-maintained, popular library exists for what you need but isn't in `package.json` yet:
 
-1. **Open a GitHub issue** describing the library, why you need it, and which exploration will use it
-2. Ideally, submit the dependency addition as a **separate PR** first, so we can review and merge it independently
+1. **Get explicit approval** — describe the library, why you need it, and which exploration will use it (GitHub issue or direct maintainer ask)
+2. Ideally, submit the dependency addition as a **separate PR** first, so it can be reviewed independently
 3. Once merged, import it in your exploration
 
 We keep the dependency list lean — the library should be actively maintained, reasonably sized, and needed by at least one exploration.
@@ -104,4 +102,4 @@ Not sure which approach to take? Walk through this:
 3. **Can you customize via subclassing or built-in APIs?** → Extend in-place ([Level 3](#_3-extend-within-your-exploration))
 4. **Do you need deep library modifications?** → Use the managed fork workflow ([Level 4](#_4-use-a-managed-fork-special-libraries))
 
-When in doubt, **open an issue and ask**. Library integration is often a case-by-case decision that benefits from a quick conversation before you invest implementation time.
+For managed forks or unusual integration, align with a maintainer before investing implementation time.

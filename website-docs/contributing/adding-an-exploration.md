@@ -1,6 +1,6 @@
 # Adding an Exploration
 
-Each exploration lives in its own folder under `src/explorations/` with a few files. This guide walks you through adding a new one.
+Each exploration lives in its own folder under `src/explorations/` with a few files. This guide is the **canonical checklist** — field reference, steps, and verification. Coding agents should follow the [add-exploration skill](https://github.com/feelyourprotocol/website/blob/main/.cursor/skills/add-exploration/SKILL.md) first, then use this page for details.
 
 ## Quick Overview
 
@@ -462,12 +462,26 @@ See [Images — Social preview](/contributing/images#social-preview-og-images) f
 
 ## Step 9: Verify
 
+Run quality gates (same as CI — see `.cursor/rules/quality.mdc`):
+
 ```bash
-npm run dev          # check your exploration locally
-npm run lf           # format + lint
-npm run type-check   # TypeScript check
-npm run build        # verify production build
+npm run dev                    # check your exploration locally in the browser
+npm run lf:ci                  # format + lint (check only)
+npm run type-check             # TypeScript check
+npx vitest run src/explorations/<id>/   # exploration unit tests
+npm run build                  # verify production build
 ```
+
+## Human review
+
+Tests passing does **not** mean the exploration is ready to ship. Before OG image generation or a PR, a human should review:
+
+- **Pedagogy** — does the widget help someone understand the protocol change?
+- **introText / usageText** — accurate against the spec?
+- **Examples** — meaningful inputs, not only `0x00` / `0xff`?
+- **Visual pass** — spacing, overflow, topic colors at different viewport sizes
+
+Agents must stop for this review even when all automated checks are green.
 
 ## Checklist
 
@@ -481,4 +495,4 @@ npm run build        # verify production build
 - [ ] Generated social preview image (`npm run generate:og:exploration -- <id>`)
 - [ ] All unit tests pass
 - [ ] Linting and type checking pass
-- [ ] Production build succeeds
+- [ ] Human review of intro, usage, examples, and visual pass

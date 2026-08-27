@@ -26,7 +26,8 @@ npm run website-docs:preview
 website-docs/
 ├── .vitepress/          # Theme, config, custom CSS (cyan "Builder's Workshop" skin)
 ├── guide/               # Getting started, architecture, changelog
-├── contributing/        # Explorations, E-Components, video, conventions, AI workflow
+├── building/            # How the explorations site is extended (overview)
+├── contributing/        # Explorations, E-Components, video, conventions
 ├── special-actions/     # One-off operational write-ups (website-related)
 └── public/              # llms.txt, robots.txt, OG assets, fonts
 ```
