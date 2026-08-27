@@ -23,8 +23,8 @@ features:
     details: Widgets run actual Ethereum library code in the browser — no mocks, no simplifications. See how protocol changes behave with real inputs.
   - title: Reusable E-Components
     details: Common Ethereum patterns like precompile interfaces are packaged as reusable E-Components with stable APIs, so you can build new explorations fast.
-  - title: Built for Agents
-    details: AGENTS.md, the add-exploration skill, and compact website-docs let coding agents scaffold, wire, and verify explorations — with a human review pass on pedagogy and copy.
+  - title: Instruct & Review
+    details: Website-docs teach concepts and how to brief an agent; skills scaffold implementation. You review pedagogy, copy, examples, and visuals — not CSS class names.
 ---
 
 ::: info Beta — structural base still evolving

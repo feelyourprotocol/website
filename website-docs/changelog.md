@@ -15,6 +15,22 @@ New explorations are listed under **Explorations** for visibility but do not dri
 
 ---
 
+## [0.1.3] — 2026-08-27
+
+### Added
+
+- **cover-image skill** — [`.cursor/skills/cover-image/SKILL.md`](https://github.com/feelyourprotocol/website/blob/main/.cursor/skills/cover-image/SKILL.md) — topic hex ranges, prompt templates, human-ask gate before generation
+- **JSDoc** on `Exploration` (`REGISTRY.ts`) and E-Component config types (`precompileInterfaceEC/types.ts`, `bytecodeStepperEC/types.ts`)
+
+### Changed
+
+- **Instructor docs** — website-docs rewritten for humans who brief and review agents: [Building overview](/building/overview), [Adding an Exploration](/contributing/adding-an-exploration), [Architecture](/guide/architecture), [E-Components](/contributing/e-components), [Available E-Components](/contributing/available-e-components), [Styling](/contributing/styling) (no CSS class catalog), [UI Components](/contributing/ui-components), [Images](/contributing/images), [Getting Started](/guide/getting-started), [Code Conventions](/contributing/code-conventions)
+- [add-exploration skill](https://github.com/feelyourprotocol/website/blob/main/.cursor/skills/add-exploration/SKILL.md) — lookups → source + reference folders; concepts → architecture/e-components; optional cover → cover-image skill
+- [explorations.mdc](https://github.com/feelyourprotocol/website/blob/main/.cursor/rules/explorations.mdc) — CSS class names live in `main.css`
+- [AGENTS.md](https://github.com/feelyourprotocol/website/blob/main/AGENTS.md), [llms.txt](/public/llms.txt) — humans instruct, agents implement; both skill URLs
+
+---
+
 ## [0.1.2] — 2026-08-27
 
 ### Added

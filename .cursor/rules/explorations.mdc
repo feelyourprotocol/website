@@ -24,7 +24,7 @@ Read valid IDs from source — do not guess:
 
 ## Styling and deps
 
-- Use `e-*` design-system classes — no hardcoded Tailwind color utilities on exploration UI.
+- Use `e-*` design-system classes from `src/main.css` — no hardcoded Tailwind color utilities on exploration UI. Do not re-list CSS class tables in prompts; read source.
 - Import third-party libraries only in the exploration folder (or exploration-local modules), not in E-Components.
 
 ## Registration

@@ -9,7 +9,11 @@ description: >-
 
 # Add an exploration
 
-Executable playbook for the **explorations website** only (`src/explorations/`). Canonical field reference: [adding-an-exploration.md](../../website-docs/contributing/adding-an-exploration.md). Do not paste that page into context — read it and the source files listed below.
+Executable playbook for the **explorations website** only (`src/explorations/`).
+
+**Concepts** (taxonomies, reuse, human review): [architecture.md](../../website-docs/guide/architecture.md), [e-components.md](../../website-docs/contributing/e-components.md), [adding-an-exploration.md](../../website-docs/contributing/adding-an-exploration.md).
+
+**Lookups** (field names, types, CSS): source files below — do not guess IDs or re-list CSS tables in chat.
 
 Repo boundaries: [AGENTS.md](../../AGENTS.md), [repo-structure.mdc](../rules/repo-structure.mdc).
 
@@ -20,27 +24,27 @@ Repo boundaries: [AGENTS.md](../../AGENTS.md), [repo-structure.mdc](../rules/rep
    - `src/explorations/TOPICS.ts`
    - `src/explorations/TIMELINE.ts`
    - `src/explorations/TAGS.ts`
-3. Skim [architecture.md](../../website-docs/guide/architecture.md) for the content model.
+3. Field reference: JSDoc on `Exploration` in `src/explorations/REGISTRY.ts`.
 
 ## Choose a building block
 
 In order:
 
-1. [available-e-components.md](../../website-docs/contributing/available-e-components.md) — wire config + examples + execution (often &lt;30 lines in `MyC.vue`).
-2. E-Component + slots/companion components — see [adding-an-exploration.md § extending](../../website-docs/contributing/adding-an-exploration.md#extending-when-the-core-e-component-is-not-enough).
-3. Custom widget with `ExplorationC` + shared UI — [ui-components.md](../../website-docs/contributing/ui-components.md), [styling.md](../../website-docs/contributing/styling.md).
+1. [available-e-components.md](../../website-docs/contributing/available-e-components.md) + reference folder — wire config + examples + execution.
+2. E-Component + slots/companion components — [e-components.md § extension points](../../website-docs/contributing/e-components.md#extension-points).
+3. Custom widget with `ExplorationC` + shared UI — [ui-components.md](../../website-docs/contributing/ui-components.md).
 
 Reference explorations by pattern:
 
-| Pattern | Folder |
-| --- | --- |
-| Precompile | `src/explorations/eip-7951/` |
-| Bytecode stepper + companion panel | `src/explorations/eip-8024/` |
-| Custom / scenario-driven | `src/explorations/eip-7928/` |
+| Pattern | Folder | Config types |
+| --- | --- | --- |
+| Precompile | `src/explorations/eip-7951/` | `src/eComponents/precompileInterfaceEC/types.ts` |
+| Bytecode stepper + companion | `src/explorations/eip-8024/` | `src/eComponents/bytecodeStepperEC/types.ts` |
+| Custom / scenario-driven | `src/explorations/eip-7928/` | — |
+
+Copy the closest folder; adapt `info.ts`, `examples.ts`, `MyC.vue`, and `config.ts` as needed.
 
 ## Implementation steps
-
-Follow [adding-an-exploration.md](../../website-docs/contributing/adding-an-exploration.md) **steps 1–7** in order:
 
 1. Create `src/explorations/<id>/`
 2. `info.ts` — metadata, `seoDescription`, taxonomies from source files
@@ -48,13 +52,13 @@ Follow [adding-an-exploration.md](../../website-docs/contributing/adding-an-expl
 4. `MyC.vue` (+ `config.ts` if E-Component-backed)
 5. Register in `src/explorations/REGISTRY.ts`
 6. Dependencies — prefer existing `package.json` entries; new runtime deps need **explicit human ask** ([third-party-libraries.md](../../website-docs/contributing/third-party-libraries.md))
-7. `tests.spec.ts` — see step 7 in the doc
+7. `tests.spec.ts` — metadata, examples, config sanity
 
-Run `npm run dev` and keep it running; verify the exploration route in the browser after each major step.
+Run `npm run dev` and verify the exploration route in the browser after each major step.
 
 ## Invariants (also in explorations.mdc)
 
-- **No hardcoded Tailwind colors** — use `e-text`, `e-result-box`, and other `e-*` classes ([styling.md](../../website-docs/contributing/styling.md)).
+- **No hardcoded Tailwind colors** — use `e-*` classes from `src/main.css`; do not invent color utilities.
 - **Libraries only in the exploration folder** — not in E-Components or shared UI.
 - **Companion UI inside E-Component slots** — provide/inject needs descendants; no sibling panels next to the E-Component root.
 - **Register in REGISTRY.ts** — exploration is invisible until imported.
@@ -81,12 +85,12 @@ Apply [quality.mdc](../rules/quality.mdc) and [testing.mdc](../rules/testing.mdc
 - **Examples** — meaningful inputs, not only `0x00` / `0xff`?
 - **Visual pass** — spacing, overflow, topic colors in the browser
 
-Only proceed to OG image generation or PR prep after human sign-off on copy and UX.
+Only proceed to OG image generation, cover art, or PR prep after human sign-off on copy and UX.
 
 ## Optional follow-ups (not required for v1)
 
 - **OG image:** `npm run generate:og:exploration -- <id>` per [og-images.mdc](../rules/og-images.mdc) — never substitute ad-hoc image generation for the OG pipeline.
-- **Cover art:** [images.md](../../website-docs/contributing/images.md)
+- **Cover art:** [cover-image skill](../cover-image/SKILL.md) after human review — separate from OG.
 
 ## Out of scope
 

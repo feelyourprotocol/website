@@ -26,12 +26,19 @@ export interface PoweredByItem {
 }
 
 export interface Exploration {
+  /** Folder name and route key, e.g. `eip-7883`. Must match `src/explorations/<id>/`. */
   id: string
+  /** URL path segment, e.g. `/eip-7883-modexp-gas`. Used in router and OG generation. */
   path: string
+  /** Human-readable page title shown in the exploration shell. */
   title: string
+  /** Link to the canonical spec (EIPs site, ERC, or research note). */
   infoURL: string
+  /** Topic ID — fixed set in `TOPICS.ts` (scaling, privacy, ux, …). Drives card grouping and topic colors. */
   topic: string
+  /** Timeline entry ID from `TIMELINE.ts` (hardfork or maturity stage). */
   timeline: string
+  /** Up to 3–4 reusable technical concepts from `TAGS.ts`. See architecture § tags. */
   tags: Tag[]
   image?: string
   /** Optional thumbnail (~300px) for topic cards and compact layouts; same basename as `image` with `_small` suffix. */
@@ -42,10 +49,15 @@ export interface Exploration {
   rightPanel?: boolean
   /** Plain-text discovery copy for meta tags and static prerender (~120–160 chars). See contributing guide. */
   seoDescription?: string
+  /** HTML intro shown above the widget — pedagogical framing, not SEO copy. */
   introText: string
+  /** HTML instructions for using the widget below the intro. */
   usageText: string
+  /** Optional attribution for the exploration author. */
   creatorName?: string
+  /** Optional link for the exploration author. */
   creatorURL?: string
+  /** Libraries or projects the widget runs on — shown in the exploration footer. */
   poweredBy: PoweredByItem[]
 }
 export interface Explorations {

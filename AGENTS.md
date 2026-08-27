@@ -2,13 +2,16 @@
 
 Tool-agnostic entrypoint for coding agents (Cursor, Claude Code, Codex, etc.) in this monorepo.
 
-**Read this file first.** Then load the task skill if one exists. Canonical detail lives in **website-docs** and **source files** — do not duplicate catalogs into prompts.
+**Read this file first.** Then load the task skill if one exists.
+
+**website-docs** are the human conceptual guide — taxonomies, how to brief and review, structural rules. **Skills** are the executable path for implementation. Canonical field names and CSS live in **source** (`REGISTRY.ts`, `types.ts`, `main.css`) — do not duplicate catalogs into prompts.
 
 ## Docs map
 
 | Task | Read first |
 | --- | --- |
 | **Create or change an exploration** | [`.cursor/skills/add-exploration/SKILL.md`](.cursor/skills/add-exploration/SKILL.md) → [adding-an-exploration.md](website-docs/contributing/adding-an-exploration.md) |
+| **Generate cover art** | [`.cursor/skills/cover-image/SKILL.md`](.cursor/skills/cover-image/SKILL.md) → [images.md](website-docs/contributing/images.md) |
 | E-Components, styling, conventions | [website-docs/](website-docs/) (index: [llms.txt](website-docs/public/llms.txt)) |
 | MCP server docs | [mcp-docs/README.md](mcp-docs/README.md) — not `website-docs/` |
 | Roadmap site | [roadmap/README.md](roadmap/README.md) — internal, maintainer-facing |

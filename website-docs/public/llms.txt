@@ -1,8 +1,8 @@
 # Feel Your Protocol — Website Documentation
 
-> Agent-oriented documentation for the Feel Your Protocol **explorations website** —
+> Human-oriented docs for the Feel Your Protocol **explorations website** —
 > interactive, hands-on widgets for Ethereum protocol changes (EIPs, ERCs, research).
-> Covers project structure, adding explorations, E-Components, styling, and video.
+> Humans instruct and review; agents implement via skills and source.
 > Does **not** cover roadmap, community token, or MCP server development (see each
 > folder's README in the GitHub repo).
 
@@ -12,23 +12,24 @@ in the browser.
 
 Repo agent entrypoint: https://github.com/feelyourprotocol/website/blob/main/AGENTS.md
 Add-exploration skill: https://github.com/feelyourprotocol/website/blob/main/.cursor/skills/add-exploration/SKILL.md
+Cover-image skill: https://github.com/feelyourprotocol/website/blob/main/.cursor/skills/cover-image/SKILL.md
 
 ## Guide
 
-- [Getting Started](https://website-docs.feelyourprotocol.org/guide/getting-started.html): Prerequisites, local setup, quality checks, website-only project layout
-- [Architecture](https://website-docs.feelyourprotocol.org/guide/architecture.html): Folder-per-exploration model, taxonomies (Topics, Timeline, Tags), lazy-loaded widgets
-- [Changelog](https://website-docs.feelyourprotocol.org/changelog.html): History of the structural base (contribution model, components, project structure)
+- [Getting Started](https://website-docs.feelyourprotocol.org/guide/getting-started.html): Prerequisites, local setup, quality checks
+- [Architecture](https://website-docs.feelyourprotocol.org/guide/architecture.html): Folder-per-exploration model, taxonomies (Topics, Timeline, Tags), E-Components
+- [Changelog](https://website-docs.feelyourprotocol.org/changelog.html): Structural-base history
 
 ## Building
 
-- [Overview](https://website-docs.feelyourprotocol.org/building/overview.html): How the explorations site is extended — file map, quality gates, agent entry
-- [Adding an Exploration](https://website-docs.feelyourprotocol.org/contributing/adding-an-exploration.html): Step-by-step from `info.ts` metadata to interactive widget and tests
-- [Images](https://website-docs.feelyourprotocol.org/contributing/images.html): Cover images and the color system
-- [UI Components](https://website-docs.feelyourprotocol.org/contributing/ui-components.html): Shared UI primitives (e.g. ResultBoxUIC, example selectors)
-- [E-Components](https://website-docs.feelyourprotocol.org/contributing/e-components.html): The reusable Ethereum building-block model
-- [Available E-Components](https://website-docs.feelyourprotocol.org/contributing/available-e-components.html): Catalog of ready-to-use E-Components and their APIs
-- [Styling & Design](https://website-docs.feelyourprotocol.org/contributing/styling.html): The exploration design system and class conventions
-- [Code Conventions](https://website-docs.feelyourprotocol.org/contributing/code-conventions.html): Coding standards and naming
+- [Overview](https://website-docs.feelyourprotocol.org/building/overview.html): Brief an agent, review the result — file map and quality gates
+- [Adding an Exploration](https://website-docs.feelyourprotocol.org/contributing/adding-an-exploration.html): Folder contract, metadata judgment table, human review checklist
+- [Images](https://website-docs.feelyourprotocol.org/contributing/images.html): Cover art rules (human brief); prompts in cover-image skill
+- [UI Components](https://website-docs.feelyourprotocol.org/contributing/ui-components.html): Placement rules — shared vs exploration-local
+- [E-Components](https://website-docs.feelyourprotocol.org/contributing/e-components.html): Integration intent, slots, composition direction
+- [Available E-Components](https://website-docs.feelyourprotocol.org/contributing/available-e-components.html): Which pattern to copy — reference folders, not API dumps
+- [Styling & Design](https://website-docs.feelyourprotocol.org/contributing/styling.html): Topic colors and design-system rules (no CSS class catalog)
+- [Code Conventions](https://website-docs.feelyourprotocol.org/contributing/code-conventions.html): Naming (`MyC`, `EC`, `UIC`)
 - [Third-Party Libraries](https://website-docs.feelyourprotocol.org/contributing/third-party-libraries.html): How new library dependencies are evaluated and added
 - [Video Pipeline](https://website-docs.feelyourprotocol.org/contributing/video-pipeline.html): Short-form exploration videos — architecture, overlays, recording
 - [Authoring a Video Short](https://website-docs.feelyourprotocol.org/contributing/video-authoring.html): How to plan, write, and record exploration shorts

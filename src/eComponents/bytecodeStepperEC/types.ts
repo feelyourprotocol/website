@@ -1,10 +1,16 @@
 import type { ExecResult } from '@ethereumjs/evm'
 
+/** Exploration-local config passed to BytecodeStepperEC. EVM instance stays in MyC.vue. */
 export interface BytecodeStepperConfig {
+  /** Must match exploration folder id and REGISTRY key. */
   explorationId: string
+  /** Key from `examples.ts` selected on first load. */
   defaultExample: string
+  /** Gas limit for EVM runs (default applied in component if omitted). */
   gasLimit?: bigint
+  /** Max stack items shown in the UI. */
   maxStackDisplay?: number
+  /** Max memory bytes rendered in the memory panel. */
   maxMemoryBytes?: number
 }
 
