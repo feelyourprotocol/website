@@ -40,7 +40,9 @@ describe('App layout', () => {
 
     it('renders subtitle', async () => {
       const wrapper = await mountApp(makeRouter())
-      expect(wrapper.find('header').text()).toContain('Interactive Ethereum Protocol Explorations')
+      expect(wrapper.find('header').text()).toContain(
+        'Ethereum Protocol Explorations for Humans and AI',
+      )
     })
 
     it('exploration dropdown button is rendered', async () => {
@@ -121,7 +123,7 @@ describe('App layout', () => {
   })
 
   describe('Video mode', () => {
-    it('hides header, roadmap banner, and footer when ?fyp-video=1', async () => {
+    it('hides header and footer when ?fyp-video=1', async () => {
       const router = makeRouter()
       await router.push('/?fyp-video=1')
       await router.isReady()

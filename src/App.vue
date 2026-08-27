@@ -76,7 +76,7 @@ onUnmounted(() => {
         <p
           class="flex items-baseline text-sm md:text-xl text-slate-500 tracking-wide sm:col-span-2 sm:row-start-2"
         >
-          <span class="shrink-0">Interactive Ethereum Protocol Explorations</span>
+          <span class="shrink-0">Ethereum Protocol Explorations for Humans and AI</span>
           <span class="protocol-dots hidden sm:inline flex-1 overflow-hidden whitespace-nowrap"
             >· · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · ·
             · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · ·
@@ -142,24 +142,6 @@ onUnmounted(() => {
         </nav>
       </div>
     </header>
-
-    <aside
-      v-if="!isVideoMode"
-      class="mb-4 rounded-lg border border-purple-200/80 bg-gradient-to-r from-purple-50/90 to-cyan-50/70 px-4 py-3 shadow-sm"
-    >
-      <p class="font-mono text-xs leading-relaxed text-slate-700 sm:text-sm">
-        <span class="font-bold text-purple-700">Phase 3</span>
-        — we're designing a deterministic API &amp; MCP server for the future Ethereum protocol
-        (upcoming forks &amp; EIPs) for AI agents.
-        <a
-          :href="ROADMAP_HOME"
-          target="_blank"
-          rel="noopener"
-          class="ml-1 font-semibold text-purple-700 underline decoration-purple-300 underline-offset-2 hover:text-purple-900"
-          >Read the roadmap ↗</a
-        >
-      </p>
-    </aside>
 
     <RouterView :key="route.fullPath" class="grid grid-cols-1" />
 

@@ -74,7 +74,7 @@ export default defineConfig({
       '<span class="fyp-nav-title"><span class="fyp-nav-title-main">Feel Your Protocol</span><span class="fyp-nav-title-sub">Website Docs</span></span>',
     nav: [
       { text: 'Guide', link: '/guide/getting-started' },
-      { text: 'Contributing', link: '/contributing/how-to-contribute' },
+      { text: 'Building', link: '/building/overview' },
       { text: 'Changelog', link: '/changelog' },
       { text: 'All Docs', link: 'https://docs.feelyourprotocol.org' },
       { text: 'MCP Docs', link: 'https://mcp-docs.feelyourprotocol.org' },
@@ -91,10 +91,9 @@ export default defineConfig({
         ],
       },
       {
-        text: 'Contributing',
+        text: 'Building',
         items: [
-          { text: 'How to Contribute', link: '/contributing/how-to-contribute' },
-          { text: 'AI-Assisted Development', link: '/contributing/ai-assisted-development' },
+          { text: 'Overview', link: '/building/overview' },
           { text: 'Adding an Exploration', link: '/contributing/adding-an-exploration' },
           { text: 'Images', link: '/contributing/images' },
           { text: 'UI Components', link: '/contributing/ui-components' },

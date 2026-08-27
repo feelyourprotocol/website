@@ -55,7 +55,9 @@ describe('HomeView', () => {
   describe('About section', () => {
     it('renders project description', () => {
       expect(wrapper.text()).toContain('About the Project')
-      expect(wrapper.text()).toContain('Feel Your Protocol is a collaborative open-source project')
+      expect(wrapper.text()).toContain(
+        'Feel Your Protocol turns upcoming Ethereum protocol changes',
+      )
     })
 
     it('has contributor docs link pointing to docs site', () => {
@@ -125,6 +127,16 @@ describe('HomeView', () => {
       const links = wrapper.findAllComponents(RouterLinkStub)
       for (const id of latest) {
         expect(links.some((l) => l.props('to') === EXPLORATIONS[id].path)).toBe(true)
+      }
+    })
+
+    it('external info link on latest cards points to EIP spec, not detail route', () => {
+      for (const id of latest) {
+        const link = wrapper.find(
+          `#${id}-c a.visit-exploration-button[href="${EXPLORATIONS[id].infoURL}"]`,
+        )
+        expect(link.exists()).toBe(true)
+        expect(link.attributes('target')).toBe('_blank')
       }
     })
   })

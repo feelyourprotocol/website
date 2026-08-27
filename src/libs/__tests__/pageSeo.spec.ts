@@ -170,7 +170,7 @@ describe('pageSeo', () => {
     const topic = TOPICS[exploration.topic]
 
     expect(getStaticShellHeading('/')).toBe(
-      'Feel Your Protocol — Interactive Ethereum Protocol Explorations',
+      'Feel Your Protocol — Ethereum Protocol Explorations for Humans and AI',
     )
     expect(getStaticShellHeading('/robustness')).toBe('Robustness')
     expect(getStaticShellHeading(exploration.path)).toBe(exploration.title)

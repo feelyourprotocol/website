@@ -1,47 +1,47 @@
-# Feel Your Protocol — Documentation
+# Feel Your Protocol — Website Documentation
 
-> Contributor and architecture documentation for Feel Your Protocol, an open-source project
-> of interactive, hands-on explorations of Ethereum protocol changes. These docs explain how
-> the project is structured, how to add a new exploration, and how the reusable building
-> blocks (E-Components) and UI components fit together.
+> Human-oriented docs for the Feel Your Protocol **explorations website** —
+> interactive, hands-on widgets for Ethereum protocol changes (EIPs, ERCs, research).
+> Humans instruct and review; agents implement via skills and source.
+> Does **not** cover roadmap, community token, or MCP server development (see each
+> folder's README in the GitHub repo).
 
-Feel Your Protocol turns Ethereum protocol changes (EIPs, ERCs, research) into interactive
-widgets that run real Ethereum library code in the browser. Each exploration is a
-self-contained folder with metadata (`info.ts`) and an interactive widget. The docs are aimed
-at contributors and developers who want to understand or extend the project.
+Each exploration is a self-contained folder under `src/explorations/` with metadata
+(`info.ts`) and an interactive widget (`MyC.vue`). Real Ethereum library code runs
+in the browser.
+
+Repo agent entrypoint: https://github.com/feelyourprotocol/website/blob/main/AGENTS.md
+Add-exploration skill: https://github.com/feelyourprotocol/website/blob/main/.cursor/skills/add-exploration/SKILL.md
+Cover-image skill: https://github.com/feelyourprotocol/website/blob/main/.cursor/skills/cover-image/SKILL.md
 
 ## Guide
 
-- [Getting Started](https://website-docs.feelyourprotocol.org/guide/getting-started.html): What the project is, prerequisites, local setup, and quality checks
-- [Architecture](https://website-docs.feelyourprotocol.org/guide/architecture.html): Folder-per-exploration model, taxonomies (Topics, Timeline, Tags), and lazy-loaded widgets
-- [Changelog](https://website-docs.feelyourprotocol.org/changelog.html): History of the structural base (contribution model, components, project structure)
+- [Getting Started](https://website-docs.feelyourprotocol.org/guide/getting-started.html): Prerequisites, local setup, quality checks
+- [Architecture](https://website-docs.feelyourprotocol.org/guide/architecture.html): Folder-per-exploration model, taxonomies (Topics, Timeline, Tags), E-Components
+- [Changelog](https://website-docs.feelyourprotocol.org/changelog.html): Structural-base history
 
-## Contributing
+## Building
 
-- [How to Contribute](https://website-docs.feelyourprotocol.org/contributing/how-to-contribute.html): Ways to help; adding an exploration is the most impactful
-- [AI-Assisted Development](https://website-docs.feelyourprotocol.org/contributing/ai-assisted-development.html): Using AI tools to build explorations, and what to double-check
-- [Adding an Exploration](https://website-docs.feelyourprotocol.org/contributing/adding-an-exploration.html): Step-by-step from `info.ts` metadata to interactive widget and tests
-- [Images](https://website-docs.feelyourprotocol.org/contributing/images.html): Cover images and the color system
-- [UI Components](https://website-docs.feelyourprotocol.org/contributing/ui-components.html): Shared UI primitives (e.g. ResultBoxUIC, example selectors)
-- [E-Components](https://website-docs.feelyourprotocol.org/contributing/e-components.html): The reusable Ethereum building-block model
-- [Available E-Components](https://website-docs.feelyourprotocol.org/contributing/available-e-components.html): Catalog of ready-to-use E-Components and their APIs
-- [Styling & Design](https://website-docs.feelyourprotocol.org/contributing/styling.html): The exploration design system and class conventions
-- [Code Conventions](https://website-docs.feelyourprotocol.org/contributing/code-conventions.html): Coding standards and test commands
+- [Overview](https://website-docs.feelyourprotocol.org/building/overview.html): Brief an agent, review the result — file map and quality gates
+- [Adding an Exploration](https://website-docs.feelyourprotocol.org/contributing/adding-an-exploration.html): Folder contract, metadata judgment table, human review checklist
+- [Images](https://website-docs.feelyourprotocol.org/contributing/images.html): Cover art rules (human brief); prompts in cover-image skill
+- [UI Components](https://website-docs.feelyourprotocol.org/contributing/ui-components.html): Placement rules — shared vs exploration-local
+- [E-Components](https://website-docs.feelyourprotocol.org/contributing/e-components.html): Integration intent, slots, composition direction
+- [Available E-Components](https://website-docs.feelyourprotocol.org/contributing/available-e-components.html): Which pattern to copy — reference folders, not API dumps
+- [Styling & Design](https://website-docs.feelyourprotocol.org/contributing/styling.html): Topic colors and design-system rules (no CSS class catalog)
+- [Code Conventions](https://website-docs.feelyourprotocol.org/contributing/code-conventions.html): Naming (`MyC`, `EC`, `UIC`)
 - [Third-Party Libraries](https://website-docs.feelyourprotocol.org/contributing/third-party-libraries.html): How new library dependencies are evaluated and added
 - [Video Pipeline](https://website-docs.feelyourprotocol.org/contributing/video-pipeline.html): Short-form exploration videos — architecture, overlays, recording
 - [Authoring a Video Short](https://website-docs.feelyourprotocol.org/contributing/video-authoring.html): How to plan, write, and record exploration shorts
 
-## Related
+## Related (live sites, not dev docs here)
 
-- [Main site](https://feelyourprotocol.org/): The live, interactive explorations
-- [Phase 3 Roadmap](https://roadmap.feelyourprotocol.org/index.html): Future Ethereum protocol API & MCP — upcoming forks, EIPs, research (conceptualization workspace — not shipped API docs)
-- [Community Token](https://community-token.feelyourprotocol.org/): How a community token on Base supports this open-source work
-- [Source on GitHub](https://github.com/feelyourprotocol/website): Full source for site, docs, and explorations
+- [Main site](https://feelyourprotocol.org/): Live interactive explorations
+- [All FYP docs (fleet hub)](https://docs.feelyourprotocol.org/): Entry card to website docs, MCP docs, roadmap, community token
+- [Source on GitHub](https://github.com/feelyourprotocol/website): Monorepo — sibling-site READMEs for non-website dev work
 
 ## Notes
 
-- Built with VitePress; pages are static HTML and the Markdown sources live in the `website-docs/`
-  folder of the GitHub repository.
-- The project is in beta: APIs of reusable components are still evolving. Latest docs always
-  apply — there is no version switching.
+- Built with VitePress; Markdown sources live in `website-docs/` on GitHub.
+- Beta: reusable component APIs may evolve. Latest docs always apply — no version switching.
 - Educational, open-source software provided as-is; not affiliated with the Ethereum Foundation.

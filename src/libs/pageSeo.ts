@@ -22,7 +22,7 @@ export {
 export const SITE_ORIGIN = 'https://feelyourprotocol.org'
 export const SITE_NAME = DEFAULT_SITE_NAME
 
-export const HOME_PAGE_TITLE = `${SITE_NAME} — Interactive Ethereum Protocol Explorations`
+export const HOME_PAGE_TITLE = `${SITE_NAME} — Ethereum Protocol Explorations for Humans and AI`
 
 export const DEFAULT_DESCRIPTION =
   'Interactive open-source explorations of Ethereum protocol changes. Real EVM and crypto libraries running in your browser.'
@@ -443,7 +443,7 @@ export interface StaticShellAssets {
 /** Screen-reader page heading for the static shell — mirrors in-app `<h1>` / breadcrumb context. */
 export function getStaticShellHeading(path: string): string {
   if (path === '/') {
-    return `${SITE_NAME} — Interactive Ethereum Protocol Explorations`
+    return `${SITE_NAME} — Ethereum Protocol Explorations for Humans and AI`
   }
 
   const crumbs = getBreadcrumbsForPath(path)
@@ -467,7 +467,7 @@ export function buildStaticShellHtml(path: string, assets: StaticShellAssets): s
     '        </a>',
     '      </div>',
     '      <p class="flex items-baseline text-sm md:text-xl text-slate-500 tracking-wide sm:col-span-2 sm:row-start-2">',
-    '        <span class="shrink-0">Interactive Ethereum Protocol Explorations</span>',
+    '        <span class="shrink-0">Ethereum Protocol Explorations for Humans and AI</span>',
     '      </p>',
     '    </div>',
     '  </header>',

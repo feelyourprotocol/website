@@ -38,7 +38,7 @@ export function buildExplorationHtml(data: ExplorationOgData): string {
     SPEC_LABEL: data.specLabel,
     DESCRIPTION: data.seoDescription,
     TOPIC_TITLE: data.topicTitle,
-    TAGLINE: 'Interactive Ethereum Protocol Explorations',
+    TAGLINE: 'Ethereum Protocol Explorations for Humans and AI',
     LOGO_URL: '/src/logo.png',
   })
 
@@ -60,7 +60,7 @@ export function buildTopicHtml(data: TopicOgData): string {
     DESCRIPTION: data.introText,
     EXPLORATION_COUNT: String(data.explorationCount),
     EXPLORATION_LABEL: data.explorationCount === 1 ? 'exploration' : 'explorations',
-    TAGLINE: 'Interactive Ethereum Protocol Explorations',
+    TAGLINE: 'Ethereum Protocol Explorations for Humans and AI',
     LOGO_URL: '/src/logo.png',
   })
 

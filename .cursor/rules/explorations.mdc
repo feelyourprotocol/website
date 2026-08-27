@@ -1,0 +1,38 @@
+---
+description: Exploration folder invariants — taxonomies, E-Components, styling, registry
+globs: src/explorations/**,src/eComponents/**
+alwaysApply: false
+---
+
+# Explorations (task invariants)
+
+When editing `src/explorations/` or shared `src/eComponents/`:
+
+## Taxonomies
+
+Read valid IDs from source — do not guess:
+
+- `src/explorations/TOPICS.ts` — static set
+- `src/explorations/TIMELINE.ts` — hardforks + maturity stages
+- `src/explorations/TAGS.ts` — enum; new tags must follow [architecture § tags](../../website-docs/guide/architecture.md#tags)
+
+## Building blocks
+
+1. Check [available-e-components.md](../../website-docs/contributing/available-e-components.md) before custom UI.
+2. One primary E-Component per exploration unless explicitly designing a new shared pattern.
+3. Extension UI goes **inside** E-Component slots (`#below`, `#result`) — not as siblings (provide/inject is descendant-only).
+
+## Styling and deps
+
+- Use `e-*` design-system classes from `src/main.css` — no hardcoded Tailwind color utilities on exploration UI. Do not re-list CSS class tables in prompts; read source.
+- Import third-party libraries only in the exploration folder (or exploration-local modules), not in E-Components.
+
+## Registration
+
+Every new exploration needs an import in `src/explorations/REGISTRY.ts` or it will not appear in the app.
+
+## Procedure
+
+New exploration workflow: [add-exploration skill](../skills/add-exploration/SKILL.md) + [adding-an-exploration.md](../../website-docs/contributing/adding-an-exploration.md).
+
+Tests green ≠ pedagogically done — human must review intro, usage, and examples.

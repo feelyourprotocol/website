@@ -4,9 +4,9 @@ Interactive Ethereum protocol explorer — hands on.
 
 Explore, visualize and understand Ethereum protocol changes (EIPs) by interacting with real library code running directly in the browser.
 
-> **Status: Beta** — The project is fully functional, but the APIs of reusable components (E-Components, UI components) have not fully stabilized yet. Contributions are very welcome — expect some manual back-and-forth during review until the component interfaces settle.
+> **Status: Beta** — Fully functional, but reusable component APIs (E-Components, shared UI) are still settling. See [website-docs changelog](https://website-docs.feelyourprotocol.org/changelog.html) after pulling `main`.
 
-## Quick Start
+## Quick start (explorations website)
 
 ```bash
 git clone https://github.com/feelyourprotocol/website.git
@@ -15,76 +15,72 @@ npm install
 npm run dev
 ```
 
-### OG images (optional, one-time)
-
-Social preview cards for explorations/topics use Playwright in the isolated `og/` package. **Not required for `npm run dev`.** Once per machine:
+Quality gates before a PR or agent hand-off:
 
 ```bash
-npm run og:setup
-npm run og:check
+npm run lf:ci        # lint + format (CI mode)
+npm run type-check   # vue-tsc
+npx vitest run       # unit tests
 ```
 
-See [og/README.md](./og/README.md).
+## For agents and contributors
 
-### Roadmap Twitter cards
+This repo is a **multi-site monorepo** (one deploy, several subdomains). **Website docs** cover only the explorations site — not roadmap, MCP, or community token development.
 
-Thread visuals (timeline, roadmap board, hero) — see [roadmap/social/README.md](./roadmap/social/README.md):
+| Start here | Purpose |
+| --- | --- |
+| [AGENTS.md](./AGENTS.md) | Doc map and cursor rules for coding agents |
+| [website-docs/](https://website-docs.feelyourprotocol.org/) | Architecture, adding explorations, E-Components, styling, video |
+| [website-docs/public/llms.txt](./website-docs/public/llms.txt) | Compact index for LLM context |
+
+Exploration work lives under `src/explorations/`. The primary extension path is [Adding an Exploration](https://website-docs.feelyourprotocol.org/contributing/adding-an-exploration.html).
+
+## Sites in this repo
+
+All production URLs share one server build. Each site has its **own README** for structure, local dev, and deployment notes.
+
+| Site | Production | Source | Dev docs |
+| --- | --- | --- | --- |
+| Explorations website | [feelyourprotocol.org](https://feelyourprotocol.org) | `src/`, `public/` | [website-docs/](./website-docs/) |
+| Website docs | [website-docs.feelyourprotocol.org](https://website-docs.feelyourprotocol.org) | `website-docs/` | [website-docs/README.md](./website-docs/README.md) |
+| Docs hub (fleet landing) | [docs.feelyourprotocol.org](https://docs.feelyourprotocol.org) | `docs-hub/` | [docs-hub/README.md](./docs-hub/README.md) |
+| MCP server docs | [mcp-docs.feelyourprotocol.org](https://mcp-docs.feelyourprotocol.org) | `mcp-docs/` | [mcp-docs/README.md](./mcp-docs/README.md) |
+| Roadmap | [roadmap.feelyourprotocol.org](https://roadmap.feelyourprotocol.org) | `roadmap/` | [roadmap/README.md](./roadmap/README.md) |
+| Community token | [community-token.feelyourprotocol.org](https://community-token.feelyourprotocol.org) | `community-token/` | [community-token/README.md](./community-token/README.md) |
+
+Roadmap and community token are public but **maintainer-facing** — their READMEs are not duplicated in website-docs.
+
+## Maintainers
+
+### Local dev (all targets)
 
 ```bash
-npm run capture:social
+npm run dev                  # explorations website
+npm run website-docs:dev     # website contributor docs (VitePress)
+npm run docs:dev             # docs hub landing
+npm run mcp-docs:dev         # MCP docs (VitePress)
+npm run roadmap:dev          # roadmap (VitePress)
+npm run community-token:dev  # community token mini-site
 ```
 
-## Deployment
-
-Production builds (`dist/website`, `dist/docs`, `dist/website-docs`, `dist/community-token`, `dist/roadmap`, `dist/mcp-docs`) are **not** in the repo — the server runs `npm run build:deploy` after `git pull`. See `server-config/deployment/fyp_deploy.sh`.
-
-## Documentation
-
-The **[docs hub](https://docs.feelyourprotocol.org)** is the entry point to all FYP documentation.
-
-**Website docs** (contributor guide & architecture) live at **[website-docs.feelyourprotocol.org](https://website-docs.feelyourprotocol.org/index.html)**.
-
-**MCP server docs** (concrete tool reference & technical setup) are at **[mcp-docs.feelyourprotocol.org](https://mcp-docs.feelyourprotocol.org)** — grows as the MCP server ships.
-
-### Local dev
+### Build & deploy
 
 ```bash
-npm run docs:dev           # docs hub landing → http://localhost:5176
-npm run website-docs:dev   # website contributor docs (VitePress)
-npm run mcp-docs:dev       # MCP docs (VitePress)
-npm run roadmap:dev        # roadmap (VitePress)
+npm run build          # all sites (+ website type-check)
+npm run build:deploy   # all sites (website vite-only; used on server after git pull)
 ```
 
-## Community Token Site
+Outputs under `dist/` (`website`, `docs`, `website-docs`, `community-token`, `roadmap`, `mcp-docs`) are **not** in git — production runs `npm run build:deploy` after `git pull`. See `server-config/deployment/fyp_deploy.sh` in the private server-config repo.
 
-Guidelines and transparency page for the independently launched community token:
+### Optional tooling
 
-- **Production:** [community-token.feelyourprotocol.org](https://community-token.feelyourprotocol.org) (after deploy)
-- **Local dev:** `npm run community-token:dev` → http://localhost:5174
+**OG images** (social preview cards) — Playwright in `og/`. Not required for `npm run dev`. Once per machine: `npm run og:setup` then `npm run og:check`. See [og/README.md](./og/README.md).
 
-See [community-token/README.md](./community-token/README.md) for content structure and deployment notes.
-
-## Roadmap Site
-
-Organizational home — vision, milestones, roadmap tracks, timeline, and core concept/infrastructure outlines:
-
-- **Production:** [roadmap.feelyourprotocol.org](https://roadmap.feelyourprotocol.org) (after deploy)
-- **Local dev:** `npm run roadmap:dev`
-
-See [roadmap/README.md](./roadmap/README.md) for structure, the data-driven visualizations, and deployment notes.
-
-## MCP Docs Site
-
-Concrete reference for the Feel Your Protocol MCP server — tool docs and technical setup (present-tense, as capabilities ship):
-
-- **Production:** [mcp-docs.feelyourprotocol.org](https://mcp-docs.feelyourprotocol.org) (after deploy)
-- **Local dev:** `npm run mcp-docs:dev`
-
-See [mcp-docs/README.md](./mcp-docs/README.md) for structure, the terminal-green skin, and deployment notes.
+**Roadmap thread visuals** — `npm run capture:social`. See [roadmap/social/README.md](./roadmap/social/README.md).
 
 ## Cross-site constants
 
-Shared fleet URLs (roadmap origin, project X handle, etc.) live in [`src/libs/roadmapUrls.ts`](./src/libs/roadmapUrls.ts). **Project X is @FeelEthereum** — not `@feelyourprotocol` (domain name ≠ handle). VitePress configs duplicate the X URL with a comment pointing there.
+Fleet URLs (roadmap origin, project X handle, etc.) live in [`src/libs/roadmapUrls.ts`](./src/libs/roadmapUrls.ts) and [`src/libs/docsUrls.ts`](./src/libs/docsUrls.ts). **Project X is @FeelEthereum** — not `@feelyourprotocol` (domain name ≠ handle).
 
 ## License
 

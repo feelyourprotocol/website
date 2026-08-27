@@ -30,7 +30,7 @@
 
 <!-- Tick off what applies. Not every item is required for every PR. -->
 
-- [ ] I have read the [contributing guide](https://website-docs.feelyourprotocol.org/contributing/how-to-contribute.html)
+- [ ] I have read the [building overview](https://website-docs.feelyourprotocol.org/building/overview.html)
 - [ ] Linting and type checking pass (`npm run lf && npm run type-check`)
 - [ ] Unit tests pass (`npx vitest run`)
 - [ ] E2E tests pass (`npm run test:e2e`)
