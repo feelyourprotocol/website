@@ -14,6 +14,7 @@ Tool-agnostic entrypoint for coding agents (Cursor, Claude Code, Codex, etc.) in
 | **Generate cover art** | [`.cursor/skills/cover-image/SKILL.md`](.cursor/skills/cover-image/SKILL.md) → [images.md](website-docs/contributing/images.md) |
 | E-Components, styling, conventions | [website-docs/](website-docs/) (index: [llms.txt](website-docs/public/llms.txt)) |
 | MCP server docs | [mcp-docs/README.md](mcp-docs/README.md) — not `website-docs/` |
+| MCP EIP catalogue (human) | `https://mcp-docs.feelyourprotocol.org/use/eips/eip-NNNN.html` — one page per **runnable** engine module (e.g. [EIP-8024](https://mcp-docs.feelyourprotocol.org/use/eips/eip-8024.html)) |
 | Roadmap site | [roadmap/README.md](roadmap/README.md) — internal, maintainer-facing |
 | Community token site | [community-token/README.md](community-token/README.md) — internal, maintainer-facing |
 | Docs hub landing | [docs-hub/README.md](docs-hub/README.md) |
@@ -29,7 +30,7 @@ Most new explorations are **agent-scaffolded** with a short human review pass (p
 3. Read taxonomies from source (`TOPICS.ts`, `TIMELINE.ts`, `TAGS.ts`) — do not guess IDs
 4. **Stop before claiming done** — human must review intro, usage, and examples even when tests pass
 
-MCP server endpoint generation is **out of scope** for the add-exploration skill (separate workflow later).
+MCP server work (engine module, gateway tool, human EIP catalogue page) is **out of scope** for the add-exploration skill unless explicitly requested. Website explorations and MCP modules are **twins** (same core question) — explorations own pedagogy; MCP owns general bytecode execution. A future website “See associated MCP docs” icon should link to `/use/eips/<id>` when a runnable module exists.
 
 ## Rules and skills
 

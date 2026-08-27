@@ -4,13 +4,13 @@
 
 ## Purpose
 
-Return a machine-readable snapshot of what the execution engine and MCP server support: engine version, gas/trace/bytecode ceilings, named forks, registered EIP capabilities (with query shapes), and seed presets.
+Return a machine-readable snapshot of what this server can **actually run**: engine version, ceilings, named forks, and **runnable EIP modules**. Each module describes **what became possible** (opcodes, encoding rules, keywords) — not demo programs. Unimplemented EIPs are omitted. Callers supply bytecode to `simulate_evm_bytecode` / `compare_evm_variants`.
 
 ## When to use
 
-- **First call** when connecting to the server — learn forks, EIPs, and limits before simulating
-- Check whether a specific EIP (e.g. 8024) is registered and which query shapes apply
-- Read hard ceilings (max gas, bytecode size, trace steps)
+- **First call** when connecting — learn forks, modules, and limits before simulating
+- Answer support questions: “Is EIP-8024 supported?”, “Can I run Amsterdam bytecode with DUPN?”
+- Read opcode encoding so you can **construct** bytecode (this tool does not hand you a canned example program)
 
 ## MCP tool name
 
@@ -26,10 +26,9 @@ None required. Pass `{}` or omit arguments.
 | --- | --- |
 | `engineVersion` | Semver of `mcp-execution-engine` |
 | `ceilings` | `maxGasLimit`, `defaultGasLimit`, `maxBytecodeBytes`, `maxTraceSteps` |
-| `namedForks` | Curated shortcuts (e.g. `amsterdam`) |
-| `eips` | Seed capability registry — EIP number, nature, shapes, maturity notes |
+| `namedForks` | Curated shortcuts (`amsterdam`, alias `glamsterdam`) |
+| `eips` | Runnable modules only — `runnable`, `summary`, `opcodes`, `keywords`, `shapes` |
 | `allowedBaseHardforks` | Valid `baseHardfork` values |
-| `presets` | Seed compare/simulate preset definitions |
 
 ## Example
 
@@ -44,14 +43,16 @@ _Output (abbreviated):_
 ```json
 {
   "engineVersion": "0.1.0",
-  "ceilings": {
-    "maxGasLimit": "30000000",
-    "defaultGasLimit": "1000000",
-    "maxBytecodeBytes": 24576,
-    "maxTraceSteps": 10000
-  },
-  "namedForks": [{ "id": "amsterdam", "label": "Amsterdam (scheduled EL fork)", "…": "…" }],
-  "eips": [{ "eip": 8024, "name": "Backward compatible SWAPN, DUPN, EXCHANGE", "shapes": ["simulate", "compare"], "…": "…" }]
+  "namedForks": [{ "id": "amsterdam", "aliases": ["glamsterdam"], "…": "…" }],
+  "eips": [{
+    "eip": 8024,
+    "runnable": true,
+    "summary": "Amsterdam EVM executes DUPN, SWAPN, and EXCHANGE. Supply any bytecode; this server does not ship demo programs.",
+    "shapes": ["simulate", "compare"],
+    "opcodes": [
+      { "name": "DUPN", "opcodeHex": "0xe6", "effect": "Copy the stack item at depth n onto the top.", "immediate": { "encoding": "n = (immediate + 145) mod 256; …", "minDepth": 17, "maxDepth": 235 } }
+    ]
+  }]
 }
 ```
 
@@ -64,6 +65,8 @@ _Output (abbreviated):_
 <Changelog
   title="Describe Capabilities Changelog"
   :entries="[
+    { version: 'v0.6', date: '2026-08-27', summary: 'Modules describe opcodes and encoding; demo scenarios removed from the catalog.' },
+    { version: 'v0.5', date: '2026-08-27', summary: 'Runnable EIP modules with questions and scenarios; stub EIPs and presets removed.' },
     { version: 'v0.4', date: '2026-07-22', summary: 'Live MCP tool page — gateway v0.1 stdio ships describe_capabilities.' },
   ]"
 />

@@ -6,7 +6,7 @@ The **`mcp-execution-engine`** is a pure TypeScript library: stateless EthereumJ
 
 Repository: [feelyourprotocol/mcp-execution-engine](https://github.com/feelyourprotocol/mcp-execution-engine) (v0.1.0). Consumed by `mcp-gateway` via `LocalTaskProcessor`.
 
-End-user tool semantics: [Describe Capabilities](/use/tools/describe-capabilities), [Simulate Bytecode](/use/tools/simulate-bytecode), [Coverage](/use/coverage), [Guarantees](/use/guarantees).
+End-user tool semantics: [Describe Capabilities](/use/tools/describe-capabilities), [Simulate Bytecode](/use/tools/simulate-bytecode), [Compare Variants](/use/tools/compare-variants), [Coverage](/use/coverage), [Guarantees](/use/guarantees).
 
 ## Design principles
 
@@ -23,9 +23,9 @@ See also [Design Principles](/internals/design-principles).
 | --- | --- |
 | `simulateBytecode(input)` | Run bytecode under a fork config; optional opcode trace |
 | `compareVariants(input)` | N variants (each with own fork + bytecode) → diff |
-| `describeCapabilities()` | Registry snapshot — wired to gateway `describe_capabilities` MCP tool |
+| `describeCapabilities()` | Registry snapshot — runnable EIP modules (opcodes, encoding, no demos) |
+| `listEipModules()` | Live EIP module list (source of the catalog) |
 | `buildCommon(config)` | Resolve `(baseHardfork, eips[])` → EthereumJS `Common` |
-| `listPresets()` | Seed preset definitions (light curation) |
 
 ## Input / output
 
@@ -59,17 +59,15 @@ See also [Design Principles](/internals/design-principles).
 | Max bytecode size | 24_576 bytes |
 | Max trace steps | 10_000 |
 
-## Registered capabilities (seed)
+## Registered capabilities (live)
 
-| EIP | Nature | Shapes |
-| --- | --- | --- |
-| 8024 | new-capability | simulate, compare |
-| 7883 | repricing | simulate, compare |
-| 7928 | new-structure | generate, simulate |
-| 7951 | new-capability | simulate, compare |
-| 8141 | new-exec-model | simulate (not yet implemented) |
+| EIP | Nature | Runnable | Shapes |
+| --- | --- | --- | --- |
+| 8024 | new-capability | yes | simulate, compare |
 
-Provenance fields are **basic and mostly optional** in v0.1 — we will tighten and automate ingestion over time.
+Only runnable modules appear in `describeCapabilities()`. Each module declares `summary`, `opcodes` (with encoding), and `keywords`. EIP-8024 lives in `src/modules/eip-8024/`. Demo programs belong in tests, not the catalog.
+
+Amsterdam in EthereumJS v10 already bundles EIP-8024 — `eips: [8024]` is not a pre/post toggle.
 
 ## Development
 
@@ -80,6 +78,7 @@ See [Quality](/internals/quality).
 <Changelog
   title="Execution Engine Changelog"
   :entries="[
+    { version: 'v0.1.1', date: '2026-08-27', summary: 'EIP module catalog (8024 opcodes/encoding only); compare MCP tool; stub EIPs and demo scenarios removed.' },
     { version: 'v0.1.0', date: '2026-07-20', summary: 'Initial engine — simulateBytecode, registry, provenance, compareVariants composer, seed presets.' },
   ]"
 />

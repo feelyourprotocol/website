@@ -4,7 +4,7 @@
 
 ## Purpose
 
-Run raw EVM bytecode under a chosen fork / EIP configuration and receive a structured result — gas used, return data, final stack, optional opcode trace, and provenance.
+Run **caller-supplied** raw EVM bytecode under a chosen fork / EIP configuration and receive a structured result — gas used, return data, final stack, optional opcode trace, and provenance.
 
 ## When to use
 

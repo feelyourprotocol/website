@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mcp-docs.feelyourprotocol.org/schemas/compare_evm_variants.input.json",
+  "title": "compare_evm_variants input",
+  "type": "object",
+  "required": ["variants"],
+  "properties": {
+    "variants": {
+      "type": "array",
+      "minItems": 2,
+      "description": "At least two labelled variants. Each has its own fork + bytecode.",
+      "items": {
+        "type": "object",
+        "required": ["label", "bytecode", "fork"],
+        "properties": {
+          "label": {
+            "type": "string",
+            "description": "Unique label for this variant (used as a diff column)."
+          },
+          "bytecode": {
+            "type": "string",
+            "description": "Hex-encoded EVM bytecode (0x prefix optional)."
+          },
+          "fork": {
+            "type": "object",
+            "properties": {
+              "baseHardfork": { "type": "string" },
+              "eips": {
+                "type": "array",
+                "items": { "type": "integer" }
+              }
+            },
+            "required": ["baseHardfork"]
+          },
+          "gasLimit": {
+            "type": "string",
+            "description": "Per-variant gas limit as decimal string."
+          },
+          "trace": {
+            "type": "boolean",
+            "description": "Include stack-only opcode trace for this variant when true."
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

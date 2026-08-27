@@ -10,12 +10,13 @@ For vision, strategy, and draft concepts, see the [roadmap site](https://roadmap
 
 ## What works today
 
-Connect locally via **stdio** ([Connect](/use/connect)) and use two MCP tools:
+Connect locally via **stdio** ([Connect](/use/connect)) and use three MCP tools:
 
-- **`describe_capabilities`** — what forks and EIPs are supported
+- **`describe_capabilities`** — what forks and EIP modules are supported (opcodes, encoding; no demo programs)
 - **`simulate_evm_bytecode`** — run bytecode under Amsterdam (and registered fork configs)
+- **`compare_evm_variants`** — diff labelled variants (gas, success, error)
 
-Payments, remote HTTP, and additional tools (BAL generate, compare) come in later steps.
+Payments, remote HTTP, and additional tools (BAL generate) come in later steps.
 
 ## Mental model
 
@@ -26,6 +27,7 @@ From the [two-legs vision](https://roadmap.feelyourprotocol.org/vision/two-legs.
 <Changelog
   title="Introduction Changelog"
   :entries="[
+    { version: 'v0.6', date: '2026-08-27', summary: 'Catalog describes capabilities (opcodes/encoding), not website demo programs.' },
     { version: 'v0.4', date: '2026-07-22', summary: 'Local stdio gateway v0.1 live — two MCP tools.' },
     { version: 'v0.3', date: '2026-07-20', summary: 'Split from overview — end-user introduction under use/.' },
     { version: 'v0.1', date: '2026-07-15', summary: 'Initial overview content (pre-split).' },

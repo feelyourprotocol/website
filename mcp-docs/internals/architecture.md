@@ -36,7 +36,7 @@ Build sequence (see [roadmap timeline](https://roadmap.feelyourprotocol.org/road
 
 1. ~~**MCP docs site**~~ — this site
 2. ~~**Execution engine**~~ — `simulateBytecode()` + capability registry ([reference](/internals/execution-engine))
-3. ~~**Gateway (stdio)**~~ — local agent PoC — **two tools live**
+3. ~~**Gateway (stdio)**~~ — local agent PoC — **three tools live**
 4. **AWS bootstrap** — EC2, nginx, TLS, deploy pipeline
 5. **HTTP transport** — remote MCP endpoint
 6. **Further tools** — EIP-7928 BAL generate, observability, x402, …
@@ -46,6 +46,8 @@ Build sequence (see [roadmap timeline](https://roadmap.feelyourprotocol.org/road
 <Changelog
   title="Architecture Changelog"
   :entries="[
+    { version: 'v0.6', date: '2026-08-27', summary: 'EIP-8024 module is opcode/encoding support; callers supply bytecode.' },
+    { version: 'v0.5', date: '2026-08-27', summary: 'compare_evm_variants live; EIP-8024 module catalog (runnable only).' },
     { version: 'v0.4', date: '2026-07-22', summary: 'Gateway stdio v0.1 live — Step 3 core tools shipped.' },
     { version: 'v0.3', date: '2026-07-20', summary: 'Docs restructure — use/ vs internals/ split; architecture page replaces overview internals.' },
     { version: 'v0.2', date: '2026-07-20', summary: 'Execution engine v0.1.0 — simulateBytecode, registry, provenance, compare composer (local repo).' },

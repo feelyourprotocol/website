@@ -37,6 +37,7 @@ mcp-docs/
 │   ├── connect.md
 │   ├── tools/                    # One page per MCP tool (grows as tools ship)
 │   ├── coverage.md
+│   ├── eips/                     # Human catalogue — one page per runnable EIP module
 │   ├── guarantees.md
 │   ├── pricing.md
 │   └── for-ai-agents.md

@@ -1,7 +1,7 @@
 # Feel Your Protocol MCP Server — Use Layer (full text)
 # Source: mcp-docs/use/ — end-user documentation for humans and AI agents
 # https://mcp-docs.feelyourprotocol.org/llms-full.txt
-# Updated: 2026-07-22 — gateway v0.1 stdio live
+# Updated: 2026-08-27 — gateway v0.1 stdio: probe + simulate + compare; EIP-8024 module catalog
 
 ================================================================================
 LIVE MCP TOOLS (stdio v0.1) — READ FIRST
@@ -12,8 +12,9 @@ Do NOT fall back to mcp-execution-engine lab scripts or npm run lab unless MCP
 is unavailable. Trust listTools on the connected server over stale repo text.
 
 Tools:
-- describe_capabilities (probe) — registry: forks, EIPs, ceilings, presets
+- describe_capabilities (probe) — registry: forks, runnable EIP modules, opcodes, encoding
 - simulate_evm_bytecode (simulate) — run raw bytecode under fork config
+- compare_evm_variants (compare) — labelled variants → gas/success/error diffs
 
 Server: FeelYourProtocol-EVM v0.1.0
 Setup: see CONNECT section below
@@ -21,6 +22,7 @@ Setup: see CONNECT section below
 JSON schemas:
 - /schemas/describe_capabilities.input.json
 - /schemas/simulate_evm_bytecode.input.json
+- /schemas/compare_evm_variants.input.json
 
 ================================================================================
 INTRODUCTION
@@ -42,7 +44,7 @@ Query shapes and MCP tools:
 
 - Probe → describe_capabilities — LIVE (stdio)
 - Simulate → simulate_evm_bytecode — LIVE (stdio)
-- Compare — engine only; MCP tool planned
+- Compare → compare_evm_variants — LIVE (stdio)
 - Generate (BAL) — planned Step 6
 
 Scope: stateless/BYOS, raw bytecode only, no Solidity compile, no archive node,
@@ -71,7 +73,7 @@ Cursor mcp.json:
 After gateway code changes: npm run build + restart MCP in Cursor (Settings → MCP).
 
 Startup stderr should show:
-  [fyp-mcp] FeelYourProtocol-EVM v0.1.0 ready — tools: describe_capabilities, simulate_evm_bytecode
+  [fyp-mcp] FeelYourProtocol-EVM v0.1.0 ready — tools: describe_capabilities, simulate_evm_bytecode, compare_evm_variants
 
 ================================================================================
 TOOL: DESCRIBE_CAPABILITIES (LIVE)
@@ -79,9 +81,9 @@ TOOL: DESCRIBE_CAPABILITIES (LIVE)
 
 MCP tool name: describe_capabilities
 Input: {} (no required fields)
-Output: engineVersion, ceilings, namedForks, eips, allowedBaseHardforks, presets
+Output: engineVersion, ceilings, namedForks, eips (runnable modules with opcodes + encoding; no demo programs), allowedBaseHardforks
 
-Use first to learn supported forks (e.g. amsterdam) and registered EIPs (8024, 7928, …).
+Use first to learn supported forks (amsterdam, alias glamsterdam) and runnable EIPs (8024 DUPN/SWAPN/EXCHANGE). Unimplemented EIPs are omitted.
 
 ================================================================================
 TOOL: SIMULATE_EVM_BYTECODE (LIVE)
@@ -108,11 +110,26 @@ Examples:
 - EIP-8024 DUPN deep stack: 0x600160026003600460056006600760086009600a600b600c600d600e600f60106011e68000
 
 ================================================================================
+TOOL: COMPARE_EVM_VARIANTS (LIVE)
+================================================================================
+
+MCP tool name: compare_evm_variants
+
+Purpose: Run two or more labelled variants (each with own fork + bytecode).
+Returns per-variant simulate results, diffs (success, gasUsed, error,
+bytecodeLengthBytes), and provenance. Agents should chart from this JSON — the
+server does not draw diagrams.
+
+Callers supply bytecode. describe_capabilities documents opcode encoding;
+it does not ship demo programs. Amsterdam already bundles EIP-8024 — there
+is no pre-8024 toggle on this server.
+
+================================================================================
 COVERAGE
 ================================================================================
 
-Named fork: amsterdam (bundled EL fork). Registered EIPs (seed): 8024, 7883,
-7928, 7951, 8141 (8141 not implemented in engine).
+Named fork: amsterdam (alias glamsterdam). Live runnable EIP modules: 8024 only.
+Unimplemented EIPs are not listed.
 
 ================================================================================
 GUARANTEES
@@ -135,8 +152,8 @@ Not shipped. x402 planned Steps 8-9. See roadmap.feelyourprotocol.org.
 FOR AI AGENTS
 ================================================================================
 
-1. If feel-your-protocol MCP connected → use describe_capabilities and
-   simulate_evm_bytecode. Do not use local lab as substitute.
+1. If feel-your-protocol MCP connected → use describe_capabilities,
+   simulate_evm_bytecode, and compare_evm_variants. Do not use local lab as substitute.
 2. Cite provenance.engineVersion and provenance.forkConfig in answers.
 3. Index: /llms.txt. Schemas: /schemas/*.input.json
 

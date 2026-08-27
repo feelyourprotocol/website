@@ -31,6 +31,6 @@ features:
     link: /internals/roadmap-relationship
 ---
 
-::: info July 2026
-**Local stdio gateway v0.1 is live** — `describe_capabilities` and `simulate_evm_bytecode`. See [Connect](/use/connect). Remote HTTP at `mcp.feelyourprotocol.org` is planned (Step 5).
+::: info August 2026
+**Local stdio gateway v0.1 is live** — `describe_capabilities`, `simulate_evm_bytecode`, and `compare_evm_variants`. Live catalog: EIP-8024 opcode support on Amsterdam (callers supply bytecode). See [Connect](/use/connect). Remote HTTP at `mcp.feelyourprotocol.org` is planned (Step 5).
 :::

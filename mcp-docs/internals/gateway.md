@@ -1,6 +1,6 @@
 # Gateway
 
-> **Status:** **v0.1 shipped** — stdio MCP server with two tools. HTTP on AWS planned (Steps 4–5).
+> **Status:** **v0.1 shipped** — stdio MCP server with three tools. HTTP on AWS planned (Steps 4–5).
 
 The **`mcp-gateway`** repo is the public face of the MCP server:
 
@@ -18,6 +18,7 @@ It depends one-way on **`mcp-execution-engine`**. End-user connection: [Connect]
 | --- | --- |
 | `describe_capabilities` | `describeCapabilities()` |
 | `simulate_evm_bytecode` | `simulateBytecode()` |
+| `compare_evm_variants` | `compareVariants()` |
 
 Server name: `FeelYourProtocol-EVM` v0.1.0. Entry: `node dist/index.js` (bin: `fyp-mcp`).
 
@@ -38,6 +39,7 @@ mcp-gateway/
 <Changelog
   title="Gateway Changelog"
   :entries="[
+    { version: 'v0.1.1', date: '2026-08-27', summary: 'compare_evm_variants live on stdio.' },
     { version: 'v0.1.0', date: '2026-07-22', summary: 'Stdio gateway — describe_capabilities + simulate_evm_bytecode, TaskProcessor seam, integration tests.' },
     { version: 'v0.3', date: '2026-07-20', summary: 'Placeholder under internals/.' },
   ]"

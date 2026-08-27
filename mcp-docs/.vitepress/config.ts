@@ -91,9 +91,15 @@ export default defineConfig({
               items: [
                 { text: 'Describe Capabilities', link: '/use/tools/describe-capabilities' },
                 { text: 'Simulate Bytecode', link: '/use/tools/simulate-bytecode' },
+                { text: 'Compare Variants', link: '/use/tools/compare-variants' },
               ],
             },
             { text: 'Coverage', link: '/use/coverage' },
+            {
+              text: 'EIPs',
+              collapsed: false,
+              items: [{ text: 'EIP-8024 DUPN / SWAPN / EXCHANGE', link: '/use/eips/eip-8024' }],
+            },
             { text: 'Guarantees', link: '/use/guarantees' },
             { text: 'Pricing', link: '/use/pricing' },
             { text: 'For AI Agents', link: '/use/for-ai-agents' },
