@@ -19,7 +19,7 @@ When connected, the server exposes:
 | `describe_capabilities` | probe | Registry snapshot — forks, runnable EIP modules, opcodes, encoding |
 | `run_evm_bytecode` | run | Run raw bytecode under a fork config |
 
-To compare variants, call **run** twice and diff gas or outcomes in your reply.
+To **optionally** compare baseline vs preview, call **run** twice with the same bytecode — **`osaka`** then **`amsterdam`** — and diff gas or outcomes. A single run on Amsterdam alone is fine.
 
 **Agents:** If the `feel-your-protocol` MCP server is connected, **call these tools directly**. Do not fall back to the local execution engine or `npm run lab` unless the MCP server is unavailable.
 
@@ -70,7 +70,7 @@ Ask your agent:
 
 > *"List the MCP tools on feel-your-protocol and call describe_capabilities."*
 
-You should see **two** tools and a JSON registry with `engineVersion`, `amsterdam`, and a runnable EIP-8024 module (opcodes + encoding, no demo programs).
+You should see **two** tools and a JSON registry with `engineVersion`, `baselineForkId` (`osaka`), named forks (`osaka`, `amsterdam`), and a runnable EIP-8024 module (opcodes + encoding + comparison pair).
 
 ## Example prompts (natural language)
 
@@ -78,7 +78,7 @@ You do not need to memorize tool names. Examples:
 
 - *"Simulate bytecode `0x600100` under Amsterdam and tell me the gas used."*
 - *"Run the EIP-8024 EXCHANGE demo on Amsterdam with trace: `0x6001600260036004e88e00`."*
-- *"Compare the EIP-8024 DUPN demo against PUSH1 STOP on Amsterdam and tell me the gas delta."*
+- *"Run this DUPN bytecode on osaka baseline, then on Amsterdam preview, and compare gas."*
 - *"What EIPs does the Feel Your Protocol MCP server support?"*
 
 The agent should route these to `run_evm_bytecode` (once or twice for comparisons) or `describe_capabilities`.

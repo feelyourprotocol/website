@@ -11,7 +11,7 @@ End-user tool semantics: [Describe Capabilities](/use/tools/describe-capabilitie
 ## Design principles
 
 - **Query shapes, not library APIs** — the MCP surface exposes generic verbs (`simulate`, `generate`, `probe`); the engine returns structured results.
-- **Fork = capability set** — `(baseHardfork, eips[])` à la carte; named forks (e.g. `amsterdam`) are curated shortcuts.
+- **Fork = capability set** — `(baseHardfork, eips[])` à la carte; named forks (`osaka` baseline, `amsterdam` preview) are curated shortcuts.
 - **Provenance on every result** — engine version, fork config, optional EIP maturity metadata, stability rollup, human caveat.
 - **Boundaries** — raw bytecode only; no Solidity compile; no archive node; no multi-block historical backtesting.
 
@@ -66,7 +66,7 @@ See also [Design Principles](/internals/design-principles).
 
 Only runnable modules appear in `describeCapabilities()`. Each module declares `summary`, `opcodes` (with encoding), and `keywords`. EIP-8024 lives in `src/modules/eip-8024/`. Demo programs belong in tests, not the catalog.
 
-Amsterdam in EthereumJS v10 already bundles EIP-8024 — `eips: [8024]` is not a pre/post toggle.
+Amsterdam in EthereumJS v10 already bundles EIP-8024 — `eips: [8024]` is not a pre/post toggle. Use **osaka** baseline vs **amsterdam** preview for 8024 comparisons.
 
 ## Development
 
@@ -77,6 +77,7 @@ See [Quality](/internals/quality).
 <Changelog
   title="Execution Engine Changelog"
   :entries="[
+    { version: 'v0.1.3', date: '2026-08-27', summary: 'Osaka mainnet baseline fork; baselineForkId and EIP comparison pairs in probe.' },
     { version: 'v0.1.2', date: '2026-08-27', summary: 'Removed compareVariants — agents call simulateBytecode twice to diff.' },
     { version: 'v0.1.1', date: '2026-08-27', summary: 'EIP module catalog (8024 opcodes/encoding only); stub EIPs and demo scenarios removed.' },
     { version: 'v0.1.0', date: '2026-07-20', summary: 'Initial engine — simulateBytecode, registry, provenance, compareVariants composer, seed presets.' },

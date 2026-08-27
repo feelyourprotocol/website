@@ -7,7 +7,7 @@
 When MCP is **connected**, trust the live server first:
 
 1. **`listTools`** — tool names, descriptions, and input schemas
-2. **`describe_capabilities`** — forks, runnable EIP modules, opcodes, encoding, ceilings
+2. **`describe_capabilities`** — `baselineForkId`, forks (osaka baseline, amsterdam preview), runnable EIP modules, opcodes, encoding, ceilings
 
 Markdown on this site is **secondary**. It can lag behind a gateway release; the probe response and tool schemas cannot.
 
@@ -23,7 +23,7 @@ Markdown on this site is **secondary**. It can lag behind a gateway release; the
 ## Calling tools
 
 1. Probe first — learn what is runnable and how opcodes encode
-2. Run with **caller-supplied** bytecode (call twice to compare gas — this server does not ship demo programs)
+2. Run with **caller-supplied** bytecode on the fork you need (default **amsterdam**). **Optionally** run again on **osaka** when comparing against mainnet — this server does not ship demo programs
 3. **Do not** substitute the local `mcp-execution-engine` lab, `npm run lab`, or repository source unless MCP is unavailable
 
 ## Replying to humans

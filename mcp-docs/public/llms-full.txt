@@ -15,7 +15,7 @@ Tools:
 - describe_capabilities (probe) — registry: forks, runnable EIP modules, opcodes, encoding
 - run_evm_bytecode (run) — run raw bytecode under fork config
 
-Compare gas or outcomes by calling run twice.
+Compare gas or outcomes optionally by calling run twice (e.g. osaka then amsterdam).
 
 Server: FeelYourProtocol v0.1.0
 Setup: see CONNECT section below
@@ -46,7 +46,7 @@ Query shapes and MCP tools:
 - Run → run_evm_bytecode — LIVE (stdio)
 - Generate (BAL) — planned Step 6
 
-Compare by calling run twice.
+Optional: compare baseline vs preview by calling run twice (osaka then amsterdam).
 
 Scope: stateless/BYOS, raw bytecode only, no Solidity compile, no archive node,
 no multi-block historical backtesting.
@@ -82,9 +82,9 @@ TOOL: DESCRIBE_CAPABILITIES (LIVE)
 
 MCP tool name: describe_capabilities
 Input: {} (no required fields)
-Output: engineVersion, ceilings, namedForks, eips (runnable modules with opcodes + encoding; no demo programs), allowedBaseHardforks
+Output: engineVersion, ceilings, baselineForkId, namedForks, eips (runnable modules with opcodes + encoding + comparison; no demo programs), allowedBaseHardforks
 
-Use first to learn supported forks (amsterdam, alias glamsterdam) and runnable EIPs (8024 DUPN/SWAPN/EXCHANGE). Unimplemented EIPs are omitted.
+Use first to learn baselineForkId (osaka — current mainnet EL), preview fork amsterdam (alias glamsterdam), and runnable EIPs (8024 DUPN/SWAPN/EXCHANGE). Unimplemented EIPs are omitted.
 
 ================================================================================
 TOOL: RUN_EVM_BYTECODE (LIVE)
@@ -97,13 +97,14 @@ trace, provenance.
 
 Inputs:
 - bytecode (required): hex, max 24576 bytes
-- fork (optional): { baseHardfork, eips[] } — default amsterdam
+- fork (optional): { baseHardfork, eips[] } — default amsterdam; use osaka for mainnet baseline comparisons
 - gasLimit (optional): string, default 1000000, max 30000000
 - trace (optional): boolean, max 10000 steps
 
 Outputs: success, gasUsed, returnValue, finalStack, error, steps?, provenance
 
 Amsterdam note: eips: [] on amsterdam is correct — EIP-8024 bundled in hardfork.
+Optional 8024 compare: run same bytecode on osaka (baseline, invalid 0xe6–0xe8) then amsterdam (preview).
 
 Examples:
 - PUSH1 STOP: bytecode 0x600100 → gasUsed 3
@@ -114,7 +115,8 @@ Examples:
 COVERAGE
 ================================================================================
 
-Named fork: amsterdam (alias glamsterdam). Live runnable EIP modules: 8024 only.
+Named forks: osaka (baseline, alias mainnet-el), amsterdam (preview, alias glamsterdam).
+baselineForkId: osaka. Live runnable EIP modules: 8024 only.
 Unimplemented EIPs are not listed.
 
 ================================================================================
@@ -139,7 +141,8 @@ FOR AI AGENTS
 ================================================================================
 
 1. If feel-your-protocol MCP connected → use describe_capabilities and
-   run_evm_bytecode (twice to compare). Do not use local lab as substitute.
+   run_evm_bytecode (once on amsterdam by default; optionally osaka for mainnet comparison).
+   Do not use local lab as substitute.
 2. Cite provenance.engineVersion and provenance.forkConfig in answers.
 3. Index: /llms.txt. Schemas: /schemas/*.input.json
 

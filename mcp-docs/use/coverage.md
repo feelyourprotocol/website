@@ -2,7 +2,14 @@
 
 > **Status:** Honest live catalog. Only **runnable** EIP modules are listed.
 
-Fork configuration is **à la carte**: a base hardfork plus an optional EIP list. Named forks (e.g. `amsterdam`, alias `glamsterdam`) are curated shortcuts.
+Fork configuration is **à la carte**: a base hardfork plus an optional EIP list. Named forks are curated shortcuts — **`osaka`** (current mainnet EL baseline) and **`amsterdam`** (preview; alias `glamsterdam`).
+
+## Named forks (live)
+
+| Fork | Role | Alias | Use |
+| --- | --- | --- | --- |
+| `osaka` | baseline | `mainnet-el` | Current mainnet rules — compare “today” |
+| `amsterdam` | preview | `glamsterdam` | Upcoming fork — EIP deltas (e.g. 8024) |
 
 ## Registered capabilities (live)
 
@@ -21,6 +28,7 @@ Unimplemented EIPs (ModExp repricing, BALs, secp256r1, …) are **not** listed u
 <Changelog
   title="Coverage Changelog"
   :entries="[
+    { version: 'v0.8', date: '2026-08-27', summary: 'Osaka mainnet baseline fork — run-twice comparisons against Amsterdam preview.' },
     { version: 'v0.7', date: '2026-08-27', summary: 'EIP catalogue pages under use/eips/ — 8024 human entrypoint.' },
     { version: 'v0.6', date: '2026-08-27', summary: '8024 module is opcode/encoding support, not demo replay.' },
     { version: 'v0.5', date: '2026-08-27', summary: 'Slim catalog to runnable EIP-8024 only — questions, scenarios, no stub EIPs.' },

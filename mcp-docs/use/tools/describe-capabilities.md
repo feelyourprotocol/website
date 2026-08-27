@@ -26,9 +26,10 @@ None required. Pass `{}` or omit arguments.
 | --- | --- |
 | `engineVersion` | Semver of `mcp-execution-engine` |
 | `ceilings` | `maxGasLimit`, `defaultGasLimit`, `maxBytecodeBytes`, `maxTraceSteps` |
-| `namedForks` | Curated shortcuts (`amsterdam`, alias `glamsterdam`) |
-| `eips` | Runnable modules only — `runnable`, `summary`, `opcodes`, `keywords`, `shapes` |
-| `allowedBaseHardforks` | Valid `baseHardfork` values |
+| `baselineForkId` | Optional mainnet EL baseline for comparisons (`osaka`) — not required for every run |
+| `namedForks` | Curated shortcuts (`osaka` baseline, `amsterdam` preview; aliases `mainnet-el`, `glamsterdam`) |
+| `eips` | Runnable modules only — `runnable`, `summary`, `opcodes`, `comparison`, `keywords`, `shapes` |
+| `allowedBaseHardforks` | Valid `baseHardfork` values (`osaka`, `amsterdam`) |
 
 ## Example
 
@@ -43,10 +44,15 @@ _Output (abbreviated):_
 ```json
 {
   "engineVersion": "0.1.0",
-  "namedForks": [{ "id": "amsterdam", "aliases": ["glamsterdam"], "…": "…" }],
+  "baselineForkId": "osaka",
+  "namedForks": [
+    { "id": "osaka", "role": "baseline", "aliases": ["mainnet-el"], "…": "…" },
+    { "id": "amsterdam", "role": "preview", "aliases": ["glamsterdam"], "…": "…" }
+  ],
   "eips": [{
     "eip": 8024,
     "runnable": true,
+    "comparison": { "baselineForkId": "osaka", "previewForkId": "amsterdam", "note": "…" },
     "summary": "Amsterdam EVM executes DUPN, SWAPN, and EXCHANGE. Supply any bytecode; this server does not ship demo programs.",
     "shapes": ["simulate"],
     "opcodes": [
@@ -65,6 +71,7 @@ _Output (abbreviated):_
 <Changelog
   title="Describe Capabilities Changelog"
   :entries="[
+    { version: 'v0.7', date: '2026-08-27', summary: 'baselineForkId (osaka) and fork role metadata for mainnet vs preview comparisons.' },
     { version: 'v0.6', date: '2026-08-27', summary: 'Modules describe opcodes and encoding; demo scenarios removed from the catalog.' },
     { version: 'v0.5', date: '2026-08-27', summary: 'Runnable EIP modules with questions and scenarios; stub EIPs and presets removed.' },
     { version: 'v0.4', date: '2026-07-22', summary: 'Live MCP tool page — gateway v0.1 stdio ships describe_capabilities.' },

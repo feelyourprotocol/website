@@ -12,7 +12,7 @@ The MCP server exposes **intent-driven tools** — verbs that match how agents a
 | **Run** | `run_evm_bytecode` | Run raw bytecode under a fork; optional trace | **Live** (stdio) |
 | **Generate** | — | Block-level access lists (EIP-7928) | Planned (Step 6) |
 
-To compare gas or outcomes across two programs, call **run** twice — the agent diffs the results.
+To **optionally** compare baseline vs preview, call **run** twice with the same bytecode — **osaka** (current mainnet EL), then **amsterdam** (preview) — and diff gas, success, or traces. One run on Amsterdam only is fully supported.
 
 ## Scope boundaries
 
