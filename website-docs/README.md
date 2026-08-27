@@ -2,7 +2,7 @@
 
 VitePress site for **website-docs.feelyourprotocol.org** — contributor and agent guide for the Feel Your Protocol **explorations website** (E-Components, explorations, styling, video pipeline).
 
-**Scope:** this folder documents only `src/` and related website tooling. Other deployed sites in the monorepo (docs hub, MCP docs, roadmap, community token) keep dev notes in their own READMEs. See [`.cursor/rules/repo-structure.mdc`](../.cursor/rules/repo-structure.mdc) and [AGENTS.md](../AGENTS.md).
+**Scope:** this folder documents only `src/` and related website tooling. Other deployed sites in the monorepo (docs hub, MCP docs, roadmap, community token) keep dev notes in their own READMEs. See [`repo-structure.mdc`](https://github.com/feelyourprotocol/website/blob/main/.cursor/rules/repo-structure.mdc) and [AGENTS.md](https://github.com/feelyourprotocol/website/blob/main/AGENTS.md) in the repo.
 
 The **[docs hub](https://docs.feelyourprotocol.org)** at `docs.feelyourprotocol.org` is the fleet entrypoint; this site is the deep documentation for the explorations website.
 
