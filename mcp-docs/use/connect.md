@@ -17,8 +17,9 @@ When connected, the server exposes:
 | MCP tool | Shape | Purpose |
 | --- | --- | --- |
 | `describe_capabilities` | probe | Registry snapshot — forks, runnable EIP modules, opcodes, encoding |
-| `simulate_evm_bytecode` | simulate | Run raw bytecode under a fork config |
-| `compare_evm_variants` | compare | Diff labelled variants (gas, success, error) |
+| `run_evm_bytecode` | run | Run raw bytecode under a fork config |
+
+To compare variants, call **run** twice and diff gas or outcomes in your reply.
 
 **Agents:** If the `feel-your-protocol` MCP server is connected, **call these tools directly**. Do not fall back to the local execution engine or `npm run lab` unless the MCP server is unavailable.
 
@@ -58,7 +59,7 @@ Cursor caches the tool list from the running process:
 On startup the server logs to **stderr** (visible in MCP logs):
 
 ```
-[fyp-mcp] FeelYourProtocol-EVM v0.1.0 ready — tools: describe_capabilities, simulate_evm_bytecode, compare_evm_variants
+[fyp-mcp] FeelYourProtocol v0.1.0 ready — tools: describe_capabilities, run_evm_bytecode
 ```
 
 If that line lists only one tool, the running binary is stale — rebuild and restart.
@@ -69,7 +70,7 @@ Ask your agent:
 
 > *"List the MCP tools on feel-your-protocol and call describe_capabilities."*
 
-You should see three tools and a JSON registry with `engineVersion`, `amsterdam`, and a runnable EIP-8024 module (opcodes + encoding, no demo programs).
+You should see **two** tools and a JSON registry with `engineVersion`, `amsterdam`, and a runnable EIP-8024 module (opcodes + encoding, no demo programs).
 
 ## Example prompts (natural language)
 
@@ -80,7 +81,7 @@ You do not need to memorize tool names. Examples:
 - *"Compare the EIP-8024 DUPN demo against PUSH1 STOP on Amsterdam and tell me the gas delta."*
 - *"What EIPs does the Feel Your Protocol MCP server support?"*
 
-The agent should route these to `simulate_evm_bytecode` or `describe_capabilities`.
+The agent should route these to `run_evm_bytecode` (once or twice for comparisons) or `describe_capabilities`.
 
 ## Remote HTTP (planned)
 
@@ -91,6 +92,7 @@ Step 5 will document `https://mcp.feelyourprotocol.org/mcp` (Express + Streamabl
 <Changelog
   title="Connect Changelog"
   :entries="[
+    { version: 'v0.6', date: '2026-08-27', summary: 'Two live tools — compare_evm_variants removed.' },
     { version: 'v0.5', date: '2026-08-27', summary: 'Third live tool: compare_evm_variants; catalog is EIP-8024 only.' },
     { version: 'v0.4', date: '2026-07-22', summary: 'Local stdio gateway live — Cursor config, tool list, restart notes, agent guidance.' },
     { version: 'v0.3', date: '2026-07-20', summary: 'Split from overview — connection placeholder under use/.' },

@@ -23,7 +23,7 @@ Markdown on this site is **secondary**. It can lag behind a gateway release; the
 ## Calling tools
 
 1. Probe first — learn what is runnable and how opcodes encode
-2. Simulate or compare with **caller-supplied** bytecode (this server does not ship demo programs)
+2. Run with **caller-supplied** bytecode (call twice to compare gas — this server does not ship demo programs)
 3. **Do not** substitute the local `mcp-execution-engine` lab, `npm run lab`, or repository source unless MCP is unavailable
 
 ## Replying to humans
@@ -43,20 +43,21 @@ Always cite **`provenance.engineVersion`** and **`provenance.forkConfig`** when 
 Use this order:
 
 1. [Capabilities](/use/capabilities) — query shapes
-2. Per-tool reference: [Discover](/use/tools/describe-capabilities), [Simulate](/use/tools/simulate-bytecode), [Compare](/use/tools/compare-variants)
+2. Per-tool reference: [Discover](/use/tools/describe-capabilities), [Run](/use/tools/run-bytecode)
 3. [Guarantees](/use/guarantees) — determinism, provenance, ceilings
 
 **Machine-readable index:** [`/llms.txt`](/llms.txt)
 
 **Full use-layer text:** [`/llms-full.txt`](/llms-full.txt)
 
-**JSON schemas:** [describe_capabilities](/schemas/describe_capabilities.input.json), [simulate_evm_bytecode](/schemas/simulate_evm_bytecode.input.json), [compare_evm_variants](/schemas/compare_evm_variants.input.json)
+**JSON schemas:** [describe_capabilities](/schemas/describe_capabilities.input.json), [run_evm_bytecode](/schemas/run_evm_bytecode.input.json)
 
 ## Changelog
 
 <Changelog
   title="Runtime Agents Changelog"
   :entries="[
+    { version: 'v0.9', date: '2026-08-27', summary: 'compare_evm_variants removed — simulate twice to diff.' },
     { version: 'v0.8', date: '2026-08-27', summary: 'Narrow scope — MCP-first runtime playbook; renamed from for-ai-agents; builders pointed to engine AGENTS.md.' },
     { version: 'v0.7', date: '2026-08-27', summary: 'Replying to humans — plain language; hide tool names and JSON fields unless asked.' },
     { version: 'v0.6', date: '2026-08-27', summary: 'Agents construct bytecode; catalog exposes opcodes/encoding, not demo programs.' },

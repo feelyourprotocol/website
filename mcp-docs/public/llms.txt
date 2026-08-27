@@ -9,19 +9,17 @@
 When the feel-your-protocol MCP server is connected:
 
 - describe_capabilities — probe registry (forks, runnable EIP modules, opcodes, encoding)
-- simulate_evm_bytecode — run raw bytecode under a fork config
-- compare_evm_variants — diff labelled variants (gas, success, error)
+- run_evm_bytecode — run raw bytecode under a fork config
 
 Prefer these MCP tools over local engine/lab scripts. See Connect for setup.
 
 ## Use (end-user)
 
 - [Introduction](https://mcp-docs.feelyourprotocol.org/use/introduction.html): What the MCP server is
-- [Capabilities](https://mcp-docs.feelyourprotocol.org/use/capabilities.html): Simulate, compare, generate, probe
+- [Capabilities](https://mcp-docs.feelyourprotocol.org/use/capabilities.html): Run, generate, probe
 - [Connect](https://mcp-docs.feelyourprotocol.org/use/connect.html): Local stdio setup (live) + remote HTTP (planned)
 - [Describe Capabilities](https://mcp-docs.feelyourprotocol.org/use/tools/describe-capabilities.html): MCP tool reference (live)
-- [Simulate Bytecode](https://mcp-docs.feelyourprotocol.org/use/tools/simulate-bytecode.html): MCP tool reference (live)
-- [Compare Variants](https://mcp-docs.feelyourprotocol.org/use/tools/compare-variants.html): MCP tool reference (live)
+- [Run Bytecode](https://mcp-docs.feelyourprotocol.org/use/tools/run-bytecode.html): MCP tool reference (live)
 - [Coverage](https://mcp-docs.feelyourprotocol.org/use/coverage.html): Supported forks and EIPs
 - [EIP-8024](https://mcp-docs.feelyourprotocol.org/use/eips/eip-8024.html): DUPN / SWAPN / EXCHANGE — human catalogue (prompts, tools, twins)
 - [Guarantees](https://mcp-docs.feelyourprotocol.org/use/guarantees.html): Determinism, provenance, limits
@@ -30,8 +28,7 @@ Prefer these MCP tools over local engine/lab scripts. See Connect for setup.
 ## JSON schemas
 
 - [describe_capabilities.input.json](https://mcp-docs.feelyourprotocol.org/schemas/describe_capabilities.input.json)
-- [simulate_evm_bytecode.input.json](https://mcp-docs.feelyourprotocol.org/schemas/simulate_evm_bytecode.input.json)
-- [compare_evm_variants.input.json](https://mcp-docs.feelyourprotocol.org/schemas/compare_evm_variants.input.json)
+- [run_evm_bytecode.input.json](https://mcp-docs.feelyourprotocol.org/schemas/run_evm_bytecode.input.json)
 
 ## Internals
 

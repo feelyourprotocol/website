@@ -1,6 +1,6 @@
-# Simulate Bytecode
+# Run Bytecode
 
-> **Status:** **Live** (gateway v0.1, stdio). MCP tool: `simulate_evm_bytecode`.
+> **Status:** **Live** (gateway v0.1, stdio). MCP tool: `run_evm_bytecode`.
 
 ## Purpose
 
@@ -14,7 +14,7 @@ Run **caller-supplied** raw EVM bytecode under a chosen fork / EIP configuration
 
 ## MCP tool name
 
-`simulate_evm_bytecode`
+`run_evm_bytecode`
 
 ## Inputs
 
@@ -80,7 +80,7 @@ Deep stack + `DUPN` — opcodes invalid pre-Amsterdam.
 
 ## JSON schema
 
-[simulate_evm_bytecode.input.json](/schemas/simulate_evm_bytecode.input.json)
+[run_evm_bytecode.input.json](/schemas/run_evm_bytecode.input.json)
 
 ## Limits
 
@@ -89,8 +89,9 @@ See [Guarantees](/use/guarantees) for ceilings (max gas, bytecode size, trace st
 ## Changelog
 
 <Changelog
-  title="Simulate Bytecode Changelog"
+  title="Run Bytecode Changelog"
   :entries="[
+    { version: 'v0.5', date: '2026-08-27', summary: 'Renamed MCP tool simulate_evm_bytecode → run_evm_bytecode.' },
     { version: 'v0.4', date: '2026-07-22', summary: 'Live MCP tool — real tool name, Amsterdam examples, JSON schema link.' },
     { version: 'v0.3', date: '2026-07-20', summary: 'Tool page shell under use/tools/ — reframed from execution-engine reference.' },
   ]"

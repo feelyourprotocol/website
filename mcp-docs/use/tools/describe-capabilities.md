@@ -4,7 +4,7 @@
 
 ## Purpose
 
-Return a machine-readable snapshot of what this server can **actually run**: engine version, ceilings, named forks, and **runnable EIP modules**. Each module describes **what became possible** (opcodes, encoding rules, keywords) — not demo programs. Unimplemented EIPs are omitted. Callers supply bytecode to `simulate_evm_bytecode` / `compare_evm_variants`.
+Return a machine-readable snapshot of what this server can **actually run**: engine version, ceilings, named forks, and **runnable EIP modules**. Each module describes **what became possible** (opcodes, encoding rules, keywords) — not demo programs. Unimplemented EIPs are omitted. Callers supply bytecode to `run_evm_bytecode`.
 
 ## When to use
 
@@ -48,7 +48,7 @@ _Output (abbreviated):_
     "eip": 8024,
     "runnable": true,
     "summary": "Amsterdam EVM executes DUPN, SWAPN, and EXCHANGE. Supply any bytecode; this server does not ship demo programs.",
-    "shapes": ["simulate", "compare"],
+    "shapes": ["simulate"],
     "opcodes": [
       { "name": "DUPN", "opcodeHex": "0xe6", "effect": "Copy the stack item at depth n onto the top.", "immediate": { "encoding": "n = (immediate + 145) mod 256; …", "minDepth": 17, "maxDepth": 235 } }
     ]

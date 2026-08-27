@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://mcp-docs.feelyourprotocol.org/schemas/simulate_evm_bytecode.input.json",
-  "title": "simulate_evm_bytecode input",
+  "$id": "https://mcp-docs.feelyourprotocol.org/schemas/run_evm_bytecode.input.json",
+  "title": "run_evm_bytecode input",
   "type": "object",
   "required": ["bytecode"],
   "properties": {

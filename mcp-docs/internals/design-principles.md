@@ -12,7 +12,7 @@ These boundaries apply to everything we ship.
 
 ## Engine design
 
-- **Query shapes, not library APIs** — generic verbs (`simulate`, `compare`, `generate`, `probe`); structured, diffable results.
+- **Query shapes, not library APIs** — generic verbs (`simulate`, `generate`, `probe`); structured results.
 - **Fork = capability set** — `(baseHardfork, eips[])` à la carte; named forks are curated shortcuts.
 - **Provenance on every result** — engine version, fork config, optional EIP maturity metadata.
 

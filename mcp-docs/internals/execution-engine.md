@@ -1,16 +1,16 @@
 # Execution Engine
 
-> **Status:** v0.1 — `simulateBytecode`, capability registry, provenance, variant-based compare composer.
+> **Status:** v0.1 — `simulateBytecode`, capability registry, provenance.
 
 The **`mcp-execution-engine`** is a pure TypeScript library: stateless EthereumJS v10 simulations with no HTTP, MCP transport, or payments. The gateway (Step 3+) depends on it one-way.
 
 Repository: [feelyourprotocol/mcp-execution-engine](https://github.com/feelyourprotocol/mcp-execution-engine) (v0.1.0). Consumed by `mcp-gateway` via `LocalTaskProcessor`.
 
-End-user tool semantics: [Describe Capabilities](/use/tools/describe-capabilities), [Simulate Bytecode](/use/tools/simulate-bytecode), [Compare Variants](/use/tools/compare-variants), [Coverage](/use/coverage), [Guarantees](/use/guarantees).
+End-user tool semantics: [Describe Capabilities](/use/tools/describe-capabilities), [Run Bytecode](/use/tools/run-bytecode), [Coverage](/use/coverage), [Guarantees](/use/guarantees).
 
 ## Design principles
 
-- **Query shapes, not library APIs** — the MCP surface will expose generic verbs (`simulate`, `compare`, `generate`, `probe`); the engine returns structured, diffable results.
+- **Query shapes, not library APIs** — the MCP surface exposes generic verbs (`simulate`, `generate`, `probe`); the engine returns structured results.
 - **Fork = capability set** — `(baseHardfork, eips[])` à la carte; named forks (e.g. `amsterdam`) are curated shortcuts.
 - **Provenance on every result** — engine version, fork config, optional EIP maturity metadata, stability rollup, human caveat.
 - **Boundaries** — raw bytecode only; no Solidity compile; no archive node; no multi-block historical backtesting.
@@ -22,7 +22,6 @@ See also [Design Principles](/internals/design-principles).
 | Export | Role |
 | --- | --- |
 | `simulateBytecode(input)` | Run bytecode under a fork config; optional opcode trace |
-| `compareVariants(input)` | N variants (each with own fork + bytecode) → diff |
 | `describeCapabilities()` | Registry snapshot — runnable EIP modules (opcodes, encoding, no demos) |
 | `listEipModules()` | Live EIP module list (source of the catalog) |
 | `buildCommon(config)` | Resolve `(baseHardfork, eips[])` → EthereumJS `Common` |
@@ -63,7 +62,7 @@ See also [Design Principles](/internals/design-principles).
 
 | EIP | Nature | Runnable | Shapes |
 | --- | --- | --- | --- |
-| 8024 | new-capability | yes | simulate, compare |
+| 8024 | new-capability | yes | simulate |
 
 Only runnable modules appear in `describeCapabilities()`. Each module declares `summary`, `opcodes` (with encoding), and `keywords`. EIP-8024 lives in `src/modules/eip-8024/`. Demo programs belong in tests, not the catalog.
 
@@ -78,7 +77,8 @@ See [Quality](/internals/quality).
 <Changelog
   title="Execution Engine Changelog"
   :entries="[
-    { version: 'v0.1.1', date: '2026-08-27', summary: 'EIP module catalog (8024 opcodes/encoding only); compare MCP tool; stub EIPs and demo scenarios removed.' },
+    { version: 'v0.1.2', date: '2026-08-27', summary: 'Removed compareVariants — agents call simulateBytecode twice to diff.' },
+    { version: 'v0.1.1', date: '2026-08-27', summary: 'EIP module catalog (8024 opcodes/encoding only); stub EIPs and demo scenarios removed.' },
     { version: 'v0.1.0', date: '2026-07-20', summary: 'Initial engine — simulateBytecode, registry, provenance, compareVariants composer, seed presets.' },
   ]"
 />

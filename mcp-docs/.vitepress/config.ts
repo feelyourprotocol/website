@@ -90,8 +90,7 @@ export default defineConfig({
               collapsed: false,
               items: [
                 { text: 'Describe Capabilities', link: '/use/tools/describe-capabilities' },
-                { text: 'Simulate Bytecode', link: '/use/tools/simulate-bytecode' },
-                { text: 'Compare Variants', link: '/use/tools/compare-variants' },
+                { text: 'Run Bytecode', link: '/use/tools/run-bytecode' },
               ],
             },
             { text: 'Coverage', link: '/use/coverage' },

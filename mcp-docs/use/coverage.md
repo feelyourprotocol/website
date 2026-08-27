@@ -8,7 +8,7 @@ Fork configuration is **à la carte**: a base hardfork plus an optional EIP list
 
 | EIP | Nature | Runnable | Shapes | Catalogue |
 | --- | --- | --- | --- | --- |
-| 8024 | new-capability | yes | simulate, compare | [EIP-8024](/use/eips/eip-8024) |
+| 8024 | new-capability | yes | simulate | [EIP-8024](/use/eips/eip-8024) |
 
 EIP-8024 means the Amsterdam EVM **executes** DUPN, SWAPN, and EXCHANGE. See the [EIP-8024 catalogue page](/use/eips/eip-8024) for inspiration prompts and twin links to the website exploration.
 
