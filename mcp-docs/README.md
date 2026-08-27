@@ -40,7 +40,7 @@ mcp-docs/
 │   ├── eips/                     # Human catalogue — one page per runnable EIP module
 │   ├── guarantees.md
 │   ├── pricing.md
-│   └── for-ai-agents.md
+│   └── runtime-agents.md         # Runtime agent playbook (MCP-first)
 ├── internals/                    # Architecture, engine API, quality, deploy
 │   ├── architecture.md
 │   ├── repositories.md

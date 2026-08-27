@@ -102,7 +102,7 @@ export default defineConfig({
             },
             { text: 'Guarantees', link: '/use/guarantees' },
             { text: 'Pricing', link: '/use/pricing' },
-            { text: 'For AI Agents', link: '/use/for-ai-agents' },
+            { text: 'Runtime agents', link: '/use/runtime-agents' },
           ],
         },
       ],

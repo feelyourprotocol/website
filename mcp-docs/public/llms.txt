@@ -25,7 +25,7 @@ Prefer these MCP tools over local engine/lab scripts. See Connect for setup.
 - [Coverage](https://mcp-docs.feelyourprotocol.org/use/coverage.html): Supported forks and EIPs
 - [EIP-8024](https://mcp-docs.feelyourprotocol.org/use/eips/eip-8024.html): DUPN / SWAPN / EXCHANGE — human catalogue (prompts, tools, twins)
 - [Guarantees](https://mcp-docs.feelyourprotocol.org/use/guarantees.html): Determinism, provenance, limits
-- [For AI Agents](https://mcp-docs.feelyourprotocol.org/use/for-ai-agents.html): How LLMs should read this site
+- [Runtime agents](https://mcp-docs.feelyourprotocol.org/use/runtime-agents.html): MCP-first playbook for connected agents
 
 ## JSON schemas
 

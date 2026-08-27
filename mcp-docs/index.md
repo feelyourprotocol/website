@@ -13,8 +13,8 @@ hero:
       text: Look inside
       link: /internals/architecture
     - theme: alt
-      text: For AI agents
-      link: /use/for-ai-agents
+      text: Runtime agents
+      link: /use/runtime-agents
 
 features:
   - title: Use the server
@@ -23,9 +23,9 @@ features:
   - title: Look inside
     details: Architecture, repositories, execution engine API, quality procedures, deployment shape, and how this site relates to the roadmap.
     link: /internals/architecture
-  - title: For AI agents
-    details: llms.txt index, full use-layer text dump, provenance conventions, and per-tool pages with predictable structure.
-    link: /use/for-ai-agents
+  - title: Runtime agents
+    details: MCP-first playbook for connected agents — plain language to humans, llms.txt index, provenance when reporting results.
+    link: /use/runtime-agents
   - title: Vision (Roadmap)
     details: Strategic sketches and draft concepts stay on the roadmap site. This site documents shipped or in-progress reality.
     link: /internals/roadmap-relationship
