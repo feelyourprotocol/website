@@ -1,9 +1,9 @@
 ---
-description: Video recording uses the isolated video/ Playwright package — never ad-hoc installs
+description: Short-form exploration video recording — isolated video/ package, never ad-hoc browser installs
 alwaysApply: true
 ---
 
-# Short-form videos & Playwright
+# Video recording
 
 Exploration videos (9:16 vertical) are recorded by the **isolated** `website/video/` package.
 Playwright is intentionally **not** in the root `package.json` (CI stays lean).

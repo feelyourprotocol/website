@@ -120,7 +120,7 @@ When adding companion panels to an E-Component, agents often mount them as sibli
 If you are using [Cursor](https://cursor.com/) or a similar AI-native IDE:
 
 - **Add the docs as context.** Use `@website-docs/` to reference the documentation folder so the agent has the full contribution guidelines in scope.
-- **Use project rules in `.cursor/rules/`** — start with `repo-structure.mdc` (multi-site boundaries) and `lint-before-done.mdc`.
+- **Use project rules in `.cursor/rules/`** — start with `repo-structure.mdc` (multi-site boundaries) and `quality.mdc`.
 - **Run terminal commands through the agent.** Let the agent run `npm run lf`, `npm run type-check`, and `npx vitest run` directly so it can read and fix errors in the same session.
 
 ## What to Review as a Human

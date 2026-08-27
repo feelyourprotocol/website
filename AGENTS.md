@@ -17,7 +17,7 @@ Short entrypoint for coding agents in this monorepo.
 
 ## Cursor rules
 
-Always-on rules live in [`.cursor/rules/`](.cursor/rules/). Start with [`repo-structure.mdc`](.cursor/rules/repo-structure.mdc) for folder boundaries and where not to paste sibling-site instructions.
+Rules live in [`.cursor/rules/`](.cursor/rules/) — catalog in [`repo-structure.mdc`](.cursor/rules/repo-structure.mdc). Primitives: `repo-structure.mdc`, `quality.mdc`, `testing.mdc`. Specialized: `video-recording.mdc`, `og-images.mdc`.
 
 ## Habits
 

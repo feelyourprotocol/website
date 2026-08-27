@@ -77,7 +77,7 @@ Unit tests cover card registry, CLI parsing, paths, and Vue frame rendering (no 
 
 ## Cursor / agent note
 
-AI agents must **not** run `og:setup` or `playwright install`. Use the npm scripts below with full shell permissions (`all`). If Chromium is missing, ask the human to run `og:setup` — see `.cursor/rules/og-playwright.mdc`.
+AI agents must **not** run `og:setup` or `playwright install`. Use the npm scripts below with full shell permissions (`all`). If Chromium is missing, ask the human to run `og:setup` — see `.cursor/rules/og-images.mdc`.
 
 Quick agent preflight (no browser launch):
 

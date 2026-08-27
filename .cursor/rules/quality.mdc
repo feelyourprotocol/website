@@ -1,9 +1,9 @@
 ---
-description: Run lint/format CI before finishing code changes in this repo
+description: Finish quality gates — lint and format before reporting code work done
 alwaysApply: true
 ---
 
-# Lint before done
+# Quality gates
 
 When you change code in this repository, **before reporting the task complete**:
 

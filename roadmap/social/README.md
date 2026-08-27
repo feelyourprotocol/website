@@ -66,7 +66,7 @@ roadmap/social/out/     ← generated PNG/WebP (gitignored)
 og/src/social/           ← Playwright capture (shares og:setup Chromium)
 ```
 
-Playwright rules: see `.cursor/rules/og-playwright.mdc` — agents run capture with
+Playwright rules: see `.cursor/rules/og-images.mdc` — agents run capture with
 `required_permissions: ["all"]`; never run `og:setup` or `playwright install`.
 Preflight: `npm run og:preflight`.
 

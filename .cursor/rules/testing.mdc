@@ -1,9 +1,9 @@
 ---
-description: Add focused tests when introducing new modules or tooling
+description: Add focused tests when introducing new modules or features
 alwaysApply: true
 ---
 
-# Tests with new code
+# Testing
 
 When you add **new modules, scripts, or non-trivial features** (not one-line fixes or copy-only edits), include a **solid but proportionate** test layer before calling the task done.
 
@@ -36,4 +36,4 @@ GitHub Actions (`.github/workflows/unit.yml`) runs `npm run test:unit:ci` on eve
 
 ## Playwright / capture pipelines
 
-Do **not** require Playwright in CI for screenshot tools. Unit-test parsing, paths, and component rendering; leave browser capture as a documented manual/`og:setup` step (see `.cursor/rules/og-playwright.mdc`).
+Do **not** require Playwright in CI for screenshot tools. Unit-test parsing, paths, and component rendering; leave browser capture as a documented manual/`og:setup` step (see `.cursor/rules/og-images.mdc`).

@@ -99,7 +99,7 @@ video/
 
 ## Agent rules
 
-Same Playwright rules as OG images — see `.cursor/rules/video-playwright.mdc`.
+Same Playwright rules as OG images — see `.cursor/rules/video-recording.mdc`.
 **Never** run `video:setup` or `playwright install` unless the user explicitly asks.
 
 Run record/preflight with `required_permissions: ["all"]`.
