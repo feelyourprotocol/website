@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import type { ExecResult } from '@ethereumjs/evm'
 import { Hardfork } from '@ethereumjs/common'
+import type { ExecResult } from '@ethereumjs/evm'
 import { bytesToHex, equalsBytes } from '@ethereumjs/util'
 
 import PrecompileInterfaceEC from '@/eComponents/precompileInterfaceEC/PrecompileInterfaceEC.vue'
-import ResultBoxUIC from '@/eComponents/ui/resultBox/ResultBoxUIC.vue'
 import { useStandardPrecompileRun } from '@/eComponents/precompileInterfaceEC/run'
+import ResultBoxUIC from '@/eComponents/ui/resultBox/ResultBoxUIC.vue'
 
 import { config } from './config'
 import { examples } from './examples'
@@ -19,8 +19,7 @@ VALID_RETURN[31] = 1
 function verificationLabel(result: ExecResult | undefined): string {
   if (!result) return 'Not available'
   if (result.exceptionError) return 'Invalid — precompile reverted or errored'
-  const ok =
-    result.returnValue.length === 32 && equalsBytes(result.returnValue, VALID_RETURN)
+  const ok = result.returnValue.length === 32 && equalsBytes(result.returnValue, VALID_RETURN)
   return ok ? 'Valid signature' : 'Invalid signature'
 }
 

@@ -11,9 +11,9 @@ import {
   stackTopNumbers,
   swapnBytecode,
 } from './bytecode'
+import { CANONICAL } from './canonical'
 import { config } from './config'
 import { examples } from './examples'
-import { CANONICAL } from './canonical'
 import { INFO } from './info'
 
 async function createAmsterdamEvm() {
