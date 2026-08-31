@@ -17,9 +17,9 @@ It depends one-way on **`mcp-execution-engine`**. End-user connection: [Connect]
 | MCP tool | Engine call |
 | --- | --- |
 | `describe_capabilities` | `describeCapabilities()` |
-| `simulate_evm_bytecode` | `simulateBytecode()` |
+| `run_evm_bytecode` | `simulateBytecode()` |
 
-Server name: `FeelYourProtocol-EVM` v0.1.0. Entry: `node dist/index.js` (bin: `fyp-mcp`).
+Server name: `FeelYourProtocol` v0.1.0. Entry: `node dist/index.js` (bin: `fyp-mcp`).
 
 ## Repository layout
 
@@ -38,7 +38,9 @@ mcp-gateway/
 <Changelog
   title="Gateway Changelog"
   :entries="[
-    { version: 'v0.1.0', date: '2026-07-22', summary: 'Stdio gateway — describe_capabilities + simulate_evm_bytecode, TaskProcessor seam, integration tests.' },
+    { version: 'v0.1.3', date: '2026-08-27', summary: 'Renamed simulate_evm_bytecode → run_evm_bytecode.' },
+    { version: 'v0.1.1', date: '2026-08-27', summary: 'compare_evm_variants live on stdio.' },
+    { version: 'v0.1.0', date: '2026-07-22', summary: 'Stdio gateway — describe_capabilities + run_evm_bytecode, TaskProcessor seam, integration tests.' },
     { version: 'v0.3', date: '2026-07-20', summary: 'Placeholder under internals/.' },
   ]"
 />

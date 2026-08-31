@@ -1,10 +1,19 @@
 import { describe, expect, it } from 'vitest'
 
+import { CANONICAL } from './canonical'
 import { config } from './config'
 import { examples } from './examples'
 import { INFO } from './info'
 
 describe('EIP-7951 Exploration', () => {
+  describe('canonical', () => {
+    it('defines new-capability nature and core question', () => {
+      expect(CANONICAL.question.changeNature).toBe('new-capability')
+      expect(CANONICAL.question.coreQuestion).toContain('secp256r1')
+      expect(CANONICAL.mcp.docsStatus).toBe('runnable')
+    })
+  })
+
   describe('info', () => {
     it('has correct metadata', () => {
       expect(INFO.id).toBe('eip-7951')

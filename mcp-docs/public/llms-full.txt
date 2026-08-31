@@ -1,10 +1,22 @@
 # Feel Your Protocol MCP Server — Use Layer (full text)
 # Source: mcp-docs/use/ — end-user documentation for humans and AI agents
 # https://mcp-docs.feelyourprotocol.org/llms-full.txt
-# Updated: 2026-07-22 — gateway v0.1 stdio live
+# Updated: 2026-08-31 — PUBLIC MCP NOT LAUNCHED; local stdio is developer early access only
 
 ================================================================================
-LIVE MCP TOOLS (stdio v0.1) — READ FIRST
+READ FIRST — LAUNCH STATUS
+================================================================================
+
+The Feel Your Protocol MCP SERVER HAS NOT PUBLICLY LAUNCHED.
+There is no hosted mcp.feelyourprotocol.org endpoint to connect today.
+
+For interactive protocol exploration NOW: https://feelyourprotocol.org (live).
+
+Local stdio gateway v0.1 exists for developers who clone and build mcp-gateway.
+This documentation describes upcoming agent capabilities and the early-access local path.
+
+================================================================================
+LIVE MCP TOOLS (stdio v0.1, SELF-HOSTED ONLY) — READ SECOND
 ================================================================================
 
 When the feel-your-protocol MCP server is connected, use these tools directly.
@@ -12,21 +24,24 @@ Do NOT fall back to mcp-execution-engine lab scripts or npm run lab unless MCP
 is unavailable. Trust listTools on the connected server over stale repo text.
 
 Tools:
-- describe_capabilities (probe) — registry: forks, EIPs, ceilings, presets
-- simulate_evm_bytecode (simulate) — run raw bytecode under fork config
+- describe_capabilities (probe) — registry: forks, runnable EIP modules, opcodes, encoding
+- run_evm_bytecode (run) — run raw bytecode under fork config
 
-Server: FeelYourProtocol-EVM v0.1.0
+Compare gas or outcomes optionally by calling run twice (e.g. osaka then amsterdam).
+
+Server: FeelYourProtocol v0.1.0
 Setup: see CONNECT section below
 
 JSON schemas:
 - /schemas/describe_capabilities.input.json
-- /schemas/simulate_evm_bytecode.input.json
+- /schemas/run_evm_bytecode.input.json
 
 ================================================================================
 INTRODUCTION
 ================================================================================
 
-Status: MCP docs site live. Local stdio gateway v0.1 LIVE. Remote HTTP Step 5.
+Status: PUBLIC MCP NOT LAUNCHED. Website explorations LIVE at feelyourprotocol.org.
+Local stdio v0.1 = developer early access only. Remote HTTP Step 5.
 
 Headless MCP server wrapping EthereumJS for exact, deterministic simulations of
 the future Ethereum protocol. Rich JSON traces for agent reasoning.
@@ -41,9 +56,10 @@ CAPABILITIES
 Query shapes and MCP tools:
 
 - Probe → describe_capabilities — LIVE (stdio)
-- Simulate → simulate_evm_bytecode — LIVE (stdio)
-- Compare — engine only; MCP tool planned
+- Run → run_evm_bytecode — LIVE (stdio)
 - Generate (BAL) — planned Step 6
+
+Optional: compare baseline vs preview by calling run twice (osaka then amsterdam).
 
 Scope: stateless/BYOS, raw bytecode only, no Solidity compile, no archive node,
 no multi-block historical backtesting.
@@ -52,7 +68,9 @@ no multi-block historical backtesting.
 CONNECT
 ================================================================================
 
-Local stdio: LIVE. Remote https://mcp.feelyourprotocol.org/mcp — planned.
+Public MCP: NOT LAUNCHED (mcp.feelyourprotocol.org planned).
+Local stdio: developer early access only — build from source.
+Most users: feelyourprotocol.org explorations (no MCP setup).
 
 Build:
   cd mcp-execution-engine && npm ci && npm run build
@@ -71,7 +89,7 @@ Cursor mcp.json:
 After gateway code changes: npm run build + restart MCP in Cursor (Settings → MCP).
 
 Startup stderr should show:
-  [fyp-mcp] FeelYourProtocol-EVM v0.1.0 ready — tools: describe_capabilities, simulate_evm_bytecode
+  [fyp-mcp] FeelYourProtocol v0.1.0 ready — tools: describe_capabilities, run_evm_bytecode
 
 ================================================================================
 TOOL: DESCRIBE_CAPABILITIES (LIVE)
@@ -79,28 +97,29 @@ TOOL: DESCRIBE_CAPABILITIES (LIVE)
 
 MCP tool name: describe_capabilities
 Input: {} (no required fields)
-Output: engineVersion, ceilings, namedForks, eips, allowedBaseHardforks, presets
+Output: engineVersion, ceilings, baselineForkId, namedForks, eips (runnable modules with opcodes + encoding + comparison; no demo programs), allowedBaseHardforks
 
-Use first to learn supported forks (e.g. amsterdam) and registered EIPs (8024, 7928, …).
+Use first to learn baselineForkId (osaka — current mainnet EL), prague (pre-Fusaka ModExp compare), preview fork amsterdam (alias glamsterdam), and runnable EIPs (8024, 7883 ModExp, 7951 secp256r1). Unimplemented EIPs are omitted.
 
 ================================================================================
-TOOL: SIMULATE_EVM_BYTECODE (LIVE)
+TOOL: RUN_EVM_BYTECODE (LIVE)
 ================================================================================
 
-MCP tool name: simulate_evm_bytecode
+MCP tool name: run_evm_bytecode
 
 Purpose: Run raw EVM bytecode under fork/EIP config. Returns gas, stack, optional
 trace, provenance.
 
 Inputs:
 - bytecode (required): hex, max 24576 bytes
-- fork (optional): { baseHardfork, eips[] } — default amsterdam
+- fork (optional): { baseHardfork, eips[] } — default amsterdam; use osaka for mainnet baseline comparisons
 - gasLimit (optional): string, default 1000000, max 30000000
 - trace (optional): boolean, max 10000 steps
 
 Outputs: success, gasUsed, returnValue, finalStack, error, steps?, provenance
 
 Amsterdam note: eips: [] on amsterdam is correct — EIP-8024 bundled in hardfork.
+Optional 8024 compare: run same bytecode on osaka (baseline, invalid 0xe6–0xe8) then amsterdam (preview).
 
 Examples:
 - PUSH1 STOP: bytecode 0x600100 → gasUsed 3
@@ -111,8 +130,9 @@ Examples:
 COVERAGE
 ================================================================================
 
-Named fork: amsterdam (bundled EL fork). Registered EIPs (seed): 8024, 7883,
-7928, 7951, 8141 (8141 not implemented in engine).
+Named forks: prague (ModExp compare), osaka (baseline, alias mainnet-el), amsterdam (preview, alias glamsterdam).
+baselineForkId: osaka. Live runnable EIP modules: 8024, 7883, 7951.
+Exploration twins (human catalogue): 8024, 7883, 7951 runnable; 7928 planned (generate). See use/eips/.
 
 ================================================================================
 GUARANTEES
@@ -136,7 +156,8 @@ FOR AI AGENTS
 ================================================================================
 
 1. If feel-your-protocol MCP connected → use describe_capabilities and
-   simulate_evm_bytecode. Do not use local lab as substitute.
+   run_evm_bytecode (once on amsterdam by default; optionally osaka for mainnet comparison).
+   Do not use local lab as substitute.
 2. Cite provenance.engineVersion and provenance.forkConfig in answers.
 3. Index: /llms.txt. Schemas: /schemas/*.input.json
 

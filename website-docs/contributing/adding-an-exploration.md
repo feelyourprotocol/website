@@ -1,21 +1,22 @@
 # Adding an Exploration
 
-An exploration is a folder under `src/explorations/` with metadata and an interactive widget. **You** define the pedagogical goal and review the result; **your agent** implements using the [add-exploration skill](https://github.com/feelyourprotocol/website/blob/main/.cursor/skills/add-exploration/SKILL.md).
+An exploration is a folder under `src/explorations/` with metadata and an interactive widget. **You** define the pedagogical goal and review the result; **your agent** implements using the [brief-protocol-change](https://github.com/feelyourprotocol/website/blob/main/.cursor/skills/brief-protocol-change/SKILL.md) then [add-exploration skill](https://github.com/feelyourprotocol/website/blob/main/.cursor/skills/add-exploration/SKILL.md).
 
 ## Brief your agent
 
 Include:
 
-- EIP/ERC spec link and **what the widget should let someone understand**
+- EIP/ERC spec link and **what the widget should let someone understand** (practical, curiosity, or research audience)
 - Suggested topic, timeline, and tags ([Architecture](/guide/architecture) — agent must read `TOPICS.ts`, `TIMELINE.ts`, `TAGS.ts`, not guess)
-- Building block: precompile → [EIP-7951](https://github.com/feelyourprotocol/website/tree/main/src/explorations/eip-7951); bytecode stepper → [EIP-8024](https://github.com/feelyourprotocol/website/tree/main/src/explorations/eip-8024); custom → [EIP-7928](https://github.com/feelyourprotocol/website/tree/main/src/explorations/eip-7928)
+- Building block: precompile repricing → [EIP-7883](https://github.com/feelyourprotocol/website/tree/main/src/explorations/eip-7883); precompile new-capability → [EIP-7951](https://github.com/feelyourprotocol/website/tree/main/src/explorations/eip-7951); bytecode stepper → [EIP-8024](https://github.com/feelyourprotocol/website/tree/main/src/explorations/eip-8024); custom → [EIP-7928](https://github.com/feelyourprotocol/website/tree/main/src/explorations/eip-7928)
 - Ask for human review before OG image or PR
 
 ## Folder contract
 
 ```
 src/explorations/eip-XXXX/
-├── info.ts          # required
+├── canonical.ts     # required — source of truth (website + MCP)
+├── info.ts          # required — website chrome only
 ├── MyC.vue          # required
 ├── examples.ts      # recommended
 ├── tests.spec.ts    # required
@@ -25,24 +26,42 @@ src/explorations/eip-XXXX/
 
 Register in `REGISTRY.ts` or the exploration will not appear.
 
-## Metadata sketch (`info.ts`)
+## Canonical metadata (`canonical.ts`)
 
-Canonical shape — agent fills values; you review copy:
+Shared meaning lives here — replicated into MCP engine modules and docs. Schema: `src/explorations/canonicalTypes.ts`.
+
+```typescript
+import type { ProtocolChangeCanonical } from '@/explorations/canonicalTypes'
+import { Tag } from '@/explorations/TAGS'
+
+/** Source of truth for this protocol change (website + MCP). Replicate into engine EipCapability and mcp-docs. */
+export const CANONICAL: ProtocolChangeCanonical = {
+  identity: { id: 'eip-XXXX', eip: 0, specUrl: 'https://eips.ethereum.org/EIPS/eip-XXXX', name: '…' },
+  question: { coreQuestion: '…', changeNature: 'new-capability' },
+  taxonomy: { topic: 'scaling', timeline: 'fusaka', tags: [Tag.EVM] },
+  maturity: { eipStatus: 'Final', forkInclusion: 'Fusaka' },
+  mcp: { shapes: ['simulate'], docsStatus: 'runnable' },
+}
+```
+
+## Website chrome (`info.ts`)
+
+Website-only fields — agent fills values; you review copy. Derive `topic`, `timeline`, `tags`, `title`, `infoURL` from `CANONICAL` where possible:
 
 ```typescript
 import type { Exploration } from '@/explorations/REGISTRY'
-import { Tag } from '@/explorations/TAGS'
+import { CANONICAL } from './canonical'
 
 export const INFO: Exploration = {
-  id: 'eip-XXXX',
+  id: CANONICAL.identity.id,
   path: '/eip-XXXX-short-description',
-  title: 'Human-Readable Title',
-  seoDescription: 'Interactive explainer for EIP-XXXX — search-friendly terms, not widget UI copy.',
-  infoURL: 'https://eips.ethereum.org/EIPS/eip-XXXX',
-  topic: 'scaling',
-  timeline: 'fusaka',
-  tags: [Tag.EVM, Tag.GasCosts],
-  introText: '<b>What does this change?</b> …',
+  title: CANONICAL.identity.name,
+  seoDescription: '…',
+  infoURL: CANONICAL.identity.specUrl,
+  topic: CANONICAL.taxonomy.topic,
+  timeline: CANONICAL.taxonomy.timeline,
+  tags: CANONICAL.taxonomy.tags,
+  introText: `<b>${CANONICAL.question.coreQuestion}</b> …`,
   usageText: 'How to use the widget below.',
   poweredBy: [{ name: 'EthereumJS', href: 'https://github.com/ethereumjs/ethereumjs-monorepo' }],
 }
@@ -93,8 +112,9 @@ Tests green ≠ ready. Before OG/PR, review:
 
 ## Checklist
 
-- [ ] Agent brief included spec, goal, taxonomies, building block
+- [ ] `canonical.ts` + human review of core question
 - [ ] Folder + `REGISTRY.ts` entry
+- [ ] `mcp-docs/use/eips/eip-NNNN.md` for every live exploration
 - [ ] Human review of copy, examples, UX
 - [ ] Quality gates pass (`lf:ci`, typecheck, tests)
 - [ ] OG generated when shipping

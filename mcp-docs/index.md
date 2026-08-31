@@ -4,7 +4,7 @@ layout: home
 hero:
   name: Feel Your Protocol
   text: MCP Server Documentation
-  tagline: Deterministic future-Ethereum-protocol simulations for AI agents — what you can use, and how we build and operate it.
+  tagline: Pre-launch docs for the agent-facing lab — deterministic future-Ethereum-protocol simulations. The public MCP endpoint is not live yet; try the interactive explorations on feelyourprotocol.org today.
   actions:
     - theme: brand
       text: Use the server
@@ -13,8 +13,8 @@ hero:
       text: Look inside
       link: /internals/architecture
     - theme: alt
-      text: For AI agents
-      link: /use/for-ai-agents
+      text: Runtime agents
+      link: /use/runtime-agents
 
 features:
   - title: Use the server
@@ -23,14 +23,18 @@ features:
   - title: Look inside
     details: Architecture, repositories, execution engine API, quality procedures, deployment shape, and how this site relates to the roadmap.
     link: /internals/architecture
-  - title: For AI agents
-    details: llms.txt index, full use-layer text dump, provenance conventions, and per-tool pages with predictable structure.
-    link: /use/for-ai-agents
+  - title: Runtime agents
+    details: MCP-first playbook for connected agents — plain language to humans, llms.txt index, provenance when reporting results.
+    link: /use/runtime-agents
   - title: Vision (Roadmap)
     details: Strategic sketches and draft concepts stay on the roadmap site. This site documents shipped or in-progress reality.
     link: /internals/roadmap-relationship
 ---
 
-::: info July 2026
-**Local stdio gateway v0.1 is live** — `describe_capabilities` and `simulate_evm_bytecode`. See [Connect](/use/connect). Remote HTTP at `mcp.feelyourprotocol.org` is planned (Step 5).
+::: warning Public launch — not yet
+**The Feel Your Protocol MCP server has not launched publicly.** There is no hosted endpoint you can plug an agent into today.
+
+**Live now:** [Interactive explorations](https://feelyourprotocol.org) on the main website — the textbook slice of each EIP.
+
+**Early access (developers only):** a **local stdio** build (`mcp-gateway` v0.1) you run yourself in Cursor or Claude Desktop. That path is documented under [Connect](/use/connect); most community users can skip it until **`mcp.feelyourprotocol.org`** ships (planned Step 5).
 :::

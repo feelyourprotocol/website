@@ -1,9 +1,17 @@
 import { describe, expect, it } from 'vitest'
 
+import { CANONICAL } from './canonical'
 import { examples } from './examples'
 import { INFO } from './info'
 
 describe('EIP-7594 Exploration', () => {
+  describe('canonical', () => {
+    it('is marked sunset for MCP twin policy', () => {
+      expect(CANONICAL.mcp.docsStatus).toBe('sunset')
+      expect(CANONICAL.mcp.shapes).toHaveLength(0)
+    })
+  })
+
   describe('info', () => {
     it('has correct metadata', () => {
       expect(INFO.id).toBe('eip-7594')

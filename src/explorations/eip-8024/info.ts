@@ -1,25 +1,25 @@
 import type { Exploration } from '@/explorations/REGISTRY'
-import { Tag } from '@/explorations/TAGS'
 
+import { CANONICAL } from './canonical'
 import image from './image.jpg'
 import imageSmall from './image_small.jpg'
 
 export const INFO: Exploration = {
-  id: 'eip-8024',
+  id: CANONICAL.identity.id,
   path: '/eip-8024-stack-opcodes-dupn-swapn-exchange',
-  title: 'EIP-8024 DUPN, SWAPN & EXCHANGE Stack Opcodes',
+  title: CANONICAL.identity.name,
   seoDescription:
     'Interactive EVM explainer for EIP-8024 DUPN, SWAPN, and EXCHANGE stack opcodes — step through deep stack access in an Amsterdam-fork EVM in your browser.',
-  infoURL: 'https://eips.ethereum.org/EIPS/eip-8024',
-  topic: 'robustness',
-  timeline: 'glamsterdam',
-  tags: [Tag.EVM],
+  infoURL: CANONICAL.identity.specUrl,
+  topic: CANONICAL.taxonomy.topic,
+  timeline: CANONICAL.taxonomy.timeline,
+  tags: CANONICAL.taxonomy.tags,
   image,
   imageSmall,
   imageBoxHeight: '19rem',
   rightPanel: true,
   introText:
-    '<b>How do you reach deep stack items without blowing the 1024 limit?</b> ' +
+    `<b>${CANONICAL.question.coreQuestion}</b> ` +
     'Solidity contracts often hit "stack too deep" when juggling many locals. EIP-8024 adds three ' +
     'backward-compatible opcodes — <code>DUPN</code> (0xe6), <code>SWAPN</code> (0xe7), and ' +
     '<code>EXCHANGE</code> (0xe8) — that extend <code>DUP</code>/<code>SWAP</code> to depths ' +

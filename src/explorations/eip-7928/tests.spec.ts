@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest'
 
+import { CANONICAL } from './canonical'
 import { DEFAULT_SCENARIO_ID, exampleMeta, examples } from './examples'
 import { INFO } from './info'
 import { runScenario } from './run'
@@ -30,6 +31,14 @@ function transferFees(totalGasSpent: bigint) {
 }
 
 describe('EIP-7928 BAL Exploration', () => {
+  describe('canonical', () => {
+    it('defines generate shape as planned MCP twin', () => {
+      expect(CANONICAL.question.changeNature).toBe('new-structure')
+      expect(CANONICAL.mcp.shapes).toContain('generate')
+      expect(CANONICAL.mcp.docsStatus).toBe('planned-module')
+    })
+  })
+
   describe('info', () => {
     it('has correct metadata', () => {
       expect(INFO.id).toBe('eip-7928')

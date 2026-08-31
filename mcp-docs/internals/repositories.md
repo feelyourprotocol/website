@@ -6,7 +6,7 @@
 | --- | --- | --- |
 | [feelyourprotocol/website](https://github.com/feelyourprotocol/website) | Public | Live — explorations + this docs site |
 | `feelyourprotocol/mcp-execution-engine` | Public | **v0.1.0** — `simulateBytecode`, registry, provenance |
-| `feelyourprotocol/mcp-gateway` | Public | **v0.1.0** — stdio MCP, two tools |
+| `feelyourprotocol/mcp-gateway` | Public | **v0.1.0** — stdio MCP, three tools |
 | `feelyourprotocol/server-config` | Private | Ops configs for all sites + future MCP host |
 
 MCP docs content lives in the `website` repo under `mcp-docs/`. Execution engine and gateway are separate repositories.
