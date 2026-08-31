@@ -1,6 +1,6 @@
 # Coverage
 
-> **Status:** Honest live catalog. Only **runnable** EIP modules appear in probe output.
+> **Status:** Catalogue for the MCP server (local early access today; **public launch not yet**). Only **runnable** EIP modules appear in probe output when you self-host.
 
 Fork configuration is **à la carte**: a base hardfork plus an optional EIP list. Named forks are curated shortcuts — **`osaka`** (current mainnet EL baseline), **`prague`** (pre-Fusaka ModExp compare), and **`amsterdam`** (preview; alias `glamsterdam`).
 
@@ -44,7 +44,7 @@ Canonical metadata for twins lives in website `src/explorations/eip-NNNN/canonic
 <Changelog
   title="Coverage Changelog"
   :entries="[
-    { version: 'v0.9', date: '2026-08-31', summary: 'Split runnable catalog vs exploration twins; 7883/7951 runnable; 7928 planned page; Prague fork for ModExp compare.' },
+    { version: 'v0.9', date: '2026-08-31', summary: 'Split runnable catalog vs exploration twins; note public MCP not launched.' },
     { version: 'v0.8', date: '2026-08-27', summary: 'Osaka mainnet baseline fork — run-twice comparisons against Amsterdam preview.' },
     { version: 'v0.7', date: '2026-08-27', summary: 'EIP catalogue pages under use/eips/ — 8024 human entrypoint.' },
     { version: 'v0.6', date: '2026-08-27', summary: '8024 module is opcode/encoding support, not demo replay.' },

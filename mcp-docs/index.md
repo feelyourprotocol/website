@@ -4,7 +4,7 @@ layout: home
 hero:
   name: Feel Your Protocol
   text: MCP Server Documentation
-  tagline: Deterministic future-Ethereum-protocol simulations for AI agents — what you can use, and how we build and operate it.
+  tagline: Pre-launch docs for the agent-facing lab — deterministic future-Ethereum-protocol simulations. The public MCP endpoint is not live yet; try the interactive explorations on feelyourprotocol.org today.
   actions:
     - theme: brand
       text: Use the server
@@ -31,6 +31,10 @@ features:
     link: /internals/roadmap-relationship
 ---
 
-::: info August 2026
-**Local stdio gateway v0.1 is live** — `describe_capabilities` and `run_evm_bytecode`. Live catalog: EIP-8024 opcode support on Amsterdam (callers supply bytecode). See [Connect](/use/connect). Remote HTTP at `mcp.feelyourprotocol.org` is planned (Step 5).
+::: warning Public launch — not yet
+**The Feel Your Protocol MCP server has not launched publicly.** There is no hosted endpoint you can plug an agent into today.
+
+**Live now:** [Interactive explorations](https://feelyourprotocol.org) on the main website — the textbook slice of each EIP.
+
+**Early access (developers only):** a **local stdio** build (`mcp-gateway` v0.1) you run yourself in Cursor or Claude Desktop. That path is documented under [Connect](/use/connect); most community users can skip it until **`mcp.feelyourprotocol.org`** ships (planned Step 5).
 :::

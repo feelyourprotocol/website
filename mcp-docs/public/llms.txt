@@ -1,8 +1,6 @@
 # Feel Your Protocol — MCP Server Docs
 
-> Concrete documentation for the Feel Your Protocol MCP server: deterministic
-> future-Ethereum-protocol simulations for AI agents.
-> Present-tense "what we have" — for humans and AI. Vision and draft concepts live on the roadmap site.
+> **Public MCP endpoint: not launched yet.** Interactive explorations live at [feelyourprotocol.org](https://feelyourprotocol.org). This site documents the upcoming agent server and early-access local setup.
 
 ## Live MCP tools (stdio v0.1)
 

@@ -1,10 +1,22 @@
 # Feel Your Protocol MCP Server — Use Layer (full text)
 # Source: mcp-docs/use/ — end-user documentation for humans and AI agents
 # https://mcp-docs.feelyourprotocol.org/llms-full.txt
-# Updated: 2026-08-31 — gateway v0.1 stdio: 8024, 7883, 7951 modules; prague fork
+# Updated: 2026-08-31 — PUBLIC MCP NOT LAUNCHED; local stdio is developer early access only
 
 ================================================================================
-LIVE MCP TOOLS (stdio v0.1) — READ FIRST
+READ FIRST — LAUNCH STATUS
+================================================================================
+
+The Feel Your Protocol MCP SERVER HAS NOT PUBLICLY LAUNCHED.
+There is no hosted mcp.feelyourprotocol.org endpoint to connect today.
+
+For interactive protocol exploration NOW: https://feelyourprotocol.org (live).
+
+Local stdio gateway v0.1 exists for developers who clone and build mcp-gateway.
+This documentation describes upcoming agent capabilities and the early-access local path.
+
+================================================================================
+LIVE MCP TOOLS (stdio v0.1, SELF-HOSTED ONLY) — READ SECOND
 ================================================================================
 
 When the feel-your-protocol MCP server is connected, use these tools directly.
@@ -28,7 +40,8 @@ JSON schemas:
 INTRODUCTION
 ================================================================================
 
-Status: MCP docs site live. Local stdio gateway v0.1 LIVE. Remote HTTP Step 5.
+Status: PUBLIC MCP NOT LAUNCHED. Website explorations LIVE at feelyourprotocol.org.
+Local stdio v0.1 = developer early access only. Remote HTTP Step 5.
 
 Headless MCP server wrapping EthereumJS for exact, deterministic simulations of
 the future Ethereum protocol. Rich JSON traces for agent reasoning.
@@ -55,7 +68,9 @@ no multi-block historical backtesting.
 CONNECT
 ================================================================================
 
-Local stdio: LIVE. Remote https://mcp.feelyourprotocol.org/mcp — planned.
+Public MCP: NOT LAUNCHED (mcp.feelyourprotocol.org planned).
+Local stdio: developer early access only — build from source.
+Most users: feelyourprotocol.org explorations (no MCP setup).
 
 Build:
   cd mcp-execution-engine && npm ci && npm run build
