@@ -1,23 +1,23 @@
 import type { Exploration } from '@/explorations/REGISTRY'
-import { Tag } from '@/explorations/TAGS'
 
+import { CANONICAL } from './canonical'
 import image from './image.webp'
 import imageSmall from './image_small.webp'
 
 export const INFO: Exploration = {
-  id: 'eip-7951',
+  id: CANONICAL.identity.id,
   path: '/eip-7951-secp256r1-precompile',
-  title: 'EIP-7951 secp256r1 Precompile Support',
+  title: CANONICAL.identity.name,
   seoDescription:
     'EIP-7951 secp256r1 precompile — try passkey-friendly signature verification on Ethereum with an interactive precompile demo.',
-  infoURL: 'https://eips.ethereum.org/EIPS/eip-7951',
-  topic: 'ux',
-  timeline: 'fusaka',
-  tags: [Tag.Precompiles, Tag.Signatures],
+  infoURL: CANONICAL.identity.specUrl,
+  topic: CANONICAL.taxonomy.topic,
+  timeline: CANONICAL.taxonomy.timeline,
+  tags: CANONICAL.taxonomy.tags,
   image,
   imageSmall,
   introText:
-    '<b>Why add a secp256r1 precompile?</b> ' +
+    `<b>${CANONICAL.question.coreQuestion}</b> ` +
     'The curve (also known as P-256) is the native signing algorithm on ' +
     '<a href="https://developer.apple.com/documentation/cryptokit/p256" target="_blank">Apple</a> ' +
     'and <a href="https://developer.android.com/privacy-and-security/keystore" target="_blank">Android</a> ' +
@@ -27,8 +27,8 @@ export const INFO: Exploration = {
     'signatures on-chain — useful for passkey-backed wallets and multisig flows.',
   usageText:
     'Select an example or paste a valid signature payload into the input fields, then run the ' +
-    'precompile. A valid signature returns <code>0x01</code> (32 bytes). To generate your own ' +
-    'test vectors, see ' +
+    'precompile. A valid signature returns <code>0x01</code> (32 bytes). Invalid examples show ' +
+    'how verification fails. To generate your own test vectors, see ' +
     '<a href="https://github.com/paulmillr/noble-curves?tab=readme-ov-file#secp256k1-p256-p384-p521-ed25519-ed448-brainpool" target="_blank">Noble Curves</a> ' +
     'or the ' +
     '<a href="https://github.com/ethereumjs/ethereumjs-monorepo/tree/master/packages/evm#eip-7951-precompile-for-secp256r1-curve-support-osaka" target="_blank">EthereumJS example</a>.',

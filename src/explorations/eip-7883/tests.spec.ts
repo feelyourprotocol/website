@@ -1,10 +1,19 @@
 import { describe, expect, it } from 'vitest'
 
+import { CANONICAL } from './canonical'
 import { config } from './config'
 import { examples } from './examples'
 import { INFO } from './info'
 
 describe('EIP-7883 Exploration', () => {
+  describe('canonical', () => {
+    it('defines repricing nature and gas comparison hint', () => {
+      expect(CANONICAL.question.changeNature).toBe('repricing')
+      expect(CANONICAL.mcp.comparison?.baselineForkId).toBe('prague')
+      expect(CANONICAL.mcp.comparison?.previewForkId).toBe('osaka')
+    })
+  })
+
   describe('info', () => {
     it('has correct metadata', () => {
       expect(INFO.id).toBe('eip-7883')

@@ -13,6 +13,7 @@ import {
 } from './bytecode'
 import { config } from './config'
 import { examples } from './examples'
+import { CANONICAL } from './canonical'
 import { INFO } from './info'
 
 async function createAmsterdamEvm() {
@@ -21,6 +22,14 @@ async function createAmsterdamEvm() {
 }
 
 describe('EIP-8024 Exploration', () => {
+  describe('canonical', () => {
+    it('defines stack opcode capability and fork comparison', () => {
+      expect(CANONICAL.question.changeNature).toBe('new-capability')
+      expect(CANONICAL.mcp.shapes).toContain('simulate')
+      expect(CANONICAL.mcp.comparison?.previewForkId).toBe('amsterdam')
+    })
+  })
+
   describe('info', () => {
     it('has correct metadata', () => {
       expect(INFO.id).toBe('eip-8024')

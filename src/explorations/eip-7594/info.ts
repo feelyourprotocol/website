@@ -1,23 +1,23 @@
 import type { Exploration } from '@/explorations/REGISTRY'
-import { Tag } from '@/explorations/TAGS'
 
+import { CANONICAL } from './canonical'
 import image from './image.webp'
 import imageSmall from './image_small.webp'
 
 export const INFO: Exploration = {
-  id: 'eip-7594',
+  id: CANONICAL.identity.id,
   path: '/eip-7594-peerdas-data-availability-sampling',
-  title: 'EIP-7594 Peer Data Availability Sampling',
+  title: CANONICAL.identity.name,
   seoDescription:
     'Interactive PeerDAS explainer for EIP-7594 — Ethereum data availability sampling with real cryptography in your browser.',
-  infoURL: 'https://eips.ethereum.org/EIPS/eip-7594',
-  topic: 'scaling',
-  timeline: 'fusaka',
-  tags: [Tag.PeerDAS],
+  infoURL: CANONICAL.identity.specUrl,
+  topic: CANONICAL.taxonomy.topic,
+  timeline: CANONICAL.taxonomy.timeline,
+  tags: CANONICAL.taxonomy.tags,
   image,
   imageSmall,
   introText:
-    '<b>How do blob transactions change with PeerDAS?</b> ' +
+    `<b>${CANONICAL.question.coreQuestion}</b> ` +
     'With the Fusaka hardfork, data availability sampling (DAS) replaces single blob proofs with ' +
     '128 cell proofs per blob. Blob transactions get a new network wrapper (version 1) and an ' +
     'updated EIP-4844 serialization format on the wire.',
