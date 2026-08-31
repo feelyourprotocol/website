@@ -97,7 +97,12 @@ export default defineConfig({
             {
               text: 'EIPs',
               collapsed: false,
-              items: [{ text: 'EIP-8024 DUPN / SWAPN / EXCHANGE', link: '/use/eips/eip-8024' }],
+              items: [
+                { text: 'EIP-8024 DUPN / SWAPN / EXCHANGE', link: '/use/eips/eip-8024' },
+                { text: 'EIP-7883 ModExp gas', link: '/use/eips/eip-7883' },
+                { text: 'EIP-7951 secp256r1', link: '/use/eips/eip-7951' },
+                { text: 'EIP-7928 BAL (planned)', link: '/use/eips/eip-7928' },
+              ],
             },
             { text: 'Guarantees', link: '/use/guarantees' },
             { text: 'Pricing', link: '/use/pricing' },

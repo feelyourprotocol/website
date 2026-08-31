@@ -10,6 +10,7 @@ Tool-agnostic entrypoint for coding agents (Cursor, Claude Code, Codex, etc.) in
 
 | Task | Read first |
 | --- | --- |
+| **Brief a protocol change** | [`.cursor/skills/brief-protocol-change/SKILL.md`](.cursor/skills/brief-protocol-change/SKILL.md) |
 | **Create or change an exploration** | [`.cursor/skills/add-exploration/SKILL.md`](.cursor/skills/add-exploration/SKILL.md) → [adding-an-exploration.md](website-docs/contributing/adding-an-exploration.md) |
 | **Generate cover art** | [`.cursor/skills/cover-image/SKILL.md`](.cursor/skills/cover-image/SKILL.md) → [images.md](website-docs/contributing/images.md) |
 | E-Components, styling, conventions | [website-docs/](website-docs/) (index: [llms.txt](website-docs/public/llms.txt)) |
@@ -30,7 +31,7 @@ Most new explorations are **agent-scaffolded** with a short human review pass (p
 3. Read taxonomies from source (`TOPICS.ts`, `TIMELINE.ts`, `TAGS.ts`) — do not guess IDs
 4. **Stop before claiming done** — human must review intro, usage, and examples even when tests pass
 
-MCP server work (engine module, gateway tool, human EIP catalogue page) is **out of scope** for the add-exploration skill unless explicitly requested. Website explorations and MCP modules are **twins** (same core question) — explorations own pedagogy; MCP owns general bytecode execution. A future website “See associated MCP docs” icon should link to `/use/eips/<id>` when a runnable module exists.
+MCP server work (engine module, gateway tool, human EIP catalogue page) follows the exploration — read `canonical.ts` first. Website explorations and MCP are **twins** (same core question). Every **live** exploration needs `mcp-docs/use/eips/eip-NNNN.html` (Runnable or Planned); engine modules ship when a verb can run the change. Brief: [brief-protocol-change skill](.cursor/skills/brief-protocol-change/SKILL.md). A future website “See associated MCP docs” icon links to `/use/eips/<id>` when that page exists.
 
 ## Rules and skills
 

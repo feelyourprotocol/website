@@ -1,7 +1,7 @@
 # Feel Your Protocol MCP Server — Use Layer (full text)
 # Source: mcp-docs/use/ — end-user documentation for humans and AI agents
 # https://mcp-docs.feelyourprotocol.org/llms-full.txt
-# Updated: 2026-08-27 — gateway v0.1 stdio: probe + run; EIP-8024 module catalog
+# Updated: 2026-08-31 — gateway v0.1 stdio: 8024, 7883, 7951 modules; prague fork
 
 ================================================================================
 LIVE MCP TOOLS (stdio v0.1) — READ FIRST
@@ -84,7 +84,7 @@ MCP tool name: describe_capabilities
 Input: {} (no required fields)
 Output: engineVersion, ceilings, baselineForkId, namedForks, eips (runnable modules with opcodes + encoding + comparison; no demo programs), allowedBaseHardforks
 
-Use first to learn baselineForkId (osaka — current mainnet EL), preview fork amsterdam (alias glamsterdam), and runnable EIPs (8024 DUPN/SWAPN/EXCHANGE). Unimplemented EIPs are omitted.
+Use first to learn baselineForkId (osaka — current mainnet EL), prague (pre-Fusaka ModExp compare), preview fork amsterdam (alias glamsterdam), and runnable EIPs (8024, 7883 ModExp, 7951 secp256r1). Unimplemented EIPs are omitted.
 
 ================================================================================
 TOOL: RUN_EVM_BYTECODE (LIVE)
@@ -115,9 +115,9 @@ Examples:
 COVERAGE
 ================================================================================
 
-Named forks: osaka (baseline, alias mainnet-el), amsterdam (preview, alias glamsterdam).
-baselineForkId: osaka. Live runnable EIP modules: 8024 only.
-Unimplemented EIPs are not listed.
+Named forks: prague (ModExp compare), osaka (baseline, alias mainnet-el), amsterdam (preview, alias glamsterdam).
+baselineForkId: osaka. Live runnable EIP modules: 8024, 7883, 7951.
+Exploration twins (human catalogue): 8024, 7883, 7951 runnable; 7928 planned (generate). See use/eips/.
 
 ================================================================================
 GUARANTEES
