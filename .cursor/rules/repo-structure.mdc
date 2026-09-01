@@ -43,7 +43,7 @@ Fleet overview for humans: [docs.feelyourprotocol.org](https://docs.feelyourprot
 | **Rules — primitives** (always-on) | `repo-structure.mdc`, `quality.mdc`, `testing.mdc` | Cheap invariants on every session |
 | **Rules — task invariants** (glob-scoped) | `explorations.mdc` on `src/explorations/**`, `src/eComponents/**` | Failure modes for one domain — not a fourth primitive |
 | **Rules — specialized** | `video-recording.mdc`, `og-images.mdc` | Long capture/setup playbooks; do not fold into primitives |
-| **Skills** | `.cursor/skills/add-exploration/`, `.cursor/skills/cover-image/` | Ordered workflows; point at website-docs + source, do not duplicate catalogs |
+| **Skills** | `.cursor/skills/round-trip-protocol-change/`, `add-exploration`, `cover-image` | Ordered workflows; point at website-docs + source, do not duplicate catalogs |
 
 New work: invariants → rule or glob rule; executable procedure → skill; concepts and API tables → website-docs only.
 

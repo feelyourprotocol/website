@@ -1,10 +1,12 @@
 # Adding an Exploration
 
-An exploration is a folder under `src/explorations/` with metadata and an interactive widget. **You** define the pedagogical goal and review the result; **your agent** implements using the [brief-protocol-change](https://github.com/feelyourprotocol/website/blob/main/.cursor/skills/brief-protocol-change/SKILL.md) then [add-exploration skill](https://github.com/feelyourprotocol/website/blob/main/.cursor/skills/add-exploration/SKILL.md).
+An exploration is a folder under `src/explorations/` with metadata and an interactive widget. **You** define the pedagogical goal and review the result; **your agent** implements.
+
+**Default for a new EIP:** tell the agent “round-trip for EIP-xxxx”. That runs the [round-trip skill](https://github.com/feelyourprotocol/website/blob/main/.cursor/skills/round-trip-protocol-change/SKILL.md) — brief, then exploration, then MCP — with a GO from you between phases. Widget-only work still uses [brief-protocol-change](https://github.com/feelyourprotocol/website/blob/main/.cursor/skills/brief-protocol-change/SKILL.md) then [add-exploration](https://github.com/feelyourprotocol/website/blob/main/.cursor/skills/add-exploration/SKILL.md).
 
 ## Brief your agent
 
-Include:
+Include (or let the briefing phase propose these for you to accept):
 
 - EIP/ERC spec link and **what the widget should let someone understand** (practical, curiosity, or research audience)
 - Suggested topic, timeline, and tags ([Architecture](/guide/architecture) — agent must read `TOPICS.ts`, `TIMELINE.ts`, `TAGS.ts`, not guess)
@@ -112,9 +114,10 @@ Tests green ≠ ready. Before OG/PR, review:
 
 ## Checklist
 
-- [ ] `canonical.ts` + human review of core question
-- [ ] Folder + `REGISTRY.ts` entry
+- [ ] Round-trip briefing (or standalone brief) + human GO on core question
+- [ ] Folder + `canonical.ts` + `REGISTRY.ts` entry
 - [ ] `mcp-docs/use/eips/eip-NNNN.md` for every live exploration
 - [ ] Human review of copy, examples, UX
 - [ ] Quality gates pass (`lf:ci`, typecheck, tests)
+- [ ] MCP phase GO when a twin should ship (engine module and/or catalogue page)
 - [ ] OG generated when shipping

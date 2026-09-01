@@ -45,6 +45,6 @@ Every new exploration needs an import in `src/explorations/REGISTRY.ts` or it wi
 
 ## Procedure
 
-New exploration workflow: [brief-protocol-change skill](../skills/brief-protocol-change/SKILL.md) → [add-exploration skill](../skills/add-exploration/SKILL.md) + [adding-an-exploration.md](../../website-docs/contributing/adding-an-exploration.md).
+New exploration workflow: [round-trip-protocol-change](../skills/round-trip-protocol-change/SKILL.md) (brief → exploration → MCP). Subskills: [brief-protocol-change](../skills/brief-protocol-change/SKILL.md) → [add-exploration](../skills/add-exploration/SKILL.md) + [adding-an-exploration.md](../../website-docs/contributing/adding-an-exploration.md).
 
-Tests green ≠ pedagogically done — human must review intro, usage, and examples.
+Tests passing is the quality bar, not the pedagogy bar — human must review intro, usage, and examples.
