@@ -41,10 +41,16 @@ Read valid IDs from source — do not guess:
 
 ## Registration
 
-Every new exploration needs an import in `src/explorations/REGISTRY.ts` or it will not appear in the app.
+Every new exploration needs an import in `src/explorations/REGISTRY.ts` or it will not appear in nav.
+
+**Latest on the home page:** prepend the id to `featured` in `src/views/HomeView.vue` (and the copy in `HomeView.spec.ts`). `latestExplorations = featured.slice(0, 2)` — new exploration is Latest; the previous second Latest leaves that pair.
+
+## Cover art
+
+Every exploration ships `image.webp` imported from `info.ts`. Playbook: [cover-image skill](../skills/cover-image/SKILL.md).
 
 ## Procedure
 
-New exploration workflow: [brief-protocol-change skill](../skills/brief-protocol-change/SKILL.md) → [add-exploration skill](../skills/add-exploration/SKILL.md) + [adding-an-exploration.md](../../website-docs/contributing/adding-an-exploration.md).
+New exploration workflow: [round-trip-protocol-change](../skills/round-trip-protocol-change/SKILL.md) (brief → exploration → MCP). Subskills: [brief-protocol-change](../skills/brief-protocol-change/SKILL.md) → [add-exploration](../skills/add-exploration/SKILL.md) + [adding-an-exploration.md](../../website-docs/contributing/adding-an-exploration.md).
 
-Tests green ≠ pedagogically done — human must review intro, usage, and examples.
+Tests passing is the quality bar, not the pedagogy bar — human must review intro, usage, and examples.

@@ -7,10 +7,15 @@ alwaysApply: true
 
 When you add **new modules, scripts, or non-trivial features** (not one-line fixes or copy-only edits), include a **solid but proportionate** test layer before calling the task done.
 
+## Test-first
+
+For new explorations and new modules, lock the behavior that would hurt if it regressed **before** (or in the same turn as) chrome polish — not as a last checkbox. New Vue surfaces get mount tests, not only helper units.
+
 ## What to test
 
 - **Pure logic** — parsers, URL builders, config, data transforms: unit tests with clear inputs/outputs.
-- **Vue components** — mount with `@vue/test-utils`; stub heavy children; assert structure, links, and key copy.
+- **Vue components** — mount with `@vue/test-utils`; stub heavy children; assert structure, links, key copy, and that the primary play path is present.
+- **Beyond the happy path** — empty, malformed, out-of-range, “too big,” junk the UI might accept as a string. Stay usable or show a clear error — never a blank crash.
 - **Cross-package contracts** — one source of truth (e.g. shared ids/enums); test that consumers stay aligned.
 - **Skip** — one-off scripts, pure config/docs, or UI tweaks with no testable logic.
 

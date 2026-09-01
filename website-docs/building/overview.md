@@ -15,14 +15,13 @@ npm run dev
 
 2. **Understand the model** — read [Architecture](/guide/architecture) (taxonomies, folder-per-exploration, E-Components).
 
-3. **Brief your agent** — give the EIP/spec link, a one-sentence pedagogical goal (“let users compare gas before/after”), and constraints:
+3. **Trigger the agent** — for a new EIP, “round-trip for EIP-xxxx” ([round-trip skill](https://github.com/feelyourprotocol/website/blob/main/.cursor/skills/round-trip-protocol-change/SKILL.md)). You GO after the briefing and again after the exploration (optional MCP hints). Widget-only: [AGENTS.md](https://github.com/feelyourprotocol/website/blob/main/AGENTS.md) + [add-exploration](https://github.com/feelyourprotocol/website/blob/main/.cursor/skills/add-exploration/SKILL.md). Constraints the briefing should settle:
    - Pick topic/timeline/tags from the architecture tables (do not invent IDs)
    - Prefer an existing [E-Component](/contributing/available-e-components) over custom UI
-   - Point the agent at [AGENTS.md](https://github.com/feelyourprotocol/website/blob/main/AGENTS.md) and the [add-exploration skill](https://github.com/feelyourprotocol/website/blob/main/.cursor/skills/add-exploration/SKILL.md)
 
-4. **Review the result** — even when tests pass, check intro/usage text against the spec, example quality, and the browser UI. See [Adding an Exploration § Human review](/contributing/adding-an-exploration#human-review).
+4. **Review the result** — tests passing is the quality bar, not the pedagogy bar. Check intro/usage text against the spec, example quality, play loop, form factors (mobile / tablet / desktop), and the browser UI. See [Adding an Exploration § Human review](/contributing/adding-an-exploration#human-review).
 
-5. **Optional cover art** — [Images](/contributing/images) for rules; [cover-image skill](https://github.com/feelyourprotocol/website/blob/main/.cursor/skills/cover-image/SKILL.md) for AI generation.
+5. **Cover art** ships in the same exploration phase — [Images](/contributing/images); [cover-image skill](https://github.com/feelyourprotocol/website/blob/main/.cursor/skills/cover-image/SKILL.md).
 
 ## What you are building
 

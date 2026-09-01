@@ -1,10 +1,12 @@
 # Adding an Exploration
 
-An exploration is a folder under `src/explorations/` with metadata and an interactive widget. **You** define the pedagogical goal and review the result; **your agent** implements using the [brief-protocol-change](https://github.com/feelyourprotocol/website/blob/main/.cursor/skills/brief-protocol-change/SKILL.md) then [add-exploration skill](https://github.com/feelyourprotocol/website/blob/main/.cursor/skills/add-exploration/SKILL.md).
+An exploration is a folder under `src/explorations/` with metadata and an interactive widget. **You** define the pedagogical goal and review the result; **your agent** implements.
+
+**Default for a new EIP:** tell the agent “round-trip for EIP-xxxx”. That runs the [round-trip skill](https://github.com/feelyourprotocol/website/blob/main/.cursor/skills/round-trip-protocol-change/SKILL.md) — brief, then exploration, then MCP — with a GO from you between phases. Widget-only work still uses [brief-protocol-change](https://github.com/feelyourprotocol/website/blob/main/.cursor/skills/brief-protocol-change/SKILL.md) then [add-exploration](https://github.com/feelyourprotocol/website/blob/main/.cursor/skills/add-exploration/SKILL.md).
 
 ## Brief your agent
 
-Include:
+Include (or let the briefing phase propose these for you to accept):
 
 - EIP/ERC spec link and **what the widget should let someone understand** (practical, curiosity, or research audience)
 - Suggested topic, timeline, and tags ([Architecture](/guide/architecture) — agent must read `TOPICS.ts`, `TIMELINE.ts`, `TAGS.ts`, not guess)
@@ -94,27 +96,33 @@ Do not hand-implement from docs — tell the agent to copy a **reference folder*
 
 ## Tests
 
-Agent adds `tests.spec.ts` — metadata, examples, config sanity. You do not need to write tests; verify the exploration **behaves** as intended in the browser.
+Agent adds `tests.spec.ts` (logic **and** UI mounts) — metadata, examples, execution helpers, beyond-edge inputs, play-path presence. Prefer tests before chrome polish. You verify the exploration **behaves** in the browser, including a mobile/tablet pass.
 
-## Cover & link previews
+## Cover, Latest, and link previews
 
-- **Cover art (optional):** [Images](/contributing/images) + [cover-image skill](https://github.com/feelyourprotocol/website/blob/main/.cursor/skills/cover-image/SKILL.md)
-- **OG card:** `npm run generate:og:exploration -- <id>` after metadata is final
+- **Cover art (required):** [Images](/contributing/images) + [cover-image skill](https://github.com/feelyourprotocol/website/blob/main/.cursor/skills/cover-image/SKILL.md). Round-trip uses Template B from the signed-off core question unless you named a subject at GO.
+- **Home Latest:** agent prepends the new id to `featured` in `HomeView.vue` (the previous second Latest leaves that pair).
+- **OG card:** `npm run generate:og:exploration -- <id>` after cover and metadata
 
 ## Human review
 
 Tests green ≠ ready. Before OG/PR, review:
 
 - **Pedagogy** — does it help someone understand the protocol change?
+- **Play loop** — can someone *feel* the core question in the first minute without side knowledge?
 - **Copy** — `introText` / `usageText` accurate vs spec?
 - **Examples** — meaningful inputs, not only edge hex?
+- **Form factors** — usable on mobile, tablet, and desktop (no overflow, tap targets, stacking)
 - **Visual pass** — spacing, overflow, topic colors in the browser
 
 ## Checklist
 
-- [ ] `canonical.ts` + human review of core question
-- [ ] Folder + `REGISTRY.ts` entry
+- [ ] Round-trip briefing (or standalone brief) + human GO on core question **and** taxonomy
+- [ ] Folder + `canonical.ts` + `REGISTRY.ts` entry (nav)
+- [ ] Home Latest (`featured` prepend in `HomeView.vue`)
+- [ ] Cover art (`image.webp`)
 - [ ] `mcp-docs/use/eips/eip-NNNN.md` for every live exploration
-- [ ] Human review of copy, examples, UX
-- [ ] Quality gates pass (`lf:ci`, typecheck, tests)
+- [ ] Human review of copy, examples, UX, form factors
+- [ ] Quality gates pass (`lf:ci`, typecheck, tests — logic + UI + beyond-edge)
+- [ ] MCP phase GO when a twin should ship (engine module and/or catalogue page)
 - [ ] OG generated when shipping
