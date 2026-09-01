@@ -100,7 +100,7 @@ These fields go into proposed `CANONICAL.taxonomy` **and** in the report with th
 
 **Exploration** — widget center (what the user *does*), likely building block (see add-exploration reference table), pedagogical slice vs what we leave to MCP, 2–3 example stories.
 
-**MCP** — shipped verb vs `planned-module`; what the agent constructs (bytecode, overrides); what we will **not** put in the catalog (no widget demo programs); comparison forks if useful.
+**MCP** — shipped verb vs `planned-module`; what the agent constructs (bytecode, overrides); what we will **not** put in the catalog (no widget demo programs); comparison forks if useful. **Honest observation:** can today’s simulate result (gas, return, stack, opcode trace) actually show this EIP’s effect, or do we need logs/receipts/generate and thus Planned?
 
 ## Ship gates (for later phases)
 
@@ -137,7 +137,7 @@ These fields go into proposed `CANONICAL.taxonomy` **and** in the report with th
 - tags: `…` — … (new tag? yes/no)
 
 **Exploration idea:** widget center, building block, slice, example stories
-**MCP outline:** shape(s), runnable vs planned-module, comparison, catalog vs tests
+**MCP outline:** shape(s), runnable vs planned-module, comparison, catalog vs tests; what result field shows the effect
 
 **Proposed CANONICAL:** (TypeScript object matching `ProtocolChangeCanonical`)
 
