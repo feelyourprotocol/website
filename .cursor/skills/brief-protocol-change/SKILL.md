@@ -86,6 +86,16 @@ Verdict for Feel Your Protocol — not “is the EIP important.”
 
 Caveats the human must see: underspecified mechanics, no existing E-Component (custom or new shared pattern), needs a new runtime dep, engine cannot run it yet.
 
+## Taxonomy (human confirms at GO)
+
+Read valid IDs from `src/explorations/TOPICS.ts`, `TIMELINE.ts`, `TAGS.ts` — do not invent. Propose with **short reasoning**; the human confirms or adjusts when giving the exploration GO.
+
+- **topic** — exactly one; primary concern of the change (not “a bit of everything”)
+- **timeline** — hardfork or stage (`fusaka`, `glamsterdam`, `ready`, `research`, `ideas`, …)
+- **tags** — 3–4 reusable concepts; [architecture § tags](../../website-docs/guide/architecture.md#tags). A **new** tag is a caveat (must be reusable beyond this EIP)
+
+These fields go into proposed `CANONICAL.taxonomy` **and** in the report with the why — not only inside the object.
+
 ## High-level ideas (not an implementation plan)
 
 **Exploration** — widget center (what the user *does*), likely building block (see add-exploration reference table), pedagogical slice vs what we leave to MCP, 2–3 example stories.
@@ -120,6 +130,11 @@ Caveats the human must see: underspecified mechanics, no existing E-Component (c
 
 **Change nature:** …  |  **Not the point:** …
 **Core question:** …
+
+**Taxonomy (confirm at GO):**
+- topic: `…` — …
+- timeline: `…` — …
+- tags: `…` — … (new tag? yes/no)
 
 **Exploration idea:** widget center, building block, slice, example stories
 **MCP outline:** shape(s), runnable vs planned-module, comparison, catalog vs tests

@@ -1,10 +1,9 @@
 ---
 name: add-exploration
 description: >-
-  Design and implement a Feel Your Protocol exploration (EIP, ERC, or research
-  widget) in one go: canonical.ts, info, widget, examples, tests, REGISTRY.
-  Use for round-trip phase 2, or when the user asks to add or implement an
-  exploration after briefing sign-off.
+  Design and implement a Feel Your Protocol exploration in one go: careful UX
+  design, canonical.ts, widget, tests (logic + UI), REGISTRY, home Latest, cover
+  art. Use for round-trip phase 2, or after briefing sign-off.
 ---
 
 # Add an exploration
@@ -13,7 +12,7 @@ Executable playbook for the **explorations website** only (`src/explorations/`).
 
 **Brief first:** [brief-protocol-change](../brief-protocol-change/SKILL.md) must already have a human GO (or this session *is* that GO). Signed-off core question, nature, and proposed `CANONICAL` are inputs — do not re-litigate them unless the spec contradicts the briefing.
 
-**This phase is plan + implement in one go.** Design is not a separate human gate. Stop only on [exception gates](#exception-gates).
+**This phase is plan + implement in one go.** Design is not a separate human gate — but it **is** the quality of the exploration. Spend real care here before creating files. Stop only on [exception gates](#exception-gates).
 
 **Concepts:** [architecture.md](../../website-docs/guide/architecture.md), [e-components.md](../../website-docs/contributing/e-components.md), [adding-an-exploration.md](../../website-docs/contributing/adding-an-exploration.md).
 
@@ -23,17 +22,22 @@ Repo boundaries: [AGENTS.md](../../AGENTS.md), [repo-structure.mdc](../rules/rep
 
 ## Design (same turn, before files)
 
-Keep this short — then code. Use the briefing’s exploration idea; tighten it against source.
+The widget should **show and let someone feel** the core question. UX is an easy play loop: capture curiosity, invite poking around, teach without a side-knowledge wall or frustrating hurdles. If the first minute is confusing, the exploration failed — even if the spec is correct.
 
-1. Read the spec + the signed-off briefing (core question, nature, not-the-point, example stories).
-2. Read taxonomies from source — **do not guess**:
-   - `src/explorations/TOPICS.ts`
-   - `src/explorations/TIMELINE.ts`
-   - `src/explorations/TAGS.ts`
+Do this **before creating files**. Use the signed-off briefing; tighten against source. Taxonomy (topic / timeline / tags) was proposed at briefing and confirmed at GO — do not re-pick unless the spec contradicts it.
+
+1. Read the spec + signed-off briefing (core question, nature, not-the-point, example stories, taxonomy).
+2. Confirm taxonomy IDs against source (`TOPICS.ts`, `TIMELINE.ts`, `TAGS.ts`) — do not guess.
 3. Field reference: `ProtocolChangeCanonical` in `canonicalTypes.ts`; `Exploration` in `REGISTRY.ts`.
-4. Choose a building block (below). Confirm result UI matches `changeNature`.
-5. Pedagogical **slice**: what the widget lets someone *feel*; what MCP will own as the superset. Do not clone a full lab into the page.
-6. Examples: 2–4 stories that answer the core question (meaningful inputs, not only edge hex).
+4. **Capture statement** — one sentence: after ~30 seconds of play, what did they grasp?
+5. **First action** — the default example and the primary control answer the core question with **no spec reading**. Labels live on the widget, not in a footnote.
+6. **Play loop** — 2–3 obvious next moves (other examples or one control). Each should confirm or surprise. No hidden “you must know X.”
+7. **Honest failure** — invalid and beyond-edge inputs are teaching, not a crash or a blank panel.
+8. Choose a building block (below). Result UI matches `changeNature`.
+9. Pedagogical **slice**: what the widget lets someone *feel*; what MCP owns as the superset.
+10. **Form factors (dedicated pass)** — mobile (single column, no horizontal overflow, usable tap targets), tablet, desktop (right-panel / companions stack or collapse). Verify these in the browser before the report.
+
+Write 4–8 lines of design notes (capture, first action, play loop, form-factor plan) into the phase-2 report. Then code.
 
 ## Choose a building block
 
@@ -65,18 +69,34 @@ Stop and ask (do not improvise past these):
 - Briefing verdict no longer holds (spec cannot be taught honestly)
 - Spec too underspecified for a truthful widget
 
+## Tests (test-first)
+
+Prefer tests **before** (or in the same turn as) chrome polish — lock the protocol claim first. Tests are for **logic and UI**, and they must stay usable past the happy path.
+
+Write `tests.spec.ts` (and Vue mounts) that cover:
+
+- Metadata, `CANONICAL`, examples, config sanity
+- Execution / transform helpers — happy path **and** beyond-edge (empty, junk, out-of-range, “too big”). Must not crash; fail in a way the widget can show
+- Vue: mount `MyC` (or companions); the play path is present (example picker or primary control, result region)
+
+Also update `src/views/__tests__/HomeView.spec.ts` whenever `featured` changes.
+
+Invariants and finish commands: [testing.mdc](../rules/testing.mdc), [quality.mdc](../rules/quality.mdc).
+
 ## Implementation steps
 
 1. Create `src/explorations/<id>/`
 2. `canonical.ts` — `CANONICAL` per `canonicalTypes.ts` (SoT), from the signed-off proposal
 3. `info.ts` — website chrome; `introText` starts with `coreQuestion` from `CANONICAL`
-4. `examples.ts`
-5. `MyC.vue` (+ `config.ts` if E-Component-backed)
-6. Register in `src/explorations/REGISTRY.ts`
-7. Dependencies — prefer existing `package.json` entries
-8. `tests.spec.ts` — metadata, canonical, examples, config sanity
+4. `examples.ts` + execution helpers — **tests for the protocol claim first** (or immediately with these files)
+5. `MyC.vue` (+ `config.ts` if E-Component-backed) — then Vue mount tests
+6. Register in `src/explorations/REGISTRY.ts` (nav dropdown is `Object.values(EXPLORATIONS)`)
+7. **Latest on the home page:** prepend `<id>` to `featured` in `src/views/HomeView.vue`. `latestExplorations = featured.slice(0, 2)` — the new one is Latest; the previous second Latest drops off that pair. Update the same array in `src/views/__tests__/HomeView.spec.ts`.
+8. **Cover art (required):** [cover-image skill](../cover-image/SKILL.md). Round-trip default: Template B from signed-off `coreQuestion` unless the human named a subject at GO. Import `image.webp` in `info.ts`. Then `npm run generate:og:exploration -- <id>`.
+9. Dependencies — prefer existing `package.json` entries
+10. Finish `tests.spec.ts` per [Tests](#tests-test-first)
 
-Run `npm run dev` and verify the exploration route in the browser after each major step.
+Run `npm run dev` and verify the exploration route **and** home Latest cards. Do the form-factor pass (mobile / tablet / desktop) before the report.
 
 If the briefing promised a twin, add or stub `mcp-docs/use/eips/eip-NNNN.md` in this phase when that is the ship gate for a **live** exploration (Runnable or Planned). Do **not** implement the engine module here.
 
@@ -84,7 +104,9 @@ If the briefing promised a twin, add or stub `mcp-docs/use/eips/eip-NNNN.md` in 
 
 | Gate | Required |
 | --- | --- |
-| Human review | intro, usage, examples, pedagogy — after this phase’s report |
+| Human review | intro, usage, examples, pedagogy, play loop, form factors — after this phase’s report |
+| Cover art | `image.webp` + `info.ts` import — every exploration |
+| Home Latest | prepended on `featured` in `HomeView.vue` (+ spec) |
 | `mcp-docs/use/eips/eip-NNNN.md` | Every **live** exploration (same PR or immediate follow-up) |
 | Engine module | When `CANONICAL.mcp.shapes` includes a **shipped** verb — round-trip phase 3 |
 
@@ -93,7 +115,8 @@ If the briefing promised a twin, add or stub `mcp-docs/use/eips/eip-NNNN.md` in 
 - **No hardcoded Tailwind colors** — use `e-*` classes from `src/main.css`
 - **Libraries only in the exploration folder**
 - **Companion UI inside E-Component slots**
-- **Register in REGISTRY.ts**
+- **Register in REGISTRY.ts** (nav)
+- **Cover art** — `image.webp` on every exploration
 - **New shared fields only on `canonicalTypes.ts`**
 
 ## Finish gates
@@ -106,7 +129,7 @@ npx vitest run src/explorations/<id>/
 
 Apply [quality.mdc](../rules/quality.mdc) and [testing.mdc](../rules/testing.mdc).
 
-Tests passing is the quality bar, not the pedagogy bar. The report below is the handoff; the human reviews intro, usage, and examples before MCP GO (round-trip) or before OG/PR (standalone).
+Tests passing is the quality bar, not the pedagogy bar. The report below is the handoff; the human reviews intro, usage, examples, play loop, and form factors before MCP GO (round-trip) or before OG/PR (standalone).
 
 ## Report template — then STOP (round-trip) or wait for review (standalone)
 
@@ -114,6 +137,7 @@ Tests passing is the quality bar, not the pedagogy bar. The report below is the 
 ## Phase 2 — Exploration (eip-NNNN)
 
 **Core question:** …
+**Capture / first action / play loop:** …
 **Route:** `/…`
 **Change nature / building block:** … (reference folder or custom)
 **Slice:** what the widget teaches vs what MCP should own
@@ -121,20 +145,21 @@ Tests passing is the quality bar, not the pedagogy bar. The report below is the 
 **eComponents / UI:** reused | slotted | local companion | new shared (only if asked)
 **Touched / evolved / created:** paths + one line each
 **Files:** created / modified (short list)
+**Latest:** prepended to `featured` — dropped from Latest pair: …
+**Cover:** `image.webp` — Template A/B — shown in context
 
-**Tests:** `npx vitest run src/explorations/<id>/` — N specs, pass/fail
+**Tests:** `npx vitest run src/explorations/<id>/` — N specs, pass/fail (logic + UI + beyond-edge)
 **Quality:** `lf:ci`, `type-check`
-**Browser:** route checked — yes/no; notes
+**Browser:** route + home Latest; mobile / tablet / desktop — notes
 
 **Carry to MCP:** hints (bytecode vs widget, comparison forks, prompts, what not to clone)
 **Open questions:** …
 ```
 
-## Optional follow-ups
+## Follow-ups
 
-- **OG image:** `npm run generate:og:exploration -- <id>`
-- **Cover art:** [cover-image skill](../cover-image/SKILL.md)
 - **MCP module:** round-trip phase 3, or [add-mcp-module](https://github.com/feelyourprotocol/mcp-execution-engine/blob/main/.cursor/skills/add-mcp-module/SKILL.md) when a verb is ready
+- Cover and OG are **in this phase**, not follow-ups
 
 ## Out of scope
 

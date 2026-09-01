@@ -2,8 +2,8 @@
 name: cover-image
 description: >-
   Generate an exploration cover image (image.webp) following FYP art rules:
-  topic hue + greyscale, technical illustration, no lettering. Use when the
-  user asks to create, generate, or add cover art for an exploration.
+  topic hue + greyscale, technical illustration, no lettering. Use when adding
+  an exploration (required) or when the user asks to create or replace cover art.
 ---
 
 # Cover image
@@ -12,14 +12,11 @@ Executable playbook for **exploration cover art** (`src/explorations/<id>/image.
 
 **OG/social cards are separate.** Never use Playwright OG output as cover art. OG: `npm run generate:og:exploration -- <id>` per [og-images.mdc](../rules/og-images.mdc).
 
-## Human-ask gate (mandatory)
+## Human-ask gate
 
-Before calling an image model, ask the human:
+**Standalone** (human asked for cover only): before calling an image model, ask Template A vs B and subject/mood. Do not generate until they confirm (or say “fully AI-derived, you pick”).
 
-1. **Subject approach** — Template A (they describe a subject) or Template B (AI-derived from EIP title + one-sentence summary)?
-2. **Subject/mood** — if Template A, confirm the focal metaphor; if Template B, confirm the one-sentence EIP summary is accurate.
-
-Do not generate until the human confirms (or explicitly says “fully AI-derived, you pick”).
+**From add-exploration / round-trip:** cover is required in the same phase. Default **Template B** from signed-off `coreQuestion` + title unless the human already named a subject at GO. Do **not** insert an extra stop before generating. Still show the result in context (`npm run dev`) in the phase-2 report.
 
 ## Before generating
 
@@ -116,4 +113,3 @@ import image from './image.webp'
 
 - OG/Twitter card design (Playwright pipeline only)
 - Non-cover site imagery
-- Cover art without human subject/mood confirmation

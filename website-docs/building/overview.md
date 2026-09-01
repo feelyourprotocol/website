@@ -19,9 +19,9 @@ npm run dev
    - Pick topic/timeline/tags from the architecture tables (do not invent IDs)
    - Prefer an existing [E-Component](/contributing/available-e-components) over custom UI
 
-4. **Review the result** — tests passing is the quality bar, not the pedagogy bar. Check intro/usage text against the spec, example quality, and the browser UI. See [Adding an Exploration § Human review](/contributing/adding-an-exploration#human-review).
+4. **Review the result** — tests passing is the quality bar, not the pedagogy bar. Check intro/usage text against the spec, example quality, play loop, form factors (mobile / tablet / desktop), and the browser UI. See [Adding an Exploration § Human review](/contributing/adding-an-exploration#human-review).
 
-5. **Optional cover art** — [Images](/contributing/images) for rules; [cover-image skill](https://github.com/feelyourprotocol/website/blob/main/.cursor/skills/cover-image/SKILL.md) for AI generation.
+5. **Cover art** ships in the same exploration phase — [Images](/contributing/images); [cover-image skill](https://github.com/feelyourprotocol/website/blob/main/.cursor/skills/cover-image/SKILL.md).
 
 ## What you are building
 

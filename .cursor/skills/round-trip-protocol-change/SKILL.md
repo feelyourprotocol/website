@@ -17,7 +17,7 @@ Orchestrator for a **full integration**. Implementation lives in subskills — t
 | --- | --- | --- |
 | **1 — Brief** | [brief-protocol-change](../brief-protocol-change/SKILL.md) | Explicit **GO** for the exploration |
 | **2 — Exploration** | [add-exploration](../add-exploration/SKILL.md) | Explicit **GO** for MCP (optional hints from the widget) |
-| **3 — MCP** | [add-mcp-module](https://github.com/feelyourprotocol/mcp-execution-engine/blob/main/.cursor/skills/add-mcp-module/SKILL.md) | Done (cover art / OG / PR are optional follow-ups) |
+| **3 — MCP** | [add-mcp-module](https://github.com/feelyourprotocol/mcp-execution-engine/blob/main/.cursor/skills/add-mcp-module/SKILL.md) | Done (PR is an optional follow-up) |
 
 Local engine checkout (sibling of `website/`): `../mcp-execution-engine/.cursor/skills/add-mcp-module/SKILL.md`.
 
@@ -29,7 +29,7 @@ This is a **multi-phase workflow with hard stops**. After each phase, **stop com
 - Do **not** start MCP work during the exploration phase (planned `mcp-docs` page in the same exploration PR is allowed when the briefing already committed to a twin).
 - Do **not** treat green tests as a waiver of the human GO.
 - Do **not** commit, push, or open a PR unless asked.
-- Optional cover art and OG cards are **not** part of the three phases — offer them after phase 2 or 3; they have their own skills/gates.
+- Cover art and OG cards are **part of phase 2** (every exploration), not a later optional skill. PR remains optional.
 
 **Exception stops** (ask, then wait) — new runtime dependency, new shared E-Component, briefing verdict flips to unfit, spec too underspecified to teach honestly.
 
@@ -50,7 +50,7 @@ Confirm the id (`eip-NNNN`) once, then run phase 1. Spec fetch lives in the brie
 
 Load and follow [brief-protocol-change](../brief-protocol-change/SKILL.md).
 
-**Agent does:** EIP report, suitability, who/why, exploration idea, MCP outline. Propose `CANONICAL` in the report — **do not** scaffold the exploration folder yet.
+**Agent does:** EIP report, suitability, who/why, taxonomy suggestions (topic / timeline / tags + reasoning), exploration idea, MCP outline. Propose `CANONICAL` in the report — **do not** scaffold the exploration folder yet.
 
 **Output:** the briefing report template from that skill — then **STOP**.
 
@@ -64,7 +64,7 @@ Only after explicit GO.
 
 Load and follow [add-exploration](../add-exploration/SKILL.md). **Plan and implement in one go** (design is not a separate human gate).
 
-**Agent does:** write `canonical.ts` from the signed-off briefing, widget, tests, quality gates. Close with the exploration report from that skill.
+**Agent does:** write `canonical.ts` from the signed-off briefing, widget, tests (logic + UI, including beyond-edge), cover art, home Latest, quality gates. Close with the exploration report from that skill.
 
 **Output:** working exploration + report — then **STOP** for MCP GO.
 
@@ -88,8 +88,8 @@ Load and follow [add-mcp-module](https://github.com/feelyourprotocol/mcp-executi
 
 | Layer | Done when |
 | --- | --- |
-| Briefing | Human signed off core question, audience, suitability |
-| Exploration | Route works, tests + `lf:ci` / typecheck green, pedagogy report delivered |
+| Briefing | Human signed off core question, audience, suitability, taxonomy |
+| Exploration | Route + home Latest work; cover art; tests + `lf:ci` / typecheck; pedagogy + form-factor report |
 | MCP | Catalogue page exists for every **live** exploration; engine module only if a shipped verb can run the change |
 
-Cover image, OG card, and PR are **out of this round-trip** unless the human asks.
+PR is **out of this round-trip** unless the human asks.

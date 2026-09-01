@@ -29,8 +29,8 @@ Default path for a **new protocol change** is the [round-trip skill](.cursor/ski
 
 | Phase | Human trigger | Agent |
 | --- | --- | --- |
-| **1 — Brief** | “Round-trip for EIP-xxxx” | [brief-protocol-change](.cursor/skills/brief-protocol-change/SKILL.md) — EIP report, suitability, who/why, exploration idea, MCP outline — then **stop** |
-| **2 — Exploration** | GO | [add-exploration](.cursor/skills/add-exploration/SKILL.md) — plan + implement in one go; tests; exploration report — then **stop** |
+| **1 — Brief** | “Round-trip for EIP-xxxx” | [brief-protocol-change](.cursor/skills/brief-protocol-change/SKILL.md) — EIP report, suitability, who/why, taxonomy (topic / timeline / tags + reasoning), exploration idea, MCP outline — then **stop** |
+| **2 — Exploration** | GO | [add-exploration](.cursor/skills/add-exploration/SKILL.md) — design with care, then implement; tests; cover; home Latest — then **stop** |
 | **3 — MCP** | GO (optional hints from the widget) | Engine [add-mcp-module](https://github.com/feelyourprotocol/mcp-execution-engine/blob/main/.cursor/skills/add-mcp-module/SKILL.md) — module and/or catalogue page; tests; MCP report |
 
 Standalone widget work (no round-trip) still briefs first, then add-exploration. Read taxonomies from source (`TOPICS.ts`, `TIMELINE.ts`, `TAGS.ts`) — do not guess IDs. Tests passing is the quality bar, not the pedagogy bar — human reviews intro, usage, and examples.
