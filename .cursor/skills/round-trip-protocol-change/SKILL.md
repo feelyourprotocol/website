@@ -42,7 +42,7 @@ Human names the change, typically:
 - “Let’s do the round-trip for EIP-xxxx”
 - “Add EIP-xxxx end-to-end (exploration + MCP)”
 
-Read the spec they pointed at (or fetch the canonical EIP URL). Confirm the id (`eip-NNNN`) once, then run phase 1.
+Confirm the id (`eip-NNNN`) once, then run phase 1. Spec fetch lives in the briefing skill ([ethereum/EIPs](https://github.com/ethereum/EIPs) `master`, plus `discussions-to` and `ethereum/pm` issues) — do not brief from memory.
 
 ---
 

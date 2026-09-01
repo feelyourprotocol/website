@@ -15,7 +15,42 @@ Phase 1 of the [round-trip](../round-trip-protocol-change/SKILL.md). Also run st
 
 Answers later land in `src/explorations/eip-NNNN/canonical.ts` — not only in chat. Schema: [`canonicalTypes.ts`](../../src/explorations/canonicalTypes.ts).
 
-Read the spec (EIP/ERC/research note). Skim one close existing exploration so the idea is comparative, not generic.
+Do **not** brief from model memory of the EIP. Fetch sources below, then skim one close existing exploration so the idea is comparative, not generic.
+
+## Spec sources
+
+### EIP text (source of truth)
+
+Repo: [ethereum/EIPs](https://github.com/ethereum/EIPs) — file `EIPS/eip-NNNN.md` (example: [eip-1010.md](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-1010.md)).
+
+- **Default ref:** `master` (latest). If the human names a commit, PR, tag, or date, use that instead.
+- **Fetch:** `https://raw.githubusercontent.com/ethereum/EIPs/master/EIPS/eip-NNNN.md` (or GitHub file contents: `owner=ethereum` `repo=EIPs` `path=EIPS/eip-NNNN.md` `ref=master`). Prefer this over `eips.ethereum.org` (can lag).
+- **Preamble:** `status`, `type`, `category`, `discussions-to`, `requires`, `created` — these feed maturity, suitability, and the MCP outline.
+
+**Later (not this round):** pin the spec by commit and/or date in `canonical.ts`, show it on the website, and have MCP answer “which version.” Do not invent those fields now.
+
+### `discussions-to`
+
+Follow the preamble URL (usually Ethereum Magicians). Skim the opening post and recent / contested comments — open questions, spec diffs, “this will still change.” Cite **1–3** points. Do not recap the whole thread. Magicians does **not** override the markdown spec.
+
+### AllCoreDevs / progress (`ethereum/pm`)
+
+Search **issues** on [ethereum/pm](https://github.com/ethereum/pm) for the EIP number:
+
+`https://github.com/ethereum/pm/issues?q=is%3Aissue+NNNN`
+
+Read the most relevant ACD / fork / inclusion issues (typically **2–5**, not the full comment history). Extract: fork candidacy, objections, hot topics. This is context for suitability and caveats — not a second spec.
+
+### Also (short)
+
+| Source | When | How far |
+| --- | --- | --- |
+| **`requires`** | Preamble lists other EIPs | Only if they change what we can teach or simulate |
+| **Sibling exploration** | Always | One close FYP folder — widget center, not copy-paste |
+| **Runnable vs planned** | Core EIPs | Quick look: EthereumJS (`common` EIP list / evm) or execution-specs. Enough to say whether a shipped verb can run this **today**. Not an implementation review |
+| **Not an EIP** | ERC or research | ERC: [ethereum/ERCs](https://github.com/ethereum/ERCs) file `ERCS/erc-NNNN.md`. Research: the URL/note the human pointed at |
+
+Skip sources the human said to ignore. Do not quote the spec at length in the report.
 
 ## Who (name at least one; curiosity is enough)
 
@@ -71,8 +106,10 @@ Caveats the human must see: underspecified mechanics, no existing E-Component (c
 ```markdown
 ## Phase 1 — Briefing (EIP-NNNN)
 
-**Spec:** …
-**Status / fork:** …
+**Spec:** `ethereum/EIPs` `EIPS/eip-NNNN.md` @ master (or human-named ref) — URL
+**Status / fork:** preamble status; fork candidacy from pm if any
+**discussions-to:** URL — 1–3 hot points
+**ACD / pm:** 2–5 issue links — inclusion, objections, hot topics
 **One-paragraph EIP:** what changed, in protocol terms
 
 **Suitability:** GO | GO with caveats | not a fit
