@@ -32,4 +32,10 @@ describe('exploration images', () => {
         .some((e) => getExplorationThumbnailImage(e) === image),
     ).toBe(true)
   })
+
+  it('every live exploration exposes a core question for home cards', () => {
+    for (const exploration of Object.values(EXPLORATIONS)) {
+      expect(exploration.coreQuestion.length).toBeGreaterThan(0)
+    }
+  })
 })

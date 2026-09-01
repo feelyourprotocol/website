@@ -1,3 +1,4 @@
+import type { ProtocolChangeMcpHints } from './canonicalTypes'
 import { INFO as eip7594 } from './eip-7594/info'
 import { INFO as eip7708 } from './eip-7708/info'
 import { INFO as eip7883 } from './eip-7883/info'
@@ -51,6 +52,10 @@ export interface Exploration {
   rightPanel?: boolean
   /** Plain-text discovery copy for meta tags and static prerender (~120–160 chars). See contributing guide. */
   seoDescription?: string
+  /** From `CANONICAL.question.coreQuestion` — home preview cards and bold intro lead. */
+  coreQuestion: string
+  /** From `CANONICAL.mcp.docsStatus` — optional home pill (Runnable / Planned). */
+  mcpDocsStatus?: ProtocolChangeMcpHints['docsStatus']
   /** HTML intro shown above the widget — pedagogical framing, not SEO copy. */
   introText: string
   /** HTML instructions for using the widget below the intro. */

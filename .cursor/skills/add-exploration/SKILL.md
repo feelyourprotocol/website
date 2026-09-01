@@ -82,7 +82,7 @@ Write `tests.spec.ts` (and Vue mounts) that cover:
 - Execution / transform helpers — happy path **and** beyond-edge (empty, junk, out-of-range, “too big”). Must not crash; fail in a way the widget can show
 - Vue: mount `MyC` (or companions); the play path is present (example picker or primary control, result region)
 
-Also update `src/views/__tests__/HomeView.spec.ts` whenever `featured` changes.
+Also update `FEATURED_EXPLORATION_IDS` in `src/views/homeCatalog.ts` (HomeView tests import the helper — no duplicate array).
 
 Invariants and finish commands: [testing.mdc](../rules/testing.mdc), [quality.mdc](../rules/quality.mdc).
 
@@ -90,11 +90,11 @@ Invariants and finish commands: [testing.mdc](../rules/testing.mdc), [quality.md
 
 1. Create `src/explorations/<id>/`
 2. `canonical.ts` — `CANONICAL` per `canonicalTypes.ts` (SoT), from the signed-off proposal
-3. `info.ts` — website chrome; `introText` starts with `coreQuestion` from `CANONICAL`
+3. `info.ts` — website chrome; `introText` starts with `coreQuestion` from `CANONICAL`; copy `coreQuestion` and `mcpDocsStatus` onto `INFO` for home preview cards
 4. `examples.ts` + execution helpers — **tests for the protocol claim first** (or immediately with these files)
 5. `MyC.vue` (+ `config.ts` if E-Component-backed) — then Vue mount tests
 6. Register in `src/explorations/REGISTRY.ts` (nav dropdown is `Object.values(EXPLORATIONS)`)
-7. **Latest on the home page:** prepend `<id>` to `featured` in `src/views/HomeView.vue`. `latestExplorations = featured.slice(0, 3)` — the new one is Latest; the previous third Latest drops off. Update the same array in `src/views/__tests__/HomeView.spec.ts`.
+7. **Latest on the home page:** prepend `<id>` to `FEATURED_EXPLORATION_IDS` in `src/views/homeCatalog.ts`. `latestExplorationIds()` is the first 3 — the new one is Latest; the previous third Latest drops into Catalog. Home tests import the same helper.
 8. **Cover art (required):** [cover-image skill](../cover-image/SKILL.md). Round-trip default: Template B from signed-off `coreQuestion` unless the human named a subject at GO. Import `image.webp` in `info.ts`. Then `npm run generate:og:exploration -- <id>`.
 9. Dependencies — prefer existing `package.json` entries
 10. Finish `tests.spec.ts` per [Tests](#tests-test-first)
@@ -109,7 +109,7 @@ If the briefing promised a twin, add or stub `mcp-docs/use/eips/eip-NNNN.md` in 
 | --- | --- |
 | Human review | intro, usage, examples, pedagogy, play loop, form factors — after this phase’s report |
 | Cover art | `image.webp` + `info.ts` import — every exploration |
-| Home Latest | prepended on `featured` in `HomeView.vue` (+ spec) |
+| Home Latest | prepended on `FEATURED_EXPLORATION_IDS` in `homeCatalog.ts` |
 | `mcp-docs/use/eips/eip-NNNN.md` | Every **live** exploration (same PR or immediate follow-up) |
 | Engine module | When `CANONICAL.mcp.shapes` includes a **shipped** verb — round-trip phase 3 |
 
@@ -148,7 +148,7 @@ Tests passing is the quality bar, not the pedagogy bar. The report below is the 
 **eComponents / UI:** reused | slotted | local companion | new shared (only if asked)
 **Touched / evolved / created:** paths + one line each
 **Files:** created / modified (short list)
-**Latest:** prepended to `featured` — dropped from Latest trio: …
+**Latest:** prepended to `FEATURED_EXPLORATION_IDS` — dropped from Latest trio: …
 **Cover:** `image.webp` — Template A/B — shown in context
 
 **Tests:** `npx vitest run src/explorations/<id>/` — N specs, pass/fail (logic + UI + beyond-edge)

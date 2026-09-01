@@ -43,7 +43,7 @@ Read valid IDs from source — do not guess:
 
 Every new exploration needs an import in `src/explorations/REGISTRY.ts` or it will not appear in nav.
 
-**Latest on the home page:** prepend the id to `featured` in `src/views/HomeView.vue` (and the copy in `HomeView.spec.ts`). `latestExplorations = featured.slice(0, 3)` — new exploration is Latest; the previous third Latest leaves the trio.
+**Latest on the home page:** prepend the id to `FEATURED_EXPLORATION_IDS` in `src/views/homeCatalog.ts`. `latestExplorationIds()` is the first 3 — new exploration is Latest; the previous third Latest moves to the Catalog row.
 
 ## Cover art
 

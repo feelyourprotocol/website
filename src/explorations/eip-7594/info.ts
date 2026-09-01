@@ -16,6 +16,8 @@ export const INFO: Exploration = {
   tags: CANONICAL.taxonomy.tags,
   image,
   imageSmall,
+  coreQuestion: CANONICAL.question.coreQuestion,
+  mcpDocsStatus: CANONICAL.mcp.docsStatus,
   introText:
     `<b>${CANONICAL.question.coreQuestion}</b> ` +
     'With the Fusaka hardfork, data availability sampling (DAS) replaces single blob proofs with ' +
