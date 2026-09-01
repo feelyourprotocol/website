@@ -10,6 +10,7 @@ Integration model: [E-Components](/contributing/e-components).
 | --- | --- | --- |
 | Precompile Interface | Precompile input, execution, results | [eip-7951](https://github.com/feelyourprotocol/website/tree/main/src/explorations/eip-7951) |
 | Bytecode Stepper | Step/run bytecode, stack/memory/gas | [eip-8024](https://github.com/feelyourprotocol/website/tree/main/src/explorations/eip-8024) |
+| Receipt Logs | Transaction receipt log list + decoded rows | [eip-7708](https://github.com/feelyourprotocol/website/tree/main/src/explorations/eip-7708) |
 
 ## Extension points
 
@@ -17,6 +18,7 @@ Integration model: [E-Components](/contributing/e-components).
 | --- | --- | --- | --- |
 | Precompile Interface | `#result` | — | — |
 | Bytecode Stepper | — | `#below` | `BYTECODE_STEPPER_CONTEXT` |
+| Receipt Logs | — | — (Teleport panel) | `RECEIPT_LOGS_CONTEXT` (optional) |
 
 ## Precompile Interface
 
@@ -34,8 +36,16 @@ Non-trivial input formats (e.g. ModExp): see [EIP-7883 config](https://github.co
 
 **Exploration owns:** configured EVM instance (`:evm` prop). Example presets: `values[0]` = unprefixed hex bytecode.
 
-Config: `src/eComponents/bytecodeStepperEC/types.ts`. Companion panels: `#below` slot in [EIP-8024](https://github.com/feelyourprotocol/website/tree/main/src/explorations/eip-8024).
+Config: `src/eComponents/bytecodeStepperEC/types.ts`. Companion panels: `#below` slot in [EIP-8024](https://github.com/feelyourprotocol/website/blob/main/src/explorations/eip-8024).
+
+## Receipt Logs
+
+**E-Component owns:** receipt log list UI, decoded row layout, empty/idle states, optional provide/inject publisher.
+
+**Exploration owns:** VM/`runBlock` execution, mapping `@ethereumjs/evm` logs to `ReceiptLogRow` (see [EIP-7708 receiptAdapter](https://github.com/feelyourprotocol/website/blob/main/src/explorations/eip-7708/receiptAdapter.ts)). Teleport `ReceiptLogsPanelEC` into `#exploration-right-panel` when `rightPanel: true`.
+
+Types: `src/eComponents/receiptLogsEC/types.ts`. Format helpers: `src/eComponents/receiptLogsEC/format.ts`.
 
 ## New E-Components
 
-Two explorations share a pattern → promote to `src/eComponents/` and add a row here.
+Two explorations share a pattern — or briefing identifies likely future reuse — → add `src/eComponents/` and a row here (sub-round: design, test, document, then integrate).

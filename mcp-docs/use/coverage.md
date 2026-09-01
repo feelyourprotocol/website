@@ -34,6 +34,7 @@ Every **live** website exploration has an MCP-docs page mapping the same problem
 | 7883 | ModExp gas | Runnable | [EIP-7883](/use/eips/eip-7883) |
 | 7951 | secp256r1 | Runnable | [EIP-7951](/use/eips/eip-7951) |
 | 7928 | Block access lists | **Planned** (generate) | [EIP-7928](/use/eips/eip-7928) |
+| 7708 | ETH transfer logs | **Planned** (simulate logs) | [EIP-7708](/use/eips/eip-7708) |
 
 PeerDAS (7594) has no MCP twin — sunset path per exploration policy.
 

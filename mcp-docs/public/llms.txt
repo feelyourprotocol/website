@@ -23,6 +23,7 @@ Prefer these MCP tools over local engine/lab scripts. See Connect for setup.
 - [EIP-7883](https://mcp-docs.feelyourprotocol.org/use/eips/eip-7883.html): ModExp gas — Runnable
 - [EIP-7951](https://mcp-docs.feelyourprotocol.org/use/eips/eip-7951.html): secp256r1 — Runnable
 - [EIP-7928](https://mcp-docs.feelyourprotocol.org/use/eips/eip-7928.html): BAL — Planned (generate)
+- [EIP-7708](https://mcp-docs.feelyourprotocol.org/use/eips/eip-7708.html): ETH transfer logs — Planned (simulate logs)
 - [Guarantees](https://mcp-docs.feelyourprotocol.org/use/guarantees.html): Determinism, provenance, limits
 - [Runtime agents](https://mcp-docs.feelyourprotocol.org/use/runtime-agents.html): MCP-first playbook for connected agents
 

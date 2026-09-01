@@ -21,6 +21,7 @@ const cc = TOPIC_COLORS[topic.color].classes
 const breadcrumbs = getBreadcrumbsForPath(route.path)
 
 const companionIdleLabels: Record<string, string> = {
+  'eip-7708': 'Run the block to inspect receipt logs',
   'eip-7928': 'Run the block to explore the access list',
   'eip-8024': 'Step to DUPN, SWAPN, or EXCHANGE…',
 }

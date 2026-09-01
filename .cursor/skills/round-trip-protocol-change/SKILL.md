@@ -31,7 +31,7 @@ This is a **multi-phase workflow with hard stops**. After each phase, **stop com
 - Do **not** commit, push, or open a PR unless asked.
 - Cover art and OG cards are **part of phase 2** (every exploration), not a later optional skill. PR remains optional.
 
-**Exception stops** (ask, then wait) — new runtime dependency, new shared E-Component, briefing verdict flips to unfit, spec too underspecified to teach honestly.
+**Exception stops** (ask, then wait) — new runtime dependency, new shared E-Component **without** a design sub-round when reuse is unclear, briefing verdict flips to unfit, spec too underspecified to teach honestly.
 
 ---
 

@@ -30,7 +30,7 @@ When the core E-Component is not enough:
 Extension UI must be **descendants** inside the E-Component slot tree — not siblings next to the E-Component in `MyC.vue`.
 :::
 
-Keep exploration-specific logic local until a **second** exploration needs the same thing — then promote to a shared E-Component.
+Keep exploration-specific **execution** local (VM runs, decoders using `@ethereumjs/*`). Promote **display types, formatters, and panel UI** to a shared E-Component when a future reuse case is clear — design and ship the E-Component in a sub-round, then wire the exploration (see [add-exploration skill](../../.cursor/skills/add-exploration/SKILL.md)).
 
 ## One E-Component per exploration
 
@@ -40,4 +40,4 @@ Each major E-Component wraps the full page shell today. Compose _on top of_ one 
 
 ## Creating a new E-Component
 
-When **two or more** explorations share a pattern: new folder `src/eComponents/<name>EC/`, typed config, execution stays in explorations, clear slots/inject hooks, document on [Available E-Components](/contributing/available-e-components).
+When **two or more** explorations share a pattern — or briefing/design identifies a **likely future reuse** (receipt logs, proof panels, etc.) — add `src/eComponents/<name>EC/`, typed config, execution stays in explorations, clear slots/inject hooks, document on [Available E-Components](/contributing/available-e-components). Ship tests with the E-Component sub-round before the exploration depends on it.

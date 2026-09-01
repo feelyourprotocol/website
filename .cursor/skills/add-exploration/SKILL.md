@@ -55,17 +55,20 @@ Reference explorations by pattern:
 | Precompile (new-capability) | `src/explorations/eip-7951/` | `precompileInterfaceEC/types.ts` |
 | Bytecode stepper + companion | `src/explorations/eip-8024/` | `bytecodeStepperEC/types.ts` |
 | Custom / scenario-driven | `src/explorations/eip-7928/` | — |
+| Receipt logs + VM scenarios | `src/explorations/eip-7708/` | `receiptLogsEC/types.ts` |
 
 Copy the closest folder; adapt `canonical.ts`, `info.ts`, `examples.ts`, `MyC.vue`, and `config.ts` as needed. **Do not copy result UI across change natures.**
 
-Do **not** create a new shared E-Component unless two explorations already share the pattern, or the human explicitly asked. Prefer slots / local companions.
+Do **not** create a new shared E-Component by default — but when briefing or design identifies a **reusable logic/API + UX/UI structure** likely needed for future EIP integrations, take a focused **sub-round** first: design, implement, test, and document the new E-Component (`src/eComponents/<name>EC/`, [available-e-components.md](../../website-docs/contributing/available-e-components.md)), then return to the exploration and integrate it (tweak if real use teaches better shapes). Prefer slots / local companions when the pattern is truly one-off.
+
+**Sub-round checklist:** typed config + neutral display types (no third-party imports in E-Component), unit tests, catalogue row, optional provide/inject for loose coupling to exploration execution.
 
 ## Exception gates
 
 Stop and ask (do not improvise past these):
 
 - New **runtime** dependency (explicit human ask)
-- New **shared** E-Component (not a local companion)
+- New **shared** E-Component — only when the sub-round above was skipped without human approval and the pattern is still one-off
 - Briefing verdict no longer holds (spec cannot be taught honestly)
 - Spec too underspecified for a truthful widget
 
@@ -91,7 +94,7 @@ Invariants and finish commands: [testing.mdc](../rules/testing.mdc), [quality.md
 4. `examples.ts` + execution helpers — **tests for the protocol claim first** (or immediately with these files)
 5. `MyC.vue` (+ `config.ts` if E-Component-backed) — then Vue mount tests
 6. Register in `src/explorations/REGISTRY.ts` (nav dropdown is `Object.values(EXPLORATIONS)`)
-7. **Latest on the home page:** prepend `<id>` to `featured` in `src/views/HomeView.vue`. `latestExplorations = featured.slice(0, 2)` — the new one is Latest; the previous second Latest drops off that pair. Update the same array in `src/views/__tests__/HomeView.spec.ts`.
+7. **Latest on the home page:** prepend `<id>` to `featured` in `src/views/HomeView.vue`. `latestExplorations = featured.slice(0, 3)` — the new one is Latest; the previous third Latest drops off. Update the same array in `src/views/__tests__/HomeView.spec.ts`.
 8. **Cover art (required):** [cover-image skill](../cover-image/SKILL.md). Round-trip default: Template B from signed-off `coreQuestion` unless the human named a subject at GO. Import `image.webp` in `info.ts`. Then `npm run generate:og:exploration -- <id>`.
 9. Dependencies — prefer existing `package.json` entries
 10. Finish `tests.spec.ts` per [Tests](#tests-test-first)
@@ -145,7 +148,7 @@ Tests passing is the quality bar, not the pedagogy bar. The report below is the 
 **eComponents / UI:** reused | slotted | local companion | new shared (only if asked)
 **Touched / evolved / created:** paths + one line each
 **Files:** created / modified (short list)
-**Latest:** prepended to `featured` — dropped from Latest pair: …
+**Latest:** prepended to `featured` — dropped from Latest trio: …
 **Cover:** `image.webp` — Template A/B — shown in context
 
 **Tests:** `npx vitest run src/explorations/<id>/` — N specs, pass/fail (logic + UI + beyond-edge)
@@ -165,4 +168,4 @@ Tests passing is the quality bar, not the pedagogy bar. The report below is the 
 
 - Engine module implementation (phase 3)
 - Edits to roadmap, community-token, or docs-hub sites (mcp-docs EIP pages are a **ship gate**, not out of scope)
-- New E-Components unless explicitly requested or an exception gate was approved
+- New E-Components unless the briefing/design sub-round applies, the human explicitly asked, or an exception gate was approved

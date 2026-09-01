@@ -1,6 +1,6 @@
 # Images
 
-Cover art is **required** for every exploration — it appears on topic cards, the home Latest pair, and the exploration sidebar. The widget is the serious work; the image expresses what the protocol change *feels* like.
+Cover art is **required** for every exploration — it appears on topic cards, the home Latest section, and the exploration sidebar. The widget is the serious work; the image expresses what the protocol change *feels* like.
 
 ::: tip Generating cover art
 Round-trip / add-exploration: the agent generates in the same phase (Template B from the signed-off core question unless you named a subject). Standalone: [cover-image skill](https://github.com/feelyourprotocol/website/blob/main/.cursor/skills/cover-image/SKILL.md) — you approve subject/mood first. Rules on this page always apply.
