@@ -231,6 +231,7 @@ body {
 }
 
 .e-action-button:hover:not(:disabled) {
+  z-index: 50;
   background-color: var(--e-bg);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
   transform: translateY(-1px);

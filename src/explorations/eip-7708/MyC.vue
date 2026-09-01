@@ -77,6 +77,12 @@ async function init() {
   example.value = resolveInitialExample(examples, DEFAULT_SCENARIO_ID, exampleQuery)
 }
 
+watch(example, (next, prev) => {
+  if (prev !== '' && next !== prev) {
+    hardfork.value = 'amsterdam'
+  }
+})
+
 watch(
   () => result.value,
   (runResult) => {
@@ -122,32 +128,57 @@ await init()
             next →
           </button>
         </div>
-        <div class="flex flex-wrap items-center gap-2">
-          <div class="flex rounded border e-border overflow-hidden text-xs font-mono">
+        <div
+          class="flex flex-wrap items-center justify-end gap-2 max-md:grid max-md:w-full max-md:grid-cols-[auto_minmax(0,1fr)_auto] max-md:items-center"
+        >
+          <div
+            class="inline-flex shrink-0 rounded-md border border-slate-300 bg-slate-100 p-0.5 text-xs font-mono max-md:px-0.5"
+            role="group"
+            aria-label="Hardfork"
+          >
             <button
               type="button"
-              class="px-2 py-1 transition-colors"
-              :class="hardfork === 'amsterdam' ? 'e-bg-dark text-white' : 'e-bg-light opacity-70'"
+              class="rounded px-2.5 py-1 transition-colors"
+              :class="
+                hardfork === 'amsterdam'
+                  ? 'bg-slate-800 font-semibold text-white shadow-sm'
+                  : 'text-slate-600 hover:bg-white/80 hover:text-slate-900'
+              "
+              :aria-pressed="hardfork === 'amsterdam'"
               @click="setHardfork('amsterdam')"
             >
               Amsterdam
             </button>
             <button
               type="button"
-              class="px-2 py-1 transition-colors border-l e-border"
-              :class="hardfork === 'osaka' ? 'e-bg-dark text-white' : 'e-bg-light opacity-70'"
+              class="rounded px-2.5 py-1 transition-colors"
+              :class="
+                hardfork === 'osaka'
+                  ? 'bg-slate-800 font-semibold text-white shadow-sm'
+                  : 'text-slate-600 hover:bg-white/80 hover:text-slate-900'
+              "
+              :aria-pressed="hardfork === 'osaka'"
               @click="setHardfork('osaka')"
             >
               Osaka
             </button>
           </div>
-          <ExamplesUIC v-model="example" :examples="examples" :change="selectExample" />
-          <ActionButtonUIC
-            test-id="run-block"
-            text="Run block"
-            tooltip="Execute block on the selected hardfork and read receipt logs"
-            :onClick="runBlock"
+          <ExamplesUIC
+            v-model="example"
+            :examples="examples"
+            :change="selectExample"
+            select-min-width-class="min-w-[13.5rem] max-md:min-w-0 justify-between"
           />
+          <div
+            class="shrink-0 max-md:[&_.e-action-button]:min-h-9 max-md:[&_.e-action-button]:px-2 max-md:[&_.e-action-button]:py-1.5 max-md:[&_.e-action-button]:text-xs"
+          >
+            <ActionButtonUIC
+              test-id="run-block"
+              text="Run block"
+              tooltip="Execute block on the selected hardfork and read receipt logs"
+              :onClick="runBlock"
+            />
+          </div>
         </div>
       </div>
 

@@ -15,6 +15,8 @@ const example = defineModel<string>()
 const props = defineProps<{
   examples: Examples
   change: () => void
+  /** Stabilises control rows when example titles vary in length (e.g. min-w-[13.5rem]). */
+  selectMinWidthClass?: string
 }>()
 
 const selectedTitle = computed(() => {
@@ -29,12 +31,16 @@ function onSelect(key: string) {
 </script>
 
 <template>
-  <div class="text-right">
+  <div class="min-w-0 text-right md:shrink-0">
     <Listbox :model-value="example" @update:model-value="onSelect">
-      <div class="relative inline-block">
-        <ListboxButton class="e-select inline-flex items-center gap-1" data-testid="example-select">
-          {{ selectedTitle }}
-          <ChevronUpDownIcon class="size-3.5 opacity-60" />
+      <div class="relative inline-block max-md:block max-md:w-full">
+        <ListboxButton
+          class="e-select inline-flex w-full max-w-full items-center gap-1 text-xs max-md:px-2 max-md:py-1"
+          :class="selectMinWidthClass"
+          data-testid="example-select"
+        >
+          <span class="min-w-0 truncate">{{ selectedTitle }}</span>
+          <ChevronUpDownIcon class="size-3.5 shrink-0 opacity-60" />
         </ListboxButton>
 
         <transition

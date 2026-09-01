@@ -151,6 +151,48 @@ describe('EIP-7708 transfer-log exploration', () => {
       await flushPromises()
       expect(wrapper.text()).toContain('Run block')
       expect(wrapper.text()).toContain('Amsterdam')
+      const amsterdam = wrapper.find('[aria-pressed="true"]')
+      expect(amsterdam.exists()).toBe(true)
+      expect(amsterdam.text()).toBe('Amsterdam')
+    })
+
+    it('resets hardfork to Amsterdam when the scenario changes', async () => {
+      document.body.innerHTML = '<div id="root"></div><div id="exploration-right-panel"></div>'
+      const router = createRouter({
+        history: createMemoryHistory(),
+        routes: [{ path: '/', component: { template: '<div />' } }],
+      })
+      await router.push('/')
+
+      const wrapper = mount(
+        {
+          components: { MyC },
+          template: '<Suspense><MyC /></Suspense>',
+        },
+        {
+          attachTo: document.getElementById('root')!,
+          global: {
+            plugins: [router],
+            stubs: {
+              ExplorationC: {
+                template: '<div><slot name="content" /></div>',
+              },
+              PoweredByC: true,
+            },
+          },
+        },
+      )
+      await flushPromises()
+      await flushPromises()
+
+      const osaka = wrapper.findAll('button').find((b) => b.text() === 'Osaka')
+      expect(osaka).toBeDefined()
+      await osaka!.trigger('click')
+      expect(wrapper.find('[aria-pressed="true"]').text()).toBe('Osaka')
+
+      const next = wrapper.findAll('button').find((b) => b.text().includes('next'))
+      await next!.trigger('click')
+      expect(wrapper.find('[aria-pressed="true"]').text()).toBe('Amsterdam')
     })
   })
 })
