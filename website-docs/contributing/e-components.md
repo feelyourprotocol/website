@@ -30,7 +30,7 @@ When the core E-Component is not enough:
 Extension UI must be **descendants** inside the E-Component slot tree — not siblings next to the E-Component in `MyC.vue`.
 :::
 
-Keep exploration-specific **execution** local (VM runs, decoders using `@ethereumjs/*`). Promote **display types, formatters, and panel UI** to a shared E-Component when a future reuse case is clear — design and ship the E-Component in a sub-round, then wire the exploration (see [add-exploration skill](../../.cursor/skills/add-exploration/SKILL.md)).
+Keep exploration-specific **execution** local (VM runs, decoders using `@ethereumjs/*`). Promote **display types, formatters, and panel UI** to a shared E-Component when a future reuse case is clear — design and ship the E-Component in a sub-round, then wire the exploration (see [add-exploration skill](https://github.com/feelyourprotocol/website/blob/main/.cursor/skills/add-exploration/SKILL.md)).
 
 ## One E-Component per exploration
 
