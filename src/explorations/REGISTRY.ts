@@ -54,7 +54,7 @@ export interface Exploration {
   seoDescription?: string
   /** From `CANONICAL.question.coreQuestion` — home preview cards and bold intro lead. */
   coreQuestion: string
-  /** From `CANONICAL.mcp.docsStatus` — optional home pill (Runnable / Planned). */
+  /** From `CANONICAL.mcp.docsStatus` — home preview shows an MCP pill when runnable or planned-module. */
   mcpDocsStatus?: ProtocolChangeMcpHints['docsStatus']
   /** HTML intro shown above the widget — pedagogical framing, not SEO copy. */
   introText: string

@@ -2,7 +2,7 @@
 import { computed } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 
-import TooltipUIC from '@/eComponents/ui/TooltipUIC.vue'
+import HelpHintUIC from '@/eComponents/ui/HelpHintUIC.vue'
 import { EXPLORATIONS } from '@/explorations/REGISTRY'
 import { TIMELINE } from '@/explorations/TIMELINE'
 
@@ -68,26 +68,34 @@ function reset() {
         </div>
 
         <!-- Clickable emoji + name -->
-        <div class="group relative flex items-center py-1">
-          <button
-            class="flex items-center gap-1.5 px-2 py-1 min-h-11 rounded-md text-sm cursor-pointer transition-all duration-300 hover:bg-slate-50"
-            @click="navigate(id)"
+        <div class="flex items-center py-1 gap-0.5 min-w-0">
+          <HelpHintUIC
+            :text="entry.shortDescription"
+            tier="useful"
+            touch-fallback="popover"
+            :popover-label="`${entry.title} timeline description`"
+            host-class="flex min-w-0 flex-1 items-center gap-0.5"
+            trigger-class="min-w-0"
           >
-            <span class="emoji-mono">{{ entry.emoji }}</span>
-            <span
-              :class="activeTimeline === id ? 'text-slate-800 font-semibold' : 'text-slate-600'"
-              >{{ entry.title }}</span
+            <button
+              class="flex items-center gap-1.5 px-2 py-1 min-h-11 rounded-md text-sm cursor-pointer transition-all duration-300 hover:bg-slate-50"
+              @click="navigate(id)"
             >
-            <span class="text-slate-400 text-xs">({{ counts[id] }})</span>
-          </button>
+              <span class="emoji-mono">{{ entry.emoji }}</span>
+              <span
+                :class="activeTimeline === id ? 'text-slate-800 font-semibold' : 'text-slate-600'"
+                >{{ entry.title }}</span
+              >
+              <span class="text-slate-400 text-xs">({{ counts[id] }})</span>
+            </button>
+          </HelpHintUIC>
           <button
             v-if="!basePath && activeTimeline === id"
-            class="ml-0.5 text-sm text-slate-400 hover:text-slate-600 cursor-pointer"
+            class="ml-0.5 text-sm text-slate-400 hover:text-slate-600 cursor-pointer shrink-0"
             @click.stop="reset"
           >
             ✕
           </button>
-          <TooltipUIC :tooltip="entry.shortDescription" />
         </div>
       </div>
     </div>

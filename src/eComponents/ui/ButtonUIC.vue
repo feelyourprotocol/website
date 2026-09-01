@@ -1,17 +1,22 @@
 <script setup lang="ts">
 import type { Component } from 'vue'
 
-import TooltipUIC from './TooltipUIC.vue'
+import HelpHintUIC from './HelpHintUIC.vue'
 
 defineProps<{
   icon: Component
   tooltip?: string
+  ariaLabel?: string
 }>()
 </script>
 
 <template>
-  <span class="group relative inline-block">
-    <component :is="icon" class="e-button-icon" />
-    <TooltipUIC :tooltip="tooltip" />
-  </span>
+  <HelpHintUIC
+    :text="tooltip ?? ''"
+    tier="decorative"
+    host-class="inline-flex items-center"
+    trigger-class="inline-flex"
+  >
+    <component :is="icon" class="e-button-icon" :aria-label="ariaLabel ?? tooltip" />
+  </HelpHintUIC>
 </template>

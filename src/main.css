@@ -241,6 +241,15 @@ body {
   transform: translateY(0);
 }
 
+/* --- Help hints (tooltip / inline / popover) --- */
+.help-hint-inline {
+  text-wrap: pretty;
+}
+
+.help-hint-tooltip {
+  text-wrap: pretty;
+}
+
 /* --- Topic intro cards --- */
 /* Border colour is applied as a Tailwind utility via TOPIC_CARD_BORDER in TopicIntroView.vue */
 .topic-intro-card {

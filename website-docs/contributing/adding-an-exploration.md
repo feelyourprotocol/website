@@ -103,7 +103,7 @@ Agent adds `tests.spec.ts` (logic **and** UI mounts) — metadata, examples, exe
 ## Cover, Latest, and link previews
 
 - **Cover art (required):** [Images](/contributing/images) + [cover-image skill](https://github.com/feelyourprotocol/website/blob/main/.cursor/skills/cover-image/SKILL.md). Round-trip uses Template B from the signed-off core question unless you named a subject at GO.
-- **Home Latest:** agent prepends the new id to `FEATURED_EXPLORATION_IDS` in `src/views/homeCatalog.ts` (the previous third Latest moves to the Catalog row). Home cards use `ExplorationPreviewC` (cover + core question), not the full widget chrome.
+- **Home Latest:** agent prepends the new id to `FEATURED_EXPLORATION_IDS` in `src/views/homeCatalog.ts` (the previous third Latest moves to the Catalog row). Home cards use `ExplorationPreviewC` (cover + core question), not the full widget chrome. Preview pills are links: topic → topic hub, timeline → `/all?timeline=…`, MCP → `mcp-docs/use/eips/eip-NNNN.html` when `mcpDocsStatus` is runnable or planned-module (label is always **MCP**, not Runnable/Planned).
 - **OG card:** `npm run generate:og:exploration -- <id>` after cover and metadata
 
 ## Human review

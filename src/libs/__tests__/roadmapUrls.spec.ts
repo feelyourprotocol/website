@@ -6,6 +6,7 @@ import {
   MCP_DOCS_HOME,
   MCP_DOCS_ORIGIN,
   MCP_DOCS_OVERVIEW,
+  mcpDocsEipPage,
   mcpDocsPage,
   ROADMAP_HOME,
   ROADMAP_ORIGIN,
@@ -47,6 +48,12 @@ describe('mcpDocsUrls', () => {
   it('mcpDocsPage builds slug paths', () => {
     expect(mcpDocsPage('use/introduction')).toBe(
       'https://mcp-docs.feelyourprotocol.org/use/introduction.html',
+    )
+  })
+
+  it('mcpDocsEipPage builds per-EIP catalogue paths', () => {
+    expect(mcpDocsEipPage('eip-7708')).toBe(
+      'https://mcp-docs.feelyourprotocol.org/use/eips/eip-7708.html',
     )
   })
 
