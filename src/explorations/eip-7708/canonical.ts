@@ -42,6 +42,6 @@ export const CANONICAL: ProtocolChangeCanonical = {
       previewForkId: 'amsterdam',
       note: 'Transfer logs only on preview; same tx on baseline has no EIP-7708 logs.',
     },
-    docsStatus: 'planned-module',
+    docsStatus: 'runnable',
   },
 }

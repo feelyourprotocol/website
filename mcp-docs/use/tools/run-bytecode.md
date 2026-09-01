@@ -4,7 +4,7 @@
 
 ## Purpose
 
-Run **caller-supplied** raw EVM bytecode under a chosen fork / EIP configuration and receive a structured result — gas used, return data, final stack, optional opcode trace, and provenance.
+Run **caller-supplied** raw EVM bytecode under a chosen fork / EIP configuration and receive a structured result — gas used, return data, final stack, optional opcode trace, optional **logs** / **decodedLogs**, and provenance.
 
 ## When to use
 
@@ -20,7 +20,8 @@ Run **caller-supplied** raw EVM bytecode under a chosen fork / EIP configuration
 
 | Field | Required | Description |
 | --- | --- | --- |
-| `bytecode` | Yes | Hex-encoded bytecode (`0x` prefix optional). Max 24 576 bytes. |
+| `bytecode` | One of bytecode / messageCall | Hex-encoded bytecode (`0x` prefix optional). Max 24 576 bytes. |
+| `messageCall` | One of bytecode / messageCall | `{ caller, to, value?, data?, code? }` — value-bearing call (EIP-7708 plain ETH moves). |
 | `fork` | No | `{ baseHardfork, eips[] }` — default **`amsterdam`**. Use **`osaka`** only when you want current mainnet baseline |
 | `gasLimit` | No | Decimal string. Default `1000000`. Max `30000000`. |
 | `trace` | No | When true, include stack-only execution steps (max 10 000) |
@@ -53,6 +54,8 @@ Expected on baseline: `success: false` (invalid opcode `0xe6`). Re-run with `ams
 | `finalStack` | Stack after execution (hex strings). With `trace: true`, full stack from last step. |
 | `error` | Error message if execution failed (e.g. `stack underflow`) |
 | `steps` | Optional trace steps when `trace` is true |
+| `logs` | Raw logs emitted during execution (when any) |
+| `decodedLogs` | Indexed logs with optional EIP-7708 Transfer/Burn decorations |
 | `provenance` | Always present — `engineVersion`, `forkConfig`, optional EIP metadata |
 
 ## Examples

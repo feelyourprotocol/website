@@ -102,7 +102,7 @@ export default defineConfig({
                 { text: 'EIP-7883 ModExp gas', link: '/use/eips/eip-7883' },
                 { text: 'EIP-7951 secp256r1', link: '/use/eips/eip-7951' },
                 { text: 'EIP-7928 BAL (planned)', link: '/use/eips/eip-7928' },
-                { text: 'EIP-7708 ETH transfer logs (planned)', link: '/use/eips/eip-7708' },
+                { text: 'EIP-7708 ETH transfer logs', link: '/use/eips/eip-7708' },
               ],
             },
             { text: 'Guarantees', link: '/use/guarantees' },

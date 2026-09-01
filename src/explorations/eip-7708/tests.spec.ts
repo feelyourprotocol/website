@@ -17,7 +17,7 @@ describe('EIP-7708 transfer-log exploration', () => {
     it('defines simulate shape as planned MCP twin with fork comparison', () => {
       expect(CANONICAL.question.changeNature).toBe('new-capability')
       expect(CANONICAL.mcp.shapes).toContain('simulate')
-      expect(CANONICAL.mcp.docsStatus).toBe('planned-module')
+      expect(CANONICAL.mcp.docsStatus).toBe('runnable')
       expect(CANONICAL.mcp.comparison?.previewForkId).toBe('amsterdam')
     })
   })
