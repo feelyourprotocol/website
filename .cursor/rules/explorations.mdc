@@ -30,7 +30,7 @@ Read valid IDs from source — do not guess:
 ## Building blocks
 
 1. Check [available-e-components.md](../../website-docs/contributing/available-e-components.md) before custom UI.
-2. One primary E-Component per exploration unless explicitly designing a new shared pattern.
+2. One primary E-Component shell per exploration unless explicitly designing a new shared pattern. **Future-driven shared components:** when design identifies reusable receipt/log/state UI (or similar) useful beyond this EIP, implement the E-Component sub-round first (see [add-exploration skill](../skills/add-exploration/SKILL.md)), then integrate.
 3. Extension UI goes **inside** E-Component slots (`#below`, `#result`) — not as siblings (provide/inject is descendant-only).
 4. **Result slot must match `changeNature`** — gas compare only for `repricing`; validity/output for `new-capability` precompiles.
 
@@ -43,7 +43,7 @@ Read valid IDs from source — do not guess:
 
 Every new exploration needs an import in `src/explorations/REGISTRY.ts` or it will not appear in nav.
 
-**Latest on the home page:** prepend the id to `featured` in `src/views/HomeView.vue` (and the copy in `HomeView.spec.ts`). `latestExplorations = featured.slice(0, 2)` — new exploration is Latest; the previous second Latest leaves that pair.
+**Latest on the home page:** prepend the id to `FEATURED_EXPLORATION_IDS` in `src/views/homeCatalog.ts`. `latestExplorationIds()` is the first 3 — new exploration is Latest; the previous third Latest moves to the Catalog row.
 
 ## Cover art
 

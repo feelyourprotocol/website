@@ -16,6 +16,8 @@ export const INFO: Exploration = {
   tags: CANONICAL.taxonomy.tags,
   image,
   imageSmall,
+  coreQuestion: CANONICAL.question.coreQuestion,
+  mcpDocsStatus: CANONICAL.mcp.docsStatus,
   imageBoxHeight: '19rem',
   rightPanel: true,
   introText:

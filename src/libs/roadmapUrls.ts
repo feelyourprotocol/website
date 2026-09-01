@@ -25,6 +25,11 @@ export function mcpDocsPage(path = '', hash?: string): string {
 export const MCP_DOCS_HOME = mcpDocsPage()
 export const MCP_DOCS_OVERVIEW = mcpDocsPage('use/introduction')
 
+/** Per-EIP MCP usage page (`use/eips/eip-NNNN.html`). */
+export function mcpDocsEipPage(explorationId: string): string {
+  return mcpDocsPage(`use/eips/${explorationId}`)
+}
+
 /**
  * Project X account — single source of truth for the fleet.
  *

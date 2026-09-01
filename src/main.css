@@ -231,6 +231,7 @@ body {
 }
 
 .e-action-button:hover:not(:disabled) {
+  z-index: 50;
   background-color: var(--e-bg);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
   transform: translateY(-1px);
@@ -238,6 +239,15 @@ body {
 
 .e-action-button:active:not(:disabled) {
   transform: translateY(0);
+}
+
+/* --- Help hints (tooltip / inline / popover) --- */
+.help-hint-inline {
+  text-wrap: pretty;
+}
+
+.help-hint-tooltip {
+  text-wrap: pretty;
 }
 
 /* --- Topic intro cards --- */

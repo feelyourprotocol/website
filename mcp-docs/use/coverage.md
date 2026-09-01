@@ -19,6 +19,7 @@ These appear in `describe_capabilities()` — engine modules with `runnable: tru
 | EIP | Nature | Shapes | Fork notes | Catalogue |
 | --- | --- | --- | --- | --- |
 | 8024 | new-capability | simulate | Amsterdam | [EIP-8024](/use/eips/eip-8024) |
+| 7708 | new-capability | simulate | Amsterdam; Osaka compare | [EIP-7708](/use/eips/eip-7708) |
 | 7883 | repricing | simulate | Osaka; Prague compare | [EIP-7883](/use/eips/eip-7883) |
 | 7951 | new-capability | simulate | Osaka | [EIP-7951](/use/eips/eip-7951) |
 
@@ -34,6 +35,7 @@ Every **live** website exploration has an MCP-docs page mapping the same problem
 | 7883 | ModExp gas | Runnable | [EIP-7883](/use/eips/eip-7883) |
 | 7951 | secp256r1 | Runnable | [EIP-7951](/use/eips/eip-7951) |
 | 7928 | Block access lists | **Planned** (generate) | [EIP-7928](/use/eips/eip-7928) |
+| 7708 | ETH transfer logs | Runnable | [EIP-7708](/use/eips/eip-7708) |
 
 PeerDAS (7594) has no MCP twin — sunset path per exploration policy.
 

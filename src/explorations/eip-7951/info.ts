@@ -16,6 +16,8 @@ export const INFO: Exploration = {
   tags: CANONICAL.taxonomy.tags,
   image,
   imageSmall,
+  coreQuestion: CANONICAL.question.coreQuestion,
+  mcpDocsStatus: CANONICAL.mcp.docsStatus,
   introText:
     `<b>${CANONICAL.question.coreQuestion}</b> ` +
     'The curve (also known as P-256) is the native signing algorithm on ' +

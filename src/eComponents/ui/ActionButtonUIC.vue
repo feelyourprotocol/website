@@ -1,13 +1,15 @@
 <script setup lang="ts">
 import { nextTick, ref } from 'vue'
 
-import TooltipUIC from './TooltipUIC.vue'
+import type { HelpHintTier } from './helpHint/resolveHelpHintMode'
+import HelpHintUIC from './HelpHintUIC.vue'
 
 const props = defineProps<{
   text: string
   tooltip: string
   onClick: () => Promise<void>
   testId?: string
+  hintTier?: HelpHintTier
 }>()
 
 const buttonText = ref(props.text)
@@ -27,17 +29,26 @@ async function handleClick() {
     buttonText.value = props.text
   }
 }
+
+const accessibleLabel = props.tooltip ? `${props.text}. ${props.tooltip}` : props.text
 </script>
 
 <template>
-  <button
-    @click="handleClick"
-    type="button"
-    :disabled="isLoading"
-    class="group e-action-button"
-    :data-testid="testId"
+  <HelpHintUIC
+    :text="tooltip"
+    :tier="hintTier ?? 'useful'"
+    host-class="inline-flex flex-col items-stretch gap-1"
+    inline-class="text-right"
   >
-    {{ buttonText }}
-    <TooltipUIC :tooltip="tooltip" />
-  </button>
+    <button
+      @click="handleClick"
+      type="button"
+      :disabled="isLoading"
+      class="e-action-button"
+      :data-testid="testId"
+      :aria-label="accessibleLabel"
+    >
+      {{ buttonText }}
+    </button>
+  </HelpHintUIC>
 </template>

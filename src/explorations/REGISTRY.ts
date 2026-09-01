@@ -1,4 +1,6 @@
+import type { ProtocolChangeMcpHints } from './canonicalTypes'
 import { INFO as eip7594 } from './eip-7594/info'
+import { INFO as eip7708 } from './eip-7708/info'
 import { INFO as eip7883 } from './eip-7883/info'
 import { INFO as eip7928 } from './eip-7928/info'
 import { INFO as eip7951 } from './eip-7951/info'
@@ -7,6 +9,7 @@ import type { Tag } from './TAGS'
 
 export const EXPLORATIONS: Explorations = {
   [eip7594.id]: eip7594,
+  [eip7708.id]: eip7708,
   [eip7883.id]: eip7883,
   [eip7928.id]: eip7928,
   [eip7951.id]: eip7951,
@@ -49,6 +52,10 @@ export interface Exploration {
   rightPanel?: boolean
   /** Plain-text discovery copy for meta tags and static prerender (~120–160 chars). See contributing guide. */
   seoDescription?: string
+  /** From `CANONICAL.question.coreQuestion` — home preview cards and bold intro lead. */
+  coreQuestion: string
+  /** From `CANONICAL.mcp.docsStatus` — home preview shows an MCP pill when runnable or planned-module. */
+  mcpDocsStatus?: ProtocolChangeMcpHints['docsStatus']
   /** HTML intro shown above the widget — pedagogical framing, not SEO copy. */
   introText: string
   /** HTML instructions for using the widget below the intro. */

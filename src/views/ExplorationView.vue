@@ -21,6 +21,7 @@ const cc = TOPIC_COLORS[topic.color].classes
 const breadcrumbs = getBreadcrumbsForPath(route.path)
 
 const companionIdleLabels: Record<string, string> = {
+  'eip-7708': 'Run the block to inspect receipt logs',
   'eip-7928': 'Run the block to explore the access list',
   'eip-8024': 'Step to DUPN, SWAPN, or EXCHANGE…',
 }
@@ -40,7 +41,7 @@ const ExplorationComponent = defineAsyncComponent(
 <template>
   <BreadcrumbNav v-if="!isVideoMode" :items="breadcrumbs" />
   <div class="grid md:grid-cols-2 gap-4" :class="isVideoMode ? 'fyp-video-exploration' : ''">
-    <div :class="exploration.rightPanel ? 'max-md:pb-[var(--companion-peek-h)]' : ''">
+    <div :class="exploration.rightPanel ? 'relative z-10 max-md:pb-[var(--companion-peek-h)]' : ''">
       <Suspense>
         <ExplorationComponent />
         <template #fallback>

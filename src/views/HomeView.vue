@@ -1,128 +1,168 @@
 <script setup lang="ts">
 import SectionLabel from '@/components/SectionLabel.vue'
-import ExplorationC from '@/explorations/ExplorationC.vue'
-import { EXPLORATIONS, getRandomTopicExplorationImage } from '@/explorations/REGISTRY'
+import ExplorationPreviewC from '@/explorations/ExplorationPreviewC.vue'
+import { EXPLORATIONS } from '@/explorations/REGISTRY'
 import { TOPICS } from '@/explorations/TOPICS'
 import { COMMUNITY_TOKEN_HOME } from '@/libs/communityToken'
-import { DOCS_HOME } from '@/libs/docsUrls'
-import { ROADMAP_HOME } from '@/libs/roadmapUrls'
+import { WEBSITE_DOCS_HOME } from '@/libs/docsUrls'
+import { MCP_DOCS_HOME, mcpDocsPage, ROADMAP_HOME } from '@/libs/roadmapUrls'
 
+import { catalogExplorationIds, catalogForkLabels, latestExplorationIds } from './homeCatalog'
 import TagCloudView from './TagCloudView.vue'
 import TimelineNaviView from './TimelineNaviView.vue'
-import TopicIntroView from './TopicIntroView.vue'
+import TopicTileView from './TopicTileView.vue'
 
 const allExplorationIds = Object.keys(EXPLORATIONS)
+const latestIds = latestExplorationIds()
+const catalogIds = catalogExplorationIds()
+const forkLabels = catalogForkLabels()
+const explorationCount = allExplorationIds.length
+const topicIds = Object.keys(TOPICS)
+const mcpCoverageUrl = mcpDocsPage('use/coverage')
 
-const featured = ['eip-7928', 'eip-8024', 'eip-7883', 'eip-7594', 'eip-7951']
-const latestExplorations = featured.slice(0, 2)
-
-const activeTopicIds = Object.keys(TOPICS).filter((id) => TOPICS[id].explorations.length > 0)
-
-const topicImages: Record<string, string | undefined> = {}
-for (const topicId of activeTopicIds) {
-  topicImages[topicId] = getRandomTopicExplorationImage(topicId)
-}
+const fleet = [
+  {
+    title: 'Website docs',
+    href: WEBSITE_DOCS_HOME,
+    note: 'How explorations are built',
+  },
+  {
+    title: 'MCP docs',
+    href: MCP_DOCS_HOME,
+    note: 'Agent twin — not publicly launched',
+  },
+  {
+    title: 'Roadmap',
+    href: ROADMAP_HOME,
+    note: 'Textbook + future lab',
+  },
+  {
+    title: 'Community token',
+    href: COMMUNITY_TOKEN_HOME,
+    note: 'Funds ongoing exploration work',
+  },
+]
 </script>
 
 <template>
   <main>
     <h1 class="sr-only">Feel Your Protocol — Ethereum Protocol Explorations for Humans and AI</h1>
-    <div class="grid md:grid-cols-2 gap-4 items-start">
-      <div class="flex flex-col gap-4">
-        <section>
-          <SectionLabel>Latest</SectionLabel>
 
-          <RouterLink
-            v-for="explorationId in latestExplorations"
-            :key="explorationId"
-            :to="EXPLORATIONS[explorationId].path"
-            class="block mb-3 last:mb-0 no-underline"
-          >
-            <ExplorationC
-              :explorationId="explorationId"
-              :exploration="EXPLORATIONS[explorationId]"
-              :topic="TOPICS[EXPLORATIONS[explorationId].topic]"
-              :showUsageInstructions="false"
-            />
-          </RouterLink>
-        </section>
+    <section class="mb-6">
+      <p class="text-slate-600 text-sm md:text-base leading-relaxed max-w-3xl">
+        Run upcoming Ethereum protocol changes in the browser — real EVM and cryptography libraries,
+        no backend, no mocks.
+      </p>
+      <div class="flex flex-wrap items-center gap-2 mt-3">
+        <a
+          href="#latest"
+          class="inline-flex items-center px-3 py-2 min-h-11 rounded-md bg-slate-800 text-white text-sm font-medium no-underline hover:bg-slate-700"
+        >
+          Play an exploration
+        </a>
+        <a
+          :href="mcpCoverageUrl"
+          target="_blank"
+          rel="noopener"
+          class="inline-flex items-center px-3 py-2 min-h-11 rounded-md border border-slate-400 bg-white text-slate-600 text-sm no-underline hover:bg-slate-50"
+        >
+          For agents
+        </a>
+      </div>
+      <p class="font-mono text-xs text-slate-500 mt-3">
+        {{ explorationCount }} exploration{{ explorationCount === 1 ? '' : 's' }}
+        <template v-if="forkLabels.length > 0"> · {{ forkLabels.join(' · ') }}</template>
+      </p>
+    </section>
 
-        <div class="grid grid-cols-1 sm:grid-cols-5 gap-3">
-          <TagCloudView :explorationIds="allExplorationIds" basePath="/all" class="sm:col-span-3" />
-          <TimelineNaviView
-            basePath="/all"
-            :explorationIds="allExplorationIds"
-            class="sm:col-span-2"
+    <section id="latest" class="mb-8">
+      <SectionLabel>Latest</SectionLabel>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <RouterLink
+          v-for="explorationId in latestIds"
+          :key="explorationId"
+          :to="EXPLORATIONS[explorationId].path"
+          class="block no-underline min-w-0"
+        >
+          <ExplorationPreviewC
+            :explorationId="explorationId"
+            :exploration="EXPLORATIONS[explorationId]"
+            :topic="TOPICS[EXPLORATIONS[explorationId].topic]"
+            size="featured"
           />
-        </div>
+        </RouterLink>
       </div>
+    </section>
 
-      <div class="flex flex-col gap-4">
-        <section>
-          <SectionLabel>About the Project</SectionLabel>
-          <div class="bg-slate-700 rounded-lg p-5 shadow-md">
-            <p class="text-slate-300 text-sm leading-relaxed">
-              Feel Your Protocol turns upcoming Ethereum protocol changes into interactive
-              explorations you can run in the browser. Each widget uses real EVM and cryptography
-              libraries — no backend, no mocks.
-            </p>
-            <p class="text-slate-300 text-sm leading-relaxed mt-2">
-              The project is open source.
-              <a
-                :href="DOCS_HOME"
-                target="_blank"
-                class="font-semibold text-white underline hover:text-slate-200"
-                >Website docs</a
-              >
-              cover architecture and how explorations are built; the full codebase is on
-              <a
-                href="https://github.com/feelyourprotocol/website"
-                target="_blank"
-                class="font-semibold text-white underline hover:text-slate-200"
-                >GitHub</a
-              >.
-            </p>
-            <p class="text-slate-300 text-sm leading-relaxed mt-2">
-              Phase 3 is taking shape: a deterministic API &amp; MCP server for the future Ethereum
-              protocol (upcoming forks &amp; EIPs) — this explorations site stays the front door.
-              <a
-                :href="ROADMAP_HOME"
-                target="_blank"
-                rel="noopener"
-                class="font-semibold text-white underline hover:text-slate-200"
-                >See the roadmap</a
-              >.
-            </p>
-            <p class="text-slate-300 text-sm leading-relaxed mt-2">
-              A community token on Base helps fund ongoing exploration work.
-              <a
-                :href="COMMUNITY_TOKEN_HOME"
-                target="_blank"
-                rel="noopener"
-                class="font-semibold text-white underline hover:text-slate-200"
-                >How it works</a
-              >.
-            </p>
-          </div>
-        </section>
-
-        <div>
-          <RouterLink
-            v-for="topicId in activeTopicIds"
-            :key="topicId"
-            :to="TOPICS[topicId].path"
-            class="block mb-5 last:mb-0 no-underline"
-          >
-            <TopicIntroView
-              v-if="topicImages[topicId]"
-              :topic="TOPICS[topicId]"
-              :image="topicImages[topicId]!"
-              :overviewMode="true"
-              :showTopicHeading="true"
-            />
-          </RouterLink>
-        </div>
+    <section class="mb-8">
+      <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+        <SectionLabel>Catalog</SectionLabel>
+        <RouterLink to="/all" class="text-xs font-mono text-slate-500 hover:text-slate-700">
+          See all →
+        </RouterLink>
       </div>
-    </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+        <RouterLink
+          v-for="explorationId in catalogIds"
+          :key="explorationId"
+          :to="EXPLORATIONS[explorationId].path"
+          class="block no-underline min-w-0"
+        >
+          <ExplorationPreviewC
+            :explorationId="explorationId"
+            :exploration="EXPLORATIONS[explorationId]"
+            :topic="TOPICS[EXPLORATIONS[explorationId].topic]"
+            size="catalog"
+          />
+        </RouterLink>
+      </div>
+    </section>
+
+    <section class="mb-8">
+      <SectionLabel>Browse</SectionLabel>
+      <div class="grid grid-cols-1 sm:grid-cols-5 gap-3">
+        <TagCloudView :explorationIds="allExplorationIds" basePath="/all" class="sm:col-span-3" />
+        <TimelineNaviView
+          basePath="/all"
+          :explorationIds="allExplorationIds"
+          class="sm:col-span-2"
+        />
+      </div>
+    </section>
+
+    <section class="mb-8">
+      <SectionLabel>Topics</SectionLabel>
+      <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
+        <RouterLink
+          v-for="topicId in topicIds"
+          :key="topicId"
+          :to="TOPICS[topicId].path"
+          class="block no-underline min-w-0"
+        >
+          <TopicTileView :topic-id="topicId" :topic="TOPICS[topicId]" />
+        </RouterLink>
+      </div>
+    </section>
+
+    <section>
+      <SectionLabel>Also in this project</SectionLabel>
+      <p class="text-slate-600 text-sm leading-relaxed mb-3 max-w-3xl">
+        The explorations site is the textbook. Docs, a planned MCP lab for agents, and a community
+        token on Base sit alongside it.
+      </p>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+        <a
+          v-for="item in fleet"
+          :key="item.href"
+          :href="item.href"
+          target="_blank"
+          rel="noopener"
+          class="block rounded-lg border border-slate-400 bg-white p-4 no-underline hover:bg-slate-50"
+        >
+          <p class="font-semibold text-slate-800 text-sm">{{ item.title }}</p>
+          <p class="font-mono text-xs text-slate-500 mt-1">{{ item.note }}</p>
+        </a>
+      </div>
+    </section>
   </main>
 </template>

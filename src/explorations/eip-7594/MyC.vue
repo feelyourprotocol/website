@@ -88,6 +88,7 @@ await init()
         <ExamplesUIC v-model="example" :examples="examples" :change="selectExample" />
         <div class="text-right my-1.5">
           <ActionButtonUIC
+            hint-tier="essential"
             tooltip="This is a bit slow (> 10 seconds)"
             text="COMMIT/PROOF/RUN"
             :onClick="run"

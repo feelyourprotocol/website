@@ -6,14 +6,22 @@ import { EXPLORATIONS } from '@/explorations/REGISTRY'
 import { Tag } from '@/explorations/TAGS'
 import { TOPICS } from '@/explorations/TOPICS'
 import { COMMUNITY_TOKEN_HOME } from '@/libs/communityToken'
-import { DOCS_HOME } from '@/libs/docsUrls'
-import { ROADMAP_HOME } from '@/libs/roadmapUrls'
+import { WEBSITE_DOCS_HOME } from '@/libs/docsUrls'
+import { MCP_DOCS_HOME, mcpDocsPage, ROADMAP_HOME } from '@/libs/roadmapUrls'
 
+import {
+  catalogExplorationIds,
+  FEATURED_EXPLORATION_IDS,
+  latestExplorationIds,
+} from '../homeCatalog'
 import HomeView from '../HomeView.vue'
 
 const router = createRouter({
   history: createMemoryHistory(),
-  routes: [{ path: '/', name: 'home', component: HomeView }],
+  routes: [
+    { path: '/', name: 'home', component: HomeView },
+    { path: '/all', name: 'all', component: { template: '<div />' } },
+  ],
 })
 
 const wrapper = mount(HomeView, {
@@ -23,66 +31,99 @@ const wrapper = mount(HomeView, {
   },
 })
 
-const activeTopics = Object.values(TOPICS).filter((t) => t.explorations.length > 0)
+const latest = latestExplorationIds()
+const catalog = catalogExplorationIds()
 
 describe('HomeView', () => {
-  describe('Topics', () => {
-    it('renders a topic card for each active topic', () => {
-      for (const topic of activeTopics) {
-        expect(wrapper.text()).toContain(topic.title)
+  describe('Orient', () => {
+    it('states the project in one sentence', () => {
+      expect(wrapper.text()).toContain('Run upcoming Ethereum protocol changes in the browser')
+    })
+
+    it('offers play and agent doors', () => {
+      expect(wrapper.find('a[href="#latest"]').exists()).toBe(true)
+      const agents = wrapper.find(`a[href="${mcpDocsPage('use/coverage')}"]`)
+      expect(agents.exists()).toBe(true)
+      expect(agents.text()).toContain('For agents')
+    })
+
+    it('shows live catalog stats', () => {
+      expect(wrapper.text()).toContain(`${Object.keys(EXPLORATIONS).length} explorations`)
+      expect(wrapper.text()).toContain('Fusaka')
+      expect(wrapper.text()).toContain('Glamsterdam')
+    })
+  })
+
+  describe('Latest', () => {
+    it('shows Latest label and featured cards', () => {
+      expect(wrapper.text()).toContain('Latest')
+      expect(wrapper.findAll('#latest .exploration-preview-c')).toHaveLength(latest.length)
+    })
+
+    it('cards display titles and core questions', () => {
+      for (const id of latest) {
+        expect(wrapper.text()).toContain(EXPLORATIONS[id].title)
+        expect(wrapper.text()).toContain(EXPLORATIONS[id].coreQuestion)
       }
     })
 
-    it('topic cards link to correct paths', () => {
+    it('cards link to exploration paths', () => {
       const links = wrapper.findAllComponents(RouterLinkStub)
-      for (const topic of activeTopics) {
-        expect(links.some((l) => l.props('to') === topic.path)).toBe(true)
+      for (const id of latest) {
+        expect(links.some((l) => l.props('to') === EXPLORATIONS[id].path)).toBe(true)
       }
     })
 
-    it('renders topic images', () => {
-      expect(wrapper.findAll('.topic-intro-card img').length).toBeGreaterThanOrEqual(1)
-    })
-
-    it('shows topic intro text', () => {
-      const topicsWithIntro = activeTopics.filter((topic) => topic.introText)
-      for (const topic of topicsWithIntro) {
-        expect(wrapper.text()).toContain(topic.introText)
+    it('external info link on latest cards points to EIP spec', () => {
+      for (const id of latest) {
+        const link = wrapper.find(
+          `#${id}-c a.visit-exploration-button[href="${EXPLORATIONS[id].infoURL}"]`,
+        )
+        expect(link.exists()).toBe(true)
+        expect(link.attributes('target')).toBe('_blank')
       }
     })
   })
 
-  describe('About section', () => {
-    it('renders project description', () => {
-      expect(wrapper.text()).toContain('About the Project')
-      expect(wrapper.text()).toContain(
-        'Feel Your Protocol turns upcoming Ethereum protocol changes',
-      )
+  describe('Catalog', () => {
+    it('lists remaining explorations and a See all link', () => {
+      const seeAll = wrapper
+        .findAllComponents(RouterLinkStub)
+        .filter((l) => l.props('to') === '/all')
+      expect(seeAll.length).toBeGreaterThanOrEqual(1)
+      for (const id of catalog) {
+        expect(wrapper.text()).toContain(EXPLORATIONS[id].title)
+      }
+    })
+  })
+
+  describe('Topics', () => {
+    it('renders a tile for every topic, including empty pillars', () => {
+      for (const topic of Object.values(TOPICS)) {
+        expect(wrapper.text()).toContain(topic.title)
+      }
+      expect(wrapper.text()).toContain('coming')
     })
 
-    it('has contributor docs link pointing to docs site', () => {
-      const link = wrapper.find(`a[href="${DOCS_HOME}"]`)
-      expect(link.exists()).toBe(true)
-      expect(link.attributes('target')).toBe('_blank')
+    it('topic tiles link to topic paths', () => {
+      const links = wrapper.findAllComponents(RouterLinkStub)
+      for (const topic of Object.values(TOPICS)) {
+        expect(links.some((l) => l.props('to') === topic.path)).toBe(true)
+      }
     })
 
-    it('has GitHub link pointing to repo', () => {
-      const link = wrapper.find('a[href="https://github.com/feelyourprotocol/website"]')
-      expect(link.exists()).toBe(true)
-      expect(link.attributes('target')).toBe('_blank')
+    it('does not dump topic intro essays on home', () => {
+      const scaling = TOPICS.scaling
+      expect(wrapper.text()).not.toContain(scaling.introText)
     })
+  })
 
-    it('has community token link in about section', () => {
-      const link = wrapper.find(`a[href="${COMMUNITY_TOKEN_HOME}"]`)
-      expect(link.exists()).toBe(true)
-      expect(link.text()).toBe('How it works')
-      expect(link.attributes('target')).toBe('_blank')
-    })
-
-    it('has roadmap link in about section', () => {
-      const roadmap = wrapper.find(`a[href="${ROADMAP_HOME}"]`)
-      expect(roadmap.exists()).toBe(true)
-      expect(roadmap.text()).toBe('See the roadmap')
+  describe('Fleet', () => {
+    it('links website docs, MCP docs, roadmap, and community token', () => {
+      expect(wrapper.find(`a[href="${WEBSITE_DOCS_HOME}"]`).exists()).toBe(true)
+      expect(wrapper.find(`a[href="${MCP_DOCS_HOME}"]`).exists()).toBe(true)
+      expect(wrapper.find(`a[href="${ROADMAP_HOME}"]`).exists()).toBe(true)
+      expect(wrapper.find(`a[href="${COMMUNITY_TOKEN_HOME}"]`).exists()).toBe(true)
     })
   })
 
@@ -104,40 +145,7 @@ describe('HomeView', () => {
     })
   })
 
-  describe('Featured explorations', () => {
-    const featured = ['eip-7928', 'eip-8024', 'eip-7883', 'eip-7594', 'eip-7951']
-    const latest = featured.slice(0, 2)
-
-    it('shows "Latest" label', () => {
-      expect(wrapper.text()).toContain('Latest')
-    })
-
-    it('renders featured exploration cards', () => {
-      expect(wrapper.findAll('.exploration-c')).toHaveLength(latest.length)
-    })
-
-    it('cards display exploration titles', () => {
-      const titles = wrapper.findAll('.exploration-c').map((c) => c.find('h3').text())
-      for (const id of latest) {
-        expect(titles).toContainEqual(EXPLORATIONS[id].title)
-      }
-    })
-
-    it('cards link to correct exploration paths', () => {
-      const links = wrapper.findAllComponents(RouterLinkStub)
-      for (const id of latest) {
-        expect(links.some((l) => l.props('to') === EXPLORATIONS[id].path)).toBe(true)
-      }
-    })
-
-    it('external info link on latest cards points to EIP spec, not detail route', () => {
-      for (const id of latest) {
-        const link = wrapper.find(
-          `#${id}-c a.visit-exploration-button[href="${EXPLORATIONS[id].infoURL}"]`,
-        )
-        expect(link.exists()).toBe(true)
-        expect(link.attributes('target')).toBe('_blank')
-      }
-    })
+  it('keeps featured order in sync with homeCatalog', () => {
+    expect(FEATURED_EXPLORATION_IDS[0]).toBe('eip-7708')
   })
 })

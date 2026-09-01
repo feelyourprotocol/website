@@ -23,6 +23,7 @@ export enum Tag {
   BAL = 'BAL',
   EVM = 'EVM',
   GasCosts = 'Gas Costs',
+  Logs = 'Logs',
   PeerDAS = 'PeerDAS',
   Precompiles = 'Precompiles',
   Signatures = 'Signatures',

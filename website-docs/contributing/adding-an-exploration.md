@@ -63,6 +63,8 @@ export const INFO: Exploration = {
   topic: CANONICAL.taxonomy.topic,
   timeline: CANONICAL.taxonomy.timeline,
   tags: CANONICAL.taxonomy.tags,
+  coreQuestion: CANONICAL.question.coreQuestion,
+  mcpDocsStatus: CANONICAL.mcp.docsStatus,
   introText: `<b>${CANONICAL.question.coreQuestion}</b> …`,
   usageText: 'How to use the widget below.',
   poweredBy: [{ name: 'EthereumJS', href: 'https://github.com/ethereumjs/ethereumjs-monorepo' }],
@@ -101,7 +103,7 @@ Agent adds `tests.spec.ts` (logic **and** UI mounts) — metadata, examples, exe
 ## Cover, Latest, and link previews
 
 - **Cover art (required):** [Images](/contributing/images) + [cover-image skill](https://github.com/feelyourprotocol/website/blob/main/.cursor/skills/cover-image/SKILL.md). Round-trip uses Template B from the signed-off core question unless you named a subject at GO.
-- **Home Latest:** agent prepends the new id to `featured` in `HomeView.vue` (the previous second Latest leaves that pair).
+- **Home Latest:** agent prepends the new id to `FEATURED_EXPLORATION_IDS` in `src/views/homeCatalog.ts` (the previous third Latest moves to the Catalog row). Home cards use `ExplorationPreviewC` (cover + core question), not the full widget chrome. Preview pills are links: topic → topic hub, timeline → `/all?timeline=…`, MCP → `mcp-docs/use/eips/eip-NNNN.html` when `mcpDocsStatus` is runnable or planned-module (label is always **MCP**, not Runnable/Planned).
 - **OG card:** `npm run generate:og:exploration -- <id>` after cover and metadata
 
 ## Human review
@@ -119,7 +121,7 @@ Tests green ≠ ready. Before OG/PR, review:
 
 - [ ] Round-trip briefing (or standalone brief) + human GO on core question **and** taxonomy
 - [ ] Folder + `canonical.ts` + `REGISTRY.ts` entry (nav)
-- [ ] Home Latest (`featured` prepend in `HomeView.vue`)
+- [ ] Home Latest (`FEATURED_EXPLORATION_IDS` prepend in `homeCatalog.ts`)
 - [ ] Cover art (`image.webp`)
 - [ ] `mcp-docs/use/eips/eip-NNNN.md` for every live exploration
 - [ ] Human review of copy, examples, UX, form factors

@@ -44,7 +44,11 @@ const showUsage = computed(
       </component>
       <div class="flex shrink-0 items-center gap-1">
         <a v-if="shareURL" href="#" class="share-url-button" @click.stop.prevent="shareURL">
-          <ButtonUIC :icon="ShareIcon" tooltip="Open Shareable URL" />
+          <ButtonUIC
+            :icon="ShareIcon"
+            tooltip="Open Shareable URL"
+            aria-label="Open shareable URL"
+          />
         </a>
         <a
           :href="exploration.infoURL"
@@ -56,6 +60,7 @@ const showUsage = computed(
           <ButtonUIC
             :icon="ArrowTopRightOnSquareIcon"
             tooltip="External Link with more information"
+            aria-label="Open external EIP information"
           />
         </a>
       </div>

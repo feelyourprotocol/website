@@ -16,6 +16,8 @@ export const INFO: Exploration = {
   tags: CANONICAL.taxonomy.tags,
   image,
   imageSmall,
+  coreQuestion: CANONICAL.question.coreQuestion,
+  mcpDocsStatus: CANONICAL.mcp.docsStatus,
   introText:
     `<b>${CANONICAL.question.coreQuestion}</b> ` +
     'EIP-7883 replaces the ModExp precompile gas formula with one that better reflects real ' +

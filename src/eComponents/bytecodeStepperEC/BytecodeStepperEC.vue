@@ -219,18 +219,21 @@ function formatStackWord(word: bigint): string {
             <ActionButtonUIC
               test-id="bytecode-run"
               text="Run"
+              hint-tier="decorative"
               tooltip="Execute bytecode to completion"
               :onClick="runAll"
             />
             <ActionButtonUIC
               test-id="bytecode-step"
               text="Step"
+              hint-tier="decorative"
               tooltip="Execute one opcode at a time"
               :onClick="stepOnce"
             />
             <ActionButtonUIC
               test-id="bytecode-reset"
               text="Reset"
+              hint-tier="decorative"
               tooltip="Clear execution state (keeps bytecode)"
               :onClick="onReset"
             />
