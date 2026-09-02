@@ -3,12 +3,13 @@ import { describe, expect, it } from 'vitest'
 import { isSocialCardId, SOCIAL_CARD_IDS, SOCIAL_CARDS } from '../cards.ts'
 
 describe('social card registry', () => {
-  it('defines hero, timeline, and board', () => {
-    expect(SOCIAL_CARD_IDS).toEqual(['hero', 'timeline', 'board'])
+  it('defines hero, launch, timeline, and board', () => {
+    expect(SOCIAL_CARD_IDS).toEqual(['hero', 'launch', 'timeline', 'board'])
   })
 
   it('isSocialCardId narrows known ids', () => {
     expect(isSocialCardId('timeline')).toBe(true)
+    expect(isSocialCardId('launch')).toBe(true)
     expect(isSocialCardId('unknown')).toBe(false)
   })
 
@@ -23,7 +24,7 @@ describe('social card registry', () => {
     }
   })
 
-  it('hero card mentions future Ethereum protocol', () => {
-    expect(SOCIAL_CARDS.hero.title).toMatch(/future Ethereum protocol/i)
+  it('launch card mentions October 2026', () => {
+    expect(SOCIAL_CARDS.launch.eyebrow).toMatch(/Oct 2026/i)
   })
 })

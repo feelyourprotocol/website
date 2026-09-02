@@ -5,7 +5,7 @@
 ## Fleet
 
 - [Website Docs](https://website-docs.feelyourprotocol.org/index.html) — **For contributors.** Ship the next exploration. E-Components, workflow, architecture. Cyan "Builder's Workshop". Live.
-- [MCP Server Docs](https://mcp-docs.feelyourprotocol.org/index.html) — **For agents & integrators.** Simulate tomorrow's chain today. Tool reference and setup as the server ships. Terminal-green "Machine Room". Docs live; server coming soon.
+- [MCP Server Docs](https://mcp-docs.feelyourprotocol.org/index.html) — **For agents & integrators.** Simulate tomorrow's chain today. Tool reference and setup. Launch week target: 5–9 Oct 2026.
 - [Roadmap & Vision](https://roadmap.feelyourprotocol.org/index.html) — **For strategists & the curious.** See where this is headed. Vision, tracks, Phase 3 thinking. Purple "Strategy HQ". Live.
 - [Community Token](https://community-token.feelyourprotocol.org/index.html) — **For holders & observers.** Radical transparency, plain language. Independently launched token on Base — not corporate-controlled. Amber community accent. Live.
 

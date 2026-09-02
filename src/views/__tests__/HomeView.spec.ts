@@ -7,7 +7,7 @@ import { Tag } from '@/explorations/TAGS'
 import { TOPICS } from '@/explorations/TOPICS'
 import { COMMUNITY_TOKEN_HOME } from '@/libs/communityToken'
 import { WEBSITE_DOCS_HOME } from '@/libs/docsUrls'
-import { MCP_DOCS_HOME, mcpDocsPage, ROADMAP_HOME } from '@/libs/roadmapUrls'
+import { MCP_DOCS_HOME, mcpDocsPage, ROADMAP_LAUNCH } from '@/libs/roadmapUrls'
 
 import {
   catalogExplorationIds,
@@ -119,11 +119,18 @@ describe('HomeView', () => {
   })
 
   describe('Fleet', () => {
-    it('links website docs, MCP docs, roadmap, and community token', () => {
+    it('links website docs, MCP docs, roadmap launch, and community token', () => {
       expect(wrapper.find(`a[href="${WEBSITE_DOCS_HOME}"]`).exists()).toBe(true)
       expect(wrapper.find(`a[href="${MCP_DOCS_HOME}"]`).exists()).toBe(true)
-      expect(wrapper.find(`a[href="${ROADMAP_HOME}"]`).exists()).toBe(true)
+      expect(wrapper.find(`a[href="${ROADMAP_LAUNCH}"]`).exists()).toBe(true)
       expect(wrapper.find(`a[href="${COMMUNITY_TOKEN_HOME}"]`).exists()).toBe(true)
+    })
+  })
+
+  describe('MCP launch section', () => {
+    it('renders launch week banner above latest', () => {
+      expect(wrapper.find('[data-mcp-launch-week]').exists()).toBe(true)
+      expect(wrapper.text()).toContain('5–9 October 2026')
     })
   })
 

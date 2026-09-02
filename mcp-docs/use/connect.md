@@ -1,6 +1,6 @@
 # Connect
 
-> **Status:** **Public MCP — not launched.** Planned URL: **`https://mcp.feelyourprotocol.org/mcp`**. Until then, explore EIPs in the browser — no MCP setup.
+> **Status:** **Public MCP — not launched.** **Launch week target: 5–9 October 2026.** Planned URL: **`https://mcp.feelyourprotocol.org/mcp`**. [Roadmap launch details](https://roadmap.feelyourprotocol.org/roadmap/launch.html).
 
 ::: tip Looking to explore EIPs in the browser?
 Go to **[feelyourprotocol.org](https://feelyourprotocol.org)** — no MCP setup required. Come back here when the hosted MCP endpoint ships.
@@ -14,7 +14,7 @@ Go to **[feelyourprotocol.org](https://feelyourprotocol.org)** — no MCP setup 
 | `https://mcp-docs.feelyourprotocol.org` | This documentation site | **Live** |
 | `https://mcp.feelyourprotocol.org/mcp` | Remote MCP over HTTP | **Not launched** |
 
-There is **no** public URL to connect an agent today. Community announcements about “MCP” refer to this **upcoming** hosted capability and to the catalogue on this site.
+There is **no** public URL to connect an agent today. **Launch week: 5–9 October 2026** — see the [roadmap launch page](https://roadmap.feelyourprotocol.org/roadmap/launch.html).
 
 This page documents the **hosted** product. It is not a self-host guide.
 
@@ -46,7 +46,7 @@ The agent should route these to `run_evm_bytecode` or `describe_capabilities`.
 <Changelog
   title="Connect Changelog"
   :entries="[
-    { version: 'v0.8', date: '2026-09-02', summary: 'Hosted product only — removed local stdio / self-host setup from user docs.' },
+    { version: 'v0.9', date: '2026-09-02', summary: 'Launch week countdown — 5–9 Oct 2026 target; link to roadmap launch page.' },
     { version: 'v0.7', date: '2026-08-31', summary: 'Not publicly launched — reframe page as developer early access; point most users to website explorations.' },
     { version: 'v0.6', date: '2026-08-27', summary: 'Two live tools — compare_evm_variants removed.' },
     { version: 'v0.5', date: '2026-08-27', summary: 'Third live tool: compare_evm_variants; catalog is EIP-8024 only.' },

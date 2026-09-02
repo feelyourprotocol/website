@@ -69,6 +69,7 @@ export default defineConfig({
     siteTitle:
       '<span class="fyp-nav-title"><span class="fyp-nav-title-main">Feel Your Protocol</span><span class="fyp-nav-title-sub">Roadmap</span></span>',
     nav: [
+      { text: 'Launch', link: '/roadmap/launch' },
       { text: 'Vision', link: '/vision/problem-vision' },
       { text: 'Roadmap', link: '/roadmap/roadmap' },
       { text: 'Concepts', link: '/concepts/api-mcp' },
@@ -93,6 +94,7 @@ export default defineConfig({
       {
         text: 'Roadmap',
         items: [
+          { text: 'Launch week', link: '/roadmap/launch' },
           { text: 'Roadmap & Tracks', link: '/roadmap/roadmap' },
           { text: 'Timeline', link: '/roadmap/timeline' },
         ],

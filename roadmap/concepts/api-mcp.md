@@ -1,75 +1,79 @@
 # Agent API & MCP Server (Concept)
 
-> **Concept in progress — MCP docs site live; server not shipped yet.** There is no live MCP endpoint today. **Concrete documentation** (as capabilities ship) lives at **[mcp-docs.feelyourprotocol.org](https://mcp-docs.feelyourprotocol.org)**. This roadmap page keeps the strategic sketch and open questions.
+> **Strategic sketch — operational docs on [mcp-docs.feelyourprotocol.org](https://mcp-docs.feelyourprotocol.org).** The execution engine and gateway tools exist; the **public hosted endpoint** is not launched yet. See [Launch week](/roadmap/launch).
 
-## What we're aiming for
+## What we're building
 
-The working name is **Feel Your Protocol API / MCP server**: a headless service that would wrap the EthereumJS stack so an AI agent can run **exact, deterministic simulations of the future Ethereum protocol** — upcoming forks, EIPs, and research — and get back not just a result, but a step-by-step trace it can reason over.
+**Feel Your Protocol MCP server**: a headless service wrapping the EthereumJS stack so an AI agent can run **exact, deterministic simulations of the future Ethereum protocol** — upcoming forks, EIPs, and research — and get back not just a result, but a step-by-step trace it can reason over.
 
-**Current lean:** deliver primarily as an **MCP server** rather than a bare REST API. [MCP](https://modelcontextprotocol.io) (Model Context Protocol) is the emerging standard for agent↔tool communication: it lets an agent discover which tools exist, what arguments they take, and how to format calls — without custom prompt engineering. The same core could also be exposed over plain HTTP for non-agent callers. We haven't finalized tool names, schemas, or the HTTP/MCP split yet.
+**Delivery shape:** primarily an **MCP server** over HTTP at `mcp.feelyourprotocol.org` — not a bare REST API, not a self-host tutorial. [MCP](https://modelcontextprotocol.io) is the agent↔tool standard: discover tools, read schemas, call without custom prompt engineering.
 
-## Design principles _(draft)_
+## Live tool surface _(v0.1 — generic verbs)_
 
-Directional constraints we're using while designing — open to revision:
+We deliberately ship **intent-driven tools**, not per-EIP endpoints:
 
-- **Stateless / bring-your-own-state (BYOS).** The caller supplies the bytecode and any state overrides; we run it in an isolated context and throw the state away after. No archive node, no mainnet sync.
-- **Raw bytecode, base-layer only.** The API speaks EVM bytecode. Compiling Solidity is the caller's job; ERC application-layer concerns are out of scope.
-- **Observability first.** Rich JSON traces (stack, memory, gas, opcodes) would be a primary deliverable — something EthereumJS's TypeScript core makes easy.
-- **Guardrails for agents.** Tool schemas, hard ceilings, and gas-based pricing would protect the service from accidental or malicious heavy queries (see [Pricing & Cost Model](/monetization/pricing)).
+| MCP tool | Shape | Purpose |
+| --- | --- | --- |
+| `describe_capabilities` | probe | Registry: forks, runnable EIP modules, opcodes, encoding |
+| `run_evm_bytecode` | run | Run caller-supplied bytecode under a fork config; optional trace |
+
+EIP coverage is advertised through the probe response and human catalogue pages under `mcp-docs/use/eips/` — not separate tools like `simulate_eip8024_stack`. Compare baseline vs preview by calling **run** twice (e.g. `osaka` then `amsterdam`).
+
+Full schemas and limits: [mcp-docs/use/tools/](https://mcp-docs.feelyourprotocol.org/use/tools/describe-capabilities.html).
+
+## Design principles _(still hold)_
+
+- **Stateless / bring-your-own-state (BYOS).** The caller supplies bytecode and any state overrides; we run in an isolated context and discard state after.
+- **Raw bytecode, base-layer only.** No Solidity compilation in the service. ERC application-layer concerns are out of scope.
+- **Observability first.** Rich JSON traces (stack, memory, gas, opcodes) are a primary deliverable.
+- **Guardrails for agents.** Tool schemas, hard ceilings, and gas-based pricing protect the service (see [Pricing](/monetization/pricing)).
 
 ## Use-case scopes _(candidates)_
 
-Three scopes we're mapping onto existing libraries — immediate → advanced. Which become v1 tools is still TBD:
+Three scopes mapped onto the stack — v1 focuses on **run** under upcoming fork rules:
 
-1. **Future-fork gas & access-list simulator** — simulate a payload under current vs. upcoming fork rules; generate Block-level Access Lists (EIP-7928). _Audience:_ DeFi engineers, MEV searchers, auditors.
-2. **Deep-state security tracer** — return the exact stack/memory at every `DELEGATECALL`/`SSTORE` to verify an auditor agent's assumptions step-by-step.
-3. **Hegotá-era execution sandbox** — simulate EL rule changes still scoping under [EIP-8081](https://eips.ethereum.org/EIPS/eip-8081) / [Forkcast](https://forkcast.org/upgrade/hegota/) (e.g. state tiering by write age, `SELFDESTRUCT` deactivation, call/return opcodes); expose Noble crypto primitives where relevant. _Audience:_ infra researchers, protocol engineers.
+1. **Future-fork gas & opcode simulator** — run bytecode under Osaka vs Amsterdam; compare gas, logs, stack. _Audience:_ DeFi engineers, MEV searchers, auditors. _(8024, 7708, 7883, 7951 in catalogue today.)_
+2. **Deep-state security tracer** — return exact stack/memory at sensitive opcodes via optional trace. _Audience:_ security auditors._
+3. **Block-level access lists (EIP-7928)** — **generate** shape planned; website exploration is the textbook twin today.
 
-## Likely first users _(hypothesis)_
+## Likely first users _(hypothesis — to validate at launch)_
 
-If we build this, the earliest adopters would probably be programmatic actors with an urgent incentive to understand upcoming forks **before** mainnet: **MEV searchers**, **DeFi/security auditors**, and **L2 / infra teams** running automated integration tests. Still a hypothesis — to be validated once a PoC exists.
+Programmatic actors with urgent incentive to understand upcoming forks **before** mainnet: **MEV searchers**, **DeFi/security auditors**, and **L2 / infra teams** running automated integration tests. The website builds trust; the hosted MCP is what they allowlist.
 
-## Illustrative snippet _(sketch, not spec)_
+## Illustrative handler _(early sketch — superseded by generic tools)_
 
-A rough sense of the shape we're exploring — an MCP tool wrapping an EthereumJS EVM run (e.g. for the Glamsterdam stack opcodes in EIP-8024). **Not a committed interface**; names, args, and return shape will change as we prototype.
+An early design explored per-EIP tool names. We rejected that in favour of generic verbs + a live catalogue. The handler shape is still instructive:
 
 ```typescript
-// MCP tool definition the agent would read (schema = the agent's instructions)
-server.tool(
-  'simulate_eip8024_stack',
-  'Executes EVM bytecode to test EIP-8024 stack ops (SWAPN, DUPN, EXCHANGE). ' +
-    'Returns deterministic final stack state and gas used.',
-  { bytecode: z.string(), gasLimit: z.number().optional() },
-  async ({ bytecode, gasLimit }) => runEip8024(bytecode, gasLimit),
-)
-
-// Handler: isolated, stateless EthereumJS run, configured for the target fork
-const common = new Common({ chain: 'mainnet', hardfork: 'glamsterdam', eips: [8024] })
-const vm = await VM.create({ common })
-const result = await vm.evm.runCode({ code, gasLimit: BigInt(gasLimit) })
-// → serialize gasUsed + final stack + trace back to the agent as JSON
+// Today: one run tool, fork config selects Amsterdam + bundled EIPs
+const common = new Common({ chain: 'mainnet', hardfork: 'amsterdam' })
+const result = await simulateBytecode({ bytecode, fork: { baseHardfork: 'amsterdam' } })
+// → gasUsed, stack, logs, provenance JSON back to the agent
 ```
 
 ## Tech readiness & boundaries
 
-- **TypeScript is fine for this.** The workload is latency-bound, isolated single simulations — and the LLM round-trip dominates timing anyway. Modularity and observability matter more than raw speed here.
-- **Concurrency via worker pool.** CPU-bound sims would run in Node `worker_threads` (a fixed pool, e.g. Piscina) so they never block the network layer. No need to make the libraries multi-threaded. See [AWS & Hosting](/infrastructure/aws).
-- **The hard wall to avoid:** sequential multi-block **historical** backtesting (stateful chain synchronization). That is archive-node / Rust (`revm`) territory and would wreck both performance and margins. We would restrict or heavily price-gate it.
+- **TypeScript is fine for this.** Isolated single simulations; the LLM round-trip dominates timing. Modularity and observability matter more than raw speed.
+- **Concurrency via worker pool.** CPU-bound sims in Node `worker_threads` so the network layer stays responsive. See [AWS & Hosting](/infrastructure/aws).
+- **The hard wall to avoid:** sequential multi-block **historical** backtesting. Archive-node / `revm` territory — outside scope and margins.
 
 ## Open questions
 
-- Exact MCP tool surface for v1 — which of the three scopes above ship first?
-- REST vs MCP-only vs both — and how x402 gates each path.
-- Where conceptual docs live vs future API docs — likely split once the PoC stabilizes.
+- **EIP-7928 generate** — when it ships relative to launch week.
+- **x402 integration** — facilitator, proxy, token discount check (build-in-public on the personal dev channel).
+- **Registry listings** — metadata and discovery after the hosted endpoint is live.
+
+Resolved: MCP-first delivery (not REST-primary); docs split (roadmap = strategy, mcp-docs = operational).
 
 ## Changelog
 
 <Changelog
   title="Agent API Concept Changelog"
   :entries="[
-    { version: 'v0.3', date: '2026-07-15', summary: 'MCP docs site live at mcp-docs.feelyourprotocol.org — this page remains the strategic sketch; concrete docs move there as capabilities ship.' },
-    { version: 'v0.2', date: '2026-06-30', summary: 'Reframed as in-progress concept — no shipped API; removed references to separate API docs as existing destination.' },
-    { version: 'v0.1', date: '2026-06-30', summary: 'Initial outline — MCP-first delivery, stateless/BYOS design, three use-case scopes, TypeScript + worker-pool boundaries.' },
+    { version: 'v0.4', date: '2026-09-02', summary: 'Generic MCP tools shipped (describe_capabilities, run_evm_bytecode); per-EIP tool sketch retired; public launch pending.' },
+    { version: 'v0.3', date: '2026-07-15', summary: 'MCP docs site live at mcp-docs.feelyourprotocol.org — this page remains the strategic sketch.' },
+    { version: 'v0.2', date: '2026-06-30', summary: 'Reframed as in-progress concept — no shipped API.' },
+    { version: 'v0.1', date: '2026-06-30', summary: 'Initial outline — MCP-first delivery, stateless/BYOS design, three use-case scopes.' },
   ]"
 />
 

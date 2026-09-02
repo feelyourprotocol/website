@@ -19,4 +19,5 @@ These pages document how we built and operate specific actions. Add a new page u
 
 | Action | Status | Doc |
 | ------ | ------ | --- |
+| MCP launch week | Active (home section above Latest) | [Launch week on roadmap](https://roadmap.feelyourprotocol.org/roadmap/launch.html) |
 | Ice Cream Week | Archived (home removed July 2026; contract + metadata live) | [Ice Cream Week](./ice-cream-week) |

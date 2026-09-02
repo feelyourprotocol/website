@@ -10,6 +10,7 @@ no manual Figma work.
 | Id | Content | Data source |
 |----|---------|-------------|
 | `hero` | Phase 3 headline + one-liner | `src/cards.ts` (edit copy there) |
+| `launch` | Public MCP launch week | `src/cards.ts` + `LaunchSocialCard.vue` |
 | `timeline` | Three-phase timeline | `roadmap/data/timeline.ts` |
 | `board` | Track × horizon grid | `roadmap/data/roadmap.ts` |
 

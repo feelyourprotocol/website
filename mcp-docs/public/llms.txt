@@ -1,6 +1,6 @@
 # Feel Your Protocol — MCP Server Docs
 
-> **Public MCP endpoint: not launched yet.** Interactive explorations live at [feelyourprotocol.org](https://feelyourprotocol.org). This site documents the upcoming hosted agent server.
+> **Public MCP endpoint: not launched yet.** **Launch week target: 5–9 October 2026.** Interactive explorations live at [feelyourprotocol.org](https://feelyourprotocol.org). Launch details: [roadmap](https://roadmap.feelyourprotocol.org/roadmap/launch.html).
 
 ## MCP tools (at public launch)
 

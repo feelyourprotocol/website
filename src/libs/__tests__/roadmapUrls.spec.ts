@@ -9,6 +9,7 @@ import {
   mcpDocsEipPage,
   mcpDocsPage,
   ROADMAP_HOME,
+  ROADMAP_LAUNCH,
   ROADMAP_ORIGIN,
   roadmapPage,
 } from '@/libs/roadmapUrls'
@@ -22,6 +23,16 @@ describe('roadmapUrls', () => {
     expect(roadmapPage('monetization/token')).toBe(
       'https://roadmap.feelyourprotocol.org/monetization/token.html',
     )
+  })
+
+  it('roadmapPage builds launch path', () => {
+    expect(roadmapPage('roadmap/launch')).toBe(
+      'https://roadmap.feelyourprotocol.org/roadmap/launch.html',
+    )
+  })
+
+  it('ROADMAP_LAUNCH points at launch week page', () => {
+    expect(ROADMAP_LAUNCH).toBe('https://roadmap.feelyourprotocol.org/roadmap/launch.html')
   })
 
   it('roadmapPage supports hash fragments', () => {

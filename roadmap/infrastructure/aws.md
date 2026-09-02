@@ -1,34 +1,46 @@
 # AWS & Hosting
 
-A high-level outline of **where the two legs would run** once the API exists. The headline: **keep the website cheap; put the paid, latency-sensitive API on dedicated compute.** Nothing has moved off Strato for the API yet.
+Where the two legs run — and where they're heading for [launch week](/roadmap/launch). The headline: **keep the website cheap; put the paid, latency-sensitive MCP on dedicated compute.**
 
 ## Current state
 
-Everything that exists today (the [website](https://feelyourprotocol.org), docs, community-token, this roadmap site) runs behind nginx on a single **Strato V-Server**. That's perfectly fine for static sites and a low-traffic MVP.
+Everything public today (the [website](https://feelyourprotocol.org), docs, community-token, roadmap, mcp-docs) runs behind nginx on a single **Strato V-Server**. That's fine for static sites and the explorations frontend.
 
-## Why the API would need to move
+The MCP **engine and gateway** are developed and tested locally and on AWS EC2 in preparation for the public HTTP endpoint — see `server-config/aws/mcp/` for the bootstrap walkthrough. **Public HTTP at `mcp.feelyourprotocol.org` is not launched yet.**
 
-A V-Server uses shared (KVM) virtualization — fine for bursty web traffic, but a problem for **sustained, CPU-bound EVM simulations**. A "noisy neighbor" can spike CPU steal time, and an agent paying for a 100ms simulation will time out (and may blacklist the tool) if it randomly takes seconds. Paid agent traffic would need **deterministic latency** — which is why we're planning a separate compute tier.
+## Why the MCP needs dedicated compute
 
-## Target architecture _(not built yet)_
+A V-Server uses shared (KVM) virtualization — fine for bursty web traffic, but a problem for **sustained, CPU-bound EVM simulations**. A "noisy neighbor" can spike CPU steal time, and an agent paying for a 100ms simulation will time out (and may blacklist the tool) if it randomly takes seconds. Paid agent traffic needs **deterministic latency** — which is why we're on a separate compute tier.
 
-- **Compute-optimized EC2, ARM/Graviton (`c7g`).** Node.js + EthereumJS run very well on ARM; Graviton gives the best price/performance for heavy CPU work.
+## Target architecture _(in progress for launch)_
+
+- **Compute-optimized EC2, ARM/Graviton (`c7g`).** Node.js + EthereumJS run very well on ARM; Graviton gives strong price/performance for heavy CPU work.
 - **Dedicated vCores mapped to the worker pool.** Pin the Node `worker_threads` pool size to the instance's vCores so each isolated simulation gets predictable compute (see [the API concept page](/concepts/api-mcp#tech-readiness-boundaries)).
-- **Main thread = traffic controller.** It would handle I/O, x402 verification, and MCP routing; confirmed work is handed to an idle worker that instantiates the VM, runs the bytecode, and returns the trace.
+- **Main thread = traffic controller.** Handles I/O, x402 verification, and MCP routing; confirmed work goes to a worker that runs the bytecode and returns the trace.
 
-## The hybrid setup _(target)_
+## The hybrid setup
 
 ```
 feelyourprotocol.org (website, docs, …)  →  Strato V-Server (nginx, low cost)
-Agent API + MCP server (future protocol)       →  AWS EC2 c7g (dedicated compute)  [planned]
+mcp.feelyourprotocol.org (hosted MCP)    →  AWS EC2 c7g (dedicated compute)  [launch week target]
 ```
 
-This would put enterprise-grade reliability exactly where agents are paying for it, without over-engineering the educational pages. Migration should be straightforward — the stack is modular and built to be portable, and the EC2 experience is already there — but we haven't cut over yet.
+Enterprise-grade reliability where agents pay for it, without over-engineering the educational pages.
 
 ## Scaling boundaries
 
-Scale **horizontally** for more concurrent isolated simulations (more workers / instances). What we explicitly do **not** plan to scale into is stateful, sequential multi-block historical processing — that's archive-node territory and outside our scope (see [boundaries](/concepts/api-mcp#tech-readiness-boundaries)). Cost drivers feed directly into the [cost model](/monetization/pricing#cost-model).
+Scale **horizontally** for more concurrent isolated simulations (more workers / instances). What we explicitly do **not** plan to scale into is stateful, sequential multi-block historical processing — archive-node territory and outside our scope (see [boundaries](/concepts/api-mcp#tech-readiness-boundaries)). Cost drivers feed directly into the [cost model](/monetization/pricing#cost-model).
 
 ## Open questions _(later)_
 
-_Region, managed vs. self-hosted services, IaC tooling, autoscaling policy — to be decided when the API moves off the MVP._
+_Region finalization, autoscaling policy, observability stack — to be decided after launch week stabilizes._
+
+## Changelog
+
+<Changelog
+  title="AWS Changelog"
+  :entries="[
+    { version: 'v0.2', date: '2026-09-02', summary: 'EC2 bootstrap in progress — not nothing has moved; public HTTP still pending launch week.' },
+    { version: 'v0.1', date: '2026-06-30', summary: 'Initial hybrid Strato/AWS outline.' },
+  ]"
+/>

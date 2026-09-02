@@ -1,7 +1,7 @@
 # Feel Your Protocol MCP Server — Use Layer (full text)
 # Source: mcp-docs/use/ — end-user documentation for humans and AI agents
 # https://mcp-docs.feelyourprotocol.org/llms-full.txt
-# Updated: 2026-09-02 — PUBLIC MCP NOT LAUNCHED; hosted product only (no self-host path in user docs)
+# Updated: 2026-09-02 — PUBLIC MCP NOT LAUNCHED; launch week 5–9 Oct 2026 target
 
 ================================================================================
 READ FIRST — LAUNCH STATUS
@@ -12,6 +12,7 @@ There is no hosted mcp.feelyourprotocol.org endpoint to connect today.
 
 For interactive protocol exploration NOW: https://feelyourprotocol.org (live).
 
+Launch week target: 5–9 October 2026 (https://roadmap.feelyourprotocol.org/roadmap/launch.html).
 This documentation describes upcoming hosted agent capabilities.
 It is not a self-host or local stdio setup guide.
 
