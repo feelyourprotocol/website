@@ -46,7 +46,7 @@ const bullets = [
     <footer class="fyp-social-card__footer">
       <span class="fyp-social-card__brand">Feel Your Protocol</span>
       <span>
-        roadmap.feelyourprotocol.org/roadmap/launch
+        roadmap.feelyourprotocol.org/roadmap/launch.html
         <template v-if="meta.footerHint"> · {{ meta.footerHint }}</template>
       </span>
     </footer>
