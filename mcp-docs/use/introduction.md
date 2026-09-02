@@ -1,6 +1,6 @@
 # Introduction
 
-> **Status:** **MCP server — not publicly launched.** This docs site is live; **`mcp.feelyourprotocol.org` is planned (Step 5).** Local stdio v0.1 exists for developers who self-host.
+> **Status:** **MCP server — not publicly launched.** This docs site is live; **`mcp.feelyourprotocol.org` is planned.** Until then, use the [website explorations](https://feelyourprotocol.org).
 
 ## For most visitors
 
@@ -13,16 +13,15 @@ This MCP docs site describes the **lab equipment** we are building: a headless s
 | What | Status | Who it is for |
 | --- | --- | --- |
 | [Website explorations](https://feelyourprotocol.org) | **Live** | Everyone — curiosity, learning, feeling the protocol |
-| **Public MCP endpoint** (`mcp.feelyourprotocol.org`) | **Not launched** | Future — agents and integrators without local setup |
-| **Local stdio gateway** (v0.1) | Early access | Developers / power users who build from source — see [Connect](/use/connect) |
+| **Public MCP endpoint** (`mcp.feelyourprotocol.org`) | **Not launched** | Agents and integrators — [Connect](/use/connect) when it ships |
 
 ## What the MCP server will do (when launched)
 
 Feel Your Protocol will provide a **headless MCP server** wrapping the EthereumJS stack so AI agents can run **exact, deterministic simulations** of the *future* Ethereum protocol — upcoming forks, EIPs, and research — and receive rich JSON traces they can reason over.
 
-**Today (local early access only):** two MCP tools via stdio — `describe_capabilities` and `run_evm_bytecode`. EIP catalogue pages describe how each exploration maps to agent prompts once you can connect.
+At launch the hosted server will expose two MCP tools — `describe_capabilities` and `run_evm_bytecode`. EIP catalogue pages describe how each exploration maps to agent prompts once you can connect.
 
-Payments, remote HTTP, and additional tools (BAL generate) come in later steps.
+Payments (x402) and additional tools (BAL generate) come with or shortly after the public endpoint.
 
 ## Mental model
 
@@ -35,6 +34,7 @@ For architecture, repositories, and build procedures, see [Internals](/internals
 <Changelog
   title="Introduction Changelog"
   :entries="[
+    { version: 'v0.10', date: '2026-09-02', summary: 'User docs describe the hosted product only — no local stdio / self-host early access.' },
     { version: 'v0.9', date: '2026-08-31', summary: 'Lead with not publicly launched — website explorations for most visitors; local stdio as early access only.' },
     { version: 'v0.8', date: '2026-08-27', summary: 'Osaka mainnet baseline fork for run-twice comparisons against Amsterdam preview.' },
     { version: 'v0.7', date: '2026-08-27', summary: 'Two live MCP tools — compare removed; use simulate twice.' },

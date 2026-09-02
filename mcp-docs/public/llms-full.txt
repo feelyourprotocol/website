@@ -1,7 +1,7 @@
 # Feel Your Protocol MCP Server — Use Layer (full text)
 # Source: mcp-docs/use/ — end-user documentation for humans and AI agents
 # https://mcp-docs.feelyourprotocol.org/llms-full.txt
-# Updated: 2026-08-31 — PUBLIC MCP NOT LAUNCHED; local stdio is developer early access only
+# Updated: 2026-09-02 — PUBLIC MCP NOT LAUNCHED; hosted product only (no self-host path in user docs)
 
 ================================================================================
 READ FIRST — LAUNCH STATUS
@@ -12,11 +12,11 @@ There is no hosted mcp.feelyourprotocol.org endpoint to connect today.
 
 For interactive protocol exploration NOW: https://feelyourprotocol.org (live).
 
-Local stdio gateway v0.1 exists for developers who clone and build mcp-gateway.
-This documentation describes upcoming agent capabilities and the early-access local path.
+This documentation describes upcoming hosted agent capabilities.
+It is not a self-host or local stdio setup guide.
 
 ================================================================================
-LIVE MCP TOOLS (stdio v0.1, SELF-HOSTED ONLY) — READ SECOND
+MCP TOOLS (AT PUBLIC LAUNCH) — READ SECOND
 ================================================================================
 
 When the feel-your-protocol MCP server is connected, use these tools directly.
@@ -29,8 +29,8 @@ Tools:
 
 Compare gas or outcomes optionally by calling run twice (e.g. osaka then amsterdam).
 
-Server: FeelYourProtocol v0.1.0
-Setup: see CONNECT section below
+Server: FeelYourProtocol (hosted at launch)
+Setup: see CONNECT section below — public HTTP only
 
 JSON schemas:
 - /schemas/describe_capabilities.input.json
@@ -41,7 +41,7 @@ INTRODUCTION
 ================================================================================
 
 Status: PUBLIC MCP NOT LAUNCHED. Website explorations LIVE at feelyourprotocol.org.
-Local stdio v0.1 = developer early access only. Remote HTTP Step 5.
+Remote HTTP at mcp.feelyourprotocol.org is the product path.
 
 Headless MCP server wrapping EthereumJS for exact, deterministic simulations of
 the future Ethereum protocol. Rich JSON traces for agent reasoning.
@@ -55,8 +55,8 @@ CAPABILITIES
 
 Query shapes and MCP tools:
 
-- Probe → describe_capabilities — LIVE (stdio)
-- Run → run_evm_bytecode — LIVE (stdio)
+- Probe → describe_capabilities — implemented (public launch pending)
+- Run → run_evm_bytecode — implemented (public launch pending)
 - Generate (BAL) — planned Step 6
 
 Optional: compare baseline vs preview by calling run twice (osaka then amsterdam).
@@ -69,40 +69,21 @@ CONNECT
 ================================================================================
 
 Public MCP: NOT LAUNCHED (mcp.feelyourprotocol.org planned).
-Local stdio: developer early access only — build from source.
-Most users: feelyourprotocol.org explorations (no MCP setup).
-
-Build:
-  cd mcp-execution-engine && npm ci && npm run build
-  cd ../mcp-gateway && npm ci && npm run build
-
-Cursor mcp.json:
-{
-  "mcpServers": {
-    "feel-your-protocol": {
-      "command": "node",
-      "args": ["/absolute/path/to/mcp-gateway/dist/index.js"]
-    }
-  }
-}
-
-After gateway code changes: npm run build + restart MCP in Cursor (Settings → MCP).
-
-Startup stderr should show:
-  [fyp-mcp] FeelYourProtocol v0.1.0 ready — tools: describe_capabilities, run_evm_bytecode
+This site documents the hosted product only — not local stdio or self-host setup.
+Until launch: feelyourprotocol.org explorations (no MCP setup).
 
 ================================================================================
-TOOL: DESCRIBE_CAPABILITIES (LIVE)
+TOOL: DESCRIBE_CAPABILITIES (IMPLEMENTED — PUBLIC LAUNCH PENDING)
 ================================================================================
 
 MCP tool name: describe_capabilities
 Input: {} (no required fields)
 Output: engineVersion, ceilings, baselineForkId, namedForks, eips (runnable modules with opcodes + encoding + comparison; no demo programs), allowedBaseHardforks
 
-Use first to learn baselineForkId (osaka — current mainnet EL), prague (pre-Fusaka ModExp compare), preview fork amsterdam (alias glamsterdam), and runnable EIPs (8024, 7883 ModExp, 7951 secp256r1). Unimplemented EIPs are omitted.
+Use first to learn baselineForkId (osaka — current mainnet EL), prague (pre-Fusaka ModExp compare), preview fork amsterdam (alias glamsterdam), and runnable EIPs (8024, 7708, 7883 ModExp, 7951 secp256r1). Unimplemented EIPs are omitted.
 
 ================================================================================
-TOOL: RUN_EVM_BYTECODE (LIVE)
+TOOL: RUN_EVM_BYTECODE (IMPLEMENTED — PUBLIC LAUNCH PENDING)
 ================================================================================
 
 MCP tool name: run_evm_bytecode
@@ -131,8 +112,8 @@ COVERAGE
 ================================================================================
 
 Named forks: prague (ModExp compare), osaka (baseline, alias mainnet-el), amsterdam (preview, alias glamsterdam).
-baselineForkId: osaka. Live runnable EIP modules: 8024, 7883, 7951.
-Exploration twins (human catalogue): 8024, 7883, 7951 runnable; 7928 planned (generate). See use/eips/.
+baselineForkId: osaka. Runnable EIP modules at launch: 8024, 7708, 7883, 7951.
+Exploration twins (human catalogue): 8024, 7708, 7883, 7951 ready for public MCP; 7928 planned (generate). See use/eips/.
 
 ================================================================================
 GUARANTEES
@@ -157,7 +138,7 @@ FOR AI AGENTS
 
 1. If feel-your-protocol MCP connected → use describe_capabilities and
    run_evm_bytecode (once on amsterdam by default; optionally osaka for mainnet comparison).
-   Do not use local lab as substitute.
+   Do not use the execution-engine lab as a substitute.
 2. Cite provenance.engineVersion and provenance.forkConfig in answers.
 3. Index: /llms.txt. Schemas: /schemas/*.input.json
 

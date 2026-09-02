@@ -1,6 +1,6 @@
 # Describe Capabilities
 
-> **Status:** **Live** (gateway v0.1, stdio). MCP tool: `describe_capabilities`.
+> **Status:** Implemented — ships on the public MCP at launch. MCP tool: `describe_capabilities`. **Public endpoint not live.**
 
 ## Purpose
 
@@ -71,6 +71,7 @@ _Output (abbreviated):_
 <Changelog
   title="Describe Capabilities Changelog"
   :entries="[
+    { version: 'v0.8', date: '2026-09-02', summary: 'Implemented for public launch — not a local stdio product path.' },
     { version: 'v0.7', date: '2026-08-27', summary: 'baselineForkId (osaka) and fork role metadata for mainnet vs preview comparisons.' },
     { version: 'v0.6', date: '2026-08-27', summary: 'Modules describe opcodes and encoding; demo scenarios removed from the catalog.' },
     { version: 'v0.5', date: '2026-08-27', summary: 'Runnable EIP modules with questions and scenarios; stub EIPs and presets removed.' },

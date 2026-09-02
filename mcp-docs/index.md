@@ -36,5 +36,5 @@ features:
 
 **Live now:** [Interactive explorations](https://feelyourprotocol.org) on the main website — the textbook slice of each EIP.
 
-**Early access (developers only):** a **local stdio** build (`mcp-gateway` v0.1) you run yourself in Cursor or Claude Desktop. That path is documented under [Connect](/use/connect); most community users can skip it until **`mcp.feelyourprotocol.org`** ships (planned Step 5).
+**Coming:** **`mcp.feelyourprotocol.org`** — the hosted MCP for agents. See [Connect](/use/connect) for the public path (documented when it ships).
 :::

@@ -1,13 +1,13 @@
 # Architecture
 
-> **Status:** MCP docs site live. Execution engine v0.1. **Gateway stdio v0.1 live.** Remote HTTP — Step 5.
+> **Status:** MCP docs site live. Execution engine v0.1. **Public MCP not launched** (HTTP — Step 5). Gateway stdio exists as a development transport in the gateway repo — not a public product path.
 
 ## What we are building
 
 | Piece | Role |
 | --- | --- |
 | **`mcp-execution-engine`** | Pure TypeScript library — stateless EthereumJS simulations (bytecode, BALs, traces). No HTTP, no payments, no agent protocol. |
-| **`mcp-gateway`** | MCP transport + tool registry (+ later observability, x402). Depends one-way on the engine. **Stdio live**; AWS HTTP later. |
+| **`mcp-gateway`** | MCP transport + tool registry (+ later observability, x402). Depends one-way on the engine. **HTTP public path planned**; stdio is the current development transport. |
 | **`mcp-docs`** (this site) | Public documentation — [Use](/use/introduction) for end users, [Internals](/internals/architecture) for us and deep-divers. |
 | **`server-config`** (private) | Nginx blocks, deploy scripts, secrets — not in this public repo. |
 
@@ -27,7 +27,6 @@ The browser `eComponents` layer and the server execution engine are **separate c
 | URL / transport | Purpose | Status |
 | --- | --- | --- |
 | `https://mcp-docs.feelyourprotocol.org` | This documentation site | **Live** (static on Strato) |
-| stdio — `mcp-gateway` | Local MCP (Cursor, Claude Desktop) | **Live** (v0.1) |
 | `https://mcp.feelyourprotocol.org/mcp` | Remote MCP over HTTP | Planned (Step 5, AWS EC2) |
 
 ## Status {#status}
@@ -36,7 +35,7 @@ Build sequence (see [roadmap timeline](https://roadmap.feelyourprotocol.org/road
 
 1. ~~**MCP docs site**~~ — this site
 2. ~~**Execution engine**~~ — `simulateBytecode()` + capability registry ([reference](/internals/execution-engine))
-3. ~~**Gateway (stdio)**~~ — local agent PoC — **two tools live**
+3. ~~**Gateway (stdio)**~~ — development transport / PoC — **two tools implemented**
 4. **AWS bootstrap** — EC2, nginx, TLS, deploy pipeline
 5. **HTTP transport** — remote MCP endpoint
 6. **Further tools** — EIP-7928 BAL generate, observability, x402, …
@@ -46,6 +45,7 @@ Build sequence (see [roadmap timeline](https://roadmap.feelyourprotocol.org/road
 <Changelog
   title="Architecture Changelog"
   :entries="[
+    { version: 'v0.8', date: '2026-09-02', summary: 'Public endpoints table is hosted-only; stdio is development transport, not a user path.' },
     { version: 'v0.7', date: '2026-08-27', summary: 'compare_evm_variants removed — probe + simulate only.' },
     { version: 'v0.6', date: '2026-08-27', summary: 'EIP-8024 module is opcode/encoding support; callers supply bytecode.' },
     { version: 'v0.5', date: '2026-08-27', summary: 'compare_evm_variants live; EIP-8024 module catalog (runnable only).' },
