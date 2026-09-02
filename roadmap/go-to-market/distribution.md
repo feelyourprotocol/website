@@ -1,34 +1,61 @@
 # Distribution & DevRel
 
-> **Future GTM outline** — how we'd find the API's first users once it exists. "Build it and they will come" is a fallacy even in the agent economy. Nothing here is running yet; it's the plan we're shaping alongside the product concept.
+> **Active GTM for the launch chapter** — the DevRel engine (website) already runs; the countdown to [launch week](/roadmap/launch) is the current public narrative.
 
-## Will agents just find it via registries?
-
-Partly, we think. Agents would query [MCP registries](/concepts/x402#discovery-registries) directly, so good registry presence would matter — but registries enforce scopes and trust, humans allowlist tools for high-stakes tasks, and visibility tracks **documentation and metadata quality**. So the play would be: optimize the listings *and* market proactively — but only after there's a tool worth listing.
-
-## The DevRel engine _(already running)_
+## The DevRel engine _(running)_
 
 The biggest asset is trust, and the [website](/vision/two-legs) generates it today:
 
-- **Proof-of-work halo** — interactive fork breakdowns prove competence and should de-risk the API in a developer's eyes once it ships.
+- **Proof-of-work halo** — interactive fork breakdowns prove competence and de-risk the MCP for developers who will allowlist it.
 - **Founder brand** — an open-source, ex-core-dev track record converts skeptics far better than ad-style marketing.
-- **Education as top-of-funnel** — capture developers while they're learning a fork; the API would be the natural next step. _The website is the textbook; the API is the lab equipment._
+- **Education as top-of-funnel** — capture developers while they're learning a fork; the hosted MCP is the natural next step. _The website is the textbook; the MCP server is the lab equipment._
 
-## Channels _(planned)_
+## Launch countdown _(Sep – Oct 2026)_
+
+Until the public endpoint is live, the play is **substance, not hype**:
+
+| Rhythm | Channel | Content |
+| --- | --- | --- |
+| **~2× / week** | Twitter/X (official + personal dev account) | New Amsterdam explorations with video; link to website + MCP twin on mcp-docs |
+| **1× / week** | Personal dev account | x402 / payment integration build-in-public (technical, not token news) |
+| **As ready** | Website + mcp-docs | **Without MCP vs with MCP** proofs — same prompt, same model, checked outcomes |
+| **Pinned anchor** | Official account | [Launch week](/roadmap/launch) countdown — hosted MCP, not self-host |
+
+We do **not** promote local stdio or self-host setup in official docs or marketing. Open source stays open; the product is the hosted endpoint.
+
+Videos from the automation pipeline are **feed infographics** (uploaded directly to X), not YouTube-Shorts-as-growth-strategy.
+
+## Product hook vs payment hook
+
+Public copy leads with the **deterministic oracle** — exact simulation of upcoming fork rules — not "machines paying for Ethereum." [x402](/concepts/x402) is how agents access the service without API keys; it is not the reason the product exists.
+
+The community token appears as a **discount lane at launch**, not as headline news driven by market moves.
+
+## Channels _(after launch)_
 
 | Channel | Play |
 | --- | --- |
-| **Agentic proof-of-value outreach** | An agent monitors target teams' testnet deployments, simulates them under upcoming-fork rules, and sends a specific, useful result (not a generic pitch). |
-| **"Trojan-horse" GitHub** | Open issues / PRs on relevant repos containing real simulation data showing how an EIP affects their code — value first, footprint back to the API. |
-| **Visual Twitter/X funnel** | Teardowns of trending contracts/events simulated old-rules vs. new-fork; the visual hooks humans, the link plugs into their agents. |
-| **Registry SEO & metadata** | Meticulous MCP listings — exact EIP numbers, keywords ("MEV simulation"), thorough docs — so the right tool surfaces for the right task. |
+| **Registry SEO & metadata** | Meticulous MCP listings — exact EIP numbers, keywords ("MEV simulation"), thorough docs on [mcp-docs](https://mcp-docs.feelyourprotocol.org) |
+| **Visual Twitter/X funnel** | Teardowns simulating contracts under old vs new fork rules; without/with MCP comparisons |
+| **Agentic proof-of-value outreach** | Send specific, useful simulation results to teams working on upcoming forks (not generic pitches) |
+| **GitHub value-first** | Issues/PRs with real simulation data where relevant — footprint back to the hosted MCP |
 
 ## Likely first users _(hypothesis)_
 
-The earliest adopters would probably be programmatic and high-incentive: **MEV searchers**, **DeFi/security auditors**, and **L2 / infra teams** needing to understand upcoming forks before mainnet (see [target users](/concepts/api-mcp#likely-first-users-hypothesis)). To be validated with real outreach once a PoC exists.
+Programmatic actors with urgent incentive: **MEV searchers**, **DeFi/security auditors**, and **L2 / infra teams**. To be validated once the hosted endpoint is live and the first without/with MCP proofs are published.
 
 ## Cadence
 
-The roadmap and organization evolution are documented in the open, with a regular **Twitter/X** cadence — the same channel that carries the [founder-notes / principles](/vision/principles) material.
+The roadmap, timeline, and [launch week](/roadmap/launch) page are the canonical public schedule. Twitter/X carries the countdown; the personal dev account carries payment-rail transparency.
 
-_Channel priorities and an outreach plan to be refined once the Agent API concept stabilizes._
+## Changelog
+
+<Changelog
+  title="Distribution Changelog"
+  :entries="[
+    { version: 'v0.2', date: '2026-09-02', summary: 'Rewritten for launch countdown — DevRel running, hosted-only GTM, oracle-first hook, without/with MCP proofs.' },
+    { version: 'v0.1', date: '2026-06-30', summary: 'Initial future GTM outline — registries, outreach hypotheses.' },
+  ]"
+/>
+
+_Add a one-line entry here whenever distribution strategy changes._

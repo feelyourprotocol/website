@@ -1,23 +1,23 @@
 # Feel Your Protocol — MCP Server Docs
 
-> **Public MCP endpoint: not launched yet.** Interactive explorations live at [feelyourprotocol.org](https://feelyourprotocol.org). This site documents the upcoming agent server and early-access local setup.
+> **Public MCP endpoint: not launched yet.** **Launch week target: 5–9 October 2026.** Interactive explorations live at [feelyourprotocol.org](https://feelyourprotocol.org). Launch details: [roadmap](https://roadmap.feelyourprotocol.org/roadmap/launch.html).
 
-## Live MCP tools (stdio v0.1)
+## MCP tools (at public launch)
 
 When the feel-your-protocol MCP server is connected:
 
 - describe_capabilities — probe registry (forks, runnable EIP modules, opcodes, encoding)
 - run_evm_bytecode — run raw bytecode under a fork config
 
-Prefer these MCP tools over local engine/lab scripts. See Connect for setup.
+Prefer these MCP tools over engine/lab scripts. See Connect for the hosted endpoint (not launched).
 
 ## Use (end-user)
 
 - [Introduction](https://mcp-docs.feelyourprotocol.org/use/introduction.html): What the MCP server is
 - [Capabilities](https://mcp-docs.feelyourprotocol.org/use/capabilities.html): Run, generate, probe
-- [Connect](https://mcp-docs.feelyourprotocol.org/use/connect.html): Local stdio setup (live) + remote HTTP (planned)
-- [Describe Capabilities](https://mcp-docs.feelyourprotocol.org/use/tools/describe-capabilities.html): MCP tool reference (live)
-- [Run Bytecode](https://mcp-docs.feelyourprotocol.org/use/tools/run-bytecode.html): MCP tool reference (live)
+- [Connect](https://mcp-docs.feelyourprotocol.org/use/connect.html): Hosted MCP URL (not launched)
+- [Describe Capabilities](https://mcp-docs.feelyourprotocol.org/use/tools/describe-capabilities.html): MCP tool reference
+- [Run Bytecode](https://mcp-docs.feelyourprotocol.org/use/tools/run-bytecode.html): MCP tool reference
 - [Coverage](https://mcp-docs.feelyourprotocol.org/use/coverage.html): Supported forks and EIPs
 - [EIP-8024](https://mcp-docs.feelyourprotocol.org/use/eips/eip-8024.html): DUPN / SWAPN / EXCHANGE — Runnable
 - [EIP-7883](https://mcp-docs.feelyourprotocol.org/use/eips/eip-7883.html): ModExp gas — Runnable
@@ -35,7 +35,7 @@ Prefer these MCP tools over local engine/lab scripts. See Connect for setup.
 ## Internals
 
 - [Architecture](https://mcp-docs.feelyourprotocol.org/internals/architecture.html): Engine, gateway, docs, build status
-- [Gateway](https://mcp-docs.feelyourprotocol.org/internals/gateway.html): mcp-gateway repo (v0.1 stdio)
+- [Gateway](https://mcp-docs.feelyourprotocol.org/internals/gateway.html): mcp-gateway repo
 - [Execution Engine](https://mcp-docs.feelyourprotocol.org/internals/execution-engine.html): TypeScript API and registry
 - [Roadmap vs MCP Docs](https://mcp-docs.feelyourprotocol.org/internals/roadmap-relationship.html): Documentation split
 
@@ -53,14 +53,13 @@ Prefer these MCP tools over local engine/lab scripts. See Connect for setup.
 ## Endpoints
 
 - Documentation: https://mcp-docs.feelyourprotocol.org (live)
-- Local MCP: stdio via mcp-gateway — see Connect (live)
-- Remote MCP (HTTP): https://mcp.feelyourprotocol.org/mcp — planned Step 5
+- Remote MCP (HTTP): https://mcp.feelyourprotocol.org/mcp — not launched
 
 ## Source
 
 - [GitHub — website repo](https://github.com/feelyourprotocol/website): MCP docs content lives in the `mcp-docs/` folder
 - [mcp-execution-engine](https://github.com/feelyourprotocol/mcp-execution-engine): simulation core
-- [mcp-gateway](https://github.com/feelyourprotocol/mcp-gateway): MCP server (stdio v0.1)
+- [mcp-gateway](https://github.com/feelyourprotocol/mcp-gateway): MCP server (public HTTP not launched)
 
 ## Notes
 

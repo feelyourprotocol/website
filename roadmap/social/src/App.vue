@@ -4,6 +4,7 @@ import { computed } from 'vue'
 import { isSocialCardId, SOCIAL_CARD_IDS, type SocialCardId } from './cards'
 import BoardSocialCard from './components/BoardSocialCard.vue'
 import HeroSocialCard from './components/HeroSocialCard.vue'
+import LaunchSocialCard from './components/LaunchSocialCard.vue'
 import TimelineSocialCard from './components/TimelineSocialCard.vue'
 
 const params = new URLSearchParams(window.location.search)
@@ -20,6 +21,7 @@ const activeCards = computed((): SocialCardId[] => {
 <template>
   <div class="fyp-social-shell" :class="{ 'fyp-social-shell--capture': captureMode }">
     <HeroSocialCard v-if="activeCards.includes('hero')" />
+    <LaunchSocialCard v-if="activeCards.includes('launch')" />
     <TimelineSocialCard v-if="activeCards.includes('timeline')" />
     <BoardSocialCard v-if="activeCards.includes('board')" />
   </div>

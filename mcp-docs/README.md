@@ -2,6 +2,8 @@
 
 VitePress site for **mcp-docs.feelyourprotocol.org** — the **concrete, present-tense** documentation home for the Feel Your Protocol MCP server: tool reference, technical setup, and operational guides for humans and AI agents.
 
+The **Use** layer documents the **hosted** product (`mcp.feelyourprotocol.org`). Do not add local stdio / self-host tutorials there — contributor build steps stay in GitHub READMEs and Internals.
+
 For vision, strategy, and draft concepts, see the [roadmap site](https://roadmap.feelyourprotocol.org). This site documents **what we have** (or are shipping step by step).
 
 ## Development

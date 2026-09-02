@@ -65,7 +65,7 @@ the same Vue components as the live roadmap. See
 npm run capture:social
 ```
 
-Output: `roadmap/social/out/{hero,timeline,board}.{png,webp}`
+Output: `roadmap/social/out/{hero,launch,timeline,board}.{png,webp}`
 
 ## Tests
 

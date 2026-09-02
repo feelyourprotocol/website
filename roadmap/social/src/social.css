@@ -553,6 +553,90 @@ body.fyp-site-roadmap {
   margin: 0.35rem 0 0;
 }
 
+/* --- Launch card (date-first countdown) --- */
+.fyp-social-card--launch .fyp-social-banner__glow--primary {
+  width: 560px;
+  height: 560px;
+  opacity: 0.95;
+}
+
+.fyp-social-banner--launch {
+  padding: 1.85rem 2.25rem 1.65rem;
+  min-height: 440px;
+}
+
+.fyp-social-launch__eyebrow {
+  margin-bottom: 0.75rem;
+  border-color: rgba(124, 58, 237, 0.35);
+  background: rgba(124, 58, 237, 0.1);
+}
+
+.fyp-social-launch__brand {
+  margin: 0 0 1rem;
+  font-family: var(--fyp-font-mono);
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--vp-c-text-2);
+}
+
+.fyp-social-launch__date-panel {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin: 0 0 1.15rem;
+  padding: 1.15rem 1.5rem;
+  border-radius: 14px;
+  border: 2px solid rgba(124, 58, 237, 0.35);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.96), rgba(243, 240, 255, 0.92));
+  box-shadow:
+    0 10px 32px rgba(124, 58, 237, 0.14),
+    0 0 0 1px rgba(255, 255, 255, 0.8) inset;
+}
+
+.fyp-social-launch__date-label {
+  margin: 0;
+  font-family: var(--fyp-font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--vp-c-brand-1);
+}
+
+.fyp-social-launch__date {
+  margin: 0;
+  font-family: var(--fyp-font-mono);
+  font-size: clamp(2.75rem, 4.2vw, 3.65rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  background: var(--fyp-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.fyp-social-launch__headline {
+  margin: 0 0 0.65rem;
+  max-width: 52rem;
+  font-family: var(--fyp-font-mono);
+  font-size: 1.55rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+  color: var(--vp-c-text-1);
+}
+
+.fyp-social-launch__tagline {
+  max-width: 54rem;
+  margin-bottom: 1.25rem;
+}
+
+.fyp-social-launch__features {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
 .fyp-timeline {
   --track-color: var(--vp-c-divider);
   overflow-x: visible;

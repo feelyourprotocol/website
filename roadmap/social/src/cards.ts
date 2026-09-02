@@ -1,5 +1,5 @@
 /** Social card ids — single source of truth (also imported by og/src/social/cardIds.ts). */
-export const SOCIAL_CARD_IDS = ['hero', 'timeline', 'board'] as const
+export const SOCIAL_CARD_IDS = ['hero', 'launch', 'timeline', 'board'] as const
 
 export type SocialCardId = (typeof SOCIAL_CARD_IDS)[number]
 
@@ -19,17 +19,25 @@ export const SOCIAL_CARDS: Record<SocialCardId, SocialCardMeta> = {
   hero: {
     id: 'hero',
     eyebrow: 'Phase 3 · Roadmap',
-    title: 'Building an AI pipeline for the future Ethereum protocol.',
+    title: 'Deterministic oracle for the future Ethereum protocol.',
     subtitle:
-      'Vision, tracks, and draft concepts toward a deterministic API & MCP server for upcoming forks, EIPs, and research.',
-    footerHint: 'Conceptualization — targets, not promises',
+      'MCP tools built — public hosted launch week 5–9 October 2026. Textbook on feelyourprotocol.org today.',
+    footerHint: 'roadmap.feelyourprotocol.org',
+  },
+  launch: {
+    id: 'launch',
+    eyebrow: 'We have a launch date',
+    title: '5–9 October 2026',
+    subtitle:
+      'Hosted MCP goes public at mcp.feelyourprotocol.org — deterministic EVM oracle for the Glamsterdam hardfork. Explore on the website today; agents connect in launch week.',
+    footerHint: 'feelyourprotocol.org today · agents at launch',
   },
   timeline: {
     id: 'timeline',
     eyebrow: 'Phase 3 · Timeline',
     title: 'Where we’ve been — and where we’re headed',
-    subtitle: 'Three phases: side project → funded focus → sustainable business (future-protocol API).',
-    footerHint: 'Filled dots = reached · hollow = upcoming targets',
+    subtitle: 'Side project → funded focus → build to public launch.',
+    footerHint: 'Filled dots = reached · hollow = upcoming',
   },
   board: {
     id: 'board',

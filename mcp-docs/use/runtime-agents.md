@@ -24,7 +24,7 @@ Markdown on this site is **secondary**. It can lag behind a gateway release; the
 
 1. Probe first — learn what is runnable and how opcodes encode
 2. Run with **caller-supplied** bytecode on the fork you need (default **amsterdam**). **Optionally** run again on **osaka** when comparing against mainnet — this server does not ship demo programs
-3. **Do not** substitute the local `mcp-execution-engine` lab, `npm run lab`, or repository source unless MCP is unavailable
+3. **Do not** substitute the `mcp-execution-engine` lab, `npm run lab`, or repository source unless MCP is unavailable
 
 ## Replying to humans
 
@@ -57,6 +57,7 @@ Use this order:
 <Changelog
   title="Runtime Agents Changelog"
   :entries="[
+    { version: 'v0.10', date: '2026-09-02', summary: 'No self-host onboarding — agents wait for the public MCP; lab is not a user fallback.' },
     { version: 'v0.9', date: '2026-08-27', summary: 'compare_evm_variants removed — simulate twice to diff.' },
     { version: 'v0.8', date: '2026-08-27', summary: 'Narrow scope — MCP-first runtime playbook; renamed from for-ai-agents; builders pointed to engine AGENTS.md.' },
     { version: 'v0.7', date: '2026-08-27', summary: 'Replying to humans — plain language; hide tool names and JSON fields unless asked.' },

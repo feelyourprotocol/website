@@ -49,10 +49,36 @@ export const ROADMAP_TRACKS: RoadmapTrack[] = [
     label: 'Engine & API',
     accent: '#7c3aed',
     items: [
-      { title: 'Local zero-crypto MCP PoC', horizon: 'now', status: 'in-progress', note: 'Wrap one EthereumJS function as an MCP tool; prove the LLM round-trip.' },
-      { title: 'Amsterdam EIP pipeline', horizon: 'now', status: 'in-progress', note: 'First full pipeline on already-implemented Amsterdam EIPs.' },
-      { title: 'Glamsterdam scope (BAL, pricing)', horizon: 'next', status: 'planned' },
-      { title: 'Hegota scope (FOCIL, frame txs, EL)', horizon: 'later', status: 'planned' },
+      {
+        title: 'MCP tools implemented',
+        horizon: 'now',
+        status: 'done',
+        note: 'describe_capabilities + run_evm_bytecode; generic verbs, not per-EIP tools.',
+      },
+      {
+        title: 'Amsterdam EIP catalogue',
+        horizon: 'now',
+        status: 'in-progress',
+        note: 'Same fork: Amsterdam = EL rules label, Glamsterdam = fork name. Round-trip pipeline filling runnable modules.',
+      },
+      {
+        title: 'Public hosted MCP',
+        horizon: 'now',
+        status: 'in-progress',
+        note: 'HTTP at mcp.feelyourprotocol.org — launch week 5–9 Oct 2026.',
+      },
+      {
+        title: 'EIP-7928 BAL generate',
+        horizon: 'next',
+        status: 'planned',
+        note: 'Generate shape for block-level access lists.',
+      },
+      {
+        title: 'Hegota scope (EL EIPs)',
+        horizon: 'later',
+        status: 'planned',
+        note: 'FOCIL, frame txs, EL changes per EIP-8081.',
+      },
     ],
   },
   {
@@ -60,8 +86,24 @@ export const ROADMAP_TRACKS: RoadmapTrack[] = [
     label: 'Website & Education',
     accent: '#06b6d4',
     items: [
-      { title: 'Explorations & education', horizon: 'now', status: 'in-progress' },
-      { title: 'API showcase links per exploration', horizon: 'next', status: 'planned', note: 'Visual funnel from each exploration to its API capability.' },
+      {
+        title: 'Explorations & education',
+        horizon: 'now',
+        status: 'in-progress',
+        note: '~2 Amsterdam explorations per week; video pipeline for social.',
+      },
+      {
+        title: 'MCP twin links per exploration',
+        horizon: 'now',
+        status: 'in-progress',
+        note: 'Each live exploration maps to mcp-docs/use/eips/.',
+      },
+      {
+        title: 'Without vs with MCP proof',
+        horizon: 'next',
+        status: 'planned',
+        note: 'Documented agent comparisons — oracle vs LLM-only answers.',
+      },
     ],
   },
   {
@@ -69,8 +111,13 @@ export const ROADMAP_TRACKS: RoadmapTrack[] = [
     label: 'Infrastructure',
     accent: '#0ea5e9',
     items: [
-      { title: 'Stays on Strato (website)', horizon: 'now', status: 'in-progress' },
-      { title: 'AWS EC2 (c7g) for API', horizon: 'next', status: 'planned', note: 'Compute-optimized Graviton + worker pool for isolated sims.' },
+      { title: 'Website on Strato', horizon: 'now', status: 'done' },
+      {
+        title: 'AWS EC2 MCP host',
+        horizon: 'now',
+        status: 'in-progress',
+        note: 'Compute-optimized Graviton; nginx + TLS for public HTTP.',
+      },
       { title: 'Scale & observability', horizon: 'later', status: 'planned' },
     ],
   },
@@ -79,9 +126,23 @@ export const ROADMAP_TRACKS: RoadmapTrack[] = [
     label: 'Business & Community',
     accent: '#f59e0b',
     items: [
-      { title: 'x402 linear pricing (per-gas)', horizon: 'next', status: 'planned', note: 'USDC on Base, from request #1, no free tier.' },
-      { title: 'Tiered token discounts', horizon: 'next', status: 'planned' },
-      { title: 'Registry presence + outreach', horizon: 'next', status: 'planned' },
+      {
+        title: 'x402 on public endpoint',
+        horizon: 'now',
+        status: 'in-progress',
+        note: 'USDC on Base; per-gas pricing target for launch week.',
+      },
+      {
+        title: 'Tiered token discounts',
+        horizon: 'next',
+        status: 'planned',
+        note: 'Holder discount lane — never a gate for newcomers.',
+      },
+      {
+        title: 'MCP registry listings',
+        horizon: 'next',
+        status: 'planned',
+      },
       { title: 'Enterprise annual tier / buyback', horizon: 'later', status: 'planned', note: 'Introduce "when they come".' },
     ],
   },

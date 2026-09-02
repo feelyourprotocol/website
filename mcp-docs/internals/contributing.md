@@ -18,6 +18,8 @@ When a capability ships:
 5. Add a changelog entry on the affected page
 6. Update `public/llms.txt` and `public/llms-full.txt`
 
+**`use/` is the hosted product.** Do not document local stdio, Cursor `mcp.json`, or self-host setup on user-facing pages. Build steps belong in GitHub READMEs and `internals/` (development transport), not as a public early-access path.
+
 Builder invariants for engine/gateway code: [mcp-execution-engine/AGENTS.md](https://github.com/feelyourprotocol/mcp-execution-engine/blob/main/AGENTS.md), [mcp-gateway/AGENTS.md](https://github.com/feelyourprotocol/mcp-gateway/blob/main/AGENTS.md).
 
 See [Quality](/internals/quality) for test and lint commands.
@@ -27,6 +29,7 @@ See [Quality](/internals/quality) for test and lint commands.
 <Changelog
   title="Contributing Changelog"
   :entries="[
+    { version: 'v0.5', date: '2026-09-02', summary: 'use/ documents the hosted product only — no self-host early access.' },
     { version: 'v0.4', date: '2026-08-27', summary: 'EIP catalogue under use/eips/; link to engine/gateway AGENTS.md for builders.' },
     { version: 'v0.3', date: '2026-07-20', summary: 'Contributing page under internals/.' },
   ]"

@@ -1,12 +1,12 @@
 # Token Utility
 
-How the Bankr community token **would relate** to the API once it exists — without ever becoming a barrier to adoption. All of this is **directional**; nothing is wired up yet.
+How the Bankr community token **relates** to the hosted MCP once it takes payment — without ever becoming a barrier to adoption. All of this is **directional**; nothing is wired up yet. Target alignment: [launch week](/roadmap/launch).
 
 ## The core rule
 
 > **The token is a VIP pass for insiders, never a gate for newcomers.**
 
-The community's energy sparked this whole direction, so cutting them out would be wrong — but forcing a stranger to bridge to Base and swap for a niche token just to try the API would kill conversion. We resolve this by keeping the token **out of the critical path** and attaching value *around* it.
+The community's energy sparked this whole direction, so cutting them out would be wrong — but forcing a stranger to bridge to Base and swap for a niche token just to try the MCP would kill conversion. We resolve this by keeping the token **out of the critical path** and attaching value *around* it.
 
 ## The dual-lane model _(planned)_
 
@@ -30,12 +30,24 @@ This would turn the token into a **non-speculative volume discount**: heavy API 
 
 ## Optional value-capture & alignment _(later / "when they come")_
 
-- **Engine exhaust (buyback & burn):** route ~10–20% of USDC API revenue to programmatically buy and burn (or distribute) the token — the token becomes a proxy for the API's success, and the community becomes a distribution force.
+- **Engine exhaust (buyback & burn):** route ~10–20% of USDC API revenue to programmatically buy and burn (or distribute) the token — the token becomes a proxy for the MCP's success, and the community becomes a distribution force.
 - **Roadmap governance:** let holders vote on which fork/endpoint to prioritize next.
-- **Visualization bounties:** pay the community in tokens to build explorations on top of new API capabilities — funding [Leg A](/vision/two-legs) from token utility.
+- **Visualization bounties:** pay the community in tokens to build explorations on top of new MCP capabilities — funding [Leg A](/vision/two-legs) from token utility.
 
 ## Why this is risk-free _(in design)_
 
 Because the base layer would always be plain USDC, the discount model adds upside for the community **without** introducing onboarding friction, token-gated errors, or compliance headaches for enterprises. Permissionless access stays intact; the community is rewarded for being early.
 
-_Tier numbers and the buyback/governance/bounty mechanics are directional — to be finalized once the API and payment flow exist._
+We do **not** use token news or market moves as a substitute for product milestones — launch substance comes from the hosted MCP and catalogue, not holder hype.
+
+_Tier numbers and the buyback/governance/bounty mechanics are directional — to be finalized once the hosted endpoint and payment flow exist._
+
+## Changelog
+
+<Changelog
+  title="Token Utility Changelog"
+  :entries="[
+    { version: 'v0.2', date: '2026-09-02', summary: 'Framed around hosted MCP launch week; explicit no-hype-for-holders note.' },
+    { version: 'v0.1', date: '2026-06-30', summary: 'Initial dual-lane discount model outline.' },
+  ]"
+/>

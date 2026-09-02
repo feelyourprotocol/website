@@ -1,6 +1,6 @@
 # Roadmap Site
 
-VitePress site for **roadmap.feelyourprotocol.org** — the organizational home and **conceptualization workspace** for Feel Your Protocol Phase 3: problem & vision, milestones, roadmap tracks, timeline, and draft outlines of core concepts (future-protocol Agent API & MCP, x402, pricing/cost model) and infrastructure (AWS). Nothing here documents a shipped API yet.
+VitePress site for **roadmap.feelyourprotocol.org** — strategy, history, and draft concepts for Feel Your Protocol Phase 3: problem & vision, tracks, timeline, [launch week](/roadmap/launch), and outlines of the MCP server, x402, and pricing. Operational MCP docs live on [mcp-docs](https://mcp-docs.feelyourprotocol.org).
 
 It shares the Feel Your Protocol design language (JetBrains Mono, purple/cyan protocol sparks, dot grid) but uses a customized VitePress theme so it reads as the "business" side of the project — separate from the [website docs](https://website-docs.feelyourprotocol.org) and the [explorations website](https://feelyourprotocol.org).
 
@@ -36,13 +36,29 @@ roadmap/
 ├── data/
 │   ├── timeline.ts               # Timeline phases + events (edit to update)
 │   └── roadmap.ts                # Roadmap tracks, horizons, items (edit to update)
-├── overview/                     # vision.md, milestones.md
-├── roadmap/                      # roadmap.md (board), timeline.md
-├── concepts/                     # api-design.md, x402.md, pricing.md
+├── vision/                       # problem-vision, two-legs, principles
+├── roadmap/                      # roadmap.md, timeline.md, launch.md
+├── concepts/                     # api-mcp.md, x402.md
+├── monetization/                 # pricing.md, token.md
 ├── infrastructure/               # aws.md
+├── go-to-market/                 # distribution.md
+├── social/                       # Twitter/thread capture app
 ├── index.md                      # Home (hero + features)
 └── public/                       # robots.txt, fonts/, og/
 ```
+
+## Fork naming (Glamsterdam / Amsterdam)
+
+**One fork, two labels** — not two forks, not a timeline:
+
+| Label | Use for |
+| --- | --- |
+| **Glamsterdam** | Hardfork name in public copy and narrative (“Road to Glamsterdam”) |
+| **Amsterdam** | Execution-layer rules, catalogue rows, MCP fork id (`amsterdam`, alias `glamsterdam`) |
+
+Do **not** write “Amsterdam today, Glamsterdam later” or “Amsterdam / Glamsterdam” as if they were sequential or distinct forks. Hegota is a **different** future fork — the only real “next fork after Glamsterdam” in scope talk.
+
+See also [Launch-Strategie.md](../../Launch-Strategie.md) §2 and [Announcement-Anchor.md](../../Announcement-Anchor.md) (tweet guardrails).
 
 ## Visualizations
 
@@ -53,7 +69,7 @@ Both visualizations are **data-driven** so they are lightweight and trivial to r
 
 ## Micro-versioning
 
-There are no full doc versions. Instead, fast-moving sections embed a `<Changelog :entries="…" />` block with a short manual entry per change. Currently on: **Roadmap** (`roadmap/roadmap.md`), **API standard** (`concepts/api-design.md`), and **Pricing** (`concepts/pricing.md`).
+There are no full doc versions. Instead, fast-moving sections embed a `<Changelog :entries="…" />` block with a short manual entry per change. Currently on: **Roadmap** (`roadmap/roadmap.md`), **Launch week** (`roadmap/launch.md`), **Agent API** (`concepts/api-mcp.md`), and **Pricing** (`monetization/pricing.md`).
 
 ## SEO & social preview
 
@@ -69,11 +85,12 @@ Output: `roadmap/public/og/default.webp` — served at `https://roadmap.feelyour
 
 ## Twitter / thread images
 
-Reusable cards (timeline, roadmap board, hero) — same Vue components + data as the site:
+Reusable cards (hero, launch, timeline, board) — same Vue components + data as the site:
 
 ```bash
 npm run capture:social              # builds preview + writes PNG/WebP
-npm run social:dev                  # preview at localhost:5175/?card=timeline
+npm run capture:social -- launch      # single card
+npm run social:dev                  # preview at localhost:5175/?card=launch
 ```
 
 See [social/README.md](./social/README.md). Output: `roadmap/social/out/` (gitignored).

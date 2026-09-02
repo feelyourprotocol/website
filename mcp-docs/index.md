@@ -4,7 +4,7 @@ layout: home
 hero:
   name: Feel Your Protocol
   text: MCP Server Documentation
-  tagline: Pre-launch docs for the agent-facing lab — deterministic future-Ethereum-protocol simulations. The public MCP endpoint is not live yet; try the interactive explorations on feelyourprotocol.org today.
+  tagline: Public hosted launch week 5–9 October 2026. Interactive explorations live on feelyourprotocol.org today — agents connect at mcp.feelyourprotocol.org when we ship.
   actions:
     - theme: brand
       text: Use the server
@@ -31,10 +31,10 @@ features:
     link: /internals/roadmap-relationship
 ---
 
-::: warning Public launch — not yet
-**The Feel Your Protocol MCP server has not launched publicly.** There is no hosted endpoint you can plug an agent into today.
+::: warning Public launch — countdown
+**The Feel Your Protocol MCP server has not launched publicly yet.**
+
+**Target: launch week 5–9 October 2026** — hosted HTTP at **`mcp.feelyourprotocol.org`**. Details: [roadmap launch page](https://roadmap.feelyourprotocol.org/roadmap/launch.html).
 
 **Live now:** [Interactive explorations](https://feelyourprotocol.org) on the main website — the textbook slice of each EIP.
-
-**Early access (developers only):** a **local stdio** build (`mcp-gateway` v0.1) you run yourself in Cursor or Claude Desktop. That path is documented under [Connect](/use/connect); most community users can skip it until **`mcp.feelyourprotocol.org`** ships (planned Step 5).
 :::

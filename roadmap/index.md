@@ -3,30 +3,33 @@ layout: home
 
 hero:
   name: Feel Your Protocol
-  text: Building an AI pipeline for the future Ethereum protocol.
-  tagline: Phase 3 roadmap & vision — working toward a deterministic API and MCP server for the future Ethereum protocol (upcoming forks, EIPs, and research), built on the EthereumJS stack, with the explorations website as its front door.
+  text: Deterministic oracle for the future Ethereum protocol.
+  tagline: The MCP lab equipment is built — public hosted launch week 5–9 October 2026. Explorations on feelyourprotocol.org today; mcp.feelyourprotocol.org for agents at launch.
   actions:
     - theme: brand
+      text: Launch week
+      link: /roadmap/launch
+    - theme: alt
       text: Problem & Vision
       link: /vision/problem-vision
     - theme: alt
       text: View the Roadmap
       link: /roadmap/roadmap
-    - theme: alt
-      text: Timeline
-      link: /roadmap/timeline
 
 features:
+  - title: Launch week
+    details: Public hosted MCP + x402 (USDC on Base) at launch week — 5–9 October 2026. What ships, what we're not promising, and where to follow the countdown.
+    link: /roadmap/launch
   - title: Vision & Strategy
-    details: The protocol↔app gap, the deterministic-oracle thesis, and the "two legs, one engine" model we're designing around — website plus a future-protocol agent API.
+    details: The protocol↔app gap, the deterministic-oracle thesis, and the "two legs, one engine" model — website plus MCP server.
     link: /vision/problem-vision
   - title: Roadmap & Timeline
-    details: Parallel tracks — Engine & API, Website, Infrastructure, Business & Community — and where the project has been and where we're heading next.
+    details: Parallel tracks — Engine & API, Website, Infrastructure, Business & Community — history filled in, launch as the next hollow marker.
     link: /roadmap/roadmap
   - title: Core Concepts
-    details: Draft outlines of the planned Agent API for upcoming fork rules and EIPs, MCP delivery shape, and x402 agent-payment model — captured here while we figure out the details. No separate API docs yet.
+    details: Generic MCP tools (describe_capabilities, run_evm_bytecode), x402 payment rails, and operational detail on mcp-docs.
     link: /concepts/api-mcp
   - title: Monetization & Infra
-    details: Early thinking on x402 pay-per-use pricing, token-holder discounts, unit economics, and the target AWS hosting setup.
+    details: Draft x402 per-gas pricing, token-holder discounts, AWS hosting for the public endpoint.
     link: /monetization/pricing
 ---

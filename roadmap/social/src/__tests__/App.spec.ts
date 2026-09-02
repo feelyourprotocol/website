@@ -34,6 +34,7 @@ describe('social App', () => {
 
     expect(wrapper.find('[data-social-card="timeline"]').exists()).toBe(true)
     expect(wrapper.find('[data-social-card="hero"]').exists()).toBe(false)
+    expect(wrapper.find('[data-social-card="launch"]').exists()).toBe(false)
     expect(wrapper.find('[data-social-card="board"]').exists()).toBe(false)
     expect(wrapper.text()).toContain('Timeline')
   })

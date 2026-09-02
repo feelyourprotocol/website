@@ -1,6 +1,6 @@
 # Run Bytecode
 
-> **Status:** **Live** (gateway v0.1, stdio). MCP tool: `run_evm_bytecode`.
+> **Status:** Implemented — ships on the public MCP at launch. MCP tool: `run_evm_bytecode`. **Public endpoint not live.**
 
 ## Purpose
 
@@ -108,6 +108,7 @@ See [Guarantees](/use/guarantees) for ceilings (max gas, bytecode size, trace st
 <Changelog
   title="Run Bytecode Changelog"
   :entries="[
+    { version: 'v0.7', date: '2026-09-02', summary: 'Implemented for public launch — not a local stdio product path.' },
     { version: 'v0.6', date: '2026-08-27', summary: 'Osaka mainnet baseline fork for run-twice comparisons against Amsterdam preview.' },
     { version: 'v0.5', date: '2026-08-27', summary: 'Renamed MCP tool simulate_evm_bytecode → run_evm_bytecode.' },
     { version: 'v0.4', date: '2026-07-22', summary: 'Live MCP tool — real tool name, Amsterdam examples, JSON schema link.' },

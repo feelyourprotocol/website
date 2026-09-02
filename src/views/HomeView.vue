@@ -5,7 +5,8 @@ import { EXPLORATIONS } from '@/explorations/REGISTRY'
 import { TOPICS } from '@/explorations/TOPICS'
 import { COMMUNITY_TOKEN_HOME } from '@/libs/communityToken'
 import { WEBSITE_DOCS_HOME } from '@/libs/docsUrls'
-import { MCP_DOCS_HOME, mcpDocsPage, ROADMAP_HOME } from '@/libs/roadmapUrls'
+import { MCP_DOCS_HOME, mcpDocsPage, ROADMAP_LAUNCH } from '@/libs/roadmapUrls'
+import { McpLaunchHomeSection } from '@/mcp-launch'
 
 import { catalogExplorationIds, catalogForkLabels, latestExplorationIds } from './homeCatalog'
 import TagCloudView from './TagCloudView.vue'
@@ -29,12 +30,12 @@ const fleet = [
   {
     title: 'MCP docs',
     href: MCP_DOCS_HOME,
-    note: 'Agent twin — not publicly launched',
+    note: 'Launch week 5–9 Oct 2026',
   },
   {
     title: 'Roadmap',
-    href: ROADMAP_HOME,
-    note: 'Textbook + future lab',
+    href: ROADMAP_LAUNCH,
+    note: 'Hosted MCP countdown',
   },
   {
     title: 'Community token',
@@ -74,6 +75,8 @@ const fleet = [
         <template v-if="forkLabels.length > 0"> · {{ forkLabels.join(' · ') }}</template>
       </p>
     </section>
+
+    <McpLaunchHomeSection />
 
     <section id="latest" class="mb-8">
       <SectionLabel>Latest</SectionLabel>
@@ -147,8 +150,9 @@ const fleet = [
     <section>
       <SectionLabel>Also in this project</SectionLabel>
       <p class="text-slate-600 text-sm leading-relaxed mb-3 max-w-3xl">
-        The explorations site is the textbook. Docs, a planned MCP lab for agents, and a community
-        token on Base sit alongside it.
+        The explorations site is the textbook. Docs, the hosted MCP lab (launch week
+        <span class="font-mono">5–9 Oct 2026</span>), and a community token on Base sit alongside
+        it.
       </p>
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
         <a

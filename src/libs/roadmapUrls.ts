@@ -12,6 +12,7 @@ export function roadmapPage(path = '', hash?: string): string {
 }
 
 export const ROADMAP_HOME = roadmapPage()
+export const ROADMAP_LAUNCH = roadmapPage('roadmap/launch')
 export const ROADMAP_VISION = roadmapPage('vision/problem-vision')
 export const ROADMAP_TOKEN = roadmapPage('monetization/token')
 
