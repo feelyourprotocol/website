@@ -25,6 +25,7 @@ describe('social card registry', () => {
   })
 
   it('launch card mentions October 2026', () => {
-    expect(SOCIAL_CARDS.launch.eyebrow).toMatch(/Oct 2026/i)
+    expect(SOCIAL_CARDS.launch.title).toMatch(/October 2026/i)
+    expect(SOCIAL_CARDS.launch.eyebrow).toMatch(/launch date/i)
   })
 })

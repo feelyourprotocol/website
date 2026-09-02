@@ -109,7 +109,7 @@ export const TIMELINE_EVENTS: TimelineEvent[] = [
     date: '2026-10-05',
     label: 'Public MCP launch week',
     phase: 3,
-    note: 'Hosted HTTP at mcp.feelyourprotocol.org + x402 target. See /roadmap/launch.',
+    note: 'Hosted HTTP at mcp.feelyourprotocol.org + x402 (USDC on Base). See /roadmap/launch.',
   },
   {
     date: 'later',

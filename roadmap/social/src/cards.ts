@@ -26,11 +26,11 @@ export const SOCIAL_CARDS: Record<SocialCardId, SocialCardMeta> = {
   },
   launch: {
     id: 'launch',
-    eyebrow: 'Launch week · 5–9 Oct 2026',
-    title: 'Public hosted MCP — opening soon.',
+    eyebrow: 'We have a launch date',
+    title: '5–9 October 2026',
     subtitle:
-      'mcp.feelyourprotocol.org · describe_capabilities + run_evm_bytecode · x402 on Base. Hosted is the product.',
-    footerHint: 'Explorations live today · agents at launch',
+      'Hosted MCP goes public at mcp.feelyourprotocol.org — deterministic EVM oracle for the Glamsterdam hardfork. Explore on the website today; agents connect in launch week.',
+    footerHint: 'feelyourprotocol.org today · agents at launch',
   },
   timeline: {
     id: 'timeline',

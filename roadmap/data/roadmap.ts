@@ -59,7 +59,7 @@ export const ROADMAP_TRACKS: RoadmapTrack[] = [
         title: 'Amsterdam EIP catalogue',
         horizon: 'now',
         status: 'in-progress',
-        note: 'Round-trip pipeline; filling runnable modules for Glamsterdam EIPs.',
+        note: 'Same fork: Amsterdam = EL rules label, Glamsterdam = fork name. Round-trip pipeline filling runnable modules.',
       },
       {
         title: 'Public hosted MCP',

@@ -47,6 +47,19 @@ roadmap/
 └── public/                       # robots.txt, fonts/, og/
 ```
 
+## Fork naming (Glamsterdam / Amsterdam)
+
+**One fork, two labels** — not two forks, not a timeline:
+
+| Label | Use for |
+| --- | --- |
+| **Glamsterdam** | Hardfork name in public copy and narrative (“Road to Glamsterdam”) |
+| **Amsterdam** | Execution-layer rules, catalogue rows, MCP fork id (`amsterdam`, alias `glamsterdam`) |
+
+Do **not** write “Amsterdam today, Glamsterdam later” or “Amsterdam / Glamsterdam” as if they were sequential or distinct forks. Hegota is a **different** future fork — the only real “next fork after Glamsterdam” in scope talk.
+
+See also [Launch-Strategie.md](../../Launch-Strategie.md) §2 and [Announcement-Anchor.md](../../Announcement-Anchor.md) (tweet guardrails).
+
 ## Visualizations
 
 Both visualizations are **data-driven** so they are lightweight and trivial to re-render when things change:

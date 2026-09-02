@@ -47,6 +47,7 @@ The `$100` discount tier is deliberately pitched near the **real per-call cost l
 <Changelog
   title="Pricing Changelog"
   :entries="[
+    { version: 'v0.5', date: '2026-09-02', summary: 'x402 decided for launch week (USDC on Base) — per-gas model unchanged; payment not live yet.' },
     { version: 'v0.4', date: '2026-09-02', summary: 'Coupled to launch week — x402 target on public hosted MCP; engine exists, payment not live.' },
     { version: 'v0.3', date: '2026-06-30', summary: 'Reframed as draft pricing model — no live payment flow; conditional language throughout.' },
     { version: 'v0.2', date: '2026-06-30', summary: 'Decided: linear x402 per-gas pricing, no free tier; token = tiered discount; enterprise annual tier later.' },

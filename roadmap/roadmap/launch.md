@@ -4,14 +4,14 @@
 
 ## What we're launching
 
-Feel Your Protocol's **deterministic oracle for the future Ethereum protocol** — a headless MCP server so AI agents run exact EVM simulations under upcoming fork rules (Amsterdam / Glamsterdam and beyond).
+Feel Your Protocol's **deterministic oracle for the future Ethereum protocol** — a headless MCP server so AI agents run exact EVM simulations under upcoming fork rules (starting with the Glamsterdam hardfork — Amsterdam on the execution layer).
 
 | At launch | Status today |
 | --- | --- |
 | Hosted MCP at `https://mcp.feelyourprotocol.org/mcp` | Not launched |
 | Tools: `describe_capabilities`, `run_evm_bytecode` | Implemented (gateway v0.1) |
 | EIP catalogue on mcp-docs | Growing — Amsterdam EIPs filling |
-| [x402](/concepts/x402) payment (USDC on Base) | In progress — target for launch week |
+| [x402](/concepts/x402) payment (USDC on Base) | Decided for launch week — integration + docs in progress |
 | [Token holder discounts](/monetization/token) | Planned alongside x402 — never a gate |
 
 **Hosted is the product.** We do not promote self-host or local stdio in official docs. The repos stay open; the public path is the endpoint above.
@@ -54,6 +54,7 @@ Updates during the countdown on [X @FeelEthereum](https://x.com/FeelEthereum).
 <Changelog
   title="Launch Week Changelog"
   :entries="[
+    { version: 'v0.2', date: '2026-09-02', summary: 'x402 payment decided for launch week — USDC on Base; facilitator wiring still build-in-public.' },
     { version: 'v0.1', date: '2026-09-02', summary: 'Initial public launch week page — 5–9 Oct 2026 target, hosted MCP + x402, honest scope.' },
   ]"
 />
