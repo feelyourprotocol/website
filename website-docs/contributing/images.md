@@ -12,8 +12,9 @@ Round-trip / add-exploration: the agent generates in the same phase (Template B 
 |----------|---------------|
 | Format | WebP preferred |
 | Size | 768×1024 portrait, 3:4 |
+| **File weight** | **`image.webp` ≤ 300 KB** (cards and home Latest load this on every visit) |
 | File | `src/explorations/<id>/image.webp` |
-| Thumbnail | Optional `image_small.webp` (~300px) for cards |
+| Thumbnail | `image_small.webp` at **300×400**, typically ≤ 50 KB, for cards |
 
 Import in `info.ts` as `image` and optional `imageSmall`.
 

@@ -98,16 +98,35 @@ Colors — strict:
 
 ## After generation
 
-1. Save as WebP: `src/explorations/<id>/image.webp` (optional `image_small.webp` ~300px wide for cards).
-2. Import in `info.ts`:
+1. Save as WebP: `src/explorations/<id>/image.webp` + **`image_small.webp`** (300×400 for cards — always create both when `info.ts` imports `imageSmall`).
+2. **Compress before commit** — cover art from image models often ships at 1024×1536 and 1–2 MB. That bloated the home page. Targets (see [images.md](../../website-docs/contributing/images.md)):
+
+   | File | Dimensions | Max size |
+   | --- | --- | --- |
+   | `image.webp` | 768×1024 | **300 KB** |
+   | `image_small.webp` | 300×400 | ~50 KB (typical) |
+
+   After saving, run `cwebp` (or equivalent) — do not commit until both pass:
+
+   ```bash
+   cwebp -resize 768 1024 -q 82  src/explorations/<id>/image.webp       -o /tmp/cover.webp
+   cwebp -resize 300 400  -q 78  src/explorations/<id>/image.webp       -o /tmp/cover_small.webp
+   # verify: ls -la /tmp/cover*.webp  — image.webp must be ≤ 300 KB
+   mv /tmp/cover.webp src/explorations/<id>/image.webp
+   mv /tmp/cover_small.webp src/explorations/<id>/image_small.webp
+   ```
+
+   If `image.webp` still exceeds 300 KB, lower `-q` (e.g. 75) and re-check. Do not upscale beyond 768×1024 for the cover file.
+
+3. Import in `info.ts`:
 
 ```typescript
 import image from './image.webp'
-// optional: import imageSmall from './image_small.webp'
+import imageSmall from './image_small.webp'
 ```
 
-3. Show the human the result in context (`npm run dev`) before treating as done.
-4. Regenerate OG when metadata or cover changes: `npm run generate:og:exploration -- <id>`.
+4. Show the human the result in context (`npm run dev`) before treating as done.
+5. Regenerate OG when metadata or cover changes: `npm run generate:og:exploration -- <id>`.
 
 ## Out of scope
 
