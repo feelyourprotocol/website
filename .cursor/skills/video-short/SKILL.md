@@ -40,7 +40,8 @@ Read, then derive. Do not re-brief the EIP. Do not invent verbs, numbers, or for
 7. **Synthesize + plan + record + mux** — [Recording](#recording).
 8. **Verify** — frame 0 is title band, audio starts at 0:00, duration is 30–90 s.
 9. **Announcement tweet** — [Announcement tweet](#announcement-tweet). Write `tweet.yml`; include paste-ready copy in the report.
-10. **Report** — [Report](#report), then **STOP**.
+10. **YouTube Shorts publication assets** — [YouTube Shorts publication](#youtube-shorts-publication). Extract thumbnail (`npm run video:thumb -- <id>`) and write `youtube.yml`; include paste-ready copy in the report.
+11. **Report** — [Report](#report), then **STOP**.
 
 Do not commit, push, or open a PR unless asked. Do not upload to any platform. Do not modify existing videos.
 
@@ -81,10 +82,13 @@ Layout under `video/projects/<id>/` — mirror [`video/projects/eip-8024/`](../.
 | `zones.json` | `format: { width: 540, height: 960 }`, `safeZone`, `focusAreas`, `placements` | `focusAreas` keys = every `focus` used in the playbook |
 | `narration.json` | `segmentGapMs` (~350) + `segments[{ beat, text }]` | `hook.text` = anchor; last segment references the CTA on-screen |
 | `tweet.yml` | Announcement tweet (T1 + optional T2 reply) + video description | Written after mux; see [Announcement tweet](#announcement-tweet) |
+| `youtube.yml` | YouTube Shorts title + description + tags + playlist + thumbnail reference | Written after mux; see [YouTube Shorts publication](#youtube-shorts-publication) |
 
 Schemas + overlay type details: [reference.md § Schemas](reference.md#schemas). Overlay layout / safe zone: [reference.md § Overlays](reference.md#overlays-and-safe-zones).
 
 **Do not create a `README.md` under `video/projects/<id>/` unless asked.** The README stays optional.
+
+**Output pruning:** the recorder keeps only the newest **generation** per project (a generation = every file sharing the `<projectId>-<isoTimestamp>` prefix: `.webm`, `-final.mp4`, `-final-thumb.jpg`). Older generations are deleted automatically after each successful record. Mux and thumb operate inside an existing generation (no fork), so they do not prune. If you need to preserve an old take, copy it out of `output/` before re-recording.
 
 ## QA gates
 
@@ -136,10 +140,14 @@ npm run video:generate -- <id>           # 1080×1920 *-final.mp4 (2× upscale o
 
 Look at (do not just assert) the final `.mp4`:
 
-1. **Frame 0** — title band with the anchor visible. Recorder logs the trim result; expect dark-pixel ratio ~0.8, mean luminance ~40 in the center crop.
-2. **Audio start** — voice begins at 0:00 (title beat) or within ~200 ms.
-3. **Duration** — 30–90 s (Shorts sweet spot 45–60 s).
-4. **Highlights** — if a `highlightSet` is used, the payoff cell(s) actually light up on the climax beat.
+1. **Codecs** — `ffprobe` must report `codec_name=h264` (profile `High`, `pix_fmt=yuv420p`) for the video stream and `codec_name=aac` (`profile=LC`) for audio. VP9-in-MP4 is a hard reject on X/Twitter ("Incompatible video codecs") and several other timelines. `muxVideoAudio` always transcodes to H.264 + `+faststart`, so this should hold — but check on every project until a post-mux assertion lands. One-liner:
+   ```bash
+   ffprobe -v error -show_entries stream=codec_name,profile,pix_fmt,width,height -of default video/projects/<id>/output/*-final.mp4
+   ```
+2. **Frame 0** — title band with the anchor visible. Recorder logs the trim result; expect dark-pixel ratio ~0.8, mean luminance ~40 in the center crop.
+3. **Audio start** — voice begins at 0:00 (title beat) or within ~200 ms.
+4. **Duration** — 30–90 s (Shorts sweet spot 45–60 s).
+5. **Highlights** — if a `highlightSet` is used, the payoff cell(s) actually light up on the climax beat.
 
 ## Announcement tweet
 
@@ -235,6 +243,101 @@ sources:
 notes: <consumed opener + anything a later LLM must not repeat>
 ```
 
+## YouTube Shorts publication
+
+The muxed `*-final.mp4` is uploadable **as-is** to YouTube Shorts. YouTube Studio asks for **title**, **description**, and **thumbnail** at minimum; we fill all three plus tags + playlist + category. Everything lives in `youtube.yml`; the thumbnail is auto-extracted from the video by `npm run video:thumb -- <id>`.
+
+The X arc (comic + video tweet) is the primary channel; YouTube Shorts is a **secondary evergreen index** — same clip, tuned for search rather than for a timeline hit. Copy is more descriptive, keywords matter more than voice. Publishing on YouTube is **optional per project** (human decides); the skill always produces the assets so the decision is one paste-and-upload away.
+
+### Title (aim ≤ 70 chars, hard cap 100)
+
+- Lead with **`EIP-NNNN`** — that's the search anchor
+- Follow with the mechanism in plain words (verb + object)
+- Optional fork label in parens: `(Amsterdam)`
+- End with ` #Shorts` (unlocks Shorts shelf placement)
+
+Do **not** clone the X tweet opener — YouTube is a different intent surface (search, not timeline). Do not add emojis, question marks, or clickbait phrasing.
+
+### Description (aim 300–600 chars; hard cap 5000)
+
+Write in this order — the first ~100 chars are what shows in search snippets, so front-load:
+
+1. **Snippet line** (1 sentence) — a rephrased mechanism or coreQuestion. Not the tweet body; not a title restatement.
+2. **Context paragraph** (2–3 sentences) — what the EIP does, what fork, what the video shows. Written in third person / narrator voice, not "in this video…".
+3. **Blank line**, then CTA + full exploration URL on its own line: `Explore it interactively:\n<url>`.
+4. **Blank line**, then `Spec: <url>` and (if the page exists) `Forkcast: <url>` on their own lines.
+5. **Blank line**, then a hashtag row: 3–5 tags, `#Shorts` at the end.
+
+Do **not** front-load hashtags or emojis. Do not paste the tweet body. Do not include video timestamps ("0:00 intro …") — Shorts are too short.
+
+### Thumbnail — always the title-card frame
+
+Run `npm run video:thumb -- <id>` after mux. It extracts a still at `t=1.5s` (inside the ~4.5 s title-card window) into `output/<basename>-final-thumb.jpg` — **JPEG, 1280×2276 (9:16), under 2 MB**. That frame already carries the anchor question in high-contrast type.
+
+YouTube Studio upload rules (Shorts custom thumbnail):
+- **Format:** JPG (default from `video:thumb`), PNG/GIF/BMP also accepted — prefer JPG for Studio compatibility
+- **Size:** 1280 px wide minimum (9:16 → 1280×2276); do **not** upload a 1080-wide PNG grab — Studio often rejects it silently
+- **Upload path:** *Datei hochladen* / *Upload file* — **not** *Aus Video auswählen* (that picker only shows in-video frames)
+- Different frame (e.g. the payoff): `npm run video:thumb -- <id> --time <seconds>`. Record the choice in `youtube.yml` `thumbnail.time_sec`.
+
+**Do not** synthesize a custom AI thumbnail per project. The title card is the brand-consistent choice; a bespoke thumbnail costs time and drifts from the video.
+
+### Tags (5–10 loose keywords)
+
+Weak signal but still helps related-video ranking. Pick: `Ethereum`, `EIP-NNNN`, the fork name (both `Amsterdam` and `Glamsterdam` are OK here — this is search metadata, not tweet copy), the topic (`taxonomy.topic`), and 1–3 mechanism words drawn from `CANONICAL.mcp.keywords`.
+
+### Category + Playlist
+
+- **Category:** *Science & Technology* (default for every FYP short).
+- **Playlist:** bucket by fork — e.g. *Feel Your Protocol · Amsterdam EIPs*. Create the playlist once per fork; add every new short to it.
+
+### Diversity check
+
+Scan every existing `video/projects/*/youtube.yml` `title` and `description` snippet lines. If the title formula ("EIP-NNNN Explained: …") starts to feel identical across a run of 4–5 shorts, vary the verb (`Explained`, `In 60 Seconds`, `The Feel`, `Under the Hood`) — but keep `EIP-NNNN` in the lead position always.
+
+### File — `video/projects/<id>/youtube.yml`
+
+```yaml
+schema: video-short-youtube/v1
+id: eip-NNNN
+
+title: <≤ 100 chars, ends with " #Shorts">
+
+description: |
+  <snippet line — first ~100 chars show in search results>
+
+  <2-3 sentence context: EIP, fork, what the video shows>
+
+  Explore it interactively:
+  https://feelyourprotocol.org<INFO.path>
+
+  Spec: https://eips.ethereum.org/EIPS/eip-NNNN
+  Forkcast: https://forkcast.org/eips/NNNN/   # omit line when no page exists
+
+  #Ethereum #<fork> #<mechanism> #FeelYourProtocol #Shorts
+
+tags:
+  - Ethereum
+  - EIP-NNNN
+  - <fork>
+  - <topic>
+  - <mechanism keyword>
+
+category: Science & Technology
+playlist: Feel Your Protocol · <fork> EIPs
+
+thumbnail:
+  file: <basename>-final-thumb.jpg
+  width: 1280
+  time_sec: 1.5
+  source: title-card
+
+sources:
+  exploration_url: https://feelyourprotocol.org<INFO.path>
+  spec_url: <CANONICAL.identity.specUrl>
+  forkcast_url: https://forkcast.org/eips/NNNN/   # or null
+```
+
 ## Report
 
 ```markdown
@@ -295,7 +398,28 @@ T2 (reply, no media):
 
 Human may edit; do not ask for a tweet-only GO.
 
-**Consumed for future videos:** hook openings, outro CTA phrasing, T1 opener
+**YouTube Shorts** (`video/projects/eip-NNNN/youtube.yml`) — upload the muxed `*-final.mp4` as a Short:
+
+Titel (Title, ≤ 100 chars):
+
+```
+<title>
+```
+
+Beschreibung (Description):
+
+```
+<description>
+```
+
+- **Tags:** <comma-separated>
+- **Kategorie / Category:** Science & Technology
+- **Playlist:** <playlist name>
+- **Thumbnail:** `video/projects/eip-NNNN/output/<basename>-final-thumb.jpg` (1280×2276 JPEG — upload via *Datei hochladen* / *Upload file*, not *Aus Video auswählen*)
+
+Human may edit; do not ask for a YouTube-only GO.
+
+**Consumed for future videos:** hook openings, outro CTA phrasing, T1 opener, YouTube title verb
 **Open:** (voice edits, timing tweaks — human can ask)
 ```
 

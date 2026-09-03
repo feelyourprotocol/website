@@ -37,6 +37,15 @@ Output: `video/projects/<id>/output/<id>-<timestamp>-final.mp4` (upload) and `.w
 
 Step-by-step voice tooling: `video:voice:synth`, `video:voice:plan`, `video:voice:mux`. Recipe + timing derivation: `.cursor/skills/video-short/reference.md`.
 
+Extract a YouTube Shorts custom thumbnail (title-card frame) from a muxed `*-final.mp4`:
+
+```bash
+npm run video:thumb -- eip-8024                 # JPEG @ 1280×2276, frame @ 1.5s
+npm run video:thumb -- eip-8024 --time 4.2      # custom frame (e.g. climax)
+```
+
+Output: `video/projects/<id>/output/<basename>-final-thumb.jpg` (JPEG, 9:16, ≤2 MB for YouTube Studio upload).
+
 Output: `video/projects/<id>/output/<id>-<timestamp>.webm`
 
 ## Website integration

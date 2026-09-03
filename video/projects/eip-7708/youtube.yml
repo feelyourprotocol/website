@@ -1,0 +1,41 @@
+schema: video-short-youtube/v1
+id: eip-7708
+
+title: 'EIP-7708 Explained: Native ETH Transfers Emit a Log (Amsterdam) #Shorts'
+
+description: |
+  EIP-7708 makes native ETH visible to log filters — every non-zero move emits an ERC-20-style Transfer log.
+
+  Part of the Amsterdam execution-layer rules shipping in the Glamsterdam hardfork. This short runs a plain ETH transfer, watches the Transfer log fire from the system address, then switches the same transaction to Osaka to show the receipt stay silent. Zero-value moves and reverted calls stay silent too.
+
+  Explore it interactively:
+  https://feelyourprotocol.org/eip-7708-eth-transfer-logs
+
+  Spec: https://eips.ethereum.org/EIPS/eip-7708
+  Forkcast: https://forkcast.org/eips/7708/
+
+  #Ethereum #Amsterdam #Logs #FeelYourProtocol #Shorts
+
+tags:
+  - Ethereum
+  - EIP-7708
+  - Amsterdam
+  - Glamsterdam
+  - Transfer log
+  - Receipt logs
+  - Indexer
+  - EVM
+
+category: Science & Technology
+playlist: Feel Your Protocol · Amsterdam EIPs
+
+thumbnail:
+  file: eip-7708-2026-09-03T14-19-11-final-thumb.jpg
+  width: 1280
+  time_sec: 1.5
+  source: title-card
+
+sources:
+  exploration_url: https://feelyourprotocol.org/eip-7708-eth-transfer-logs
+  spec_url: https://eips.ethereum.org/EIPS/eip-7708
+  forkcast_url: https://forkcast.org/eips/7708/

@@ -41,6 +41,7 @@
     "video:voice:synth": "npm run voice:synth --prefix video --",
     "video:voice:plan": "npm run voice:plan --prefix video --",
     "video:voice:mux": "npm run voice:mux --prefix video --",
+    "video:thumb": "npm run thumb --prefix video --",
     "video:generate": "npm run website:build && npm run generate --prefix video --",
     "video:generate:preview": "npm run website:build && npm run generate --prefix video -- --preview",
     "video:render": "npm run video:generate --",

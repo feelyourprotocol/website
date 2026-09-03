@@ -109,13 +109,17 @@ export function muxVideoAudio(
     targetH !== undefined &&
     (source.width !== targetW || source.height !== targetH)
 
-  const filterParts: string[] = []
-  if (needsScale) {
-    filterParts.push(`[0:v]scale=${targetW}:${targetH}:flags=lanczos[vout]`)
-  }
-  filterParts.push(
-    padSec > 0.02 ? `[1:a]apad=pad_dur=${padSec.toFixed(3)}[aout]` : '[1:a]anull[aout]',
-  )
+  /*
+   * Always transcode video to H.264 + yuv420p, even when the source resolution matches the target.
+   * Playwright records Chromium's default VP9, and X/Twitter (and several other timelines) reject
+   * VP9-in-MP4 as "Incompatible video codecs". H.264 is the universal baseline.
+   * `+faststart` moves the moov atom to the file head so players start before the whole file loads.
+   */
+  const videoFilter = needsScale
+    ? `[0:v]scale=${targetW}:${targetH}:flags=lanczos[vout]`
+    : '[0:v]null[vout]'
+  const audioFilter =
+    padSec > 0.02 ? `[1:a]apad=pad_dur=${padSec.toFixed(3)}[aout]` : '[1:a]anull[aout]'
 
   const args = [
     '-y',
@@ -124,14 +128,21 @@ export function muxVideoAudio(
     '-i',
     audioPath,
     '-filter_complex',
-    filterParts.join(';'),
+    [videoFilter, audioFilter].join(';'),
     '-map',
-    needsScale ? '[vout]' : '0:v:0',
+    '[vout]',
     '-map',
     '[aout]',
     '-c:v',
-    needsScale ? 'libx264' : 'copy',
-    ...(needsScale ? ['-preset', 'fast', '-crf', '18', '-pix_fmt', 'yuv420p'] : []),
+    'libx264',
+    '-preset',
+    'fast',
+    '-crf',
+    '18',
+    '-pix_fmt',
+    'yuv420p',
+    '-movflags',
+    '+faststart',
     '-c:a',
     'aac',
     '-b:a',
