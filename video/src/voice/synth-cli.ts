@@ -1,4 +1,7 @@
 #!/usr/bin/env node
+import { existsSync } from 'node:fs'
+import { join } from 'node:path'
+
 import { loadVideoEnv } from '../loadEnv.ts'
 import { parseProjectArgs } from '../parseProjectArgs.ts'
 import { synthesizeProjectVoice } from '../voice/synthesize.ts'

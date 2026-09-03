@@ -1,0 +1,37 @@
+{
+  "segmentGapMs": 350,
+  "segments": [
+    {
+      "beat": "hook",
+      "text": "When does native ETH show up as a Transfer log — and when does it stay invisible?"
+    },
+    {
+      "beat": "context",
+      "text": "EIP-7708 makes ETH moves emit an ERC-20 style Transfer event. Amsterdam ships it inside Glamsterdam."
+    },
+    {
+      "beat": "reveal",
+      "text": "Plain transfer, one wei — the receipt now carries one Transfer log from the system address."
+    },
+    {
+      "beat": "switch-osaka",
+      "text": "Same transaction, one fork earlier."
+    },
+    {
+      "beat": "osaka-silent",
+      "text": "Osaka: no EIP-7708 rules, no Transfer log. Indexers stay blind to native ETH."
+    },
+    {
+      "beat": "edges",
+      "text": "The rule stays honest — zero-value moves and reverted calls emit nothing."
+    },
+    {
+      "beat": "recap",
+      "text": "Amsterdam only. Non-zero, non-reverted ETH moves — one Transfer log per hop."
+    },
+    {
+      "beat": "outro",
+      "text": "Read the EIP on Forkcast. Feel it live on feelyourprotocol dot org."
+    }
+  ]
+}

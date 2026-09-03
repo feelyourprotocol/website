@@ -27,6 +27,10 @@ export const EXPLORATION_REGISTRY: Record<string, ExplorationMeta> = {
     path: '/eip-7594-peerdas-data-availability-sampling',
     topic: 'scaling',
   },
+  'eip-7708': {
+    path: '/eip-7708-eth-transfer-logs',
+    topic: 'ux',
+  },
 }
 
 /** Topic → overlay theme (aligned with og/src/topic-colors.ts). */

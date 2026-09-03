@@ -1,0 +1,42 @@
+schema: video-short-tweet/v1
+id: eip-7708
+
+# Comic already opened with the coreQuestion ("When does native ETH show up as a Transfer log — and when does it stay silent?").
+# Video tweet leads with the mechanism instead and lands a diagnostic that maps to indexer / dapp surfaces.
+shape: thread
+
+t1:
+  body: |
+    EIP-7708 · Amsterdam
+    Every non-zero ETH move now emits a Transfer log — same signature as ERC-20, from the system address.
+
+    Does your indexer see native ETH the way it sees tokens?
+
+    https://feelyourprotocol.org/eip-7708-eth-transfer-logs
+  media: eip-7708-2026-09-03T14-19-11-final.mp4
+  video_description: |
+    Vertical 60-second Shorts-format walk-through of EIP-7708. A title card asks
+    "When is a native ETH move a LOG?", then a one-wei ETH transfer runs on
+    Amsterdam and a Transfer log appears in the receipt panel — same event
+    signature as ERC-20, emitted from the system address. Switching the same
+    transaction to Osaka shows no log; indexers stay blind to native ETH there.
+    Voice-over notes the rule only fires for non-zero, non-reverted ETH moves,
+    and closes with the exploration URL on feelyourprotocol.org.
+
+t2:
+  body: |
+    Where it fits + why it matters:
+
+    Spec: https://eips.ethereum.org/EIPS/eip-7708
+    Forkcast: https://forkcast.org/eips/7708/
+
+sources:
+  exploration_url: https://feelyourprotocol.org/eip-7708-eth-transfer-logs
+  spec_url: https://eips.ethereum.org/EIPS/eip-7708
+  forkcast_url: https://forkcast.org/eips/7708/
+
+notes: |
+  Consumed for future EIP-7708 videos: opener "EIP-7708 · Amsterdam / Every non-zero ETH move now emits a Transfer log";
+  diagnostic "Does your indexer see native ETH the way it sees tokens?".
+  Do not clone the comic's coreQuestion opener (already used on the first announcement).
+  Fork label: "Amsterdam" (EL rules), not "Glamsterdam" (hardfork name) — one label per tweet.

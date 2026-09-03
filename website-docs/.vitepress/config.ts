@@ -102,8 +102,6 @@ export default defineConfig({
           { text: 'Styling & Design', link: '/contributing/styling' },
           { text: 'Code Conventions', link: '/contributing/code-conventions' },
           { text: 'Third-Party Libraries', link: '/contributing/third-party-libraries' },
-          { text: 'Video Pipeline', link: '/contributing/video-pipeline' },
-          { text: 'Authoring a Video Short', link: '/contributing/video-authoring' },
         ],
       },
       {

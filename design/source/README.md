@@ -7,6 +7,7 @@ Raw masters — **not** served directly and **not** imported by the app at runti
 | Logos, brand lockups | `design/source/logos/<flavor>/` | App `src/` or relevant `public/` |
 | Exploration cover art (working files) | `src/explorations/<id>/` | Bundled via `info.ts` |
 | Feature art (ice cream, etc.) | `src/<feature>/assets/` | Bundled or `public/<feature>/` |
+| Bro & Bruh comics | `design/comics/eip-NNNN.png` + `eip-NNNN.yml` | Not bundled — [bro-bruh-comic skill](../../.cursor/skills/bro-bruh-comic/SKILL.md) |
 | OG / social cards | — | `public/og/` via `npm run generate:og:*` |
 
 ## Logos

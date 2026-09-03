@@ -1,0 +1,67 @@
+# Bro & Bruh comic metadata — schema bro-bruh-comic/v1
+# Keep this key set when adding files. Do not rename keys.
+schema: bro-bruh-comic/v1
+id: eip-7928
+episode: 2
+series: bro-bruh
+image: eip-7928.jpg
+
+exploration:
+  id: eip-7928
+  eip: 7928
+  name: EIP-7928 Block Level Access Lists
+  core_question: What does the block commit to besides state root?
+
+engine: false-friend
+bridge:
+  word: BAL
+  trader_sense: take the ball back / momentum
+  protocol_sense: Block-Level Access Lists (EIP-7928)
+
+vibe:
+  slug: null
+  topic: null
+  register: none
+  recency: null
+  why_hot: null
+  why_narrative: null
+  repeat_of: null
+
+setting:
+  name: alpine hiking trail / mountain valley
+  why: peaceful nature vs degen inner monologue; parallel thought bubbles
+
+easter_egg: marmot on a rock holding a cardboard Ethereum diamond sign
+
+copy:
+  panel1_bruh: >-
+    MARKET IS GREEN, TIME TO TAKE THE BALL BACK, LEVERAGE-LONG THE NEXT PUMP
+    AND FEEL THE GREEN DILDOS
+  panel2_bro: >-
+    BAL (EIP-7928 BLOCK LEVEL ACCESS LISTS) ENABLE PARALLEL TX EXECUTION.
+    I CAN *FEEL* THE SCALABILITY ❤️
+  title: '*BRO & BRUH EPISODE 2'
+  cta: A NEW FEEL YOUR PROTOCOL EXPLORATION HAS ARRIVED, CHECK IT OUT!
+
+tweet:
+  body: >-
+    New FYP exploration of the #Ethereum #Amsterdam hardfork headliner
+    (EIP-7928 "Block Level Access Lists"):
+    https://feelyourprotocol.org/eip-7928-block-level-access-lists
+  url: https://feelyourprotocol.org/eip-7928-block-level-access-lists
+  alt: >-
+    Bro & Bruh episode 2, two-panel comic on a sunny alpine hiking trail.
+    Panel 1: both walk a dirt path. Bruh, short dark hair, scowls and thinks:
+    MARKET IS GREEN, TIME TO TAKE THE BALL BACK, LEVERAGE-LONG THE NEXT PUMP
+    AND FEEL THE GREEN DILDOS. Bro, blonde ponytail and backwards teal FYP
+    cap, looks serene. A marmot on a rock holds a cardboard Ethereum diamond
+    sign. Panel 2: close-up of Bro with pink hearts. He thinks: BAL (EIP-7928
+    BLOCK LEVEL ACCESS LISTS) ENABLE PARALLEL TX EXECUTION. I CAN FEEL THE
+    SCALABILITY. Yellow box: A NEW FEEL YOUR PROTOCOL EXPLORATION HAS ARRIVED,
+    CHECK IT OUT!
+
+notes: >-
+  Homophone BALL/BAL. Thought bubbles, not a conversation. Pre-vibe-pipeline.
+  Do not copy this trail, the marmot+sign, or BAL/BALL.
+  Posted tweet (Jun 2025) is historical — do not clone the hashtag + headliner
+  catalog-card shape.

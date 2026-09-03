@@ -11,9 +11,10 @@ Each exploration is a self-contained folder under `src/explorations/` with metad
 in the browser.
 
 Repo agent entrypoint: https://github.com/feelyourprotocol/website/blob/main/AGENTS.md
-Round-trip skill (EIP → exploration → MCP): https://github.com/feelyourprotocol/website/blob/main/.cursor/skills/round-trip-protocol-change/SKILL.md
+Round-trip skill (EIP → exploration → MCP → optional comic): https://github.com/feelyourprotocol/website/blob/main/.cursor/skills/round-trip-protocol-change/SKILL.md
 Add-exploration skill: https://github.com/feelyourprotocol/website/blob/main/.cursor/skills/add-exploration/SKILL.md
 Cover-image skill: https://github.com/feelyourprotocol/website/blob/main/.cursor/skills/cover-image/SKILL.md
+Bro & Bruh comic skill: https://github.com/feelyourprotocol/website/blob/main/.cursor/skills/bro-bruh-comic/SKILL.md
 
 ## Guide
 
@@ -32,8 +33,6 @@ Cover-image skill: https://github.com/feelyourprotocol/website/blob/main/.cursor
 - [Styling & Design](https://website-docs.feelyourprotocol.org/contributing/styling.html): Topic colors and design-system rules (no CSS class catalog)
 - [Code Conventions](https://website-docs.feelyourprotocol.org/contributing/code-conventions.html): Naming (`MyC`, `EC`, `UIC`)
 - [Third-Party Libraries](https://website-docs.feelyourprotocol.org/contributing/third-party-libraries.html): How new library dependencies are evaluated and added
-- [Video Pipeline](https://website-docs.feelyourprotocol.org/contributing/video-pipeline.html): Short-form exploration videos — architecture, overlays, recording
-- [Authoring a Video Short](https://website-docs.feelyourprotocol.org/contributing/video-authoring.html): How to plan, write, and record exploration shorts
 
 ## Related (live sites, not dev docs here)
 

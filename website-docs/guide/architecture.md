@@ -23,7 +23,7 @@ Schema for all explorations: `src/explorations/canonicalTypes.ts`. Replicate `CA
 
 ### MCP twin (no orphan explorations)
 
-Every **live** exploration needs a matching MCP usage story — at minimum [`mcp-docs/use/eips/eip-NNNN`](https://mcp-docs.feelyourprotocol.org/use/coverage.html) (Runnable or Planned). The exploration is the textbook slice; MCP is the superset lab. Full path: [round-trip skill](https://github.com/feelyourprotocol/website/blob/main/.cursor/skills/round-trip-protocol-change/SKILL.md). Brief first: [brief-protocol-change skill](https://github.com/feelyourprotocol/website/blob/main/.cursor/skills/brief-protocol-change/SKILL.md).
+Every **live** exploration needs a matching MCP usage story — at minimum [`mcp-docs/use/eips/eip-NNNN`](https://mcp-docs.feelyourprotocol.org/use/coverage.html) (Runnable or Planned). The exploration is the textbook slice; MCP is the superset lab. Full path: [round-trip skill](https://github.com/feelyourprotocol/website/blob/main/.cursor/skills/round-trip-protocol-change/SKILL.md) (optional Bro & Bruh comic after MCP). Brief first: [brief-protocol-change skill](https://github.com/feelyourprotocol/website/blob/main/.cursor/skills/brief-protocol-change/SKILL.md).
 
 `REGISTRY.ts` assembles all explorations into routes — no manual route registration.
 
@@ -77,4 +77,4 @@ Brief agents: check [Available E-Components](/contributing/available-e-component
 
 ## Video pipeline
 
-Short-form exploration videos: isolated `video/` package, overlay via `?fyp-video=1`. Operational detail: [Video pipeline](/contributing/video-pipeline).
+Short-form exploration videos live in the isolated `video/` package (sibling of `og/`), with a rendering layer under `src/video/` activated by `?fyp-video=1`. Authoring is agent-driven — see the `video-short` skill and `video/README.md` in the repo.

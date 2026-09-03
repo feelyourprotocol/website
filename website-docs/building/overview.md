@@ -15,7 +15,7 @@ npm run dev
 
 2. **Understand the model** — read [Architecture](/guide/architecture) (taxonomies, folder-per-exploration, E-Components).
 
-3. **Trigger the agent** — for a new EIP, “round-trip for EIP-xxxx” ([round-trip skill](https://github.com/feelyourprotocol/website/blob/main/.cursor/skills/round-trip-protocol-change/SKILL.md)). You GO after the briefing and again after the exploration (optional MCP hints). Widget-only: [AGENTS.md](https://github.com/feelyourprotocol/website/blob/main/AGENTS.md) + [add-exploration](https://github.com/feelyourprotocol/website/blob/main/.cursor/skills/add-exploration/SKILL.md). Constraints the briefing should settle:
+3. **Trigger the agent** — for a new EIP, “round-trip for EIP-xxxx” ([round-trip skill](https://github.com/feelyourprotocol/website/blob/main/.cursor/skills/round-trip-protocol-change/SKILL.md)). You GO after the briefing and again after the exploration (optional MCP hints). After MCP the agent asks whether to generate a Bro & Bruh comic ([bro-bruh-comic](https://github.com/feelyourprotocol/website/blob/main/.cursor/skills/bro-bruh-comic/SKILL.md)) — skippable. Widget-only: [AGENTS.md](https://github.com/feelyourprotocol/website/blob/main/AGENTS.md) + [add-exploration](https://github.com/feelyourprotocol/website/blob/main/.cursor/skills/add-exploration/SKILL.md). Constraints the briefing should settle:
    - Pick topic/timeline/tags from the architecture tables (do not invent IDs)
    - Prefer an existing [E-Component](/contributing/available-e-components) over custom UI
 

@@ -16,6 +16,7 @@
     "voice:synth": "node --experimental-strip-types src/voice/synth-cli.ts",
     "voice:plan": "node --experimental-strip-types src/voice/plan-cli.ts",
     "voice:mux": "node --experimental-strip-types src/voice/mux-cli.ts",
+    "thumb": "node --experimental-strip-types src/thumb-cli.ts",
     "generate": "node --experimental-strip-types src/generate-cli.ts",
     "render": "npm run generate"
   },

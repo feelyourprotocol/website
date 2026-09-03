@@ -2,7 +2,7 @@
 
 An exploration is a folder under `src/explorations/` with metadata and an interactive widget. **You** define the pedagogical goal and review the result; **your agent** implements.
 
-**Default for a new EIP:** tell the agent “round-trip for EIP-xxxx”. That runs the [round-trip skill](https://github.com/feelyourprotocol/website/blob/main/.cursor/skills/round-trip-protocol-change/SKILL.md) — brief, then exploration, then MCP — with a GO from you between phases. Widget-only work still uses [brief-protocol-change](https://github.com/feelyourprotocol/website/blob/main/.cursor/skills/brief-protocol-change/SKILL.md) then [add-exploration](https://github.com/feelyourprotocol/website/blob/main/.cursor/skills/add-exploration/SKILL.md).
+**Default for a new EIP:** tell the agent “round-trip for EIP-xxxx”. That runs the [round-trip skill](https://github.com/feelyourprotocol/website/blob/main/.cursor/skills/round-trip-protocol-change/SKILL.md) — brief, then exploration, then MCP, then an optional Bro & Bruh comic — with a GO from you between phases. Widget-only work still uses [brief-protocol-change](https://github.com/feelyourprotocol/website/blob/main/.cursor/skills/brief-protocol-change/SKILL.md) then [add-exploration](https://github.com/feelyourprotocol/website/blob/main/.cursor/skills/add-exploration/SKILL.md).
 
 ## Brief your agent
 

@@ -2,22 +2,25 @@
 name: round-trip-protocol-change
 description: >-
   Orchestrates the full Feel Your Protocol round-trip for a protocol change
-  (EIP, ERC, or research): brief, exploration, then MCP twin. Use when the user
-  asks to do the round-trip for an EIP, add an exploration plus MCP integration,
-  or integrate a protocol change end-to-end.
+  (EIP, ERC, or research): brief, exploration, MCP twin, optional Bro &
+  Bruh comic, then optional short-form video. Use when the user asks to do
+  the round-trip for an EIP, add an exploration plus MCP integration, or
+  integrate a protocol change end-to-end.
 ---
 
 # Protocol-change round-trip
 
 Orchestrator for a **full integration**. Implementation lives in subskills — this file is the phase map, the hard stops, and the report contracts.
 
-**Human work:** 2–4 high-level triggers (start, briefing GO, exploration GO, optional hints). Do not ask for mid-phase micro-approvals.
+**Human work:** high-level triggers only (start, briefing GO, exploration GO, optional MCP hints, then a comic ask). Do not ask for mid-phase micro-approvals.
 
 | Phase | Subskill | Then **STOP** until human |
 | --- | --- | --- |
 | **1 — Brief** | [brief-protocol-change](../brief-protocol-change/SKILL.md) | Explicit **GO** for the exploration |
 | **2 — Exploration** | [add-exploration](../add-exploration/SKILL.md) | Explicit **GO** for MCP (optional hints from the widget) |
-| **3 — MCP** | [add-mcp-module](https://github.com/feelyourprotocol/mcp-execution-engine/blob/main/.cursor/skills/add-mcp-module/SKILL.md) | Done (PR is an optional follow-up) |
+| **3 — MCP** | [add-mcp-module](https://github.com/feelyourprotocol/mcp-execution-engine/blob/main/.cursor/skills/add-mcp-module/SKILL.md) | Ask whether to generate the Bro & Bruh comic |
+| **4 — Comic** | [bro-bruh-comic](../bro-bruh-comic/SKILL.md) | Ask whether to generate the short-form video |
+| **5 — Video** | [video-short](../video-short/SKILL.md) | Done (PR is an optional follow-up) |
 
 Local engine checkout (sibling of `website/`): `../mcp-execution-engine/.cursor/skills/add-mcp-module/SKILL.md`.
 
@@ -27,6 +30,8 @@ This is a **multi-phase workflow with hard stops**. After each phase, **stop com
 
 - Do **not** skip briefing.
 - Do **not** start MCP work during the exploration phase (planned `mcp-docs` page in the same exploration PR is allowed when the briefing already committed to a twin).
+- Do **not** start the comic during the MCP phase — ask, then wait.
+- Do **not** start the video during the comic phase — ask, then wait. If the comic is skipped, ask about the video after the MCP report instead.
 - Do **not** treat green tests as a waiver of the human GO.
 - Do **not** commit, push, or open a PR unless asked.
 - Cover art and OG cards are **part of phase 2** (every exploration), not a later optional skill. PR remains optional.
@@ -80,7 +85,39 @@ Load and follow [add-mcp-module](https://github.com/feelyourprotocol/mcp-executi
 
 **Agent does:** engine module and/or catalogue page per `docsStatus` and shipped verbs; tests; quality gates. Close with the MCP report from that skill.
 
-**Output:** MCP twin in the state the briefing promised (runnable module or planned-module page) — round-trip complete.
+**Output:** MCP twin in the state the briefing promised (runnable module or planned-module page) — then **ask** (do not generate in this turn):
+
+> Generate the Bro & Bruh comic for `eip-NNNN`?
+
+Skip is fine. “Let’s go” at the start of the round-trip does **not** pre-authorize phase 4.
+
+---
+
+## Phase 4 — Comic
+
+Only after an explicit yes on that ask (or a standalone “comic for EIP-xxxx”).
+
+Load and follow [bro-bruh-comic](../bro-bruh-comic/SKILL.md).
+
+**Agent does:** read `CANONICAL` + existing `design/comics/eip-*.yml` and strips; vibe intake; derive; draw; announcement tweet; write `design/comics/eip-NNNN.png` (or `.jpg`) + `eip-NNNN.yml`; comic report (includes paste-ready tweet).
+
+**Output:** strip + metadata — then **ask** (do not generate in this turn):
+
+> Generate the short-form video for `eip-NNNN`?
+
+Skip is fine. If phase 4 was skipped, ask this after the phase-3 report instead. “Let’s go” at the start of the round-trip does **not** pre-authorize phase 5.
+
+---
+
+## Phase 5 — Video short
+
+Only after an explicit yes on that ask (or a standalone “video for EIP-xxxx”).
+
+Load and follow [video-short](../video-short/SKILL.md).
+
+**Agent does:** preflight (registry entry, `data-testid` hooks, videoReady spec, Chromium probe, ElevenLabs key present — non-printing); derive plan from `CANONICAL.question.coreQuestion` + `examples.ts`; draft `video/projects/eip-NNNN/{content,playbook,zones,narration}.json`; Tier 1–3 QA (vitest + type-check + storyboard + dry-run); synthesize voice; record `--preview`; mux; verify frame 0 + audio start + 30–90 s duration; video report.
+
+**Output:** `video/projects/eip-NNNN/output/eip-NNNN-<timestamp>-final.mp4` — round-trip complete.
 
 ---
 
@@ -91,5 +128,7 @@ Load and follow [add-mcp-module](https://github.com/feelyourprotocol/mcp-executi
 | Briefing | Human signed off core question, audience, suitability, taxonomy |
 | Exploration | Route + home Latest work; cover art; tests + `lf:ci` / typecheck; pedagogy + form-factor report |
 | MCP | Catalogue page exists for every **live** exploration; engine module only if a shipped verb can run the change |
+| Comic | Optional. Done when the human skipped, or when `design/comics/eip-NNNN.yml` + image exist and the phase-4 report was given |
+| Video | Optional. Done when the human skipped, or when `video/projects/eip-NNNN/output/*-final.mp4` exists and the phase-5 report was given |
 
 PR is **out of this round-trip** unless the human asks.

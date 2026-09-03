@@ -5,6 +5,7 @@ import { startStaticServer } from '../../og/src/server.ts'
 import { assertChromiumReady } from './chromium.ts'
 import { parseVideoFormatId, VIDEO_FORMATS, VIDEO_RECORD_FORMAT } from './formats.ts'
 import { estimatePlaybookDurationMs, loadVideoProject } from './loadProject.ts'
+import { pruneOtherGenerations } from './outputPaths.ts'
 import { ensureVideoFontsReady, runPlaybook, showLeadInOverlay, waitForExplorationReady } from './playbookRunner.ts'
 import { trimVideoLeadIn } from './trimLeadIn.ts'
 import type { LoadedVideoProject } from './types.ts'
@@ -178,6 +179,14 @@ export async function recordVideo(
     }
 
     console.log(`Saved (silent intermediate — no audio): ${finalPath}`)
+
+    // Keep only the newest generation in output/ — one project = one uploadable set.
+    const pruned = pruneOtherGenerations(outputDir, projectId, timestamp)
+    if (pruned.deleted.length) {
+      console.log(`Pruned ${pruned.deleted.length} older generation file(s):`)
+      for (const p of pruned.deleted) console.log(`  ${p}`)
+    }
+
     if (project.voiceManifest && !options.fromGenerate && !options.noVoice) {
       const flags = [options.preview ? '--preview' : '', '--skip-synth'].filter(Boolean).join(' ')
       console.log(
