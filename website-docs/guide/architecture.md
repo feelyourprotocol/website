@@ -77,4 +77,4 @@ Brief agents: check [Available E-Components](/contributing/available-e-component
 
 ## Video pipeline
 
-Short-form exploration videos: isolated `video/` package, overlay via `?fyp-video=1`. Operational detail: [Video pipeline](/contributing/video-pipeline).
+Short-form exploration videos live in the isolated `video/` package (sibling of `og/`), with a rendering layer under `src/video/` activated by `?fyp-video=1`. Authoring is agent-driven — see the `video-short` skill and `video/README.md` in the repo.

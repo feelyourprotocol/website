@@ -41,6 +41,7 @@ function isHighlighted(decoration: ReceiptLogDecoration | undefined): boolean {
       'exploration-c receipt-logs-panel bg-white rounded-lg p-4 shadow-sm min-h-[20rem]',
       TOPIC_COLORS[topic.color].classes.borderCard,
     ]"
+    data-testid="receipts-panel"
   >
     <div class="flex flex-wrap items-baseline justify-between gap-2 mb-1">
       <h2 class="text-lg font-bold tracking-tight e-text">{{ title }}</h2>
@@ -67,6 +68,9 @@ function isHighlighted(decoration: ReceiptLogDecoration | undefined): boolean {
           'rounded-md border p-3 text-sm',
           isHighlighted(row.decoration) ? 'e-border-dark e-bg-medium' : 'e-border e-bg-light',
         ]"
+        data-testid="receipts-log-row"
+        :data-log-decoration="row.decoration?.kind ?? 'none'"
+        :data-log-index="row.index"
       >
         <div class="flex flex-wrap items-center gap-2 mb-2">
           <span class="text-[0.65rem] font-mono uppercase tracking-widest opacity-45">

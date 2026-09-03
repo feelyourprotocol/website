@@ -1,0 +1,72 @@
+{
+  "format": "shorts",
+  "exploration": "eip-7708",
+  "defaultExample": "01-plain-transfer",
+  "steps": [
+    {
+      "beat": "hook",
+      "overlay": "title-card",
+      "wait": 4500
+    },
+    {
+      "beat": "context",
+      "overlay": "context",
+      "placement": "top-banner",
+      "focus": "example-select",
+      "cue": 3400,
+      "hideOverlay": true,
+      "wait": 600
+    },
+    {
+      "beat": "reveal",
+      "overlay": "reveal",
+      "annotate": "guide-receipts",
+      "placement": "top-banner",
+      "focus": "receipts-panel",
+      "cue": 3200,
+      "expandCompanion": "full",
+      "click": "run-block",
+      "wait": 2800
+    },
+    {
+      "beat": "switch-osaka",
+      "overlay": "switch-osaka",
+      "annotate": "guide-fork",
+      "placement": "top-banner",
+      "focus": "hardfork-toggle",
+      "cue": 2400,
+      "click": "hardfork-osaka",
+      "wait": 700
+    },
+    {
+      "beat": "osaka-silent",
+      "overlay": "osaka-silent",
+      "annotate": "guide-receipts",
+      "placement": "top-banner",
+      "focus": "receipts-panel",
+      "cue": 2600,
+      "click": "run-block",
+      "wait": 2400
+    },
+    {
+      "beat": "edges",
+      "overlay": "edges",
+      "placement": "top-banner",
+      "cue": 4000,
+      "wait": 800
+    },
+    {
+      "beat": "recap",
+      "overlay": "recap",
+      "annotate": "guide-receipts",
+      "placement": "top-banner",
+      "focus": "receipts-panel",
+      "wait": 4200
+    },
+    {
+      "beat": "outro",
+      "overlay": "outro-card",
+      "wait": 5000
+    }
+  ]
+}

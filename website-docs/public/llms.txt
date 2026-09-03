@@ -33,8 +33,6 @@ Bro & Bruh comic skill: https://github.com/feelyourprotocol/website/blob/main/.c
 - [Styling & Design](https://website-docs.feelyourprotocol.org/contributing/styling.html): Topic colors and design-system rules (no CSS class catalog)
 - [Code Conventions](https://website-docs.feelyourprotocol.org/contributing/code-conventions.html): Naming (`MyC`, `EC`, `UIC`)
 - [Third-Party Libraries](https://website-docs.feelyourprotocol.org/contributing/third-party-libraries.html): How new library dependencies are evaluated and added
-- [Video Pipeline](https://website-docs.feelyourprotocol.org/contributing/video-pipeline.html): Short-form exploration videos — architecture, overlays, recording
-- [Authoring a Video Short](https://website-docs.feelyourprotocol.org/contributing/video-authoring.html): How to plan, write, and record exploration shorts
 
 ## Related (live sites, not dev docs here)
 

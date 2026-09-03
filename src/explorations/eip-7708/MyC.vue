@@ -135,6 +135,7 @@ await init()
             class="inline-flex shrink-0 rounded-md border border-slate-300 bg-slate-100 p-0.5 text-xs font-mono max-md:px-0.5"
             role="group"
             aria-label="Hardfork"
+            data-testid="hardfork-toggle"
           >
             <button
               type="button"
@@ -145,6 +146,7 @@ await init()
                   : 'text-slate-600 hover:bg-white/80 hover:text-slate-900'
               "
               :aria-pressed="hardfork === 'amsterdam'"
+              data-testid="hardfork-amsterdam"
               @click="setHardfork('amsterdam')"
             >
               Amsterdam
@@ -158,6 +160,7 @@ await init()
                   : 'text-slate-600 hover:bg-white/80 hover:text-slate-900'
               "
               :aria-pressed="hardfork === 'osaka'"
+              data-testid="hardfork-osaka"
               @click="setHardfork('osaka')"
             >
               Osaka

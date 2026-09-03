@@ -1,0 +1,42 @@
+{
+  "format": { "width": 540, "height": 960 },
+  "safeZone": {
+    "topPx": 56,
+    "bottomPx": 120,
+    "leftPx": 32,
+    "rightPx": 48,
+    "description": "YouTube Shorts — keep readable text/UI inside; black bars may bleed to edges"
+  },
+  "focusAreas": {
+    "example-select": {
+      "selector": "[data-testid=\"example-select\"]",
+      "description": "Scenario dropdown — 4 EIP-7708 examples"
+    },
+    "hardfork-toggle": {
+      "selector": "[data-testid=\"hardfork-toggle\"]",
+      "description": "Amsterdam / Osaka toggle row"
+    },
+    "run-block": {
+      "selector": "[data-testid=\"run-block\"]",
+      "description": "Run block action button"
+    },
+    "receipts-panel": {
+      "selector": "[data-testid=\"receipts-panel\"]",
+      "description": "Right-panel receipt log list (decoded Transfer rows)"
+    }
+  },
+  "placements": {
+    "top-banner": {
+      "anchor": "top",
+      "insetPx": 0,
+      "maxHeightPx": 184,
+      "description": "Full-bleed black bar; text inset via CSS safe zone + --video-ribbon-pad-*"
+    },
+    "bottom-banner": {
+      "anchor": "bottom",
+      "insetPx": 120,
+      "maxHeightPx": 140,
+      "description": "Bar above companion — clears Shorts bottom action row"
+    }
+  }
+}

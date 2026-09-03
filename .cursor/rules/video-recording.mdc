@@ -52,4 +52,4 @@ run `video:setup` / `playwright install` as the first fix.
 2. Still fails → ask user for `npm run og:check` output; do **not** run setup
 3. Selector timeout / 404 → fix app or playbook, not Playwright setup
 
-See `video/README.md` and `website-docs/contributing/video-pipeline.md`.
+See `video/README.md` and the `video-short` skill (`.cursor/skills/video-short/`).

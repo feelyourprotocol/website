@@ -1,0 +1,107 @@
+{
+  "meta": {
+    "exploration": "eip-7708",
+    "defaultExample": "01-plain-transfer"
+  },
+  "overlays": {
+    "title-card": {
+      "type": "title-card",
+      "eyebrow": "Ethereum · Glamsterdam",
+      "title": "EIP-7708",
+      "subtitle": "ETH transfers\nemit a log",
+      "hook": ["When is a native ETH move", "a LOG?"]
+    },
+    "context": {
+      "type": "punch",
+      "layout": "banner",
+      "placement": "top-banner",
+      "text": "GLAMSTERDAM",
+      "sub": "ETH moves emit ERC-20-style Transfer logs",
+      "invert": true
+    },
+    "reveal": {
+      "type": "split",
+      "layout": "banner",
+      "placement": "top-banner",
+      "segments": [
+        { "text": "Plain transfer", "size": "lg" },
+        { "text": "1 Transfer log appears ↓", "size": "md", "emphasis": true }
+      ]
+    },
+    "switch-osaka": {
+      "type": "punch",
+      "layout": "banner",
+      "placement": "top-banner",
+      "text": "SAME TX · OSAKA",
+      "sub": "Toggle the fork ↑",
+      "invert": false
+    },
+    "osaka-silent": {
+      "type": "split",
+      "layout": "banner",
+      "placement": "top-banner",
+      "segments": [
+        { "text": "Osaka: no EIP-7708", "size": "lg" },
+        { "text": "Receipt stays silent ↓", "size": "md", "emphasis": true }
+      ]
+    },
+    "edges": {
+      "type": "list-flash",
+      "placement": "top-banner",
+      "headline": "ALSO SILENT",
+      "items": ["Zero-value moves", "Reverted CALL", "SELFDESTRUCT to self"]
+    },
+    "recap": {
+      "type": "split",
+      "layout": "banner",
+      "placement": "top-banner",
+      "segments": [
+        { "text": "Amsterdam only", "size": "lg" },
+        { "text": "Non-zero + non-reverted → 1 log", "size": "lg", "emphasis": true }
+      ]
+    },
+    "outro-card": {
+      "type": "outro-card",
+      "closing": "EIP-7708 lands with the Amsterdam EL rules inside Glamsterdam.",
+      "ctas": [
+        {
+          "label": "READ ABOUT THE EIP",
+          "url": "FORKCAST.ORG",
+          "variant": "secondary"
+        },
+        {
+          "label": "TRY IT YOURSELF",
+          "url": "FEELYOURPROTOCOL.ORG",
+          "variant": "primary"
+        }
+      ]
+    }
+  },
+  "annotations": {
+    "guide-run": {
+      "target": "run-block",
+      "label": "Run block",
+      "hint": "Executes the scenario",
+      "side": "bottom"
+    },
+    "guide-fork": {
+      "target": "hardfork-toggle",
+      "label": "Hardfork",
+      "hint": "Toggle Amsterdam ↔ Osaka",
+      "side": "bottom"
+    },
+    "guide-receipts": {
+      "target": "receipts-panel",
+      "label": "Receipt logs",
+      "hint": "Decoded Transfer rows appear here",
+      "side": "top"
+    }
+  },
+  "highlightSets": {
+    "transfer-payoff": {
+      "marks": [
+        { "target": "[data-log-decoration=\"eth-transfer\"]", "padX": 10, "padY": 8 }
+      ]
+    }
+  }
+}

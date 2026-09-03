@@ -35,7 +35,7 @@ npm run video:record -- eip-8024 --dry-run   # inspect playbook steps
 
 Output: `video/projects/<id>/output/<id>-<timestamp>-final.mp4` (upload) and `.webm` (silent intermediate).
 
-Step-by-step voice tooling: `video:voice:synth`, `video:voice:plan`, `video:voice:mux`. See `website-docs/contributing/video-voice.md`.
+Step-by-step voice tooling: `video:voice:synth`, `video:voice:plan`, `video:voice:mux`. Recipe + timing derivation: `.cursor/skills/video-short/reference.md`.
 
 Output: `video/projects/<id>/output/<id>-<timestamp>.webm`
 
@@ -106,6 +106,6 @@ Run record/preflight with `required_permissions: ["all"]`.
 
 ## See also
 
-- `website-docs/contributing/video-pipeline.md` — full architecture and workflow
-- `website-docs/contributing/video-authoring.md` — how to author a short (beats, pacing, recording)
+- `.cursor/skills/video-short/SKILL.md` — end-to-end authoring playbook (agent-driven)
+- `.cursor/skills/video-short/reference.md` — architecture, JSON schemas, ElevenLabs recipe, security rules, troubleshooting
 - `og/README.md` — shared Chromium bootstrap pattern
