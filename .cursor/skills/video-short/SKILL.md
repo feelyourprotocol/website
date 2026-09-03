@@ -32,14 +32,15 @@ Read, then derive. Do not re-brief the EIP. Do not invent verbs, numbers, or for
 ## Workflow
 
 1. **Preflight** — [Preflight](#preflight-hard-gates). Bail early if any gate fails.
-2. **Inventory** from prior `video/projects/*` — list consumed openings, hooks, outro CTAs.
+2. **Inventory** from prior `video/projects/*` — list consumed openings, hooks, outro CTAs, and prior `tweet.yml` openers.
 3. **Derive** the video plan — [Derivation](#derivation). Write it in chat before drafting files.
 4. **Draft the four project files** — [Project files](#project-files). Use existing project as a shape guide, not a copy target.
 5. **QA Tier 1–3** — [QA gates](#qa-gates). Hard stop on any error.
 6. **Cost gate (transparency only, no human GO)** — print the full narration script + estimated duration in chat before spending ElevenLabs credits. Continue in the same turn.
 7. **Synthesize + plan + record + mux** — [Recording](#recording).
 8. **Verify** — frame 0 is title band, audio starts at 0:00, duration is 30–90 s.
-9. **Report** — [Report](#report), then **STOP**.
+9. **Announcement tweet** — [Announcement tweet](#announcement-tweet). Write `tweet.yml`; include paste-ready copy in the report.
+10. **Report** — [Report](#report), then **STOP**.
 
 Do not commit, push, or open a PR unless asked. Do not upload to any platform. Do not modify existing videos.
 
@@ -79,6 +80,7 @@ Layout under `video/projects/<id>/` — mirror [`video/projects/eip-8024/`](../.
 | `playbook.json` | Ordered `steps`: `beat`, `overlay`, `annotate`, `placement`, `focus`, `cue`, `wait`, `selectExample`, `step`, `expandCompanion`, `click`, climax fields | one step per beat from the arc; `defaultExample` = `DEFAULT_SCENARIO_ID` (or the exploration's default) |
 | `zones.json` | `format: { width: 540, height: 960 }`, `safeZone`, `focusAreas`, `placements` | `focusAreas` keys = every `focus` used in the playbook |
 | `narration.json` | `segmentGapMs` (~350) + `segments[{ beat, text }]` | `hook.text` = anchor; last segment references the CTA on-screen |
+| `tweet.yml` | Announcement tweet (T1 + optional T2 reply) + video description | Written after mux; see [Announcement tweet](#announcement-tweet) |
 
 Schemas + overlay type details: [reference.md § Schemas](reference.md#schemas). Overlay layout / safe zone: [reference.md § Overlays](reference.md#overlays-and-safe-zones).
 
@@ -139,6 +141,100 @@ Look at (do not just assert) the final `.mp4`:
 3. **Duration** — 30–90 s (Shorts sweet spot 45–60 s).
 4. **Highlights** — if a `highlightSet` is used, the payoff cell(s) actually light up on the climax beat.
 
+## Announcement tweet
+
+The video is the **second announcement** of the exploration on @FeelEthereum ([Marketing Strategy → cadence](../../roadmap/go-to-market/marketing.md#announcement-cadence-per-exploration)). The [Bro & Bruh comic](../bro-bruh-comic/SKILL.md) already sparked interest. This tweet lands the *substance* and asks for real mental engagement: watch, poke the exploration, then decide "does this touch my domain?". Later, a third tweet will introduce the MCP twin — that one is **out of this skill**.
+
+**Job:** get a protocol-curious reader to (a) watch the 45–60 s clip, and (b) either open the exploration, or open the spec / Forkcast to check the EIP against their own use case. Not entertainment; not vibe recap; not hype.
+
+**Voice:** warm, honest, precise. Protocol-curious peer, not analyst, not shill. Second person is fine when it invites reflection ("does your indexer see …"); avoid imperative marketing verbs ("check out", "don't miss", "must-see").
+
+### Shape — default is a 2-tweet mini-thread
+
+The video needs the whole first tweet. Piling all three URLs on the media dilutes both the "watch" ask and the "dive in" ask. Split cleanly:
+
+- **T1 (with video)** — 2 short lines (context + mechanism, or mechanism + diagnostic question) + primary CTA + naked exploration URL. Media = the muxed `*-final.mp4`.
+- **T2 (reply, no media)** — spec + Forkcast (when a Forkcast page exists). One line of framing is fine.
+
+Single-tweet form is allowed **only** when context + one line of mechanism + all three URLs fit under 240 chars without cramping. If the `coreQuestion` is long or the EIP needs setup, use the thread — do not compress.
+
+### T1 — write order
+
+Pick **two** of these three, in this order, then the URL:
+
+1. **Context** (1 line, no fluff) — `EIP-NNNN · <fork>` and one verb that says what ships. Use `CANONICAL.maturity.forkInclusion` when set. Fork wording: **Glamsterdam** = hardfork, **Amsterdam** = EL rules — one label, whichever is truer for this EIP; not both as a sequence.
+2. **Mechanism** (1 line, plain words) — the video's climax / recap distilled. Say what *happens* (a Transfer log fires; the stack copies depth 17), not what an app should *do*. Derived from `canonical.ts` + the recap narration segment, not invented.
+3. **Diagnostic** (1 line, invites reflection) — a question that maps the mechanism to the reader's own surface. Examples of the shape: "Does your indexer see native ETH the way it sees ERC-20?", "How deep does your compiler pack the stack?". Never generic ("Is your dapp ready?") — always something they can actually check.
+
+Then a blank line, then the naked exploration URL: `https://feelyourprotocol.org<INFO.path>`.
+
+### T2 (reply) — write order
+
+Two naked URLs stacked. Optional one line of framing before them (e.g. "Where it fits + why").
+
+- `Spec: https://eips.ethereum.org/EIPS/eip-NNNN` (from `CANONICAL.identity.specUrl`)
+- `Forkcast: https://forkcast.org/eips/NNNN/` — include **only if** the Forkcast page for this EIP exists. Forkcast URL pattern is `/eips/NNNN/` (plural, trailing slash). Verify the page returns 200 before writing the URL; omit the whole line rather than link to a 404.
+
+### Do not
+
+- Clone the comic caption or its opener
+- Recap the video ("in this 60-second clip…")
+- Hashtag block, self-`@FeelEthereum`, "check out", "you've been waiting", "don't miss"
+- Analyst tone, price, MCP / x402 / token
+- Mention Glamsterdam **and** Amsterdam in the same tweet as if they were a sequence
+- Invent numbers, fork names, or verbs not present in `canonical.ts` / `examples.ts`
+- Emojis by default. One "↓" or "→" as an arrow is fine when it earns its character; skip otherwise
+
+### Diversity check
+
+Scan every existing `video/projects/*/tweet.yml` `t1.body` opener. If your draft repeats a stock phrase ("Feel it live", "Watch the mechanic", "See it in the receipt"), reword. Video CTAs will repeat over time — that's OK; framing must stay fresh across the franchise.
+
+### Video description (X accessibility)
+
+X calls this "Add description" on the video composer (opens on click of the uploaded video thumbnail). Write it — screen readers get only this + the tweet body.
+
+- 2–3 sentences, plain prose
+- What's on screen (title band → widget → payoff) + one line summarising the spoken narration
+- Not tweet copy, not marketing
+- ≤ 1000 chars; aim 300–600
+
+### Length
+
+- T1 comfortably under **270 chars** with the URL (which counts as 23). Prefer shorter — 200–240 is the sweet spot.
+- T2 comfortably under **240 chars** with both URLs.
+- If you cannot land T1 under 270 without cutting the mechanism line, drop the diagnostic and keep context + mechanism.
+
+### File — `video/projects/<id>/tweet.yml`
+
+Copy the key set. Do not add ad-hoc top-level keys. `null` allowed for `t2.body` (single-tweet form) or `sources.forkcast_url` (no Forkcast page).
+
+```yaml
+schema: video-short-tweet/v1
+id: eip-NNNN
+
+# Shape decision — 'thread' is default; 'single' only when T1 fits all three URLs under 240 chars
+shape: thread | single
+
+t1:
+  body: |
+    <paste-ready caption, naked exploration URL on its own last line>
+  media: <basename of the muxed *-final.mp4 under output/>
+  video_description: |
+    <2–3 sentences for the X "Add description" field; screen-reader accessible>
+
+# When shape: single, set t2: null and put all URLs in t1.body.
+t2:
+  body: |
+    <paste-ready reply, spec + Forkcast URLs on their own lines>
+
+sources:
+  exploration_url: https://feelyourprotocol.org<INFO.path>
+  spec_url: <CANONICAL.identity.specUrl>
+  forkcast_url: https://forkcast.org/eips/NNNN/   # or null when no page exists (pattern: /eips/NNNN/ with trailing slash)
+
+notes: <consumed opener + anything a later LLM must not repeat>
+```
+
 ## Report
 
 ```markdown
@@ -176,7 +272,30 @@ outro:   <text>
 - Voice sync at climax
 - Outro CTAs (Forkcast, feelyourprotocol.org<INFO.path>) both legible
 
-**Consumed for future videos:** hook openings, outro CTA phrasing
+**Announcement tweet** (`video/projects/eip-NNNN/tweet.yml`, shape: <thread|single>):
+
+T1 (attach the muxed `*-final.mp4`):
+
+```
+<t1.body>
+```
+
+Video description (X composer → "Add description"):
+
+```
+<t1.video_description>
+```
+
+<!-- omit the block below when shape: single -->
+T2 (reply, no media):
+
+```
+<t2.body>
+```
+
+Human may edit; do not ask for a tweet-only GO.
+
+**Consumed for future videos:** hook openings, outro CTA phrasing, T1 opener
 **Open:** (voice edits, timing tweaks — human can ask)
 ```
 

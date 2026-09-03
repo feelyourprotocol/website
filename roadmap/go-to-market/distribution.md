@@ -16,7 +16,7 @@ Until the public endpoint is live, the play is **substance, not hype**:
 
 | Rhythm | Channel | Content |
 | --- | --- | --- |
-| **~2× / week** | Twitter/X (official + personal dev account) | New Amsterdam explorations with video; link to website + MCP twin on mcp-docs |
+| **~2–3× / week** | Twitter/X ([@FeelEthereum](https://x.com/FeelEthereum)) | New Amsterdam explorations — each ships with a per-exploration [announcement arc](/go-to-market/marketing#announcement-cadence-per-exploration): comic (spark) + video (engage), MCP tweet (equip) added at launch |
 | **1× / week** | Personal dev account | x402 / payment integration build-in-public (technical, not token news) |
 | **As ready** | Website + mcp-docs | **Without MCP vs with MCP** proofs — same prompt, same model, checked outcomes |
 | **Pinned anchor** | Official account | [Launch week](/roadmap/launch) countdown — hosted MCP, not self-host |
@@ -53,6 +53,7 @@ The roadmap, timeline, and [launch week](/roadmap/launch) page are the canonical
 <Changelog
   title="Distribution Changelog"
   :entries="[
+    { version: 'v0.3', date: '2026-09-03', summary: 'Countdown rhythm row now points to Marketing Strategy for the per-exploration announcement arc (comic + video + MCP).' },
     { version: 'v0.2', date: '2026-09-02', summary: 'Rewritten for launch countdown — DevRel running, hosted-only GTM, oracle-first hook, without/with MCP proofs.' },
     { version: 'v0.1', date: '2026-06-30', summary: 'Initial future GTM outline — registries, outreach hypotheses.' },
   ]"

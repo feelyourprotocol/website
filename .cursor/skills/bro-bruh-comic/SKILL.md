@@ -85,7 +85,7 @@ slug / topic / register (markets | l2 | protocol | culture | other) / recency / 
 
 ## Announcement tweet
 
-The strip is the **first exploration announcement** on @FeelEthereum. The comic stops the feed. The tweet is the caption that names the **payload** (the live exploration) and hands over the URL. It is **Bro’s register**, not Bruh’s.
+The strip is the **first exploration announcement** on @FeelEthereum — the *spark* in the per-exploration [announcement arc](../../roadmap/go-to-market/marketing.md#announcement-cadence-per-exploration); the [`video-short`](../video-short/SKILL.md) tweet is the *engage* step that lands a few hours later. The comic stops the feed. The tweet is the caption that names the **payload** (the live exploration) and hands over the URL. It is **Bro’s register**, not Bruh’s.
 
 **Job (from the two live posts):**
 
