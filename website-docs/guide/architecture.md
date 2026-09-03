@@ -23,7 +23,7 @@ Schema for all explorations: `src/explorations/canonicalTypes.ts`. Replicate `CA
 
 ### MCP twin (no orphan explorations)
 
-Every **live** exploration needs a matching MCP usage story — at minimum [`mcp-docs/use/eips/eip-NNNN`](https://mcp-docs.feelyourprotocol.org/use/coverage.html) (Runnable or Planned). The exploration is the textbook slice; MCP is the superset lab. Full path: [round-trip skill](https://github.com/feelyourprotocol/website/blob/main/.cursor/skills/round-trip-protocol-change/SKILL.md). Brief first: [brief-protocol-change skill](https://github.com/feelyourprotocol/website/blob/main/.cursor/skills/brief-protocol-change/SKILL.md).
+Every **live** exploration needs a matching MCP usage story — at minimum [`mcp-docs/use/eips/eip-NNNN`](https://mcp-docs.feelyourprotocol.org/use/coverage.html) (Runnable or Planned). The exploration is the textbook slice; MCP is the superset lab. Full path: [round-trip skill](https://github.com/feelyourprotocol/website/blob/main/.cursor/skills/round-trip-protocol-change/SKILL.md) (optional Bro & Bruh comic after MCP). Brief first: [brief-protocol-change skill](https://github.com/feelyourprotocol/website/blob/main/.cursor/skills/brief-protocol-change/SKILL.md).
 
 `REGISTRY.ts` assembles all explorations into routes — no manual route registration.
 

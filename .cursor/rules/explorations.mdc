@@ -51,6 +51,6 @@ Every exploration ships `image.webp` imported from `info.ts`. Playbook: [cover-i
 
 ## Procedure
 
-New exploration workflow: [round-trip-protocol-change](../skills/round-trip-protocol-change/SKILL.md) (brief → exploration → MCP). Subskills: [brief-protocol-change](../skills/brief-protocol-change/SKILL.md) → [add-exploration](../skills/add-exploration/SKILL.md) + [adding-an-exploration.md](../../website-docs/contributing/adding-an-exploration.md).
+New exploration workflow: [round-trip-protocol-change](../skills/round-trip-protocol-change/SKILL.md) (brief → exploration → MCP → optional comic). Subskills: [brief-protocol-change](../skills/brief-protocol-change/SKILL.md) → [add-exploration](../skills/add-exploration/SKILL.md) + [adding-an-exploration.md](../../website-docs/contributing/adding-an-exploration.md). Comic: [bro-bruh-comic](../skills/bro-bruh-comic/SKILL.md) (`design/comics/`, not the exploration folder).
 
 Tests passing is the quality bar, not the pedagogy bar — human must review intro, usage, and examples.

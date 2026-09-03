@@ -1,0 +1,65 @@
+# Bro & Bruh comic metadata — schema bro-bruh-comic/v1
+# Keep this key set when adding files. Do not rename keys.
+schema: bro-bruh-comic/v1
+id: eip-8024
+episode: 1
+series: bro-bruh
+image: eip-8024.jpg
+
+exploration:
+  id: eip-8024
+  eip: 8024
+  name: EIP-8024 DUPN, SWAPN & EXCHANGE Stack Opcodes
+  core_question: How do you reach deep stack items without blowing the 1024 limit?
+
+engine: mishearing
+bridge:
+  word: IMMEDIATE
+  trader_sense: do it now / market emergency
+  protocol_sense: EVM immediate byte after DUPN / SWAPN / EXCHANGE
+
+vibe:
+  slug: null
+  topic: null
+  register: none
+  recency: null
+  why_hot: null
+  why_narrative: null
+  repeat_of: null
+
+setting:
+  name: cluttered developer basement / hacker den
+  why: franchise origin — crisis room, monitor glow, pizza and CRTs
+
+easter_egg: pizza boxes, CRT stacks, hanging cables (no dedicated ETH-love creature yet)
+
+copy:
+  panel1_bruh: >-
+    HEY BRO, IMMEDIATE ACTION NEEDED, THE GAS IS SPIKING, THE LIQUIDITY IS
+    DRIED UP, WE ARE GETTING REKT, CLOSE IT!
+  panel2_bro: >-
+    IMMEDIATE? ISN'T THIS THAT SECOND THING FROM THE NEW EIP-8024 SWAP OPCODE? ❤️
+  title: '*BRO & BRUH EPISODE 1'
+  cta: A NEW FEEL YOUR PROTOCOL EXPLORATION HAS ARRIVED, CHECK IT OUT!
+
+tweet:
+  body: >-
+    The new SWAPN/DUPN/EXCHANGE opcodes from Amsterdam EIP-8024 have never been
+    closer to your heart! ❤️ Check out the new @feelEthereum exploration: 👇
+    https://feelyourprotocol.org/eip-8024-stack-opcodes-dupn-swapn-exchange
+  url: https://feelyourprotocol.org/eip-8024-stack-opcodes-dupn-swapn-exchange
+  alt: >-
+    Bro & Bruh episode 1, two-panel comic in a cluttered basement of CRT
+    monitors and pizza boxes. Panel 1: Bruh, short dark hair, panics at a
+    crashing red chart and shouts: HEY BRO, IMMEDIATE ACTION NEEDED, THE GAS
+    IS SPIKING, THE LIQUIDITY IS DRIED UP, WE ARE GETTING REKT, CLOSE IT!
+    Bro, blonde ponytail and backwards teal FYP cap, types on calmly. Panel 2:
+    close-up of Bro with pink hearts. He thinks: IMMEDIATE? ISN'T THIS THAT
+    SECOND THING FROM THE NEW EIP-8024 SWAP OPCODE? Yellow box: A NEW FEEL
+    YOUR PROTOCOL EXPLORATION HAS ARRIVED, CHECK IT OUT!
+
+notes: >-
+  Origin strip. Speech bubble (Bruh addresses Bro). Pre-vibe-pipeline —
+  register is none. Do not copy this den, this crisis shout, or IMMEDIATE.
+  Posted tweet (Jun 2025) is historical — do not clone “closer to your heart”
+  or the self-@ / 👇.

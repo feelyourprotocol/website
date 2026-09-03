@@ -1,0 +1,76 @@
+# Bro & Bruh comic metadata — schema bro-bruh-comic/v1
+# Keep this key set when adding files. Do not rename keys.
+schema: bro-bruh-comic/v1
+id: eip-7708
+episode: 3
+series: bro-bruh
+image: eip-7708.png
+
+exploration:
+  id: eip-7708
+  eip: 7708
+  name: EIP-7708 ETH transfers emit a log
+  core_question: >-
+    When does native ETH show up as a Transfer log — and when does it stay
+    invisible to log filters?
+
+engine: parallel-worlds
+bridge:
+  word: LOG
+  trader_sense: monthly candle logged a higher high
+  protocol_sense: Transfer log on the receipt when native ETH moves
+
+vibe:
+  slug: first-bull-2026
+  topic: ETH monthly higher-high / first bull in a year
+  register: markets
+  recency: 2026-09
+  why_hot: >-
+    August 2026 monthly close logged the first higher-high since the Aug 2025
+    downtrend; roughly 30% in two weeks; people calling the bear dead while
+    $2550 still caps the move
+  why_narrative: >-
+    LOG is both candle language and the EIP-7708 object; Bruh is hopium-early,
+    not crash-panicking
+  repeat_of: null
+
+setting:
+  name: indoor bouldering gym (off-hour)
+  why: >-
+    Unused civic room; not a log-diorama (no cabin / logbook). They ignore
+    the wall. Colorful holds read at comic scale.
+
+easter_egg: >-
+  Purple Ethereum-diamond finishing hold plus a rubber gecko on a mini carabiner
+
+copy:
+  panel1_bruh: >-
+    MONTHLY JUST LOGGED A HIGHER HIGH, I'M NOT FADING THE FIRST BULL IN A YEAR,
+    BAG STAYS ON
+  panel2_bro: >-
+    LOG? EIP-7708 — NATIVE ETH LEAVES A TRANSFER LOG. I CAN *FEEL* THE FILTERS ❤️
+  title: '*BRO & BRUH EPISODE 3'
+  cta: A NEW FEEL YOUR PROTOCOL EXPLORATION HAS ARRIVED, CHECK IT OUT!
+
+tweet:
+  body: |-
+    When does native ETH show up as a Transfer log — and when does it stay silent?
+
+    Feel EIP-7708:
+    https://feelyourprotocol.org/eip-7708-eth-transfer-logs
+  url: https://feelyourprotocol.org/eip-7708-eth-transfer-logs
+  alt: >-
+    Bro & Bruh episode 3, two-panel comic in an indoor bouldering gym. Panel 1:
+    Bruh, short dark hair, scowls at his phone on a crash pad and thinks:
+    MONTHLY JUST LOGGED A HIGHER HIGH, I'M NOT FADING THE FIRST BULL IN A YEAR,
+    BAG STAYS ON. Bro, blonde ponytail and backwards teal FYP cap, stands
+    blissed-out at the wall. A gecko clings beside a purple Ethereum-diamond
+    climbing hold. Panel 2: close-up of Bro with pink hearts. He thinks: LOG?
+    EIP-7708 — NATIVE ETH LEAVES A TRANSFER LOG. I CAN FEEL THE FILTERS.
+    Yellow box: A NEW FEEL YOUR PROTOCOL EXPLORATION HAS ARRIVED, CHECK IT OUT!
+
+notes: >-
+  First vibe-pipeline strip. Bruh self-talk, thought bubbles. Do not copy this
+  gym, gecko+ETH hold, LOG as the red word, or this exact bull line. The
+  first-bull-2026 slug may be reused at most 2–4 times franchise-wide.
+  Tweet is Bro/FYP (core question + feel); do not put the bull chip in the caption.

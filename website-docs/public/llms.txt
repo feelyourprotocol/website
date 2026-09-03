@@ -11,9 +11,10 @@ Each exploration is a self-contained folder under `src/explorations/` with metad
 in the browser.
 
 Repo agent entrypoint: https://github.com/feelyourprotocol/website/blob/main/AGENTS.md
-Round-trip skill (EIP → exploration → MCP): https://github.com/feelyourprotocol/website/blob/main/.cursor/skills/round-trip-protocol-change/SKILL.md
+Round-trip skill (EIP → exploration → MCP → optional comic): https://github.com/feelyourprotocol/website/blob/main/.cursor/skills/round-trip-protocol-change/SKILL.md
 Add-exploration skill: https://github.com/feelyourprotocol/website/blob/main/.cursor/skills/add-exploration/SKILL.md
 Cover-image skill: https://github.com/feelyourprotocol/website/blob/main/.cursor/skills/cover-image/SKILL.md
+Bro & Bruh comic skill: https://github.com/feelyourprotocol/website/blob/main/.cursor/skills/bro-bruh-comic/SKILL.md
 
 ## Guide
 

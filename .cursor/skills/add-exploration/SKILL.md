@@ -162,10 +162,12 @@ Tests passing is the quality bar, not the pedagogy bar. The report below is the 
 ## Follow-ups
 
 - **MCP module:** round-trip phase 3, or [add-mcp-module](https://github.com/feelyourprotocol/mcp-execution-engine/blob/main/.cursor/skills/add-mcp-module/SKILL.md) when a verb is ready
+- **Bro & Bruh comic:** round-trip phase 4 ([bro-bruh-comic](../bro-bruh-comic/SKILL.md)) — after MCP, on a separate yes
 - Cover and OG are **in this phase**, not follow-ups
 
 ## Out of scope
 
 - Engine module implementation (phase 3)
+- Bro & Bruh comic (phase 4)
 - Edits to roadmap, community-token, or docs-hub sites (mcp-docs EIP pages are a **ship gate**, not out of scope)
 - New E-Components unless the briefing/design sub-round applies, the human explicitly asked, or an exception gate was approved

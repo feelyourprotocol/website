@@ -10,10 +10,11 @@ Tool-agnostic entrypoint for coding agents (Cursor, Claude Code, Codex, etc.) in
 
 | Task | Read first |
 | --- | --- |
-| **Full round-trip** (EIP → exploration → MCP) | [`.cursor/skills/round-trip-protocol-change/SKILL.md`](.cursor/skills/round-trip-protocol-change/SKILL.md) |
+| **Full round-trip** (EIP → exploration → MCP → optional comic) | [`.cursor/skills/round-trip-protocol-change/SKILL.md`](.cursor/skills/round-trip-protocol-change/SKILL.md) |
 | **Brief a protocol change** (round-trip phase 1) | [`.cursor/skills/brief-protocol-change/SKILL.md`](.cursor/skills/brief-protocol-change/SKILL.md) |
 | **Create or change an exploration** (round-trip phase 2) | [`.cursor/skills/add-exploration/SKILL.md`](.cursor/skills/add-exploration/SKILL.md) → [adding-an-exploration.md](website-docs/contributing/adding-an-exploration.md) |
 | **Generate cover art** | [`.cursor/skills/cover-image/SKILL.md`](.cursor/skills/cover-image/SKILL.md) → [images.md](website-docs/contributing/images.md) |
+| **Bro & Bruh comic** (round-trip phase 4) | [`.cursor/skills/bro-bruh-comic/SKILL.md`](.cursor/skills/bro-bruh-comic/SKILL.md) → [`design/comics/`](design/comics/) |
 | E-Components, styling, conventions | [website-docs/](website-docs/) (index: [llms.txt](website-docs/public/llms.txt)) |
 | MCP server docs | [mcp-docs/README.md](mcp-docs/README.md) — not `website-docs/` |
 | MCP EIP catalogue (human) | `https://mcp-docs.feelyourprotocol.org/use/eips/eip-NNNN.html` — one page per **live** exploration, Runnable or Planned (e.g. [EIP-8024](https://mcp-docs.feelyourprotocol.org/use/eips/eip-8024.html)) |
@@ -25,13 +26,14 @@ Tool-agnostic entrypoint for coding agents (Cursor, Claude Code, Codex, etc.) in
 
 ## Create an exploration
 
-Default path for a **new protocol change** is the [round-trip skill](.cursor/skills/round-trip-protocol-change/SKILL.md). Human work is 2–4 high-level triggers; do not ask for mid-phase micro-approvals.
+Default path for a **new protocol change** is the [round-trip skill](.cursor/skills/round-trip-protocol-change/SKILL.md). Human work is high-level triggers; do not ask for mid-phase micro-approvals.
 
 | Phase | Human trigger | Agent |
 | --- | --- | --- |
 | **1 — Brief** | “Round-trip for EIP-xxxx” | [brief-protocol-change](.cursor/skills/brief-protocol-change/SKILL.md) — EIP report, suitability, who/why, taxonomy (topic / timeline / tags + reasoning), exploration idea, MCP outline — then **stop** |
 | **2 — Exploration** | GO | [add-exploration](.cursor/skills/add-exploration/SKILL.md) — design with care, then implement; tests; cover; home Latest — then **stop** |
-| **3 — MCP** | GO (optional hints from the widget) | Engine [add-mcp-module](https://github.com/feelyourprotocol/mcp-execution-engine/blob/main/.cursor/skills/add-mcp-module/SKILL.md) — module and/or catalogue page; tests; MCP report |
+| **3 — MCP** | GO (optional hints from the widget) | Engine [add-mcp-module](https://github.com/feelyourprotocol/mcp-execution-engine/blob/main/.cursor/skills/add-mcp-module/SKILL.md) — module and/or catalogue page; tests; MCP report — then **ask** whether to generate the comic |
+| **4 — Comic** | Yes on that ask (skippable) | [bro-bruh-comic](.cursor/skills/bro-bruh-comic/SKILL.md) — strip + `design/comics/eip-NNNN.yml` |
 
 Standalone widget work (no round-trip) still briefs first, then add-exploration. Read taxonomies from source (`TOPICS.ts`, `TIMELINE.ts`, `TAGS.ts`) — do not guess IDs. Tests passing is the quality bar, not the pedagogy bar — human reviews intro, usage, and examples.
 
