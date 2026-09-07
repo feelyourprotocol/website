@@ -37,6 +37,7 @@ Read valid IDs from source — do not guess:
 ## Styling and deps
 
 - Use `e-*` design-system classes from `src/main.css` — no hardcoded Tailwind color utilities on exploration UI. Do not re-list CSS class tables in prompts; read source.
+- **Same logical control, one UIC.** Do not copy a sibling's toggle/button chrome with different colors or spacing. Extract to `src/eComponents/ui/` with tests ([exploration-design.mdc](./exploration-design.mdc)). That is not a new E-Component.
 - Import third-party libraries only in the exploration folder (or exploration-local modules), not in E-Components.
 
 ## Registration

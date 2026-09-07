@@ -1,12 +1,36 @@
 ---
-description: Exploration page layout — cover column vs companion, form-factor visual checks
-globs: src/explorations/**/info.ts,src/views/ExplorationView.vue,src/views/TopicIntroView.vue,src/components/ExplorationRightPanel.vue
+description: Exploration page layout — cover column vs companion, same-control UIC reuse
+globs: src/explorations/**/info.ts,src/explorations/**/*.vue,src/eComponents/ui/**,src/views/ExplorationView.vue,src/views/TopicIntroView.vue,src/components/ExplorationRightPanel.vue
 alwaysApply: false
 ---
 
 # Exploration design
 
 Visual/layout decisions for exploration **pages**. Folder invariants stay in [explorations.mdc](./explorations.mdc). **Add a section here when a layout miss repeats.**
+
+## Same logical control, one UIC
+
+Never ship two visually different versions of a control that is logically the same (segmented two-button, primary run action, example picker, …). Shared UICs look the same everywhere. Topic color via `e-*` is for the card, primary actions, inputs, and result chrome — not a license to restyle a copy.
+
+This is **UIC extraction** (`src/eComponents/ui/`), not a new E-Component. E-Component sub-rounds stay exception-gated in [add-exploration](../skills/add-exploration/SKILL.md). Finding a duplicate does **not** wait for that gate — extract now.
+
+### Cross-exploration check (every new exploration)
+
+After you can name the chrome controls, and **before** shipping a second copy of any of them:
+
+1. List every self-identified control on the widget (toggles, pickers, primary action, result chrome).
+2. Search sibling `src/explorations/*/MyC.vue` and `src/eComponents/ui/`.
+3. If a sibling already has the same control:
+   - UIC exists → use it.
+   - No UIC yet → extract in-between: `src/eComponents/ui/<Name>UIC.vue` + a practically sufficient spec under `src/eComponents/ui/__tests__/`, then wire **all** call sites (new and old). Do not leave the old inline markup.
+
+Reference: `SegmentedToggleUIC` — Osaka | Amsterdam on `eip-7708` and `eip-8037`, plus the gas-limit pair on `eip-8037`.
+
+## State chrome: selected must be obvious
+
+A segmented toggle is an on/off indicator. The selected option needs a **dark filled pill on a light track**, with muted unselected text (`e-segmented-toggle` in `src/main.css`).
+
+Do **not** paint track, selected, and idle labels in the topic hue (`e-bg-medium` + `e-bg-dark` + `e-text opacity-70`). That sits on an already topic-tinted `.exploration-c` card, so the active option disappears. Neutral slate here matches `e-textarea` (readable chrome, not a hue). Topic color stays on the card and on actions/results.
 
 ## Right column: cover vs companion
 

@@ -205,6 +205,27 @@ body {
   box-shadow: 0 0 0 2px color-mix(in srgb, var(--e-accent) 20%, transparent);
 }
 
+/* --- Segmented toggle (on/off chrome) ---
+ * High-contrast state, not topic-tinted. A topic-medium track + topic-dark
+ * selected + faded topic text sits on an already topic-colored card, so the
+ * active option is hard to see. Neutral slate matches the original 7708 look.
+ */
+.e-segmented-toggle {
+  @apply inline-flex shrink-0 rounded-md border border-slate-300 bg-slate-100 p-0.5 text-xs font-mono max-md:px-0.5;
+}
+
+.e-segmented-toggle-option {
+  @apply rounded px-2.5 py-1 transition-colors;
+}
+
+.e-segmented-toggle-option-selected {
+  @apply bg-slate-800 font-semibold text-white shadow-sm;
+}
+
+.e-segmented-toggle-option-idle {
+  @apply text-slate-600 hover:bg-white/80 hover:text-slate-900;
+}
+
 /* --- Icon buttons --- */
 .e-button-icon {
   color: var(--e-text);

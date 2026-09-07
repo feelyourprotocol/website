@@ -36,8 +36,9 @@ Do this **before creating files**. Use the signed-off briefing; tighten against 
 8. Choose a building block (below). Result UI matches `changeNature`.
 9. Pedagogical **slice**: what the widget lets someone *feel*; what MCP owns as the superset.
 10. **Form factors (dedicated pass)** — mobile (single column, no horizontal overflow, usable tap targets), tablet, desktop (right-panel / companions stack or collapse). **Cover column:** if there is no companion, set `imageBoxHeight: COVER_COLUMN_IMAGE_HEIGHT` (`layout.ts`, `48rem`) — do not copy companion `16rem` from 7708, and do not leave the cover uncapped. See [exploration-design.mdc](../rules/exploration-design.mdc). Verify these in the browser before the report.
+11. **Cross-exploration UI check** — for every chrome control from the steps above, search sibling `MyC.vue` files and `src/eComponents/ui/`. Same logical control → reuse the UIC, or **extract it now** (component + tests, then switch old and new call sites) before shipping a second visual. This is required UIC work, not an E-Component exception gate. See [exploration-design.mdc](../rules/exploration-design.mdc).
 
-Write 4–8 lines of design notes (capture, first action, play loop, form-factor plan) into the phase-2 report. Then code.
+Write 4–8 lines of design notes (capture, first action, play loop, form-factor plan, UI reuse/extract) into the phase-2 report. Then code.
 
 ## Choose a building block
 
@@ -61,6 +62,8 @@ Copy the closest folder; adapt `canonical.ts`, `info.ts`, `examples.ts`, `MyC.vu
 
 Do **not** create a new shared E-Component by default — but when briefing or design identifies a **reusable logic/API + UX/UI structure** likely needed for future EIP integrations, take a focused **sub-round** first: design, implement, test, and document the new E-Component (`src/eComponents/<name>EC/`, [available-e-components.md](../../website-docs/contributing/available-e-components.md)), then return to the exploration and integrate it (tweak if real use teaches better shapes). Prefer slots / local companions when the pattern is truly one-off.
 
+**UIC vs E-Component:** copying a sibling’s chrome (two-button toggle, run button, example picker) with different colors or spacing is a **required in-between UIC extract** (`src/eComponents/ui/`, tests included). That is not a new E-Component and does not use the exception gate below.
+
 **Sub-round checklist:** typed config + neutral display types (no third-party imports in E-Component), unit tests, catalogue row, optional provide/inject for loose coupling to exploration execution.
 
 ## Exception gates
@@ -68,7 +71,7 @@ Do **not** create a new shared E-Component by default — but when briefing or d
 Stop and ask (do not improvise past these):
 
 - New **runtime** dependency (explicit human ask)
-- New **shared** E-Component — only when the sub-round above was skipped without human approval and the pattern is still one-off
+- New **shared** E-Component — only when the sub-round above was skipped without human approval and the pattern is still one-off (does **not** apply to extracting a UIC for a duplicate control)
 - Briefing verdict no longer holds (spec cannot be taught honestly)
 - Spec too underspecified for a truthful widget
 
@@ -81,6 +84,7 @@ Write `tests.spec.ts` (and Vue mounts) that cover:
 - Metadata, `CANONICAL`, examples, config sanity
 - Execution / transform helpers — happy path **and** beyond-edge (empty, junk, out-of-range, “too big”). Must not crash; fail in a way the widget can show
 - Vue: mount `MyC` (or companions); the play path is present (example picker or primary control, result region)
+- Extracted UIC (if any this phase): `src/eComponents/ui/__tests__/<Name>UIC.spec.ts` — selected state, emit on change, no emit on same click, empty/beyond-edge
 
 Also update `FEATURED_EXPLORATION_IDS` in `src/views/homeCatalog.ts` (HomeView tests import the helper — no duplicate array).
 
@@ -92,7 +96,7 @@ Invariants and finish commands: [testing.mdc](../rules/testing.mdc), [quality.md
 2. `canonical.ts` — `CANONICAL` per `canonicalTypes.ts` (SoT), from the signed-off proposal
 3. `info.ts` — website chrome; `introText` starts with `coreQuestion` from `CANONICAL`; copy `coreQuestion` and `mcpDocsStatus` onto `INFO` for home preview cards. Set `imageBoxHeight` per [exploration-design.mdc](../rules/exploration-design.mdc) (`COVER_COLUMN_IMAGE_HEIGHT` vs companion `16rem`–`19rem`).
 4. `examples.ts` + execution helpers — **tests for the protocol claim first** (or immediately with these files)
-5. `MyC.vue` (+ `config.ts` if E-Component-backed) — then Vue mount tests
+5. `MyC.vue` (+ `config.ts` if E-Component-backed) — then Vue mount tests. After the first chrome pass, run the [cross-exploration UI check](#design-same-turn-before-files) (design §11). If a sibling already has the same control and there is no UIC, extract + tests **in this step**, then wire every call site.
 6. Register in `src/explorations/REGISTRY.ts` (nav dropdown is `Object.values(EXPLORATIONS)`)
 7. **Latest on the home page:** prepend `<id>` to `FEATURED_EXPLORATION_IDS` in `src/views/homeCatalog.ts`. `latestExplorationIds()` is the first 3 — the new one is Latest; the previous third Latest drops into Catalog. Home tests import the same helper.
 8. **Cover art (required):** [cover-image skill](../cover-image/SKILL.md). Round-trip default: Template B from signed-off `coreQuestion` unless the human named a subject at GO. Import `image.webp` in `info.ts`. Then `npm run generate:og:exploration -- <id>`.
@@ -116,6 +120,7 @@ If the briefing promised a twin, add or stub `mcp-docs/use/eips/eip-NNNN.md` in 
 ## Invariants (also in explorations.mdc)
 
 - **No hardcoded Tailwind colors** — use `e-*` classes from `src/main.css`
+- **Same logical control, one UIC** — do not restyle a sibling copy; extract to `src/eComponents/ui/` with tests ([exploration-design.mdc](../rules/exploration-design.mdc))
 - **Libraries only in the exploration folder**
 - **Companion UI inside E-Component slots**
 - **Register in REGISTRY.ts** (nav)
@@ -128,6 +133,7 @@ If the briefing promised a twin, add or stub `mcp-docs/use/eips/eip-NNNN.md` in 
 npm run lf:ci
 npm run type-check
 npx vitest run src/explorations/<id>/
+# plus src/eComponents/ui/__tests__/<Name>UIC.spec.ts when a UIC was extracted this phase
 ```
 
 Apply [quality.mdc](../rules/quality.mdc) and [testing.mdc](../rules/testing.mdc).
@@ -145,7 +151,7 @@ Tests passing is the quality bar, not the pedagogy bar. The report below is the 
 **Change nature / building block:** … (reference folder or custom)
 **Slice:** what the widget teaches vs what MCP should own
 
-**eComponents / UI:** reused | slotted | local companion | new shared (only if asked)
+**eComponents / UI:** reused UIC | extracted UIC (this phase) | slotted | local companion | new shared EC (only if asked)
 **Touched / evolved / created:** paths + one line each
 **Files:** created / modified (short list)
 **Latest:** prepended to `FEATURED_EXPLORATION_IDS` — dropped from Latest trio: …
@@ -170,4 +176,4 @@ Tests passing is the quality bar, not the pedagogy bar. The report below is the 
 - Engine module implementation (phase 3)
 - Bro & Bruh comic (phase 4)
 - Edits to roadmap, community-token, or docs-hub sites (mcp-docs EIP pages are a **ship gate**, not out of scope)
-- New E-Components unless the briefing/design sub-round applies, the human explicitly asked, or an exception gate was approved
+- New E-Components unless the briefing/design sub-round applies, the human explicitly asked, or an exception gate was approved (UIC extraction for a duplicate control **is** in scope)

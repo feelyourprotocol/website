@@ -98,6 +98,8 @@ Do not hand-implement from docs — tell the agent to copy a **reference folder*
 
 **Extension rule:** extra teaching UI goes **inside** E-Component slots, not as siblings next to the component (provide/inject is descendant-only). See [E-Components](/contributing/e-components#extension-points).
 
+**Reuse rule:** the same logical chrome (hardfork toggle, run button, example picker) uses one shared UIC. Agents extract duplicates in-between; they do not restyle a copy. See [UI Components](/contributing/ui-components).
+
 ## Tests
 
 Agent adds `tests.spec.ts` (logic **and** UI mounts) — metadata, examples, execution helpers, beyond-edge inputs, play-path presence. Prefer tests before chrome polish. You verify the exploration **behaves** in the browser, including a mobile/tablet pass.

@@ -4,6 +4,7 @@ import { computed, ref, watch } from 'vue'
 import ActionButtonUIC from '@/eComponents/ui/ActionButtonUIC.vue'
 import ExamplesUIC from '@/eComponents/ui/ExamplesUIC.vue'
 import ResultBoxUIC from '@/eComponents/ui/resultBox/ResultBoxUIC.vue'
+import SegmentedToggleUIC from '@/eComponents/ui/SegmentedToggleUIC.vue'
 import ExplorationC from '@/explorations/ExplorationC.vue'
 import PoweredByC from '@/explorations/PoweredByC.vue'
 import { TOPICS } from '@/explorations/TOPICS'
@@ -70,11 +71,29 @@ function setHardfork(next: HardforkChoice) {
   resetRunState()
 }
 
+function onHardforkInput(value: string) {
+  if (value === 'amsterdam' || value === 'osaka') setHardfork(value)
+}
+
 function setGasLimitMode(next: GasLimitMode) {
   if (gasLimitMode.value === next) return
   gasLimitMode.value = next
   resetRunState()
 }
+
+function onGasLimitInput(value: string) {
+  if (value === 'classic' || value === 'recommended') setGasLimitMode(value)
+}
+
+const hardforkOptions = [
+  { value: 'amsterdam', label: 'Amsterdam', testId: 'hardfork-amsterdam' },
+  { value: 'osaka', label: 'Osaka', testId: 'hardfork-osaka' },
+]
+
+const gasLimitOptions = computed(() => [
+  { value: 'classic', label: formatGas(CLASSIC_GAS_LIMIT), testId: 'gas-limit-classic' },
+  { value: 'recommended', label: 'Recommended', testId: 'gas-limit-recommended' },
+])
 
 async function runTxAction(): Promise<void> {
   if (example.value === '') return
@@ -125,74 +144,20 @@ await init()
           </button>
         </div>
         <div class="flex flex-wrap items-center justify-end gap-2 max-md:w-full">
-          <div
-            class="inline-flex shrink-0 rounded-md border e-border e-bg-medium p-0.5 text-xs font-mono max-md:px-0.5"
-            role="group"
-            aria-label="Hardfork"
-            data-testid="hardfork-toggle"
-          >
-            <button
-              type="button"
-              class="rounded px-2.5 py-1 transition-colors"
-              :class="
-                hardfork === 'amsterdam'
-                  ? 'e-bg-dark font-semibold text-white'
-                  : 'e-text opacity-70'
-              "
-              :aria-pressed="hardfork === 'amsterdam'"
-              data-testid="hardfork-amsterdam"
-              @click="setHardfork('amsterdam')"
-            >
-              Amsterdam
-            </button>
-            <button
-              type="button"
-              class="rounded px-2.5 py-1 transition-colors"
-              :class="
-                hardfork === 'osaka' ? 'e-bg-dark font-semibold text-white' : 'e-text opacity-70'
-              "
-              :aria-pressed="hardfork === 'osaka'"
-              data-testid="hardfork-osaka"
-              @click="setHardfork('osaka')"
-            >
-              Osaka
-            </button>
-          </div>
-          <div
-            class="inline-flex shrink-0 rounded-md border e-border e-bg-medium p-0.5 text-xs font-mono"
-            role="group"
-            aria-label="Gas limit"
-            data-testid="gas-limit-toggle"
-          >
-            <button
-              type="button"
-              class="rounded px-2.5 py-1 transition-colors"
-              :class="
-                gasLimitMode === 'classic'
-                  ? 'e-bg-dark font-semibold text-white'
-                  : 'e-text opacity-70'
-              "
-              :aria-pressed="gasLimitMode === 'classic'"
-              data-testid="gas-limit-classic"
-              @click="setGasLimitMode('classic')"
-            >
-              {{ formatGas(CLASSIC_GAS_LIMIT) }}
-            </button>
-            <button
-              type="button"
-              class="rounded px-2.5 py-1 transition-colors"
-              :class="
-                gasLimitMode === 'recommended'
-                  ? 'e-bg-dark font-semibold text-white'
-                  : 'e-text opacity-70'
-              "
-              :aria-pressed="gasLimitMode === 'recommended'"
-              data-testid="gas-limit-recommended"
-              @click="setGasLimitMode('recommended')"
-            >
-              Recommended
-            </button>
-          </div>
+          <SegmentedToggleUIC
+            :model-value="hardfork"
+            :options="hardforkOptions"
+            group-label="Hardfork"
+            test-id="hardfork-toggle"
+            @update:model-value="onHardforkInput"
+          />
+          <SegmentedToggleUIC
+            :model-value="gasLimitMode"
+            :options="gasLimitOptions"
+            group-label="Gas limit"
+            test-id="gas-limit-toggle"
+            @update:model-value="onGasLimitInput"
+          />
           <ExamplesUIC
             v-model="example"
             :examples="examples"
