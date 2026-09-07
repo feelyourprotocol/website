@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest'
 
+import { COVER_COLUMN_IMAGE_HEIGHT } from '@/explorations/layout'
 import {
   EXPLORATIONS,
   getExplorationCoverImage,
@@ -36,6 +37,24 @@ describe('exploration images', () => {
   it('every live exploration exposes a core question for home cards', () => {
     for (const exploration of Object.values(EXPLORATIONS)) {
       expect(exploration.coreQuestion.length).toBeGreaterThan(0)
+    }
+  })
+
+  it('caps cover-only images to COVER_COLUMN_IMAGE_HEIGHT', () => {
+    const coverOnly = Object.values(EXPLORATIONS).filter((exploration) => !exploration.rightPanel)
+    expect(coverOnly.length).toBeGreaterThan(0)
+    expect(coverOnly.map((exploration) => exploration.imageBoxHeight)).toEqual(
+      coverOnly.map(() => COVER_COLUMN_IMAGE_HEIGHT),
+    )
+  })
+
+  it('caps cover height when a companion shares the right column', () => {
+    const withCompanion = Object.values(EXPLORATIONS).filter(
+      (exploration) => exploration.rightPanel && exploration.image,
+    )
+    expect(withCompanion.length).toBeGreaterThan(0)
+    for (const exploration of withCompanion) {
+      expect(exploration.imageBoxHeight).toBeDefined()
     }
   })
 })

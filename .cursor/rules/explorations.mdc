@@ -47,7 +47,7 @@ Every new exploration needs an import in `src/explorations/REGISTRY.ts` or it wi
 
 ## Cover art
 
-Every exploration ships `image.webp` imported from `info.ts`. Playbook: [cover-image skill](../skills/cover-image/SKILL.md).
+Every exploration ships `image.webp` imported from `info.ts`. Playbook: [cover-image skill](../skills/cover-image/SKILL.md). Page layout (`imageBoxHeight` vs `rightPanel`): [exploration-design.mdc](./exploration-design.mdc).
 
 ## Procedure
 

@@ -82,7 +82,9 @@ export const INFO: Exploration = {
 | `introText` / `usageText` | Pedagogy and accuracy vs the spec |
 | `introText` vs `seoDescription` | Intro teaches on-page; SEO targets search queries |
 | `poweredBy` | Credit libraries used |
-| `image` | Optional — [Images](/contributing/images) |
+| `image` | Required — [Images](/contributing/images). Page uses `image.webp`; cards use `imageSmall`. |
+| `imageBoxHeight` | Cover-only: `COVER_COLUMN_IMAGE_HEIGHT` (`48rem`). Companion: `16rem`–`19rem` with `rightPanel: true`. |
+| `rightPanel` | Set when a companion teleports into `#exploration-right-panel`; otherwise omit. |
 
 Agent field lookup: JSDoc on `Exploration` in `REGISTRY.ts`.
 

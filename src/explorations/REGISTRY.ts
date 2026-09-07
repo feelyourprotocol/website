@@ -5,7 +5,10 @@ import { INFO as eip7883 } from './eip-7883/info'
 import { INFO as eip7928 } from './eip-7928/info'
 import { INFO as eip7951 } from './eip-7951/info'
 import { INFO as eip8024 } from './eip-8024/info'
+import { INFO as eip8037 } from './eip-8037/info'
 import type { Tag } from './TAGS'
+
+export { COVER_COLUMN_IMAGE_HEIGHT } from './layout'
 
 export const EXPLORATIONS: Explorations = {
   [eip7594.id]: eip7594,
@@ -14,6 +17,7 @@ export const EXPLORATIONS: Explorations = {
   [eip7928.id]: eip7928,
   [eip7951.id]: eip7951,
   [eip8024.id]: eip8024,
+  [eip8037.id]: eip8037,
 }
 
 export interface Examples {
@@ -44,9 +48,13 @@ export interface Exploration {
   /** Up to 3–4 reusable technical concepts from `TAGS.ts`. See architecture § tags. */
   tags: Tag[]
   image?: string
-  /** Optional thumbnail (~300px) for topic cards and compact layouts; same basename as `image` with `_small` suffix. */
+  /** Thumbnail (~300×400) for home/topic cards; same basename as `image` with `_small` suffix. */
   imageSmall?: string
-  /** Optional max height for the cover image in the exploration sidebar (CSS length, e.g. `12rem`). */
+  /**
+   * Max height for the cover image (CSS length).
+   * Cover-only: `COVER_COLUMN_IMAGE_HEIGHT` (`48rem`). Companion: `16rem`–`19rem`.
+   * See `.cursor/rules/exploration-design.mdc`.
+   */
   imageBoxHeight?: string
   /** When set, exploration content may Teleport into `#exploration-right-panel`. */
   rightPanel?: boolean

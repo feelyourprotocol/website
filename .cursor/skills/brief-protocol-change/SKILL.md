@@ -52,6 +52,29 @@ Read the most relevant ACD / fork / inclusion issues (typically **2–5**, not t
 
 Skip sources the human said to ignore. Do not quote the spec at length in the report.
 
+## Working-tree prep (observe only)
+
+Before writing the briefing report, inspect git state on **repos this round-trip will touch**. Do **not** commit, stash, checkout, create, rename, or push branches — only look, then report.
+
+**Repos (when the folder is a git checkout):**
+
+| Repo | Typical root | Touched when |
+| --- | --- | --- |
+| Explorations website | `feelyourprotocol/website` | Every round-trip (phase 2 + mcp-docs) |
+| MCP execution engine | `feelyourprotocol/mcp-execution-engine` (sibling of `website/`) | Phase 3 engine module |
+| MCP gateway | `feelyourprotocol/mcp-gateway` | Only if this change will edit it |
+
+Skip a row if that checkout is missing. Do not invent other remotes.
+
+**Per repo, record:** current branch, whether the working tree is clean (`git status --short` empty), whether the branch is a **task branch** (name contains `eip-NNNN` / the ERC id, and is not `main` / `master`).
+
+| Light | When |
+| --- | --- |
+| **Green** | Every inspected repo is **clean** and on a **task-matching** branch |
+| **Warning** | Dirty tree, on `main`/`master`, or branch name does not match the change — list repo, branch, and what is dirty. Human decides whether to branch/commit; the agent does not |
+
+This check is **advisory**. It does not block the briefing or change suitability. The human still GOs on taxonomy and core question.
+
 ## Who (name at least one; curiosity is enough)
 
 1. **Who cares — and why?** Blocked builder, excited protocol-watcher, researcher shaping a draft, or a mix. Do not force a “who is blocked” story.
@@ -140,6 +163,11 @@ These fields go into proposed `CANONICAL.taxonomy` **and** in the report with th
 **MCP outline:** shape(s), runnable vs planned-module, comparison, catalog vs tests; what result field shows the effect
 
 **Proposed CANONICAL:** (TypeScript object matching `ProtocolChangeCanonical`)
+
+**Working tree:** Green | Warning
+- `website`: branch `…` — clean | dirty (files…) — task branch yes/no
+- `mcp-execution-engine`: …
+- `mcp-gateway`: … (omit if unused)
 
 **Verdict:** GO for exploration | wait for X | stop (not a fit)
 ```

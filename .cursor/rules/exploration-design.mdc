@@ -1,0 +1,22 @@
+---
+description: Exploration page layout — cover column vs companion, form-factor visual checks
+globs: src/explorations/**/info.ts,src/views/ExplorationView.vue,src/views/TopicIntroView.vue,src/components/ExplorationRightPanel.vue
+alwaysApply: false
+---
+
+# Exploration design
+
+Visual/layout decisions for exploration **pages**. Folder invariants stay in [explorations.mdc](./explorations.mdc). **Add a section here when a layout miss repeats.**
+
+## Right column: cover vs companion
+
+`ExplorationView` is a two-column grid. The right column is either a **companion** (`rightPanel: true`) or the **cover** (`TopicIntroView` + `image.webp`).
+
+| Layout | `info.ts` | Why |
+| --- | --- | --- |
+| Cover-only (no companion) | `imageBoxHeight: COVER_COLUMN_IMAGE_HEIGHT` (`48rem` from `layout.ts`) | Caps the 3:4 `image.webp` to about a typical left `.exploration-c`. Uncapped `w-full` grows taller than the widget on wide desktops. Do **not** copy companion `16rem`. |
+| Companion (`rightPanel: true`) | `imageBoxHeight` `16rem`–`19rem` | Cover sits above logs/BAL/stepper; keep it compact. Reference: `eip-7708`, `eip-7928`, `eip-8024`. |
+
+`image_small.webp` is for **cards**. The exploration page always uses `image.webp` — never the thumbnail.
+
+Desktop check: cover-only right column should match the left card’s height, not dwarf it and not look like a postage stamp.

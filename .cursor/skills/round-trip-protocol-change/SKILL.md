@@ -55,7 +55,7 @@ Confirm the id (`eip-NNNN`) once, then run phase 1. Spec fetch lives in the brie
 
 Load and follow [brief-protocol-change](../brief-protocol-change/SKILL.md).
 
-**Agent does:** EIP report, suitability, who/why, taxonomy suggestions (topic / timeline / tags + reasoning), exploration idea, MCP outline. Propose `CANONICAL` in the report — **do not** scaffold the exploration folder yet.
+**Agent does:** EIP report, suitability, who/why, taxonomy suggestions (topic / timeline / tags + reasoning), exploration idea, MCP outline, plus the **working-tree prep** check from that skill (observe git only — no commit/branch actions). Propose `CANONICAL` in the report — **do not** scaffold the exploration folder yet.
 
 **Output:** the briefing report template from that skill — then **STOP**.
 

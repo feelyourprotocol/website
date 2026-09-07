@@ -125,7 +125,7 @@ import image from './image.webp'
 import imageSmall from './image_small.webp'
 ```
 
-4. Show the human the result in context (`npm run dev`) before treating as done.
+4. Show the human the result in context (`npm run dev`) before treating as done. On the exploration page, `image.webp` is the right-column cover — `COVER_COLUMN_IMAGE_HEIGHT` when there is no companion, `16rem`–`19rem` when `rightPanel: true` ([exploration-design.mdc](../rules/exploration-design.mdc)).
 5. Regenerate OG when metadata or cover changes: `npm run generate:og:exploration -- <id>`.
 
 ## Out of scope

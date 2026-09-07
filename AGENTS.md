@@ -11,7 +11,7 @@ Tool-agnostic entrypoint for coding agents (Cursor, Claude Code, Codex, etc.) in
 | Task | Read first |
 | --- | --- |
 | **Full round-trip** (EIP → exploration → MCP → optional comic) | [`.cursor/skills/round-trip-protocol-change/SKILL.md`](.cursor/skills/round-trip-protocol-change/SKILL.md) |
-| **Brief a protocol change** (round-trip phase 1) | [`.cursor/skills/brief-protocol-change/SKILL.md`](.cursor/skills/brief-protocol-change/SKILL.md) |
+| **Brief a protocol change** (round-trip phase 1) | [`.cursor/skills/brief-protocol-change/SKILL.md`](.cursor/skills/brief-protocol-change/SKILL.md) — includes working-tree prep (observe git only) |
 | **Create or change an exploration** (round-trip phase 2) | [`.cursor/skills/add-exploration/SKILL.md`](.cursor/skills/add-exploration/SKILL.md) → [adding-an-exploration.md](website-docs/contributing/adding-an-exploration.md) |
 | **Generate cover art** | [`.cursor/skills/cover-image/SKILL.md`](.cursor/skills/cover-image/SKILL.md) → [images.md](website-docs/contributing/images.md) |
 | **Bro & Bruh comic** (round-trip phase 4) | [`.cursor/skills/bro-bruh-comic/SKILL.md`](.cursor/skills/bro-bruh-comic/SKILL.md) → [`design/comics/`](design/comics/) |
@@ -30,7 +30,7 @@ Default path for a **new protocol change** is the [round-trip skill](.cursor/ski
 
 | Phase | Human trigger | Agent |
 | --- | --- | --- |
-| **1 — Brief** | “Round-trip for EIP-xxxx” | [brief-protocol-change](.cursor/skills/brief-protocol-change/SKILL.md) — EIP report, suitability, who/why, taxonomy (topic / timeline / tags + reasoning), exploration idea, MCP outline — then **stop** |
+| **1 — Brief** | “Round-trip for EIP-xxxx” | [brief-protocol-change](.cursor/skills/brief-protocol-change/SKILL.md) — EIP report, suitability, who/why, taxonomy (topic / timeline / tags + reasoning), exploration idea, MCP outline, working-tree prep (observe git only) — then **stop** |
 | **2 — Exploration** | GO | [add-exploration](.cursor/skills/add-exploration/SKILL.md) — design with care, then implement; tests; cover; home Latest — then **stop** |
 | **3 — MCP** | GO (optional hints from the widget) | Engine [add-mcp-module](https://github.com/feelyourprotocol/mcp-execution-engine/blob/main/.cursor/skills/add-mcp-module/SKILL.md) — module and/or catalogue page; tests; MCP report — then **ask** whether to generate the comic |
 | **4 — Comic** | Yes on that ask (skippable) | [bro-bruh-comic](.cursor/skills/bro-bruh-comic/SKILL.md) — strip + `design/comics/eip-NNNN.yml` |
@@ -52,6 +52,7 @@ Catalog: [`repo-structure.mdc`](.cursor/rules/repo-structure.mdc).
 
 - **Primitives (always-on):** `repo-structure.mdc`, `quality.mdc`, `testing.mdc`
 - **Task invariants (glob):** `explorations.mdc` when editing `src/explorations/` or `src/eComponents/`
+- **Design (glob):** `exploration-design.mdc` — cover column vs companion (`imageBoxHeight` / `rightPanel`)
 - **Specialized:** `video-recording.mdc`, `og-images.mdc`
 
 If your tool supports attaching folders (e.g. `@website-docs/`), include the relevant doc pages — but AGENTS.md + skill + source remain authoritative.

@@ -36,6 +36,7 @@ Every **live** website exploration has an MCP-docs page mapping the same problem
 | 7951 | secp256r1 | Runnable | [EIP-7951](/use/eips/eip-7951) |
 | 7928 | Block access lists | **Planned** (generate) | [EIP-7928](/use/eips/eip-7928) |
 | 7708 | ETH transfer logs | Runnable | [EIP-7708](/use/eips/eip-7708) |
+| 8037 | State creation gas | **Runnable** (simulate `gasUsed`; named catalog row in engine follow-up) | [EIP-8037](/use/eips/eip-8037) |
 
 PeerDAS (7594) has no MCP twin — sunset path per exploration policy.
 
@@ -46,6 +47,7 @@ Canonical metadata for twins lives in website `src/explorations/eip-NNNN/canonic
 <Changelog
   title="Coverage Changelog"
   :entries="[
+    { version: 'v0.11', date: '2026-09-07', summary: 'EIP-8037 exploration twin — simulate gasUsed already shows first-touch state gas; named catalog row follows with the engine module.' },
     { version: 'v0.10', date: '2026-09-02', summary: 'Catalogue is for the hosted MCP — removed self-host / local early-access framing.' },
     { version: 'v0.9', date: '2026-08-31', summary: 'Split runnable catalog vs exploration twins; note public MCP not launched.' },
     { version: 'v0.8', date: '2026-08-27', summary: 'Osaka mainnet baseline fork — run-twice comparisons against Amsterdam preview.' },

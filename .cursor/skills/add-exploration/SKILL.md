@@ -35,7 +35,7 @@ Do this **before creating files**. Use the signed-off briefing; tighten against 
 7. **Honest failure** — invalid and beyond-edge inputs are teaching, not a crash or a blank panel.
 8. Choose a building block (below). Result UI matches `changeNature`.
 9. Pedagogical **slice**: what the widget lets someone *feel*; what MCP owns as the superset.
-10. **Form factors (dedicated pass)** — mobile (single column, no horizontal overflow, usable tap targets), tablet, desktop (right-panel / companions stack or collapse). Verify these in the browser before the report.
+10. **Form factors (dedicated pass)** — mobile (single column, no horizontal overflow, usable tap targets), tablet, desktop (right-panel / companions stack or collapse). **Cover column:** if there is no companion, set `imageBoxHeight: COVER_COLUMN_IMAGE_HEIGHT` (`layout.ts`, `48rem`) — do not copy companion `16rem` from 7708, and do not leave the cover uncapped. See [exploration-design.mdc](../rules/exploration-design.mdc). Verify these in the browser before the report.
 
 Write 4–8 lines of design notes (capture, first action, play loop, form-factor plan) into the phase-2 report. Then code.
 
@@ -90,7 +90,7 @@ Invariants and finish commands: [testing.mdc](../rules/testing.mdc), [quality.md
 
 1. Create `src/explorations/<id>/`
 2. `canonical.ts` — `CANONICAL` per `canonicalTypes.ts` (SoT), from the signed-off proposal
-3. `info.ts` — website chrome; `introText` starts with `coreQuestion` from `CANONICAL`; copy `coreQuestion` and `mcpDocsStatus` onto `INFO` for home preview cards
+3. `info.ts` — website chrome; `introText` starts with `coreQuestion` from `CANONICAL`; copy `coreQuestion` and `mcpDocsStatus` onto `INFO` for home preview cards. Set `imageBoxHeight` per [exploration-design.mdc](../rules/exploration-design.mdc) (`COVER_COLUMN_IMAGE_HEIGHT` vs companion `16rem`–`19rem`).
 4. `examples.ts` + execution helpers — **tests for the protocol claim first** (or immediately with these files)
 5. `MyC.vue` (+ `config.ts` if E-Component-backed) — then Vue mount tests
 6. Register in `src/explorations/REGISTRY.ts` (nav dropdown is `Object.values(EXPLORATIONS)`)

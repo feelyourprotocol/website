@@ -7,10 +7,10 @@ import imageSmall from './image_small.webp'
 
 export const INFO: Exploration = {
   id: CANONICAL.identity.id,
-  path: '/eip-7883-modexp-gas-cost-increase',
+  path: '/eip-8037-state-creation-gas',
   title: CANONICAL.identity.name,
   seoDescription:
-    'EIP-7883 ModExp gas cost increase — interactive look at Ethereum precompile gas recalibration and its security motivation.',
+    'EIP-8037 state-creation gas — see why a 21,000 gasLimit is not enough for a first-touch ETH transfer on Amsterdam, and how execution vs state gas split.',
   infoURL: CANONICAL.identity.specUrl,
   topic: CANONICAL.taxonomy.topic,
   timeline: CANONICAL.taxonomy.timeline,
@@ -22,14 +22,14 @@ export const INFO: Exploration = {
   imageBoxHeight: COVER_COLUMN_IMAGE_HEIGHT,
   introText:
     `<b>${CANONICAL.question.coreQuestion}</b> ` +
-    'EIP-7883 replaces the ModExp precompile gas formula with one that better reflects real ' +
-    'computational cost — especially for larger inputs. EIP-7823 (same fork) tightens allowed ' +
-    'input bounds.',
+    'EIP-8037 splits gas into an <b>execution</b> dimension and a <b>state</b> dimension. ' +
+    'Creating a new account (or a new storage slot) charges state gas — about 183,600 for a ' +
+    'first-touch transfer — on top of the familiar 21,000. Osaka still fits in 21,000.',
   usageText:
-    'Pick an example preset or enter your own ModExp input hex. Values around 32 bytes are ' +
-    'especially interesting — that size shows up often when verifying RSA signatures in ' +
-    'airdrop contracts. Compare the before/after gas costs side by side. The ' +
-    '<b>1025-byte invalid</b> example shows EIP-7823 rejection on Osaka.',
+    'The default run is Amsterdam + first-touch + a <b>recommended</b> gasLimit, so the ' +
+    'transfer succeeds and the two bars appear with a 21,000 marker. Switch to ' +
+    '<b>21,000</b> to see the out-of-gas failure wallets still hit. Try Osaka, or a funded ' +
+    'recipient, to watch the state bar collapse.',
   creatorName: 'HolgerD77',
   creatorURL: 'https://x.com/HolgerD77',
   poweredBy: [{ name: 'EthereumJS', href: 'https://github.com/ethereumjs/ethereumjs-monorepo' }],

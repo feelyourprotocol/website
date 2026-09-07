@@ -110,6 +110,24 @@ function readTopicMeta(topicId: string): {
   return { title, color, introText }
 }
 
+function readCanonicalSource(explorationId: string): string | undefined {
+  const file = join(EXPLORATIONS_DIR, explorationId, 'canonical.ts')
+  if (!existsSync(file)) return undefined
+  return readFileSync(file, 'utf8')
+}
+
+function matchExplorationField(
+  infoSource: string,
+  canonicalSource: string | undefined,
+  infoKey: string,
+  canonicalKey = infoKey,
+): string | undefined {
+  return (
+    matchSingle(infoSource, infoKey) ??
+    (canonicalSource !== undefined ? matchSingle(canonicalSource, canonicalKey) : undefined)
+  )
+}
+
 function listExplorationIdsForTopic(topicId: string): string[] {
   const ids: string[] = []
   if (!existsSync(EXPLORATIONS_DIR)) return ids
@@ -118,8 +136,9 @@ function listExplorationIdsForTopic(topicId: string): string[] {
     if (!entry.isDirectory() || !entry.name.startsWith('eip-')) continue
     const infoFile = join(EXPLORATIONS_DIR, entry.name, 'info.ts')
     if (!existsSync(infoFile)) continue
-    const source = readFileSync(infoFile, 'utf8')
-    if (matchSingle(source, 'topic') === topicId) {
+    const infoSource = readFileSync(infoFile, 'utf8')
+    const canonicalSource = readCanonicalSource(entry.name)
+    if (matchExplorationField(infoSource, canonicalSource, 'topic') === topicId) {
       ids.push(entry.name)
     }
   }
@@ -135,8 +154,9 @@ export function readExplorationOgData(id: string): ExplorationOgData {
     throw new Error(`Could not read ${file} — is "${id}" a valid exploration id?`)
   }
 
-  const title = matchSingle(source, 'title')
-  const topicId = matchSingle(source, 'topic')
+  const canonicalSource = readCanonicalSource(id)
+  const title = matchExplorationField(source, canonicalSource, 'title', 'name')
+  const topicId = matchExplorationField(source, canonicalSource, 'topic')
   if (!title || !topicId) {
     throw new Error(`Failed to parse title/topic from ${file}`)
   }
