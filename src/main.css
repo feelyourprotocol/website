@@ -105,6 +105,27 @@ body {
   color: var(--e-text);
 }
 
+/* --- Topic surface / border tokens (used as class names across explorations) --- */
+.e-bg-light {
+  background-color: var(--e-bg-light);
+}
+
+.e-bg-medium {
+  background-color: var(--e-bg-medium);
+}
+
+.e-bg-dark {
+  background-color: var(--e-bg-dark);
+}
+
+.e-border {
+  border-color: var(--e-border);
+}
+
+.e-border-dark {
+  border-color: var(--e-border-dark);
+}
+
 /* --- Exploration wrapper --- */
 .exploration-c {
   background-color: var(--e-bg);

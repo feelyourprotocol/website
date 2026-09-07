@@ -37,8 +37,9 @@ Do this **before creating files**. Use the signed-off briefing; tighten against 
 9. Pedagogical **slice**: what the widget lets someone *feel*; what MCP owns as the superset.
 10. **Form factors (dedicated pass)** — mobile (single column, no horizontal overflow, usable tap targets), tablet, desktop (right-panel / companions stack or collapse). **Cover column:** if there is no companion, set `imageBoxHeight: COVER_COLUMN_IMAGE_HEIGHT` (`layout.ts`, `48rem`) — do not copy companion `16rem` from 7708, and do not leave the cover uncapped. See [exploration-design.mdc](../rules/exploration-design.mdc). Verify these in the browser before the report.
 11. **Cross-exploration UI check** — for every chrome control from the steps above, search sibling `MyC.vue` files and `src/eComponents/ui/`. Same logical control → reuse the UIC, or **extract it now** (component + tests, then switch old and new call sites) before shipping a second visual. This is required UIC work, not an E-Component exception gate. See [exploration-design.mdc](../rules/exploration-design.mdc).
+12. **Result panel shell** — mount result/compare UI with the scenario (idle placeholders + height for the tallest example). Do not `v-if` the whole panel on `result`. See [exploration-design.mdc](../rules/exploration-design.mdc) § Result panels.
 
-Write 4–8 lines of design notes (capture, first action, play loop, form-factor plan, UI reuse/extract) into the phase-2 report. Then code.
+Write 4–8 lines of design notes (capture, first action, play loop, form-factor plan, UI reuse/extract, result panel shell) into the phase-2 report. Then code.
 
 ## Choose a building block
 

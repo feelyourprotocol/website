@@ -32,6 +32,12 @@ A segmented toggle is an on/off indicator. The selected option needs a **dark fi
 
 Do **not** paint track, selected, and idle labels in the topic hue (`e-bg-medium` + `e-bg-dark` + `e-text opacity-70`). That sits on an already topic-tinted `.exploration-c` card, so the active option disappears. Neutral slate here matches `e-textarea` (readable chrome, not a hue). Topic color stays on the card and on actions/results.
 
+## Result panels: reserve space before the first run
+
+Primary result chrome (comparison bars, outcome footers, companion readouts) must **mount with the scenario**, not appear only after “Run”. Use `v-if` on inner values, not on the whole panel — or an idle shell with placeholders (`—`, “Run tx to fill…”) and **`min-height` sized for the tallest example** in that exploration.
+
+Clearing run state (`resetRunState`) may blank numbers but must not collapse layout; otherwise toggling hardfork / gas limit / example jumps the scroll position. Reference: `GasBarsView` on `eip-8037`.
+
 ## Right column: cover vs companion
 
 `ExplorationView` is a two-column grid. The right column is either a **companion** (`rightPanel: true`) or the **cover** (`TopicIntroView` + `image.webp`).

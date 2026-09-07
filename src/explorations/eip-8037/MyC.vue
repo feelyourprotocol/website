@@ -187,12 +187,13 @@ await init()
         />
 
         <GasBarsView
-          v-if="result && bars"
           class="mb-5"
-          :regular="bars.regular"
-          :state="bars.state"
-          :gas-limit="result.gasLimit"
-          :tx-successful="result.txSuccessful"
+          :has-run="result !== null"
+          :regular="bars?.regular ?? 0n"
+          :state="bars?.state ?? 0n"
+          :gas-limit="result?.gasLimit ?? CLASSIC_GAS_LIMIT"
+          :tx-successful="result?.txSuccessful ?? true"
+          :gas-limit-mode="gasLimitMode"
         />
 
         <ResultBoxUIC v-if="errorMsg" title="Error" :left="true" :errorText="errorMsg" />

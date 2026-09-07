@@ -5,7 +5,12 @@ import { createVM, estimateTxGasDimensions, runTx } from '@ethereumjs/vm'
 import { getScenario } from './scenarios'
 import { CLASSIC_GAS_LIMIT, EXECUTION_HEADROOM_GAS_LIMIT } from './scenarios/constants'
 import { applyPreState, buildTxBlock } from './scenarios/helpers'
-import type { GasLimitMode, HardforkChoice, ScenarioRunResult } from './scenarios/types'
+import type {
+  GasLimitMode,
+  GasScenarioDefinition,
+  HardforkChoice,
+  ScenarioRunResult,
+} from './scenarios/types'
 
 export type { GasLimitMode, HardforkChoice }
 
@@ -31,6 +36,17 @@ export interface RunScenarioOutput extends ScenarioRunResult {
   recommendedGasLimit: bigint
   expectedAmsterdamStateGas: bigint
   classicLimitWouldCover: boolean
+}
+
+/** Expected bar values before a run — keeps the diagram populated on every hardfork. */
+export function previewGasBars(
+  scenario: GasScenarioDefinition,
+  hardfork: HardforkChoice,
+): { regular: bigint; state: bigint } {
+  return {
+    regular: CLASSIC_GAS_LIMIT,
+    state: hardfork === 'amsterdam' ? scenario.expectedAmsterdamStateGas : 0n,
+  }
 }
 
 export function displayGasBars(result: RunScenarioOutput): { regular: bigint; state: bigint } {

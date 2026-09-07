@@ -127,19 +127,15 @@ const brief = computed(() => buildScenarioBrief(props.scenario, props.meta, prop
     </div>
 
     <footer
-      v-if="brief.blockFooter"
-      class="px-4 py-2.5 e-bg-dark text-white/90 flex flex-wrap gap-x-5 gap-y-1 text-xs font-mono"
+      class="px-4 py-2.5 text-xs font-mono border-t e-border min-h-[2.5rem]"
+      :class="brief.blockFooter ? 'e-bg-dark text-white/90' : 'e-bg-medium opacity-50'"
     >
-      <span>gas {{ brief.blockFooter.gasUsed }}</span>
-      <span>{{ brief.blockFooter.accountCount }} accounts in BAL</span>
-      <span class="opacity-70">hash {{ brief.blockFooter.hashShort }}</span>
-    </footer>
-
-    <footer
-      v-else-if="!hasRun"
-      class="px-4 py-2.5 text-xs font-mono opacity-50 border-t e-border e-bg-medium"
-    >
-      Run the block to generate the access list below.
+      <div v-if="brief.blockFooter" class="flex flex-wrap gap-x-5 gap-y-1">
+        <span>gas {{ brief.blockFooter.gasUsed }}</span>
+        <span>{{ brief.blockFooter.accountCount }} accounts in BAL</span>
+        <span class="opacity-70">hash {{ brief.blockFooter.hashShort }}</span>
+      </div>
+      <p v-else>Run the block to generate the access list below.</p>
     </footer>
   </section>
 </template>

@@ -57,23 +57,17 @@ const outcomeLine = computed(() => {
     </div>
 
     <footer
-      v-if="outcomeLine"
-      :class="[
-        'px-4 py-2.5 text-xs font-mono border-t e-border',
-        result?.txSuccessful ? 'e-bg-medium e-text' : 'e-bg-dark text-white/90',
-      ]"
+      class="px-4 py-2.5 text-xs font-mono border-t e-border min-h-[3.5rem]"
+      :class="
+        outcomeLine
+          ? result?.txSuccessful
+            ? 'e-bg-medium e-text'
+            : 'e-bg-dark text-white/90'
+          : 'e-bg-medium'
+      "
     >
-      {{ outcomeLine }}
-      <span
-        v-if="hardfork === 'osaka' && hasRun && result?.txSuccessful"
-        class="block mt-1 opacity-70"
-      >
-        Switch to Amsterdam on first-touch to see the state-gas bar appear.
-      </span>
-    </footer>
-
-    <footer v-else class="px-4 py-2.5 text-xs font-mono opacity-50 border-t e-border e-bg-medium">
-      Run the transaction to compare execution vs state gas.
+      <p v-if="outcomeLine">{{ outcomeLine }}</p>
+      <p v-else class="opacity-50">Run the transaction to compare execution vs state gas.</p>
     </footer>
   </section>
 </template>

@@ -8,7 +8,7 @@ import { CANONICAL } from './canonical'
 import { DEFAULT_SCENARIO_ID, exampleMeta, examples } from './examples'
 import { INFO } from './info'
 import MyC from './MyC.vue'
-import { displayGasBars, runScenario } from './run'
+import { displayGasBars, previewGasBars, runScenario } from './run'
 import { getScenario, SCENARIO_ORDER } from './scenarios'
 import {
   CLASSIC_GAS_LIMIT,
@@ -60,6 +60,65 @@ describe('EIP-8037 state-creation gas exploration', () => {
       expect(() => getScenario('not-a-scenario')).toThrow(/Unknown EIP-8037 scenario/)
       expect(() => getScenario('')).toThrow(/Unknown EIP-8037 scenario/)
     })
+  })
+
+  describe('previewGasBars', () => {
+    it('uses classic execution and Amsterdam state expectations per scenario', () => {
+      for (const scenarioId of SCENARIO_ORDER) {
+        const scenario = getScenario(scenarioId)
+        const amsterdam = previewGasBars(scenario, 'amsterdam')
+        expect(amsterdam.regular).toBe(CLASSIC_GAS_LIMIT)
+        expect(amsterdam.state).toBe(scenario.expectedAmsterdamStateGas)
+
+        const osaka = previewGasBars(scenario, 'osaka')
+        expect(osaka.regular).toBe(CLASSIC_GAS_LIMIT)
+        expect(osaka.state).toBe(0n)
+      }
+    })
+  })
+
+  describe('displayGasBars', () => {
+    const matrix: Array<{
+      scenarioId: (typeof SCENARIO_ORDER)[number]
+      hardfork: 'amsterdam' | 'osaka'
+      gasLimitMode: 'classic' | 'recommended'
+    }> = [
+      { scenarioId: '01-first-touch', hardfork: 'amsterdam', gasLimitMode: 'recommended' },
+      { scenarioId: '01-first-touch', hardfork: 'amsterdam', gasLimitMode: 'classic' },
+      { scenarioId: '01-first-touch', hardfork: 'osaka', gasLimitMode: 'classic' },
+      { scenarioId: '02-funded-recipient', hardfork: 'amsterdam', gasLimitMode: 'classic' },
+      { scenarioId: '02-funded-recipient', hardfork: 'osaka', gasLimitMode: 'classic' },
+      { scenarioId: '03-new-storage', hardfork: 'amsterdam', gasLimitMode: 'recommended' },
+      { scenarioId: '03-new-storage', hardfork: 'osaka', gasLimitMode: 'recommended' },
+    ]
+
+    it.each(matrix)(
+      'returns non-zero execution gas for $scenarioId on $hardfork ($gasLimitMode)',
+      async ({ scenarioId, hardfork, gasLimitMode }) => {
+        const result = await runScenario(scenarioId, hardfork, gasLimitMode)
+        const bars = displayGasBars(result)
+        expect(bars.regular).toBeGreaterThan(0n)
+      },
+    )
+
+    const successfulMatrix = matrix.filter(
+      ({ scenarioId, hardfork, gasLimitMode }) =>
+        !(
+          scenarioId === '01-first-touch' &&
+          hardfork === 'amsterdam' &&
+          gasLimitMode === 'classic'
+        ),
+    )
+
+    it.each(successfulMatrix)(
+      'keeps measured bar totals within spent gas on successful $scenarioId / $hardfork ($gasLimitMode)',
+      async ({ scenarioId, hardfork, gasLimitMode }) => {
+        const result = await runScenario(scenarioId, hardfork, gasLimitMode)
+        expect(result.txSuccessful).toBe(true)
+        const bars = displayGasBars(result)
+        expect(bars.regular + bars.state).toBeLessThanOrEqual(result.totalGasSpent)
+      },
+    )
   })
 
   describe('runScenario', () => {
@@ -143,6 +202,11 @@ describe('EIP-8037 state-creation gas exploration', () => {
       const amsterdam = wrapper.find('[aria-pressed="true"]')
       expect(amsterdam.exists()).toBe(true)
       expect(amsterdam.text()).toBe('Amsterdam')
+      expect(wrapper.find('[data-testid="gas-bars"]').attributes('data-has-run')).toBe('false')
+      expect(wrapper.text()).toContain('Run tx to fill execution and state bars')
+      const gasBars = wrapper.find('[data-testid="gas-bars"]')
+      expect(gasBars.text()).toContain('—')
+      expect(gasBars.text()).not.toMatch(/Execution[\s\S]*183,600/)
     })
 
     it('resets hardfork and gas limit when the scenario changes', async () => {

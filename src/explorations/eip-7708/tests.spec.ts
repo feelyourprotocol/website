@@ -121,7 +121,7 @@ describe('EIP-7708 transfer-log exploration', () => {
   })
 
   describe('MyC.vue', () => {
-    it('mounts with scenario controls and run action', async () => {
+    it('mounts with scenario controls and shows receipt panel shell before run', async () => {
       document.body.innerHTML = '<div id="root"></div><div id="exploration-right-panel"></div>'
       const router = createRouter({
         history: createMemoryHistory(),
@@ -154,6 +154,7 @@ describe('EIP-7708 transfer-log exploration', () => {
       const amsterdam = wrapper.find('[aria-pressed="true"]')
       expect(amsterdam.exists()).toBe(true)
       expect(amsterdam.text()).toBe('Amsterdam')
+      expect(wrapper.text()).toContain('Run the block to inspect receipt logs')
     })
 
     it('resets hardfork to Amsterdam when the scenario changes', async () => {
