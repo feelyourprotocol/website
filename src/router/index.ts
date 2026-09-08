@@ -3,7 +3,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import { EXPLORATIONS } from '@/explorations/REGISTRY'
 import { TOPICS } from '@/explorations/TOPICS'
 import { applyPageSeo } from '@/libs/applyPageSeo'
-import { getPageSeoForRoute } from '@/libs/pageSeo'
+import { getPageSeoForRoute, normalizePublicPath } from '@/libs/pageSeo'
 
 function loadRoutes() {
   // Use Vite's glob imports so production builds can resolve lazy routes
@@ -62,6 +62,13 @@ function loadRoutes() {
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: loadRoutes(),
+})
+
+router.beforeEach((to) => {
+  const path = normalizePublicPath(to.path)
+  if (path !== to.path) {
+    return { path, query: to.query, hash: to.hash, replace: true }
+  }
 })
 
 router.afterEach((to) => {
