@@ -16,18 +16,19 @@ Playbook for one strip per exploration. Output lives in [`design/comics/`](../..
 
 ## Inputs (do not invent)
 
-Read, then derive. Do not re-brief the EIP.
+Read, then derive. Do not re-brief taxonomy or suitability. Do **fetch the EIP** for the bridge-word pass.
 
 1. `src/explorations/<id>/canonical.ts` — `identity`, `coreQuestion`, mechanism
-2. `info.ts` intro (one-breath mechanism) if needed
-3. **Every** `design/comics/eip-*.yml` — consumed settings, bridges, easter eggs, Bruh lines, `vibe.slug` repeats
-4. **Every** existing strip in `design/comics/` — look at them (style, faces, yellow boxes). Few-shot examples in this skill are **negative space**, not a menu.
+2. EIP markdown — **Motivation / rationale** (and the spec lead if the core noun lives there). Fetch `EIPS/eip-NNNN.md`. This is a word pass, not a new briefing.
+3. `info.ts` intro (one-breath mechanism) if needed
+4. **Every** `design/comics/eip-*.yml` — consumed settings, bridges, easter eggs, Bruh lines, `vibe.slug` repeats, `copy.panel2_affect`
+5. **Every** existing strip in `design/comics/` — look at them (style, faces, yellow boxes). Few-shot examples in this skill are **negative space**, not a menu.
 
 Next `episode:` is `max(existing episode) + 1`. Domain on the strip: **feelyourprotocol.org**.
 
 ## Workflow
 
-1. **Inventory** from all YAML (lists: settings, bridges, easter eggs, panel1 lines, vibe slugs + counts).
+1. **Inventory** from all YAML (lists: settings, bridges, easter eggs, panel1 lines, vibe slugs + counts, panel-2 affects).
 2. **Vibe chips** — [News / vibe](#news--vibe) (2–3 searches, then leave the web).
 3. **Derive** the card — [Derivation](#derivation). Write the card in chat (or hold it) before drawing.
 4. **Distance check** — if it is “episode N with a new coat of paint,” restart from metaphors.
@@ -40,19 +41,33 @@ Do not commit, push, or open a PR unless asked. Do not put the comic on the expl
 
 ## Derivation
 
-Do **not** pick setting / egg / Bruh line from prior strips or from examples in [reference.md](reference.md). Those teach the *shape* of a rule.
+Do **not** pick setting / egg / Bruh line / Bro affect from prior strips or from examples in [reference.md](reference.md). Those teach the *shape* of a rule.
+
+### Bridge word (EIP-core, then Bro-register, then Bruh)
+
+The red stamp has to **carry the EIP**. Adjacent operational slang (a wallet constant, a UI label, a weakly related verb) is not enough even if Bruh would say it.
 
 1. Mechanism in one breath from `canonical.ts` (not vibes).
-2. Metaphor list (8+) of ordinary verbs for that mechanism.
-3. Drop consumed `bridge.word` values.
-4. Pick the **bridge from Bruh’s mouth** — a word he would say in coin-time that also names the mechanism.
-5. **Place from a different facet** than the bridge, or from contrast (mundane room vs trader brain). **No pun diorama:** `PRINT` ≠ print shop, `INVISIBLE` ≠ ghost, `BALL` ≠ stadium, `LOG` ≠ cabin/logbook, `FILTER` ≠ aquarium/laundromat lint.
-6. Five candidate places; delete anything already in YAML `setting.name` or named as an example in the skill/reference. Keep the furthest leftover.
-7. Easter egg from **the room**, not the EIP: what already lives here? Tiny Ethereum-love gesture invented for this room. Never recycle YAML `easter_egg` values or reference examples (marmot+sign, castle ghost, juggling robot, drone house of cards, dryer cat, gecko+ETH hold, …).
-8. Bruh line: unique, not a copy of any `copy.panel1_bruh`. He lives in gains/losses/coin-time — mutter, phone, future bag. He does not have to address Bro. No recycled `HEY BRO` / `GAS IS SPIKING` / `REKT` / `CLOSE IT` unless that *is* a new collision (it almost never is).
-9. Bro line: repeats the red bridge as a question, names the real `EIP-N` + one true mechanism, one italic `*FEEL*` + ❤️. He does not dunk or soothe PnL.
+2. **Spec core list** from the EIP motivation / rationale: nouns and short phrases that *are* the change. Keep words that name the idea; drop neighbors that only sit next to it.
+3. **Back-and-forth with Bro’s register** — for each survivor, can it also live in protocol love / future excitement / “how the chain moves if this is live”? Keep only those that translate both ways (spec-true **and** something a protocol-lover would actually dwell on). Shape of this filter (not a menu): a core spec noun that also has an excitement idiom beats a nearby constant that barely names the EIP.
+4. Metaphor list (8+) from the **surviving cores** — ordinary verbs *and* Bro-excitement phrases.
+5. Drop consumed `bridge.word` values.
+6. Pick the **bridge** from a surviving core: spec-true in Bro’s mouth, and utterable by Bruh in coin-time (or a true homophone). Prefer the word that *is* the EIP.
 
-**Generic ground:** same street, two non-overlapping movies. Bruh = coin-time. Bro = protocol-time. The bridge is where those movies share a syllable. Episode 1’s “panic mishearing” is one *instance*, not the engine.
+### Place, egg, lines
+
+7. **Place from a different facet** than the bridge, or from contrast (mundane room vs trader brain). **No pun diorama:** `PRINT` ≠ print shop, `INVISIBLE` ≠ ghost, `BALL` ≠ stadium, `LOG` ≠ cabin/logbook, `FILTER` ≠ aquarium/laundromat lint.
+8. Five candidate places; delete anything already in YAML `setting.name` or named as an example in the skill/reference. Keep the furthest leftover.
+9. Easter egg from **the room**, not the EIP: what already lives here? Tiny Ethereum-love gesture invented for this room. Never recycle YAML `easter_egg` values or reference examples (marmot+sign, castle ghost, juggling robot, drone house of cards, dryer cat, gecko+ETH hold, …).
+10. Bruh line: unique, not a copy of any `copy.panel1_bruh`. **Plain coin-time** — bags, size, PnL, tape, leverage. Not a metaphor, not a poem, not a figure of speech built so the red word can appear. The bridge is one word that happens to sit in an otherwise ordinary mutter. Zero protocol nouns (no fork, EIP, gas, testnet, client, hardfork). He does not have to address Bro. Phone/charts are optional; he may be doing the same activity as Bro and still be elsewhere. No recycled `HEY BRO` / `GAS IS SPIKING` / `REKT` / `CLOSE IT` unless that *is* a new collision (it almost never is).
+11. **Bro affect** — panel 2 is **dreaming**: half-lidded, blush, **pink hearts**. That elsewhere-look is what sells the misunderstanding. An active / excited / wide-eyed Bro looks like he is in Bruh’s conversation — the reader no longer buys two movies. Scan YAML; do not swap this beat for “energy.”
+12. Bro line: his **own** protocol thought — not an answer to Bruh, not `WORD?`. Built on what the EIP **solves** (the good outcome), using the red bridge because that concept is in his head. He may name `EIP-NNNN`. He does not dunk, soothe PnL, or describe the widget. `*FEEL*` in the bubble is optional; **hearts on the face are not**.
+
+**Two movies, one street.** The dialogs are **fully unrelated**. They think past each other. The reader holds the bridge; the characters do not. Bruh never leaves trader/business/coin-time. Bro never leaves protocol-time.
+
+**Bubbles are protocol, not product.** No widget parts, bars, sliders, scenario names, MCP tools, page chrome, or “how the exploration looks.”
+
+**Generic ground:** same street, two non-overlapping movies. Bruh = coin-time. Bro = protocol-time. The bridge is a **core EIP word** those movies can share — a syllable, not a shared topic. Episode 1’s “panic mishearing” (`WORD?`) is one *instance*, not the engine. Panel 2 **hearts + dreamy Bro** is the lock that makes the collision look accidental.
 
 ## News / vibe
 
@@ -62,7 +77,7 @@ Default is a **vibe-influenced** Bruh line. Not a news recap. Not a Twitter pipe
 
 1. Ethereum / crypto community attention this week (markets, L2s, culture, debates — not price-only)
 2. Optional named subplot if (1) is flat or the human named one
-3. Optional protocol chip (fork/ACD) only if Bruh would overhear it as catalyst-gossip, not as a spec
+3. Optional protocol chip (fork/ACD) only as **background heat** — it must become coin-time in Bruh’s mouth (bag / tape / size). **Zero** protocol nouns in his bubble.
 
 Compress into **5 vibe chips** you authored (not pasted headlines):
 
@@ -114,7 +129,7 @@ The strip is the **first exploration announcement** on @FeelEthereum — the *sp
 **Alt text (required in this pipeline).** X treats alt as optional in the composer; we do not. The comic *is* the joke — without alt, a screen reader only gets the caption. Write `tweet.alt` every time.
 
 - Sentence case for description; quote bubbles in the comic’s ALL CAPS.
-- Both panels: who is who (Bro = blonde, backwards FYP cap; Bruh = short dark hair), setting, the two lines, Bro’s hearts in panel 2, CTA box. Easter egg in one clause.
+- Both panels: who is who (Bro = blonde, backwards FYP cap; Bruh = short dark hair), setting, the two lines, Bro’s panel-2 hearts, CTA box, original logo + `feelyourprotocol.org`. Easter egg in one clause.
 - Carry the collision (the red word in both mouths). Do not explain the pun, and do not paste `tweet.body`.
 - X limit **1000** characters. Aim 400–800. No “image of”, no “AI generated”, no URL.
 - Paste-ready in the report next to the caption.
@@ -128,11 +143,11 @@ design/comics/eip-NNNN.png   # or .jpg
 design/comics/eip-NNNN.yml   # same basename; episode: in YAML
 ```
 
-Image prompt must include: two stacked equal panels; Bro = blonde ponytail + backwards teal **FYP** cap; Bruh = short dark hair, no FYP; P1 two-shot; P2 Bro close-up + pink hearts; yellow title + CTA; logo + `feelyourprotocol.org`; exact locked copy; one red bridge word; consumed settings/eggs banned.
+Image prompt must include: two stacked equal panels; Bro = blonde ponytail + backwards teal **FYP** cap; Bruh = short dark hair, no FYP; P1 two-shot (shared activity OK; Bruh need not be on a phone); P2 Bro close-up **dreaming** (half-lidded, blush, **pink hearts** — not a wide-eyed excited grin); yellow title + CTA; **original FYP mark** (ETH octahedron, purple-to-cyan branches, black ring) + readable `feelyourprotocol.org` bottom-left; exact locked copy; one red bridge word; consumed settings/eggs banned; no widget chrome in the scene. Pass `design/source/logos/with-circle/tiny.png` as a reference.
 
 ## Metadata template
 
-Copy the key set. Do not add ad-hoc top-level keys. `null` allowed for unused vibe fields.
+Copy the key set. Do not add ad-hoc top-level keys. `null` allowed for unused vibe fields. Episodes 1–3 omit `copy.panel2_affect` — treat as `dreaming`.
 
 ```yaml
 schema: bro-bruh-comic/v1
@@ -171,6 +186,7 @@ easter_egg: <one unused, scenery-native ETH-love beat>
 copy:
   panel1_bruh: <ALL CAPS>
   panel2_bro: <ALL CAPS>
+  panel2_affect: dreaming
   title: '*BRO & BRUH EPISODE N'
   cta: A NEW FEEL YOUR PROTOCOL EXPLORATION HAS ARRIVED, CHECK IT OUT!
 
@@ -192,6 +208,7 @@ notes: <consumed warning + anything a later LLM must not repeat>
 **Episode:** N
 **Files:** `design/comics/eip-NNNN.png` + `eip-NNNN.yml`
 **Bridge:** WORD — trader sense → protocol sense
+**Affect:** <panel2_affect>
 **Vibe:** slug / register — why_hot (short) — why_narrative (short)
 **Setting / egg:** …
 **Engine:** …

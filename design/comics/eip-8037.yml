@@ -1,0 +1,74 @@
+# Bro & Bruh comic metadata — schema bro-bruh-comic/v1
+# Keep this key set when adding files. Do not rename keys.
+schema: bro-bruh-comic/v1
+id: eip-8037
+episode: 4
+series: bro-bruh
+image: eip-8037.png
+
+exploration:
+  id: eip-8037
+  eip: 8037
+  name: EIP-8037 State Creation Gas Cost Increase
+  core_question: Why isn't 21,000 gas enough for a simple ETH transfer anymore?
+
+engine: parallel-worlds
+bridge:
+  word: DIMENSION
+  trader_sense: a risk factor he is not pricing
+  protocol_sense: state gas as a new dimension that unblocks scaling (EIP-8037)
+
+vibe:
+  slug: l2-tape-heat
+  topic: L2 flow as the tape degens are riding
+  register: l2
+  recency: 2026-09
+  why_hot: >-
+    L2 throughput is in the air; it stays background heat, not Bruh's nouns
+  why_narrative: >-
+    DIMENSION is a risk-book word for Bruh and two-dimensional gas for Bro;
+    they do not share a topic
+  repeat_of: null
+
+setting:
+  name: 24-hour diner booth (rain)
+  why: >-
+    Shared coffee/pie; Bruh is at the table but elsewhere. Not a
+    dimension-diorama (no portal / IMAX).
+
+easter_egg: >-
+  Pie in the case with a tiny Ethereum-diamond sugar lattice
+
+copy:
+  panel1_bruh: >-
+    I'M NOT PRICING THAT RISK DIMENSION, I'M ADDING SIZE
+  panel2_bro: >-
+    EIP-8037 — STATE GAS BRINGS SCALING INTO A NEW DIMENSION
+  panel2_affect: dreaming
+  title: '*BRO & BRUH EPISODE 4'
+  cta: A NEW FEEL YOUR PROTOCOL EXPLORATION HAS ARRIVED, CHECK IT OUT!
+
+tweet:
+  body: |-
+    Creating state and running code used to share one meter. They don't.
+
+    https://feelyourprotocol.org/eip-8037-state-creation-gas
+  url: https://feelyourprotocol.org/eip-8037-state-creation-gas
+  alt: >-
+    Bro & Bruh episode 4, two-panel comic in a rainy 24-hour diner booth. Panel 1:
+    they share coffee and pie. Bruh, short dark hair, no phone, scowls at the
+    table and thinks: I'M NOT PRICING THAT RISK DIMENSION, I'M ADDING SIZE. Bro,
+    blonde ponytail and teal FYP cap, smiles to himself. A pie in the case has a
+    tiny Ethereum-diamond sugar lattice. Panel 2: close-up of Bro, half-lidded
+    dreamy smile, blush, pink hearts. He thinks: EIP-8037 — STATE GAS BRINGS
+    SCALING INTO A NEW DIMENSION. Bottom-left: original circular FYP mark plus
+    feelyourprotocol.org. Yellow box: A NEW FEEL YOUR PROTOCOL EXPLORATION HAS
+    ARRIVED, CHECK IT OUT!
+
+notes: >-
+  Do not copy this diner, diamond pie, or DIMENSION as the red word. Do not
+  reuse this risk-dimension Bruh line. Discarded: tape-hit-another-dimension
+  metaphor; phone-stare; FORK in Bruh's mouth; excited-grin Bro; lone-diamond
+  logo without the domain. Bruh is plain trader speech; the stamp is one word
+  inside that. Logo is with-circle mark + feelyourprotocol.org. Panel 2 is
+  dreaming (hearts).
