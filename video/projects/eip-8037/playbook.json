@@ -1,0 +1,114 @@
+{
+  "format": "shorts",
+  "exploration": "eip-8037",
+  "defaultExample": "01-first-touch",
+  "steps": [
+    {
+      "beat": "hook",
+      "overlay": "title-card",
+      "wait": 4500
+    },
+    {
+      "beat": "context",
+      "overlay": "context",
+      "placement": "top-banner",
+      "focus": "gas-bars",
+      "cue": 3400,
+      "hideOverlay": true,
+      "wait": 600
+    },
+    {
+      "beat": "first-touch",
+      "overlay": "first-touch",
+      "annotate": "guide-run",
+      "placement": "top-banner",
+      "focus": "run-tx",
+      "cue": 2800,
+      "click": "run-tx",
+      "wait": 800
+    },
+    {
+      "beat": "first-touch-read",
+      "overlay": "first-touch-read",
+      "annotate": "guide-bars",
+      "placement": "top-banner",
+      "focus": "gas-bars",
+      "cue": 3600,
+      "hideOverlay": true,
+      "wait": 800
+    },
+    {
+      "beat": "switch-classic",
+      "overlay": "switch-classic",
+      "annotate": "guide-limit",
+      "placement": "top-banner",
+      "focus": "gas-limit-toggle",
+      "cue": 2400,
+      "click": "gas-limit-classic",
+      "wait": 700
+    },
+    {
+      "beat": "classic-run",
+      "overlay": "classic-run",
+      "annotate": "guide-run",
+      "placement": "top-banner",
+      "focus": "run-tx",
+      "cue": 2400,
+      "click": "run-tx",
+      "wait": 800
+    },
+    {
+      "beat": "classic-result",
+      "overlay": "classic-result",
+      "annotate": "guide-bars",
+      "placement": "top-banner",
+      "focus": "gas-bars",
+      "cue": 3200,
+      "hideOverlay": true,
+      "wait": 800
+    },
+    {
+      "beat": "switch-osaka",
+      "overlay": "switch-osaka",
+      "annotate": "guide-fork",
+      "placement": "top-banner",
+      "focus": "hardfork-toggle",
+      "cue": 2200,
+      "click": "hardfork-osaka",
+      "wait": 700
+    },
+    {
+      "beat": "osaka-run",
+      "overlay": "osaka-run",
+      "annotate": "guide-run",
+      "placement": "top-banner",
+      "focus": "run-tx",
+      "cue": 2400,
+      "click": "run-tx",
+      "wait": 800
+    },
+    {
+      "beat": "osaka-result",
+      "overlay": "osaka-result",
+      "annotate": "guide-bars",
+      "placement": "top-banner",
+      "focus": "gas-bars",
+      "cue": 2800,
+      "hideOverlay": true,
+      "wait": 800
+    },
+    {
+      "beat": "recap",
+      "overlay": "recap",
+      "annotate": "guide-bars",
+      "placement": "top-banner",
+      "focus": "gas-bars",
+      "wait": 4200
+    },
+    {
+      "beat": "outro",
+      "overlay": "outro-card",
+      "wait": 5000
+    }
+  ]
+}

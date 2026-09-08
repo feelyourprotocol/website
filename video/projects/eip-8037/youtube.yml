@@ -1,0 +1,41 @@
+schema: video-short-youtube/v1
+id: eip-8037
+
+title: 'EIP-8037 Under the Hood: State Gas vs 21,000 (Amsterdam) #Shorts'
+
+description: |
+  EIP-8037 splits gas into execution and state — a first-touch ETH transfer no longer fits in 21,000.
+
+  Part of the Amsterdam execution-layer rules. This short runs a 1-wei transfer to an empty account, shows execution staying around 21,000 while state gas is about 183,600, then drops the limit to 21,000 so the send fails. The same transfer on Osaka still goes through. Funded recipients stay cheap; a new storage slot also bills state gas.
+
+  Explore it interactively:
+  https://feelyourprotocol.org/eip-8037-state-creation-gas
+
+  Spec: https://eips.ethereum.org/EIPS/eip-8037
+  Forkcast: https://forkcast.org/eips/8037/
+
+  #Ethereum #Amsterdam #StateGas #FeelYourProtocol #Shorts
+
+tags:
+  - Ethereum
+  - EIP-8037
+  - Amsterdam
+  - Glamsterdam
+  - state gas
+  - two-dimensional gas
+  - first-touch transfer
+  - EVM
+
+category: Science & Technology
+playlist: Feel Your Protocol · Amsterdam EIPs
+
+thumbnail:
+  file: eip-8037-2026-09-08T11-19-51-final-thumb.jpg
+  width: 1280
+  time_sec: 1.5
+  source: title-card
+
+sources:
+  exploration_url: https://feelyourprotocol.org/eip-8037-state-creation-gas
+  spec_url: https://eips.ethereum.org/EIPS/eip-8037
+  forkcast_url: https://forkcast.org/eips/8037/

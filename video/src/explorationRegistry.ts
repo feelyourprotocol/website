@@ -31,6 +31,10 @@ export const EXPLORATION_REGISTRY: Record<string, ExplorationMeta> = {
     path: '/eip-7708-eth-transfer-logs',
     topic: 'ux',
   },
+  'eip-8037': {
+    path: '/eip-8037-state-creation-gas',
+    topic: 'robustness',
+  },
 }
 
 /** Topic → overlay theme (aligned with og/src/topic-colors.ts). */

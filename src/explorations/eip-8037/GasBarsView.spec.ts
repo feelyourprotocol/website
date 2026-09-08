@@ -26,6 +26,11 @@ describe('GasBarsView', () => {
     })
 
     expect(wrapper.find('[data-testid="gas-bars"]').attributes('data-has-run')).toBe('false')
+    expect(wrapper.find('[data-testid="gas-bar-execution-value"]').exists()).toBe(true)
+    expect(wrapper.find('[data-testid="gas-bar-state-value"]').exists()).toBe(true)
+    expect(wrapper.find('[data-testid="gas-bar-status"]').attributes('data-out-of-gas')).toBe(
+      'false',
+    )
     expect(wrapper.text()).toContain('Gas dimensions')
     expect(wrapper.text()).toContain('—')
     expect(wrapper.text()).toContain('Run tx to fill execution and state bars')
@@ -86,5 +91,8 @@ describe('GasBarsView', () => {
 
     expect(wrapper.text()).toContain('out of gas')
     expect(wrapper.text()).toContain('21,000')
+    expect(wrapper.find('[data-testid="gas-bar-status"]').attributes('data-out-of-gas')).toBe(
+      'true',
+    )
   })
 })

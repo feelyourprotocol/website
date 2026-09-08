@@ -1,0 +1,42 @@
+schema: video-short-tweet/v1
+id: eip-8037
+
+# Comic already opened with "Creating state and running code used to share one meter. They don't."
+# Video tweet leads with the fork + the two gas numbers, then a wallet-limit diagnostic.
+shape: thread
+
+t1:
+  body: |
+    EIP-8037 · Amsterdam
+    A first-touch transfer still needs about 21,000 execution gas — plus about 183,600 state gas.
+
+    Does your wallet still send 21,000 for a simple transfer?
+
+    https://feelyourprotocol.org/eip-8037-state-creation-gas
+  media: eip-8037-2026-09-08T11-19-51-final.mp4
+  video_description: |
+    Vertical Shorts walk-through of EIP-8037. A title card asks why 21,000 gas
+    is no longer enough for a simple ETH transfer. The widget runs a 1-wei
+    first-touch transfer on Amsterdam: execution stays around 21,000 while
+    state gas is about 183,600. Dropping the gas limit to 21,000 fails out of
+    gas. The same send on Osaka still fits in 21,000. Voice-over notes that
+    funded recipients stay cheap and a new storage slot also bills state gas,
+    then points to Forkcast and feelyourprotocol.org.
+
+t2:
+  body: |
+    Spec and the fork write-up:
+
+    Spec: https://eips.ethereum.org/EIPS/eip-8037
+    Forkcast: https://forkcast.org/eips/8037/
+
+sources:
+  exploration_url: https://feelyourprotocol.org/eip-8037-state-creation-gas
+  spec_url: https://eips.ethereum.org/EIPS/eip-8037
+  forkcast_url: https://forkcast.org/eips/8037/
+
+notes: |
+  Consumed opener: "EIP-8037 · Amsterdam / A first-touch transfer still needs about 21,000 execution gas";
+  diagnostic "Does your wallet still send 21,000 for a simple transfer?".
+  Do not clone the comic meter opener.
+  Fork label: "Amsterdam" (EL rules), not "Glamsterdam" — one label per tweet.
