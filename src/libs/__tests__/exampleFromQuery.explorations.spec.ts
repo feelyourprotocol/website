@@ -14,6 +14,10 @@ import { config as eip7951Config } from '@/explorations/eip-7951/config'
 import { examples as eip7951Examples } from '@/explorations/eip-7951/examples'
 import { config as eip8024Config } from '@/explorations/eip-8024/config'
 import { examples as eip8024Examples } from '@/explorations/eip-8024/examples'
+import {
+  DEFAULT_SCENARIO_ID as eip8037Default,
+  examples as eip8037Examples,
+} from '@/explorations/eip-8037/examples'
 import { resolveInitialExample } from '@/libs/exampleFromQuery'
 
 /** Every live exploration and its default example key. */
@@ -23,6 +27,7 @@ const EXPLORATION_EXAMPLE_SETS = [
   { id: 'eip-7928', defaultKey: eip7928Default, examples: eip7928Examples },
   { id: 'eip-7951', defaultKey: eip7951Config.defaultExample, examples: eip7951Examples },
   { id: 'eip-8024', defaultKey: eip8024Config.defaultExample, examples: eip8024Examples },
+  { id: 'eip-8037', defaultKey: eip8037Default, examples: eip8037Examples },
 ] as const
 
 describe('?example= query param across explorations', () => {

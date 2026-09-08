@@ -36,7 +36,7 @@ export const sstoreRevertScenario: BalScenarioDefinition = {
   txSummary: [
     {
       label: 'tx 1',
-      detail: `legacy call → ${CONTRACT_ADDRESS}, SSTORE then REVERT, gasLimit 200000`,
+      detail: `legacy call → ${CONTRACT_ADDRESS}, SSTORE then REVERT, gas limit 200,000`,
     },
   ],
   bytecodeSteps: [

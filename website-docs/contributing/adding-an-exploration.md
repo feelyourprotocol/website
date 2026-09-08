@@ -82,7 +82,9 @@ export const INFO: Exploration = {
 | `introText` / `usageText` | Pedagogy and accuracy vs the spec |
 | `introText` vs `seoDescription` | Intro teaches on-page; SEO targets search queries |
 | `poweredBy` | Credit libraries used |
-| `image` | Optional — [Images](/contributing/images) |
+| `image` | Required — [Images](/contributing/images). Page uses `image.webp`; cards use `imageSmall`. |
+| `imageBoxHeight` | Cover-only: `COVER_COLUMN_IMAGE_HEIGHT` (`48rem`). Companion: `16rem`–`19rem` with `rightPanel: true`. |
+| `rightPanel` | Set when a companion teleports into `#exploration-right-panel`; otherwise omit. |
 
 Agent field lookup: JSDoc on `Exploration` in `REGISTRY.ts`.
 
@@ -95,6 +97,8 @@ Write `seoDescription` for how people search (EIP number, acronyms, “interacti
 Do not hand-implement from docs — tell the agent to copy a **reference folder** and read [Available E-Components](/contributing/available-e-components).
 
 **Extension rule:** extra teaching UI goes **inside** E-Component slots, not as siblings next to the component (provide/inject is descendant-only). See [E-Components](/contributing/e-components#extension-points).
+
+**Reuse rule:** the same logical chrome (hardfork toggle, run button, example picker) uses one shared UIC. Agents extract duplicates in-between; they do not restyle a copy. See [UI Components](/contributing/ui-components).
 
 ## Tests
 

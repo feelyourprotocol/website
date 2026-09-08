@@ -1,3 +1,4 @@
+import { COVER_COLUMN_IMAGE_HEIGHT } from '@/explorations/layout'
 import type { Exploration } from '@/explorations/REGISTRY'
 
 import { CANONICAL } from './canonical'
@@ -18,6 +19,7 @@ export const INFO: Exploration = {
   imageSmall,
   coreQuestion: CANONICAL.question.coreQuestion,
   mcpDocsStatus: CANONICAL.mcp.docsStatus,
+  imageBoxHeight: COVER_COLUMN_IMAGE_HEIGHT,
   introText:
     `<b>${CANONICAL.question.coreQuestion}</b> ` +
     'With the Fusaka hardfork, data availability sampling (DAS) replaces single blob proofs with ' +

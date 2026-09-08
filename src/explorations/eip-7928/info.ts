@@ -9,7 +9,7 @@ export const INFO: Exploration = {
   path: '/eip-7928-block-level-access-lists',
   title: CANONICAL.identity.name,
   seoDescription:
-    'Explore Ethereum block-level access lists (BAL) with EIP-7928 — interactive walkthrough of block access patterns and blockAccessListHash.',
+    'Explore Ethereum block-level access lists (BAL) with EIP-7928 — interactive walkthrough of block access patterns and the block access list hash.',
   infoURL: CANONICAL.identity.specUrl,
   topic: CANONICAL.taxonomy.topic,
   timeline: CANONICAL.taxonomy.timeline,

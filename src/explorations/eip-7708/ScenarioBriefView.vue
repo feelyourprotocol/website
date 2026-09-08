@@ -61,28 +61,30 @@ const expectationMet = computed(() => {
     </div>
 
     <footer
-      v-if="outcomeLine"
-      :class="[
-        'px-4 py-2.5 text-xs font-mono border-t e-border',
-        expectationMet === true
-          ? 'e-bg-medium e-text'
-          : expectationMet === false
+      class="px-4 py-2.5 text-xs font-mono border-t e-border min-h-[4.5rem]"
+      :class="
+        outcomeLine
+          ? expectationMet === false
             ? 'e-bg-dark text-white/90'
-            : 'e-bg-medium opacity-80',
-      ]"
+            : 'e-bg-medium e-text'
+          : 'e-bg-medium'
+      "
     >
-      {{ outcomeLine }}
-      <span v-if="expectationMet === false" class="block mt-1 opacity-80">
+      <p v-if="outcomeLine">{{ outcomeLine }}</p>
+      <p v-else class="opacity-50">Run the block to inspect receipt logs.</p>
+      <span
+        class="block mt-1 min-h-[1.25rem]"
+        :class="expectationMet === false ? 'opacity-80' : 'invisible'"
+      >
         Expected {{ scenario.expectedTransferLogsOnAmsterdam }} Transfer log(s) on Amsterdam — check
         the scenario or hardfork.
       </span>
-      <span v-if="hardfork === 'osaka' && hasRun" class="block mt-1 opacity-70">
+      <span
+        class="block mt-1 min-h-[1.25rem]"
+        :class="hardfork === 'osaka' && hasRun ? 'opacity-70' : 'invisible'"
+      >
         Switch to Amsterdam on the same scenario to see EIP-7708 logs appear.
       </span>
-    </footer>
-
-    <footer v-else class="px-4 py-2.5 text-xs font-mono opacity-50 border-t e-border e-bg-medium">
-      Run the block to inspect receipt logs.
     </footer>
   </section>
 </template>

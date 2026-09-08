@@ -40,12 +40,20 @@ function verificationDetail(result: ExecResult | undefined): string {
     :run="run"
   >
     <template #result="{ result }">
-      <ResultBoxUIC v-if="result" title="Verification (Osaka)" :left="true">
-        <p class="e-result-text-lg">{{ verificationLabel(result.post) }}</p>
-        <p class="e-result-text-sm">{{ verificationDetail(result.post) }}</p>
-        <p v-if="result.post" class="e-result-text-sm mt-2">
-          Gas: {{ result.post.executionGasUsed }}
-        </p>
+      <ResultBoxUIC title="Verification (Osaka)" :left="true">
+        <div class="min-h-[4.5rem]">
+          <template v-if="result">
+            <p class="e-result-text-lg">{{ verificationLabel(result.post) }}</p>
+            <p class="e-result-text-sm">{{ verificationDetail(result.post) }}</p>
+            <p v-if="result.post" class="e-result-text-sm mt-2">
+              Gas: {{ result.post.executionGasUsed }}
+            </p>
+          </template>
+          <template v-else>
+            <p class="e-result-text-lg opacity-40">—</p>
+            <p class="e-result-text-sm opacity-40 mt-2">Run to verify the signature</p>
+          </template>
+        </div>
       </ResultBoxUIC>
     </template>
   </PrecompileInterfaceEC>

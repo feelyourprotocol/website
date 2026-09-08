@@ -53,7 +53,7 @@ export const ROADMAP_TRACKS: RoadmapTrack[] = [
         title: 'MCP tools implemented',
         horizon: 'now',
         status: 'done',
-        note: 'describe_capabilities + run_evm_bytecode; generic verbs, not per-EIP tools.',
+        note: 'describe_capabilities + run_bytecode + run_transaction; generic verbs, not per-EIP tools.',
       },
       {
         title: 'Amsterdam EIP catalogue',

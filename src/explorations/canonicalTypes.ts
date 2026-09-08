@@ -14,7 +14,7 @@ export type ChangeNature =
   | 'economic'
 
 /** Query shapes the MCP surface may expose for this change. */
-export type McpQueryShape = 'simulate' | 'generate' | 'probe'
+export type McpQueryShape = 'simulate' | 'transaction' | 'generate' | 'probe'
 
 export interface ProtocolChangeIdentity {
   /** Folder id and route key, e.g. `eip-7883`. */

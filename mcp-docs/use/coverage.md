@@ -6,22 +6,23 @@ Fork configuration is **à la carte**: a base hardfork plus an optional EIP list
 
 ## Named forks (live)
 
-| Fork | Role | Alias | Use |
-| --- | --- | --- | --- |
-| `osaka` | baseline | `mainnet-el` | Current mainnet rules |
-| `prague` | historical | — | Pre-Fusaka ModExp gas (7883 compare) |
-| `amsterdam` | preview | `glamsterdam` | Upcoming fork — EIP deltas (e.g. 8024) |
+| Fork        | Role       | Alias         | Use                                    |
+| ----------- | ---------- | ------------- | -------------------------------------- |
+| `osaka`     | baseline   | `mainnet-el`  | Current mainnet rules                  |
+| `prague`    | historical | —             | Pre-Fusaka ModExp gas (7883 compare)   |
+| `amsterdam` | preview    | `glamsterdam` | Upcoming fork — EIP deltas (e.g. 8024) |
 
 ## Runnable capabilities (live catalog)
 
 These appear in `describe_capabilities()` — engine modules with `runnable: true`.
 
-| EIP | Nature | Shapes | Fork notes | Catalogue |
-| --- | --- | --- | --- | --- |
-| 8024 | new-capability | simulate | Amsterdam | [EIP-8024](/use/eips/eip-8024) |
-| 7708 | new-capability | simulate | Amsterdam; Osaka compare | [EIP-7708](/use/eips/eip-7708) |
-| 7883 | repricing | simulate | Osaka; Prague compare | [EIP-7883](/use/eips/eip-7883) |
-| 7951 | new-capability | simulate | Osaka | [EIP-7951](/use/eips/eip-7951) |
+| EIP  | Nature         | Shapes   | Fork notes               | Catalogue                      |
+| ---- | -------------- | -------- | ------------------------ | ------------------------------ |
+| 8024 | new-capability | simulate | Amsterdam                | [EIP-8024](/use/eips/eip-8024) |
+| 7708 | new-capability | transaction, simulate | Amsterdam; Osaka compare | [EIP-7708](/use/eips/eip-7708) |
+| 7883 | repricing      | simulate | Osaka; Prague compare    | [EIP-7883](/use/eips/eip-7883) |
+| 7951 | new-capability | simulate | Osaka                    | [EIP-7951](/use/eips/eip-7951) |
+| 8037 | new-exec-model | transaction, simulate | Amsterdam; Osaka compare | [EIP-8037](/use/eips/eip-8037) |
 
 **Amsterdam note (8024):** EthereumJS v10 already bundles EIP-8024 in the Amsterdam hardfork. Passing `eips: [8024]` is accepted but is not a pre/post toggle.
 
@@ -29,13 +30,14 @@ These appear in `describe_capabilities()` — engine modules with `runnable: tru
 
 Every **live** website exploration has an MCP-docs page mapping the same problem set. Status may be Runnable or Planned.
 
-| EIP | Exploration twin | MCP status | Page |
-| --- | --- | --- | --- |
-| 8024 | Stack opcodes | Runnable | [EIP-8024](/use/eips/eip-8024) |
-| 7883 | ModExp gas | Runnable | [EIP-7883](/use/eips/eip-7883) |
-| 7951 | secp256r1 | Runnable | [EIP-7951](/use/eips/eip-7951) |
+| EIP  | Exploration twin   | MCP status             | Page                           |
+| ---- | ------------------ | ---------------------- | ------------------------------ |
+| 8024 | Stack opcodes      | Runnable               | [EIP-8024](/use/eips/eip-8024) |
+| 7883 | ModExp gas         | Runnable               | [EIP-7883](/use/eips/eip-7883) |
+| 7951 | secp256r1          | Runnable               | [EIP-7951](/use/eips/eip-7951) |
 | 7928 | Block access lists | **Planned** (generate) | [EIP-7928](/use/eips/eip-7928) |
-| 7708 | ETH transfer logs | Runnable | [EIP-7708](/use/eips/eip-7708) |
+| 7708 | ETH transfer logs  | Runnable               | [EIP-7708](/use/eips/eip-7708) |
+| 8037 | State creation gas | Runnable               | [EIP-8037](/use/eips/eip-8037) |
 
 PeerDAS (7594) has no MCP twin — sunset path per exploration policy.
 
@@ -46,6 +48,9 @@ Canonical metadata for twins lives in website `src/explorations/eip-NNNN/canonic
 <Changelog
   title="Coverage Changelog"
   :entries="[
+    { version: 'v0.13', date: '2026-09-08', summary: '7708/8037 shapes include transaction (run_transaction); simulate remains for bytecode/precompiles.' },
+    { version: 'v0.12', date: '2026-09-08', summary: 'EIP-8037 named catalog row — simulate gasUsed (Amsterdam vs Osaka first-touch and new-slot).' },
+    { version: 'v0.11', date: '2026-09-07', summary: 'EIP-8037 exploration twin — simulate gasUsed already shows first-touch state gas; named catalog row follows with the engine module.' },
     { version: 'v0.10', date: '2026-09-02', summary: 'Catalogue is for the hosted MCP — removed self-host / local early-access framing.' },
     { version: 'v0.9', date: '2026-08-31', summary: 'Split runnable catalog vs exploration twins; note public MCP not launched.' },
     { version: 'v0.8', date: '2026-08-27', summary: 'Osaka mainnet baseline fork — run-twice comparisons against Amsterdam preview.' },

@@ -12,7 +12,7 @@ export const examples: Examples = {
     ],
   },
   'invalid-sig-r': {
-    title: 'Invalid ("Hello Fusaka!"), modified sigR value',
+    title: 'Invalid ("Hello Fusaka!"), modified R value',
     values: [
       '4dfb1eae8ed41e188b8a44a1109d982d01fc24bb85a933e6283e8838e46942fd',
       'ee3dc5ce2902f162745057efb7a3308eba992c0d843623603516845ffccd3f10',
@@ -22,7 +22,7 @@ export const examples: Examples = {
     ],
   },
   'invalid-sig-0': {
-    title: 'Invalid ("Hello Fusaka!"), sigR and sigS values 0',
+    title: 'Invalid ("Hello Fusaka!"), R and S values 0',
     values: [
       '4dfb1eae8ed41e188b8a44a1109d982d01fc24bb85a933e6283e8838e46942fd',
       '0000000000000000000000000000000000000000000000000000000000000000',

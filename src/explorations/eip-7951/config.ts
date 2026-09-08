@@ -6,9 +6,9 @@ export const config: PrecompileConfig = {
   showBigInt: false,
   values: [
     { title: 'Hash', urlParam: 'hash', expectedLen: 32n },
-    { title: 'SigR', urlParam: 'sigr', expectedLen: 32n },
-    { title: 'SigS', urlParam: 'sigs', expectedLen: 32n },
-    { title: 'PubX', urlParam: 'pubx', expectedLen: 32n },
-    { title: 'PubY', urlParam: 'puby', expectedLen: 32n },
+    { title: 'R', urlParam: 'sigr', expectedLen: 32n },
+    { title: 'S', urlParam: 'sigs', expectedLen: 32n },
+    { title: 'Pub key X', urlParam: 'pubx', expectedLen: 32n },
+    { title: 'Pub key Y', urlParam: 'puby', expectedLen: 32n },
   ],
 }

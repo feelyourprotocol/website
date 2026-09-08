@@ -12,10 +12,20 @@ Round-trip / add-exploration: the agent generates in the same phase (Template B 
 |----------|---------------|
 | Format | WebP preferred |
 | Size | 768×1024 portrait, 3:4 |
+| **File weight** | **`image.webp` ≤ 300 KB** (cards and home Latest load this on every visit) |
 | File | `src/explorations/<id>/image.webp` |
-| Thumbnail | Optional `image_small.webp` (~300px) for cards |
+| Thumbnail | `image_small.webp` at **300×400**, typically ≤ 50 KB, for cards |
 
 Import in `info.ts` as `image` and optional `imageSmall`.
+
+## On the exploration page
+
+The page always shows `image.webp` (not the thumbnail). How large it appears depends on layout:
+
+- **No companion** (`rightPanel` unset) — set `imageBoxHeight` to `COVER_COLUMN_IMAGE_HEIGHT` (`48rem` in `src/explorations/layout.ts`) so the cover matches a typical left widget, not an uncapped 3:4 portrait.
+- **Companion panel** (`rightPanel: true`) — set `imageBoxHeight` to about `16rem`–`19rem` so the cover stays compact above logs or a stepper.
+
+Copying `imageBoxHeight: '16rem'` from a companion exploration onto a cover-only page leaves a postage stamp. Leaving it unset lets the cover dwarf the widget on a wide desktop. Agent rule: [exploration-design.mdc](https://github.com/feelyourprotocol/website/blob/main/.cursor/rules/exploration-design.mdc).
 
 ## Color rules (strict)
 

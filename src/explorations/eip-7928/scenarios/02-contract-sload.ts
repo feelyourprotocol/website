@@ -39,7 +39,7 @@ export const contractSloadScenario: BalScenarioDefinition = {
   txSummary: [
     {
       label: 'tx 1',
-      detail: `legacy call → ${CONTRACT_ADDRESS}, empty calldata, gasLimit 100000`,
+      detail: `legacy call → ${CONTRACT_ADDRESS}, empty calldata, gas limit 100,000`,
     },
   ],
   bytecodeSteps: [

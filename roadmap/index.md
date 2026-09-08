@@ -27,7 +27,7 @@ features:
     details: Parallel tracks — Engine & API, Website, Infrastructure, Business & Community — history filled in, launch as the next hollow marker.
     link: /roadmap/roadmap
   - title: Core Concepts
-    details: Generic MCP tools (describe_capabilities, run_evm_bytecode), x402 payment rails, and operational detail on mcp-docs.
+    details: Generic MCP tools (describe_capabilities, run_bytecode, run_transaction), x402 payment rails, and operational detail on mcp-docs.
     link: /concepts/api-mcp
   - title: Monetization & Infra
     details: Draft x402 per-gas pricing, token-holder discounts, AWS hosting for the public endpoint.

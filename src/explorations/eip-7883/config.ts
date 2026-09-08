@@ -7,12 +7,12 @@ export const config: PrecompileConfig = {
   explorationId: 'eip-7883',
   defaultExample: 'simple',
   values: [
-    { title: 'Blen', expectedLen: 32n, initialHex: '00'.repeat(32), showInput: false },
-    { title: 'Elen', expectedLen: 32n, initialHex: '00'.repeat(32), showInput: false },
-    { title: 'Mlen', expectedLen: 32n, initialHex: '00'.repeat(32), showInput: false },
-    { title: 'B', urlParam: 'b' },
-    { title: 'E', urlParam: 'e' },
-    { title: 'M', urlParam: 'm' },
+    { title: 'Base length', expectedLen: 32n, initialHex: '00'.repeat(32), showInput: false },
+    { title: 'Exponent length', expectedLen: 32n, initialHex: '00'.repeat(32), showInput: false },
+    { title: 'Modulus length', expectedLen: 32n, initialHex: '00'.repeat(32), showInput: false },
+    { title: 'Base', urlParam: 'b' },
+    { title: 'Exponent', urlParam: 'e' },
+    { title: 'Modulus', urlParam: 'm' },
   ],
   assembleData: (hexVals, byteLengths) =>
     toHex(byteLengths[3], 32 * 2) +

@@ -32,7 +32,7 @@ export const createDeployScenario: BalScenarioDefinition = {
   txSummary: [
     {
       label: 'tx 1',
-      detail: `legacy CREATE, init code → ${CREATE_DEPLOYED_ADDRESS}, gasLimit 500000`,
+      detail: `legacy CREATE, init code → ${CREATE_DEPLOYED_ADDRESS}, gas limit 500,000`,
     },
   ],
   bytecodeSteps: [

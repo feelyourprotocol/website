@@ -1,0 +1,64 @@
+---
+description: Exploration page layout — cover column vs companion, same-control UIC reuse
+globs: src/explorations/**/info.ts,src/explorations/**/*.vue,src/eComponents/ui/**,src/views/ExplorationView.vue,src/views/TopicIntroView.vue,src/components/ExplorationRightPanel.vue
+alwaysApply: false
+---
+
+# Exploration design
+
+Visual/layout decisions for exploration **pages**. Folder invariants stay in [explorations.mdc](./explorations.mdc). **Add a section here when a layout miss repeats.**
+
+## Same logical control, one UIC
+
+Never ship two visually different versions of a control that is logically the same (segmented two-button, primary run action, example picker, …). Shared UICs look the same everywhere. Topic color via `e-*` is for the card, primary actions, inputs, and result chrome — not a license to restyle a copy.
+
+This is **UIC extraction** (`src/eComponents/ui/`), not a new E-Component. E-Component sub-rounds stay exception-gated in [add-exploration](../skills/add-exploration/SKILL.md). Finding a duplicate does **not** wait for that gate — extract now.
+
+### Cross-exploration check (every new exploration)
+
+After you can name the chrome controls, and **before** shipping a second copy of any of them:
+
+1. List every self-identified control on the widget (toggles, pickers, primary action, result chrome).
+2. Search sibling `src/explorations/*/MyC.vue` and `src/eComponents/ui/`.
+3. If a sibling already has the same control:
+   - UIC exists → use it.
+   - No UIC yet → extract in-between: `src/eComponents/ui/<Name>UIC.vue` + a practically sufficient spec under `src/eComponents/ui/__tests__/`, then wire **all** call sites (new and old). Do not leave the old inline markup.
+
+Reference: `SegmentedToggleUIC` — Osaka | Amsterdam on `eip-7708` and `eip-8037`, plus the gas-limit pair on `eip-8037`.
+
+## State chrome: selected must be obvious
+
+A segmented toggle is an on/off indicator. The selected option needs a **dark filled pill on a light track**, with muted unselected text (`e-segmented-toggle` in `src/main.css`).
+
+Do **not** paint track, selected, and idle labels in the topic hue (`e-bg-medium` + `e-bg-dark` + `e-text opacity-70`). That sits on an already topic-tinted `.exploration-c` card, so the active option disappears. Neutral slate here matches `e-textarea` (readable chrome, not a hue). Topic color stays on the card and on actions/results.
+
+## Result panels: reserve space before the first run
+
+Primary result chrome (comparison bars, outcome footers, companion readouts) must **mount with the scenario**, not appear only after “Run”. Use `v-if` on inner values, not on the whole panel — or an idle shell with placeholders (`—`, “Run tx to fill…”) and **`min-height` sized for the tallest example** in that exploration.
+
+Clearing run state (`resetRunState`) may blank numbers but must not collapse layout; otherwise toggling hardfork / gas limit / example jumps the scroll position. Reference: `GasBarsView` on `eip-8037`.
+
+## Prose: plain language, not implementation API
+
+User-facing copy (`info.ts` intro/usage/SEO, scenario `lesson` and `txSummary`, outcome footers, tooltips, UI labels) must read for **humans learning the protocol**, not for someone reading EthereumJS source.
+
+**Do not** paste method names, property names, or camelCase identifiers from the implementation stack (`runTx`, `runBlock`, `gasLimit`, `txStateGas`, `totalGasSpent`, `estimateTxGasDimensions`, …). Say what happens in plain language: “run the transaction”, “gas limit”, “state gas charged”, “execute the block”.
+
+**Allowed when teaching the spec:** Ethereum/Yellow Paper terms in `<code>` where the learner expects them — opcodes (`CALL`, `SSTORE`), event signatures, header field names from the EIP (`blockAccessListHash`), precompile addresses. Prefer spaced words in running prose (“gas limit”, “block access list hash”) even when the spec uses camelCase.
+
+**Code comments and test names** are not user prose — keep accurate API names there.
+
+Before shipping copy, grep explorations for camelCase inside lesson/intro strings and rewrite.
+
+## Right column: cover vs companion
+
+`ExplorationView` is a two-column grid. The right column is either a **companion** (`rightPanel: true`) or the **cover** (`TopicIntroView` + `image.webp`).
+
+| Layout | `info.ts` | Why |
+| --- | --- | --- |
+| Cover-only (no companion) | `imageBoxHeight: COVER_COLUMN_IMAGE_HEIGHT` (`48rem` from `layout.ts`) | Caps the 3:4 `image.webp` to about a typical left `.exploration-c`. Uncapped `w-full` grows taller than the widget on wide desktops. Do **not** copy companion `16rem`. |
+| Companion (`rightPanel: true`) | `imageBoxHeight` `16rem`–`19rem` | Cover sits above logs/BAL/stepper; keep it compact. Reference: `eip-7708`, `eip-7928`, `eip-8024`. |
+
+`image_small.webp` is for **cards**. The exploration page always uses `image.webp` — never the thumbnail.
+
+Desktop check: cover-only right column should match the left card’s height, not dwarf it and not look like a postage stamp.

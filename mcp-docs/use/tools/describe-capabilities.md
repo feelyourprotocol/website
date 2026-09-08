@@ -4,7 +4,7 @@
 
 ## Purpose
 
-Return a machine-readable snapshot of what this server can **actually run**: engine version, ceilings, named forks, and **runnable EIP modules**. Each module describes **what became possible** (opcodes, encoding rules, keywords) — not demo programs. Unimplemented EIPs are omitted. Callers supply bytecode to `run_evm_bytecode`.
+Return a machine-readable snapshot of what this server can **actually run**: engine version, ceilings, named forks, and **runnable EIP modules**. Each module describes **what became possible** (opcodes, encoding rules, keywords, `shapes`) — not demo programs. Unimplemented EIPs are omitted. Use `shapes` to pick **`run_bytecode`** vs **`run_transaction`**.
 
 ## When to use
 
@@ -71,6 +71,7 @@ _Output (abbreviated):_
 <Changelog
   title="Describe Capabilities Changelog"
   :entries="[
+    { version: 'v0.9', date: '2026-09-08', summary: 'shapes distinguish run_bytecode vs run_transaction (7708/8037 include transaction).' },
     { version: 'v0.8', date: '2026-09-02', summary: 'Implemented for public launch — not a local stdio product path.' },
     { version: 'v0.7', date: '2026-08-27', summary: 'baselineForkId (osaka) and fork role metadata for mainnet vs preview comparisons.' },
     { version: 'v0.6', date: '2026-08-27', summary: 'Modules describe opcodes and encoding; demo scenarios removed from the catalog.' },

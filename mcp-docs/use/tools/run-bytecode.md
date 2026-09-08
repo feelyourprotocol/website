@@ -1,34 +1,35 @@
 # Run Bytecode
 
-> **Status:** Implemented — ships on the public MCP at launch. MCP tool: `run_evm_bytecode`. **Public endpoint not live.**
+> **Status:** Implemented — ships on the public MCP at launch. MCP tool: `run_bytecode`. **Public endpoint not live.**
 
 ## Purpose
 
-Run **caller-supplied** raw EVM bytecode under a chosen fork / EIP configuration and receive a structured result — gas used, return data, final stack, optional opcode trace, optional **logs** / **decodedLogs**, and provenance.
+Run **caller-supplied** raw EVM bytecode under a chosen fork / EIP configuration and receive a structured result — call-frame gas used, return data, final stack, optional opcode trace, and provenance.
 
 ## When to use
 
-- Test how bytecode behaves under an upcoming fork (e.g. **Amsterdam** with bundled EIP-8024 opcodes)
+- Opcode and stack questions (e.g. **Amsterdam** EIP-8024 DUPN / SWAPN / EXCHANGE)
+- Precompile CALL programs (ModExp, P-256)
 - Inspect stack-level execution with an optional trace
-- Deterministic gas and opcode results for agent reasoning (do not guess EVM outcomes)
+
+Wallet gas limits, first-touch ETH transfers, and receipt logs belong on [Run Transaction](/use/tools/run-transaction).
 
 ## MCP tool name
 
-`run_evm_bytecode`
+`run_bytecode`
 
 ## Inputs
 
 | Field | Required | Description |
 | --- | --- | --- |
-| `bytecode` | One of bytecode / messageCall | Hex-encoded bytecode (`0x` prefix optional). Max 24 576 bytes. |
-| `messageCall` | One of bytecode / messageCall | `{ caller, to, value?, data?, code? }` — value-bearing call (EIP-7708 plain ETH moves). |
+| `bytecode` | Yes | Hex-encoded bytecode (`0x` prefix optional). Max 24 576 bytes. |
 | `fork` | No | `{ baseHardfork, eips[] }` — default **`amsterdam`**. Use **`osaka`** only when you want current mainnet baseline |
 | `gasLimit` | No | Decimal string. Default `1000000`. Max `30000000`. |
 | `trace` | No | When true, include stack-only execution steps (max 10 000) |
 
 ### Fork notes
 
-- **`amsterdam`** — preview fork (`{ "baseHardfork": "amsterdam", "eips": [] }`; alias `glamsterdam`). Default. EIP-8024 and other Amsterdam EIPs are **bundled in the hardfork** in `@ethereumjs/common` v10.1.2 — you do not need `eips: [8024]` for DUPN/SWAPN/EXCHANGE to work.
+- **`amsterdam`** — preview fork (`{ "baseHardfork": "amsterdam", "eips": [] }`; alias `glamsterdam`). Default. EIP-8024 and other Amsterdam EIPs are **bundled in the hardfork** — you do not need `eips: [8024]` for DUPN/SWAPN/EXCHANGE to work.
 - **`osaka`** — optional current mainnet EL baseline (`{ "baseHardfork": "osaka", "eips": [] }`; alias `mainnet-el`). Use only when comparing against mainnet today.
 
 ### Optional: compare baseline vs preview
@@ -49,13 +50,14 @@ Expected on baseline: `success: false` (invalid opcode `0xe6`). Re-run with `ams
 | Field | Description |
 | --- | --- |
 | `success` | Whether execution completed without revert |
-| `gasUsed` | Gas consumed (string) |
+| `gasUsed` | Call-frame gas consumed (string). Does **not** include the 21,000 transaction intrinsic. |
+| `gasUsedScope` | Always `call-frame` |
 | `returnValue` | Hex return data |
 | `finalStack` | Stack after execution (hex strings). With `trace: true`, full stack from last step. |
 | `error` | Error message if execution failed (e.g. `stack underflow`) |
 | `steps` | Optional trace steps when `trace` is true |
 | `logs` | Raw logs emitted during execution (when any) |
-| `decodedLogs` | Indexed logs with optional EIP-7708 Transfer/Burn decorations |
+| `decodedLogs` | Indexed logs with optional decorations |
 | `provenance` | Always present — `engineVersion`, `forkConfig`, optional EIP metadata |
 
 ## Examples
@@ -97,7 +99,7 @@ Deep stack + `DUPN` — invalid on osaka baseline; valid on Amsterdam preview.
 
 ## JSON schema
 
-[run_evm_bytecode.input.json](/schemas/run_evm_bytecode.input.json)
+[run_bytecode.input.json](/schemas/run_bytecode.input.json)
 
 ## Limits
 
@@ -108,6 +110,8 @@ See [Guarantees](/use/guarantees) for ceilings (max gas, bytecode size, trace st
 <Changelog
   title="Run Bytecode Changelog"
   :entries="[
+    { version: 'v0.9', date: '2026-09-08', summary: 'Renamed run_evm_bytecode → run_bytecode. Value transfers moved to run_transaction.' },
+    { version: 'v0.8', date: '2026-09-08', summary: 'messageCall results include approxTxGasUsed (21000 + call-frame); gasUsedScope always call-frame.' },
     { version: 'v0.7', date: '2026-09-02', summary: 'Implemented for public launch — not a local stdio product path.' },
     { version: 'v0.6', date: '2026-08-27', summary: 'Osaka mainnet baseline fork for run-twice comparisons against Amsterdam preview.' },
     { version: 'v0.5', date: '2026-08-27', summary: 'Renamed MCP tool simulate_evm_bytecode → run_evm_bytecode.' },

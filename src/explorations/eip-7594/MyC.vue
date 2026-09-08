@@ -103,57 +103,57 @@ await init()
             :left="true"
             class="eip-4844-7594-box"
             :error-text="!hasResult && errorMsg !== '' ? errorMsg : undefined"
-            :info-text="!hasResult && errorMsg === '' ? 'Press button to compute...' : undefined"
           >
-            <table v-if="hasResult" class="e-result-text-sm">
-              <tbody>
-                <tr>
-                  <td class="p-3">Commitment</td>
-                  <td class="p-3 break-all">{{ commitment }}</td>
-                </tr>
-                <tr>
-                  <td class="p-3">Versioned Hash</td>
-                  <td class="p-3 break-all">
-                    {{ versionedHash }}
-                    (<a :href="`https://blobscan.com/blob/${versionedHash}`" target="_blank"
-                      >Blobscan</a
-                    >)
-                  </td>
-                </tr>
-                <tr>
-                  <td class="p-3">Blob Length</td>
-                  <td class="p-3 break-all">{{ data.length }}</td>
-                </tr>
-              </tbody>
-            </table>
+            <div class="min-h-[10rem]">
+              <table v-if="hasResult" class="e-result-text-sm">
+                <tbody>
+                  <tr>
+                    <td class="p-3">Commitment</td>
+                    <td class="p-3 break-all">{{ commitment }}</td>
+                  </tr>
+                  <tr>
+                    <td class="p-3">Versioned Hash</td>
+                    <td class="p-3 break-all">
+                      {{ versionedHash }}
+                      (<a :href="`https://blobscan.com/blob/${versionedHash}`" target="_blank"
+                        >Blobscan</a
+                      >)
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="p-3">Blob Length</td>
+                    <td class="p-3 break-all">{{ data.length }}</td>
+                  </tr>
+                </tbody>
+              </table>
+              <p v-else class="e-result-text-sm m-5 text-center opacity-50">
+                Press button to compute…
+              </p>
+            </div>
           </ResultBoxUIC>
         </div>
         <div class="e-grid-double">
-          <ResultBoxUIC
-            title="EIP-4844 | 1 Blob Proof"
-            :left="true"
-            class="eip-4844-box"
-            :info-text="!hasResult ? 'Same here.' : undefined"
-          >
-            <p v-if="hasResult" class="e-result-text-sm">
-              {{ blobProof }}
-            </p>
-          </ResultBoxUIC>
-          <ResultBoxUIC
-            title="EIP-7594 | 128 Cell Proofs"
-            :left="false"
-            class="eip-7594-box"
-            :info-text="!hasResult ? 'Same here.' : undefined"
-          >
-            <div v-if="hasResult">
-              <p
-                v-for="(value, index) in cellProofs.slice(0, 4)"
-                class="e-result-text-sm"
-                :key="index"
-              >
-                {{ value }}
+          <ResultBoxUIC title="EIP-4844 | 1 Blob Proof" :left="true" class="eip-4844-box">
+            <div class="min-h-[3rem]">
+              <p v-if="hasResult" class="e-result-text-sm">
+                {{ blobProof }}
               </p>
-              <p v-if="cellProofs.length > 4" class="e-result-text-sm">...</p>
+              <p v-else class="e-result-text-sm opacity-50">Waiting for blob proof…</p>
+            </div>
+          </ResultBoxUIC>
+          <ResultBoxUIC title="EIP-7594 | 128 Cell Proofs" :left="false" class="eip-7594-box">
+            <div class="min-h-[6.5rem]">
+              <template v-if="hasResult">
+                <p
+                  v-for="(value, index) in cellProofs.slice(0, 4)"
+                  class="e-result-text-sm"
+                  :key="index"
+                >
+                  {{ value }}
+                </p>
+                <p v-if="cellProofs.length > 4" class="e-result-text-sm">...</p>
+              </template>
+              <p v-else class="e-result-text-sm opacity-50">Waiting for cell proofs…</p>
             </div>
           </ResultBoxUIC>
         </div>

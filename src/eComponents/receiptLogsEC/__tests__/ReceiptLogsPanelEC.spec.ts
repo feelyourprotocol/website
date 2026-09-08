@@ -14,6 +14,7 @@ describe('ReceiptLogsPanelEC', () => {
       props: { topic, state: null, hasRun: false },
     })
     expect(wrapper.text()).toContain('Receipt logs')
+    expect(wrapper.find('[data-testid="receipts-panel"]').exists()).toBe(true)
     expect(wrapper.text()).toContain('Waiting for execution')
   })
 

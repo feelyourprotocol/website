@@ -14,8 +14,9 @@ import { RECIPIENT_ADDRESS, SENDER_ADDRESS } from './scenarios/constants'
 
 describe('EIP-7708 transfer-log exploration', () => {
   describe('canonical', () => {
-    it('defines simulate shape as planned MCP twin with fork comparison', () => {
+    it('defines transaction + simulate MCP twin with fork comparison', () => {
       expect(CANONICAL.question.changeNature).toBe('new-capability')
+      expect(CANONICAL.mcp.shapes).toContain('transaction')
       expect(CANONICAL.mcp.shapes).toContain('simulate')
       expect(CANONICAL.mcp.docsStatus).toBe('runnable')
       expect(CANONICAL.mcp.comparison?.previewForkId).toBe('amsterdam')
@@ -121,7 +122,7 @@ describe('EIP-7708 transfer-log exploration', () => {
   })
 
   describe('MyC.vue', () => {
-    it('mounts with scenario controls and run action', async () => {
+    it('mounts with scenario controls and shows receipt panel shell before run', async () => {
       document.body.innerHTML = '<div id="root"></div><div id="exploration-right-panel"></div>'
       const router = createRouter({
         history: createMemoryHistory(),
@@ -154,6 +155,7 @@ describe('EIP-7708 transfer-log exploration', () => {
       const amsterdam = wrapper.find('[aria-pressed="true"]')
       expect(amsterdam.exists()).toBe(true)
       expect(amsterdam.text()).toBe('Amsterdam')
+      expect(wrapper.text()).toContain('Run the block to inspect receipt logs')
     })
 
     it('resets hardfork to Amsterdam when the scenario changes', async () => {

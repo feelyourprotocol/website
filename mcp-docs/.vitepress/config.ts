@@ -91,6 +91,7 @@ export default defineConfig({
               items: [
                 { text: 'Describe Capabilities', link: '/use/tools/describe-capabilities' },
                 { text: 'Run Bytecode', link: '/use/tools/run-bytecode' },
+                { text: 'Run Transaction', link: '/use/tools/run-transaction' },
               ],
             },
             { text: 'Coverage', link: '/use/coverage' },
@@ -103,6 +104,7 @@ export default defineConfig({
                 { text: 'EIP-7951 secp256r1', link: '/use/eips/eip-7951' },
                 { text: 'EIP-7928 BAL (planned)', link: '/use/eips/eip-7928' },
                 { text: 'EIP-7708 ETH transfer logs', link: '/use/eips/eip-7708' },
+                { text: 'EIP-8037 State creation gas', link: '/use/eips/eip-8037' },
               ],
             },
             { text: 'Guarantees', link: '/use/guarantees' },

@@ -37,7 +37,7 @@ export const sstoreWriteScenario: BalScenarioDefinition = {
   txSummary: [
     {
       label: 'tx 1',
-      detail: `legacy call → ${CONTRACT_ADDRESS}, executes SSTORE(0, 42), gasLimit 200000`,
+      detail: `legacy call → ${CONTRACT_ADDRESS}, executes SSTORE(0, 42), gas limit 200,000`,
     },
   ],
   bytecodeSteps: [

@@ -47,7 +47,7 @@ export const crossContractCallScenario: BalScenarioDefinition = {
   txSummary: [
     {
       label: 'tx 1',
-      detail: `legacy call → ${CALLER_ADDRESS}, forwards CALL to ${CONTRACT_ADDRESS}, gasLimit 300000`,
+      detail: `legacy call → ${CALLER_ADDRESS}, forwards CALL to ${CONTRACT_ADDRESS}, gas limit 300,000`,
     },
   ],
   bytecodeSteps: [

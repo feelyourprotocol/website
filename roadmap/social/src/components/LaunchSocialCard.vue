@@ -5,7 +5,7 @@ const meta = SOCIAL_CARDS.launch
 
 const bullets = [
   { title: 'Hosted MCP', detail: 'mcp.feelyourprotocol.org' },
-  { title: 'Generic tools', detail: 'describe_capabilities · run_evm_bytecode' },
+  { title: 'Generic tools', detail: 'describe_capabilities · run_bytecode · run_transaction' },
   { title: 'Agent payments', detail: 'x402 · USDC on Base' },
 ] as const
 </script>
