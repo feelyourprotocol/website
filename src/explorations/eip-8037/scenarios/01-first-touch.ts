@@ -12,7 +12,7 @@ export const firstTouchScenario: GasScenarioDefinition = {
   title: '1. First-touch transfer',
   lesson:
     '1 wei to a brand-new account still costs about 21,000 execution gas — and about 183,600 ' +
-    'state gas on Amsterdam to create the account. A wallet that still sends gasLimit 21,000 ' +
+    'state gas on Amsterdam to create the account. A wallet that still sends a gas limit of 21,000 ' +
     'runs out of gas.',
   step: 1,
   expectedAmsterdamStateGas: FIRST_TOUCH_STATE_GAS,

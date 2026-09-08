@@ -21,7 +21,7 @@ const outcomeLine = computed(() => {
   if (!props.hasRun || !props.result) return null
   const bars = displayGasBars(props.result)
   if (!props.result.txSuccessful) {
-    return `${props.result.hardforkLabel}: out of gas at gasLimit ${formatGas(props.result.gasLimit)} — needed about ${formatGas(bars.regular + bars.state)}.`
+    return `${props.result.hardforkLabel}: out of gas at gas limit ${formatGas(props.result.gasLimit)} — needed about ${formatGas(bars.regular + bars.state)}.`
   }
   return `${props.result.hardforkLabel}: execution ${formatGas(bars.regular)} · state ${formatGas(bars.state)}.`
 })

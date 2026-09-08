@@ -15,7 +15,7 @@ export const newStorageScenario: GasScenarioDefinition = {
   lesson:
     'First-touch is not only new accounts. A contract SSTORE into an empty slot charges state ' +
     'gas too (~97,920). The wallet estimator that only looks at the recipient will miss this — ' +
-    'the bars here come from a full runTx.',
+    'run the transaction here to measure both bars (a quick estimate is not enough for SSTORE).',
   step: 3,
   recommendedGasLimitFloor: EXECUTION_HEADROOM_GAS_LIMIT,
   expectedAmsterdamStateGas: NEW_STORAGE_SLOT_STATE_GAS,

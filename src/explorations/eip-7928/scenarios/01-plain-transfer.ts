@@ -27,7 +27,7 @@ export const plainTransferScenario: BalScenarioDefinition = {
   txSummary: [
     {
       label: 'tx 1',
-      detail: `legacy transfer: 1 wei → ${RECIPIENT_ADDRESS}, gasLimit sized for Amsterdam first-touch`,
+      detail: `legacy transfer: 1 wei → ${RECIPIENT_ADDRESS}, gas limit sized for Amsterdam first-touch`,
     },
   ],
   buildTransactions(common) {

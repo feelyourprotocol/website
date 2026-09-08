@@ -38,6 +38,18 @@ Primary result chrome (comparison bars, outcome footers, companion readouts) mus
 
 Clearing run state (`resetRunState`) may blank numbers but must not collapse layout; otherwise toggling hardfork / gas limit / example jumps the scroll position. Reference: `GasBarsView` on `eip-8037`.
 
+## Prose: plain language, not implementation API
+
+User-facing copy (`info.ts` intro/usage/SEO, scenario `lesson` and `txSummary`, outcome footers, tooltips, UI labels) must read for **humans learning the protocol**, not for someone reading EthereumJS source.
+
+**Do not** paste method names, property names, or camelCase identifiers from the implementation stack (`runTx`, `runBlock`, `gasLimit`, `txStateGas`, `totalGasSpent`, `estimateTxGasDimensions`, …). Say what happens in plain language: “run the transaction”, “gas limit”, “state gas charged”, “execute the block”.
+
+**Allowed when teaching the spec:** Ethereum/Yellow Paper terms in `<code>` where the learner expects them — opcodes (`CALL`, `SSTORE`), event signatures, header field names from the EIP (`blockAccessListHash`), precompile addresses. Prefer spaced words in running prose (“gas limit”, “block access list hash”) even when the spec uses camelCase.
+
+**Code comments and test names** are not user prose — keep accurate API names there.
+
+Before shipping copy, grep explorations for camelCase inside lesson/intro strings and rewrite.
+
 ## Right column: cover vs companion
 
 `ExplorationView` is a two-column grid. The right column is either a **companion** (`rightPanel: true`) or the **cover** (`TopicIntroView` + `image.webp`).

@@ -60,7 +60,7 @@ const showOutOfGas = computed(() => props.hasRun && !props.txSuccessful)
     >
       <p class="text-[0.65rem] font-mono uppercase tracking-widest opacity-45">Gas dimensions</p>
       <p class="text-xs font-mono opacity-70">
-        gasLimit {{ gasLimitLabel }}
+        Gas limit {{ gasLimitLabel }}
         <span v-if="showOutOfGas" class="e-text font-semibold"> · out of gas</span>
       </p>
     </div>
