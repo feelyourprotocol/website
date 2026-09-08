@@ -61,7 +61,9 @@ const showOutOfGas = computed(() => props.hasRun && !props.txSuccessful)
       <p class="text-[0.65rem] font-mono uppercase tracking-widest opacity-45">Gas dimensions</p>
       <p class="text-xs font-mono opacity-70">
         Gas limit {{ gasLimitLabel }}
-        <span v-if="showOutOfGas" class="e-text font-semibold"> · out of gas</span>
+        <span data-testid="gas-bar-status" :data-out-of-gas="showOutOfGas ? 'true' : 'false'">
+          <span v-if="showOutOfGas" class="e-text font-semibold"> · out of gas</span>
+        </span>
       </p>
     </div>
 
@@ -69,7 +71,11 @@ const showOutOfGas = computed(() => props.hasRun && !props.txSuccessful)
       <div>
         <div class="flex justify-between text-xs font-mono mb-1">
           <span class="opacity-70">Execution</span>
-          <span class="e-text font-semibold" :class="hasRun ? '' : 'opacity-40'">
+          <span
+            data-testid="gas-bar-execution-value"
+            class="e-text font-semibold"
+            :class="hasRun ? '' : 'opacity-40'"
+          >
             {{ hasRun ? formatGas(regular) : '—' }}
           </span>
         </div>
@@ -89,7 +95,11 @@ const showOutOfGas = computed(() => props.hasRun && !props.txSuccessful)
       <div>
         <div class="flex justify-between text-xs font-mono mb-1">
           <span class="opacity-70">State</span>
-          <span class="e-text font-semibold" :class="hasRun ? '' : 'opacity-40'">
+          <span
+            data-testid="gas-bar-state-value"
+            class="e-text font-semibold"
+            :class="hasRun ? '' : 'opacity-40'"
+          >
             {{ hasRun ? formatGas(state) : '—' }}
           </span>
         </div>

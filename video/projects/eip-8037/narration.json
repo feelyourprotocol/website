@@ -1,0 +1,53 @@
+{
+  "segmentGapMs": 350,
+  "segments": [
+    {
+      "beat": "hook",
+      "text": "Why isn't 21,000 gas enough for a simple ETH transfer anymore?"
+    },
+    {
+      "beat": "context",
+      "text": "EIP-8037 splits gas into two dimensions: execution and state. Amsterdam ships the change."
+    },
+    {
+      "beat": "first-touch",
+      "text": "One wei to a brand-new account."
+    },
+    {
+      "beat": "first-touch-read",
+      "text": "Execution stays around 21,000. State gas: about 183,600."
+    },
+    {
+      "beat": "switch-classic",
+      "text": "Now the wallet default — a 21,000 gas limit."
+    },
+    {
+      "beat": "classic-run",
+      "text": "Same transfer. Limit 21,000."
+    },
+    {
+      "beat": "classic-result",
+      "text": "Out of gas. That's the simple transfer that no longer fits."
+    },
+    {
+      "beat": "switch-osaka",
+      "text": "Same send. Osaka rules."
+    },
+    {
+      "beat": "osaka-run",
+      "text": "No state meter on this fork."
+    },
+    {
+      "beat": "osaka-result",
+      "text": "Still 21,000. It goes through."
+    },
+    {
+      "beat": "recap",
+      "text": "Amsterdam first-touch needs both meters. A funded recipient stays cheap. A new storage slot bills state gas too."
+    },
+    {
+      "beat": "outro",
+      "text": "Spec on Forkcast. Try the other scenarios on feelyourprotocol dot org."
+    }
+  ]
+}

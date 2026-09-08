@@ -1,0 +1,150 @@
+{
+  "meta": {
+    "exploration": "eip-8037",
+    "defaultExample": "01-first-touch"
+  },
+  "overlays": {
+    "title-card": {
+      "type": "title-card",
+      "eyebrow": "Ethereum · Amsterdam",
+      "title": "EIP-8037",
+      "subtitle": "State-creation\ngas",
+      "hook": ["Why isn't 21,000 enough", "ANYMORE?"]
+    },
+    "context": {
+      "type": "punch",
+      "layout": "banner",
+      "placement": "top-banner",
+      "text": "STATE GAS",
+      "sub": "Creating an account is billed on its own meter",
+      "invert": true
+    },
+    "first-touch": {
+      "type": "split",
+      "layout": "banner",
+      "placement": "top-banner",
+      "segments": [
+        { "text": "1 wei · empty account", "size": "lg" },
+        { "text": "Watch both meters ↓", "size": "md", "emphasis": true }
+      ]
+    },
+    "first-touch-read": {
+      "type": "split",
+      "layout": "banner",
+      "placement": "top-banner",
+      "segments": [
+        { "text": "Execution ~21,000", "size": "lg" },
+        { "text": "State ~183,600", "size": "lg", "emphasis": true }
+      ]
+    },
+    "switch-classic": {
+      "type": "punch",
+      "layout": "banner",
+      "placement": "top-banner",
+      "text": "WALLET DEFAULT",
+      "sub": "Gas limit 21,000 ↑",
+      "invert": false
+    },
+    "classic-run": {
+      "type": "punch",
+      "layout": "banner",
+      "placement": "top-banner",
+      "text": "SEND AGAIN",
+      "sub": "Same transfer · limit 21,000",
+      "invert": true
+    },
+    "classic-result": {
+      "type": "split",
+      "layout": "banner",
+      "placement": "top-banner",
+      "segments": [
+        { "text": "Out of gas", "size": "lg" },
+        { "text": "21,000 no longer covers first-touch", "size": "md", "emphasis": true }
+      ]
+    },
+    "switch-osaka": {
+      "type": "punch",
+      "layout": "banner",
+      "placement": "top-banner",
+      "text": "OSAKA RULES",
+      "sub": "Same transfer, prior fork ↑",
+      "invert": false
+    },
+    "osaka-run": {
+      "type": "punch",
+      "layout": "banner",
+      "placement": "top-banner",
+      "text": "ONE METER",
+      "sub": "Osaka has no state gas",
+      "invert": true
+    },
+    "osaka-result": {
+      "type": "split",
+      "layout": "banner",
+      "placement": "top-banner",
+      "segments": [
+        { "text": "Osaka: still 21,000", "size": "lg" },
+        { "text": "It goes through ↓", "size": "md", "emphasis": true }
+      ]
+    },
+    "recap": {
+      "type": "split",
+      "layout": "banner",
+      "placement": "top-banner",
+      "segments": [
+        { "text": "Amsterdam first-touch", "size": "lg" },
+        { "text": "Needs both meters", "size": "lg", "emphasis": true }
+      ]
+    },
+    "outro-card": {
+      "type": "outro-card",
+      "closing": "EIP-8037 bills state creation on its own gas dimension — Amsterdam EL rules.",
+      "ctas": [
+        {
+          "label": "READ ABOUT THE EIP",
+          "url": "FORKCAST.ORG",
+          "variant": "secondary"
+        },
+        {
+          "label": "TRY IT YOURSELF",
+          "url": "FEELYOURPROTOCOL.ORG",
+          "variant": "primary"
+        }
+      ]
+    }
+  },
+  "annotations": {
+    "guide-run": {
+      "target": "run-tx",
+      "label": "Run tx",
+      "hint": "Executes the transfer",
+      "side": "bottom"
+    },
+    "guide-fork": {
+      "target": "hardfork-toggle",
+      "label": "Hardfork",
+      "hint": "Toggle Amsterdam ↔ Osaka",
+      "side": "bottom"
+    },
+    "guide-limit": {
+      "target": "gas-limit-toggle",
+      "label": "Gas limit",
+      "hint": "21,000 vs recommended",
+      "side": "bottom"
+    },
+    "guide-bars": {
+      "target": "gas-bars",
+      "label": "Gas dimensions",
+      "hint": "Execution vs state",
+      "side": "top"
+    }
+  },
+  "highlightSets": {
+    "state-payoff": {
+      "marks": [{ "target": "gas-bar-state-value", "padX": 10, "padY": 6 }]
+    },
+    "oog-payoff": {
+      "marks": [{ "target": "gas-bar-status", "padX": 10, "padY": 6 }]
+    }
+  }
+}

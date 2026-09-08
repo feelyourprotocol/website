@@ -52,6 +52,10 @@ describe('EIP-8037 video-readiness contract', () => {
     expect(wrapper.find('[data-testid="gas-limit-classic"]').exists()).toBe(true)
     expect(wrapper.find('[data-testid="gas-limit-recommended"]').exists()).toBe(true)
     expect(wrapper.find('[data-testid="run-tx"]').exists()).toBe(true)
+    expect(wrapper.find('[data-testid="gas-bars"]').exists()).toBe(true)
+    expect(wrapper.find('[data-testid="gas-bar-execution-value"]').exists()).toBe(true)
+    expect(wrapper.find('[data-testid="gas-bar-state-value"]').exists()).toBe(true)
+    expect(wrapper.find('[data-testid="gas-bar-status"]').exists()).toBe(true)
   })
 
   it('exposes an example-<key> item for every scenario when the dropdown opens', async () => {
