@@ -25,17 +25,19 @@ Do NOT fall back to mcp-execution-engine lab scripts or npm run lab unless MCP
 is unavailable. Trust listTools on the connected server over stale repo text.
 
 Tools:
-- describe_capabilities (probe) — registry: forks, runnable EIP modules, opcodes, encoding
-- run_evm_bytecode (run) — run raw bytecode under fork config
+- describe_capabilities (probe) — registry: forks, runnable EIP modules, opcodes, encoding, shapes
+- run_bytecode (simulate) — run raw bytecode under fork config (call-frame gas)
+- run_transaction — paid tx gas, receipt logs, wallet gasLimit, EIP-8037 dimensions
 
-Compare gas or outcomes optionally by calling run twice (e.g. osaka then amsterdam).
+Compare gas or outcomes optionally by calling the same verb twice (e.g. osaka then amsterdam).
 
 Server: FeelYourProtocol (hosted at launch)
 Setup: see CONNECT section below — public HTTP only
 
 JSON schemas:
 - /schemas/describe_capabilities.input.json
-- /schemas/run_evm_bytecode.input.json
+- /schemas/run_bytecode.input.json
+- /schemas/run_transaction.input.json
 
 ================================================================================
 INTRODUCTION
@@ -57,7 +59,8 @@ CAPABILITIES
 Query shapes and MCP tools:
 
 - Probe → describe_capabilities — implemented (public launch pending)
-- Run → run_evm_bytecode — implemented (public launch pending)
+- Run bytecode → run_bytecode — implemented (public launch pending)
+- Run transaction → run_transaction — implemented (public launch pending)
 - Generate (BAL) — planned Step 6
 
 Optional: compare baseline vs preview by calling run twice (osaka then amsterdam).
@@ -81,16 +84,16 @@ MCP tool name: describe_capabilities
 Input: {} (no required fields)
 Output: engineVersion, ceilings, baselineForkId, namedForks, eips (runnable modules with opcodes + encoding + comparison; no demo programs), allowedBaseHardforks
 
-Use first to learn baselineForkId (osaka — current mainnet EL), prague (pre-Fusaka ModExp compare), preview fork amsterdam (alias glamsterdam), and runnable EIPs (8024, 7708, 7883 ModExp, 7951 secp256r1). Unimplemented EIPs are omitted.
+Use first to learn baselineForkId (osaka — current mainnet EL), prague (pre-Fusaka ModExp compare), preview fork amsterdam (alias glamsterdam), and runnable EIPs (8024, 7708, 7883 ModExp, 7951 secp256r1, 8037 state gas). Unimplemented EIPs are omitted.
 
 ================================================================================
-TOOL: RUN_EVM_BYTECODE (IMPLEMENTED — PUBLIC LAUNCH PENDING)
+TOOL: RUN_BYTECODE (IMPLEMENTED — PUBLIC LAUNCH PENDING)
 ================================================================================
 
-MCP tool name: run_evm_bytecode
+MCP tool name: run_bytecode
 
-Purpose: Run raw EVM bytecode under fork/EIP config. Returns gas, stack, optional
-trace, provenance.
+Purpose: Run raw EVM bytecode under fork/EIP config. Returns call-frame gas, stack, optional
+trace, provenance. Not for wallet gasLimit — use run_transaction.
 
 Inputs:
 - bytecode (required): hex, max 24576 bytes
@@ -98,7 +101,7 @@ Inputs:
 - gasLimit (optional): string, default 1000000, max 30000000
 - trace (optional): boolean, max 10000 steps
 
-Outputs: success, gasUsed, returnValue, finalStack, error, steps?, provenance
+Outputs: success, gasUsed (call-frame), gasUsedScope, returnValue, finalStack, error, steps?, provenance
 
 Amsterdam note: eips: [] on amsterdam is correct — EIP-8024 bundled in hardfork.
 Optional 8024 compare: run same bytecode on osaka (baseline, invalid 0xe6–0xe8) then amsterdam (preview).
@@ -109,12 +112,32 @@ Examples:
 - EIP-8024 DUPN deep stack: 0x600160026003600460056006600760086009600a600b600c600d600e600f60106011e68000
 
 ================================================================================
+TOOL: RUN_TRANSACTION (IMPLEMENTED — PUBLIC LAUNCH PENDING)
+================================================================================
+
+MCP tool name: run_transaction
+
+Purpose: Run a value-bearing transaction. Returns paid gasUsed (gasUsedScope: transaction),
+optional Amsterdam txRegularGas/txStateGas, receipt logs/decodedLogs.
+
+Inputs:
+- from, to (required): hex addresses (from is impersonated)
+- value (optional): wei decimal string
+- data, code, accounts, fork, gasLimit (optional). Default gasLimit 1000000. Pass 21000 for wallet-era limit.
+
+Outputs: success, gasUsed, gasUsedScope, txRegularGas?, txStateGas?, returnValue, error, logs?, decodedLogs?, provenance
+
+First-touch 1 wei to empty account: Osaka gasUsed 21000; Amsterdam ≈ 204600 (txStateGas 183600).
+gasLimit 21000 fails on Amsterdam first-touch.
+
+Use for EIP-8037 and EIP-7708 plain ETH transfers. Use run_bytecode for opcodes/precompiles.
+================================================================================
 COVERAGE
 ================================================================================
 
 Named forks: prague (ModExp compare), osaka (baseline, alias mainnet-el), amsterdam (preview, alias glamsterdam).
-baselineForkId: osaka. Runnable EIP modules at launch: 8024, 7708, 7883, 7951.
-Exploration twins (human catalogue): 8024, 7708, 7883, 7951 ready for public MCP; 7928 planned (generate). See use/eips/.
+baselineForkId: osaka. Runnable EIP modules at launch: 8024, 7708, 7883, 7951, 8037.
+Exploration twins (human catalogue): 8024, 7708, 7883, 7951, 8037 ready for public MCP; 7928 planned (generate). See use/eips/.
 
 ================================================================================
 GUARANTEES
@@ -137,8 +160,9 @@ Not shipped. x402 planned Steps 8-9. See roadmap.feelyourprotocol.org.
 FOR AI AGENTS
 ================================================================================
 
-1. If feel-your-protocol MCP connected → use describe_capabilities and
-   run_evm_bytecode (once on amsterdam by default; optionally osaka for mainnet comparison).
+1. If feel-your-protocol MCP connected → use describe_capabilities, then
+   run_bytecode (opcodes/precompiles) or run_transaction (wallet gas, transfers, receipts).
+   Default fork amsterdam; optionally osaka for mainnet comparison.
    Do not use the execution-engine lab as a substitute.
 2. Cite provenance.engineVersion and provenance.forkConfig in answers.
 3. Index: /llms.txt. Schemas: /schemas/*.input.json

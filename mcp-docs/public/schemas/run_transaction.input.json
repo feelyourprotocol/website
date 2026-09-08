@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mcp-docs.feelyourprotocol.org/schemas/run_transaction.input.json",
+  "title": "run_transaction input",
+  "type": "object",
+  "required": ["from", "to"],
+  "properties": {
+    "from": { "type": "string", "description": "Hex sender address (impersonated)." },
+    "to": { "type": "string", "description": "Hex recipient address." },
+    "value": { "type": "string", "description": "Value in wei (decimal string). Default 0." },
+    "data": { "type": "string", "description": "Optional calldata hex." },
+    "code": {
+      "type": "string",
+      "description": "Optional runtime bytecode installed at to before the transaction."
+    },
+    "accounts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["address"],
+        "properties": {
+          "address": { "type": "string" },
+          "balance": { "type": "string" },
+          "code": { "type": "string" }
+        }
+      }
+    },
+    "fork": {
+      "type": "object",
+      "properties": {
+        "baseHardfork": { "type": "string" },
+        "eips": { "type": "array", "items": { "type": "integer" } }
+      },
+      "required": ["baseHardfork"]
+    },
+    "gasLimit": {
+      "type": "string",
+      "description": "Transaction gas limit as decimal string. Default 1000000. Pass 21000 for the wallet-era simple-transfer limit. Max 30000000."
+    }
+  },
+  "additionalProperties": false
+}

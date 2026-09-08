@@ -94,7 +94,7 @@ Read `ChangeNature` in `canonicalTypes.ts`.
 
 ## Shape / twin (no orphan explorations)
 
-7. **Query shape:** `simulate` · `generate` · (future) other verb.
+7. **Query shape:** `simulate` · `transaction` · `generate` · (future) other verb. Wallet gasLimit, paid gas, receipts, first-touch transfers → `transaction`. Opcodes, stack, precompiles → `simulate`.
 8. **MCP docs page:** Can we honestly explain how MCP addresses this problem set *today* or with a **named planned verb**? If neither — do not add the exploration (or sunset it).
 
 ## Suitability
@@ -123,7 +123,7 @@ These fields go into proposed `CANONICAL.taxonomy` **and** in the report with th
 
 **Exploration** — widget center (what the user *does*), likely building block (see add-exploration reference table), pedagogical slice vs what we leave to MCP, 2–3 example stories.
 
-**MCP** — shipped verb vs `planned-module`; what the agent constructs (bytecode, overrides); what we will **not** put in the catalog (no widget demo programs); comparison forks if useful. **Honest observation:** can today’s simulate result (gas, return, stack, opcode trace) actually show this EIP’s effect, or do we need logs/receipts/generate and thus Planned?
+**MCP** — shipped verb vs `planned-module`; what the agent constructs (bytecode, tx fields, overrides); what we will **not** put in the catalog (no widget demo programs); comparison forks if useful. **Honest observation:** can today’s result actually show this EIP’s effect (`run_bytecode`: gas, return, stack, opcode trace; `run_transaction`: paid gas, receipt logs, 8037 dimensions), or do we need generate/`runBlock` artifacts and thus Planned?
 
 ## Ship gates (for later phases)
 

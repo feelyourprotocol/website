@@ -29,7 +29,7 @@ export const CANONICAL: ProtocolChangeCanonical = {
     testMaturity: 'execution-specs eip7708_eth_transfer_logs',
   },
   mcp: {
-    shapes: ['simulate'],
+    shapes: ['transaction', 'simulate'],
     keywords: [
       'ETH transfer log',
       'Transfer event',

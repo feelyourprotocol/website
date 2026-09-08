@@ -18,8 +18,9 @@ import {
 
 describe('EIP-8037 state-creation gas exploration', () => {
   describe('canonical', () => {
-    it('defines simulate twin with Osaka vs Amsterdam comparison', () => {
+    it('defines transaction + simulate twin with Osaka vs Amsterdam comparison', () => {
       expect(CANONICAL.question.changeNature).toBe('new-exec-model')
+      expect(CANONICAL.mcp.shapes).toContain('transaction')
       expect(CANONICAL.mcp.shapes).toContain('simulate')
       expect(CANONICAL.mcp.docsStatus).toBe('runnable')
       expect(CANONICAL.mcp.comparison?.previewForkId).toBe('amsterdam')

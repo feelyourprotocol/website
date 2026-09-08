@@ -14,10 +14,11 @@ We deliberately ship **intent-driven tools**, not per-EIP endpoints:
 
 | MCP tool | Shape | Purpose |
 | --- | --- | --- |
-| `describe_capabilities` | probe | Registry: forks, runnable EIP modules, opcodes, encoding |
-| `run_evm_bytecode` | run | Run caller-supplied bytecode under a fork config; optional trace |
+| `describe_capabilities` | probe | Registry: forks, runnable EIP modules, opcodes, encoding, shapes |
+| `run_bytecode` | simulate | Run caller-supplied bytecode under a fork config; optional trace |
+| `run_transaction` | transaction | Paid tx gas, receipt logs, wallet gasLimit, first-touch transfers |
 
-EIP coverage is advertised through the probe response and human catalogue pages under `mcp-docs/use/eips/` — not separate tools like `simulate_eip8024_stack`. Compare baseline vs preview by calling **run** twice (e.g. `osaka` then `amsterdam`).
+EIP coverage is advertised through the probe response and human catalogue pages under `mcp-docs/use/eips/` — not separate tools like `simulate_eip8024_stack`. Compare baseline vs preview by calling the **same verb** twice (e.g. `osaka` then `amsterdam`).
 
 Full schemas and limits: [mcp-docs/use/tools/](https://mcp-docs.feelyourprotocol.org/use/tools/describe-capabilities.html).
 
@@ -70,6 +71,7 @@ Resolved: MCP-first delivery (not REST-primary); docs split (roadmap = strategy,
 <Changelog
   title="Agent API Concept Changelog"
   :entries="[
+    { version: 'v0.5', date: '2026-09-08', summary: 'run_bytecode + run_transaction; renamed from run_evm_bytecode.' },
     { version: 'v0.4', date: '2026-09-02', summary: 'Generic MCP tools shipped (describe_capabilities, run_evm_bytecode); per-EIP tool sketch retired; public launch pending.' },
     { version: 'v0.3', date: '2026-07-15', summary: 'MCP docs site live at mcp-docs.feelyourprotocol.org — this page remains the strategic sketch.' },
     { version: 'v0.2', date: '2026-06-30', summary: 'Reframed as in-progress concept — no shipped API.' },

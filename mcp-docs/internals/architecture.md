@@ -6,7 +6,7 @@
 
 | Piece | Role |
 | --- | --- |
-| **`mcp-execution-engine`** | Pure TypeScript library — stateless EthereumJS simulations (bytecode, BALs, traces). No HTTP, no payments, no agent protocol. |
+| **`mcp-execution-engine`** | Pure TypeScript library — stateless EthereumJS simulations (bytecode, transactions, BALs, traces). No HTTP, no payments, no agent protocol. |
 | **`mcp-gateway`** | MCP transport + tool registry (+ later observability, x402). Depends one-way on the engine. **HTTP public path planned**; stdio is the current development transport. |
 | **`mcp-docs`** (this site) | Public documentation — [Use](/use/introduction) for end users, [Internals](/internals/architecture) for us and deep-divers. |
 | **`server-config`** (private) | Nginx blocks, deploy scripts, secrets — not in this public repo. |
@@ -18,6 +18,8 @@
 The MCP server reuses the same EthereumJS v10 patterns already proven in the [explorations website](https://feelyourprotocol.org):
 
 - EIP-8024 stack ops — `createEVM` + `evm.runCode` (see the EIP-8024 exploration)
+- EIP-8037 state gas — `createVM` + `runTx` (see the EIP-8037 exploration)
+- EIP-7708 transfer logs — `createVM` + `runBlock` (receipts; see the EIP-7708 exploration)
 - EIP-7928 block-level access lists — `createVM` + `runBlock` + `blockLevelAccessList` (see the BAL exploration)
 
 The browser `eComponents` layer and the server execution engine are **separate code paths today**; converging shared core logic is a future DRY seam.
@@ -34,8 +36,8 @@ The browser `eComponents` layer and the server execution engine are **separate c
 Build sequence (see [roadmap timeline](https://roadmap.feelyourprotocol.org/roadmap/timeline.html)):
 
 1. ~~**MCP docs site**~~ — this site
-2. ~~**Execution engine**~~ — `simulateBytecode()` + capability registry ([reference](/internals/execution-engine))
-3. ~~**Gateway (stdio)**~~ — development transport / PoC — **two tools implemented**
+2. ~~**Execution engine**~~ — `simulateBytecode()` + `runTransaction()` + capability registry ([reference](/internals/execution-engine))
+3. ~~**Gateway (stdio)**~~ — development transport / PoC — **three tools implemented**
 4. **AWS bootstrap** — EC2, nginx, TLS, deploy pipeline
 5. **HTTP transport** — remote MCP endpoint
 6. **Further tools** — EIP-7928 BAL generate, observability, x402, …
@@ -45,6 +47,7 @@ Build sequence (see [roadmap timeline](https://roadmap.feelyourprotocol.org/road
 <Changelog
   title="Architecture Changelog"
   :entries="[
+    { version: 'v0.9', date: '2026-09-08', summary: 'Engine/gateway surface: run_transaction plus run_bytecode rename; 8037/7708 website primitives documented.' },
     { version: 'v0.8', date: '2026-09-02', summary: 'Public endpoints table is hosted-only; stdio is development transport, not a user path.' },
     { version: 'v0.7', date: '2026-08-27', summary: 'compare_evm_variants removed — probe + simulate only.' },
     { version: 'v0.6', date: '2026-08-27', summary: 'EIP-8024 module is opcode/encoding support; callers supply bytecode.' },

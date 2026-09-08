@@ -28,7 +28,7 @@ export const CANONICAL: ProtocolChangeCanonical = {
     testMaturity: 'execution-specs / glamsterdam-devnet (v8.1.x)',
   },
   mcp: {
-    shapes: ['simulate'],
+    shapes: ['transaction', 'simulate'],
     keywords: [
       'state gas',
       'two-dimensional gas',
@@ -39,7 +39,7 @@ export const CANONICAL: ProtocolChangeCanonical = {
     comparison: {
       baselineForkId: 'osaka',
       previewForkId: 'amsterdam',
-      note: 'Value call to empty account: Amsterdam gas used includes ~183600 state-creation gas; Osaka does not. Widget uses a full transaction so 21000 vs a recommended gas limit is visible.',
+      note: 'Value tx to empty account: Amsterdam gasUsed ≈ 204600 (21000 + 183600 state); Osaka 21000. gasLimit 21000 fails on Amsterdam.',
     },
     docsStatus: 'runnable',
   },

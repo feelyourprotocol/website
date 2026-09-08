@@ -14,8 +14,9 @@ import { RECIPIENT_ADDRESS, SENDER_ADDRESS } from './scenarios/constants'
 
 describe('EIP-7708 transfer-log exploration', () => {
   describe('canonical', () => {
-    it('defines simulate shape as planned MCP twin with fork comparison', () => {
+    it('defines transaction + simulate MCP twin with fork comparison', () => {
       expect(CANONICAL.question.changeNature).toBe('new-capability')
+      expect(CANONICAL.mcp.shapes).toContain('transaction')
       expect(CANONICAL.mcp.shapes).toContain('simulate')
       expect(CANONICAL.mcp.docsStatus).toBe('runnable')
       expect(CANONICAL.mcp.comparison?.previewForkId).toBe('amsterdam')

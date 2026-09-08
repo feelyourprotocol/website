@@ -88,7 +88,7 @@ export const TIMELINE_EVENTS: TimelineEvent[] = [
     date: '2026-07',
     label: 'MCP engine & docs',
     phase: 3,
-    note: 'mcp-docs live; execution engine v0.1; gateway tools (describe_capabilities, run_evm_bytecode).',
+    note: 'mcp-docs live; execution engine v0.1; gateway tools (describe_capabilities, run_bytecode, run_transaction).',
     done: true,
   },
   {

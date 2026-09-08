@@ -91,6 +91,7 @@ export default defineConfig({
               items: [
                 { text: 'Describe Capabilities', link: '/use/tools/describe-capabilities' },
                 { text: 'Run Bytecode', link: '/use/tools/run-bytecode' },
+                { text: 'Run Transaction', link: '/use/tools/run-transaction' },
               ],
             },
             { text: 'Coverage', link: '/use/coverage' },
