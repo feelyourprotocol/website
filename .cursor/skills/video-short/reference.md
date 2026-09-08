@@ -189,12 +189,12 @@ Commands (all from `website/`, all need `required_permissions: ["all"]` for Play
 | `npm run video:preflight` | Chromium probe (statuses: `ready` \| `needs_agent_permissions` \| `needs_human_setup`) |
 | `npm run video:storyboard -- <id>` | Print cue → reveal timeline; validate focus areas + overlay ids |
 | `npm run video:record -- <id> --dry-run` | Run playbook headlessly without capturing |
-| `npm run video:record -- <id> --preview --no-voice` | Silent 540×960 `.webm` |
-| `npm run video:voice:synth -- <id>` | ElevenLabs → `voice/segments/*.mp3` + alignments (cache by text hash) |
+| `npm run video:record -- <id> --preview --no-voice` | Silent 540×960 `.webm` (debug) |
+| `npm run video:voice:synth -- <id>` | ElevenLabs → `voice/segments/*.mp3` + alignments (cache by beat filename; delete the segment to re-spend after a text change) |
 | `npm run video:voice:plan -- <id>` | Voice-aligned storyboard |
-| `npm run video:voice:mux -- <id>` | Ffmpeg mux silent `.webm` + voice → `*-final.mp4` |
-| `npm run video:generate:preview -- <id>` | Build + record + mux (540×960 *-final.mp4) |
-| `npm run video:generate -- <id>` | Build + record + mux (1080×1920 *-final.mp4, 2× upscale) |
+| `npm run video:voice:mux -- <id>` | Ffmpeg mux silent `.webm` + voice → 1080×1920 `*-final.mp4` (pass `--preview` only for 540 debug) |
+| `npm run video:generate:preview -- <id>` | Build + record + mux (540×960) — debug, not the phase deliverable |
+| `npm run video:generate -- <id>` | Build + record + mux (1080×1920 *-final.mp4, 2× upscale) — **phase deliverable** |
 
 **Never** run `npm run video:setup` / `npm run og:setup` / `npx playwright install`. If preflight says `needs_human_setup`, ask the human to run `npm run og:check` locally. Rule: [`.cursor/rules/video-recording.mdc`](../../.cursor/rules/video-recording.mdc).
 
@@ -204,7 +204,7 @@ Voice drives the clock. ElevenLabs returns character-level timestamps; playbook 
 
 Endpoint: `POST /v1/text-to-speech/{voice_id}/with-timestamps` — request body `{ text, model_id }`; response has `audio_base64` + `alignment: { characters, character_start_times_seconds, character_end_times_seconds }`.
 
-Per-segment mp3 + alignment JSON are stored under `video/projects/<id>/voice/segments/` (gitignored). `voice:synth` **caches by text hash** — unchanged beats do not re-spend credits.
+Per-segment mp3 + alignment JSON are stored under `video/projects/<id>/voice/segments/` (gitignored). `voice:synth` **caches by beat filename** — delete `voice/segments/<beat>.mp3` (and the `.alignment.json`) after a text change so the beat re-spends. Unchanged beats do not re-spend.
 
 Derivation rules (`mergeTiming.ts`):
 

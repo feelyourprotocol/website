@@ -8,7 +8,7 @@
       "type": "title-card",
       "eyebrow": "Ethereum · Amsterdam",
       "title": "EIP-8037",
-      "subtitle": "State-creation\ngas",
+      "subtitle": "State-creation gas",
       "hook": ["Why isn't 21,000 enough", "ANYMORE?"]
     },
     "context": {
