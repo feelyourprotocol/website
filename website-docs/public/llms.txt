@@ -15,6 +15,7 @@ Round-trip skill (EIP → exploration → MCP → optional comic): https://githu
 Add-exploration skill: https://github.com/feelyourprotocol/website/blob/main/.cursor/skills/add-exploration/SKILL.md
 Cover-image skill: https://github.com/feelyourprotocol/website/blob/main/.cursor/skills/cover-image/SKILL.md
 Bro & Bruh comic skill: https://github.com/feelyourprotocol/website/blob/main/.cursor/skills/bro-bruh-comic/SKILL.md
+X-engagement skill: https://github.com/feelyourprotocol/website/blob/main/.cursor/skills/x-engagement/SKILL.md
 
 ## Guide
 

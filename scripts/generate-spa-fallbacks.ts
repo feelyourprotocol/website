@@ -1,8 +1,9 @@
 /**
  * Post-build step (`npm run generate:spa-fallbacks`, after `vite build`).
  *
- * nginx serves static files with `try_files $uri $uri/ =404` (no blanket index.html
- * fallback). This script materializes what nginx needs:
+ * nginx serves static files with `try_files $uri $uri/index.html =404` (no blanket
+ * root index.html fallback, and no `$uri/` — that 301-appends a trailing slash).
+ * This script materializes what nginx needs:
  *
  * - Per-route `index.html` with injected title, meta, canonical, Open Graph, JSON-LD,
  *   and a minimal static above-the-fold shell inside `#app` (early LCP paint)

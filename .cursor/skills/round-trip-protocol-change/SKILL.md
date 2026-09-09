@@ -115,9 +115,9 @@ Only after an explicit yes on that ask (or a standalone “video for EIP-xxxx”
 
 Load and follow [video-short](../video-short/SKILL.md).
 
-**Agent does:** preflight (registry entry, `data-testid` hooks, videoReady spec, Chromium probe, ElevenLabs key present — non-printing); derive plan from `CANONICAL.question.coreQuestion` + `examples.ts`; draft `video/projects/eip-NNNN/{content,playbook,zones,narration}.json`; Tier 1–3 QA (vitest + type-check + storyboard + dry-run); synthesize voice; record `--preview`; mux; verify frame 0 + audio start + 30–90 s duration; video report.
+**Agent does:** preflight (registry entry, `data-testid` hooks, videoReady spec, Chromium probe, ElevenLabs key present — non-printing); derive plan from `CANONICAL.question.coreQuestion` + `examples.ts`; draft `video/projects/eip-NNNN/{content,playbook,zones,narration}.json`; Tier 1–3 QA (vitest + type-check + storyboard + dry-run); synthesize voice; `npm run video:generate -- <id>` (1080×1920); verify codecs + frame 0 + audio start + 30–90 s; video report with a clickable `file://` URL to the muxed mp4. No mid-phase nits or preview-vs-final choice.
 
-**Output:** `video/projects/eip-NNNN/output/eip-NNNN-<timestamp>-final.mp4` — round-trip complete.
+**Output:** `video/projects/eip-NNNN/output/eip-NNNN-<timestamp>-final.mp4` (1080×1920) — round-trip complete.
 
 ---
 

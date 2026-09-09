@@ -23,9 +23,9 @@ Otherwise run `npm run og:setup` once from `website/` (covers both pipelines).
 ```bash
 npm run website:build
 
-# Final output (video + voice) — use these for upload / review with audio:
-npm run video:generate:preview -- eip-8024   # 540×960 *-final.mp4
+# Final output (video + voice) — 1080×1920 is what you upload:
 npm run video:generate -- eip-8024           # 1080×1920 *-final.mp4 (2× upscale, same layout)
+npm run video:generate:preview -- eip-8024   # 540×960 debug mux (not the upload file)
 
 # Silent intermediate only (no audio) — always 540×960 capture:
 npm run video:record -- eip-8024 --preview --no-voice

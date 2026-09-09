@@ -22,6 +22,7 @@ import {
   injectBuiltPageHtml,
   injectSeoIntoHtml,
   injectStaticShellIntoHtml,
+  normalizePublicPath,
   SITE_ORIGIN,
   stripHtml,
   topicOgImagePath,
@@ -70,6 +71,19 @@ describe('pageSeo', () => {
     expect(seo.imageWidth).toBe(1200)
     expect(seo.imageHeight).toBe(630)
     expect(JSON.stringify(seo.jsonLd)).toContain(exploration.infoURL)
+  })
+
+  it('treats a trailing slash as the slash-free public path', () => {
+    const exploration = EXPLORATIONS['eip-8037'] ?? Object.values(EXPLORATIONS)[0]!
+    const withSlash = getPageSeoForPath(`${exploration.path}/`)
+    const without = getPageSeoForPath(exploration.path)
+
+    expect(normalizePublicPath(`${exploration.path}/`)).toBe(exploration.path)
+    expect(normalizePublicPath('/')).toBe('/')
+    expect(withSlash.title).toBe(without.title)
+    expect(withSlash.canonicalUrl).toBe(without.canonicalUrl)
+    expect(withSlash.canonicalUrl).toBe(`${SITE_ORIGIN}${exploration.path}`)
+    expect(withSlash.title).not.toContain('Page Not Found')
   })
 
   it('falls back to generated discovery copy when seoDescription is omitted', () => {

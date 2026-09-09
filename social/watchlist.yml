@@ -1,0 +1,115 @@
+# X engagement watchlist — query families and problem lexicon.
+# Playbook: .cursor/skills/x-engagement/
+# Not a handle allowlist. Do not add VIP lists; diversity is the point.
+#
+# Keep problem_slices in sync with src/explorations/REGISTRY.ts
+# (skip sunset). Paths from each info.ts.
+
+schema: fyp-x-watchlist/v1
+account: FeelEthereum
+cooldown_days: 5
+max_actions_per_run: 5
+prefer_actions_per_run: 3
+max_weather_links: 10
+
+# Handles never to suggest (no @). Cooldown handles from Memories are extra.
+always_exclude:
+  - FeelEthereum
+
+rotation:
+  morning_slices: [eip-8037, eip-7708]
+  midday_slices: [eip-7928, eip-7951]
+  afternoon_slices: [eip-8024, eip-7883]
+
+# Round A — pick ONE family per run (see skill rotation).
+weather_families:
+  fork_acd:
+    label: Fork / ACD
+    queries:
+      - AllCoreDevs execution layer
+      - Glamsterdam CFI Amsterdam EL
+      - Ethereum hardfork inclusion EL
+      - Forkcast Amsterdam
+  clients:
+    label: Clients / implementations
+    queries:
+      - geth EVM gas
+      - nethermind execution
+      - reth Ethereum client
+      - ethereumjs EVM
+      - Erigon execution layer
+  mechanics:
+    label: Mechanic talk
+    queries:
+      - Ethereum gas schedule precompile
+      - EVM receipts logs access list
+      - Ethereum state rent gas
+      - Ethereum native ETH Transfer log
+  builder_pain:
+    label: Builder pain (spice only)
+    queries:
+      - Ethereum wallet gasLimit 21000
+      - Ethereum indexer native transfer
+      - simulate upcoming Ethereum fork rules
+
+problem_slices:
+  - id: eip-8037
+    path: /eip-8037-state-creation-gas
+    core_question: Why isn't 21,000 gas enough for a simple ETH transfer anymore?
+    search:
+      - wallet gas limit 21000 Ethereum
+      - first-touch ETH transfer gas
+      - empty account creation cost Ethereum
+      - state creation gas Ethereum
+    avoid_leading_with: EIP-8037
+  - id: eip-7708
+    path: /eip-7708-eth-transfer-logs
+    core_question: When does native ETH show up as a Transfer log — and when does it stay invisible to log filters?
+    search:
+      - native ETH Transfer log
+      - indexer missing ETH transfer
+      - ETH transfer not in receipt logs
+      - SYSTEM_ADDRESS Transfer Ethereum
+    avoid_leading_with: EIP-7708
+  - id: eip-7928
+    path: /eip-7928-block-level-access-lists
+    core_question: What does the block commit to besides state root?
+    mcp_docs: planned-module
+    search:
+      - block-level access list Ethereum
+      - Ethereum BAL parallel IO
+      - blockAccessListHash
+    avoid_leading_with: EIP-7928
+  - id: eip-7951
+    path: /eip-7951-secp256r1-precompile
+    core_question: Why add a secp256r1 precompile?
+    search:
+      - Ethereum passkey secp256r1
+      - P-256 precompile Ethereum
+      - WebAuthn L1 Ethereum
+    avoid_leading_with: EIP-7951
+  - id: eip-8024
+    path: /eip-8024-stack-opcodes-dupn-swapn-exchange
+    core_question: How do you reach deep stack items without blowing the 1024 limit?
+    search:
+      - Solidity stack too deep
+      - DUPN SWAPN EXCHANGE EVM
+      - Ethereum stack opcodes compiler
+    avoid_leading_with: EIP-8024
+  - id: eip-7883
+    path: /eip-7883-modexp-gas-cost-increase
+    core_question: How are ModExp gas costs changing with Fusaka?
+    search:
+      - ModExp gas Ethereum
+      - precompile 0x05 RSA 4337
+      - modular exponentiation gas Fusaka
+    avoid_leading_with: EIP-7883
+
+# Last-resort OR-query ids (live only). Skill: at most one such search per run.
+eip_number_fallback:
+  - eip-8037
+  - eip-7708
+  - eip-7928
+  - eip-7951
+  - eip-8024
+  - eip-7883

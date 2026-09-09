@@ -14,15 +14,27 @@ Each exploration gets a **2-tweet arc today**, upgraded to a **3-tweet arc** onc
 | **Video** (engage) | 45–60 s Shorts-format clip that lands the substance of the EIP, encourages the reader to visit the exploration and check the change against their own domain; points to official sources (spec + Forkcast) | [`video-short`](https://github.com/feelyourprotocol/website/tree/main/.cursor/skills/video-short) skill |
 | **MCP tweet** _(post-launch)_ | Shows how an agent uses the EIP via the hosted MCP with a concrete prompt; guides the reader to apply it to their own questions | _skill added during launch week_ |
 
+## Engagement (between announcements)
+
+The announcement arc is the scheduled artefact. Between drops, a **half-automated engagement** loop watches X and stops for a human:
+
+- **Weather briefing** — what is moving in Ethereum protocol (read-only digest + permalinks)
+- **Action cards** — reply, quote, or retweet suggestions with a short why, draft copy, and an X intent URL
+
+Quality before quantity (silence is allowed). Diversity is a hard rule: do not circle the same few accounts via narrow `EIP-NNNN` search. Playbook: [`x-engagement`](https://github.com/feelyourprotocol/website/tree/main/.cursor/skills/x-engagement) skill; lexicon in [`social/watchlist.yml`](https://github.com/feelyourprotocol/website/blob/main/social/watchlist.yml). Evolve the rules with PRs to those files.
+
+The human posts as [@FeelEthereum](https://x.com/FeelEthereum) from the X app. The agent never publishes.
+
 ## Further sections
 
-Voice, channels beyond X, PR & outreach playbook, response guidance, and measurement will be captured here as they mature. Cadence is the first shape we can commit to; everything else follows the launch.
+Voice details live in the authoring skills (comic, video, engagement). Channels beyond X, PR & outreach, and measurement will be captured here as they mature.
 
 ## Changelog
 
 <Changelog
   title="Marketing Strategy Changelog"
   :entries="[
+    { version: 'v0.2', date: '2026-09-09', summary: 'Engagement loop — weather briefing plus reply/quote/retweet suggestions; rules in the x-engagement skill.' },
     { version: 'v0.1', date: '2026-09-03', summary: 'Initial page — per-exploration announcement arc (comic + video today, MCP tweet after launch).' },
   ]"
 />

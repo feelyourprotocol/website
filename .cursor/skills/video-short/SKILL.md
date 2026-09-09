@@ -15,7 +15,9 @@ Playbook for one short per exploration. Output lives in `video/projects/<id>/out
 
 **Round-trip:** phase 5 of [round-trip-protocol-change](../round-trip-protocol-change/SKILL.md). After the phase-4 (comic) report — or the phase-3 (MCP) report if comic was skipped — **ask** whether to generate; do not start this skill in the same turn as that report. On skip, stop. Standalone ("video for EIP-xxxx") is an implicit GO.
 
-**Human work in this phase:** one GO. Then narration script + intermediate artefacts are shown in the final report for review; iteration is a follow-up. No mid-phase micro-approvals.
+**Human work in this phase:** one GO. Then ship. The report is paste-ready copy plus a **clickable local file URL** for the 1080×1920 `*-final.mp4`. Iteration is a follow-up the human starts.
+
+Do **not** pause for script approval, preview-vs-final, lettering, overflow, or other nits. Fix them in this phase or ship; do not list them as decisions. Do not ask whether they can post.
 
 ## Inputs (do not invent)
 
@@ -33,12 +35,12 @@ Read, then derive. Do not re-brief the EIP. Do not invent verbs, numbers, or for
 
 1. **Preflight** — [Preflight](#preflight-hard-gates). Bail early if any gate fails.
 2. **Inventory** from prior `video/projects/*` — list consumed openings, hooks, outro CTAs, and prior `tweet.yml` openers.
-3. **Derive** the video plan — [Derivation](#derivation). Write it in chat before drafting files.
+3. **Derive** the video plan — [Derivation](#derivation). Hold it; do not pause for approval.
 4. **Draft the four project files** — [Project files](#project-files). Use existing project as a shape guide, not a copy target.
 5. **QA Tier 1–3** — [QA gates](#qa-gates). Hard stop on any error.
-6. **Cost gate (transparency only, no human GO)** — print the full narration script + estimated duration in chat before spending ElevenLabs credits. Continue in the same turn.
-7. **Synthesize + plan + record + mux** — [Recording](#recording).
-8. **Verify** — frame 0 is title band, audio starts at 0:00, duration is 30–90 s.
+6. **Cost gate (transparency only, no human GO)** — print the full narration script + estimated duration in chat before spending ElevenLabs credits. Continue in the same turn. Do not ask the human to approve the script.
+7. **Synthesize + plan + generate 1080** — [Recording](#recording). The phase deliverable is always 1080×1920.
+8. **Verify** — frame 0 is title band, audio starts at 0:00, duration is 30–90 s, codecs are H.264 + AAC.
 9. **Announcement tweet** — [Announcement tweet](#announcement-tweet). Write `tweet.yml`; include paste-ready copy in the report.
 10. **YouTube Shorts publication assets** — [YouTube Shorts publication](#youtube-shorts-publication). Extract thumbnail (`npm run video:thumb -- <id>`) and write `youtube.yml`; include paste-ready copy in the report.
 11. **Report** — [Report](#report), then **STOP**.
@@ -121,18 +123,16 @@ Every command below runs from `website/`. All Playwright-backed commands (`video
 # 1. Synthesize narration (spends ElevenLabs credits; cost gate already printed the script)
 npm run video:voice:synth -- <id>
 
-# 2. Preview voice-aligned timing
+# 2. Voice-aligned timing (sanity only — do not stop)
 npm run video:voice:plan -- <id>
 
-# 3. Preview record (silent .webm at 540×960) — sanity-scrub against voice/full.mp3
-npm run video:record -- <id> --preview
-
-# 4. Or: one-shot final (recommended once voice + storyboard are settled)
-npm run video:generate:preview -- <id>   # 540×960 *-final.mp4 with voice
-npm run video:generate -- <id>           # 1080×1920 *-final.mp4 (2× upscale of same layout)
+# 3. One-shot final — this is the phase deliverable
+npm run video:generate -- <id>           # 1080×1920 *-final.mp4 (2× upscale of 540×960 capture)
 ```
 
-`video:generate*` runs `website:build` first — do not skip it manually. `.webm` intermediates are silent; muxed `*-final.mp4` is the deliverable.
+Do **not** ship `video:generate:preview` (540×960) as the phase output. Preview record is debug-only (`video:record -- <id> --preview`, `video:generate:preview`) when a selector or overlay is broken — then continue to `video:generate` in the same turn.
+
+`video:generate*` runs `website:build` first — do not skip it manually. `.webm` intermediates are silent; muxed 1080×1920 `*-final.mp4` is the deliverable.
 
 **Never** run `npm run video:setup`, `og:setup`, or `playwright install` — see [`.cursor/rules/video-recording.mdc`](../../.cursor/rules/video-recording.mdc). If record fails on selectors, fix the widget or playbook, not the browser install.
 
@@ -343,9 +343,10 @@ sources:
 ```markdown
 ## Phase 5 — Video short (eip-NNNN)
 
+**Watch:** [*-final.mp4](file://<absolute-path-to-1080-final.mp4>)
 **Anchor (coreQuestion):** …
 **Files:** `video/projects/eip-NNNN/{content,playbook,zones,narration}.json`
-**Output:** `video/projects/eip-NNNN/output/<id>-<timestamp>-final.mp4`
+**Output:** `video/projects/eip-NNNN/output/<id>-<timestamp>-final.mp4` (1080×1920)
 **Duration:** ~XX s (voice), ~XX s (total)
 **Beats:** hook · context · … · climax · recap · outro
 **Comparison:** baseline `<fork>` ↔ preview `<fork>` (from CANONICAL.mcp.comparison) — used in <beat>
@@ -369,11 +370,6 @@ outro:   <text>
 - Tier 1: `npm run type-check`
 - Tier 2: `video:storyboard` (0 errors), `video:record --dry-run` (OK)
 - Tier 3: `video:preflight` — `ready`
-
-**What to check on phone (Shorts vertical):**
-- Title band visible; anchor readable in ≤2 s
-- Voice sync at climax
-- Outro CTAs (Forkcast, feelyourprotocol.org<INFO.path>) both legible
 
 **Announcement tweet** (`video/projects/eip-NNNN/tweet.yml`, shape: <thread|single>):
 
@@ -420,14 +416,16 @@ Beschreibung (Description):
 Human may edit; do not ask for a YouTube-only GO.
 
 **Consumed for future videos:** hook openings, outro CTA phrasing, T1 opener, YouTube title verb
-**Open:** (voice edits, timing tweaks — human can ask)
+**Blocked (only if the human must act):** missing ElevenLabs key, `needs_human_setup`, or a hard QA failure. Omit this line when nothing is blocked. Never put lettering, overflow, timing taste, or preview-vs-final here.
 ```
+
+The **Watch** line is a `file://` URL to the 1080 `*-final.mp4` (absolute path). Put it first so the human can click-to-play from the report.
 
 Then **STOP**.
 
 ## Follow-ups (out of this phase)
 
-- Re-render at 1080×1920 — `npm run video:generate -- <id>` (2× upscale of the same layout)
-- Iterate a beat — edit `narration.json` and re-run `voice:synth` + `voice:mux` (voice/segments cache by text hash so unchanged beats do not re-spend)
+- Iterate a beat — edit `narration.json` and re-run `voice:synth` + `npm run video:generate -- <id>` (segment files cache by beat name: delete `voice/segments/<beat>.mp3` to force a re-spend when the text changed)
+- Debug at layout size — `npm run video:generate:preview -- <id>` (540×960); then still ship 1080
 - Upload / caption / thumbnail — human, out of skill scope
 - Root-level `**/.env` gitignore, macOS Keychain fallback in `loadEnv.ts` — see [reference.md § Security](reference.md#security)

@@ -237,6 +237,13 @@ export function getValidSpaPaths(): string[] {
   return paths
 }
 
+/** Public URLs have no trailing slash except `/`. nginx must not 301-add one. */
+export function normalizePublicPath(path: string): string {
+  if (path === '/' || path === '') return '/'
+  const stripped = path.replace(/\/+$/, '')
+  return stripped === '' ? '/' : stripped
+}
+
 /** Indexed paths only — excludes topic pages with no explorations yet. */
 export function getSitemapPaths(): string[] {
   return getValidSpaPaths().filter((path) => {
@@ -247,6 +254,7 @@ export function getSitemapPaths(): string[] {
 }
 
 export function getPageSeoForPath(path: string): PageSeo {
+  path = normalizePublicPath(path)
   const canonicalUrl = absoluteUrl(path)
   const breadcrumbs = getBreadcrumbsForPath(path)
 
