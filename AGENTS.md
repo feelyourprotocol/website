@@ -15,6 +15,7 @@ Tool-agnostic entrypoint for coding agents (Cursor, Claude Code, Codex, etc.) in
 | **Create or change an exploration** (round-trip phase 2) | [`.cursor/skills/add-exploration/SKILL.md`](.cursor/skills/add-exploration/SKILL.md) → [adding-an-exploration.md](website-docs/contributing/adding-an-exploration.md) |
 | **Generate cover art** | [`.cursor/skills/cover-image/SKILL.md`](.cursor/skills/cover-image/SKILL.md) → [images.md](website-docs/contributing/images.md) |
 | **Bro & Bruh comic** (round-trip phase 4) | [`.cursor/skills/bro-bruh-comic/SKILL.md`](.cursor/skills/bro-bruh-comic/SKILL.md) → [`design/comics/`](design/comics/) |
+| **X engagement** (weather + reply/quote/RT suggestions) | [`.cursor/skills/x-engagement/SKILL.md`](.cursor/skills/x-engagement/SKILL.md) → [`social/watchlist.yml`](social/watchlist.yml) |
 | E-Components, styling, conventions | [website-docs/](website-docs/) (index: [llms.txt](website-docs/public/llms.txt)) |
 | MCP server docs | [mcp-docs/README.md](mcp-docs/README.md) — not `website-docs/` |
 | MCP EIP catalogue (human) | `https://mcp-docs.feelyourprotocol.org/use/eips/eip-NNNN.html` — one page per **live** exploration, Runnable or Planned (e.g. [EIP-8024](https://mcp-docs.feelyourprotocol.org/use/eips/eip-8024.html)) |
