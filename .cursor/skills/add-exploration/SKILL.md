@@ -100,10 +100,11 @@ Invariants and finish commands: [testing.mdc](../rules/testing.mdc), [quality.md
 4. `examples.ts` + execution helpers — **tests for the protocol claim first** (or immediately with these files)
 5. `MyC.vue` (+ `config.ts` if E-Component-backed) — then Vue mount tests. After the first chrome pass, run the [cross-exploration UI check](#design-same-turn-before-files) (design §11). If a sibling already has the same control and there is no UIC, extract + tests **in this step**, then wire every call site.
 6. Register in `src/explorations/REGISTRY.ts` (nav dropdown is `Object.values(EXPLORATIONS)`)
-7. **Latest on the home page:** prepend `<id>` to `FEATURED_EXPLORATION_IDS` in `src/views/homeCatalog.ts`. `latestExplorationIds()` is the first 3 — the new one is Latest; the previous third Latest drops into Catalog. Home tests import the same helper.
-8. **Cover art (required):** [cover-image skill](../cover-image/SKILL.md). Round-trip default: Template B from signed-off `coreQuestion` unless the human named a subject at GO. Import `image.webp` in `info.ts`. Then `npm run generate:og:exploration -- <id>`.
-9. Dependencies — prefer existing `package.json` entries
-10. Finish `tests.spec.ts` per [Tests](#tests-test-first)
+7. **Engagement lexicon:** append one `problem_slices` row in [`social/watchlist.yml`](../../social/watchlist.yml) and add the id to `eip_number_fallback`. **3–4** search phrases from `coreQuestion` + `mcp.keywords` in builder language (wallet, gas, logs, stack — not `EIP-NNNN`). `path` from `info.ts`. `avoid_leading_with: EIP-NNNN`. Skip if `docsStatus` is `sunset` (and **remove** the row + fallback id if you are sunsetting). Do **not** edit the x-engagement skill for a new EIP.
+8. **Latest on the home page:** prepend `<id>` to `FEATURED_EXPLORATION_IDS` in `src/views/homeCatalog.ts`. `latestExplorationIds()` is the first 3 — the new one is Latest; the previous third Latest drops into Catalog. Home tests import the same helper.
+9. **Cover art (required):** [cover-image skill](../cover-image/SKILL.md). Round-trip default: Template B from signed-off `coreQuestion` unless the human named a subject at GO. Import `image.webp` in `info.ts`. Then `npm run generate:og:exploration -- <id>`.
+10. Dependencies — prefer existing `package.json` entries
+11. Finish `tests.spec.ts` per [Tests](#tests-test-first)
 
 Run `npm run dev` and verify the exploration route **and** home Latest cards. Do the form-factor pass (mobile / tablet / desktop) before the report.
 
@@ -116,6 +117,7 @@ If the briefing promised a twin, add or stub `mcp-docs/use/eips/eip-NNNN.md` in 
 | Human review | intro, usage, examples, pedagogy, play loop, form factors — after this phase’s report |
 | Cover art | `image.webp` + `info.ts` import — every exploration |
 | Home Latest | prepended on `FEATURED_EXPLORATION_IDS` in `homeCatalog.ts` |
+| Engagement lexicon | `problem_slices` + `eip_number_fallback` in `social/watchlist.yml` (skip/remove on sunset) |
 | `mcp-docs/use/eips/eip-NNNN.md` | Every **live** exploration (same PR or immediate follow-up) |
 | Engine module | When `CANONICAL.mcp.shapes` includes a **shipped** verb — round-trip phase 3 |
 
@@ -126,6 +128,7 @@ If the briefing promised a twin, add or stub `mcp-docs/use/eips/eip-NNNN.md` in 
 - **Libraries only in the exploration folder**
 - **Companion UI inside E-Component slots**
 - **Register in REGISTRY.ts** (nav)
+- **Engagement lexicon** — `social/watchlist.yml` `problem_slices` + `eip_number_fallback` for live ids; remove on sunset
 - **Cover art** — `image.webp` on every exploration
 - **New shared fields only on `canonicalTypes.ts`**
 
@@ -157,6 +160,7 @@ Tests passing is the quality bar, not the pedagogy bar. The report below is the 
 **Touched / evolved / created:** paths + one line each
 **Files:** created / modified (short list)
 **Latest:** prepended to `FEATURED_EXPLORATION_IDS` — dropped from Latest trio: …
+**Watchlist:** `problem_slices` + `eip_number_fallback` updated (or sunset removed)
 **Cover:** `image.webp` — Template A/B — shown in context
 
 **Tests:** `npx vitest run src/explorations/<id>/` — N specs, pass/fail (logic + UI + beyond-edge)

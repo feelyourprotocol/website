@@ -46,6 +46,8 @@ Every new exploration needs an import in `src/explorations/REGISTRY.ts` or it wi
 
 **Latest on the home page:** prepend the id to `FEATURED_EXPLORATION_IDS` in `src/views/homeCatalog.ts`. `latestExplorationIds()` is the first 3 — new exploration is Latest; the previous third Latest moves to the Catalog row.
 
+**Engagement lexicon:** live ids need a `problem_slices` row in `social/watchlist.yml` ([add-exploration](../skills/add-exploration/SKILL.md)). On `docsStatus: sunset`, remove that row and the `eip_number_fallback` id. Do not rewrite the x-engagement skill for catalog churn.
+
 ## Cover art
 
 Every exploration ships `image.webp` imported from `info.ts`. Playbook: [cover-image skill](../skills/cover-image/SKILL.md). Page layout (`imageBoxHeight` vs `rightPanel`): [exploration-design.mdc](./exploration-design.mdc).

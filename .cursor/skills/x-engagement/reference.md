@@ -4,7 +4,7 @@ Recipes for [SKILL.md](SKILL.md). Query strings live in [`social/watchlist.yml`]
 
 ## Memory
 
-The **Cursor Automation** owns *when* (weekday morning). **Memories** own *what to check next* (dated events, open controversies, thread follows, seen ids). Git owns *what we are allowed to talk about* (`problem_slices`, weather families, voice). Do not duplicate cron times here. Do not assign EIPs to weekdays.
+The **Cursor Automation** owns *when* (weekday morning). **Memories** own *what to check next* (dated events, open controversies, thread follows, seen ids). Git owns *what we are allowed to talk about* (`problem_slices`, weather families, MCP prompt, voice). `problem_slices` stay in sync when explorations are added or sunset ([add-exploration](../add-exploration/SKILL.md)). Do not duplicate cron times here. Do not assign EIPs to weekdays.
 
 The human does **not** edit memory. You read, prune, and rewrite it every run.
 
@@ -40,17 +40,17 @@ last_weather_family: fork_acd
 2. **Due** = `check_on` ≤ today (or missing `check_on`) and `until` ≥ today. Prefer to fold a due `q` into the family slot ([SKILL.md](SKILL.md) workflow). Do not spend the Moved search on a due query.
 3. After weather: add at most **2** new watch rows from *concrete* dates or fights the posts named (not “maybe Glamsterdam someday”). If at 8 items, replace a stale one — do not grow.
 4. Close due items you actually searched (delete, or set a later `check_on` only if the event clearly continues).
-5. Append today’s weather + action tweet ids to `seen`. Set `last_weather_family` to the **rotating family** used (`fork_acd` / `clients` / `mechanics`), not `moved`. Rewrite the whole file so it stays one schema.
+5. Append today’s weather + action tweet ids to `seen`. Set `last_weather_family` to the **rotating family** used (`fork_acd` / `clients` / `mechanics`), not `moved` or `mcp`. Rewrite the whole file so it stays one schema.
 
-## Round A — protocol weather
+## Round A — protocol weather + MCP
 
-Goal: a **survey** of what moved, plus **one** rotating corner (fork/ACD, clients, or mechanics). Not price. Not a daily EIP hunt — that is Round B.
+Goal: a **survey** of what moved, plus **one** rotating corner (fork/ACD, clients, or mechanics), plus **high-stakes MCP** (Base when it clears the bar). Not price. Not a daily EIP hunt — that is Round B.
 
-**Every run:** one **Moved** search (`watchlist.yml` `weather_moved.prompt`) and one **family broad** query. Cluster the two together before Telegram — overlap on an ACD day is expected.
+**Every run:** one **Moved** search (`watchlist.yml` `weather_moved.prompt`), one **family broad** query, one **MCP** search (`weather_mcp.prompt`). Cluster protocol hits together, MCP hits together, then one Telegram message. Overlap on an ACD day is expected; do not mix a Base MCP post into the protocol list.
 
 **Thin only:** one **depth** query from the same family. Do not fire the whole `depth` list. There is no `builder_pain` weather family; builder phrases live in `problem_slices`.
 
-Keep each `x_search` prompt tight: “Use a **single** x_search. Do not follow up. Do not fetch full threads. Return at most 8 recent posts with permalink, handle, and one-line gist. Protocol / client / EL / gas / fork only. One post per conversation: skip quotes, RTs, and replies of a post you are already returning.” For Moved, put `weather_moved.prompt` first, then those constraints.
+Keep each `x_search` prompt tight: “Use a **single** x_search. Do not follow up. Do not fetch full threads. Return at most 8 recent posts with permalink, handle, and one-line gist. One post per conversation: skip quotes, RTs, and replies of a post you are already returning.” For Moved and family: “Protocol / client / EL / gas / fork only.” For MCP: put `weather_mcp.prompt` first, then the single-search constraints (not the EL-only line).
 
 Do **not** set `allowed_x_handles`. You **may** set `excluded_x_handles` (max 20) to `FeelEthereum` plus cooldown handles from Memories (no `@`).
 
@@ -66,7 +66,7 @@ Same clustering for **action cards**: do not emit a reply *and* a quote of the s
 
 ### Drop (weather and actions)
 
-Price, ETF, ETH/USD, staking yield, restaking, L2 airdrop, points, memecoin, “gm” with no payload, personal drama, engagement bait, the same viral joke twice, city-Amsterdam tourism, sports.
+Price, ETF, ETH/USD, staking yield, restaking, L2 airdrop, points, memecoin, “gm” with no payload, personal drama, engagement bait, the same viral joke twice, city-Amsterdam tourism, sports. MCP extra drop: tutorials, indie “I shipped an MCP,” gm agents, x402-as-token.
 
 ## Round B — problem match
 
@@ -137,12 +137,24 @@ Links:
 • @handle — <one line why>
   https://x.com/<handle>/status/<id>
 
-(If quiet:)
+MCP:
+• @handle — <one line why>
+  https://x.com/<handle>/status/<id>
+
+(If protocol quiet and no MCP:)
 FYP weather — <YYYY-MM-DD>
 Quiet on protocol X this scan. No links worth a click.
+
+(If protocol quiet but MCP hits:)
+FYP weather — <YYYY-MM-DD>
+Quiet on protocol X this scan.
+
+MCP:
+• @handle — <one line why>
+  https://x.com/<handle>/status/<id>
 ```
 
-Cap **10** bullets. Prefer **5–8**. **One URL per story** (cluster first). Diverse corners (not five client-team accounts, not only the rotating family). One message — do not split survey vs family. No intent URLs. No “you should reply.”
+Cap **10** bullets across protocol + MCP. Prefer **5–8** protocol. MCP: **0–3** (omit the heading if zero). **One URL per story** (cluster first). Diverse protocol corners. One message — do not split survey vs family into two sends. No intent URLs. No “you should reply.” No FYP pitch in the MCP block.
 
 ### Action message
 

@@ -2,8 +2,8 @@
 # Playbook: .cursor/skills/x-engagement/
 # Not a handle allowlist. Do not add VIP lists; diversity is the point.
 #
-# Keep problem_slices in sync with src/explorations/REGISTRY.ts
-# (skip sunset). Paths from each info.ts.
+# Keep problem_slices in sync with REGISTRY via add-exploration (skip sunset).
+# Paths from each info.ts. Do not edit the x-engagement skill for a new EIP.
 
 schema: fyp-x-watchlist/v1
 account: FeelEthereum
@@ -23,8 +23,8 @@ memory:
 always_exclude:
   - FeelEthereum
 
-# Round A — always one "moved" search, then ONE rotating family (broad first).
-# Depth queries: only if moved + broad came back thin. Do not spray a family.
+# Round A — always Moved + family broad + MCP. Depth only if Moved + broad were thin.
+# problem_slices: add/remove from add-exploration (and on sunset). Do not edit SKILL.md for a new EIP.
 weather_moved:
   label: What moved
   prompt: >-
@@ -59,6 +59,18 @@ weather_families:
       - Ethereum EIP spec execution
       - Ethereum gas schedule precompile
       - EVM receipts logs access list
+
+# Always-on complement — not a rotating family. High-stakes MCP only; Base when it clears the bar.
+weather_mcp:
+  label: MCP stakes
+  prompt: >-
+    High-stakes new MCP developments on X in this date window.
+    In: MCP spec or registry changes, hosted MCP / agent-runtime platforms,
+    production payment rails for agents (x402 as a rail, not a ticker),
+    Base-related MCP or Coinbase agent stack when it is actually high-stakes.
+    Other ecosystems only if shipped, named, and the same bar.
+    Skip: MCP tutorials, every indie server launch, gm agents, memecoins,
+    x402-as-token or points, price, ETF.
 
 problem_slices:
   - id: eip-8037

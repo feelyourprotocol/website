@@ -126,6 +126,7 @@ Tests green ≠ ready. Before OG/PR, review:
 - [ ] Round-trip briefing (or standalone brief) + human GO on core question **and** taxonomy
 - [ ] Folder + `canonical.ts` + `REGISTRY.ts` entry (nav)
 - [ ] Home Latest (`FEATURED_EXPLORATION_IDS` prepend in `homeCatalog.ts`)
+- [ ] Engagement lexicon (`social/watchlist.yml` `problem_slices` + `eip_number_fallback`; remove on sunset)
 - [ ] Cover art (`image.webp`)
 - [ ] `mcp-docs/use/eips/eip-NNNN.md` for every live exploration
 - [ ] Human review of copy, examples, UX, form factors
