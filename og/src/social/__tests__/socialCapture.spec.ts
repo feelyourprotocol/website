@@ -6,12 +6,12 @@ import {
   SOCIAL_CAPTURE_WIDTH,
   SOCIAL_DIST_DIR,
   SOCIAL_OUTPUT_DIR,
-  YOUTUBE_BANNER_HEIGHT,
-  YOUTUBE_BANNER_OUTPUT_DIR,
-  YOUTUBE_BANNER_WIDTH,
   socialCardCaptureSpec,
   socialCardOutputBase,
   WEBSITE_ROOT,
+  YOUTUBE_BANNER_HEIGHT,
+  YOUTUBE_BANNER_OUTPUT_DIR,
+  YOUTUBE_BANNER_WIDTH,
 } from '../config.ts'
 import { parseSocialCardIds } from '../parseCardIds.ts'
 

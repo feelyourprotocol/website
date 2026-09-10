@@ -9,9 +9,9 @@ import {
   SOCIAL_CAPTURE_WIDTH,
   SOCIAL_DIST_DIR,
   SOCIAL_OUTPUT_DIR,
-  YOUTUBE_BANNER_OUTPUT_DIR,
   socialCardCaptureSpec,
   socialCardOutputBase,
+  YOUTUBE_BANNER_OUTPUT_DIR,
 } from './config.ts'
 import { parseSocialCardIds } from './parseCardIds.ts'
 

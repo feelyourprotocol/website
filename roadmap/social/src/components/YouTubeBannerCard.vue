@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import logoUrl from '../../../../src/logo.png'
-
 import { SOCIAL_CARDS } from '../cards.ts'
 
 const meta = SOCIAL_CARDS['youtube-banner']

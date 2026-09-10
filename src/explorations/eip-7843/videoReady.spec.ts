@@ -9,8 +9,8 @@ import { describe, expect, it } from 'vitest'
 import { createMemoryHistory, createRouter } from 'vue-router'
 import { flushPromises, mount } from '@vue/test-utils'
 
-import MyC from './MyC.vue'
 import { examples } from './examples'
+import MyC from './MyC.vue'
 
 async function mountWithQuery(query: Record<string, string> = {}) {
   document.body.innerHTML = '<div id="root"></div><div id="exploration-right-panel"></div>'
