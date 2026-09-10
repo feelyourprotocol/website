@@ -13,7 +13,7 @@ Playbook for one **scan** of X (Twitter) for Feel Your Protocol. Output is **Tel
 
 This is **not** the announcement arc ([`bro-bruh-comic`](../bro-bruh-comic/SKILL.md), [`video-short`](../video-short/SKILL.md)). Do not generate comics or videos here.
 
-**Account:** [@FeelEthereum](https://x.com/FeelEthereum) — not `@feelyourprotocol`. Intent URLs cannot select the account; every action card reminds the human to check the avatar.
+**Account:** [@FeelEthereum](https://x.com/FeelEthereum) — not `@feelyourprotocol`. Intent URLs cannot select the account.
 
 ## When to run
 
@@ -47,13 +47,13 @@ Exploration URL: `https://feelyourprotocol.org` + `info.ts` `path`. MCP docs (on
 
 ## Workflow
 
-1. **Slot** — [reference.md](reference.md) § Rotation. Pick **one** Round A family and **two** Round B slices for this window. Do not run every query.
+1. **Rotation** — [reference.md](reference.md) § Rotation. Pick **one** Round A family and **two** Round B slices for **today’s weekday**. Do not run every query. The Automation cron owns *when*; do not read a wall-clock from this skill.
 2. **Round A — weather** — 2–3 `x_search` calls from that family ([reference.md](reference.md) § Round A). `from_date` = yesterday (UTC). Ask the model to return **few** posts with permalinks (cost is per fetched post after 2026-09-21). Exclude junk in [reference.md](reference.md) § Drop. Downrank cooldown handles.
 3. **Weather Telegram** — **always send**, even if thin. Template in [reference.md](reference.md) § Weather message. Permalinks only (no intent URLs). Cap 5–10 links, diverse corners. Quiet window: one short “nothing notable” note so the human knows the job ran.
 4. **Round B — problem match** — 2–3 searches from the two slices’ **problem phrases**, not EIP numbers ([`watchlist.yml`](../../social/watchlist.yml) `problem_slices`). Read `canonical.ts` only for slices you might act on.
 5. **Optional EIP-number query** — **at most one**, and **only if** Round B was thin. Hits get a heavier diversity penalty.
 6. **Pick** — [Pick pass](#pick-pass). Rank, cut, mix actions.
-7. **Action Telegrams** — one message per card ([reference.md](reference.md) § Action message), or a one-liner “nothing cleared the bar” if zero. Include intent URL + avatar reminder.
+7. **Action Telegrams** — one message per card ([reference.md](reference.md) § Action message), or a one-liner “nothing cleared the bar” if zero. Include the intent URL.
 8. **Memories** — write tweet ids and handles you briefed or suggested (weather links count as “seen” for cooldown). Then **STOP**.
 
 Cap **x_search tool-calls** at **6** per run (A + B + optional EIP). Prefer fewer.

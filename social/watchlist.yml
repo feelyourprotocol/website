@@ -17,9 +17,13 @@ always_exclude:
   - FeelEthereum
 
 rotation:
-  morning_slices: [eip-8037, eip-7708]
-  midday_slices: [eip-7928, eip-7951]
-  afternoon_slices: [eip-8024, eip-7883]
+  # One weekday-morning run. Clock lives in the Cursor Automation, not here.
+  by_weekday:
+    mon: { family: fork_acd, slices: [eip-8037, eip-7708] }
+    tue: { family: clients, slices: [eip-7928, eip-7951] }
+    wed: { family: mechanics, slices: [eip-8024, eip-7883] }
+    thu: { family: fork_acd, slices: [eip-7708, eip-7928] }
+    fri: { family: clients, slices: [eip-7951, eip-8024] }
 
 # Round A — pick ONE family per run (see skill rotation).
 weather_families:

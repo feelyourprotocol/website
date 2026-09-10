@@ -4,17 +4,13 @@ Recipes for [SKILL.md](SKILL.md). Query strings live in [`social/watchlist.yml`]
 
 ## Rotation
 
-Three cron windows (**Europe/Berlin**), **weekdays only** (Mon–Fri): **08:00**, **12:30**, **16:30**.
+The **Cursor Automation** owns the schedule (weekday morning, Europe/Berlin). Do not duplicate cron times here.
 
-| Berlin clock | Round A family (`watchlist.yml`) | Round B slices |
-| --- | --- | --- |
-| 08:00 (hour 00–11) | `fork_acd` | `rotation.morning_slices` |
-| 12:30 (hour 12–15) | `clients` | `rotation.midday_slices` |
-| 16:30 (hour 16–23) | `mechanics` | `rotation.afternoon_slices` |
+Search *what* still rotates so one run per day does not hammer the same family: use **today’s weekday (Mon–Fri)** against [`watchlist.yml`](../../social/watchlist.yml) `rotation.by_weekday`.
 
-If the run is unscheduled, use the **current** UTC hour with the same bands (shift −2 in summer / −1 in winter is fine; exact TZ is less important than not repeating the same family every run).
+`builder_pain` is a **spice** family: at most one extra Round A query when the chosen family came back thin — not a second default search.
 
-`builder_pain` is a **spice** family: at most one extra Round A query when the chosen family came back thin — not a fourth default search.
+If the run is unscheduled (manual Test), use **today’s weekday** the same way. Weekend manual runs: pick `fri`.
 
 ## Round A — protocol weather
 
@@ -74,7 +70,7 @@ If `x.com/intent/post` fails in testing, the same query string on `https://twitt
 
 **Tweet id:** the numeric status id, not the whole URL.
 
-Intent links **do not** select @FeelEthereum. Android + Telegram often open an in-app browser — the human still checks the avatar (or “Open in X”).
+Intent links **do not** select @FeelEthereum. Android + Telegram often open an in-app browser.
 
 ## Telegram
 
@@ -89,7 +85,7 @@ Send **only** to `TELEGRAM_CHAT_ID`. If a send fails, retry once; then put the b
 One message per run.
 
 ```text
-FYP weather — <YYYY-MM-DD> <window>
+FYP weather — <YYYY-MM-DD>
 
 <4–8 lines: what’s moving. Fork/ACD, clients, mechanics. No pitch.>
 
@@ -98,8 +94,8 @@ Links:
   https://x.com/<handle>/status/<id>
 
 (If quiet:)
-FYP weather — <YYYY-MM-DD> <window>
-Quiet on protocol X this window. No links worth a click.
+FYP weather — <YYYY-MM-DD>
+Quiet on protocol X this scan. No links worth a click.
 ```
 
 Cap **10** bullets. Prefer **5–8**. Diverse corners (not five client-team accounts). No intent URLs. No “you should reply.”
@@ -120,8 +116,6 @@ Draft:
 
 Open in X:
 <intent URL>
-
-Check the avatar is @FeelEthereum before you Post.
 ```
 
 If zero cards, one extra message:
