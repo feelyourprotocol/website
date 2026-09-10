@@ -48,11 +48,19 @@ last_weather_family: fork_acd
 
 Goal: what is moving in **Ethereum protocol** (EL, forks, EVM, gas, clients, ACD). Not price.
 
-Keep each `x_search` prompt tight: “Return at most 8 recent posts with permalink, handle, and one-line gist. Protocol / client / EL / gas / fork only.”
+Keep each `x_search` prompt tight: “Return at most 8 recent posts with permalink, handle, and one-line gist. Protocol / client / EL / gas / fork only. One post per conversation: skip quotes, RTs, and replies of a post you are already returning.”
 
 Do **not** set `allowed_x_handles`. You **may** set `excluded_x_handles` (max 20) to `FeelEthereum` plus cooldown handles from Memories (no `@`).
 
 Do **not** set `enable_image_understanding` or `enable_video_understanding` (cost).
+
+### Cluster (weather Telegram — hard)
+
+Before sending weather, group hits that are the **same story**: quote/RT/reply of another hit in this run; same thread; or the gist is clearly the same event (e.g. four posts about the same client ranking).
+
+**One bullet per group.** Keep the **thread starter** (original), not the quote-summary and not every echo in the thread. Extra handles belong in that one line (“client rankings in the thread”), not as extra URLs.
+
+Same clustering for **action cards**: do not emit a reply *and* a quote of the same hub, or four cards for one announcement.
 
 ### Drop (weather and actions)
 
@@ -132,7 +140,7 @@ FYP weather — <YYYY-MM-DD>
 Quiet on protocol X this scan. No links worth a click.
 ```
 
-Cap **10** bullets. Prefer **5–8**. Diverse corners (not five client-team accounts). No intent URLs. No “you should reply.”
+Cap **10** bullets. Prefer **5–8**. **One URL per story** (cluster first). Diverse corners (not five client-team accounts). No intent URLs. No “you should reply.”
 
 ### Action message
 
