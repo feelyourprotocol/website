@@ -12,20 +12,18 @@ max_actions_per_run: 5
 prefer_actions_per_run: 3
 max_weather_links: 10
 
+# Automation Memories (see x-engagement/reference.md § Memory). Injected every run — keep small.
+memory:
+  max_chars: 4000
+  max_watch: 8
+  max_seen: 30
+  seen_days: 14
+
 # Handles never to suggest (no @). Cooldown handles from Memories are extra.
 always_exclude:
   - FeelEthereum
 
-rotation:
-  # One weekday-morning run. Clock lives in the Cursor Automation, not here.
-  by_weekday:
-    mon: { family: fork_acd, slices: [eip-8037, eip-7708] }
-    tue: { family: clients, slices: [eip-7928, eip-7951] }
-    wed: { family: mechanics, slices: [eip-8024, eip-7883] }
-    thu: { family: fork_acd, slices: [eip-7708, eip-7928] }
-    fri: { family: clients, slices: [eip-7951, eip-8024] }
-
-# Round A — pick ONE family per run (see skill rotation).
+# Round A — pick ONE family per run (due items may pick the family; else rotate off last_weather_family).
 weather_families:
   fork_acd:
     label: Fork / ACD
@@ -109,7 +107,7 @@ problem_slices:
       - modular exponentiation gas Fusaka
     avoid_leading_with: EIP-7883
 
-# Last-resort OR-query ids (live only). Skill: at most one such search per run.
+# Last-resort ids if a hit already names an EIP (live only). Not a daily rotation.
 eip_number_fallback:
   - eip-8037
   - eip-7708
