@@ -30,7 +30,8 @@ npm run video:generate:preview -- eip-8024   # 540×960 debug mux (not the uploa
 # Silent intermediate only (no audio) — always 540×960 capture:
 npm run video:record -- eip-8024 --preview --no-voice
 
-npm run video:record -- eip-8024 --dry-run   # inspect playbook steps
+npm run video:record -- eip-8024 --dry-run   # print playbook steps (no Chromium)
+npm run video:rehearse -- eip-8024           # click the playbook; no video file
 ```
 
 Output: `video/projects/<id>/output/<id>-<timestamp>-final.mp4` (upload) and `.webm` (silent intermediate).

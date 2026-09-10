@@ -1,3 +1,4 @@
+import { validateCompanionCoverage } from './companionCoverage.ts'
 import type {
   PlaybookConfig,
   PlaybookStep,
@@ -316,6 +317,8 @@ export function validateStoryboard(
       })
     }
   }
+
+  issues.push(...validateCompanionCoverage(playbook))
 
   return issues
 }

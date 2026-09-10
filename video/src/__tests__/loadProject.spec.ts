@@ -46,8 +46,22 @@ describe('parseRecordCliArgs', () => {
       projectId: 'eip-8024',
       preview: true,
       dryRun: true,
+      rehearse: false,
       noVoice: true,
     })
+  })
+
+  it('parses --rehearse and rejects combining it with --dry-run', () => {
+    expect(parseRecordCliArgs(['eip-7843', '--rehearse'])).toEqual({
+      projectId: 'eip-7843',
+      preview: false,
+      dryRun: false,
+      rehearse: true,
+      noVoice: false,
+    })
+    expect(() => parseRecordCliArgs(['eip-7843', '--dry-run', '--rehearse'])).toThrow(
+      /either --dry-run.*or --rehearse/,
+    )
   })
 
   it('throws when project id is missing', () => {

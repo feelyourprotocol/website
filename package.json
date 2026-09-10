@@ -37,6 +37,7 @@
     "video:check": "npm run check --prefix video",
     "video:preflight": "npm run preflight --prefix video",
     "video:record": "npm run record --prefix video --",
+    "video:rehearse": "npm run website:build && npm run record --prefix video -- --rehearse",
     "video:storyboard": "npm run storyboard --prefix video --",
     "video:voice:synth": "npm run voice:synth --prefix video --",
     "video:voice:plan": "npm run voice:plan --prefix video --",

@@ -58,10 +58,10 @@ async function main(): Promise<void> {
   const { recordVideo } = await import('./recordVideo.ts')
   await recordVideo(args.projectId, {
     preview: args.preview,
-    dryRun: false,
+    rehearse: args.rehearse,
     distDir: DIST_DIR,
     projectsRoot: PROJECTS_ROOT,
-    noVoice: args.noVoice,
+    noVoice: args.rehearse || args.noVoice,
   })
 }
 

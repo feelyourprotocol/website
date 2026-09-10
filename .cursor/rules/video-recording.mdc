@@ -40,6 +40,7 @@ run `video:setup` / `playwright install` as the first fix.
 1. Run video commands with **`required_permissions: ["all"]`**
 2. Use npm scripts from `website/`:
    - `npm run video:preflight`
+   - `npm run video:rehearse -- <project-id>`
    - `npm run video:record -- <project-id>`
 3. Optional fast check: `npm run video:preflight` with `required_permissions: ["all"]`
    - `status: ready` → proceed
