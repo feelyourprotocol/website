@@ -18,10 +18,10 @@ Each exploration gets a **2-tweet arc today**, upgraded to a **3-tweet arc** onc
 
 The announcement arc is the scheduled artefact. Between drops, a **half-automated engagement** loop watches X and stops for a human:
 
-- **Weather briefing** — what is moving in Ethereum protocol (read-only digest + permalinks)
+- **Weather briefing** — what is moving in Ethereum protocol (always-on “what moved” survey plus one rotating corner) and high-stakes MCP (Base when it clears the bar); one link per story, not every quote in the thread
 - **Action cards** — reply, quote, or retweet suggestions with a short why, draft copy, and an X intent URL
 
-Quality before quantity (silence is allowed). Diversity is a hard rule: do not circle the same few accounts via narrow `EIP-NNNN` search. Playbook: [`x-engagement`](https://github.com/feelyourprotocol/website/tree/main/.cursor/skills/x-engagement) skill; lexicon in [`social/watchlist.yml`](https://github.com/feelyourprotocol/website/blob/main/social/watchlist.yml). Evolve the rules with PRs to those files.
+Quality before quantity (silence is allowed). Cadence is **weekday mornings** (clock in the Cursor Automation). What to check next lives in that automation’s **Memories** (events, controversies, follows) — not a weekday-by-EIP rota. Playbook: [`x-engagement`](https://github.com/feelyourprotocol/website/tree/main/.cursor/skills/x-engagement) skill; lexicon in [`social/watchlist.yml`](https://github.com/feelyourprotocol/website/blob/main/social/watchlist.yml). Evolve the rules with PRs to those files.
 
 The human posts as [@FeelEthereum](https://x.com/FeelEthereum) from the X app. The agent never publishes.
 
@@ -34,6 +34,11 @@ Voice details live in the authoring skills (comic, video, engagement). Channels 
 <Changelog
   title="Marketing Strategy Changelog"
   :entries="[
+    { version: 'v0.7', date: '2026-09-10', summary: 'Engagement weather: high-stakes MCP complement (Base when it clears the bar); exploration add/sunset keeps the watchlist lexicon in sync.' },
+    { version: 'v0.6', date: '2026-09-10', summary: 'Engagement weather: always-on “what moved” search plus broader family queries; fewer overlapping searches.' },
+    { version: 'v0.5', date: '2026-09-10', summary: 'Engagement weather: cluster quotes/replies of the same story into one bullet.' },
+    { version: 'v0.4', date: '2026-09-10', summary: 'Engagement: memory-led follow-ups (events/controversies) instead of weekday-by-EIP rotation.' },
+    { version: 'v0.3', date: '2026-09-10', summary: 'Engagement cadence: one weekday-morning scan; clock lives in the Automation.' },
     { version: 'v0.2', date: '2026-09-09', summary: 'Engagement loop — weather briefing plus reply/quote/retweet suggestions; rules in the x-engagement skill.' },
     { version: 'v0.1', date: '2026-09-03', summary: 'Initial page — per-exploration announcement arc (comic + video today, MCP tweet after launch).' },
   ]"

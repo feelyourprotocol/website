@@ -2,8 +2,8 @@
 # Playbook: .cursor/skills/x-engagement/
 # Not a handle allowlist. Do not add VIP lists; diversity is the point.
 #
-# Keep problem_slices in sync with src/explorations/REGISTRY.ts
-# (skip sunset). Paths from each info.ts.
+# Keep problem_slices in sync with REGISTRY via add-exploration (skip sunset).
+# Paths from each info.ts. Do not edit the x-engagement skill for a new EIP.
 
 schema: fyp-x-watchlist/v1
 account: FeelEthereum
@@ -12,45 +12,65 @@ max_actions_per_run: 5
 prefer_actions_per_run: 3
 max_weather_links: 10
 
+# Automation Memories (see x-engagement/reference.md § Memory). Injected every run — keep small.
+memory:
+  max_chars: 4000
+  max_watch: 8
+  max_seen: 30
+  seen_days: 14
+
 # Handles never to suggest (no @). Cooldown handles from Memories are extra.
 always_exclude:
   - FeelEthereum
 
-rotation:
-  morning_slices: [eip-8037, eip-7708]
-  midday_slices: [eip-7928, eip-7951]
-  afternoon_slices: [eip-8024, eip-7883]
+# Round A — always Moved + family broad + MCP. Depth only if Moved + broad were thin.
+# problem_slices: add/remove from add-exploration (and on sunset). Do not edit SKILL.md for a new EIP.
+weather_moved:
+  label: What moved
+  prompt: >-
+    What moved in Ethereum protocol on X in this date window?
+    Scope: execution layer, clients (Geth Nethermind Reth Erigon Besu EthereumJS),
+    AllCoreDevs ACDE ACDC, hardforks (Glamsterdam Amsterdam EL Fusaka),
+    EIPs, EVM gas precompiles, client releases, spec fights.
+    Skip: price, ETF, ETH/USD, staking yield, restaking, L2 airdrops,
+    memecoins, gm, city Amsterdam, sports.
 
-# Round A — pick ONE family per run (see skill rotation).
 weather_families:
   fork_acd:
     label: Fork / ACD
-    queries:
-      - AllCoreDevs execution layer
+    broad:
+      - AllCoreDevs ACDE Ethereum
+    depth:
       - Glamsterdam CFI Amsterdam EL
       - Ethereum hardfork inclusion EL
       - Forkcast Amsterdam
   clients:
     label: Clients / implementations
-    queries:
-      - geth EVM gas
-      - nethermind execution
-      - reth Ethereum client
+    broad:
+      - Ethereum execution client
+    depth:
+      - Geth Reth Nethermind Besu Erigon
       - ethereumjs EVM
-      - Erigon execution layer
   mechanics:
     label: Mechanic talk
-    queries:
+    broad:
+      - EVM gas Ethereum protocol
+    depth:
+      - Ethereum EIP spec execution
       - Ethereum gas schedule precompile
       - EVM receipts logs access list
-      - Ethereum state rent gas
-      - Ethereum native ETH Transfer log
-  builder_pain:
-    label: Builder pain (spice only)
-    queries:
-      - Ethereum wallet gasLimit 21000
-      - Ethereum indexer native transfer
-      - simulate upcoming Ethereum fork rules
+
+# Always-on complement — not a rotating family. High-stakes MCP only; Base when it clears the bar.
+weather_mcp:
+  label: MCP stakes
+  prompt: >-
+    High-stakes new MCP developments on X in this date window.
+    In: MCP spec or registry changes, hosted MCP / agent-runtime platforms,
+    production payment rails for agents (x402 as a rail, not a ticker),
+    Base-related MCP or Coinbase agent stack when it is actually high-stakes.
+    Other ecosystems only if shipped, named, and the same bar.
+    Skip: MCP tutorials, every indie server launch, gm agents, memecoins,
+    x402-as-token or points, price, ETF.
 
 problem_slices:
   - id: eip-8037
@@ -105,7 +125,7 @@ problem_slices:
       - modular exponentiation gas Fusaka
     avoid_leading_with: EIP-7883
 
-# Last-resort OR-query ids (live only). Skill: at most one such search per run.
+# Last-resort ids if a hit already names an EIP (live only). Not a daily rotation.
 eip_number_fallback:
   - eip-8037
   - eip-7708
