@@ -36,8 +36,8 @@ The browser `eComponents` layer and the server execution engine are **separate c
 Build sequence (see [roadmap timeline](https://roadmap.feelyourprotocol.org/roadmap/timeline.html)):
 
 1. ~~**MCP docs site**~~ — this site
-2. ~~**Execution engine**~~ — `simulateBytecode()` + `runTransaction()` + capability registry ([reference](/internals/execution-engine))
-3. ~~**Gateway (stdio)**~~ — development transport / PoC — **three tools implemented**
+2. ~~**Execution engine**~~ — `simulateBytecode()` + `runTransaction()` + `runBlock()` + capability registry ([reference](/internals/execution-engine))
+3. ~~**Gateway (stdio)**~~ — development transport / PoC — **four tools implemented**
 4. **AWS bootstrap** — EC2, nginx, TLS, deploy pipeline
 5. **HTTP transport** — remote MCP endpoint
 6. **Further tools** — EIP-7928 BAL generate, observability, x402, …
@@ -47,6 +47,7 @@ Build sequence (see [roadmap timeline](https://roadmap.feelyourprotocol.org/road
 <Changelog
   title="Architecture Changelog"
   :entries="[
+    { version: 'v0.10', date: '2026-09-10', summary: 'run_block lab verb — header snapshot and per-tx receipts; BAL generate still planned.' },
     { version: 'v0.9', date: '2026-09-08', summary: 'Engine/gateway surface: run_transaction plus run_bytecode rename; 8037/7708 website primitives documented.' },
     { version: 'v0.8', date: '2026-09-02', summary: 'Public endpoints table is hosted-only; stdio is development transport, not a user path.' },
     { version: 'v0.7', date: '2026-08-27', summary: 'compare_evm_variants removed — probe + simulate only.' },

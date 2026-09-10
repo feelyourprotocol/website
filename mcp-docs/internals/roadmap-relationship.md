@@ -32,7 +32,7 @@ The roadmap [Agent API & MCP concept](https://roadmap.feelyourprotocol.org/conce
 | x402 pricing *model* (draft) | Yes | — | — |
 | x402 middleware *wiring* | Pointer only | Yes (when shipped) | Secrets, treasury address |
 | AWS *target* architecture | Yes | Deploy shape (public) | Real nginx, SSH, env |
-| `run_bytecode` / `run_transaction` tool schema | — | Yes (when shipped) | — |
+| `run_bytecode` / `run_transaction` / `run_block` tool schema | — | Yes (when shipped) | — |
 | Token discount tiers (concept) | Yes | Yes (when shipped) | Token contract address |
 
 ## Fleet map

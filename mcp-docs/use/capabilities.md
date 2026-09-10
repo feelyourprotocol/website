@@ -1,6 +1,6 @@
 # Capabilities
 
-> **Status:** Three tools **implemented** (`describe_capabilities` + `run_bytecode` + `run_transaction`). **Public MCP not launched.**
+> **Status:** Four tools **implemented** (`describe_capabilities` + `run_bytecode` + `run_transaction` + `run_block`). **Public MCP not launched.**
 
 The MCP server exposes **intent-driven tools** — verbs that match how agents and integrators think about protocol work, not raw library APIs one-to-one.
 
@@ -11,6 +11,7 @@ The MCP server exposes **intent-driven tools** — verbs that match how agents a
 | **Probe** | `describe_capabilities` | Supported forks, runnable EIP modules, opcodes, encoding | Implemented — public launch pending |
 | **Run bytecode** | `run_bytecode` | Run raw bytecode under a fork; optional trace | Implemented — public launch pending |
 | **Run transaction** | `run_transaction` | Paid tx gas, receipt logs, EIP-8037 dimensions | Implemented — public launch pending |
+| **Run block** | `run_block` | 1–8 txs as a lab block; header snapshot (optional slot) | Implemented — public launch pending |
 | **Generate** | — | Block-level access lists (EIP-7928) | Planned (Step 6) |
 
 To **optionally** compare baseline vs preview, call the same verb twice — **osaka** (current mainnet EL), then **amsterdam** (preview) — and diff gas, success, traces, or logs. One run on Amsterdam only is fully supported.
@@ -29,6 +30,7 @@ See [Guarantees](/use/guarantees) for limits and provenance details.
 <Changelog
   title="Capabilities Changelog"
   :entries="[
+    { version: 'v0.11', date: '2026-09-10', summary: 'Fourth tool run_block — lab header snapshot and per-tx receipts.' },
     { version: 'v0.10', date: '2026-09-08', summary: 'Third tool run_transaction; renamed run_evm_bytecode → run_bytecode.' },
     { version: 'v0.9', date: '2026-09-02', summary: 'Status is implemented vs public launch — no stdio / self-host product path.' },
     { version: 'v0.8', date: '2026-08-27', summary: 'Renamed simulate_evm_bytecode → run_evm_bytecode.' },

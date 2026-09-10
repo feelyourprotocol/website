@@ -23,7 +23,7 @@ Markdown on this site is **secondary**. It can lag behind a gateway release; the
 ## Calling tools
 
 1. Probe first — learn what is runnable and how opcodes encode
-2. Run with **caller-supplied** inputs on the fork you need (default **amsterdam**). Use **`run_bytecode`** for opcodes/precompiles; **`run_transaction`** for wallet gas, first-touch transfers, and receipt logs. **Optionally** run again on **osaka** when comparing against mainnet — this server does not ship demo programs
+2. Run with **caller-supplied** inputs on the fork you need (default **amsterdam**). Use **`run_bytecode`** for opcodes/precompiles; **`run_transaction`** for wallet gas, first-touch transfers, and receipt logs; **`run_block`** for several txs or a header slot. **Optionally** run again on **osaka** when comparing against mainnet — this server does not ship demo programs
 3. **Do not** substitute the `mcp-execution-engine` lab, `npm run lab`, or repository source unless MCP is unavailable
 
 ## Replying to humans
@@ -43,20 +43,21 @@ Always cite **`provenance.engineVersion`** and **`provenance.forkConfig`** when 
 Use this order:
 
 1. [Capabilities](/use/capabilities) — query shapes
-2. Per-tool reference: [Discover](/use/tools/describe-capabilities), [Run bytecode](/use/tools/run-bytecode), [Run transaction](/use/tools/run-transaction)
+2. Per-tool reference: [Discover](/use/tools/describe-capabilities), [Run bytecode](/use/tools/run-bytecode), [Run transaction](/use/tools/run-transaction), [Run block](/use/tools/run-block)
 3. [Guarantees](/use/guarantees) — determinism, provenance, ceilings
 
 **Machine-readable index:** [`/llms.txt`](/llms.txt)
 
 **Full use-layer text:** [`/llms-full.txt`](/llms-full.txt)
 
-**JSON schemas:** [describe_capabilities](/schemas/describe_capabilities.input.json), [run_bytecode](/schemas/run_bytecode.input.json), [run_transaction](/schemas/run_transaction.input.json)
+**JSON schemas:** [describe_capabilities](/schemas/describe_capabilities.input.json), [run_bytecode](/schemas/run_bytecode.input.json), [run_transaction](/schemas/run_transaction.input.json), [run_block](/schemas/run_block.input.json)
 
 ## Changelog
 
 <Changelog
   title="Runtime Agents Changelog"
   :entries="[
+    { version: 'v0.12', date: '2026-09-10', summary: 'run_block routing for header slot and multi-tx lab blocks.' },
     { version: 'v0.11', date: '2026-09-08', summary: 'run_bytecode + run_transaction routing; renamed from run_evm_bytecode.' },
     { version: 'v0.10', date: '2026-09-02', summary: 'No self-host onboarding — agents wait for the public MCP; lab is not a user fallback.' },
     { version: 'v0.9', date: '2026-08-27', summary: 'compare_evm_variants removed — simulate twice to diff.' },

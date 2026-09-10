@@ -49,6 +49,7 @@ Canonical metadata for twins lives in website `src/explorations/eip-NNNN/canonic
 <Changelog
   title="Coverage Changelog"
   :entries="[
+    { version: 'v0.15', date: '2026-09-10', summary: 'run_block lab verb shipped — header.slotNumber; 7843 catalog still Planned.' },
     { version: 'v0.14', date: '2026-09-10', summary: 'EIP-7843 exploration twin — Planned until run_block / header slot on simulate.' },
     { version: 'v0.13', date: '2026-09-08', summary: '7708/8037 shapes include transaction (run_transaction); simulate remains for bytecode/precompiles.' },
     { version: 'v0.12', date: '2026-09-08', summary: 'EIP-8037 named catalog row — simulate gasUsed (Amsterdam vs Osaka first-touch and new-slot).' },
