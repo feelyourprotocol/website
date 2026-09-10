@@ -4,7 +4,7 @@ Recipes for [SKILL.md](SKILL.md). Query strings live in [`social/watchlist.yml`]
 
 ## Rotation
 
-Three cron windows (**Europe/Berlin**): **08:00**, **12:30**, **16:30**.
+Three cron windows (**Europe/Berlin**), **weekdays only** (Mon–Fri): **08:00**, **12:30**, **16:30**.
 
 | Berlin clock | Round A family (`watchlist.yml`) | Round B slices |
 | --- | --- | --- |
