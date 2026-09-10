@@ -38,7 +38,7 @@ Output: `video/projects/<id>/output/<id>-<timestamp>-final.mp4` (upload) and `.w
 
 Step-by-step voice tooling: `video:voice:synth`, `video:voice:plan`, `video:voice:mux`. Recipe + timing derivation: `.cursor/skills/video-short/reference.md`.
 
-Extract a YouTube Shorts custom thumbnail (title-card frame) from a muxed `*-final.mp4`:
+Extract a YouTube Shorts custom thumbnail (title-card frame) from a muxed `*-final.mp4`. Top/bottom peek rows are filled with black for a clean channel-grid look:
 
 ```bash
 npm run video:thumb -- eip-8024                 # JPEG @ 1280×2276, frame @ 1.5s

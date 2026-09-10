@@ -286,7 +286,7 @@ Do **not** front-load hashtags or emojis. Do not paste the tweet body. Do not in
 
 ### Thumbnail — always the title-card frame
 
-Run `npm run video:thumb -- <id>` after mux. It extracts a still at `t=1.5s` (inside the ~4.5 s title-card window) into `output/<basename>-final-thumb.jpg` — **JPEG, 1280×2276 (9:16), under 2 MB**. That frame already carries the anchor question in high-contrast type.
+Run `npm run video:thumb -- <id>` after mux. It extracts a still at `t=1.5s` (inside the ~4.5 s title-card window) into `output/<basename>-final-thumb.jpg` — **JPEG, 1280×2276 (9:16), under 2 MB**. Peek rows (top/bottom 1/5) are filled with black so the thumbnail is clean on channel grids; the middle band keeps the anchor question in high-contrast type.
 
 YouTube Studio upload rules (Shorts custom thumbnail):
 - **Format:** JPG (default from `video:thumb`), PNG/GIF/BMP also accepted — prefer JPG for Studio compatibility

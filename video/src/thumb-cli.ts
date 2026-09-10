@@ -3,6 +3,8 @@
  * Extract a YouTube Shorts custom thumbnail from a muxed *-final.mp4.
  *
  * Defaults: frame @ 1.5 s (title-card window), JPEG @ 1280×2276 (9:16).
+ * Title-card frames get top/bottom peek rows filled with black (1:3:1 band grid).
+ *
  * YouTube's thumbnail validator expects width ≥ 1280 and JPG/PNG/GIF/BMP under 2 MB;
  * a raw PNG grab at 1080×960 often fails silently in Studio's upload picker.
  */
@@ -11,6 +13,7 @@ import { existsSync, readdirSync, statSync, unlinkSync } from 'node:fs'
 import { join } from 'node:path'
 
 import { parseProjectArgs } from './parseProjectArgs.ts'
+import { titleCardBandMaskFilter } from './titleCardBand.ts'
 import { assertFfmpeg } from './voice/ffmpeg.ts'
 
 const PROJECTS_ROOT = join(import.meta.dirname, '../projects')
@@ -24,24 +27,27 @@ interface ThumbArgs {
   output?: string
   timeSec: number
   width: number
+  bandMask: boolean
 }
 
 function parseThumbArgs(argv: string[]): ThumbArgs {
   const { projectId, flags } = parseProjectArgs(argv)
   if (flags.includes('--help')) {
     throw new Error(
-      'Usage: npm run thumb -- <project-id> [--time 1.5] [--width 1280] [--input <mp4>] [--output <jpg>]',
+      'Usage: npm run thumb -- <project-id> [--time 1.5] [--width 1280] [--input <mp4>] [--output <jpg>] [--no-band-mask]',
     )
   }
   let input: string | undefined
   let output: string | undefined
   let timeSec = DEFAULT_TIME_SEC
   let width = YOUTUBE_SHORTS_THUMB_WIDTH
+  let bandMask = true
   for (let i = 0; i < argv.length; i++) {
     if (argv[i] === '--input') input = argv[i + 1]
     if (argv[i] === '--output') output = argv[i + 1]
     if (argv[i] === '--time') timeSec = Number.parseFloat(argv[i + 1] ?? '')
     if (argv[i] === '--width') width = Number.parseInt(argv[i + 1] ?? '', 10)
+    if (argv[i] === '--no-band-mask') bandMask = false
   }
   if (!Number.isFinite(timeSec) || timeSec < 0) {
     throw new Error(`--time must be a non-negative number of seconds (got "${argv.join(' ')}")`)
@@ -49,7 +55,7 @@ function parseThumbArgs(argv: string[]): ThumbArgs {
   if (!Number.isFinite(width) || width < 640) {
     throw new Error(`--width must be an integer ≥ 640 (got "${argv.join(' ')}")`)
   }
-  return { projectId, input, output, timeSec, width }
+  return { projectId, input, output, timeSec, width, bandMask }
 }
 
 function newestFinalMp4(dir: string): string | undefined {
@@ -71,6 +77,11 @@ function thumbPath(finalMp4: string): string {
 function removeLegacyPngThumb(jpgPath: string): void {
   const legacy = jpgPath.replace(/\.jpg$/i, '.png')
   if (legacy !== jpgPath && existsSync(legacy)) unlinkSync(legacy)
+}
+
+function buildVideoFilter(width: number, bandMask: boolean): string {
+  if (bandMask) return titleCardBandMaskFilter(width)
+  return `scale=${width}:-2:flags=lanczos`
 }
 
 function main(): void {
@@ -102,7 +113,7 @@ function main(): void {
     '-i',
     inputPath,
     '-vf',
-    `scale=${args.width}:-2:flags=lanczos`,
+    buildVideoFilter(args.width, args.bandMask),
     '-frames:v',
     '1',
     '-q:v',
@@ -112,6 +123,7 @@ function main(): void {
 
   console.log(`Input:  ${inputPath}`)
   console.log(`Frame:  t=${args.timeSec}s @ ${args.width}px wide (9:16)`)
+  console.log(`Mask:   ${args.bandMask ? 'title-card band (black peek rows)' : 'off'}`)
   console.log(`Output: ${outPath}`)
   execFileSync('ffmpeg', ffArgs, { stdio: 'ignore' })
   removeLegacyPngThumb(outPath)

@@ -12,7 +12,7 @@
   /* --video-safe-* live on html.fyp-video-capture only (must not reset here — overlays inherit from html) */
 }
 
-/* --- Title / outro band cards (middle 3/5 black, top+bottom peek at live UI) --- */
+/* --- Title / outro band cards (middle 3/5 copy on black; top+bottom 1/5) --- */
 .video-card-band {
   position: fixed;
   inset: 0;
@@ -25,6 +25,11 @@
 
 .video-card-band__peek {
   background: transparent;
+}
+
+/* Recording + thumbnails: solid black peek rows (no exploration UI bleed). */
+html.fyp-video-capture .video-card-band__peek {
+  background: #000;
 }
 
 .video-card-band__content {

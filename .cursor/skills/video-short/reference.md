@@ -81,7 +81,7 @@ Overlay types (from `src/video/overlays/`):
 
 | Type | Fields | Use |
 |------|--------|-----|
-| `title-card` | `eyebrow`, `title`, `subtitle`, `hook: string[]` | Opening (full band; middle 3/5 black, top/bottom 1/5 peek) |
+| `title-card` | `eyebrow`, `title`, `subtitle`, `hook: string[]` | Opening (full band; middle 3/5 copy on black, top/bottom 1/5 solid black in capture) |
 | `outro-card` | `closing`, `ctas: [{ label, url, variant }]` | Closing; `variant: primary|secondary` |
 | `punch` | `layout: "banner"`, `placement`, `text`, `sub`, `invert` | Single headline + optional subline |
 | `split` | `layout: "banner"`, `placement`, `segments: [{ text, size, emphasis }]` | Staggered two-line read |
