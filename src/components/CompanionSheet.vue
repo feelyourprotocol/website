@@ -64,18 +64,37 @@ function nearestSnap(heightPx: number): CompanionSnap {
   return best
 }
 
+function markVideoCompanionOpen() {
+  if (typeof document === 'undefined') return
+  if (!document.documentElement.classList.contains('fyp-video-capture')) return
+  document.documentElement.classList.add('fyp-video-companion-open')
+}
+
+function markVideoCompanionClosed() {
+  if (typeof document === 'undefined') return
+  document.documentElement.classList.remove('fyp-video-companion-open')
+}
+
 function expandToHalf() {
   if (snap.value === 'peek') snap.value = 'half'
+  markVideoCompanionOpen()
 }
 
 function expandToFull() {
   snap.value = 'full'
+  markVideoCompanionOpen()
+}
+
+function collapseToPeek() {
+  snap.value = 'peek'
+  markVideoCompanionClosed()
 }
 
 function onCompanionExpand(event: Event) {
   const mode = (event as CustomEvent<{ mode: CompanionExpandMode }>).detail?.mode
   if (mode === 'full') expandToFull()
   else if (mode === 'half') expandToHalf()
+  else if (mode === 'peek') collapseToPeek()
 }
 
 let dragStartY = 0
@@ -166,7 +185,7 @@ onUnmounted(() => {
   window.removeEventListener(COMPANION_EXPAND_EVENT, onCompanionExpand)
 })
 
-defineExpose({ snap, expandToHalf, expandToFull })
+defineExpose({ snap, expandToHalf, expandToFull, collapseToPeek })
 </script>
 
 <template>

@@ -35,6 +35,10 @@ export const EXPLORATION_REGISTRY: Record<string, ExplorationMeta> = {
     path: '/eip-8037-state-creation-gas',
     topic: 'robustness',
   },
+  'eip-7843': {
+    path: '/eip-7843-slotnum-opcode',
+    topic: 'robustness',
+  },
 }
 
 /** Topic → overlay theme (aligned with og/src/topic-colors.ts). */

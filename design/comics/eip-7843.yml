@@ -1,0 +1,78 @@
+# Bro & Bruh comic metadata — schema bro-bruh-comic/v1
+# Keep this key set when adding files. Do not rename keys.
+schema: bro-bruh-comic/v1
+id: eip-7843
+episode: 5
+series: bro-bruh
+image: eip-7843.png
+
+exploration:
+  id: eip-7843
+  eip: 7843
+  name: EIP-7843 SLOTNUM opcode
+  core_question: >-
+    How do you read the beacon slot on-chain without hardcoding 12-second slots?
+
+engine: false-friend
+bridge:
+  word: SLOT
+  trader_sense: an open slot on his book that he is not filling
+  protocol_sense: beacon slot on the execution header (SLOTNUM / EIP-7843)
+
+vibe:
+  slug: sepolia-oct6
+  topic: Glamsterdam Sepolia date slipped to 6 Oct (waiting heat)
+  register: protocol
+  recency: 2026-09
+  why_hot: >-
+    ACDC #186 locked Sepolia Glamsterdam for 6 Oct (epoch 353024); the street
+    is waiting on a slot/epoch, not a candle
+  why_narrative: >-
+    Waiting-to-fill a book SLOT is coin-time; Bro's SLOT is the beacon slot.
+    Fork nouns stay out of Bruh's mouth.
+  repeat_of: null
+
+setting:
+  name: community ceramic studio (glaze table)
+  why: >-
+    Shared clay, unused civic craft room. Not a slot-diorama (no casino,
+    lockers, parking, lighthouse, clock shop).
+
+easter_egg: >-
+  Bisque test tiles and mugs on the drying rack stamped with a tiny Ethereum
+  octahedron
+
+copy:
+  panel1_bruh: >-
+    I STILL HAVE A SLOT ON THE BOOK, I'M NOT FILLING IT
+  panel2_bro: >-
+    EIP-7843 — SLOTNUM PUSHES THE BEACON SLOT. NO MORE HARDCODING TWELVE
+  panel2_affect: dreaming
+  title: '*BRO & BRUH EPISODE 5'
+  cta: A NEW FEEL YOUR PROTOCOL EXPLORATION HAS ARRIVED, CHECK IT OUT!
+
+tweet:
+  body: |-
+    How do you read the beacon slot on-chain without baking 12 seconds into bytecode?
+
+    https://feelyourprotocol.org/eip-7843-slotnum-opcode
+  url: https://feelyourprotocol.org/eip-7843-slotnum-opcode
+  alt: >-
+    Bro & Bruh episode 5, two-panel comic at a community ceramic studio glaze
+    table. Panel 1: Bruh, short dark hair, olive hoodie, scowls at a lump of
+    clay and thinks: I STILL HAVE A SLOT ON THE BOOK, I'M NOT FILLING IT. Bro,
+    blonde ponytail and backwards teal FYP cap, smiles at his clay. Mugs and
+    tiles on a drying rack are stamped with tiny Ethereum diamonds. Panel 2:
+    close-up of Bro, half-lidded, blush, pink hearts. He thinks: EIP-7843 —
+    SLOTNUM PUSHES THE BEACON SLOT. NO MORE HARDCODING TWELVE. Bottom-left:
+    original circular FYP mark plus feelyourprotocol.org. Yellow box: A NEW
+    FEEL YOUR PROTOCOL EXPLORATION HAS ARRIVED, CHECK IT OUT!
+
+notes: >-
+  Do not copy this ceramic studio, ETH-stamped mugs/tiles, or SLOT as the red
+  word. Bruh stamps SLOT (book); Bro stamps SLOTNUM (opcode) — same stem, two
+  movies, like BALL/BAL. Do not reuse this book-slot Bruh line. Discarded:
+  barbershop (appointment-slot pun), parking/casino/lockers, lighthouse,
+  TIMESTAMP as the stamp, 12x-leverage as the stamp. Panel 2 is dreaming
+  (hearts). Logo is with-circle mark + feelyourprotocol.org. Vibe is waiting
+  heat from Sepolia Oct 6; do not put the fork date in bubbles or the tweet.

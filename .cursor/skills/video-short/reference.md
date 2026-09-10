@@ -81,7 +81,7 @@ Overlay types (from `src/video/overlays/`):
 
 | Type | Fields | Use |
 |------|--------|-----|
-| `title-card` | `eyebrow`, `title`, `subtitle`, `hook: string[]` | Opening (full band; middle 3/5 black, top/bottom 1/5 peek) |
+| `title-card` | `eyebrow`, `title`, `subtitle`, `hook: string[]` | Opening (full band; middle 3/5 copy on black, top/bottom 1/5 solid black in capture) |
 | `outro-card` | `closing`, `ctas: [{ label, url, variant }]` | Closing; `variant: primary|secondary` |
 | `punch` | `layout: "banner"`, `placement`, `text`, `sub`, `invert` | Single headline + optional subline |
 | `split` | `layout: "banner"`, `placement`, `segments: [{ text, size, emphasis }]` | Staggered two-line read |
@@ -105,8 +105,9 @@ Overlay types (from `src/video/overlays/`):
       "hideOverlay": true,               // optional explicit hide before actions
       "selectExample": "<key>",          // optional action
       "step": { "count": 9, "interval": 380, ...climax },
-      "expandCompanion": "half",         // optional action ('half' | 'full')
+      "expandCompanion": "half",         // optional action ('peek' | 'half' | 'full')
       "click": "<data-testid>",          // optional action; passed to page.getByTestId(...)
+      // Runner order: selectExample → step → scroll → expandCompanion → click.
       "scroll": { "selector": "<css-selector>", "y": 120 },
       "wait": 1600                       // hold time after actions, ms
     }
@@ -187,8 +188,9 @@ Commands (all from `website/`, all need `required_permissions: ["all"]` for Play
 | Command | Effect |
 |---------|--------|
 | `npm run video:preflight` | Chromium probe (statuses: `ready` \| `needs_agent_permissions` \| `needs_human_setup`) |
-| `npm run video:storyboard -- <id>` | Print cue → reveal timeline; validate focus areas + overlay ids |
-| `npm run video:record -- <id> --dry-run` | Run playbook headlessly without capturing |
+| `npm run video:storyboard -- <id>` | Print cue → reveal timeline; validate focus areas, overlay ids, companion coverage |
+| `npm run video:record -- <id> --dry-run` | Print playbook steps only — does **not** open Chromium or click |
+| `npm run video:rehearse -- <id>` | Playwright clicks the playbook (no webm, no mux, no ElevenLabs). Hard stop before generate |
 | `npm run video:record -- <id> --preview --no-voice` | Silent 540×960 `.webm` (debug) |
 | `npm run video:voice:synth -- <id>` | ElevenLabs → `voice/segments/*.mp3` + alignments (cache by beat filename; delete the segment to re-spend after a text change) |
 | `npm run video:voice:plan -- <id>` | Voice-aligned storyboard |
@@ -244,6 +246,7 @@ Unit tests already cover the pipeline surface. Do not treat them as a substitute
 | `src/video/__tests__/splitText.spec.ts` | Overlay text splitting |
 | `video/src/__tests__/loadProject.spec.ts` | `loadVideoProject`, `estimatePlaybookDurationMs`, `themeForExploration`, `parseRecordCliArgs` |
 | `video/src/__tests__/storyboard.spec.ts` | Timeline build + validation |
+| `video/src/__tests__/companionCoverage.spec.ts` | Companion sheet vs stepper click order |
 | `video/src/__tests__/annotationTarget.spec.ts` | Selector resolution + banner overlap |
 | `video/src/__tests__/mergeTiming.spec.ts` | Voice → playbook timing merge |
 | `video/src/__tests__/alignment.spec.ts` | ElevenLabs alignment parsing |
@@ -258,7 +261,9 @@ Unit tests already cover the pipeline surface. Do not treat them as a substitute
 |---------|-------|
 | Preflight `needs_agent_permissions` | Re-run with `required_permissions: ["all"]` |
 | Preflight `needs_human_setup` | Ask human for `npm run og:check`; never run `og:setup` yourself |
-| Record hangs on selector | Playbook targets a `data-testid` the widget does not expose — add it in the exploration, add to `videoReady.spec.ts`, do not rewrite the playbook to a fragile selector |
+| Record hangs on selector | Playbook targets a `data-testid` the widget does not expose — add it in the exploration, add to `videoReady.spec.ts`, do not rewrite the playbook to a fragile selector. Rehearse first (`video:rehearse`); do not re-generate to debug |
+| `hardfork-*` / companion click: element is not visible | Video capture hides `#exploration-right-panel` until `expandCompanion` is `half` or `full`. Inventory the click (main vs companion) and expand before the click |
+| Stepper click intercepted by companion sheet | Sheet stays open after `half`/`full`. Add `expandCompanion: "peek"` before `bytecode-run` / `bytecode-step` / `run-block` / `run-tx`. Storyboard errors on this |
 | Missing overlays / annotations in output | `npm run website:build` before record (or use `video:generate*` which does it for you) |
 | Gray letterboxing | Playwright `recordVideo.size` mismatch — do not touch capture viewport, always 540×960 |
 | Frame 0 shows exploration UI (not title band) | Trim log; title-band detection needs dark center band — check title-card overlay renders early enough |

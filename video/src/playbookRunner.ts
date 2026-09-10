@@ -11,10 +11,22 @@ import type {
 
 export interface PlaybookRunnerOptions {
   dryRun?: boolean
+  /** Collapse cue/wait/step holds so a rehearsal finishes in seconds, not a minute. */
+  rehearse?: boolean
   onStep?: (index: number, step: PlaybookStep) => void
   skipInitialOverlay?: string
   content?: VideoContentConfig
   zones?: ZonesFile
+}
+
+const REHEARSE_HOLD_MS = 80
+
+/** Minimum ms to hold lead-in on screen after it renders (recording continues during this). */
+export const LEAD_IN_SETTLE_MS = 900
+
+function capHold(ms: number, rehearse?: boolean): number {
+  if (!rehearse || ms <= 0) return ms
+  return Math.min(ms, REHEARSE_HOLD_MS)
 }
 
 function normalizeStepAction(step: number | PlaybookStepAction): PlaybookStepAction {
@@ -228,11 +240,17 @@ async function scrollBytecodePanels(page: Page): Promise<void> {
   })
 }
 
-async function clickSteps(page: Page, action: PlaybookStepAction): Promise<void> {
+async function clickSteps(
+  page: Page,
+  action: PlaybookStepAction,
+  rehearse?: boolean,
+): Promise<void> {
   const count = action.count ?? 1
-  const interval = action.interval ?? 400
+  const interval = rehearse ? REHEARSE_HOLD_MS : (action.interval ?? 400)
   const climaxFrom = action.climaxFrom ?? 0
-  const climaxInterval = action.climaxInterval ?? Math.round(interval * 2.6)
+  const climaxInterval = rehearse
+    ? REHEARSE_HOLD_MS
+    : (action.climaxInterval ?? Math.round(interval * 2.6))
   let climaxPrimed = false
 
   for (let i = 0; i < count; i++) {
@@ -240,7 +258,7 @@ async function clickSteps(page: Page, action: PlaybookStepAction): Promise<void>
     const inClimax = climaxFrom > 0 && stepNum >= climaxFrom
 
     if (inClimax && action.highlightSet && !climaxPrimed) {
-      if (action.climaxPauseMs) await page.waitForTimeout(action.climaxPauseMs)
+      if (action.climaxPauseMs) await page.waitForTimeout(capHold(action.climaxPauseMs, rehearse))
       await showHighlightSet(page, action.highlightSet)
       climaxPrimed = true
     }
@@ -256,7 +274,7 @@ async function clickSteps(page: Page, action: PlaybookStepAction): Promise<void>
       await scrollStackToTop(page)
       await showHighlightSet(page, action.highlightSetAfter)
       if (action.holdAfterClimaxMs) {
-        await page.waitForTimeout(action.holdAfterClimaxMs)
+        await page.waitForTimeout(capHold(action.holdAfterClimaxMs, rehearse))
       }
     }
 
@@ -276,16 +294,20 @@ async function scrollPage(page: Page, selector: string, y = 120): Promise<void> 
   await page.waitForTimeout(700)
 }
 
-async function expandCompanion(page: Page, mode: 'half' | 'full'): Promise<void> {
+async function expandCompanion(
+  page: Page,
+  mode: 'peek' | 'half' | 'full',
+  rehearse?: boolean,
+): Promise<void> {
   await page.evaluate((m) => window.__FYP_VIDEO__!.expandCompanion(m), mode)
-  await page.waitForTimeout(500)
+  await page.waitForTimeout(rehearse ? 280 : 500)
 }
 
-async function runActions(page: Page, step: PlaybookStep): Promise<void> {
+async function runActions(page: Page, step: PlaybookStep, rehearse?: boolean): Promise<void> {
   if (step.selectExample) await selectExample(page, step.selectExample)
-  if (step.step !== undefined) await clickSteps(page, normalizeStepAction(step.step))
+  if (step.step !== undefined) await clickSteps(page, normalizeStepAction(step.step), rehearse)
   if (step.scroll) await scrollPage(page, step.scroll.selector, step.scroll.y)
-  if (step.expandCompanion) await expandCompanion(page, step.expandCompanion)
+  if (step.expandCompanion) await expandCompanion(page, step.expandCompanion, rehearse)
   if (step.click) await page.getByTestId(step.click).click()
 }
 
@@ -295,7 +317,12 @@ async function runActions(page: Page, step: PlaybookStep): Promise<void> {
 async function runStep(
   page: Page,
   step: PlaybookStep,
-  options: { skipOverlay?: boolean; content?: VideoContentConfig; zones?: ZonesFile } = {},
+  options: {
+    skipOverlay?: boolean
+    content?: VideoContentConfig
+    zones?: ZonesFile
+    rehearse?: boolean
+  } = {},
 ): Promise<void> {
   const hasActions = stepHasActions(step)
 
@@ -316,7 +343,7 @@ async function runStep(
     step.cue ??
     (step.overlay && !hasActions ? step.wait : undefined) ??
     0
-  if (readMs > 0) await page.waitForTimeout(readMs)
+  if (readMs > 0) await page.waitForTimeout(capHold(readMs, options.rehearse))
 
   const shouldHideAfterCue =
     step.overlay &&
@@ -329,7 +356,7 @@ async function runStep(
     await hideOverlay(page)
   }
 
-  await runActions(page, step)
+  await runActions(page, step, options.rehearse)
 
   let holdMs = 0
   if (hasActions) {
@@ -339,7 +366,7 @@ async function runStep(
   } else if (!step.overlay) {
     holdMs = step.wait ?? 0
   }
-  if (holdMs > 0) await page.waitForTimeout(holdMs)
+  if (holdMs > 0) await page.waitForTimeout(capHold(holdMs, options.rehearse))
 
   if (step.annotate) {
     await hideAnnotation(page)
@@ -350,7 +377,11 @@ async function runStep(
   }
 }
 
-export async function showLeadInOverlay(page: Page, overlayId: string): Promise<void> {
+export async function showLeadInOverlay(
+  page: Page,
+  overlayId: string,
+  options: { settleMs?: number } = {},
+): Promise<void> {
   await waitForVideoBridge(page)
   await ensureVideoFontsReady(page)
   await showOverlay(page, overlayId)
@@ -381,11 +412,8 @@ export async function showLeadInOverlay(page: Page, overlayId: string): Promise<
     document.documentElement.classList.add('fyp-video-lead-in-ready')
   })
   // Let Playwright encode several hero-sized title frames before exploration init continues.
-  await page.waitForTimeout(900)
+  await page.waitForTimeout(options.settleMs ?? LEAD_IN_SETTLE_MS)
 }
-
-/** Minimum ms to hold lead-in on screen after it renders (recording continues during this). */
-export const LEAD_IN_SETTLE_MS = 900
 
 export async function runPlaybook(
   page: Page,
@@ -412,6 +440,7 @@ export async function runPlaybook(
       skipOverlay,
       content: options.content,
       zones: options.zones,
+      rehearse: options.rehearse,
     })
   }
 }

@@ -1,0 +1,115 @@
+{
+  "meta": {
+    "exploration": "eip-7843",
+    "defaultExample": "slotnum"
+  },
+  "overlays": {
+    "title-card": {
+      "type": "title-card",
+      "eyebrow": "Ethereum · Amsterdam",
+      "title": "EIP-7843",
+      "subtitle": "SLOTNUM",
+      "hook": ["How do you read the beacon slot", "without hardcoding twelve?"]
+    },
+    "context": {
+      "type": "punch",
+      "layout": "banner",
+      "placement": "top-banner",
+      "text": "HEADER SLOT",
+      "sub": "Consensus writes it. SLOTNUM pushes it.",
+      "invert": true
+    },
+    "slotnum-cue": {
+      "type": "split",
+      "layout": "banner",
+      "placement": "top-banner",
+      "segments": [
+        { "text": "Default slot: 42", "size": "lg" },
+        { "text": "Watch SLOTNUM push it ↓", "size": "md", "emphasis": false }
+      ]
+    },
+    "trap-cue": {
+      "type": "punch",
+      "layout": "banner",
+      "placement": "top-banner",
+      "text": "TIMESTAMP ÷ 12",
+      "sub": "A different number — and it breaks if slots change",
+      "invert": true
+    },
+    "osaka-cue": {
+      "type": "punch",
+      "layout": "banner",
+      "placement": "top-banner",
+      "text": "OSAKA",
+      "sub": "SLOTNUM is not a valid opcode",
+      "invert": false
+    },
+    "recap": {
+      "type": "split",
+      "layout": "banner",
+      "placement": "top-banner",
+      "segments": [
+        { "text": "The chain tells you the slot", "size": "lg" },
+        { "text": "Stop baking twelve into bytecode", "size": "lg", "emphasis": true }
+      ]
+    },
+    "outro-card": {
+      "type": "outro-card",
+      "closing": "SLOTNUM ships with Amsterdam. Try Osaka to see the opcode fail.",
+      "ctas": [
+        {
+          "label": "READ THE SPEC",
+          "url": "EIPS.ETHEREUM.ORG",
+          "variant": "secondary"
+        },
+        {
+          "label": "TRY IT YOURSELF",
+          "url": "FEELYOURPROTOCOL.ORG",
+          "variant": "primary"
+        }
+      ]
+    }
+  },
+  "annotations": {
+    "guide-example": {
+      "target": "example-select",
+      "label": "Example presets",
+      "hint": "SLOTNUM, two clocks, or the trap"
+    },
+    "guide-stack": {
+      "target": "stack",
+      "label": "Live stack",
+      "hint": "Top word is what SLOTNUM pushed",
+      "side": "top"
+    },
+    "guide-disassembly": {
+      "target": "disassembly",
+      "label": "Active opcode",
+      "hint": "Highlighted row = now",
+      "side": "bottom"
+    },
+    "guide-companion": {
+      "target": "companion",
+      "label": "Beacon slot",
+      "hint": "Fork + the number SLOTNUM will push",
+      "side": "top"
+    },
+    "guide-readout": {
+      "target": "slot-readout",
+      "label": "What SLOTNUM does",
+      "hint": "Amsterdam pushes the slot; Osaka rejects it",
+      "side": "top"
+    }
+  },
+  "highlightSets": {
+    "slotnum-windup": {
+      "marks": [{ "target": "disassembly-slotnum", "padX": 12, "padY": 10 }]
+    },
+    "slotnum-payoff": {
+      "marks": [
+        { "target": "disassembly-slotnum", "padX": 14, "padY": 12 },
+        { "target": "stack-top-value", "padX": 14, "padY": 12 }
+      ]
+    }
+  }
+}

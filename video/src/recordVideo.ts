@@ -12,6 +12,8 @@ import type { LoadedVideoProject } from './types.ts'
 
 export interface RecordVideoOptions {
   preview?: boolean
+  /** Playbook clicks only — no webm, no mux, no ElevenLabs. */
+  rehearse?: boolean
   distDir: string
   projectsRoot: string
   /** When true, ignore voice/manifest.json for playbook timing */
@@ -56,7 +58,7 @@ export async function recordVideo(
   options: RecordVideoOptions,
 ): Promise<RecordVideoResult> {
   const project = loadVideoProject(projectId, options.projectsRoot, {
-    useVoiceTiming: !options.noVoice,
+    useVoiceTiming: !options.noVoice && !options.rehearse,
   })
   const deliverableId = parseVideoFormatId(
     options.preview ? 'shorts-preview' : project.playbook.format,
@@ -66,10 +68,14 @@ export async function recordVideo(
   const estimatedDurationMs = estimatePlaybookDurationMs(project.playbook)
 
   console.log(`Project: ${projectId}`)
-  console.log(`Record:  ${recordFormat.viewportWidth}×${recordFormat.viewportHeight} (layout reference)`)
-  console.log(`Output:  ${deliverable.width}×${deliverable.height}${options.preview ? '' : ' (2× upscale on mux)'}`)
-  if (project.voiceManifest) {
-    console.log(`Voice:   ~${Math.round(project.voiceManifest.totalDurationMs / 1000)}s (synced playbook)`)
+  if (options.rehearse) {
+    console.log('Rehearsal: playbook clicks only (no webm, no mux, no voice)')
+  } else {
+    console.log(`Record:  ${recordFormat.viewportWidth}×${recordFormat.viewportHeight} (layout reference)`)
+    console.log(`Output:  ${deliverable.width}×${deliverable.height}${options.preview ? '' : ' (2× upscale on mux)'}`)
+    if (project.voiceManifest) {
+      console.log(`Voice:   ~${Math.round(project.voiceManifest.totalDurationMs / 1000)}s (synced playbook)`)
+    }
   }
   console.log(`Est. duration: ~${Math.round(estimatedDurationMs / 1000)}s`)
 
@@ -80,7 +86,9 @@ export async function recordVideo(
   const outputDir = join(project.projectDir, 'output')
   mkdirSync(outputDir, { recursive: true })
 
-  const existingWebms = new Set(readdirSync(outputDir).filter((f) => f.endsWith('.webm')))
+  const existingWebms = options.rehearse
+    ? new Set<string>()
+    : new Set(readdirSync(outputDir).filter((f) => f.endsWith('.webm')))
 
   const { chromium } = await import('playwright')
   const browser = await chromium.launch({ headless: true })
@@ -89,11 +97,15 @@ export async function recordVideo(
     const context = await browser.newContext({
       viewport: { width: recordFormat.viewportWidth, height: recordFormat.viewportHeight },
       deviceScaleFactor: recordFormat.deviceScaleFactor,
-      recordVideo: {
-        dir: outputDir,
-        // Must match reference viewport — deliverable upscale happens at mux time.
-        size: { width: recordFormat.viewportWidth, height: recordFormat.viewportHeight },
-      },
+      ...(options.rehearse
+        ? {}
+        : {
+            recordVideo: {
+              dir: outputDir,
+              // Must match reference viewport — deliverable upscale happens at mux time.
+              size: { width: recordFormat.viewportWidth, height: recordFormat.viewportHeight },
+            },
+          }),
     })
 
     const page = await context.newPage()
@@ -129,7 +141,7 @@ export async function recordVideo(
 
     const url = buildExplorationUrl(server.url, project, project.playbook.defaultExample)
 
-    console.log(`Recording: ${url}`)
+    console.log(`${options.rehearse ? 'Rehearsing' : 'Recording'}: ${url}`)
     await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 60_000 })
 
     await ensureVideoFontsReady(page)
@@ -139,7 +151,9 @@ export async function recordVideo(
 
     if (leadInOverlay) {
       console.log(`Lead-in: ${leadInOverlay}`)
-      await showLeadInOverlay(page, leadInOverlay)
+      await showLeadInOverlay(page, leadInOverlay, {
+        settleMs: options.rehearse ? 120 : undefined,
+      })
     }
 
     // Load exploration behind the title card (EVM init can take several seconds).
@@ -150,14 +164,20 @@ export async function recordVideo(
       skipInitialOverlay: leadInOverlay,
       content: project.content,
       zones: project.zones,
+      rehearse: options.rehearse,
       onStep: (i, step) => {
         const label = step.overlay ?? step.selectExample ?? step.step ?? 'action'
         console.log(`  step ${i + 1}: ${typeof label === 'object' ? 'step' : label}`)
       },
     })
 
-    await page.waitForTimeout(500)
+    await page.waitForTimeout(options.rehearse ? 80 : 500)
     await context.close()
+
+    if (options.rehearse) {
+      console.log('Rehearsal OK — playbook clicks succeeded (no video written)')
+      return { project, estimatedDurationMs }
+    }
 
     const rawWebm = collectNewestWebm(outputDir, existingWebms)
     if (!rawWebm) {

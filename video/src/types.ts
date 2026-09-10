@@ -138,7 +138,7 @@ export interface PlaybookStep {
   selectExample?: string
   step?: number | PlaybookStepAction
   scroll?: { selector: string; y?: number }
-  expandCompanion?: 'half' | 'full'
+  expandCompanion?: 'peek' | 'half' | 'full'
   click?: string
 }
 

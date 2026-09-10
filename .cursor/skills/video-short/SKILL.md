@@ -72,6 +72,17 @@ Do **not** copy title-card wording, hook lines, or outro CTAs from prior videos.
 3. **Comparison beat** — if `CANONICAL.mcp.comparison` is set, the outro or recap must acknowledge it ("run the same on `<baseline>` to see it silent").
 4. **Do not** invent numbers, verbs, or fork names not present in `canonical.ts` / `examples.ts`. If a scenario has `expectedTransferLogsOnAmsterdam: 1`, the narration says "one Transfer log", not "a transfer log or two".
 5. **Diversity check** — scan prior `narration.json` `hook` and `outro` segments. If your draft repeats a stock phrase ("Read the EIP on Forkcast. Explore it on Feel Your Protocol."), reword. The URL and platform names can repeat; the framing cannot.
+6. **Click-target inventory** (hard — write the table, then draft `playbook.json`). One row per planned `click`, `step`, and `selectExample`:
+
+   | Action / `data-testid` | Main chrome or companion? | Sheet before this action | Sheet after |
+   |---|---|---|---|
+   | e.g. `hardfork-osaka` | companion (`#exploration-right-panel`) | `full` | `full` |
+   | e.g. `bytecode-run` | main stepper | `peek` | `peek` |
+
+   Rules:
+   - Video capture **hides** the right-panel host until `expandCompanion` is `half` or `full`. A node can exist in the DOM and still be unclickable.
+   - The sheet **stays** half/full until `expandCompanion: "peek"`. `full` covers ~92 % of the 540×960 frame — stepper controls (`bytecode-run`, `bytecode-step`, `run-block`, `run-tx`) cannot be clicked.
+   - Runner order on **one** beat: `selectExample` → `step` → `scroll` → `expandCompanion` → `click`. Need expand-before-step or peek-before-main-click? Use a dedicated beat (no narration segment required).
 
 ## Project files
 
@@ -104,20 +115,21 @@ npx vitest run src/explorations/<id>/              # exploration + videoReady sp
 npm run type-check
 ```
 
-**Tier 2 — pipeline validation** (JSON + timing):
+**Tier 2 — pipeline validation** (JSON + timing, then real clicks):
 
 ```bash
-npm run video:storyboard -- <id>                   # focus areas, overlay ids, ~30–90 s duration
-npm run video:record -- <id> --dry-run             # playbook runs headlessly, no capture
+npm run video:storyboard -- <id>                   # focus areas, overlay ids, companion coverage, ~30–90 s
+# --dry-run only prints JSON. It does not open Chromium or click.
+npm run video:rehearse -- <id>                     # Playwright clicks, no webm / mux / ElevenLabs
 ```
 
-Fix any `error` severity from the storyboard before Tier 3. Warnings are informative.
+Fix any `error` severity from the storyboard before rehearsal. Warnings are informative. Rehearsal is a hard stop — do **not** `video:generate` until it prints `Rehearsal OK`. First click failure → fix playbook or widget → rehearse again → only then generate.
 
-**Tier 3 — Chromium probe** (once): `npm run video:preflight` with `required_permissions: ["all"]`. Handle statuses per [Preflight](#preflight-hard-gates).
+**Tier 3 — Chromium probe** (once): `npm run video:preflight` with `required_permissions: ["all"]`. Handle statuses per [Preflight](#preflight-hard-gates). Rehearsal also needs Chromium; if it fails on launch, follow the same statuses.
 
 ## Recording
 
-Every command below runs from `website/`. All Playwright-backed commands (`video:preflight`, `video:record`, `video:generate*`) need `required_permissions: ["all"]`.
+Every command below runs from `website/`. All Playwright-backed commands (`video:preflight`, `video:rehearse`, `video:record`, `video:generate*`) need `required_permissions: ["all"]`.
 
 ```bash
 # 1. Synthesize narration (spends ElevenLabs credits; cost gate already printed the script)
@@ -130,7 +142,9 @@ npm run video:voice:plan -- <id>
 npm run video:generate -- <id>           # 1080×1920 *-final.mp4 (2× upscale of 540×960 capture)
 ```
 
-Do **not** ship `video:generate:preview` (540×960) as the phase output. Preview record is debug-only (`video:record -- <id> --preview`, `video:generate:preview`) when a selector or overlay is broken — then continue to `video:generate` in the same turn.
+Do **not** `video:generate` to debug a selector. Fix the playbook or widget, re-run `video:rehearse`, then generate once. Voice segments stay cached unless narration text changed (then delete `voice/segments/<beat>.mp3`).
+
+Do **not** ship `video:generate:preview` (540×960) as the phase output. Preview record is debug-only (`video:record -- <id> --preview`, `video:generate:preview`) when an overlay is broken — then continue to `video:generate` in the same turn. Preview still encodes a video; it is not a cheaper rehearsal.
 
 `video:generate*` runs `website:build` first — do not skip it manually. `.webm` intermediates are silent; muxed 1080×1920 `*-final.mp4` is the deliverable.
 
@@ -272,7 +286,7 @@ Do **not** front-load hashtags or emojis. Do not paste the tweet body. Do not in
 
 ### Thumbnail — always the title-card frame
 
-Run `npm run video:thumb -- <id>` after mux. It extracts a still at `t=1.5s` (inside the ~4.5 s title-card window) into `output/<basename>-final-thumb.jpg` — **JPEG, 1280×2276 (9:16), under 2 MB**. That frame already carries the anchor question in high-contrast type.
+Run `npm run video:thumb -- <id>` after mux. It extracts a still at `t=1.5s` (inside the ~4.5 s title-card window) into `output/<basename>-final-thumb.jpg` — **JPEG, 1280×2276 (9:16), under 2 MB**. Peek rows (top/bottom 1/5) are filled with black so the thumbnail is clean on channel grids; the middle band keeps the anchor question in high-contrast type.
 
 YouTube Studio upload rules (Shorts custom thumbnail):
 - **Format:** JPG (default from `video:thumb`), PNG/GIF/BMP also accepted — prefer JPG for Studio compatibility
@@ -368,7 +382,7 @@ outro:   <text>
 **QA:**
 - Tier 1: `vitest src/video/ video/src/ src/explorations/eip-NNNN/` — N specs
 - Tier 1: `npm run type-check`
-- Tier 2: `video:storyboard` (0 errors), `video:record --dry-run` (OK)
+- Tier 2: `video:storyboard` (0 errors), `video:rehearse` (Rehearsal OK)
 - Tier 3: `video:preflight` — `ready`
 
 **Announcement tweet** (`video/projects/eip-NNNN/tweet.yml`, shape: <thread|single>):

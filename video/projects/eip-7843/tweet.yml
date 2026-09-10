@@ -1,0 +1,41 @@
+schema: video-short-tweet/v1
+id: eip-7843
+
+# Comic already opened on the SLOT false-friend (book slot vs beacon slot).
+# Video tweet leads with the header opcode and a TIMESTAMP ÷ 12 diagnostic.
+shape: thread
+
+t1:
+  body: |
+    EIP-7843 · Amsterdam
+    SLOTNUM pushes the beacon slot from the block header — two gas, no twelve baked into bytecode.
+
+    Does your contract still divide TIMESTAMP by twelve?
+
+    https://feelyourprotocol.org/eip-7843-slotnum-opcode
+  media: eip-7843-2026-09-10T15-31-10-final.mp4
+  video_description: |
+    Vertical Shorts walk-through of EIP-7843. A title card asks how to read the
+    beacon slot on-chain without hardcoding twelve-second slots. The stepper
+    runs SLOTNUM on Amsterdam with default slot 42 and the stack top becomes
+    0x2a. Timestamp divided by twelve is shown as a different number. Switching
+    the same opcode to Osaka fails — 0x4b is invalid there. Voice-over closes
+    on eips.ethereum.org and the stepper on feelyourprotocol.org.
+
+t2:
+  body: |
+    The opcode and the header field:
+
+    Spec: https://eips.ethereum.org/EIPS/eip-7843
+
+sources:
+  exploration_url: https://feelyourprotocol.org/eip-7843-slotnum-opcode
+  spec_url: https://eips.ethereum.org/EIPS/eip-7843
+  forkcast_url: null
+
+notes: |
+  Consumed for future videos: opener "EIP-7843 · Amsterdam / SLOTNUM pushes the beacon slot from the block header";
+  diagnostic "Does your contract still divide TIMESTAMP by twelve?".
+  Do not clone the comic SLOT false-friend opener (book slot vs beacon slot).
+  Forkcast page for 7843 returned 422 — omit the Forkcast URL until it exists.
+  Fork label: "Amsterdam" (EL rules), not "Glamsterdam".
