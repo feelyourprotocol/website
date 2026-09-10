@@ -4,6 +4,8 @@ import {
   DEFAULT_EXAMPLE as eip7594Default,
   examples as eip7594Examples,
 } from '@/explorations/eip-7594/examples'
+import { config as eip7843Config } from '@/explorations/eip-7843/config'
+import { examples as eip7843Examples } from '@/explorations/eip-7843/examples'
 import { config as eip7883Config } from '@/explorations/eip-7883/config'
 import { examples as eip7883Examples } from '@/explorations/eip-7883/examples'
 import {
@@ -23,6 +25,7 @@ import { resolveInitialExample } from '@/libs/exampleFromQuery'
 /** Every live exploration and its default example key. */
 const EXPLORATION_EXAMPLE_SETS = [
   { id: 'eip-7594', defaultKey: eip7594Default, examples: eip7594Examples },
+  { id: 'eip-7843', defaultKey: eip7843Config.defaultExample, examples: eip7843Examples },
   { id: 'eip-7883', defaultKey: eip7883Config.defaultExample, examples: eip7883Examples },
   { id: 'eip-7928', defaultKey: eip7928Default, examples: eip7928Examples },
   { id: 'eip-7951', defaultKey: eip7951Config.defaultExample, examples: eip7951Examples },

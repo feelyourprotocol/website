@@ -1,4 +1,6 @@
 import { describe, expect, it, vi } from 'vitest'
+import { ref } from 'vue'
+import { createBlock } from '@ethereumjs/block'
 import { Common, Hardfork, Mainnet } from '@ethereumjs/common'
 import { createEVM } from '@ethereumjs/evm'
 
@@ -191,5 +193,38 @@ describe('useBytecodeStepper', () => {
 
     expect(state.bytecodeHex.value).toBe('600160020100')
     expect(state.example.value).toBe('push-add')
+  })
+
+  it('re-arms when the block header slot changes', async () => {
+    const common = new Common({ chain: Mainnet, hardfork: Hardfork.Amsterdam })
+    const evm = await createEVM({ common })
+    const slot = ref(42n)
+    const blockSource = () =>
+      createBlock(
+        { header: { slotNumber: slot.value, gasLimit: 30_000_000n } },
+        { common, skipConsensusFormatValidation: true },
+      )
+
+    const slotConfig: BytecodeStepperConfig = {
+      explorationId: 'test-slotnum',
+      defaultExample: 'slotnum',
+    }
+    const slotExamples: Examples = {
+      slotnum: { title: 'SLOTNUM', values: ['4b00'] },
+    }
+
+    const state = useBytecodeStepper(slotConfig, evm, blockSource)
+    await state.init(slotExamples)
+    await state.runAll()
+    expect(state.execResult.value?.exceptionError).toBeUndefined()
+    expect(state.execResult.value?.runState?.stack.peek(1)[0]).toBe(42n)
+
+    slot.value = 99n
+    await vi.waitFor(
+      () => state.mode.value === 'stepping' && state.execResult.value === undefined,
+      { timeout: 2000 },
+    )
+    await state.runAll()
+    expect(state.execResult.value?.runState?.stack.peek(1)[0]).toBe(99n)
   })
 })

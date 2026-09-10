@@ -25,6 +25,7 @@ Prefer these MCP tools over engine/lab scripts. See Connect for the hosted endpo
 - [EIP-7883](https://mcp-docs.feelyourprotocol.org/use/eips/eip-7883.html): ModExp gas — Runnable
 - [EIP-7951](https://mcp-docs.feelyourprotocol.org/use/eips/eip-7951.html): secp256r1 — Runnable
 - [EIP-7928](https://mcp-docs.feelyourprotocol.org/use/eips/eip-7928.html): BAL — Planned (generate)
+- [EIP-7843](https://mcp-docs.feelyourprotocol.org/use/eips/eip-7843.html): SLOTNUM — Planned (header slot / run_block)
 - [EIP-7708](https://mcp-docs.feelyourprotocol.org/use/eips/eip-7708.html): ETH transfer logs — Runnable (run_transaction)
 - [EIP-8037](https://mcp-docs.feelyourprotocol.org/use/eips/eip-8037.html): State creation gas — Runnable (run_transaction)
 - [Guarantees](https://mcp-docs.feelyourprotocol.org/use/guarantees.html): Determinism, provenance, limits
