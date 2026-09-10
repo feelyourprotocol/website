@@ -1,4 +1,6 @@
-import { computed, onUnmounted, ref, shallowRef } from 'vue'
+import type { MaybeRefOrGetter } from 'vue'
+import { computed, onUnmounted, ref, shallowRef, toValue, watch } from 'vue'
+import type { Block } from '@ethereumjs/block'
 import type { EVM, ExecResult } from '@ethereumjs/evm'
 import { hexToBytes } from '@ethereumjs/util'
 
@@ -12,7 +14,11 @@ import type { BytecodeStepperConfig, InstructionRow, RunMode, StepSnapshot } fro
 
 const DEFAULT_GAS = 1_000_000n
 
-export function useBytecodeStepper(config: BytecodeStepperConfig, evm: EVM) {
+export function useBytecodeStepper(
+  config: BytecodeStepperConfig,
+  evmSource: MaybeRefOrGetter<EVM>,
+  blockSource?: MaybeRefOrGetter<Block | undefined>,
+) {
   const bytecodeHex = ref('')
   const example = ref('')
   const instructions = ref<InstructionRow[]>([])
@@ -30,6 +36,7 @@ export function useBytecodeStepper(config: BytecodeStepperConfig, evm: EVM) {
   let stepGate = createStepGate()
   let runInFlight: Promise<void> | undefined
   let runGeneration = 0
+  let readyForContextWatch = false
 
   const validationErrors = computed(() => isValidByteInputForm(bytecodeHex.value))
   const canExecute = computed(
@@ -56,7 +63,7 @@ export function useBytecodeStepper(config: BytecodeStepperConfig, evm: EVM) {
     runGeneration++
     aborted = true
     stepGate.abort()
-    evm.events.removeAllListeners('step')
+    toValue(evmSource).events.removeAllListeners('step')
     runInFlight = undefined
   }
 
@@ -77,7 +84,7 @@ export function useBytecodeStepper(config: BytecodeStepperConfig, evm: EVM) {
       return
     }
     const code = hexToBytes(`0x${bytecodeHex.value}`)
-    instructions.value = disassembleBytecode(code, evm.common)
+    instructions.value = disassembleBytecode(code, toValue(evmSource).common)
   }
 
   /** Reset execution and re-arm stepping for the current bytecode (shared by Reset / edits / examples). */
@@ -109,6 +116,7 @@ export function useBytecodeStepper(config: BytecodeStepperConfig, evm: EVM) {
   async function init(examples: Examples, queryExample?: string) {
     example.value = resolveInitialExample(examples, config.defaultExample, queryExample)
     await selectExample(examples)
+    readyForContextWatch = true
   }
 
   function onStepRecorded(snapshot: StepSnapshot, index: number) {
@@ -142,11 +150,12 @@ export function useBytecodeStepper(config: BytecodeStepperConfig, evm: EVM) {
     }
 
     runInFlight = runBytecode({
-      evm,
+      evm: toValue(evmSource),
       code,
       gasLimit,
       stepMode,
       stepGate,
+      block: blockSource === undefined ? undefined : toValue(blockSource),
       onStep,
       shouldAbort: () => aborted || generation !== runGeneration,
     })
@@ -208,6 +217,22 @@ export function useBytecodeStepper(config: BytecodeStepperConfig, evm: EVM) {
       await new Promise((r) => setTimeout(r, 10))
     }
   }
+
+  watch(
+    () => {
+      const evm = toValue(evmSource)
+      const block = blockSource === undefined ? undefined : toValue(blockSource)
+      return [
+        evm,
+        block?.header.slotNumber?.toString() ?? '',
+        block?.header.timestamp.toString() ?? '',
+      ] as const
+    },
+    () => {
+      if (!readyForContextWatch) return
+      void rearm()
+    },
+  )
 
   onUnmounted(() => {
     cleanupExecution()

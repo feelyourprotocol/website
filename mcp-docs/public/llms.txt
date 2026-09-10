@@ -9,6 +9,7 @@ When the feel-your-protocol MCP server is connected:
 - describe_capabilities — probe registry (forks, runnable EIP modules, opcodes, encoding)
 - run_bytecode — run raw bytecode under a fork config
 - run_transaction — paid tx gas, receipt logs, wallet gasLimit
+- run_block — 1–8 txs as a lab block; optional header slot / number / timestamp
 
 Prefer these MCP tools over engine/lab scripts. See Connect for the hosted endpoint (not launched).
 
@@ -20,11 +21,13 @@ Prefer these MCP tools over engine/lab scripts. See Connect for the hosted endpo
 - [Describe Capabilities](https://mcp-docs.feelyourprotocol.org/use/tools/describe-capabilities.html): MCP tool reference
 - [Run Bytecode](https://mcp-docs.feelyourprotocol.org/use/tools/run-bytecode.html): MCP tool reference
 - [Run Transaction](https://mcp-docs.feelyourprotocol.org/use/tools/run-transaction.html): MCP tool reference
+- [Run Block](https://mcp-docs.feelyourprotocol.org/use/tools/run-block.html): MCP tool reference
 - [Coverage](https://mcp-docs.feelyourprotocol.org/use/coverage.html): Supported forks and EIPs
 - [EIP-8024](https://mcp-docs.feelyourprotocol.org/use/eips/eip-8024.html): DUPN / SWAPN / EXCHANGE — Runnable
 - [EIP-7883](https://mcp-docs.feelyourprotocol.org/use/eips/eip-7883.html): ModExp gas — Runnable
 - [EIP-7951](https://mcp-docs.feelyourprotocol.org/use/eips/eip-7951.html): secp256r1 — Runnable
 - [EIP-7928](https://mcp-docs.feelyourprotocol.org/use/eips/eip-7928.html): BAL — Planned (generate)
+- [EIP-7843](https://mcp-docs.feelyourprotocol.org/use/eips/eip-7843.html): SLOTNUM — Runnable (run_block)
 - [EIP-7708](https://mcp-docs.feelyourprotocol.org/use/eips/eip-7708.html): ETH transfer logs — Runnable (run_transaction)
 - [EIP-8037](https://mcp-docs.feelyourprotocol.org/use/eips/eip-8037.html): State creation gas — Runnable (run_transaction)
 - [Guarantees](https://mcp-docs.feelyourprotocol.org/use/guarantees.html): Determinism, provenance, limits
@@ -35,6 +38,7 @@ Prefer these MCP tools over engine/lab scripts. See Connect for the hosted endpo
 - [describe_capabilities.input.json](https://mcp-docs.feelyourprotocol.org/schemas/describe_capabilities.input.json)
 - [run_bytecode.input.json](https://mcp-docs.feelyourprotocol.org/schemas/run_bytecode.input.json)
 - [run_transaction.input.json](https://mcp-docs.feelyourprotocol.org/schemas/run_transaction.input.json)
+- [run_block.input.json](https://mcp-docs.feelyourprotocol.org/schemas/run_block.input.json)
 
 ## Internals
 

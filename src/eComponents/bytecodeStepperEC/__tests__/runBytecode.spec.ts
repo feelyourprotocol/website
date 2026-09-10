@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest'
+import { createBlock } from '@ethereumjs/block'
 import { Common, Hardfork, Mainnet } from '@ethereumjs/common'
 import { createEVM } from '@ethereumjs/evm'
 
@@ -7,6 +8,7 @@ import { dupnBytecode } from '@/explorations/eip-8024/bytecode'
 import { createStepGate, runBytecode } from '../runBytecode'
 
 const PUSH1_STOP = new Uint8Array([0x60, 0x01, 0x00])
+const SLOTNUM_STOP = new Uint8Array([0x4b, 0x00])
 
 async function createAmsterdamEvm() {
   const common = new Common({ chain: Mainnet, hardfork: Hardfork.Amsterdam })
@@ -84,6 +86,51 @@ describe('runBytecode', () => {
       .map((w) => Number(w))
       .reverse()
     expect(top).toEqual([16, 17, 1])
+  })
+
+  it('SLOTNUM pushes header.slotNumber when a block is provided', async () => {
+    const common = new Common({ chain: Mainnet, hardfork: Hardfork.Amsterdam })
+    const evm = await createEVM({ common })
+    const slotNumber = 42n
+    const block = createBlock(
+      { header: { slotNumber, gasLimit: 30_000_000n } },
+      { common, skipConsensusFormatValidation: true },
+    )
+
+    const result = await runBytecode({
+      evm,
+      code: SLOTNUM_STOP,
+      gasLimit: 1_000_000n,
+      stepMode: false,
+      block,
+      onStep: () => {},
+      shouldAbort: () => false,
+    })
+
+    expect(result.exceptionError).toBeUndefined()
+    const [top] = result.runState!.stack.peek(1)
+    expect(top).toBe(slotNumber)
+  })
+
+  it('SLOTNUM is invalid on Osaka', async () => {
+    const common = new Common({ chain: Mainnet, hardfork: Hardfork.Osaka })
+    const evm = await createEVM({ common })
+    const block = createBlock(
+      { header: { gasLimit: 30_000_000n } },
+      { common, skipConsensusFormatValidation: true },
+    )
+
+    const result = await runBytecode({
+      evm,
+      code: SLOTNUM_STOP,
+      gasLimit: 1_000_000n,
+      stepMode: false,
+      block,
+      onStep: () => {},
+      shouldAbort: () => false,
+    })
+
+    expect(result.exceptionError).toBeDefined()
   })
 })
 

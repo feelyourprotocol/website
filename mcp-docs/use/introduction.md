@@ -19,7 +19,7 @@ This MCP docs site describes the **lab equipment** we are building: a headless s
 
 Feel Your Protocol will provide a **headless MCP server** wrapping the EthereumJS stack so AI agents can run **exact, deterministic simulations** of the *future* Ethereum protocol — upcoming forks, EIPs, and research — and receive rich JSON traces they can reason over.
 
-At launch the hosted server will expose three MCP tools — `describe_capabilities`, `run_bytecode`, and `run_transaction`. EIP catalogue pages describe how each exploration maps to agent prompts once you can connect.
+At launch the hosted server will expose four MCP tools — `describe_capabilities`, `run_bytecode`, `run_transaction`, and `run_block`. EIP catalogue pages describe how each exploration maps to agent prompts once you can connect.
 
 Payments (x402) and additional tools (BAL generate) come with or shortly after the public endpoint.
 
@@ -34,6 +34,7 @@ For architecture, repositories, and build procedures, see [Internals](/internals
 <Changelog
   title="Introduction Changelog"
   :entries="[
+    { version: 'v0.12', date: '2026-09-10', summary: 'Four launch tools — added run_block (lab header + per-tx receipts).' },
     { version: 'v0.11', date: '2026-09-08', summary: 'Three launch tools — describe_capabilities, run_bytecode, run_transaction.' },
     { version: 'v0.10', date: '2026-09-02', summary: 'User docs describe the hosted product only — no local stdio / self-host early access.' },
     { version: 'v0.9', date: '2026-08-31', summary: 'Lead with not publicly launched — website explorations for most visitors; local stdio as early access only.' },

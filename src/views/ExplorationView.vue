@@ -24,6 +24,7 @@ const companionIdleLabels: Record<string, string> = {
   'eip-7708': 'Run the block to inspect receipt logs',
   'eip-7928': 'Run the block to explore the access list',
   'eip-8024': 'Step to DUPN, SWAPN, or EXCHANGE…',
+  'eip-7843': 'Set the beacon slot, then Run',
 }
 
 if (exploration.rightPanel) {

@@ -19,12 +19,13 @@ These appear in `describe_capabilities()` — engine modules with `runnable: tru
 | EIP  | Nature         | Shapes   | Fork notes               | Catalogue                      |
 | ---- | -------------- | -------- | ------------------------ | ------------------------------ |
 | 8024 | new-capability | simulate | Amsterdam                | [EIP-8024](/use/eips/eip-8024) |
+| 7843 | new-capability | block    | Amsterdam; Osaka compare | [EIP-7843](/use/eips/eip-7843) |
 | 7708 | new-capability | transaction, simulate | Amsterdam; Osaka compare | [EIP-7708](/use/eips/eip-7708) |
 | 7883 | repricing      | simulate | Osaka; Prague compare    | [EIP-7883](/use/eips/eip-7883) |
 | 7951 | new-capability | simulate | Osaka                    | [EIP-7951](/use/eips/eip-7951) |
 | 8037 | new-exec-model | transaction, simulate | Amsterdam; Osaka compare | [EIP-8037](/use/eips/eip-8037) |
 
-**Amsterdam note (8024):** EthereumJS v10 already bundles EIP-8024 in the Amsterdam hardfork. Passing `eips: [8024]` is accepted but is not a pre/post toggle.
+**Amsterdam note (8024 / 7843):** EthereumJS v10 already bundles these EIPs in the Amsterdam hardfork. Passing `eips: [8024]` or `eips: [7843]` is accepted but is not a pre/post toggle.
 
 ## Exploration twins (human catalogue)
 
@@ -36,6 +37,7 @@ Every **live** website exploration has an MCP-docs page mapping the same problem
 | 7883 | ModExp gas         | Runnable               | [EIP-7883](/use/eips/eip-7883) |
 | 7951 | secp256r1          | Runnable               | [EIP-7951](/use/eips/eip-7951) |
 | 7928 | Block access lists | **Planned** (generate) | [EIP-7928](/use/eips/eip-7928) |
+| 7843 | SLOTNUM opcode     | Runnable               | [EIP-7843](/use/eips/eip-7843) |
 | 7708 | ETH transfer logs  | Runnable               | [EIP-7708](/use/eips/eip-7708) |
 | 8037 | State creation gas | Runnable               | [EIP-8037](/use/eips/eip-8037) |
 
@@ -48,6 +50,9 @@ Canonical metadata for twins lives in website `src/explorations/eip-NNNN/canonic
 <Changelog
   title="Coverage Changelog"
   :entries="[
+    { version: 'v0.16', date: '2026-09-10', summary: 'EIP-7843 SLOTNUM runnable — run_block header.slotNumber; catalog row live.' },
+    { version: 'v0.15', date: '2026-09-10', summary: 'run_block lab verb shipped — header.slotNumber; 7843 catalog still Planned.' },
+    { version: 'v0.14', date: '2026-09-10', summary: 'EIP-7843 exploration twin — Planned until run_block / header slot on simulate.' },
     { version: 'v0.13', date: '2026-09-08', summary: '7708/8037 shapes include transaction (run_transaction); simulate remains for bytecode/precompiles.' },
     { version: 'v0.12', date: '2026-09-08', summary: 'EIP-8037 named catalog row — simulate gasUsed (Amsterdam vs Osaka first-touch and new-slot).' },
     { version: 'v0.11', date: '2026-09-07', summary: 'EIP-8037 exploration twin — simulate gasUsed already shows first-touch state gas; named catalog row follows with the engine module.' },

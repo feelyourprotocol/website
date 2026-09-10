@@ -17,6 +17,7 @@
 | Default gas limit | 1_000_000 |
 | Max bytecode size | 24_576 bytes |
 | Max trace steps | 10_000 |
+| Max transactions per lab block | 8 |
 
 ## Out of scope
 
@@ -29,6 +30,7 @@
 <Changelog
   title="Guarantees Changelog"
   :entries="[
+    { version: 'v0.4', date: '2026-09-10', summary: 'Max 8 transactions on run_block.' },
     { version: 'v0.3', date: '2026-07-20', summary: 'Split from execution-engine — user-facing limits and provenance under use/.' },
   ]"
 />

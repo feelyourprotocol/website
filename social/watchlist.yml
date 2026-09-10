@@ -73,6 +73,16 @@ weather_mcp:
     x402-as-token or points, price, ETF.
 
 problem_slices:
+  - id: eip-7843
+    path: /eip-7843-slotnum-opcode
+    core_question: How do you read the beacon slot on-chain without hardcoding 12-second slots?
+    mcp_docs: planned-module
+    search:
+      - beacon slot on-chain Ethereum
+      - TIMESTAMP divide 12 slot
+      - SLOTNUM opcode Ethereum
+      - hardcoded slot length contract
+    avoid_leading_with: EIP-7843
   - id: eip-8037
     path: /eip-8037-state-creation-gas
     core_question: Why isn't 21,000 gas enough for a simple ETH transfer anymore?
@@ -127,6 +137,7 @@ problem_slices:
 
 # Last-resort ids if a hit already names an EIP (live only). Not a daily rotation.
 eip_number_fallback:
+  - eip-7843
   - eip-8037
   - eip-7708
   - eip-7928

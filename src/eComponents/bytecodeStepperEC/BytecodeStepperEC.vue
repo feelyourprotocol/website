@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { computed, nextTick, provide, ref, watch } from 'vue'
+import type { Block } from '@ethereumjs/block'
 import type { EVM } from '@ethereumjs/evm'
 import { bytesToHex } from '@ethereumjs/util'
 
@@ -24,6 +25,8 @@ const props = defineProps<{
   examples: Examples
   exploration: Exploration
   evm: EVM
+  /** Optional execution block (header fields such as slot number). */
+  block?: Block
   /** Parsed `?example=` query value — pass from exploration MyC when deep-linking. */
   exampleQuery?: string
 }>()
@@ -49,7 +52,11 @@ const {
   runAll,
   stepOnce,
   reset,
-} = useBytecodeStepper(props.config, props.evm)
+} = useBytecodeStepper(
+  props.config,
+  () => props.evm,
+  () => props.block,
+)
 
 await init(props.examples, props.exampleQuery)
 

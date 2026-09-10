@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mcp-docs.feelyourprotocol.org/schemas/run_block.input.json",
+  "title": "run_block input",
+  "type": "object",
+  "required": ["transactions"],
+  "properties": {
+    "transactions": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 8,
+      "description": "1–8 impersonated transactions to execute as one lab block.",
+      "items": {
+        "type": "object",
+        "required": ["from", "to"],
+        "properties": {
+          "from": { "type": "string", "description": "Hex sender address (impersonated)." },
+          "to": { "type": "string", "description": "Hex recipient address." },
+          "value": { "type": "string", "description": "Value in wei (decimal string). Default 0." },
+          "data": { "type": "string", "description": "Optional calldata hex." },
+          "code": {
+            "type": "string",
+            "description": "Optional runtime bytecode installed at to before the block."
+          },
+          "gasLimit": {
+            "type": "string",
+            "description": "Transaction gas limit as decimal string. Default 1000000. Max 30000000."
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "header": {
+      "type": "object",
+      "properties": {
+        "slotNumber": {
+          "type": "string",
+          "description": "Beacon slot as a decimal string. Amsterdam / EIP-7843 only."
+        },
+        "number": { "type": "string", "description": "Block number as a decimal string. Default 1." },
+        "timestamp": { "type": "string", "description": "Unix timestamp as a decimal string. Default 1." }
+      },
+      "additionalProperties": false
+    },
+    "accounts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["address"],
+        "properties": {
+          "address": { "type": "string" },
+          "balance": { "type": "string" },
+          "code": { "type": "string" }
+        }
+      }
+    },
+    "fork": {
+      "type": "object",
+      "properties": {
+        "baseHardfork": { "type": "string" },
+        "eips": { "type": "array", "items": { "type": "integer" } }
+      },
+      "required": ["baseHardfork"]
+    }
+  },
+  "additionalProperties": false
+}

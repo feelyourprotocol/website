@@ -1,3 +1,4 @@
+import type { Block } from '@ethereumjs/block'
 import type { EVM, ExecResult, InterpreterStep } from '@ethereumjs/evm'
 
 import type { StepSnapshot } from './types'
@@ -53,12 +54,14 @@ export interface RunBytecodeOptions {
   gasLimit: bigint
   stepMode: boolean
   stepGate?: StepGate
+  /** Optional execution block — header fields such as slotNumber (EIP-7843). */
+  block?: Block
   onStep: (snapshot: StepSnapshot, index: number) => void
   shouldAbort: () => boolean
 }
 
 export async function runBytecode(options: RunBytecodeOptions): Promise<ExecResult> {
-  const { evm, code, gasLimit, stepMode, stepGate, onStep, shouldAbort } = options
+  const { evm, code, gasLimit, stepMode, stepGate, block, onStep, shouldAbort } = options
 
   evm.events.removeAllListeners('step')
 
@@ -94,7 +97,7 @@ export async function runBytecode(options: RunBytecodeOptions): Promise<ExecResu
   evm.events.on('step', stepHandler)
 
   try {
-    return await evm.runCode({ code, gasLimit })
+    return await evm.runCode({ code, gasLimit, block })
   } finally {
     evm.events.off('step', stepHandler)
   }
