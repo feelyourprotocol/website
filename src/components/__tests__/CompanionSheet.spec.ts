@@ -2,6 +2,7 @@ import { afterEach, describe, expect, it, vi } from 'vitest'
 import { mount } from '@vue/test-utils'
 
 import CompanionSheet from '@/components/CompanionSheet.vue'
+import { COMPANION_EXPAND_EVENT } from '@/video/companionSheetEvents'
 
 function mockMobileViewport() {
   return vi.spyOn(window, 'matchMedia').mockImplementation((query: string) => ({
@@ -18,6 +19,7 @@ function mockMobileViewport() {
 
 describe('CompanionSheet', () => {
   afterEach(() => {
+    document.documentElement.classList.remove('fyp-video-capture', 'fyp-video-companion-open')
     vi.restoreAllMocks()
   })
   it('expands from peek to half when the peek bar is tapped', async () => {
@@ -88,6 +90,35 @@ describe('CompanionSheet', () => {
     })
     expect(vm.snap).toBe('half')
     expect(contentWrapper.classList.contains('max-md:hidden')).toBe(false)
+
+    wrapper.unmount()
+  })
+
+  it('marks video capture as companion-open when the playbook expands the sheet', async () => {
+    document.documentElement.classList.add('fyp-video-capture')
+
+    const wrapper = mount(CompanionSheet, {
+      props: {
+        label: 'SLOTNUM pushes 42',
+        active: true,
+        pulseKey: 0,
+      },
+      attachTo: document.body,
+    })
+
+    expect(document.documentElement.classList.contains('fyp-video-companion-open')).toBe(false)
+
+    window.dispatchEvent(new CustomEvent(COMPANION_EXPAND_EVENT, { detail: { mode: 'full' } }))
+    await wrapper.vm.$nextTick()
+
+    expect((wrapper.vm as { snap: string }).snap).toBe('full')
+    expect(document.documentElement.classList.contains('fyp-video-companion-open')).toBe(true)
+
+    window.dispatchEvent(new CustomEvent(COMPANION_EXPAND_EVENT, { detail: { mode: 'peek' } }))
+    await wrapper.vm.$nextTick()
+
+    expect((wrapper.vm as { snap: string }).snap).toBe('peek')
+    expect(document.documentElement.classList.contains('fyp-video-companion-open')).toBe(false)
 
     wrapper.unmount()
   })

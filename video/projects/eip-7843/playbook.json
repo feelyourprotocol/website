@@ -1,0 +1,98 @@
+{
+  "format": "shorts",
+  "exploration": "eip-7843",
+  "defaultExample": "slotnum",
+  "steps": [
+    {
+      "beat": "hook",
+      "overlay": "title-card",
+      "wait": 4500
+    },
+    {
+      "beat": "context",
+      "overlay": "context",
+      "annotate": "guide-companion",
+      "placement": "top-banner",
+      "focus": "companion",
+      "cue": 3400,
+      "expandCompanion": "half",
+      "hideOverlay": true,
+      "wait": 700
+    },
+    {
+      "beat": "clear-companion",
+      "expandCompanion": "peek",
+      "wait": 400
+    },
+    {
+      "beat": "slotnum",
+      "overlay": "slotnum-cue",
+      "annotate": "guide-stack",
+      "placement": "top-banner",
+      "focus": "stack",
+      "cue": 3000,
+      "step": {
+        "count": 2,
+        "interval": 380,
+        "climaxFrom": 1,
+        "climaxInterval": 1050,
+        "climaxPauseMs": 550,
+        "highlightSet": "slotnum-windup",
+        "highlightAfterStep": 1,
+        "highlightSetAfter": "slotnum-payoff",
+        "holdAfterClimaxMs": 1500
+      },
+      "wait": 1800
+    },
+    {
+      "beat": "trap",
+      "overlay": "trap-cue",
+      "annotate": "guide-example",
+      "placement": "top-banner",
+      "focus": "example-select",
+      "cue": 3200,
+      "hideOverlay": true,
+      "selectExample": "timestamp-div-12",
+      "click": "bytecode-run",
+      "wait": 1600
+    },
+    {
+      "beat": "osaka",
+      "overlay": "osaka-cue",
+      "annotate": "guide-readout",
+      "placement": "top-banner",
+      "focus": "companion",
+      "cue": 2800,
+      "hideOverlay": true,
+      "selectExample": "slotnum",
+      "expandCompanion": "full",
+      "click": "hardfork-osaka",
+      "wait": 900
+    },
+    {
+      "beat": "osaka-run",
+      "overlay": "osaka-cue",
+      "annotate": "guide-disassembly",
+      "placement": "top-banner",
+      "focus": "disassembly",
+      "cue": 2400,
+      "hideOverlay": true,
+      "expandCompanion": "peek",
+      "click": "bytecode-run",
+      "wait": 1600
+    },
+    {
+      "beat": "recap",
+      "overlay": "recap",
+      "annotate": "guide-stack",
+      "placement": "top-banner",
+      "focus": "stack",
+      "wait": 4200
+    },
+    {
+      "beat": "outro",
+      "overlay": "outro-card",
+      "wait": 5000
+    }
+  ]
+}

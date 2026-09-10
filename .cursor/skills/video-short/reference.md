@@ -105,7 +105,7 @@ Overlay types (from `src/video/overlays/`):
       "hideOverlay": true,               // optional explicit hide before actions
       "selectExample": "<key>",          // optional action
       "step": { "count": 9, "interval": 380, ...climax },
-      "expandCompanion": "half",         // optional action ('half' | 'full')
+      "expandCompanion": "half",         // optional action ('peek' | 'half' | 'full')
       "click": "<data-testid>",          // optional action; passed to page.getByTestId(...)
       "scroll": { "selector": "<css-selector>", "y": 120 },
       "wait": 1600                       // hold time after actions, ms

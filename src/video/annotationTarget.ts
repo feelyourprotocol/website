@@ -9,8 +9,9 @@ export function resolveTargetSelector(
   if (target === 'disassembly-active-opcode') {
     return '[data-disassembly-active="true"] [data-disassembly-opcode]'
   }
-  if (target === 'disassembly-dupn') {
-    return '[data-disassembly-opcode][data-disassembly-mnemonic*="DUPN"]'
+  const mnemonicMatch = /^disassembly-([a-z][a-z0-9]+)$/.exec(target)
+  if (mnemonicMatch) {
+    return `[data-disassembly-opcode][data-disassembly-mnemonic*="${mnemonicMatch[1].toUpperCase()}"]`
   }
   if (target === 'stack-top') return '[data-stack-depth="1"]'
   if (target === 'stack-top-value') return '[data-stack-depth="1"] [data-stack-value]'

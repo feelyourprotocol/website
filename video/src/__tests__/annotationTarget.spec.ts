@@ -29,6 +29,9 @@ describe('resolveTargetSelector', () => {
     expect(resolveTargetSelector('disassembly-dupn', undefined)).toBe(
       '[data-disassembly-opcode][data-disassembly-mnemonic*="DUPN"]',
     )
+    expect(resolveTargetSelector('disassembly-slotnum', undefined)).toBe(
+      '[data-disassembly-opcode][data-disassembly-mnemonic*="SLOTNUM"]',
+    )
     expect(resolveTargetSelector('stack-top-value', undefined)).toBe(
       '[data-stack-depth="1"] [data-stack-value]',
     )

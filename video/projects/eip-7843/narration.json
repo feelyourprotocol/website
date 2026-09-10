@@ -1,0 +1,37 @@
+{
+  "segmentGapMs": 350,
+  "segments": [
+    {
+      "beat": "hook",
+      "text": "How do you read the beacon slot on-chain without hardcoding 12-second slots?"
+    },
+    {
+      "beat": "context",
+      "text": "EIP-7843 adds SLOTNUM. Amsterdam puts the slot on the block header. Two gas."
+    },
+    {
+      "beat": "slotnum",
+      "text": "Default slot forty-two. Watch SLOTNUM push it."
+    },
+    {
+      "beat": "trap",
+      "text": "Timestamp divided by twelve is the trap — a different number, and it breaks if slot length changes."
+    },
+    {
+      "beat": "osaka",
+      "text": "Same opcode, one fork earlier."
+    },
+    {
+      "beat": "osaka-run",
+      "text": "Osaka: SLOTNUM is invalid."
+    },
+    {
+      "beat": "recap",
+      "text": "The chain tells you the slot. Stop baking twelve into bytecode. Run it on Osaka to see it fail."
+    },
+    {
+      "beat": "outro",
+      "text": "The spec is on eips.ethereum.org. Open the stepper on feelyourprotocol dot org."
+    }
+  ]
+}

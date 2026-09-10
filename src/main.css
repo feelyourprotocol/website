@@ -410,6 +410,14 @@ html.fyp-video-band-active .exploration-right-panel-host {
   visibility: visible;
 }
 
+/* Playbook `expandCompanion` must actually show the sheet — otherwise
+   controls teleported into it (fork toggle, slot readout) stay
+   `visibility: hidden` and Playwright clicks time out. */
+html.fyp-video-capture.fyp-video-companion-open:not(.fyp-video-band-active)
+  .exploration-right-panel-host {
+  visibility: visible;
+}
+
 /* 1080×1920 full-res capture — scale fixed sizes from 540 reference. */
 @media (min-width: 541px) {
   html.fyp-video-capture {

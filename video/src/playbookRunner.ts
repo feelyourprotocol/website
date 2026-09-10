@@ -276,7 +276,7 @@ async function scrollPage(page: Page, selector: string, y = 120): Promise<void> 
   await page.waitForTimeout(700)
 }
 
-async function expandCompanion(page: Page, mode: 'half' | 'full'): Promise<void> {
+async function expandCompanion(page: Page, mode: 'peek' | 'half' | 'full'): Promise<void> {
   await page.evaluate((m) => window.__FYP_VIDEO__!.expandCompanion(m), mode)
   await page.waitForTimeout(500)
 }
