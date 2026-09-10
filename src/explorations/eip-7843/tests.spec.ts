@@ -26,7 +26,8 @@ describe('EIP-7843 Exploration', () => {
   describe('canonical', () => {
     it('defines SLOTNUM capability and fork comparison', () => {
       expect(CANONICAL.question.changeNature).toBe('new-capability')
-      expect(CANONICAL.mcp.shapes).toContain('simulate')
+      expect(CANONICAL.mcp.docsStatus).toBe('runnable')
+      expect(CANONICAL.mcp.shapes).toEqual(['block'])
       expect(CANONICAL.mcp.comparison?.previewForkId).toBe('amsterdam')
       expect(CANONICAL.mcp.comparison?.baselineForkId).toBe('osaka')
     })

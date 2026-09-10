@@ -28,13 +28,13 @@ export const CANONICAL: ProtocolChangeCanonical = {
     testMaturity: 'EthereumJS eip7843 opcode tests; glamsterdam-devnet EST',
   },
   mcp: {
-    shapes: ['simulate'],
+    shapes: ['block'],
     keywords: ['SLOTNUM', 'slot number', 'beacon slot', 'TIMESTAMP', 'header.slotNumber'],
     comparison: {
       baselineForkId: 'osaka',
       previewForkId: 'amsterdam',
       note: 'Opcode 0x4b is invalid on baseline; on preview it pushes header.slotNumber (2 gas).',
     },
-    docsStatus: 'planned-module',
+    docsStatus: 'runnable',
   },
 }

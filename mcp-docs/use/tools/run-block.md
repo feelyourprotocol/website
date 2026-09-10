@@ -6,7 +6,7 @@
 
 Run **1–8 impersonated transactions as one lab block** and receive a **header snapshot** plus **per-tx receipts**. Senders are impersonated from each `from` — no private key.
 
-This is the verb for a chosen beacon slot (`header.slotNumber` / EIP-7843), several txs in one block, or a lab `number` / `timestamp`.
+This is the verb for a chosen beacon slot (`header.slotNumber` / [EIP-7843](/use/eips/eip-7843)), several txs in one block, or a lab `number` / `timestamp`.
 
 A **single** paid transfer still belongs on [Run Transaction](/use/tools/run-transaction). Raw opcode / stack programs belong on [Run Bytecode](/use/tools/run-bytecode). Block-level access lists stay on planned **generate**.
 

@@ -71,6 +71,7 @@ _Output (abbreviated):_
 <Changelog
   title="Describe Capabilities Changelog"
   :entries="[
+    { version: 'v0.11', date: '2026-09-10', summary: 'EIP-7843 SLOTNUM in the live catalog (shapes: block).' },
     { version: 'v0.10', date: '2026-09-10', summary: 'ceilings.maxTxsPerBlock; shapes may include block (run_block).' },
     { version: 'v0.9', date: '2026-09-08', summary: 'shapes distinguish run_bytecode vs run_transaction (7708/8037 include transaction).' },
     { version: 'v0.8', date: '2026-09-02', summary: 'Implemented for public launch — not a local stdio product path.' },

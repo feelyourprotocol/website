@@ -84,6 +84,7 @@ See also [Design Principles](/internals/design-principles).
 | EIP | Nature | Runnable | Shapes |
 | --- | --- | --- | --- |
 | 8024 | new-capability | yes | simulate |
+| 7843 | new-capability | yes | block |
 | 7708 | new-capability | yes | transaction, simulate |
 | 7883 | repricing | yes | simulate |
 | 7951 | new-capability | yes | simulate |
@@ -91,7 +92,7 @@ See also [Design Principles](/internals/design-principles).
 
 Only runnable modules appear in `describeCapabilities()`. Wallet / receipt questions use **transaction**; opcode / precompile questions use **simulate**; header slot / multi-tx questions use **block**.
 
-Amsterdam in EthereumJS v10 already bundles EIP-8024 — `eips: [8024]` is not a pre/post toggle. Use **osaka** baseline vs **amsterdam** preview for 8024 comparisons.
+Amsterdam in EthereumJS v10 already bundles EIP-8024 and EIP-7843 — `eips: [8024]` / `eips: [7843]` are not pre/post toggles. Use **osaka** baseline vs **amsterdam** preview for those comparisons.
 
 ## Development
 
@@ -102,6 +103,7 @@ See [Quality](/internals/quality).
 <Changelog
   title="Execution Engine Changelog"
   :entries="[
+    { version: 'v0.1.7', date: '2026-09-10', summary: 'EIP-7843 SLOTNUM module — runBlock header.slotNumber; catalog row live.' },
     { version: 'v0.1.6', date: '2026-09-10', summary: 'runBlock lab verb — header snapshot, per-tx receipts, optional slotNumber.' },
     { version: 'v0.1.5', date: '2026-09-08', summary: 'runTransaction (VM tx path); paid gas, 8037 dimensions, 7708 receipt logs.' },
     { version: 'v0.1.4', date: '2026-09-08', summary: 'Simulate result: gasUsedScope plus messageCall approxTxGasUsed (21000 + call-frame).' },
