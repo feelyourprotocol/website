@@ -3,8 +3,8 @@ import { describe, expect, it } from 'vitest'
 import { isSocialCardId, SOCIAL_CARD_IDS, SOCIAL_CARDS } from '../cards.ts'
 
 describe('social card registry', () => {
-  it('defines hero, launch, timeline, and board', () => {
-    expect(SOCIAL_CARD_IDS).toEqual(['hero', 'launch', 'timeline', 'board'])
+  it('defines hero, launch, timeline, board, and youtube-banner', () => {
+    expect(SOCIAL_CARD_IDS).toEqual(['hero', 'launch', 'timeline', 'board', 'youtube-banner'])
   })
 
   it('isSocialCardId narrows known ids', () => {

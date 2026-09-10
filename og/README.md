@@ -67,6 +67,14 @@ npm run capture:social
 
 Output: `roadmap/social/out/{hero,launch,timeline,board}.{png,webp}`
 
+YouTube channel banner (2560×1440, committed master):
+
+```bash
+npm run capture:youtube-banner
+```
+
+Output: `design/source/youtube/channel-banner.{png,webp}`
+
 ## Tests
 
 ```bash

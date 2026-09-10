@@ -13,8 +13,11 @@ no manual Figma work.
 | `launch` | Public MCP launch week | `src/cards.ts` + `LaunchSocialCard.vue` |
 | `timeline` | Three-phase timeline | `roadmap/data/timeline.ts` |
 | `board` | Track × horizon grid | `roadmap/data/roadmap.ts` |
+| `youtube-banner` | YouTube channel art (2560×1440) | `src/cards.ts` + `YouTubeBannerCard.vue` |
 
-Output lands in `roadmap/social/out/` (gitignored PNG + WebP at 1200px wide).
+Twitter cards land in `roadmap/social/out/` (gitignored PNG + WebP at 1200px wide).
+
+The YouTube banner is written to **`design/source/youtube/channel-banner.png`** (committed master — see that folder's README).
 
 ## Prerequisites
 
@@ -39,6 +42,7 @@ Open:
 - http://localhost:5175/?card=timeline
 - http://localhost:5175/?card=board
 - http://localhost:5175/?card=all — all cards stacked (dev only)
+- http://localhost:5175/?card=youtube-banner — YouTube channel art preview
 
 **2. Capture images for Twitter:**
 

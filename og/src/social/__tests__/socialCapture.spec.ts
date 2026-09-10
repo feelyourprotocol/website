@@ -6,6 +6,10 @@ import {
   SOCIAL_CAPTURE_WIDTH,
   SOCIAL_DIST_DIR,
   SOCIAL_OUTPUT_DIR,
+  YOUTUBE_BANNER_HEIGHT,
+  YOUTUBE_BANNER_OUTPUT_DIR,
+  YOUTUBE_BANNER_WIDTH,
+  socialCardCaptureSpec,
   socialCardOutputBase,
   WEBSITE_ROOT,
 } from '../config.ts'
@@ -49,5 +53,29 @@ describe('social config paths', () => {
 
   it('SOCIAL_CAPTURE_WIDTH is Twitter-friendly 1200px', () => {
     expect(SOCIAL_CAPTURE_WIDTH).toBe(1200)
+  })
+
+  it('youtube-banner outputs to design/source/youtube (committed master)', () => {
+    expect(socialCardOutputBase('youtube-banner')).toBe(
+      `${YOUTUBE_BANNER_OUTPUT_DIR}/channel-banner`,
+    )
+    expect(YOUTUBE_BANNER_OUTPUT_DIR).toBe(resolve(WEBSITE_ROOT, 'design/source/youtube'))
+  })
+
+  it('youtube-banner capture spec is 2560×1440 at deviceScaleFactor 1', () => {
+    expect(socialCardCaptureSpec('youtube-banner')).toEqual({
+      width: YOUTUBE_BANNER_WIDTH,
+      height: YOUTUBE_BANNER_HEIGHT,
+      deviceScaleFactor: 1,
+    })
+    expect(YOUTUBE_BANNER_WIDTH).toBe(2560)
+    expect(YOUTUBE_BANNER_HEIGHT).toBe(1440)
+  })
+
+  it('twitter cards keep 1200px width at 2x DPR', () => {
+    expect(socialCardCaptureSpec('hero')).toEqual({
+      width: SOCIAL_CAPTURE_WIDTH,
+      deviceScaleFactor: 2,
+    })
   })
 })
