@@ -37,18 +37,20 @@ last_weather_family: fork_acd
 ### Each run
 
 1. Read. Prune `until` < today, `seen` older than `cooldown_days` / 14 days (`watchlist.yml`).
-2. **Due** = `check_on` ≤ today (or missing `check_on`) and `until` ≥ today. Search those first.
+2. **Due** = `check_on` ≤ today (or missing `check_on`) and `until` ≥ today. Prefer to fold a due `q` into the family slot ([SKILL.md](SKILL.md) workflow). Do not spend the Moved search on a due query.
 3. After weather: add at most **2** new watch rows from *concrete* dates or fights the posts named (not “maybe Glamsterdam someday”). If at 8 items, replace a stale one — do not grow.
 4. Close due items you actually searched (delete, or set a later `check_on` only if the event clearly continues).
-5. Append today’s weather + action tweet ids to `seen`. Set `last_weather_family`. Rewrite the whole file so it stays one schema.
-
-`builder_pain` is a **spice** weather family: at most one extra Round A query when weather came back thin — not a second default search.
+5. Append today’s weather + action tweet ids to `seen`. Set `last_weather_family` to the **rotating family** used (`fork_acd` / `clients` / `mechanics`), not `moved`. Rewrite the whole file so it stays one schema.
 
 ## Round A — protocol weather
 
-Goal: what is moving in **Ethereum protocol** (EL, forks, EVM, gas, clients, ACD). Not price.
+Goal: a **survey** of what moved, plus **one** rotating corner (fork/ACD, clients, or mechanics). Not price. Not a daily EIP hunt — that is Round B.
 
-Keep each `x_search` prompt tight: “Return at most 8 recent posts with permalink, handle, and one-line gist. Protocol / client / EL / gas / fork only. One post per conversation: skip quotes, RTs, and replies of a post you are already returning.”
+**Every run:** one **Moved** search (`watchlist.yml` `weather_moved.prompt`) and one **family broad** query. Cluster the two together before Telegram — overlap on an ACD day is expected.
+
+**Thin only:** one **depth** query from the same family. Do not fire the whole `depth` list. There is no `builder_pain` weather family; builder phrases live in `problem_slices`.
+
+Keep each `x_search` prompt tight: “Use a **single** x_search. Do not follow up. Do not fetch full threads. Return at most 8 recent posts with permalink, handle, and one-line gist. Protocol / client / EL / gas / fork only. One post per conversation: skip quotes, RTs, and replies of a post you are already returning.” For Moved, put `weather_moved.prompt` first, then those constraints.
 
 Do **not** set `allowed_x_handles`. You **may** set `excluded_x_handles` (max 20) to `FeelEthereum` plus cooldown handles from Memories (no `@`).
 
@@ -64,13 +66,13 @@ Same clustering for **action cards**: do not emit a reply *and* a quote of the s
 
 ### Drop (weather and actions)
 
-Price, ETF, airdrop, points, memecoin, “gm” with no payload, personal drama, engagement bait, the same viral joke twice, city-Amsterdam tourism, sports.
+Price, ETF, ETH/USD, staking yield, restaking, L2 airdrop, points, memecoin, “gm” with no payload, personal drama, engagement bait, the same viral joke twice, city-Amsterdam tourism, sports.
 
 ## Round B — problem match
 
 Only when a due item or weather hit is **already about** a pain in `watchlist.yml` → `problem_slices`. Then search that slice’s **phrases**, not the EIP id. Lead with those phrases + “Ethereum” / “EVM” / “wallet” as needed. Mention the EIP number in the **prompt to Grok** only as disambiguation if the phrase is ambiguous (e.g. BAL).
 
-If nothing maps, **skip this round**. Do not pick two EIPs to “cover the catalog.”
+If nothing maps, **skip this round**. Do not pick two EIPs to “cover the catalog.” At most **one** match search per run.
 
 **EIP-number query:** at most one, and only if a hit already names that EIP. Diversity penalty on repeat handles.
 
@@ -96,7 +98,7 @@ curl -sS https://api.x.ai/v1/responses \
 - Use `grok-4.6` unless xAI docs list a cheaper model that still supports `x_search`. Do not invent model ids.
 - `from_date`: yesterday UTC (`YYYY-MM-DD`). Omit `to_date` unless debugging.
 - Parse **citations / permalinks** from the response. If a hit has no URL, skip it.
-- After **2026-09-21**, xAI bills X Search per **post fetched**. Keep prompts “at most 8 posts.”
+- After **2026-09-21**, xAI bills X Search per **post fetched** (parents and quotes count). Keep prompts “at most 8 posts” and **no thread fetch**.
 
 ## Intent URLs (action cards only)
 
@@ -129,7 +131,7 @@ One message per run.
 ```text
 FYP weather — <YYYY-MM-DD>
 
-<4–8 lines: what’s moving. Fork/ACD, clients, mechanics. No pitch.>
+<4–8 lines: what’s moving. Survey + the rotating family, merged. No pitch.>
 
 Links:
 • @handle — <one line why>
@@ -140,7 +142,7 @@ FYP weather — <YYYY-MM-DD>
 Quiet on protocol X this scan. No links worth a click.
 ```
 
-Cap **10** bullets. Prefer **5–8**. **One URL per story** (cluster first). Diverse corners (not five client-team accounts). No intent URLs. No “you should reply.”
+Cap **10** bullets. Prefer **5–8**. **One URL per story** (cluster first). Diverse corners (not five client-team accounts, not only the rotating family). One message — do not split survey vs family. No intent URLs. No “you should reply.”
 
 ### Action message
 

@@ -23,36 +23,42 @@ memory:
 always_exclude:
   - FeelEthereum
 
-# Round A — pick ONE family per run (due items may pick the family; else rotate off last_weather_family).
+# Round A — always one "moved" search, then ONE rotating family (broad first).
+# Depth queries: only if moved + broad came back thin. Do not spray a family.
+weather_moved:
+  label: What moved
+  prompt: >-
+    What moved in Ethereum protocol on X in this date window?
+    Scope: execution layer, clients (Geth Nethermind Reth Erigon Besu EthereumJS),
+    AllCoreDevs ACDE ACDC, hardforks (Glamsterdam Amsterdam EL Fusaka),
+    EIPs, EVM gas precompiles, client releases, spec fights.
+    Skip: price, ETF, ETH/USD, staking yield, restaking, L2 airdrops,
+    memecoins, gm, city Amsterdam, sports.
+
 weather_families:
   fork_acd:
     label: Fork / ACD
-    queries:
-      - AllCoreDevs execution layer
+    broad:
+      - AllCoreDevs ACDE Ethereum
+    depth:
       - Glamsterdam CFI Amsterdam EL
       - Ethereum hardfork inclusion EL
       - Forkcast Amsterdam
   clients:
     label: Clients / implementations
-    queries:
-      - geth EVM gas
-      - nethermind execution
-      - reth Ethereum client
+    broad:
+      - Ethereum execution client
+    depth:
+      - Geth Reth Nethermind Besu Erigon
       - ethereumjs EVM
-      - Erigon execution layer
   mechanics:
     label: Mechanic talk
-    queries:
+    broad:
+      - EVM gas Ethereum protocol
+    depth:
+      - Ethereum EIP spec execution
       - Ethereum gas schedule precompile
       - EVM receipts logs access list
-      - Ethereum state rent gas
-      - Ethereum native ETH Transfer log
-  builder_pain:
-    label: Builder pain (spice only)
-    queries:
-      - Ethereum wallet gasLimit 21000
-      - Ethereum indexer native transfer
-      - simulate upcoming Ethereum fork rules
 
 problem_slices:
   - id: eip-8037
