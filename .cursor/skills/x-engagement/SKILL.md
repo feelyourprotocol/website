@@ -90,4 +90,4 @@ Do not print secrets. Do not put them in Memories or git.
 
 ## Report (manual runs)
 
-If this is not an Automation, also paste the weather + action bodies in chat, then **STOP**. Do not commit unless asked.
+If this is not an Automation, also paste the weather + action bodies in chat, then **STOP**.

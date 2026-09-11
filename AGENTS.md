@@ -51,7 +51,7 @@ Field reference and human checklist: [adding-an-exploration.md](website-docs/con
 
 Catalog: [`repo-structure.mdc`](.cursor/rules/repo-structure.mdc).
 
-- **Primitives (always-on):** `repo-structure.mdc`, `quality.mdc`, `testing.mdc`
+- **Primitives (always-on):** `repo-structure.mdc`, `quality.mdc`, `testing.mdc`, `git.mdc`
 - **Task invariants (glob):** `explorations.mdc` when editing `src/explorations/` or `src/eComponents/`
 - **Design (glob):** `exploration-design.mdc` — cover column vs companion; same logical control → one UIC
 - **Specialized:** `video-recording.mdc`, `og-images.mdc`
@@ -61,5 +61,4 @@ If your tool supports attaching folders (e.g. `@website-docs/`), include the rel
 ## Habits
 
 - Run `npm run dev` while iterating on explorations; `npm run lf:ci` before finishing code changes.
-- Do not commit unless asked.
 - Root [README.md](README.md) lists all npm scripts for maintainers; prefer scoped commands when working on one site.

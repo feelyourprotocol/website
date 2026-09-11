@@ -1,0 +1,35 @@
+---
+description: When to commit, and how short commit messages should look
+alwaysApply: true
+---
+
+# Git
+
+Canonical for this repo **and** for `mcp-execution-engine` / `mcp-gateway`. Those repos point here — do not fork a second copy of these habits.
+
+## When
+
+- Do **not** commit, push, or open a PR unless the human asks.
+- Working-tree **inspection** (branch, dirty files) is fine. Do not stash, checkout, create, rename, or push branches unless asked.
+
+## Three repos
+
+A “please commit”, “please commit and push”, or similar ask is **all three** checkouts (`website`, `mcp-execution-engine`, `mcp-gateway`) — not only the repo in focus. Commit (and push, if asked) in every repo that has a change. Skip a clean tree.
+
+## Commit messages
+
+One short line. Name the thing that shipped. No conventional-commit prefix (`feat:`, `fix:`), no body, no invented PR numbers (`#52` is added on merge).
+
+Match `git log --oneline` on the repo you are committing:
+
+```
+EIP-7843 Exploration
+EIP-8037 MCP + new run_transaction tool
+Eip-7843 Comic + Video
+Twitter Refinement
+Small fix
+```
+
+- EIP work: `EIP-NNNN` + artifact (`Exploration`, `MCP`, `Comic + Video`).
+- Otherwise a two-to-five-word Title Case label (`Launch Strategy`, `CI fix`).
+- If unsure, copy the nearest recent subject on that repo — do not write a paragraph.

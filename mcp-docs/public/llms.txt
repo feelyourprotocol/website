@@ -30,6 +30,7 @@ Prefer these MCP tools over engine/lab scripts. See Connect for the hosted endpo
 - [EIP-7843](https://mcp-docs.feelyourprotocol.org/use/eips/eip-7843.html): SLOTNUM — Runnable (run_block)
 - [EIP-7708](https://mcp-docs.feelyourprotocol.org/use/eips/eip-7708.html): ETH transfer logs — Runnable (run_transaction)
 - [EIP-8037](https://mcp-docs.feelyourprotocol.org/use/eips/eip-8037.html): State creation gas — Runnable (run_transaction)
+- [EIP-8038](https://mcp-docs.feelyourprotocol.org/use/eips/eip-8038.html): State-access gas — Runnable (simulate gasUsed)
 - [Guarantees](https://mcp-docs.feelyourprotocol.org/use/guarantees.html): Determinism, provenance, limits
 - [Runtime agents](https://mcp-docs.feelyourprotocol.org/use/runtime-agents.html): MCP-first playbook for connected agents
 

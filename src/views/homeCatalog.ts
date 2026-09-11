@@ -3,6 +3,7 @@ import { TIMELINE } from '@/explorations/TIMELINE'
 
 /** Newest-first order for home Latest + catalog remainder. Prepend new ids here. */
 export const FEATURED_EXPLORATION_IDS = [
+  'eip-8038',
   'eip-7843',
   'eip-8037',
   'eip-7708',
