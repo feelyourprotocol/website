@@ -16,6 +16,10 @@ Canonical for this repo **and** for `mcp-execution-engine` / `mcp-gateway`. Thos
 
 A “please commit”, “please commit and push”, or similar ask is **all three** checkouts (`website`, `mcp-execution-engine`, `mcp-gateway`) — not only the repo in focus. Commit (and push, if asked) in every repo that has a change. Skip a clean tree.
 
+## Signing
+
+Commits are signed. The human confirms with a fingerprint; that can take a few seconds. Wait for the prompt (do not treat a short delay as failure). Do not retry in a tight loop, skip signing, or abandon the commit because the signer has not answered yet.
+
 ## Commit messages
 
 One short line. Name the thing that shipped. No conventional-commit prefix (`feat:`, `fix:`), no body, no invented PR numbers (`#52` is added on merge).
