@@ -18,7 +18,11 @@ A “please commit”, “please commit and push”, or similar ask is **all thr
 
 ## Signing
 
-Commits are signed. The human confirms with a fingerprint; that can take a few seconds. Wait for the prompt (do not treat a short delay as failure). Do not retry in a tight loop, skip signing, or abandon the commit because the signer has not answered yet.
+Commits **and** pushes are signed (SSH / Touch ID). The human confirms with a fingerprint; that can take a few seconds. Wait for the prompt.
+
+Do **one** signed git operation at a time. Parallel commits or pushes fail — one fingerprint cannot answer three agents. After a commit-and-push ask: commit each dirty repo in turn, then push each repo that is ahead in turn.
+
+Do not retry in a tight loop, skip signing, or abandon because the signer has not answered yet.
 
 ## Commit messages
 
