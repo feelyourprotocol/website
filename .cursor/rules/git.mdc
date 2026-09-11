@@ -46,8 +46,23 @@ Small fix
 
 Same shortness as commit subjects. No conventional-commit prefix. No template checklist.
 
-- Exploration or MCP PR that lands **most** of that work: just the EIP id (`EIP-8038`).
-- Follow-up on the same EIP: add the artifact (`EIP-8038 Comic + Video`).
-- Anything else: same two-to-five-word label as a commit (`Git rules`).
+**Round-trip** (`eip-NNNN` branch, or the session is a protocol-change round-trip): every repo’s PR is the **bigger-context** PR. Title is just the EIP id (`EIP-8038`) — including engine/gateway, even if the first commits are only supporting (git rules, scaffolding). That PR will accumulate the exploration / MCP work. Do not name it after the first commit.
 
-Description: short and structured — a few bullets or two small headings. Not a dump.
+Description: the **arch**, not the latest commit. Same shape, **not** the same text — each repo writes its own slice.
+
+- **website** — the exploration (widget, cover, home, mcp-docs twin).
+- **mcp-execution-engine** — the engine module / verbs / catalog.
+- **mcp-gateway** — transport: exposing those verbs, no per-EIP tool.
+
+Within that slice:
+
+- **What** — one or two lines: this repo’s part of the EIP.
+- **Round-trip** — where this repo sits (exploration vs MCP vs later); mark done vs open.
+- **So far** — what shipped **here**; what still lands on this PR.
+
+Do **not** copy the website body onto engine/gateway. Do **not** narrate supporting commits (`git.mdc`, templates). Those are not the PR.
+
+Engine and gateway bodies **link** the website GitHub PR (the exploration). Do not paste its description.
+
+- After that main PR: follow-ups add the artifact (`EIP-8038 Comic + Video`) and a short artifact-specific body.
+- Outside a round-trip: two-to-five-word title (`Git rules`); short structured body is fine.
