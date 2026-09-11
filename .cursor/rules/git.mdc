@@ -1,5 +1,5 @@
 ---
-description: When to commit, and how short commit messages should look
+description: When to commit or open a PR, and how short titles should look
 alwaysApply: true
 ---
 
@@ -14,7 +14,7 @@ Canonical for this repo **and** for `mcp-execution-engine` / `mcp-gateway`. Thos
 
 ## Three repos
 
-A “please commit”, “please commit and push”, or similar ask is **all three** checkouts (`website`, `mcp-execution-engine`, `mcp-gateway`) — not only the repo in focus. Commit (and push, if asked) in every repo that has a change. Skip a clean tree.
+A “please commit”, “please commit and push”, “please commit, push, and open PRs”, or similar ask is **all three** checkouts (`website`, `mcp-execution-engine`, `mcp-gateway`) — not only the repo in focus. Commit (and push / open a PR, if asked) in every repo that has a change, or is ahead of the default branch. Skip a clean tree / nothing to PR. Do not open a second PR if one already exists for the branch.
 
 ## Signing
 
@@ -41,3 +41,13 @@ Small fix
 - EIP work: `EIP-NNNN` + artifact (`Exploration`, `MCP`, `Comic + Video`).
 - Otherwise a two-to-five-word Title Case label (`Launch Strategy`, `CI fix`).
 - If unsure, copy the nearest recent subject on that repo — do not write a paragraph.
+
+## Pull requests
+
+Same shortness as commit subjects. No conventional-commit prefix. No template checklist.
+
+- Exploration or MCP PR that lands **most** of that work: just the EIP id (`EIP-8038`).
+- Follow-up on the same EIP: add the artifact (`EIP-8038 Comic + Video`).
+- Anything else: same two-to-five-word label as a commit (`Git rules`).
+
+Description: short and structured — a few bullets or two small headings. Not a dump.

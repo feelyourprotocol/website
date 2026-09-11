@@ -24,7 +24,7 @@ Orchestrator for a **full integration**. Implementation lives in subskills — t
 
 Local engine checkout (sibling of `website/`): `../mcp-execution-engine/.cursor/skills/add-mcp-module/SKILL.md`.
 
-**Commit / push:** “please commit” or “please commit and push” means every dirty sibling of the three, not only `website`. See [git.mdc](../../rules/git.mdc).
+**Commit / push / PR:** “please commit”, “please commit and push”, or “open PRs” means every dirty or ahead sibling of the three, not only `website`. See [git.mdc](../../rules/git.mdc).
 
 ## Workflow gates (mandatory)
 
