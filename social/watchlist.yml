@@ -73,6 +73,15 @@ weather_mcp:
     x402-as-token or points, price, ETF.
 
 problem_slices:
+  - id: eip-8038
+    path: /eip-8038-state-access-gas
+    core_question: When you SSTORE on Amsterdam, what are you paying for — touching the slot, changing it, or creating it?
+    search:
+      - SSTORE gas Amsterdam Ethereum
+      - storage write cost Ethereum
+      - state access gas Ethereum
+      - cold SLOAD still 2100
+    avoid_leading_with: EIP-8038
   - id: eip-7843
     path: /eip-7843-slotnum-opcode
     core_question: How do you read the beacon slot on-chain without hardcoding 12-second slots?
@@ -137,6 +146,7 @@ problem_slices:
 
 # Last-resort ids if a hit already names an EIP (live only). Not a daily rotation.
 eip_number_fallback:
+  - eip-8038
   - eip-7843
   - eip-8037
   - eip-7708

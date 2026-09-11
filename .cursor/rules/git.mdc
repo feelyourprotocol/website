@@ -1,0 +1,68 @@
+---
+description: When to commit or open a PR, and how short titles should look
+alwaysApply: true
+---
+
+# Git
+
+Canonical for this repo **and** for `mcp-execution-engine` / `mcp-gateway`. Those repos point here — do not fork a second copy of these habits.
+
+## When
+
+- Do **not** commit, push, or open a PR unless the human asks.
+- Working-tree **inspection** (branch, dirty files) is fine. Do not stash, checkout, create, rename, or push branches unless asked.
+
+## Three repos
+
+A “please commit”, “please commit and push”, “please commit, push, and open PRs”, or similar ask is **all three** checkouts (`website`, `mcp-execution-engine`, `mcp-gateway`) — not only the repo in focus. Commit (and push / open a PR, if asked) in every repo that has a change, or is ahead of the default branch. Skip a clean tree / nothing to PR. Do not open a second PR if one already exists for the branch.
+
+## Signing
+
+Commits **and** pushes are signed (SSH / Touch ID). The human confirms with a fingerprint; that can take a few seconds. Wait for the prompt.
+
+Do **one** signed git operation at a time. Parallel commits or pushes fail — one fingerprint cannot answer three agents. After a commit-and-push ask: commit each dirty repo in turn, then push each repo that is ahead in turn.
+
+Do not retry in a tight loop, skip signing, or abandon because the signer has not answered yet.
+
+## Commit messages
+
+One short line. Name the thing that shipped. No conventional-commit prefix (`feat:`, `fix:`), no body, no invented PR numbers (`#52` is added on merge).
+
+Match `git log --oneline` on the repo you are committing:
+
+```
+EIP-7843 Exploration
+EIP-8037 MCP + new run_transaction tool
+Eip-7843 Comic + Video
+Twitter Refinement
+Small fix
+```
+
+- EIP work: `EIP-NNNN` + artifact (`Exploration`, `MCP`, `Comic + Video`).
+- Otherwise a two-to-five-word Title Case label (`Launch Strategy`, `CI fix`).
+- If unsure, copy the nearest recent subject on that repo — do not write a paragraph.
+
+## Pull requests
+
+Same shortness as commit subjects. No conventional-commit prefix. No template checklist.
+
+**Round-trip** (`eip-NNNN` branch, or the session is a protocol-change round-trip): every repo’s PR is the **bigger-context** PR. Title is just the EIP id (`EIP-8038`) — including engine/gateway, even if the first commits are only supporting (git rules, scaffolding). That PR will accumulate the exploration / MCP work. Do not name it after the first commit.
+
+Description: the **arch**, not the latest commit. Same shape, **not** the same text — each repo writes its own slice.
+
+- **website** — the exploration (widget, cover, home, mcp-docs twin).
+- **mcp-execution-engine** — the engine module / verbs / catalog.
+- **mcp-gateway** — transport: exposing those verbs, no per-EIP tool.
+
+Within that slice:
+
+- **What** — one or two lines: this repo’s part of the EIP.
+- **Round-trip** — where this repo sits (exploration vs MCP vs later); mark done vs open.
+- **So far** — what shipped **here**; what still lands on this PR.
+
+Do **not** copy the website body onto engine/gateway. Do **not** narrate supporting commits (`git.mdc`, templates). Those are not the PR.
+
+Engine and gateway bodies **link** the website GitHub PR (the exploration). Do not paste its description.
+
+- After that main PR: follow-ups add the artifact (`EIP-8038 Comic + Video`) and a short artifact-specific body.
+- Outside a round-trip: two-to-five-word title (`Git rules`); short structured body is fine.

@@ -37,7 +37,7 @@ Next `episode:` is `max(existing episode) + 1`. Domain on the strip: **feelyourp
 7. **Write** `design/comics/eip-NNNN.png` (or `.jpg`) + `design/comics/eip-NNNN.yml` using the [metadata template](#metadata-template). Do not rename keys.
 8. **Summary** — [Report](#report), including a paste-ready tweet — then **STOP**.
 
-Do not commit, push, or open a PR unless asked. Do not put the comic on the exploration page or in OG.
+Do not put the comic on the exploration page or in OG.
 
 ## Derivation
 

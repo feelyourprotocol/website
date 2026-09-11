@@ -45,7 +45,7 @@ Read, then derive. Do not re-brief the EIP. Do not invent verbs, numbers, or for
 10. **YouTube Shorts publication assets** — [YouTube Shorts publication](#youtube-shorts-publication). Extract thumbnail (`npm run video:thumb -- <id>`) and write `youtube.yml`; include paste-ready copy in the report.
 11. **Report** — [Report](#report), then **STOP**.
 
-Do not commit, push, or open a PR unless asked. Do not upload to any platform. Do not modify existing videos.
+Do not upload to any platform. Do not modify existing videos.
 
 ## Preflight (hard gates)
 

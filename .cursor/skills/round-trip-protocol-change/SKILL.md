@@ -24,6 +24,8 @@ Orchestrator for a **full integration**. Implementation lives in subskills — t
 
 Local engine checkout (sibling of `website/`): `../mcp-execution-engine/.cursor/skills/add-mcp-module/SKILL.md`.
 
+**Commit / push / PR:** “please commit”, “please commit and push”, or “open PRs” means every dirty or ahead sibling of the three, not only `website`. Round-trip PRs: title is the EIP id; body is that repo’s slice of the arch (exploration / engine / gateway), not a shared blurb or the first commit. Engine/gateway link the website PR. See [git.mdc](../../rules/git.mdc).
+
 ## Workflow gates (mandatory)
 
 This is a **multi-phase workflow with hard stops**. After each phase, **stop completely** — do not start the next phase in the same turn, even if the user said “let’s go” at the outset. “Let’s do the round-trip for EIP-xxxx” means **begin phase 1**. Later “go” / “yes” / “ship it” means **begin the next phase only**.
@@ -33,7 +35,6 @@ This is a **multi-phase workflow with hard stops**. After each phase, **stop com
 - Do **not** start the comic during the MCP phase — ask, then wait.
 - Do **not** start the video during the comic phase — ask, then wait. If the comic is skipped, ask about the video after the MCP report instead.
 - Do **not** treat green tests as a waiver of the human GO.
-- Do **not** commit, push, or open a PR unless asked.
 - Cover art and OG cards are **part of phase 2** (every exploration), not a later optional skill. PR remains optional.
 
 **Exception stops** (ask, then wait) — new runtime dependency, new shared E-Component **without** a design sub-round when reuse is unclear, briefing verdict flips to unfit, spec too underspecified to teach honestly.
