@@ -11,6 +11,7 @@ Canonical for this repo **and** for `mcp-execution-engine` / `mcp-gateway`. Thos
 
 - Do **not** commit, push, or open a PR unless the human asks.
 - Working-tree **inspection** (branch, dirty files) is fine. Do not stash, checkout, create, rename, or push branches unless asked.
+- A **push** ask includes the [pre-push CI](#before-a-push) loop: fix failures and commit those fixes without a second ask, then push.
 
 ## Three repos
 
@@ -36,6 +37,31 @@ Commits **and** pushes are signed (SSH / Touch ID). The human confirms with a fi
 Do **one** signed git operation at a time. Parallel commits or pushes fail — one fingerprint cannot answer three agents. After a commit-and-push ask: commit each dirty repo in turn, then push each repo that is ahead in turn.
 
 Do not retry in a tight loop, skip signing, or abandon because the signer has not answered yet.
+
+## Before a push
+
+For **each repo that will be pushed**, run that repo’s local CI (the cheap gates GitHub runs). Do this **before** the push, after the work is committed or about to be.
+
+| Repo | Local CI |
+| --- | --- |
+| `website` | `npm run lf:ci` · `npm run type-check` · `npm run test:unit:ci` |
+| `mcp-execution-engine` | `npm run typecheck` · `npm run test:ci` · `npm run lf:ci` · `npm run build` |
+| `mcp-gateway` | `npm run typecheck` · `npm run test:ci` · `npm run lf:ci` · `npm run build` |
+
+Skip Cypress / `test:e2e` unless the change is Cypress or a user-visible flow that job already covers.
+
+If a gate fails: fix it, re-run until green, **commit** the fix (same [commit-message](#commit-messages) habits) without waiting for another “please commit.” Then push. Do not push red.
+
+Same `working_directory` + `required_permissions: ["all"]` as other git. CI is not a signed git op — it may run in parallel across the three repos.
+
+## After a push
+
+A push does not say whether a PR exists. For **each repo you just pushed**, look it up (`gh pr view <branch>`).
+
+- **PR exists:** update **that** PR’s body so it still matches the [arch shape](#pull-requests) and the work now on the branch. Refresh **Round-trip** (done vs open) and **So far**. Do not retitle a round-trip PR. Do not turn the body into a changelog of the last commit. Do not open a second PR.
+- **No PR:** say so. Open one only if the human asked to open PRs.
+
+Report the PR URL (or “no PR”) after the push. `gh pr edit` is not a signed git op — run it after the push, still with `working_directory` + `required_permissions: ["all"]`.
 
 ## Commit messages
 
@@ -70,7 +96,7 @@ Within that slice:
 
 - **What** — one or two lines: this repo’s part of the EIP.
 - **Round-trip** — where this repo sits (exploration vs MCP vs later); mark done vs open.
-- **So far** — what shipped **here**; what still lands on this PR.
+- **So far** — what shipped **here**; what still lands on this PR. After later pushes, this is the line that moves.
 
 Do **not** copy the website body onto engine/gateway. Do **not** narrate supporting commits (`git.mdc`, templates). Those are not the PR.
 
