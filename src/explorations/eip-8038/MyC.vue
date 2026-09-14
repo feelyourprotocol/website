@@ -14,7 +14,7 @@ import { useExplorationExampleQuery } from '@/libs/useExplorationExampleQuery'
 import ComponentBreakdownView from './ComponentBreakdownView.vue'
 import { DEFAULT_SCENARIO_ID, exampleMeta, examples } from './examples'
 import { INFO as exploration } from './info'
-import { previewComponents, runScenario, type RunScenarioOutput } from './run'
+import { previewComponents, runScenario, warmExecution, type RunScenarioOutput } from './run'
 import ScenarioBriefView from './ScenarioBriefView.vue'
 import { getScenario } from './scenarios'
 import type { HardforkChoice } from './types'
@@ -75,6 +75,7 @@ async function runProgram(): Promise<void> {
 
 async function init() {
   example.value = resolveInitialExample(examples, DEFAULT_SCENARIO_ID, exampleQuery)
+  void warmExecution()
 }
 
 watch(example, (next, prev) => {

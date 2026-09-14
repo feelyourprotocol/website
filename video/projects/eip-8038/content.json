@@ -1,0 +1,126 @@
+{
+  "meta": {
+    "exploration": "eip-8038",
+    "defaultExample": "01-existing-slot"
+  },
+  "overlays": {
+    "title-card": {
+      "type": "title-card",
+      "eyebrow": "Ethereum · Amsterdam",
+      "title": "EIP-8038",
+      "subtitle": "State-access gas",
+      "hook": ["What are you paying for?", "Touch, change, or create?"]
+    },
+    "context": {
+      "type": "punch",
+      "layout": "banner",
+      "placement": "top-banner",
+      "text": "THREE PARTS",
+      "sub": "An SSTORE bills touch, change, and create apart",
+      "invert": true
+    },
+    "existing-run": {
+      "type": "split",
+      "layout": "banner",
+      "placement": "top-banner",
+      "segments": [
+        { "text": "Existing slot", "size": "lg" },
+        { "text": "Amsterdam write — watch the split ↓", "size": "md", "emphasis": true }
+      ]
+    },
+    "existing-read": {
+      "type": "split",
+      "layout": "banner",
+      "placement": "top-banner",
+      "segments": [
+        { "text": "Touch 2,100 · change 10,000", "size": "lg" },
+        { "text": "Create stays empty", "size": "md", "emphasis": true }
+      ]
+    },
+    "osaka-switch": {
+      "type": "punch",
+      "layout": "banner",
+      "placement": "top-banner",
+      "text": "SAME WRITE · OSAKA",
+      "sub": "Toggle the prior fork ↑",
+      "invert": false
+    },
+    "osaka-run": {
+      "type": "split",
+      "layout": "banner",
+      "placement": "top-banner",
+      "segments": [
+        { "text": "Change ~2,800", "size": "lg" },
+        { "text": "Program about 5,006 ↓", "size": "md", "emphasis": true }
+      ]
+    },
+    "read-slot": {
+      "type": "punch",
+      "layout": "banner",
+      "placement": "top-banner",
+      "text": "READ ONLY",
+      "sub": "Cold SLOAD stays 2,100 on both forks",
+      "invert": true
+    },
+    "new-slot": {
+      "type": "split",
+      "layout": "banner",
+      "placement": "top-banner",
+      "segments": [
+        { "text": "Empty slot · first write", "size": "lg" },
+        { "text": "Create is state gas ~97,920 ↓", "size": "md", "emphasis": true }
+      ]
+    },
+    "recap": {
+      "type": "split",
+      "layout": "banner",
+      "placement": "top-banner",
+      "segments": [
+        { "text": "Amsterdam prices them apart", "size": "lg" },
+        { "text": "Osaka still fuses the write", "size": "lg", "emphasis": true }
+      ]
+    },
+    "outro-card": {
+      "type": "outro-card",
+      "closing": "EIP-8038 prices touch, change, and create on their own — Amsterdam EL rules.",
+      "ctas": [
+        {
+          "label": "READ ABOUT THE EIP",
+          "url": "EIPS.ETHEREUM.ORG",
+          "variant": "secondary"
+        },
+        {
+          "label": "TRY IT YOURSELF",
+          "url": "FEELYOURPROTOCOL.ORG",
+          "variant": "primary"
+        }
+      ]
+    }
+  },
+  "annotations": {
+    "guide-run": {
+      "target": "run-program",
+      "label": "Run",
+      "hint": "Splits touch, change, create",
+      "side": "bottom"
+    },
+    "guide-fork": {
+      "target": "hardfork-toggle",
+      "label": "Hardfork",
+      "hint": "Toggle Amsterdam ↔ Osaka",
+      "side": "bottom"
+    },
+    "guide-example": {
+      "target": "example-select",
+      "label": "Scenario",
+      "hint": "Existing / read / new slot",
+      "side": "bottom"
+    },
+    "guide-table": {
+      "target": "cost-breakdown",
+      "label": "What the opcode pays",
+      "hint": "Touch · change · create",
+      "side": "top"
+    }
+  }
+}

@@ -13,11 +13,25 @@ const HARD_FORK_LABELS: Record<HardforkChoice, string> = {
   osaka: 'Osaka (baseline)',
 }
 
+const commonByFork = new Map<HardforkChoice, Common>()
+
 function commonForHardfork(hardfork: HardforkChoice): Common {
-  return new Common({
+  const cached = commonByFork.get(hardfork)
+  if (cached !== undefined) return cached
+  const common = new Common({
     chain: Mainnet,
     hardfork: hardfork === 'amsterdam' ? Hardfork.Amsterdam : Hardfork.Osaka,
   })
+  commonByFork.set(hardfork, common)
+  return common
+}
+
+/** Load EthereumJS so the first Run click is not a cold createVM. */
+export function warmExecution(): Promise<void> {
+  return Promise.all([
+    createVM({ common: commonForHardfork('amsterdam') }),
+    createVM({ common: commonForHardfork('osaka') }),
+  ]).then(() => undefined)
 }
 
 export interface RunScenarioOutput extends ScenarioRunResult {

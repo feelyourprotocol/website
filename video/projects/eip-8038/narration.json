@@ -1,0 +1,33 @@
+{
+  "segmentGapMs": 350,
+  "segments": [
+    {
+      "beat": "hook",
+      "text": "When you SSTORE on Amsterdam, what are you paying for — touching the slot, changing it, or creating it?"
+    },
+    {
+      "beat": "context",
+      "text": "EIP-8038 splits the write into touch, change, and create. Amsterdam ships it."
+    },
+    {
+      "beat": "existing-run",
+      "text": "Default: update a slot that already holds a value."
+    },
+    {
+      "beat": "existing-read",
+      "text": "Touch two thousand one hundred. Change ten thousand. Create stays empty."
+    },
+    {
+      "beat": "new-slot",
+      "text": "First write to an empty slot. Create is state gas — about ninety-seven thousand nine hundred twenty."
+    },
+    {
+      "beat": "recap",
+      "text": "Amsterdam prices touch, change, and create apart. Run the same write on Osaka to see the smaller change."
+    },
+    {
+      "beat": "outro",
+      "text": "Read EIP-8038 on eips.ethereum.org. Split the write on feelyourprotocol dot org."
+    }
+  ]
+}

@@ -16,6 +16,19 @@ Canonical for this repo **and** for `mcp-execution-engine` / `mcp-gateway`. Thos
 
 A “please commit”, “please commit and push”, “please commit, push, and open PRs”, or similar ask is **all three** checkouts (`website`, `mcp-execution-engine`, `mcp-gateway`) — not only the repo in focus. Commit (and push / open a PR, if asked) in every repo that has a change, or is ahead of the default branch. Skip a clean tree / nothing to PR. Do not open a second PR if one already exists for the branch.
 
+## Where git runs
+
+This Cursor window is a **multi-root** workspace. The default shell cwd is often `ethereumjs-monorepo`, not these three repos.
+
+Every git command for FYP (inspect included: `status`, `diff`, `log`) must:
+
+1. Set `working_directory` to **that** repo’s root — `…/feelyourprotocol/website`, `…/mcp-execution-engine`, or `…/mcp-gateway`. Never the monorepo, never `feelyourprotocol/` as a parent folder.
+2. Use `required_permissions: ["all"]`. The sandbox cannot open the monorepo’s cursorignored `packages/ethereum-tests` submodule; `git status` there dies with `error opening 'packages/ethereum-tests/.git': Operation not permitted`.
+
+If you see `packages/ethereum-tests` in a git error, you are **not** in a FYP repo. Do not `cd` into that submodule or “fix” it. Re-run with the two bullets above.
+
+Inspect of the three siblings may run in parallel **only** when both bullets are set. Signed commit/push stay one-at-a-time (below).
+
 ## Signing
 
 Commits **and** pushes are signed (SSH / Touch ID). The human confirms with a fingerprint; that can take a few seconds. Wait for the prompt.
