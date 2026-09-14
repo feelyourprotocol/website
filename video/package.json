@@ -17,6 +17,8 @@
     "voice:plan": "node --experimental-strip-types src/voice/plan-cli.ts",
     "voice:mux": "node --experimental-strip-types src/voice/mux-cli.ts",
     "thumb": "node --experimental-strip-types src/thumb-cli.ts",
+    "youtube:auth": "node --experimental-strip-types src/youtube/auth-cli.ts",
+    "youtube:upload": "node --experimental-strip-types src/youtube/upload-cli.ts",
     "generate": "node --experimental-strip-types src/generate-cli.ts",
     "render": "npm run generate"
   },

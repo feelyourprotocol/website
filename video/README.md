@@ -47,6 +47,19 @@ npm run video:thumb -- eip-8024 --time 4.2      # custom frame (e.g. climax)
 
 Output: `video/projects/<id>/output/<basename>-final-thumb.jpg` (JPEG, 9:16, ≤2 MB for YouTube Studio upload).
 
+## YouTube Shorts upload
+
+Local OAuth CLI — see [YOUTUBE.md](YOUTUBE.md). After `youtube.yml` + mux + thumb:
+
+```bash
+npm run video:youtube:auth              # once per machine
+npm run video:youtube:upload -- eip-8038 --dry-run
+npm run video:youtube:upload -- eip-8038              # unlisted
+npm run video:youtube:upload -- eip-8038 --privacy public
+```
+
+## Website integration
+
 Output: `video/projects/<id>/output/<id>-<timestamp>.webm`
 
 ## Website integration
@@ -118,4 +131,5 @@ Run record/preflight with `required_permissions: ["all"]`.
 
 - `.cursor/skills/video-short/SKILL.md` — end-to-end authoring playbook (agent-driven)
 - `.cursor/skills/video-short/reference.md` — architecture, JSON schemas, ElevenLabs recipe, security rules, troubleshooting
+- `video/YOUTUBE.md` — Desktop OAuth + `video:youtube:upload`
 - `og/README.md` — shared Chromium bootstrap pattern

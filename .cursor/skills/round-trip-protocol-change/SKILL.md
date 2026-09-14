@@ -12,7 +12,7 @@ description: >-
 
 Orchestrator for a **full integration**. Implementation lives in subskills — this file is the phase map, the hard stops, and the report contracts.
 
-**Human work:** high-level triggers only (start, briefing GO, exploration GO, optional MCP hints, comic ask, video ask, then close: merge GO and marketing GO). Do not ask for mid-phase micro-approvals.
+**Human work:** high-level triggers only (start, briefing GO, exploration GO, optional MCP hints, comic ask, video ask, then close: merge GO, YouTube GO when a Short exists, marketing GO). Do not ask for mid-phase micro-approvals.
 
 | Phase | Subskill | Then **STOP** until human |
 | --- | --- | --- |
@@ -21,7 +21,7 @@ Orchestrator for a **full integration**. Implementation lives in subskills — t
 | **3 — MCP** | [add-mcp-module](https://github.com/feelyourprotocol/mcp-execution-engine/blob/main/.cursor/skills/add-mcp-module/SKILL.md) | Ask whether to generate the Bro & Bruh comic |
 | **4 — Comic** | [bro-bruh-comic](../bro-bruh-comic/SKILL.md) | Ask whether to generate the short-form video |
 | **5 — Video** | [video-short](../video-short/SKILL.md) | Explicit **GO** to close |
-| **6 — Close** | [round-trip-close](../round-trip-close/SKILL.md) | Merge GO, then marketing GO |
+| **6 — Close** | [round-trip-close](../round-trip-close/SKILL.md) | Merge GO, then YouTube GO when a Short exists, then marketing GO |
 
 Local engine checkout (sibling of `website/`): `../mcp-execution-engine/.cursor/skills/add-mcp-module/SKILL.md`.
 
@@ -136,9 +136,9 @@ Only after explicit GO.
 
 Load and follow [round-trip-close](../round-trip-close/SKILL.md).
 
-**Agent does:** CI + clean-tree gates; wrap report; **STOP** for merge GO; on yes, merge PRs, delete remote `eip-NNNN`, checkout/pull default, delete local branches; success report; **STOP** for marketing GO; on yes, comic + video announcement kit (intent URLs + `file://` artifacts).
+**Agent does:** CI + clean-tree gates; wrap report; **STOP** for merge GO; on yes, merge PRs, delete remote `eip-NNNN`, checkout/pull default, delete local branches; success report; when a Short exists, YouTube review + **STOP** for YouTube GO; on yes, `npm run video:youtube:upload -- eip-NNNN --privacy public`; **STOP** for marketing GO; on yes, comic + video announcement kit (intent URLs + `file://` artifacts).
 
-**Output:** merged `main`, local `eip-NNNN` gone, announcement copy shown — round-trip complete.
+**Output:** merged `main`, local `eip-NNNN` gone, announcement copy shown, Short URL when video shipped — round-trip complete.
 
 ---
 
@@ -151,6 +151,6 @@ Load and follow [round-trip-close](../round-trip-close/SKILL.md).
 | MCP | Catalogue page exists for every **live** exploration; engine module only if a shipped verb can run the change. Side-trips (if any) tested, documented, and reported |
 | Comic | Optional. Done when the human skipped, or when `design/comics/eip-NNNN.yml` + image exist and the phase-4 report was given |
 | Video | Optional. Done when the human skipped, or when `video/projects/eip-NNNN/output/*-final.mp4` exists and the phase-5 report was given |
-| Close | Green CI, PRs merged, local `eip-NNNN` deleted, announcement kit shown (or skipped slots omitted) |
+| Close | Green CI, PRs merged, local `eip-NNNN` deleted, announcement kit shown (or skipped slots omitted); Short uploaded when video shipped and YouTube GO given |
 
 PRs are opened only when the human asks. Close **requires** them: no merge without the merge GO, and no merge while CI is pending or red.
