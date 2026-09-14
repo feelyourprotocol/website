@@ -33,9 +33,9 @@ Next `episode:` is `max(existing episode) + 1`. Domain on the strip: **feelyourp
 3. **Derive** the card — [Derivation](#derivation). Write the card in chat (or hold it) before drawing.
 4. **Distance check** — if it is “episode N with a new coat of paint,” restart from metaphors.
 5. **Draw** — image model, 3:4, existing strips as `reference_image_paths`. Lock copy in the prompt. Ban consumed places and skill examples.
-6. **Tweet** — [Announcement tweet](#announcement-tweet). Write `tweet.body`, `tweet.url`, and `tweet.alt` into the YAML.
+6. **Tweet** — [Announcement tweet](#announcement-tweet). Write `tweet.body`, `tweet.url`, `tweet.alt`, and `tweet.intent` into the YAML.
 7. **Write** `design/comics/eip-NNNN.png` (or `.jpg`) + `design/comics/eip-NNNN.yml` using the [metadata template](#metadata-template). Do not rename keys.
-8. **Summary** — [Report](#report), including a paste-ready tweet — then **STOP**.
+8. **Summary** — [Report](#report). Round-trip: no tweet paste (close owns that). Standalone: include tweet + intent — then **STOP**.
 
 Do not put the comic on the exploration page or in OG.
 
@@ -132,9 +132,10 @@ The strip is the **first exploration announcement** on @FeelEthereum — the *sp
 - Both panels: who is who (Bro = blonde, backwards FYP cap; Bruh = short dark hair), setting, the two lines, Bro’s panel-2 hearts, CTA box, original logo + `feelyourprotocol.org`. Easter egg in one clause.
 - Carry the collision (the red word in both mouths). Do not explain the pun, and do not paste `tweet.body`.
 - X limit **1000** characters. Aim 400–800. No “image of”, no “AI generated”, no URL.
-- Paste-ready in the report next to the caption.
 
-Paste-ready caption + alt in the report. Human may edit; don’t ask for a tweet-only GO.
+**Intent URL (required).** `https://x.com/intent/post?text=<urlencoded tweet.body>` — encode `application/x-www-form-urlencoded` (newlines `%0A`; same rule as [x-engagement reference](../x-engagement/reference.md) § Intent URLs). `text` is the full paste-ready caption, including the naked exploration URL already in the body. Do **not** also pass the `url` query param (that would duplicate the link). Alt text has **no** intent parameter — keep it paste-ready. Media cannot be attached; the human still adds the comic. Intent links do not select @FeelEthereum. Write `tweet.intent` in the YAML. **Round-trip:** do not put caption / intent / alt in this phase report — [round-trip-close](../round-trip-close/SKILL.md) shows them after merge. **Standalone:** paste-ready caption + alt + intent URL in the report.
+
+Human may edit; don’t ask for a tweet-only GO.
 
 ## Files
 
@@ -196,6 +197,7 @@ tweet:
   url: https://feelyourprotocol.org/<path from info.ts>
   alt: |
     <image alt, ≤1000 chars; both panels + locked bubble text>
+  intent: https://x.com/intent/post?text=<urlencoded tweet.body>
 
 notes: <consumed warning + anything a later LLM must not repeat>
 ```
@@ -216,13 +218,17 @@ notes: <consumed warning + anything a later LLM must not repeat>
 **Panel 1:** …
 **Panel 2:** …
 
+<!-- Round-trip: stop here. Standalone: include the Tweet / Open in X / Alt blocks below. -->
+
 **Tweet** (paste as-is; attach the comic):
 
 ```
 <body>
 ```
 
-**Alt text** (image description field):
+**Open in X:** <tweet.intent>
+
+**Alt text** (image description field — no intent param):
 
 ```
 <alt>

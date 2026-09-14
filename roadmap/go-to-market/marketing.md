@@ -10,8 +10,8 @@ Each exploration gets a **2-tweet arc today**, upgraded to a **3-tweet arc** onc
 
 | Slot | Job | Authored via |
 | --- | --- | --- |
-| **Comic** (spark) | Stops the feed with a protocol-native pun; anchors the exploration in the reader's mind with a fun, lightweight moment | [`bro-bruh-comic`](https://github.com/feelyourprotocol/website/tree/main/.cursor/skills/bro-bruh-comic) skill |
-| **Video** (engage) | 45–60 s Shorts-format clip that lands the substance of the EIP, encourages the reader to visit the exploration and check the change against their own domain; points to official sources (spec + Forkcast) | [`video-short`](https://github.com/feelyourprotocol/website/tree/main/.cursor/skills/video-short) skill |
+| **Comic** (spark) | Stops the feed with a protocol-native pun; anchors the exploration in the reader's mind with a fun, lightweight moment | Written in [`bro-bruh-comic`](https://github.com/feelyourprotocol/website/tree/main/.cursor/skills/bro-bruh-comic); shown at [`round-trip-close`](https://github.com/feelyourprotocol/website/tree/main/.cursor/skills/round-trip-close) after merge |
+| **Video** (engage) | 45–60 s Shorts-format clip that lands the substance of the EIP, encourages the reader to visit the exploration and check the change against their own domain; points to official sources (spec + Forkcast) | Written in [`video-short`](https://github.com/feelyourprotocol/website/tree/main/.cursor/skills/video-short); shown at `round-trip-close` after merge |
 | **MCP tweet** _(post-launch)_ | Shows how an agent uses the EIP via the hosted MCP with a concrete prompt; guides the reader to apply it to their own questions | _skill added during launch week_ |
 
 ## Engagement (between announcements)
@@ -34,6 +34,7 @@ Voice details live in the authoring skills (comic, video, engagement). Channels 
 <Changelog
   title="Marketing Strategy Changelog"
   :entries="[
+    { version: 'v0.8', date: '2026-09-14', summary: 'Announcement tweets are shown at round-trip close after merge; comic and video skills still author the YAML.' },
     { version: 'v0.7', date: '2026-09-10', summary: 'Engagement weather: high-stakes MCP complement (Base when it clears the bar); exploration add/sunset keeps the watchlist lexicon in sync.' },
     { version: 'v0.6', date: '2026-09-10', summary: 'Engagement weather: always-on “what moved” search plus broader family queries; fewer overlapping searches.' },
     { version: 'v0.5', date: '2026-09-10', summary: 'Engagement weather: cluster quotes/replies of the same story into one bullet.' },

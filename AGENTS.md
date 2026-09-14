@@ -10,7 +10,7 @@ Tool-agnostic entrypoint for coding agents (Cursor, Claude Code, Codex, etc.) in
 
 | Task | Read first |
 | --- | --- |
-| **Full round-trip** (EIP → exploration → MCP → optional comic) | [`.cursor/skills/round-trip-protocol-change/SKILL.md`](.cursor/skills/round-trip-protocol-change/SKILL.md) |
+| **Full round-trip** (EIP → exploration → MCP → optional comic/video → close) | [`.cursor/skills/round-trip-protocol-change/SKILL.md`](.cursor/skills/round-trip-protocol-change/SKILL.md) |
 | **Brief a protocol change** (round-trip phase 1) | [`.cursor/skills/brief-protocol-change/SKILL.md`](.cursor/skills/brief-protocol-change/SKILL.md) — includes working-tree prep (observe git only) |
 | **Create or change an exploration** (round-trip phase 2) | [`.cursor/skills/add-exploration/SKILL.md`](.cursor/skills/add-exploration/SKILL.md) → [adding-an-exploration.md](website-docs/contributing/adding-an-exploration.md) |
 | **Generate cover art** | [`.cursor/skills/cover-image/SKILL.md`](.cursor/skills/cover-image/SKILL.md) → [images.md](website-docs/contributing/images.md) |
@@ -34,7 +34,9 @@ Default path for a **new protocol change** is the [round-trip skill](.cursor/ski
 | **1 — Brief** | “Round-trip for EIP-xxxx” | [brief-protocol-change](.cursor/skills/brief-protocol-change/SKILL.md) — EIP report, suitability, who/why, taxonomy (topic / timeline / tags + reasoning), exploration idea, MCP outline, working-tree prep (observe git only) — then **stop** |
 | **2 — Exploration** | GO | [round-trip-branch-prep](.cursor/skills/round-trip-branch-prep/SKILL.md) then [add-exploration](.cursor/skills/add-exploration/SKILL.md) — design with care, then implement; tests; cover; home Latest — then **stop** |
 | **3 — MCP** | GO (optional hints from the widget) | Engine [add-mcp-module](https://github.com/feelyourprotocol/mcp-execution-engine/blob/main/.cursor/skills/add-mcp-module/SKILL.md) — module and/or catalogue page; tests; MCP report. Well-scoped structural lab expansions may ship in this phase as a **side-trip** (same skill) — then **ask** whether to generate the comic |
-| **4 — Comic** | Yes on that ask (skippable) | [bro-bruh-comic](.cursor/skills/bro-bruh-comic/SKILL.md) — strip + `design/comics/eip-NNNN.yml` |
+| **4 — Comic** | Yes on that ask (skippable) | [bro-bruh-comic](.cursor/skills/bro-bruh-comic/SKILL.md) — strip + `design/comics/eip-NNNN.yml` — then **ask** about video |
+| **5 — Video** | Yes on that ask (skippable) | [video-short](.cursor/skills/video-short/SKILL.md) — Shorts mp4 + `tweet.yml` / `youtube.yml` — then **stop** for close |
+| **6 — Close** | GO | [round-trip-close](.cursor/skills/round-trip-close/SKILL.md) — green CI + clean trees; wrap report; merge GO; marketing GO |
 
 Standalone widget work (no round-trip) still briefs first, then add-exploration. Read taxonomies from source (`TOPICS.ts`, `TIMELINE.ts`, `TAGS.ts`) — do not guess IDs. Tests passing is the quality bar, not the pedagogy bar — human reviews intro, usage, and examples.
 

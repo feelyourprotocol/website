@@ -3,16 +3,16 @@ name: round-trip-protocol-change
 description: >-
   Orchestrates the full Feel Your Protocol round-trip for a protocol change
   (EIP, ERC, or research): brief, exploration, MCP twin, optional Bro &
-  Bruh comic, then optional short-form video. Use when the user asks to do
-  the round-trip for an EIP, add an exploration plus MCP integration, or
-  integrate a protocol change end-to-end.
+  Bruh comic, optional short-form video, then close (CI, merge, marketing).
+  Use when the user asks to do the round-trip for an EIP, add an exploration
+  plus MCP integration, or integrate a protocol change end-to-end.
 ---
 
 # Protocol-change round-trip
 
 Orchestrator for a **full integration**. Implementation lives in subskills — this file is the phase map, the hard stops, and the report contracts.
 
-**Human work:** high-level triggers only (start, briefing GO, exploration GO, optional MCP hints, then a comic ask). Do not ask for mid-phase micro-approvals.
+**Human work:** high-level triggers only (start, briefing GO, exploration GO, optional MCP hints, comic ask, video ask, then close: merge GO and marketing GO). Do not ask for mid-phase micro-approvals.
 
 | Phase | Subskill | Then **STOP** until human |
 | --- | --- | --- |
@@ -20,7 +20,8 @@ Orchestrator for a **full integration**. Implementation lives in subskills — t
 | **2 — Exploration** | [round-trip-branch-prep](../round-trip-branch-prep/SKILL.md) then [add-exploration](../add-exploration/SKILL.md) | Explicit **GO** for MCP (optional hints from the widget) |
 | **3 — MCP** | [add-mcp-module](https://github.com/feelyourprotocol/mcp-execution-engine/blob/main/.cursor/skills/add-mcp-module/SKILL.md) | Ask whether to generate the Bro & Bruh comic |
 | **4 — Comic** | [bro-bruh-comic](../bro-bruh-comic/SKILL.md) | Ask whether to generate the short-form video |
-| **5 — Video** | [video-short](../video-short/SKILL.md) | Done (PR is an optional follow-up) |
+| **5 — Video** | [video-short](../video-short/SKILL.md) | Explicit **GO** to close |
+| **6 — Close** | [round-trip-close](../round-trip-close/SKILL.md) | Merge GO, then marketing GO |
 
 Local engine checkout (sibling of `website/`): `../mcp-execution-engine/.cursor/skills/add-mcp-module/SKILL.md`.
 
@@ -34,8 +35,9 @@ This is a **multi-phase workflow with hard stops**. After each phase, **stop com
 - Do **not** start MCP work during the exploration phase (planned `mcp-docs` page in the same exploration PR is allowed when the briefing already committed to a twin).
 - Do **not** start the comic during the MCP phase — ask, then wait.
 - Do **not** start the video during the comic phase — ask, then wait. If the comic is skipped, ask about the video after the MCP report instead.
+- Do **not** start close during the video (or comic) phase — wait for the close GO.
 - Do **not** treat green tests as a waiver of the human GO.
-- Cover art and OG cards are **part of phase 2** (every exploration), not a later optional skill. PR remains optional.
+- Cover art and OG cards are **part of phase 2** (every exploration), not a later optional skill.
 
 **Exception stops** (ask, then wait) — new runtime dependency, new shared E-Component **without** a design sub-round when reuse is unclear, briefing verdict flips to unfit, spec too underspecified to teach honestly.
 
@@ -104,7 +106,7 @@ Only after an explicit yes on that ask (or a standalone “comic for EIP-xxxx”
 
 Load and follow [bro-bruh-comic](../bro-bruh-comic/SKILL.md).
 
-**Agent does:** read `CANONICAL` + existing `design/comics/eip-*.yml` and strips; vibe intake; derive; draw; announcement tweet; write `design/comics/eip-NNNN.png` (or `.jpg`) + `eip-NNNN.yml`; comic report (includes paste-ready tweet).
+**Agent does:** read `CANONICAL` + existing `design/comics/eip-*.yml` and strips; vibe intake; derive; draw; write tweet YAML; write `design/comics/eip-NNNN.png` (or `.jpg`) + `eip-NNNN.yml`; comic report (no announcement paste — that waits for close).
 
 **Output:** strip + metadata — then **ask** (do not generate in this turn):
 
@@ -122,7 +124,21 @@ Load and follow [video-short](../video-short/SKILL.md).
 
 **Agent does:** preflight (registry entry, `data-testid` hooks, videoReady spec, Chromium probe, ElevenLabs key present — non-printing); derive plan from `CANONICAL.question.coreQuestion` + `examples.ts` (include the click-target inventory); draft `video/projects/eip-NNNN/{content,playbook,zones,narration}.json`; Tier 1–3 QA (vitest + type-check + storyboard + `video:rehearse`); synthesize voice; `npm run video:generate -- <id>` (1080×1920); verify codecs + frame 0 + audio start + 30–90 s; video report with a clickable `file://` URL to the muxed mp4. No mid-phase nits or preview-vs-final choice.
 
-**Output:** `video/projects/eip-NNNN/output/eip-NNNN-<timestamp>-final.mp4` (1080×1920) — round-trip complete.
+**Output:** `video/projects/eip-NNNN/output/eip-NNNN-<timestamp>-final.mp4` (1080×1920) — then **STOP** for close GO.
+
+If phase 5 was skipped, **STOP** for close GO after that skip (after the comic report, or after MCP if comic was also skipped). “Let’s go” at the start of the round-trip does **not** pre-authorize phase 6.
+
+---
+
+## Phase 6 — Close
+
+Only after explicit GO.
+
+Load and follow [round-trip-close](../round-trip-close/SKILL.md).
+
+**Agent does:** CI + clean-tree gates; wrap report; **STOP** for merge GO; on yes, merge PRs, delete remote `eip-NNNN`, checkout/pull default, delete local branches; success report; **STOP** for marketing GO; on yes, comic + video announcement kit (intent URLs + `file://` artifacts).
+
+**Output:** merged `main`, local `eip-NNNN` gone, announcement copy shown — round-trip complete.
 
 ---
 
@@ -135,5 +151,6 @@ Load and follow [video-short](../video-short/SKILL.md).
 | MCP | Catalogue page exists for every **live** exploration; engine module only if a shipped verb can run the change. Side-trips (if any) tested, documented, and reported |
 | Comic | Optional. Done when the human skipped, or when `design/comics/eip-NNNN.yml` + image exist and the phase-4 report was given |
 | Video | Optional. Done when the human skipped, or when `video/projects/eip-NNNN/output/*-final.mp4` exists and the phase-5 report was given |
+| Close | Green CI, PRs merged, local `eip-NNNN` deleted, announcement kit shown (or skipped slots omitted) |
 
-PR is **out of this round-trip** unless the human asks.
+PRs are opened only when the human asks. Close **requires** them: no merge without the merge GO, and no merge while CI is pending or red.

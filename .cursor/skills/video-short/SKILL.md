@@ -13,9 +13,9 @@ description: >-
 
 Playbook for one short per exploration. Output lives in `video/projects/<id>/output/*-final.mp4`. Architecture, schemas, ElevenLabs recipe, security rules, and troubleshooting: [reference.md](reference.md).
 
-**Round-trip:** phase 5 of [round-trip-protocol-change](../round-trip-protocol-change/SKILL.md). After the phase-4 (comic) report — or the phase-3 (MCP) report if comic was skipped — **ask** whether to generate; do not start this skill in the same turn as that report. On skip, stop. Standalone ("video for EIP-xxxx") is an implicit GO.
+**Round-trip:** phase 5 of [round-trip-protocol-change](../round-trip-protocol-change/SKILL.md). After the phase-4 (comic) report — or the phase-3 (MCP) report if comic was skipped — **ask** whether to generate; do not start this skill in the same turn as that report. On skip, the orchestrator goes to close GO. Standalone ("video for EIP-xxxx") is an implicit GO.
 
-**Human work in this phase:** one GO. Then ship. The report is paste-ready copy plus a **clickable local file URL** for the 1080×1920 `*-final.mp4`. Iteration is a follow-up the human starts.
+**Human work in this phase:** one GO. Then ship. The report is a **clickable local file URL** for the 1080×1920 `*-final.mp4` plus QA. Round-trip X copy waits for [round-trip-close](../round-trip-close/SKILL.md). Iteration is a follow-up the human starts.
 
 Do **not** pause for script approval, preview-vs-final, lettering, overflow, or other nits. Fix them in this phase or ship; do not list them as decisions. Do not ask whether they can post.
 
@@ -41,7 +41,7 @@ Read, then derive. Do not re-brief the EIP. Do not invent verbs, numbers, or for
 6. **Cost gate (transparency only, no human GO)** — print the full narration script + estimated duration in chat before spending ElevenLabs credits. Continue in the same turn. Do not ask the human to approve the script.
 7. **Synthesize + plan + generate 1080** — [Recording](#recording). The phase deliverable is always 1080×1920.
 8. **Verify** — frame 0 is title band, audio starts at 0:00, duration is 30–90 s, codecs are H.264 + AAC.
-9. **Announcement tweet** — [Announcement tweet](#announcement-tweet). Write `tweet.yml`; include paste-ready copy in the report.
+9. **Announcement tweet** — [Announcement tweet](#announcement-tweet). Write `tweet.yml` (including intent URLs). Round-trip: do not paste X copy in this report. Standalone: include paste-ready copy and intents.
 10. **YouTube Shorts publication assets** — [YouTube Shorts publication](#youtube-shorts-publication). Extract thumbnail (`npm run video:thumb -- <id>`) and write `youtube.yml`; include paste-ready copy in the report.
 11. **Report** — [Report](#report), then **STOP**.
 
@@ -226,6 +226,14 @@ X calls this "Add description" on the video composer (opens on click of the uplo
 - T2 comfortably under **240 chars** with both URLs.
 - If you cannot land T1 under 270 without cutting the mechanism line, drop the diagnostic and keep context + mechanism.
 
+### Intent URLs (required)
+
+`https://x.com/intent/post?text=<urlencoded body>` — encode `application/x-www-form-urlencoded` (newlines `%0A`; same rule as [x-engagement reference](../x-engagement/reference.md) § Intent URLs). `text` is the full paste-ready caption (`t1.body` / `t2.body`), including naked URLs already in the body. Do **not** also pass the `url` query param (that would duplicate a link). Video description has **no** intent parameter — keep it paste-ready. Media cannot be attached; the human still adds the mp4 on T1. Intent links do not select @FeelEthereum.
+
+T2: same `text=` of `t2.body`. Do **not** invent `in_reply_to` — that id does not exist until T1 is posted. After T1 is live, the human can append `&in_reply_to=<id>` or reply in the app.
+
+Write `t1.intent` and, when `shape: thread`, `t2.intent`. **Round-trip:** do not put T1/T2/intent/video-description in this phase report — [round-trip-close](../round-trip-close/SKILL.md) shows them after merge. **Standalone:** put both URLs in the report.
+
 ### File — `video/projects/<id>/tweet.yml`
 
 Copy the key set. Do not add ad-hoc top-level keys. `null` allowed for `t2.body` (single-tweet form) or `sources.forkcast_url` (no Forkcast page).
@@ -243,11 +251,13 @@ t1:
   media: <basename of the muxed *-final.mp4 under output/>
   video_description: |
     <2–3 sentences for the X "Add description" field; screen-reader accessible>
+  intent: https://x.com/intent/post?text=<urlencoded t1.body>
 
 # When shape: single, set t2: null and put all URLs in t1.body.
 t2:
   body: |
     <paste-ready reply, spec + Forkcast URLs on their own lines>
+  intent: https://x.com/intent/post?text=<urlencoded t2.body>
 
 sources:
   exploration_url: https://feelyourprotocol.org<INFO.path>
@@ -385,6 +395,8 @@ outro:   <text>
 - Tier 2: `video:storyboard` (0 errors), `video:rehearse` (Rehearsal OK)
 - Tier 3: `video:preflight` — `ready`
 
+<!-- Round-trip: omit the Announcement tweet block. Standalone: include it. -->
+
 **Announcement tweet** (`video/projects/eip-NNNN/tweet.yml`, shape: <thread|single>):
 
 T1 (attach the muxed `*-final.mp4`):
@@ -393,7 +405,9 @@ T1 (attach the muxed `*-final.mp4`):
 <t1.body>
 ```
 
-Video description (X composer → "Add description"):
+**Open in X (T1):** <t1.intent>
+
+Video description (X composer → "Add description" — no intent param):
 
 ```
 <t1.video_description>
@@ -405,6 +419,8 @@ T2 (reply, no media):
 ```
 <t2.body>
 ```
+
+**Open in X (T2):** <t2.intent> — after T1 is posted, append `&in_reply_to=<id>` or reply in the app.
 
 Human may edit; do not ask for a tweet-only GO.
 
@@ -441,5 +457,6 @@ Then **STOP**.
 
 - Iterate a beat — edit `narration.json` and re-run `voice:synth` + `npm run video:generate -- <id>` (segment files cache by beat name: delete `voice/segments/<beat>.mp3` to force a re-spend when the text changed)
 - Debug at layout size — `npm run video:generate:preview -- <id>` (540×960); then still ship 1080
-- Upload / caption / thumbnail — human, out of skill scope
+- X announcement (round-trip) — [round-trip-close](../round-trip-close/SKILL.md) after merge
+- YouTube Shorts — human, from this report’s YouTube block
 - Root-level `**/.env` gitignore, macOS Keychain fallback in `loadEnv.ts` — see [reference.md § Security](reference.md#security)
