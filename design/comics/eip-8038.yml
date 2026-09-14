@@ -1,0 +1,77 @@
+# Bro & Bruh comic metadata — schema bro-bruh-comic/v1
+# Keep this key set when adding files. Do not rename keys.
+schema: bro-bruh-comic/v1
+id: eip-8038
+episode: 6
+series: bro-bruh
+image: eip-8038.png
+
+exploration:
+  id: eip-8038
+  eip: 8038
+  name: EIP-8038 State-Access Gas Cost Update
+  core_question: >-
+    When you SSTORE on Amsterdam, what are you paying for — touching the slot,
+    changing it, or creating it?
+
+engine: parallel-worlds
+bridge:
+  word: ACCESS
+  trader_sense: no invite / no fill — he cannot get in
+  protocol_sense: state-access cost as its own component (EIP-8038)
+
+vibe:
+  slug: ethtokyo-week
+  topic: ETHTokyo week city-wide gathering (invite / room heat)
+  register: culture
+  recency: 2026-09
+  why_hot: >-
+    ETHTokyo week (19–27 Sep) is the IRL gathering on the calendar; people
+    talk about getting into rooms, not candles
+  why_narrative: >-
+    ACCESS is coin-time for Bruh (no fill / no invite) and the EIP-8038
+    access component for Bro. Tokyo nouns stay out of both bubbles.
+  repeat_of: null
+
+setting:
+  name: off-hour bowling alley (scoring table)
+  why: >-
+    Unused civic lanes. Not an access-diorama (no VIP rope, badge desk,
+    server cage). Shared activity, elsewhere thoughts.
+
+easter_egg: >-
+  House ball on the return with a tiny Ethereum octahedron sticker in the
+  thumb hole
+
+copy:
+  panel1_bruh: STILL NO ACCESS, I'M NOT CHASING THE FILL
+  panel2_bro: EIP-8038 — ACCESS IS PRICED ON ITS OWN. I CAN *FEEL* THE SPLIT
+  panel2_affect: dreaming
+  title: '*BRO & BRUH EPISODE 6'
+  cta: A NEW FEEL YOUR PROTOCOL EXPLORATION HAS ARRIVED, CHECK IT OUT!
+
+tweet:
+  body: |-
+    An SSTORE used to hide the write inside the touch. Amsterdam prices them apart.
+
+    https://feelyourprotocol.org/eip-8038-state-access-gas
+  url: https://feelyourprotocol.org/eip-8038-state-access-gas
+  alt: >-
+    Bro & Bruh episode 6, two-panel comic at an off-hour bowling alley scoring
+    table. Panel 1: Bruh, short dark hair, olive hoodie, scowls and thinks:
+    STILL NO ACCESS, I'M NOT CHASING THE FILL. Bro, blonde ponytail and
+    backwards teal FYP cap, smiles at the lanes. A house ball on the return
+    has a tiny Ethereum octahedron sticker in the thumb hole. Panel 2:
+    close-up of Bro, half-lidded, blush, pink hearts. He thinks: EIP-8038 —
+    ACCESS IS PRICED ON ITS OWN. I CAN *FEEL* THE SPLIT. Bottom-left: original
+    circular FYP mark plus feelyourprotocol.org. Yellow box: A NEW FEEL YOUR
+    PROTOCOL EXPLORATION HAS ARRIVED, CHECK IT OUT!
+
+notes: >-
+  Do not copy this bowling alley, ETH-sticker house ball, or ACCESS as the
+  red word. Do not reuse this no-access / not-chasing-the-fill Bruh line.
+  Discarded: WRITE as the stamp (stationery diorama risk); TOUCH as the stamp
+  (spa); VIP rope / badge desk; library; night bus. First redraw smashed
+  lettering; keep word spaces. Panel 2 is dreaming (hearts). Logo is
+  with-circle mark + feelyourprotocol.org. Vibe is ETHTokyo-week invite heat;
+  do not put Tokyo or the week in bubbles or the tweet.

@@ -26,21 +26,20 @@ Do not retry in a tight loop, skip signing, or abandon because the signer has no
 
 ## Commit messages
 
-One short line. Name the thing that shipped. No conventional-commit prefix (`feat:`, `fix:`), no body, no invented PR numbers (`#52` is added on merge).
+One line. Name the artifact **and** what changed — a bare `EIP-8038 MCP` is too thin. No conventional-commit prefix (`feat:`, `fix:`), no body, no invented PR numbers (`#52` is added on merge).
 
-Match `git log --oneline` on the repo you are committing:
+Normally **7–10 words**. Compact, not a paragraph.
 
 ```
-EIP-7843 Exploration
-EIP-8037 MCP + new run_transaction tool
-Eip-7843 Comic + Video
-Twitter Refinement
-Small fix
+EIP-7843 SLOTNUM exploration and cover
+EIP-8038 MCP module and run_bytecode message-call
+EIP-8038 Bro & Bruh comic
+Twitter reply voice refinement
 ```
 
-- EIP work: `EIP-NNNN` + artifact (`Exploration`, `MCP`, `Comic + Video`).
-- Otherwise a two-to-five-word Title Case label (`Launch Strategy`, `CI fix`).
-- If unsure, copy the nearest recent subject on that repo — do not write a paragraph.
+- EIP work: `EIP-NNNN` + artifact + a short change clue (what this commit actually landed).
+- Otherwise Title Case at the same length (`Launch Strategy draft`, `CI job budget`).
+- If unsure, read `git log --oneline` on that repo and add one more specific noun than a generic artifact label.
 
 ## Pull requests
 
