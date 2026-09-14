@@ -13,9 +13,11 @@ Canonical for this repo **and** for `mcp-execution-engine` / `mcp-gateway`. Thos
 - Working-tree **inspection** (branch, dirty files) is fine. Do not stash, checkout, create, rename, or push branches unless asked.
 - A **push** ask includes the [pre-push CI](#before-a-push) loop: fix failures and commit those fixes without a second ask, then push.
 
-## Three repos
+## Scope
 
-A “please commit”, “please commit and push”, “please commit, push, and open PRs”, or similar ask is **all three** checkouts (`website`, `mcp-execution-engine`, `mcp-gateway`) — not only the repo in focus. Commit (and push / open a PR, if asked) in every repo that has a change, or is ahead of the default branch. Skip a clean tree / nothing to PR. Do not open a second PR if one already exists for the branch.
+Default: a commit / push / PR ask is **only the repo the work is in**. Do not inspect, commit, or push a sibling “because the three exist.” Independent sessions (engine-only, gateway-only, website-only) stay in that checkout — the others may be on a different branch or a dirty tree that is not this task.
+
+**Round-trip only:** when this session is running [round-trip-protocol-change](../skills/round-trip-protocol-change/SKILL.md) (shared `eip-NNNN` branch is the extra signal), a commit / push / open-PRs ask means the three siblings that are dirty or ahead **on that work**. Skip a clean tree. Do not open a second PR. Do not touch a sibling that is on another branch or unrelated dirty state.
 
 ## Where git runs
 
@@ -28,13 +30,13 @@ Every git command for FYP (inspect included: `status`, `diff`, `log`) must:
 
 If you see `packages/ethereum-tests` in a git error, you are **not** in a FYP repo. Do not `cd` into that submodule or “fix” it. Re-run with the two bullets above.
 
-Inspect of the three siblings may run in parallel **only** when both bullets are set. Signed commit/push stay one-at-a-time (below).
+When a round-trip inspects more than one sibling, those inspects may run in parallel **only** when both bullets are set. Signed commit/push stay one-at-a-time (below).
 
 ## Signing
 
 Commits **and** pushes are signed (SSH / Touch ID). The human confirms with a fingerprint; that can take a few seconds. Wait for the prompt.
 
-Do **one** signed git operation at a time. Parallel commits or pushes fail — one fingerprint cannot answer three agents. After a commit-and-push ask: commit each dirty repo in turn, then push each repo that is ahead in turn.
+Do **one** signed git operation at a time. Parallel commits or pushes fail — one fingerprint cannot answer several agents. After a commit-and-push ask: commit each **in-scope** repo in turn, then push each of those that is ahead in turn. One repo normally; three only in a round-trip.
 
 Do not retry in a tight loop, skip signing, or abandon because the signer has not answered yet.
 
@@ -52,13 +54,13 @@ Skip Cypress / `test:e2e` unless the change is Cypress or a user-visible flow th
 
 If a gate fails: fix it, re-run until green, **commit** the fix (same [commit-message](#commit-messages) habits) without waiting for another “please commit.” Then push. Do not push red.
 
-Same `working_directory` + `required_permissions: ["all"]` as other git. CI is not a signed git op — it may run in parallel across the three repos.
+Same `working_directory` + `required_permissions: ["all"]` as other git. CI is not a signed git op — if several in-scope repos need it, they may run in parallel.
 
 ## After a push
 
 A push does not say whether a PR exists. For **each repo you just pushed**, look it up (`gh pr view <branch>`).
 
-- **PR exists:** update **that** PR’s body so it still matches the [arch shape](#pull-requests) and the work now on the branch. Refresh **Round-trip** (done vs open) and **So far**. Do not retitle a round-trip PR. Do not turn the body into a changelog of the last commit. Do not open a second PR.
+- **PR exists:** update **that** PR’s body to match the work now on the branch. Do not open a second PR. On a **round-trip** PR, keep the [arch shape](#pull-requests), refresh **Round-trip** and **So far**, and do not retitle. Do not turn the body into a changelog of the last commit.
 - **No PR:** say so. Open one only if the human asked to open PRs.
 
 Report the PR URL (or “no PR”) after the push. `gh pr edit` is not a signed git op — run it after the push, still with `working_directory` + `required_permissions: ["all"]`.
@@ -84,7 +86,7 @@ Twitter reply voice refinement
 
 Same shortness as commit subjects. No conventional-commit prefix. No template checklist.
 
-**Round-trip** (`eip-NNNN` branch, or the session is a protocol-change round-trip): every repo’s PR is the **bigger-context** PR. Title is just the EIP id (`EIP-8038`) — including engine/gateway, even if the first commits are only supporting (git rules, scaffolding). That PR will accumulate the exploration / MCP work. Do not name it after the first commit.
+**Round-trip** (this session is running the round-trip skill; shared `eip-NNNN` branch is the extra signal): every repo’s PR is the **bigger-context** PR. Title is just the EIP id (`EIP-8038`) — including engine/gateway, even if the first commits are only supporting (git rules, scaffolding). That PR will accumulate the exploration / MCP work. Do not name it after the first commit.
 
 Description: the **arch**, not the latest commit. Same shape, **not** the same text — each repo writes its own slice.
 

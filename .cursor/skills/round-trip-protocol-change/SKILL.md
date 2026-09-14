@@ -24,7 +24,7 @@ Orchestrator for a **full integration**. Implementation lives in subskills — t
 
 Local engine checkout (sibling of `website/`): `../mcp-execution-engine/.cursor/skills/add-mcp-module/SKILL.md`.
 
-**Commit / push / PR:** “please commit”, “please commit and push”, or “open PRs” means every dirty or ahead sibling of the three, not only `website`. Round-trip PRs: title is the EIP id; body is that repo’s slice of the arch (exploration / engine / gateway), not a shared blurb or the first commit. Engine/gateway link the website PR. See [git.mdc](../../rules/git.mdc).
+**Commit / push / PR:** this skill is the **only** scope where a git ask spans all three siblings (shared `eip-NNNN` branch). Outside it, stay in the repo the work is in — see [git.mdc](../../rules/git.mdc) § Scope. Round-trip PRs: title is the EIP id; body is that repo’s slice of the arch (exploration / engine / gateway), not a shared blurb or the first commit. Engine/gateway link the website PR.
 
 ## Workflow gates (mandatory)
 
