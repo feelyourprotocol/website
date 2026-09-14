@@ -58,7 +58,7 @@ Layout: two columns on large screens — left: intro + token; right: **How fees 
 
 ## Subdomain deployment
 
-Nginx block is prepared in `server-config/config/fyp_nginx` (BLOCK 6–7).
+Nginx block is prepared in `server-config/strato-fyp/config/nginx` (BLOCK 6–7).
 
 After first deploy:
 

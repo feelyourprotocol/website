@@ -6,7 +6,7 @@
 
 - **Production:** [mcp-docs.feelyourprotocol.org](https://mcp-docs.feelyourprotocol.org)
 - **Build:** `npm run mcp-docs:build` → `dist/mcp-docs/`
-- **Deploy:** `npm run build:deploy` on the server after `git pull` (see `server-config/deployment/fyp_deploy.sh`)
+- **Deploy:** GitHub Actions on `main` builds `dist/` and rsyncs it to Strato (see private `server-config` `strato-fyp/deployment/README.md`)
 
 Public nginx shape is documented in the private **`server-config`** repo. Sensitive values (SSH, secrets, env) stay there.
 
@@ -23,6 +23,7 @@ AWS target architecture is on the [roadmap](https://roadmap.feelyourprotocol.org
 <Changelog
   title="Deployment Changelog"
   :entries="[
+    { version: 'v0.4', date: '2026-09-14', summary: 'Production: GitHub Actions rsync of dist/ to Strato (not git pull on the box).' },
     { version: 'v0.3', date: '2026-07-20', summary: 'Deployment page under internals/.' },
   ]"
 />

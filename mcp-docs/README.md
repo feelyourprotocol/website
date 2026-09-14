@@ -76,7 +76,7 @@ Meta tags (canonical, Open Graph, Twitter) are injected at build time via `trans
 
 ## Subdomain deployment
 
-Nginx blocks are in the private `server-config` repo (`config/fyp_nginx`, BLOCK 10–11).
+Nginx blocks are in the private `server-config` repo (`strato-fyp/config/nginx`, BLOCK 10–11).
 
 After first deploy, expand the certificate:
 
