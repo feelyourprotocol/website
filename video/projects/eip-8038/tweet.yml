@@ -1,0 +1,41 @@
+schema: video-short-tweet/v1
+id: eip-8038
+
+# Comic already opened with ACCESS / "An SSTORE used to hide the write inside the touch."
+# Video tweet leads with the three-part bill and a gas-quote diagnostic.
+shape: thread
+
+t1:
+  body: |
+    EIP-8038 · Amsterdam
+    An SSTORE now bills touch, change, and create on their own. Existing-slot change jumps to 10,000.
+
+    Does your gas quote still treat a write as one number?
+
+    https://feelyourprotocol.org/eip-8038-state-access-gas
+  media: eip-8038-2026-09-14T10-36-04-final.mp4
+  video_description: |
+    Vertical Shorts walk-through of EIP-8038. A title card asks what an SSTORE
+    on Amsterdam pays for — touch, change, or create. The widget runs an
+    existing-slot write: touch stays 2,100, change jumps to 10,000, create
+    stays empty. Switching to a first write on an empty slot bills create as
+    state gas, about 97,920. Voice-over notes that Osaka still fuses the write,
+    then points to eips.ethereum.org and feelyourprotocol.org.
+
+t2:
+  body: |
+    The write split:
+
+    Spec: https://eips.ethereum.org/EIPS/eip-8038
+
+sources:
+  exploration_url: https://feelyourprotocol.org/eip-8038-state-access-gas
+  spec_url: https://eips.ethereum.org/EIPS/eip-8038
+  forkcast_url: null
+
+notes: |
+  Consumed opener: "EIP-8038 · Amsterdam / An SSTORE now bills touch, change, and create on their own";
+  diagnostic "Does your gas quote still treat a write as one number?".
+  Do not clone the comic ACCESS / "hide the write inside the touch" opener.
+  Forkcast page for 8038 returned 422 — omit the Forkcast URL until it exists.
+  Fork label: "Amsterdam" (EL rules), not "Glamsterdam".

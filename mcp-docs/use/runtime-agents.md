@@ -23,7 +23,7 @@ Markdown on this site is **secondary**. It can lag behind a gateway release; the
 ## Calling tools
 
 1. Probe first — learn what is runnable and how opcodes encode
-2. Run with **caller-supplied** inputs on the fork you need (default **amsterdam**). Use **`run_bytecode`** for opcodes/precompiles; **`run_transaction`** for wallet gas, first-touch transfers, and receipt logs; **`run_block`** for several txs or a header slot. **Optionally** run again on **osaka** when comparing against mainnet — this server does not ship demo programs
+2. Run with **caller-supplied** inputs on the fork you need (default **amsterdam**). Use **`run_bytecode`** for opcodes/precompiles and program-gas SSTORE/SLOAD; **`run_transaction`** for wallet gas, first-touch transfers, receipt logs, and `txStateGas`; **`run_block`** for several txs or a header slot. Prefund / code / storage in the **same** request when the observation needs a constructed world. Each call is a **new** lab unless you pass that prestate again. **Optionally** run again on **osaka** when comparing against mainnet — this server does not ship demo programs
 3. **Do not** substitute the `mcp-execution-engine` lab, `npm run lab`, or repository source unless MCP is unavailable
 
 ## Replying to humans
@@ -57,6 +57,7 @@ Use this order:
 <Changelog
   title="Runtime Agents Changelog"
   :entries="[
+    { version: 'v0.13', date: '2026-09-14', summary: 'Constructed prestate in the same request; each call is a new lab unless that prestate is passed again.' },
     { version: 'v0.12', date: '2026-09-10', summary: 'run_block routing for header slot and multi-tx lab blocks.' },
     { version: 'v0.11', date: '2026-09-08', summary: 'run_bytecode + run_transaction routing; renamed from run_evm_bytecode.' },
     { version: 'v0.10', date: '2026-09-02', summary: 'No self-host onboarding — agents wait for the public MCP; lab is not a user fallback.' },

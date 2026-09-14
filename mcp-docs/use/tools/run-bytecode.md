@@ -6,13 +6,17 @@
 
 Run **caller-supplied** raw EVM bytecode under a chosen fork / EIP configuration and receive a structured result — call-frame gas used, return data, final stack, optional opcode trace, and provenance.
 
+Bytecode runs as a **VM message-call** (real execution account, call-frame gas — no 21,000 intrinsic). `SSTORE` persists for the duration of that call. Optional `accounts` seeds code, balance, and storage in the **same** request.
+
 ## When to use
 
 - Opcode and stack questions (e.g. **Amsterdam** EIP-8024 DUPN / SWAPN / EXCHANGE)
 - Precompile CALL programs (ModExp, P-256)
+- Program-gas `SSTORE` / `SLOAD` (EIP-8038) — existing-slot write is about **5,006 vs 12,106**
 - Inspect stack-level execution with an optional trace
+- Pre-deploy a contract in `accounts[].code` and observe `EXTCODESIZE` in one call
 
-Wallet gas limits, first-touch ETH transfers, and receipt logs belong on [Run Transaction](/use/tools/run-transaction).
+Wallet gas limits, first-touch ETH transfers, receipt logs, and paid **`txStateGas`** belong on [Run Transaction](/use/tools/run-transaction).
 
 ## MCP tool name
 
@@ -23,6 +27,7 @@ Wallet gas limits, first-touch ETH transfers, and receipt logs belong on [Run Tr
 | Field | Required | Description |
 | --- | --- | --- |
 | `bytecode` | Yes | Hex-encoded bytecode (`0x` prefix optional). Max 24 576 bytes. |
+| `accounts` | No | Prefund code / balance / storage. Existing-slot SSTORE: put `storage` on `0x00000000000000000000000000000000000000b1` (the lab execution account). |
 | `fork` | No | `{ baseHardfork, eips[] }` — default **`amsterdam`**. Use **`osaka`** only when you want current mainnet baseline |
 | `gasLimit` | No | Decimal string. Default `1000000`. Max `30000000`. |
 | `trace` | No | When true, include stack-only execution steps (max 10 000) |
@@ -52,6 +57,7 @@ Expected on baseline: `success: false` (invalid opcode `0xe6`). Re-run with `ams
 | `success` | Whether execution completed without revert |
 | `gasUsed` | Call-frame gas consumed (string). Does **not** include the 21,000 transaction intrinsic. |
 | `gasUsedScope` | Always `call-frame` |
+| `stateGasSpilled` | Present when non-zero (Amsterdam new-slot SSTORE). Program write cost ≈ `gasUsed` − `stateGasSpilled`. |
 | `returnValue` | Hex return data |
 | `finalStack` | Stack after execution (hex strings). With `trace: true`, full stack from last step. |
 | `error` | Error message if execution failed (e.g. `stack underflow`) |
@@ -110,6 +116,8 @@ See [Guarantees](/use/guarantees) for ceilings (max gas, bytecode size, trace st
 <Changelog
   title="Run Bytecode Changelog"
   :entries="[
+    { version: 'v0.11', date: '2026-09-14', summary: 'VM message-call path — SSTORE persists in-call; optional accounts[] prestate; optional stateGasSpilled.' },
+    { version: 'v0.10', date: '2026-09-14', summary: 'SSTORE belongs on run_transaction — run_bytecode cannot persist storage writes.' },
     { version: 'v0.9', date: '2026-09-08', summary: 'Renamed run_evm_bytecode → run_bytecode. Value transfers moved to run_transaction.' },
     { version: 'v0.8', date: '2026-09-08', summary: 'messageCall results include approxTxGasUsed (21000 + call-frame); gasUsedScope always call-frame.' },
     { version: 'v0.7', date: '2026-09-02', summary: 'Implemented for public launch — not a local stdio product path.' },

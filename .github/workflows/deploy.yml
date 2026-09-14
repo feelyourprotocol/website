@@ -1,0 +1,49 @@
+name: Deploy
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-production
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    if: github.repository == 'feelyourprotocol/website'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      - run: npm run build:deploy
+
+      - name: rsync dist to Strato
+        env:
+          FYP_SSH_KEY: ${{ secrets.FYP_SSH_KEY }}
+          FYP_SSH_HOST: ${{ secrets.FYP_SSH_HOST }}
+          FYP_SSH_KNOWN_HOSTS: ${{ secrets.FYP_SSH_KNOWN_HOSTS }}
+        run: |
+          set -euo pipefail
+          test -n "${FYP_SSH_KEY:-}"
+          test -n "${FYP_SSH_HOST:-}"
+          test -n "${FYP_SSH_KNOWN_HOSTS:-}"
+          install -m 700 -d "$HOME/.ssh"
+          printf '%s\n' "$FYP_SSH_KEY" | tr -d '\r' > "$HOME/.ssh/id_ed25519"
+          chmod 600 "$HOME/.ssh/id_ed25519"
+          printf '%s\n' "$FYP_SSH_KNOWN_HOSTS" | tr -d '\r' > "$HOME/.ssh/known_hosts"
+          chmod 644 "$HOME/.ssh/known_hosts"
+          export RSYNC_RSH="ssh -i $HOME/.ssh/id_ed25519 -o IdentitiesOnly=yes -o BatchMode=yes -o StrictHostKeyChecking=yes"
+          # Destination is ./ because rrsync on the host jails into /var/www/fyp/dist
+          rsync -az --delete --chmod=F640,D750 dist/ "fyp@${FYP_SSH_HOST}:./"

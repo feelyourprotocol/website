@@ -26,7 +26,7 @@ is unavailable. Trust listTools on the connected server over stale repo text.
 
 Tools:
 - describe_capabilities (probe) — registry: forks, runnable EIP modules, opcodes, encoding, shapes
-- run_bytecode (simulate) — run raw bytecode under fork config (call-frame gas)
+- run_bytecode (simulate) — VM message-call; call-frame gas; optional accounts / stateGasSpilled
 - run_transaction — paid tx gas, receipt logs, wallet gasLimit, EIP-8037 dimensions
 
 Compare gas or outcomes optionally by calling the same verb twice (e.g. osaka then amsterdam).
@@ -84,7 +84,7 @@ MCP tool name: describe_capabilities
 Input: {} (no required fields)
 Output: engineVersion, ceilings, baselineForkId, namedForks, eips (runnable modules with opcodes + encoding + comparison; no demo programs), allowedBaseHardforks
 
-Use first to learn baselineForkId (osaka — current mainnet EL), prague (pre-Fusaka ModExp compare), preview fork amsterdam (alias glamsterdam), and runnable EIPs (8024, 7708, 7883 ModExp, 7951 secp256r1, 8037 state gas). Unimplemented EIPs are omitted.
+Use first to learn baselineForkId (osaka — current mainnet EL), prague (pre-Fusaka ModExp compare), preview fork amsterdam (alias glamsterdam), and runnable EIPs (8024, 7708, 7883 ModExp, 7951 secp256r1, 8037 state gas, 8038 state-access gas). Unimplemented EIPs are omitted.
 
 ================================================================================
 TOOL: RUN_BYTECODE (IMPLEMENTED — PUBLIC LAUNCH PENDING)
@@ -92,16 +92,17 @@ TOOL: RUN_BYTECODE (IMPLEMENTED — PUBLIC LAUNCH PENDING)
 
 MCP tool name: run_bytecode
 
-Purpose: Run raw EVM bytecode under fork/EIP config. Returns call-frame gas, stack, optional
-trace, provenance. Not for wallet gasLimit — use run_transaction.
+Purpose: Run raw EVM bytecode as a VM message-call under fork/EIP config. Returns call-frame gas, stack, optional
+trace, optional stateGasSpilled, provenance. Not for wallet gasLimit — use run_transaction.
 
 Inputs:
 - bytecode (required): hex, max 24576 bytes
+- accounts (optional): code/balance/storage prestate. Existing-slot SSTORE: storage on 0x00000000000000000000000000000000000000b1
 - fork (optional): { baseHardfork, eips[] } — default amsterdam; use osaka for mainnet baseline comparisons
 - gasLimit (optional): string, default 1000000, max 30000000
 - trace (optional): boolean, max 10000 steps
 
-Outputs: success, gasUsed (call-frame), gasUsedScope, returnValue, finalStack, error, steps?, provenance
+Outputs: success, gasUsed (call-frame), gasUsedScope, stateGasSpilled?, returnValue, finalStack, error, steps?, provenance
 
 Amsterdam note: eips: [] on amsterdam is correct — EIP-8024 bundled in hardfork.
 Optional 8024 compare: run same bytecode on osaka (baseline, invalid 0xe6–0xe8) then amsterdam (preview).
@@ -124,20 +125,21 @@ Inputs:
 - from, to (required): hex addresses (from is impersonated)
 - value (optional): wei decimal string
 - data, code, accounts, fork, gasLimit (optional). Default gasLimit 1000000. Pass 21000 for wallet-era limit.
+  accounts[] may include storage: [{ slot, value }] hex words (EIP-8038 existing-slot SSTORE).
 
 Outputs: success, gasUsed, gasUsedScope, txRegularGas?, txStateGas?, returnValue, error, logs?, decodedLogs?, provenance
 
 First-touch 1 wei to empty account: Osaka gasUsed 21000; Amsterdam ≈ 204600 (txStateGas 183600).
 gasLimit 21000 fails on Amsterdam first-touch.
 
-Use for EIP-8037 and EIP-7708 plain ETH transfers. Use run_bytecode for opcodes/precompiles.
+Use for EIP-8037 and EIP-7708 plain ETH transfers, and paid txStateGas. Use run_bytecode for opcodes/precompiles, SLOAD / EXTCODESIZE, and SSTORE program gas.
 ================================================================================
 COVERAGE
 ================================================================================
 
 Named forks: prague (ModExp compare), osaka (baseline, alias mainnet-el), amsterdam (preview, alias glamsterdam).
-baselineForkId: osaka. Runnable EIP modules at launch: 8024, 7708, 7883, 7951, 8037.
-Exploration twins (human catalogue): 8024, 7708, 7883, 7951, 8037 ready for public MCP; 7928 planned (generate). See use/eips/.
+baselineForkId: osaka. Runnable EIP modules at launch: 8024, 7708, 7883, 7951, 8037, 8038.
+Exploration twins (human catalogue): 8024, 7708, 7883, 7951, 8037, 8038 ready for public MCP; 7928 planned (generate). See use/eips/.
 
 ================================================================================
 GUARANTEES
@@ -161,7 +163,7 @@ FOR AI AGENTS
 ================================================================================
 
 1. If feel-your-protocol MCP connected → use describe_capabilities, then
-   run_bytecode (opcodes/precompiles) or run_transaction (wallet gas, transfers, receipts).
+   run_bytecode (opcodes/precompiles/program-gas SSTORE) or run_transaction (wallet gas, transfers, receipts, txStateGas).
    Default fork amsterdam; optionally osaka for mainnet comparison.
    Do not use the execution-engine lab as a substitute.
 2. Cite provenance.engineVersion and provenance.forkConfig in answers.

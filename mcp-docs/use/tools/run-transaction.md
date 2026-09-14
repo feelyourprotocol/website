@@ -6,7 +6,7 @@
 
 Run a **value-bearing transaction** under a chosen fork and receive **paid transaction gas** plus receipt logs. The sender is impersonated from `from` — no private key.
 
-This is the verb for wallet gas limits, first-touch ETH transfers (EIP-8037), and EIP-7708 Transfer logs on **tx value**.
+This is the verb for wallet gas limits, first-touch ETH transfers (EIP-8037), EIP-7708 Transfer logs on **tx value**, and paid **`txStateGas`** (new-slot SSTORE / first-touch). Program-gas SSTORE / SLOAD belongs on [Run Bytecode](/use/tools/run-bytecode).
 
 Raw opcode / stack / precompile programs belong on [Run Bytecode](/use/tools/run-bytecode).
 
@@ -30,7 +30,7 @@ Raw opcode / stack / precompile programs belong on [Run Bytecode](/use/tools/run
 | `value` | No | Wei as a decimal string (default `0`) |
 | `data` | No | Calldata hex |
 | `code` | No | Runtime bytecode installed at `to` before the tx (contract-wallet / SSTORE) |
-| `accounts` | No | Extra accounts to prefund |
+| `accounts` | No | Extra accounts to prefund (`address`, optional `balance`, `code`, `storage` slots) |
 | `fork` | No | `{ baseHardfork, eips[] }` — default **`amsterdam`** |
 | `gasLimit` | No | Decimal string. Default `1000000`. Pass **`21000`** for the wallet-era simple-transfer limit. |
 
@@ -78,6 +78,8 @@ See [Guarantees](/use/guarantees) for gas ceilings.
 <Changelog
   title="Run Transaction Changelog"
   :entries="[
+    { version: 'v0.3', date: '2026-09-14', summary: 'SSTORE program gas moved to run_bytecode; this verb keeps paid tx gas and txStateGas.' },
+    { version: 'v0.2', date: '2026-09-14', summary: 'accounts[].storage seeds slots (EIP-8038 existing-slot SSTORE).' },
     { version: 'v0.1', date: '2026-09-08', summary: 'New MCP tool — VM transaction execution; paid gas, 8037 dimensions, 7708 receipt logs.' },
   ]"
 />

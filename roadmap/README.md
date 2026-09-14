@@ -99,7 +99,7 @@ Tests: `npx vitest run roadmap/social/src/__tests__/ og/src/social/__tests__/`
 
 ## Subdomain deployment
 
-Nginx block is prepared in `../server-config/config/fyp_nginx` (BLOCK 10–11).
+Nginx block is prepared in `../server-config/strato-fyp/config/nginx` (BLOCK 10–11).
 
 After first deploy, expand the existing certificate to cover the subdomain:
 

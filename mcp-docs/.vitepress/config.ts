@@ -107,6 +107,7 @@ export default defineConfig({
                 { text: 'EIP-7843 SLOTNUM', link: '/use/eips/eip-7843' },
                 { text: 'EIP-7708 ETH transfer logs', link: '/use/eips/eip-7708' },
                 { text: 'EIP-8037 State creation gas', link: '/use/eips/eip-8037' },
+                { text: 'EIP-8038 State-access gas', link: '/use/eips/eip-8038' },
               ],
             },
             { text: 'Guarantees', link: '/use/guarantees' },

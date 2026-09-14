@@ -7,6 +7,7 @@ import { INFO as eip7928 } from './eip-7928/info'
 import { INFO as eip7951 } from './eip-7951/info'
 import { INFO as eip8024 } from './eip-8024/info'
 import { INFO as eip8037 } from './eip-8037/info'
+import { INFO as eip8038 } from './eip-8038/info'
 import type { Tag } from './TAGS'
 
 export { COVER_COLUMN_IMAGE_HEIGHT } from './layout'
@@ -20,6 +21,7 @@ export const EXPLORATIONS: Explorations = {
   [eip7951.id]: eip7951,
   [eip8024.id]: eip8024,
   [eip8037.id]: eip8037,
+  [eip8038.id]: eip8038,
 }
 
 export interface Examples {

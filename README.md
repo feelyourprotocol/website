@@ -67,10 +67,10 @@ npm run community-token:dev  # community token mini-site
 
 ```bash
 npm run build          # all sites (+ website type-check)
-npm run build:deploy   # all sites (website vite-only; used on server after git pull)
+npm run build:deploy   # all sites (website vite-only; what production builds)
 ```
 
-Outputs under `dist/` (`website`, `docs`, `website-docs`, `community-token`, `roadmap`, `mcp-docs`) are **not** in git — production runs `npm run build:deploy` after `git pull`. See `server-config/deployment/fyp_deploy.sh` in the private server-config repo.
+Outputs under `dist/` (`website`, `docs`, `website-docs`, `community-token`, `roadmap`, `mcp-docs`) are **not** in git. Production: GitHub Actions on `main` (`npm run build:deploy`, then `rsync` of `dist/` to Strato). Operator notes: private `server-config` `strato-fyp/deployment/README.md`.
 
 ### Optional tooling
 

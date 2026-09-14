@@ -13,7 +13,7 @@ End-user tool semantics: [Describe Capabilities](/use/tools/describe-capabilitie
 - **Query shapes, not library APIs** — the MCP surface exposes generic verbs (`simulate`, `transaction`, `block`, `generate`, `probe`); the engine returns structured results.
 - **Fork = capability set** — `(baseHardfork, eips[])` à la carte; named forks (`osaka` baseline, `amsterdam` preview) are curated shortcuts.
 - **Provenance on every result** — engine version, fork config, optional EIP maturity metadata, stability rollup, human caveat.
-- **Boundaries** — raw bytecode or impersonated transaction fields; no Solidity compile; no archive node; no multi-block historical backtesting.
+- **Boundaries** — raw bytecode or impersonated transaction fields **plus constructed prestate**; no Solidity compile; no archive node; no multi-block **historical** backtesting.
 
 See also [Design Principles](/internals/design-principles).
 
@@ -34,12 +34,14 @@ See also [Design Principles](/internals/design-principles).
 // SimulateBytecodeInput
 {
   bytecode: string
+  accounts?: { address: string; balance?: string; code?: string; storage?: { slot: string; value: string }[] }[]
   fork?: { baseHardfork: string; eips?: number[] }
   gasLimit?: string
   trace?: boolean
 }
 
 // SimulateBytecodeResult — gasUsedScope: 'call-frame'
+// Optional stateGasSpilled when Amsterdam spills EIP-8037 state gas into the frame.
 
 // RunTransactionInput
 {
@@ -48,7 +50,7 @@ See also [Design Principles](/internals/design-principles).
   value?: string
   data?: string
   code?: string
-  accounts?: { address: string; balance?: string; code?: string }[]
+  accounts?: { address: string; balance?: string; code?: string; storage?: { slot: string; value: string }[] }[]
   fork?: { baseHardfork: string; eips?: number[] }
   gasLimit?: string
 }
@@ -60,7 +62,7 @@ See also [Design Principles](/internals/design-principles).
 {
   transactions: { from: string; to: string; value?: string; data?: string; code?: string; gasLimit?: string }[]
   header?: { slotNumber?: string; number?: string; timestamp?: string }
-  accounts?: { address: string; balance?: string; code?: string }[]
+  accounts?: { address: string; balance?: string; code?: string; storage?: { slot: string; value: string }[] }[]
   fork?: { baseHardfork: string; eips?: number[] }
 }
 
@@ -89,6 +91,7 @@ See also [Design Principles](/internals/design-principles).
 | 7883 | repricing | yes | simulate |
 | 7951 | new-capability | yes | simulate |
 | 8037 | new-exec-model | yes | transaction, simulate |
+| 8038 | repricing | yes | simulate, transaction |
 
 Only runnable modules appear in `describeCapabilities()`. Wallet / receipt questions use **transaction**; opcode / precompile questions use **simulate**; header slot / multi-tx questions use **block**.
 
@@ -103,6 +106,9 @@ See [Quality](/internals/quality).
 <Changelog
   title="Execution Engine Changelog"
   :entries="[
+    { version: 'v0.1.10', date: '2026-09-14', summary: 'simulateBytecode is a VM message-call; SSTORE persists in-call; optional stateGasSpilled.' },
+    { version: 'v0.1.9', date: '2026-09-14', summary: 'Boundaries: isolated lab / constructed prestate; historical backtesting still out.' },
+    { version: 'v0.1.8', date: '2026-09-14', summary: 'EIP-8038 state-access module; accounts[].storage seed; SSTORE via runTransaction.' },
     { version: 'v0.1.7', date: '2026-09-10', summary: 'EIP-7843 SLOTNUM module — runBlock header.slotNumber; catalog row live.' },
     { version: 'v0.1.6', date: '2026-09-10', summary: 'runBlock lab verb — header snapshot, per-tx receipts, optional slotNumber.' },
     { version: 'v0.1.5', date: '2026-09-08', summary: 'runTransaction (VM tx path); paid gas, 8037 dimensions, 7708 receipt logs.' },

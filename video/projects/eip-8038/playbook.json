@@ -1,0 +1,72 @@
+{
+  "format": "shorts",
+  "exploration": "eip-8038",
+  "defaultExample": "01-existing-slot",
+  "steps": [
+    {
+      "beat": "hook",
+      "overlay": "title-card",
+      "wait": 4500
+    },
+    {
+      "beat": "context",
+      "overlay": "context",
+      "placement": "top-banner",
+      "focus": "cost-breakdown",
+      "cue": 3400,
+      "hideOverlay": true,
+      "wait": 600
+    },
+    {
+      "beat": "existing-run",
+      "overlay": "existing-run",
+      "annotate": "guide-run",
+      "placement": "top-banner",
+      "focus": "run-program",
+      "cue": 2800,
+      "click": "run-program",
+      "wait": 800
+    },
+    {
+      "beat": "existing-read",
+      "overlay": "existing-read",
+      "annotate": "guide-table",
+      "placement": "top-banner",
+      "focus": "cost-breakdown",
+      "cue": 3600,
+      "hideOverlay": true,
+      "wait": 800
+    },
+    {
+      "beat": "new-slot",
+      "overlay": "new-slot",
+      "annotate": "guide-example",
+      "placement": "top-banner",
+      "focus": "example-select",
+      "cue": 3600,
+      "hideOverlay": true,
+      "selectExample": "03-new-slot",
+      "click": "run-program",
+      "wait": 800
+    },
+    {
+      "beat": "new-table",
+      "annotate": "guide-table",
+      "focus": "cost-breakdown",
+      "wait": 1400
+    },
+    {
+      "beat": "recap",
+      "overlay": "recap",
+      "annotate": "guide-table",
+      "placement": "top-banner",
+      "focus": "cost-breakdown",
+      "wait": 4200
+    },
+    {
+      "beat": "outro",
+      "overlay": "outro-card",
+      "wait": 5000
+    }
+  ]
+}

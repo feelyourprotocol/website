@@ -24,7 +24,7 @@ Full schemas and limits: [mcp-docs/use/tools/](https://mcp-docs.feelyourprotocol
 
 ## Design principles _(still hold)_
 
-- **Stateless / bring-your-own-state (BYOS).** The caller supplies bytecode and any state overrides; we run in an isolated context and discard state after.
+- **Isolated lab / BYOS.** No archive node, no mainnet or L2 sync. The caller supplies bytecode, txs, and any constructed prestate; we run in an isolated context. **Default:** discard that lab world after the call (so workers stay parallel). Constructing accounts/code/storage **in the request** is in scope. An MCP transport session is not EVM memory — continuation across prompts is optional later, not implied.
 - **Raw bytecode, base-layer only.** No Solidity compilation in the service. ERC application-layer concerns are out of scope.
 - **Observability first.** Rich JSON traces (stack, memory, gas, opcodes) are a primary deliverable.
 - **Guardrails for agents.** Tool schemas, hard ceilings, and gas-based pricing protect the service (see [Pricing](/monetization/pricing)).
@@ -71,6 +71,7 @@ Resolved: MCP-first delivery (not REST-primary); docs split (roadmap = strategy,
 <Changelog
   title="Agent API Concept Changelog"
   :entries="[
+    { version: 'v0.6', date: '2026-09-14', summary: 'BYOS: isolated lab and demand-built prestate; MCP transport session is not EVM memory.' },
     { version: 'v0.5', date: '2026-09-08', summary: 'run_bytecode + run_transaction; renamed from run_evm_bytecode.' },
     { version: 'v0.4', date: '2026-09-02', summary: 'Generic MCP tools shipped (describe_capabilities, run_evm_bytecode); per-EIP tool sketch retired; public launch pending.' },
     { version: 'v0.3', date: '2026-07-15', summary: 'MCP docs site live at mcp-docs.feelyourprotocol.org — this page remains the strategic sketch.' },

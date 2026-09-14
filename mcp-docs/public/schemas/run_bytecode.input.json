@@ -9,6 +9,32 @@
       "type": "string",
       "description": "Hex-encoded EVM bytecode (0x prefix optional). Max 24576 bytes."
     },
+    "accounts": {
+      "type": "array",
+      "description": "Optional prestate. Seed storage for existing-slot SSTORE on 0x00000000000000000000000000000000000000b1.",
+      "items": {
+        "type": "object",
+        "required": ["address"],
+        "properties": {
+          "address": { "type": "string" },
+          "balance": { "type": "string" },
+          "code": { "type": "string" },
+          "storage": {
+            "type": "array",
+            "description": "Optional storage slots to seed.",
+            "items": {
+              "type": "object",
+              "required": ["slot", "value"],
+              "properties": {
+                "slot": { "type": "string", "description": "Storage slot hex (≤32 bytes)." },
+                "value": { "type": "string", "description": "Storage value hex (≤32 bytes)." }
+              },
+              "additionalProperties": false
+            }
+          }
+        }
+      }
+    },
     "fork": {
       "type": "object",
       "properties": {
