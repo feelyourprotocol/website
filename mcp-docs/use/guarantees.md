@@ -5,7 +5,8 @@
 ## What you can rely on
 
 - **Deterministic execution** — Same bytecode + fork config → same result (within EthereumJS semantics).
-- **Stateless / BYOS** — No archive node; you supply bytecode and any state overrides.
+- **Isolated lab / BYOS** — No archive node, no mainnet or L2 sync. You supply bytecode, txs, and any **constructed** prestate (accounts, code, storage). We do not pull chain state.
+- **Call isolation (default)** — Each tool call starts from that payload. Transport sessions are not EVM memory. Optional snapshot continuation is not shipped.
 - **Provenance on every result** — Engine version, fork config, optional EIP maturity metadata, stability rollup, human caveat. Fields are **basic and mostly optional** in v0.1 — we will tighten over time.
 - **Guardrails** — Hard limits below prevent runaway resource use.
 
@@ -30,6 +31,7 @@
 <Changelog
   title="Guarantees Changelog"
   :entries="[
+    { version: 'v0.5', date: '2026-09-14', summary: 'BYOS means no node — constructed prestate in a call is in scope; calls do not share EVM by default.' },
     { version: 'v0.4', date: '2026-09-10', summary: 'Max 8 transactions on run_block.' },
     { version: 'v0.3', date: '2026-07-20', summary: 'Split from execution-engine — user-facing limits and provenance under use/.' },
   ]"

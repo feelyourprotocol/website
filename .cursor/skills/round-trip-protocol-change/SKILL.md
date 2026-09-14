@@ -86,6 +86,8 @@ Load and follow [add-mcp-module](https://github.com/feelyourprotocol/mcp-executi
 
 **Agent does:** engine module and/or catalogue page per `docsStatus` and shipped verbs; tests; quality gates. Close with the MCP report from that skill.
 
+**Side-trips:** If this phase surfaces a **well-scoped** structural expansion or re-arrangement of a shipped verb (same generic tools; honest observation; no new MCP tool, runtime dependency, or session EVM), include it **now** — see [add-mcp-module](https://github.com/feelyourprotocol/mcp-execution-engine/blob/main/.cursor/skills/add-mcp-module/SKILL.md) § Side-trips. Apply it across engine, gateway, mcp-docs, and other EIP modules that taught the old path. Tests for the change **and** no regressions. Dedicated report section. A side-trip does **not** authorize the comic or skip the phase-3 STOP.
+
 **Output:** MCP twin in the state the briefing promised (runnable module or planned-module page) — then **ask** (do not generate in this turn):
 
 > Generate the Bro & Bruh comic for `eip-NNNN`?
@@ -128,7 +130,7 @@ Load and follow [video-short](../video-short/SKILL.md).
 | --- | --- |
 | Briefing | Human signed off core question, audience, suitability, taxonomy |
 | Exploration | Route + home Latest work; cover art; tests + `lf:ci` / typecheck; pedagogy + form-factor report |
-| MCP | Catalogue page exists for every **live** exploration; engine module only if a shipped verb can run the change |
+| MCP | Catalogue page exists for every **live** exploration; engine module only if a shipped verb can run the change. Side-trips (if any) tested, documented, and reported |
 | Comic | Optional. Done when the human skipped, or when `design/comics/eip-NNNN.yml` + image exist and the phase-4 report was given |
 | Video | Optional. Done when the human skipped, or when `video/projects/eip-NNNN/output/*-final.mp4` exists and the phase-5 report was given |
 

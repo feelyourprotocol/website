@@ -6,7 +6,7 @@
 
 | Piece | Role |
 | --- | --- |
-| **`mcp-execution-engine`** | Pure TypeScript library — stateless EthereumJS simulations (bytecode, transactions, BALs, traces). No HTTP, no payments, no agent protocol. |
+| **`mcp-execution-engine`** | Pure TypeScript library — isolated EthereumJS lab simulations (bytecode, transactions, BALs, traces). No chain RPC, no HTTP, no payments, no agent protocol. |
 | **`mcp-gateway`** | MCP transport + tool registry (+ later observability, x402). Depends one-way on the engine. **HTTP public path planned**; stdio is the current development transport. |
 | **`mcp-docs`** (this site) | Public documentation — [Use](/use/introduction) for end users, [Internals](/internals/architecture) for us and deep-divers. |
 | **`server-config`** (private) | Nginx blocks, deploy scripts, secrets — not in this public repo. |
@@ -22,7 +22,7 @@ The MCP server reuses the same EthereumJS v10 patterns already proven in the [ex
 - EIP-7708 transfer logs — `createVM` + `runBlock` (receipts; see the EIP-7708 exploration)
 - EIP-7928 block-level access lists — `createVM` + `runBlock` + `blockLevelAccessList` (see the BAL exploration)
 
-The browser `eComponents` layer and the server execution engine are **separate code paths today**; converging shared core logic is a future DRY seam.
+The browser `eComponents` layer and the server execution engine are **separate code paths today**; converging shared core logic is a future DRY seam. MCP `simulateBytecode` uses `createVM` plus a message-call, not detached `runCode`.
 
 ## Endpoints
 
@@ -47,6 +47,8 @@ Build sequence (see [roadmap timeline](https://roadmap.feelyourprotocol.org/road
 <Changelog
   title="Architecture Changelog"
   :entries="[
+    { version: 'v0.12', date: '2026-09-14', summary: 'MCP simulateBytecode is createVM plus a message-call, not detached runCode.' },
+    { version: 'v0.11', date: '2026-09-14', summary: 'Engine described as isolated lab (no chain RPC), not empty-world stateless.' },
     { version: 'v0.10', date: '2026-09-10', summary: 'run_block lab verb — header snapshot and per-tx receipts; BAL generate still planned.' },
     { version: 'v0.9', date: '2026-09-08', summary: 'Engine/gateway surface: run_transaction plus run_bytecode rename; 8037/7708 website primitives documented.' },
     { version: 'v0.8', date: '2026-09-02', summary: 'Public endpoints table is hosted-only; stdio is development transport, not a user path.' },

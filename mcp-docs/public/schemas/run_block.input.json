@@ -50,7 +50,20 @@
         "properties": {
           "address": { "type": "string" },
           "balance": { "type": "string" },
-          "code": { "type": "string" }
+          "code": { "type": "string" },
+          "storage": {
+            "type": "array",
+            "description": "Optional storage slots to seed (existing-slot SSTORE).",
+            "items": {
+              "type": "object",
+              "required": ["slot", "value"],
+              "properties": {
+                "slot": { "type": "string", "description": "Storage slot hex (≤32 bytes)." },
+                "value": { "type": "string", "description": "Storage value hex (≤32 bytes)." }
+              },
+              "additionalProperties": false
+            }
+          }
         }
       }
     },
