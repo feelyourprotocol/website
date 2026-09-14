@@ -108,7 +108,8 @@ Read `video/projects/eip-NNNN/youtube.yml`. Resolve the muxed `*-final.mp4` and 
 
 - **Tags:** <comma-separated>
 - **Category:** Science & Technology
-- **Playlist:** <playlist name>
+- **Playlist (fork):** <youtube.yml playlist>
+- **Playlist (topic):** Feel Your Protocol · <Topic title from registry / TOPICS.ts>
 - **Privacy:** public (default)
 ````
 

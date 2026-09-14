@@ -46,6 +46,7 @@
     "video:thumb": "npm run thumb --prefix video --",
     "video:youtube:auth": "npm run youtube:auth --prefix video",
     "video:youtube:upload": "npm run youtube:upload --prefix video --",
+    "video:youtube:playlist-sync": "npm run youtube:playlist-sync --prefix video --",
     "video:generate": "npm run website:build && npm run generate --prefix video --",
     "video:generate:preview": "npm run website:build && npm run generate --prefix video -- --preview",
     "video:render": "npm run video:generate --",

@@ -4,6 +4,7 @@ import { join } from 'node:path'
 
 import { loadVideoEnv } from '../loadEnv.ts'
 import { parseUploadArgs, UPLOAD_USAGE } from './parseUploadArgs.ts'
+import { playlistsForProject } from './topicPlaylist.ts'
 import { planUpload, resolveYoutubeClientConfig, uploadShort } from './uploadShort.ts'
 
 const PROJECTS_ROOT = join(import.meta.dirname, '../../projects')
@@ -34,7 +35,10 @@ async function main(): Promise<void> {
   console.log(`Privacy:  ${plan.privacy}`)
   console.log(`Video:    ${plan.videoPath}`)
   console.log(`Thumb:    ${plan.thumbPath}`)
-  console.log(`Playlist: ${args.skipPlaylist ? '(skipped)' : plan.meta.playlist}`)
+  const playlists = args.skipPlaylist
+    ? '(skipped)'
+    : playlistsForProject(plan.meta.id, plan.meta.playlist).join(' · ')
+  console.log(`Playlists: ${playlists}`)
   if (plan.alreadyPublished) {
     console.log(`Existing: ${plan.meta.published!.url}`)
   }
@@ -57,7 +61,7 @@ async function main(): Promise<void> {
       skipPlaylist: args.skipPlaylist,
       config: resolveYoutubeClientConfig(process.env),
     },
-    { fetch, now: () => new Date(), envPlaylistId: process.env.YOUTUBE_PLAYLIST_ID },
+    { fetch, now: () => new Date() },
   )
 
   console.log(`${result.action}: ${result.url}`)

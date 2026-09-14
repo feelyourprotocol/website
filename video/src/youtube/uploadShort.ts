@@ -1,10 +1,12 @@
 import { existsSync, readFileSync, writeFileSync } from 'node:fs'
 import { join } from 'node:path'
 
+import { addVideoToNamedPlaylists } from './addToPlaylists.ts'
 import { buildVideoResource } from './buildVideoResource.ts'
 import { refreshAccessToken } from './oauth.ts'
 import { parseYoutubeYml } from './parseYoutubeYml.ts'
 import { resolveUploadFiles } from './resolveUploadFiles.ts'
+import { playlistsForProject } from './topicPlaylist.ts'
 import type { YoutubeClientConfig, YoutubePrivacy, YoutubeShortMeta } from './types.ts'
 import { shortsUrl, writePublished } from './writePublished.ts'
 import { createYoutubeApi, type YoutubeApi } from './youtubeApi.ts'
@@ -68,7 +70,6 @@ export interface UploadShortDeps {
   createApi?: (accessToken: string, fetchImpl: typeof fetch) => YoutubeApi
   readFile?: (path: string) => Uint8Array
   writeFile?: (path: string, text: string) => void
-  envPlaylistId?: string
 }
 
 export async function uploadShort(
@@ -101,16 +102,6 @@ export async function uploadShort(
   const accessToken = await refreshAccessToken({ ...opts.config, fetch: deps.fetch })
   const api = (deps.createApi ?? createYoutubeApi)(accessToken, deps.fetch)
 
-  let playlistId: string | undefined
-  if (!opts.skipPlaylist) {
-    playlistId = deps.envPlaylistId?.trim() || (await api.findPlaylistIdByTitle(plan.meta.playlist))
-    if (!playlistId) {
-      throw new Error(
-        `YouTube playlist not found: "${plan.meta.playlist}". Create it once in Studio, or pass --skip-playlist.`,
-      )
-    }
-  }
-
   const readFile = deps.readFile ?? ((p: string) => new Uint8Array(readFileSync(p)))
   const videoBytes = readFile(plan.videoPath)
   const { id: videoId } = await api.insertVideo({
@@ -125,9 +116,13 @@ export async function uploadShort(
     warnings.push(`Thumbnail upload failed: ${err instanceof Error ? err.message : String(err)}`)
   }
 
-  if (playlistId) {
+  if (!opts.skipPlaylist) {
+    const titles = playlistsForProject(plan.meta.id, plan.meta.playlist)
     try {
-      await api.insertPlaylistItem({ playlistId, videoId })
+      const { created } = await addVideoToNamedPlaylists(api, videoId, titles)
+      for (const name of created) {
+        warnings.push(`Created playlist "${name}"`)
+      }
     } catch (err) {
       warnings.push(`Playlist add failed: ${err instanceof Error ? err.message : String(err)}`)
     }

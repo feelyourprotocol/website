@@ -1,8 +1,18 @@
+import type { YoutubeSearchHit } from './matchSearchHit.ts'
 import { googleErrorMessage } from './oauth.ts'
 import type { YoutubePrivacy } from './types.ts'
 
 const API = 'https://www.googleapis.com/youtube/v3'
 const UPLOAD = 'https://www.googleapis.com/upload/youtube/v3'
+
+const PRIVACY: ReadonlySet<string> = new Set(['public', 'unlisted', 'private'])
+
+export interface YoutubeVideoDetails {
+  videoId: string
+  title: string
+  privacy: YoutubePrivacy
+  publishedAt: string
+}
 
 export interface YoutubeApi {
   insertVideo(opts: {
@@ -11,8 +21,16 @@ export interface YoutubeApi {
   }): Promise<{ id: string }>
   setThumbnail(opts: { videoId: string; jpegBytes: Uint8Array }): Promise<void>
   findPlaylistIdByTitle(title: string): Promise<string | undefined>
+  createPlaylist(opts: {
+    title: string
+    description?: string
+    privacy?: YoutubePrivacy
+  }): Promise<{ id: string }>
   insertPlaylistItem(opts: { playlistId: string; videoId: string }): Promise<void>
   updatePrivacy(opts: { videoId: string; privacy: YoutubePrivacy }): Promise<void>
+  searchMine(query: string): Promise<YoutubeSearchHit[]>
+  listPlaylistVideoIds(playlistId: string): Promise<string[]>
+  getVideo(videoId: string): Promise<YoutubeVideoDetails | undefined>
 }
 
 export function createYoutubeApi(accessToken: string, fetchImpl: typeof fetch): YoutubeApi {
@@ -126,6 +144,27 @@ export function createYoutubeApi(accessToken: string, fetchImpl: typeof fetch): 
       return undefined
     },
 
+    async createPlaylist({ title, description, privacy }) {
+      const { json } = await apiJson(`${API}/playlists?part=snippet,status`, {
+        method: 'POST',
+        headers: {
+          ...auth,
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+        body: JSON.stringify({
+          snippet: {
+            title,
+            description: description ?? 'Feel Your Protocol exploration Shorts.',
+          },
+          status: { privacyStatus: privacy ?? 'public' },
+        }),
+      })
+      if (typeof json.id !== 'string' || !json.id) {
+        throw new Error('YouTube playlist create response missing id')
+      }
+      return { id: json.id }
+    },
+
     async insertPlaylistItem({ playlistId, videoId }) {
       await apiJson(`${API}/playlistItems?part=snippet`, {
         method: 'POST',
@@ -157,6 +196,90 @@ export function createYoutubeApi(accessToken: string, fetchImpl: typeof fetch): 
           },
         }),
       })
+    },
+
+    async searchMine(query: string) {
+      const params = new URLSearchParams({
+        part: 'snippet',
+        forMine: 'true',
+        type: 'video',
+        maxResults: '10',
+        q: query,
+      })
+      const { json } = await apiJson(`${API}/search?${params.toString()}`, {
+        method: 'GET',
+        headers: auth,
+      })
+      const items = Array.isArray(json.items) ? json.items : []
+      const hits: YoutubeSearchHit[] = []
+      for (const item of items) {
+        if (!item || typeof item !== 'object') continue
+        const rec = item as { id?: { videoId?: unknown }; snippet?: { title?: unknown } }
+        const videoId = rec.id?.videoId
+        const title = rec.snippet?.title
+        if (typeof videoId === 'string' && typeof title === 'string') {
+          hits.push({ videoId, title })
+        }
+      }
+      return hits
+    },
+
+    async listPlaylistVideoIds(playlistId: string) {
+      const ids: string[] = []
+      let pageToken: string | undefined
+      do {
+        const params = new URLSearchParams({
+          part: 'snippet',
+          playlistId,
+          maxResults: '50',
+        })
+        if (pageToken) params.set('pageToken', pageToken)
+        const { json } = await apiJson(`${API}/playlistItems?${params.toString()}`, {
+          method: 'GET',
+          headers: auth,
+        })
+        const items = Array.isArray(json.items) ? json.items : []
+        for (const item of items) {
+          if (!item || typeof item !== 'object') continue
+          const rec = item as { snippet?: { resourceId?: { videoId?: unknown } } }
+          const videoId = rec.snippet?.resourceId?.videoId
+          if (typeof videoId === 'string') ids.push(videoId)
+        }
+        pageToken = typeof json.nextPageToken === 'string' ? json.nextPageToken : undefined
+      } while (pageToken)
+      return ids
+    },
+
+    async getVideo(videoId: string) {
+      const params = new URLSearchParams({
+        part: 'snippet,status',
+        id: videoId,
+      })
+      const { json } = await apiJson(`${API}/videos?${params.toString()}`, {
+        method: 'GET',
+        headers: auth,
+      })
+      const items = Array.isArray(json.items) ? json.items : []
+      const item = items[0]
+      if (!item || typeof item !== 'object') return undefined
+      const rec = item as {
+        id?: unknown
+        snippet?: { title?: unknown; publishedAt?: unknown }
+        status?: { privacyStatus?: unknown }
+      }
+      const privacy = rec.status?.privacyStatus
+      const publishedAt = rec.snippet?.publishedAt
+      const title = rec.snippet?.title
+      if (typeof rec.id !== 'string' || typeof privacy !== 'string' || !PRIVACY.has(privacy)) {
+        return undefined
+      }
+      if (typeof publishedAt !== 'string' || typeof title !== 'string') return undefined
+      return {
+        videoId: rec.id,
+        title,
+        privacy: privacy as YoutubePrivacy,
+        publishedAt,
+      }
     },
   }
 }

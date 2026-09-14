@@ -118,4 +118,29 @@ describe('writePublished', () => {
     expect(twice).not.toContain('video_id: aaa')
     expect(twice.match(/^published:/gm)?.length).toBe(1)
   })
+
+  it('collapses duplicate published blocks', () => {
+    const dup = `${FIXTURE}
+
+published:
+  video_id: old
+  url: https://www.youtube.com/shorts/old
+  privacy: unlisted
+  uploaded_at: 2026-09-14T16:00:00.000Z
+
+published:
+  video_id: old
+  url: https://www.youtube.com/shorts/old
+  privacy: unlisted
+  uploaded_at: 2026-09-14T16:00:00.000Z`
+    const once = writePublished(dup, {
+      video_id: 'new',
+      url: shortsUrl('new'),
+      privacy: 'public',
+      uploaded_at: '2026-09-14T18:00:00.000Z',
+    })
+    expect(once.match(/^published:/gm)?.length).toBe(1)
+    expect(once).toContain('video_id: new')
+    expect(once).not.toContain('video_id: old')
+  })
 })

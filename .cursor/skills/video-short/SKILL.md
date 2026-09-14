@@ -313,7 +313,7 @@ Weak signal but still helps related-video ranking. Pick: `Ethereum`, `EIP-NNNN`,
 ### Category + Playlist
 
 - **Category:** *Science & Technology* (default for every FYP short).
-- **Playlist:** bucket by fork — e.g. *Feel Your Protocol · Amsterdam EIPs*. Create the playlist once per fork; add every new short to it.
+- **Playlists:** two memberships. Yaml `playlist:` is the **fork** shelf (*Feel Your Protocol · Amsterdam EIPs*). Upload / playlist-sync also add the **topic** shelf (*Feel Your Protocol · Robustness*, *UX*, …) from `video/src/explorationRegistry.ts` (same labels as `TOPICS.ts`). Create either playlist if it does not exist. Do not add a playlist per tag.
 
 ### Diversity check
 
@@ -348,7 +348,7 @@ tags:
   - <mechanism keyword>
 
 category: Science & Technology
-playlist: Feel Your Protocol · <fork> EIPs
+playlist: Feel Your Protocol · <fork> EIPs   # fork shelf; topic shelf is derived, not listed here
 
 thumbnail:
   file: <basename>-final-thumb.jpg
@@ -440,7 +440,8 @@ Beschreibung (Description):
 
 - **Tags:** <comma-separated>
 - **Kategorie / Category:** Science & Technology
-- **Playlist:** <playlist name>
+- **Playlist (fork):** <yaml playlist>
+- **Playlist (topic):** Feel Your Protocol · <Topic> (derived; upload adds both)
 - **Thumbnail:** `video/projects/eip-NNNN/output/<basename>-final-thumb.jpg` (1280×2276 JPEG — upload via *Datei hochladen* / *Upload file*, not *Aus Video auswählen*)
 
 Human may edit; do not ask for a YouTube-only GO.

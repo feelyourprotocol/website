@@ -277,7 +277,7 @@ Unit tests already cover the pipeline surface. Do not treat them as a substitute
 | `voice:synth` HTTP 401 | Missing / stale `ELEVENLABS_API_KEY` — do not print it; ask human to rotate in the ElevenLabs dashboard |
 | `video:youtube:auth` no refresh token | Google already granted the app without `prompt=consent`. Revoke at https://myaccount.google.com/permissions and re-run auth |
 | `video:youtube:upload` missing env | Client id/secret/refresh token absent — human fills `video/.env` per [YOUTUBE.md](../../../video/YOUTUBE.md); do not print values |
-| `video:youtube:upload` playlist not found | Create *Feel Your Protocol · \<fork\> EIPs* once in Studio, or pass `--skip-playlist` |
+| `video:youtube:upload` playlist not found | Should not happen — missing titles are created via `playlists.insert`. If create fails, check OAuth scopes include `youtube` |
 | YouTube Studio won't accept / show custom thumbnail | Use **Datei hochladen** (*Upload file*), not *Aus Video auswählen* (in-video frames only). File must be **JPEG** (or PNG/GIF/BMP) at **≥1280 px wide**, 9:16, **≤2 MB**. `video:thumb` emits `-final-thumb.jpg` at 1280×2276 — re-run `npm run video:thumb -- <id>` if you still have an old 1080-wide `.png`. Custom Shorts thumbnails may require a verified channel / YPP |
 | `voice:synth` HTTP 429 | Rate limit — re-run after backoff; cache hits do not re-request |
 | Audio starts before video | Trim offset — see `voice/mux-cli.ts`; default is `anchor on title beat` (silence before hook is trimmed from narration source) |

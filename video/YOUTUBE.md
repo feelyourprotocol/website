@@ -68,9 +68,20 @@ npm run video:youtube:upload -- eip-8038 --privacy public
 Needs `video/projects/<id>/youtube.yml`, `output/*-final.mp4`, and
 `output/*-final-thumb.jpg` (`npm run video:thumb -- <id>` if the JPEG is missing).
 
-The playlist title in yaml must already exist in Studio (once per fork), e.g.
-*Feel Your Protocol · Amsterdam EIPs*. Pass `--skip-playlist` to upload without
-it, or set `YOUTUBE_PLAYLIST_ID` in `.env` to skip the title lookup.
+The `playlist:` title in yaml is the **fork** shelf. Upload and playlist-sync also
+add a **topic** shelf (`Feel Your Protocol · Robustness`, `UX`, …) derived from
+`video/src/explorationRegistry.ts` (same labels as the site topics). Either
+playlist is created on the channel if it does not exist yet (public). Pass
+`--skip-playlist` to upload without playlist membership.
+
+Add already-published Shorts to those playlists (creates a missing playlist,
+looks up missing `published.video_id` via channel search, writes `published:`
+into yaml):
+
+```bash
+npm run video:youtube:playlist-sync
+npm run video:youtube:playlist-sync -- eip-7708 eip-8037
+```
 
 On success the CLI prints `https://www.youtube.com/shorts/<id>` and writes a
 `published:` block into `youtube.yml` so a second run is a no-op. `--force`

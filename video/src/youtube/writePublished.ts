@@ -10,12 +10,25 @@ export function formatPublishedBlock(published: YoutubePublishedMeta): string {
   ].join('\n')
 }
 
+function stripPublishedBlocks(ymlText: string): string {
+  const lines = ymlText.split(/\r?\n/)
+  const out: string[] = []
+  for (let i = 0; i < lines.length; i++) {
+    if (lines[i] === 'published:') {
+      i++
+      while (i < lines.length && lines[i].startsWith('  ')) i++
+      i--
+      continue
+    }
+    out.push(lines[i])
+  }
+  return out.join('\n').replace(/\n+$/, '')
+}
+
 /** Insert or replace the top-level `published:` mapping. Preserves the rest of the file. */
 export function writePublished(ymlText: string, published: YoutubePublishedMeta): string {
   const block = formatPublishedBlock(published)
-  const replaced = ymlText.replace(/(?:^|\n)published:\n(?:  .*\n?)*/m, `\n${block}\n`)
-  if (replaced !== ymlText) return replaced.replace(/\n+$/, '\n')
-  return `${ymlText.replace(/\n+$/, '')}\n\n${block}\n`
+  return `${stripPublishedBlocks(ymlText)}\n\n${block}\n`
 }
 
 export function shortsUrl(videoId: string): string {

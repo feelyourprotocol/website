@@ -59,13 +59,26 @@ function mockApi(calls: string[], playlistId: string | null = 'PL123'): YoutubeA
     },
     async findPlaylistIdByTitle(title: string) {
       calls.push(`playlist:${title}`)
-      return playlistId === null ? undefined : playlistId
+      return playlistId === null ? undefined : `${playlistId}:${title}`
+    },
+    async createPlaylist({ title }) {
+      calls.push(`createPlaylist:${title}`)
+      return { id: `PLnew:${title}` }
     },
     async insertPlaylistItem() {
       calls.push('insertPlaylistItem')
     },
     async updatePrivacy() {
       calls.push('updatePrivacy')
+    },
+    async searchMine() {
+      return []
+    },
+    async listPlaylistVideoIds() {
+      return []
+    },
+    async getVideo() {
+      return undefined
     },
   }
 }
@@ -134,9 +147,11 @@ describe('uploadShort', () => {
     expect(result.action).toBe('uploaded')
     expect(result.url).toBe('https://www.youtube.com/shorts/vidNew')
     expect(calls).toEqual([
-      'playlist:Feel Your Protocol · Amsterdam EIPs',
       'insertVideo',
       'setThumbnail',
+      'playlist:Feel Your Protocol · Amsterdam EIPs',
+      'insertPlaylistItem',
+      'playlist:Feel Your Protocol · Robustness',
       'insertPlaylistItem',
     ])
     const meta = parseYoutubeYml(readFileSync(join(dir, 'youtube.yml'), 'utf8'))
@@ -188,18 +203,32 @@ published:
     )
   })
 
-  it('fails before upload when the playlist title is missing', async () => {
+  it('creates the playlist when the title is missing', async () => {
     const dir = writeProject()
-    await expect(
-      uploadShort(
-        dir,
-        { privacy: 'unlisted', force: false, skipPlaylist: false, config },
-        {
-          fetch: tokenFetch(),
-          now: () => new Date(),
-          createApi: () => mockApi([], null),
-        },
-      ),
-    ).rejects.toThrow(/playlist not found/)
+    const calls: string[] = []
+    const result = await uploadShort(
+      dir,
+      { privacy: 'unlisted', force: false, skipPlaylist: false, config },
+      {
+        fetch: tokenFetch(),
+        now: () => new Date('2026-09-14T18:00:00.000Z'),
+        createApi: () => mockApi(calls, null),
+      },
+    )
+    expect(result.action).toBe('uploaded')
+    expect(result.warnings).toEqual([
+      'Created playlist "Feel Your Protocol · Amsterdam EIPs"',
+      'Created playlist "Feel Your Protocol · Robustness"',
+    ])
+    expect(calls).toEqual([
+      'insertVideo',
+      'setThumbnail',
+      'playlist:Feel Your Protocol · Amsterdam EIPs',
+      'createPlaylist:Feel Your Protocol · Amsterdam EIPs',
+      'insertPlaylistItem',
+      'playlist:Feel Your Protocol · Robustness',
+      'createPlaylist:Feel Your Protocol · Robustness',
+      'insertPlaylistItem',
+    ])
   })
 })
