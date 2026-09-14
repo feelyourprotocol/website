@@ -17,7 +17,7 @@ Orchestrator for a **full integration**. Implementation lives in subskills — t
 | Phase | Subskill | Then **STOP** until human |
 | --- | --- | --- |
 | **1 — Brief** | [brief-protocol-change](../brief-protocol-change/SKILL.md) | Explicit **GO** for the exploration |
-| **2 — Exploration** | [add-exploration](../add-exploration/SKILL.md) | Explicit **GO** for MCP (optional hints from the widget) |
+| **2 — Exploration** | [round-trip-branch-prep](../round-trip-branch-prep/SKILL.md) then [add-exploration](../add-exploration/SKILL.md) | Explicit **GO** for MCP (optional hints from the widget) |
 | **3 — MCP** | [add-mcp-module](https://github.com/feelyourprotocol/mcp-execution-engine/blob/main/.cursor/skills/add-mcp-module/SKILL.md) | Ask whether to generate the Bro & Bruh comic |
 | **4 — Comic** | [bro-bruh-comic](../bro-bruh-comic/SKILL.md) | Ask whether to generate the short-form video |
 | **5 — Video** | [video-short](../video-short/SKILL.md) | Done (PR is an optional follow-up) |
@@ -68,7 +68,9 @@ If the verdict is **not a fit**, stop the round-trip. Do not proceed to phase 2.
 
 Only after explicit GO.
 
-Load and follow [add-exploration](../add-exploration/SKILL.md). **Plan and implement in one go** (design is not a separate human gate).
+**First** load and follow [round-trip-branch-prep](../round-trip-branch-prep/SKILL.md). If prep does not succeed, **STOP** — do not start add-exploration.
+
+Then load and follow [add-exploration](../add-exploration/SKILL.md). **Plan and implement in one go** (design is not a separate human gate).
 
 **Agent does:** write `canonical.ts` from the signed-off briefing, widget, tests (logic + UI, including beyond-edge), cover art, home Latest, quality gates. Close with the exploration report from that skill.
 
