@@ -13,6 +13,9 @@ describe('ImprintView', () => {
   })
 
   it('renders acknowledgements with base tools', () => {
+    expect(wrapper.get('[data-testid="imprint-acknowledgements"]').classes()).toContain(
+      'fyp-run-surface',
+    )
     expect(wrapper.text()).toContain('ACKNOWLEDGEMENTS')
     expect(wrapper.text()).toContain('Vue.js')
     expect(wrapper.text()).toContain('Tailwind CSS')

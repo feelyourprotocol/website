@@ -49,29 +49,34 @@ const fleet = [
   <main>
     <h1 class="sr-only">Feel Your Protocol — Ethereum Protocol Explorations for Humans and AI</h1>
 
-    <section class="mb-6">
-      <p class="text-slate-600 text-sm md:text-base leading-relaxed max-w-3xl">
-        Run upcoming Ethereum protocol changes in the browser — real EVM and cryptography libraries,
-        no backend, no mocks.
+    <section
+      class="fyp-run-surface mb-6 p-4 md:p-5"
+      data-testid="home-intro-panel"
+    >
+      <p class="font-mono text-xs text-slate-500 mb-2" aria-hidden="true">fyp:~$</p>
+      <p class="font-mono text-sm md:text-base text-slate-100 leading-relaxed max-w-3xl">
+        Run upcoming Ethereum protocol changes
+        <span class="home-intro-spark">in the browser</span> — real EVM and cryptography libraries,
+        no backend, no mocks.<span class="home-intro-cursor" aria-hidden="true">█</span>
       </p>
-      <div class="flex flex-wrap items-center gap-2 mt-3">
+      <div class="flex flex-wrap items-center gap-2 mt-4">
         <a
           href="#latest"
-          class="fyp-shell-cta bg-slate-800 text-white hover:bg-slate-700"
+          class="fyp-shell-cta bg-gradient-to-r from-purple-600 to-cyan-500 text-white transition hover:opacity-90"
         >
-          Play an exploration
+          ▶ Play an exploration
         </a>
         <a
           :href="mcpCoverageUrl"
           target="_blank"
           rel="noopener"
-          class="fyp-shell-cta border border-slate-400 bg-white text-slate-600 hover:bg-slate-50"
+          class="fyp-shell-cta border border-slate-500 bg-transparent text-slate-300 hover:bg-white/5"
         >
           For agents
         </a>
       </div>
-      <p class="font-mono text-xs text-slate-500 mt-3">
-        {{ explorationCount }} exploration{{ explorationCount === 1 ? '' : 's' }}
+      <p class="font-mono text-xs text-slate-400 mt-3">
+        # {{ explorationCount }} exploration{{ explorationCount === 1 ? '' : 's' }}
         <template v-if="forkLabels.length > 0"> · {{ forkLabels.join(' · ') }}</template>
       </p>
     </section>

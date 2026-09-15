@@ -26,7 +26,7 @@ const thumbnail = computed(() => getExplorationThumbnailImage(props.exploration)
     :id="explorationId + '-c'"
     :style="topicCSSVars(topic.color)"
     :class="[
-      'exploration-c exploration-preview-c bg-white rounded-lg shadow-sm h-full',
+      'exploration-c exploration-preview-c neon-glow-hover bg-white rounded-lg shadow-sm h-full',
       TOPIC_COLORS[topic.color].classes.borderCard,
       size === 'featured' ? 'p-4' : 'p-3',
     ]"

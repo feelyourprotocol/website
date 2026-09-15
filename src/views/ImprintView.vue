@@ -18,7 +18,8 @@ const breadcrumbs = getBreadcrumbsForPath('/imprint')
 
     <div class="grid md:grid-cols-2 gap-4">
       <div
-        class="bg-slate-800 text-white bg-clip-border p-6 rounded-xl font-mono text-xs border-l-3 border-purple-500 neon-glow-permanent"
+        class="fyp-run-surface p-6 rounded-xl text-xs text-white"
+        data-testid="imprint-acknowledgements"
       >
         <h3 class="font-bold text-lg">ACKNOWLEDGEMENTS ❤️</h3>
 

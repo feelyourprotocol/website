@@ -17,7 +17,10 @@ const count = props.topic.explorations.length
       'topic-tile rounded-lg p-3 h-full',
       empty
         ? 'border border-dashed border-slate-300 bg-white/60'
-        : ['bg-white shadow-sm', TOPIC_COLORS[topic.color].classes.borderCard],
+        : [
+            'neon-glow-hover bg-white shadow-sm',
+            TOPIC_COLORS[topic.color].classes.borderCard,
+          ],
     ]"
     :data-topic-id="topicId"
   >

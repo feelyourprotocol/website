@@ -38,6 +38,8 @@ Tailwind utilities and `src/main.css` own the type scale. **`text-[0.65rem]`** i
 
 Topic hues use `e-*` tokens on exploration cards; **neutral slate** for shared chrome borders and surfaces unless there is a deliberate brand moment (site title gradient, topic pill border).
 
+**Console vs lab floor.** One dark **`.fyp-run-surface`** (home intro, imprint acknowledgements): `fyp:~$`, **`.home-intro-spark`**, **`.home-intro-cursor`**, execute Play only on home. Everything else stays the **light lab floor** (dot grid, white topic cards, MCP wash card). **Seams:** **`.fyp-protocol-seam-bottom`** on header, **`.fyp-protocol-seam-top`** on footer — same purple→cyan rule as the console top edge. **Hover:** **`.neon-glow-hover`** on catalog preview cards and live topic tiles only (not empty “coming” tiles). **No MCP terminal green** on the main site; in-exploration widgets unchanged ([exploration-design.mdc](./exploration-design.mdc)).
+
 ## Accessibility
 
 Icon-only controls need **`aria-label`**. Reuse `focus-visible:outline` + offset on interactive elements. Prefer semantic `a` / `button` over div clicks.
