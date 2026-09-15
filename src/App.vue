@@ -84,12 +84,12 @@ onUnmounted(() => {
           >
         </p>
         <nav
-          class="font-mono text-sm sm:col-start-2 sm:row-start-1 sm:text-right flex sm:justify-end items-center"
+          class="font-mono text-base md:text-xs sm:col-start-2 sm:row-start-1 sm:text-right flex sm:justify-end items-center"
         >
           <Listbox v-model="selectedRoute" @update:model-value="navigate">
             <div class="relative inline-block w-full sm:w-auto">
               <ListboxButton
-                class="inline-flex items-center justify-between gap-2 w-full sm:w-auto sm:max-w-md text-sm sm:ml-6 border border-slate-400 bg-white rounded-md text-slate-500 px-3 py-2 min-h-11 cursor-pointer text-left"
+                class="inline-flex items-center justify-between gap-2 w-full sm:w-auto sm:max-w-md text-base md:text-xs sm:ml-6 border border-slate-400 bg-white rounded-md text-slate-500 px-3 py-2 min-h-11 md:min-h-9 md:py-1.5 cursor-pointer text-left font-normal"
                 id="exploration-navi"
               >
                 <span class="min-w-0 line-clamp-2">{{ selectedLabel }}</span>
@@ -105,7 +105,7 @@ onUnmounted(() => {
                 leave-to-class="opacity-0 scale-95"
               >
                 <ListboxOptions
-                  class="absolute right-0 z-20 mt-1 w-max max-h-60 overflow-auto rounded-md border border-slate-400 bg-white text-sm shadow-md focus:outline-none"
+                  class="absolute right-0 z-20 mt-1 w-max max-h-60 overflow-auto rounded-md border border-slate-400 bg-white text-base md:text-xs shadow-md focus:outline-none"
                 >
                   <ListboxOption value="" v-slot="{ active, selected }" as="template">
                     <li
