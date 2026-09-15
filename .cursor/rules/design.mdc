@@ -1,0 +1,49 @@
+---
+description: Site-wide visual and UX design — responsiveness, touch, shared chrome
+globs: src/**/*.vue,src/main.css,src/views/**,src/components/**
+alwaysApply: false
+---
+
+# Site design
+
+Cross-cutting UI for the explorations **site shell** (home, topics, catalog, shared components). Exploration **widget** layout and UIC reuse live in [exploration-design.mdc](./exploration-design.mdc).
+
+Add a **section** when a miss repeats — keep topics below scannable; do not grow one mega-file.
+
+## Responsiveness
+
+**Breakpoint.** Unless a feature documents otherwise, treat viewports **below `sm` (640px)** as mobile — same convention as the header and `ExplorationNavListbox`.
+
+**Touch targets.** Tappable chrome (pills, icon buttons, listbox triggers) needs a comfortable hit area on mobile — about **44px tall** (`min-h-11`) plus enough horizontal padding. Desktop may stay dense.
+
+Prefer **mobile-first larger, `sm:` compact** over enlarging desktop. Do not copy in-widget label sizes (`text-[0.65rem]`) onto mobile navigation or catalog pills.
+
+Reference: `ExplorationMetaPills.vue` — `text-xs px-3 py-2 min-h-11` → `sm:text-[0.65rem] sm:px-2 sm:py-0.5 sm:min-h-0`.
+
+**Shell text CTAs** (home hero, MCP launch band): reuse **`fyp-shell-cta`** in `main.css` — `min-h-11` on mobile, `sm:py-1.5 sm:px-2.5 sm:min-h-0`; add color/border classes in the template.
+
+**Browse filters** (tag cloud, timeline rows): **`fyp-shell-tap-target`** plus extra vertical padding on mobile (`py-2` → `sm:py-0.5`).
+
+**Title-row icon links** (external EIP on cards / `ExplorationC`): **`size-11` on mobile**, `sm:size-7` — `.visit-exploration-button` in `main.css`.
+
+**Leave full-size on all breakpoints:** in-exploration **`e-action-button`** / Run controls — primary widget actions, not site chrome. **`ExplorationNavListbox`** keeps its own responsive trigger rules.
+
+**Full-width in-widget selects:** `ExamplesUIC` is full width below `md`; the closed **`ListboxButton`** label uses **`max-md:text-right`** (with chevron at the trailing edge) so long example titles align with the right-anchored dropdown.
+
+## Typography and density
+
+Tailwind utilities and `src/main.css` own the type scale. **`text-[0.65rem]`** is for **dense in-widget labels** (scenario briefs, table headers) on exploration pages — not for shared catalog chrome on phones.
+
+## Color and brand
+
+Topic hues use `e-*` tokens on exploration cards; **neutral slate** for shared chrome borders and surfaces unless there is a deliberate brand moment (site title gradient, topic pill border).
+
+**Console vs lab floor.** One dark **`.fyp-run-surface`** (home intro, imprint acknowledgements): `fyp:~$`, **`.home-intro-spark`**, **`.home-intro-cursor`**, execute Play only on home. Everything else stays the **light lab floor** (dot grid, white topic cards, MCP wash card). **Seams:** **`.fyp-protocol-seam-bottom`** on header, **`.fyp-protocol-seam-top`** on footer — same purple→cyan rule as the console top edge. **Hover:** **`.neon-glow-hover`** on catalog preview cards and live topic tiles only (not empty “coming” tiles). **No MCP terminal green** on the main site; in-exploration widgets unchanged ([exploration-design.mdc](./exploration-design.mdc)).
+
+## Accessibility
+
+Icon-only controls need **`aria-label`**. Reuse `focus-visible:outline` + offset on interactive elements. Prefer semantic `a` / `button` over div clicks.
+
+## Motion
+
+Keep incidental UI motion short (dropdown transitions). Heavy motion belongs in video capture mode only; respect `prefers-reduced-motion` when adding new animations.

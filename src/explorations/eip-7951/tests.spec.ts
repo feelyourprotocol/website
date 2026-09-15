@@ -38,12 +38,6 @@ describe('EIP-7951 Exploration', () => {
       }
     })
 
-    it('all values have URL params', () => {
-      for (const val of config.values) {
-        expect(val.urlParam).toBeDefined()
-      }
-    })
-
     it('does not define custom assembleData or parseData', () => {
       expect(config.assembleData).toBeUndefined()
       expect(config.parseData).toBeUndefined()

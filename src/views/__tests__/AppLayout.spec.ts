@@ -45,11 +45,11 @@ describe('App layout', () => {
       )
     })
 
-    it('exploration dropdown button is rendered', async () => {
+    it('exploration catalog trigger is rendered', async () => {
       const wrapper = await mountApp(makeRouter())
       const button = wrapper.find('#exploration-navi')
       expect(button.exists()).toBe(true)
-      expect(button.text()).toContain('All Explorations')
+      expect(button.attributes('aria-label')).toBe('Switch exploration')
     })
   })
 
@@ -119,6 +119,13 @@ describe('App layout', () => {
       const wrapper = await mountApp(makeRouter())
       const xLink = wrapper.find('footer a[href="https://x.com/FeelEthereum"]')
       expect(xLink.exists()).toBe(true)
+    })
+
+    it('has YouTube link', async () => {
+      const wrapper = await mountApp(makeRouter())
+      const ytLink = wrapper.find('footer a[href="https://www.youtube.com/@FeelEthereum"]')
+      expect(ytLink.exists()).toBe(true)
+      expect(ytLink.text()).toBe('YouTube')
     })
   })
 

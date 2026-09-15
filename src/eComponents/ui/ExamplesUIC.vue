@@ -33,13 +33,13 @@ function onSelect(key: string) {
 <template>
   <div class="min-w-0 text-right md:shrink-0">
     <Listbox :model-value="example" @update:model-value="onSelect">
-      <div class="relative inline-block max-md:block max-md:w-full">
+      <div class="relative inline-block min-w-0 max-md:block max-md:w-full max-md:max-w-full">
         <ListboxButton
-          class="e-select inline-flex w-full max-w-full items-center gap-1 text-xs max-md:px-2 max-md:py-1"
+          class="e-select inline-flex w-full max-w-full items-center gap-1 text-xs max-md:justify-end max-md:px-2 max-md:py-1"
           :class="selectMinWidthClass"
           data-testid="example-select"
         >
-          <span class="min-w-0 truncate">{{ selectedTitle }}</span>
+          <span class="min-w-0 truncate max-md:flex-1 max-md:text-right">{{ selectedTitle }}</span>
           <ChevronUpDownIcon class="size-3.5 shrink-0 opacity-60" />
         </ListboxButton>
 
@@ -52,7 +52,7 @@ function onSelect(key: string) {
           leave-to-class="opacity-0 scale-95"
         >
           <ListboxOptions
-            class="e-listbox-options absolute right-0 z-20 mt-1 w-max max-h-60 overflow-auto rounded-sm border shadow-lg focus:outline-none"
+            class="e-listbox-options absolute right-0 z-20 mt-1 max-h-60 overflow-auto rounded-sm border shadow-lg focus:outline-none w-max max-md:w-full max-md:max-w-[min(100vw-1.5rem,100%)]"
           >
             <ListboxOption
               v-for="(val, key) in examples"
@@ -64,7 +64,7 @@ function onSelect(key: string) {
               <li
                 :data-testid="`example-${key}`"
                 :class="[
-                  'e-listbox-option cursor-pointer whitespace-nowrap select-none first:rounded-t-sm last:rounded-b-sm',
+                  'e-listbox-option cursor-pointer select-none first:rounded-t-sm last:rounded-b-sm whitespace-nowrap max-md:whitespace-normal max-md:break-words',
                   active ? 'e-listbox-option-active' : '',
                   selected ? 'font-bold' : '',
                 ]"

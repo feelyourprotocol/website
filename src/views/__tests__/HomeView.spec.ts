@@ -40,17 +40,39 @@ describe('HomeView', () => {
       expect(wrapper.text()).toContain('Run upcoming Ethereum protocol changes in the browser')
     })
 
+    it('renders the home intro promise panel', () => {
+      expect(wrapper.find('[data-testid="home-intro-panel"]').exists()).toBe(true)
+    })
+
+    it('renders the terminal run surface with prompt', () => {
+      const panel = wrapper.get('[data-testid="home-intro-panel"]')
+      expect(panel.classes()).toContain('fyp-run-surface')
+      expect(panel.text()).toContain('fyp:~$')
+    })
+
     it('offers play and agent doors', () => {
-      expect(wrapper.find('a[href="#latest"]').exists()).toBe(true)
-      const agents = wrapper.find(`a[href="${mcpDocsPage('use/coverage')}"]`)
+      const play = wrapper.find('[data-testid="home-intro-panel"] a[href="#latest"]')
+      expect(play.exists()).toBe(true)
+      expect(play.classes()).toContain('from-purple-600')
+      expect(play.text()).toContain('Play an exploration')
+      const agents = wrapper.find(
+        `[data-testid="home-intro-panel"] a[href="${mcpDocsPage('use/coverage')}"]`,
+      )
       expect(agents.exists()).toBe(true)
       expect(agents.text()).toContain('For agents')
     })
 
+    it('applies protocol pulse spark to “in the browser” in the lead sentence', () => {
+      const spark = wrapper.find('[data-testid="home-intro-panel"] .home-intro-spark')
+      expect(spark.exists()).toBe(true)
+      expect(spark.text()).toBe('in the browser')
+    })
+
     it('shows live catalog stats', () => {
-      expect(wrapper.text()).toContain(`${Object.keys(EXPLORATIONS).length} explorations`)
-      expect(wrapper.text()).toContain('Fusaka')
-      expect(wrapper.text()).toContain('Glamsterdam')
+      const panel = wrapper.get('[data-testid="home-intro-panel"]')
+      expect(panel.text()).toContain(`${Object.keys(EXPLORATIONS).length} explorations`)
+      expect(panel.text()).toContain('Fusaka')
+      expect(panel.text()).toContain('Glamsterdam')
     })
   })
 

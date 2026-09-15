@@ -1,5 +1,12 @@
 /** Social card ids — single source of truth (also imported by og/src/social/cardIds.ts). */
-export const SOCIAL_CARD_IDS = ['hero', 'launch', 'timeline', 'board', 'youtube-banner'] as const
+export const SOCIAL_CARD_IDS = [
+  'hero',
+  'launch',
+  'timeline',
+  'board',
+  'youtube-banner',
+  'twitter-banner',
+] as const
 
 export type SocialCardId = (typeof SOCIAL_CARD_IDS)[number]
 
@@ -52,5 +59,12 @@ export const SOCIAL_CARDS: Record<SocialCardId, SocialCardMeta> = {
     title: 'Feel Your Protocol',
     subtitle: 'Ethereum Protocol Explorations for Humans and AI',
     footerHint: 'EIP explainers · feelyourprotocol.org',
+  },
+  'twitter-banner': {
+    id: 'twitter-banner',
+    eyebrow: 'Interactive EIP explorations',
+    title: 'Hands on.',
+    subtitle: 'Explore protocol changes in the browser — real library code, no install.',
+    footerHint: 'feelyourprotocol.org',
   },
 }

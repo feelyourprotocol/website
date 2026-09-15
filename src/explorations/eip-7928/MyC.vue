@@ -4,6 +4,8 @@ import { computed, ref, watch } from 'vue'
 import ActionButtonUIC from '@/eComponents/ui/ActionButtonUIC.vue'
 import ExamplesUIC from '@/eComponents/ui/ExamplesUIC.vue'
 import ResultBoxUIC from '@/eComponents/ui/resultBox/ResultBoxUIC.vue'
+import ScenarioStepNavUIC from '@/eComponents/ui/ScenarioStepNavUIC.vue'
+import WidgetChromeUIC from '@/eComponents/ui/WidgetChromeUIC.vue'
 import ExplorationC from '@/explorations/ExplorationC.vue'
 import PoweredByC from '@/explorations/PoweredByC.vue'
 import { TOPICS } from '@/explorations/TOPICS'
@@ -109,36 +111,28 @@ await init()
 <template>
   <ExplorationC asPageTitle explorationId="eip-7928" :exploration="exploration" :topic="topic">
     <template #content>
-      <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
-        <div class="flex items-center gap-2">
-          <button
-            type="button"
-            class="e-select px-2 py-1 text-xs disabled:opacity-40"
-            :disabled="!canGoPrev"
-            @click="navigate(-1)"
-          >
-            ← prev
-          </button>
-          <span v-if="stepPosition" class="font-mono text-xs opacity-70">{{ stepPosition }}</span>
-          <button
-            type="button"
-            class="e-select px-2 py-1 text-xs disabled:opacity-40"
-            :disabled="!canGoNext"
-            @click="navigate(1)"
-          >
-            next →
-          </button>
-        </div>
-        <div class="flex items-center gap-2">
+      <WidgetChromeUIC>
+        <template #steps>
+          <ScenarioStepNavUIC
+            :label="stepPosition"
+            :can-go-prev="canGoPrev"
+            :can-go-next="canGoNext"
+            @prev="navigate(-1)"
+            @next="navigate(1)"
+          />
+        </template>
+        <template #examples>
           <ExamplesUIC v-model="example" :examples="examples" :change="selectExample" />
+        </template>
+        <template #run>
           <ActionButtonUIC
             test-id="run-block"
             text="Run block"
             tooltip="Execute block on Amsterdam VM and generate BAL"
             :onClick="runBlock"
           />
-        </div>
-      </div>
+        </template>
+      </WidgetChromeUIC>
 
       <template v-if="scenario && meta">
         <ScenarioBriefView

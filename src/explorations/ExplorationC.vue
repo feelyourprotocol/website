@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { ArrowTopRightOnSquareIcon, ShareIcon } from '@heroicons/vue/24/solid'
+import { ArrowTopRightOnSquareIcon } from '@heroicons/vue/24/solid'
 
 import ButtonUIC from '@/eComponents/ui/ButtonUIC.vue'
 
+import ExplorationMetaPills from './ExplorationMetaPills.vue'
 import type { Exploration } from './REGISTRY'
 import { type Topic, topicCSSVars } from './TOPICS'
 
@@ -12,7 +13,6 @@ const props = withDefaults(
     explorationId: string
     exploration: Exploration
     topic: Topic
-    shareURL?: () => void
     asPageTitle?: boolean
     showUsageInstructions?: boolean
   }>(),
@@ -35,7 +35,7 @@ const showUsage = computed(
     class="exploration-c"
     data-testid="exploration-ready"
   >
-    <div class="items-start gap-2 mb-2" :class="asPageTitle ? 'hidden md:flex' : 'flex'">
+    <div class="flex items-start gap-2 mb-2">
       <component
         :is="asPageTitle ? 'h1' : 'h3'"
         class="font-bold text-lg tracking-tight flex-1 min-w-0 e-text"
@@ -43,13 +43,6 @@ const showUsage = computed(
         {{ exploration.title }}
       </component>
       <div class="flex shrink-0 items-center gap-1">
-        <a v-if="shareURL" href="#" class="share-url-button" @click.stop.prevent="shareURL">
-          <ButtonUIC
-            :icon="ShareIcon"
-            tooltip="Open Shareable URL"
-            aria-label="Open shareable URL"
-          />
-        </a>
         <a
           :href="exploration.infoURL"
           target="_blank"
@@ -65,6 +58,13 @@ const showUsage = computed(
         </a>
       </div>
     </div>
+
+    <ExplorationMetaPills
+      class="mb-2.5"
+      :exploration-id="explorationId"
+      :exploration="exploration"
+      :topic="topic"
+    />
 
     <div class="font-mono text-xs leading-relaxed mb-3.5 text-slate-600">
       <p v-html="exploration.introText"></p>

@@ -24,6 +24,12 @@ export const YOUTUBE_BANNER_HEIGHT = 1440
 /** Committed master — not gitignored like roadmap/social/out/. */
 export const YOUTUBE_BANNER_OUTPUT_DIR = resolve(WEBSITE_ROOT, 'design/source/youtube')
 
+/** X profile header — recommended upload 1500×500 (3:1). */
+export const TWITTER_BANNER_WIDTH = 1500
+export const TWITTER_BANNER_HEIGHT = 500
+
+export const TWITTER_BANNER_OUTPUT_DIR = resolve(WEBSITE_ROOT, 'design/source/twitter')
+
 export type SocialCardCaptureSpec = {
   width: number
   height?: number
@@ -38,12 +44,29 @@ export function socialCardCaptureSpec(id: SocialCardId): SocialCardCaptureSpec {
       deviceScaleFactor: 1,
     }
   }
+  if (id === 'twitter-banner') {
+    return {
+      width: TWITTER_BANNER_WIDTH,
+      height: TWITTER_BANNER_HEIGHT,
+      deviceScaleFactor: 1,
+    }
+  }
   return { width: SOCIAL_CAPTURE_WIDTH, deviceScaleFactor: 2 }
+}
+
+/** Committed banner masters (not roadmap/social/out). */
+export function socialCardCommittedOutputDir(id: SocialCardId): string | null {
+  if (id === 'youtube-banner') return YOUTUBE_BANNER_OUTPUT_DIR
+  if (id === 'twitter-banner') return TWITTER_BANNER_OUTPUT_DIR
+  return null
 }
 
 export function socialCardOutputBase(id: SocialCardId): string {
   if (id === 'youtube-banner') {
     return join(YOUTUBE_BANNER_OUTPUT_DIR, 'channel-banner')
+  }
+  if (id === 'twitter-banner') {
+    return join(TWITTER_BANNER_OUTPUT_DIR, 'profile-banner')
   }
   return join(SOCIAL_OUTPUT_DIR, id)
 }

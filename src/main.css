@@ -57,6 +57,52 @@
   @apply ml-7 font-mono text-sm;
 }
 
+/* Home intro — protocol pulse on a few words (body type, same shift as protocol-dots) */
+.home-intro-spark {
+  background: linear-gradient(90deg, #7c3aed, #06b6d4, #7c3aed);
+  background-size: 200% 100%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  animation: gradientShift 10s ease-in-out infinite;
+  font: inherit;
+}
+
+@keyframes homeIntroBlink {
+  0%,
+  50% {
+    opacity: 1;
+  }
+  51%,
+  100% {
+    opacity: 0;
+  }
+}
+
+/* Shared dark console surface (home intro, imprint acknowledgements) */
+.fyp-run-surface {
+  background: #0f172a;
+  border-top: 2px solid transparent;
+  border-image: linear-gradient(90deg, #7c3aed, #06b6d4, #7c3aed) 1;
+  box-shadow: 0 0 25px rgba(124, 58, 237, 0.08);
+  font-family: var(--font-mono);
+}
+
+.fyp-protocol-seam-bottom {
+  border-bottom: 2px solid transparent;
+  border-image: linear-gradient(90deg, #7c3aed, #06b6d4, #7c3aed) 1;
+}
+
+.fyp-protocol-seam-top {
+  border-top: 2px solid transparent;
+  border-image: linear-gradient(90deg, #7c3aed, #06b6d4, #7c3aed) 1;
+}
+
+.home-intro-cursor {
+  @apply ml-0.5 text-purple-400;
+  animation: homeIntroBlink 1s step-end infinite;
+}
+
 /* Spark 5: Neon hover glow — protocol nodes light up on interaction */
 .neon-glow-hover {
   transition: box-shadow 0.25s ease;
@@ -130,7 +176,12 @@ body {
 .exploration-c {
   background-color: var(--e-bg);
   border: 1px solid var(--e-border);
-  @apply p-5 rounded-lg;
+  /* min-w-0: grid/flex default min-width:auto lets long hex blow out the card on mobile */
+  @apply min-w-0 max-w-full p-5 rounded-lg;
+}
+
+.exploration-c > * {
+  @apply min-w-0 max-w-full;
 }
 
 /* --- Result boxes (comparison panels) --- */
@@ -177,7 +228,7 @@ body {
 .e-textarea {
   background-color: var(--e-bg-light);
   border: 1px solid var(--e-border);
-  @apply block w-full mt-1.5 mb-2 font-mono text-base md:text-xs rounded-md text-slate-600 p-2;
+  @apply box-border block min-w-0 max-w-full w-full mt-1.5 mb-2 font-mono text-base md:text-xs rounded-md text-slate-600 p-2 break-all;
   transition:
     border-color 0.15s ease,
     box-shadow 0.15s ease;
@@ -214,7 +265,7 @@ body {
 .e-input {
   background-color: var(--e-bg-light);
   border: 1px solid var(--e-border);
-  @apply font-mono text-base md:text-xs rounded-md p-2 w-full;
+  @apply box-border min-w-0 max-w-full font-mono text-base md:text-xs rounded-md p-2 w-full;
   transition:
     border-color 0.15s ease,
     box-shadow 0.15s ease;
@@ -247,11 +298,50 @@ body {
   @apply text-slate-600 hover:bg-white/80 hover:text-slate-900;
 }
 
+/* --- Widget chrome (scenario explorations: steps / toggles / examples / run) --- */
+.e-widget-chrome {
+  @apply mb-4 flex flex-col gap-2 md:flex-row md:flex-wrap md:items-center md:justify-between;
+}
+
+.e-widget-chrome-steps {
+  @apply flex w-full items-center gap-2 md:w-auto;
+}
+
+.e-widget-chrome-execute {
+  @apply flex w-full flex-col gap-2 md:ml-auto md:w-auto md:flex-row md:flex-wrap md:items-center md:justify-end;
+}
+
+.e-widget-chrome-toggles {
+  @apply flex w-full flex-wrap items-center justify-start gap-2 md:w-auto;
+}
+
+.e-widget-chrome-action {
+  @apply grid w-full grid-cols-[minmax(0,1fr)_auto] items-center gap-2 md:flex md:w-auto md:flex-row;
+}
+
+.e-widget-chrome-run {
+  @apply shrink-0 max-md:[&_.e-action-button]:min-h-9 max-md:[&_.e-action-button]:px-2 max-md:[&_.e-action-button]:py-1.5 max-md:[&_.e-action-button]:text-xs;
+}
+
+/* --- Site shell (home, browse, card chrome) --- */
+.fyp-shell-cta {
+  @apply inline-flex items-center justify-center px-3 py-2 min-h-11 rounded-md text-sm font-medium no-underline sm:min-h-0 sm:py-1.5 sm:px-2.5;
+}
+
+.fyp-shell-tap-target {
+  @apply min-h-11 sm:min-h-0;
+}
+
 /* --- Icon buttons --- */
 .e-button-icon {
   color: var(--e-text);
   border-color: var(--e-border);
   @apply inline-flex items-center justify-center border-1 rounded-md min-h-11 min-w-11 p-2.5;
+}
+
+/* Title-row external EIP link on cards and exploration shell — touch-sized mobile, compact desktop */
+.visit-exploration-button .e-button-icon {
+  @apply size-11 p-2.5 sm:size-7 sm:min-h-0 sm:min-w-0 sm:p-1.5;
 }
 
 /* --- E-Component: Precompile Interface --- */
@@ -319,6 +409,12 @@ body {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .protocol-dots,
+  .home-intro-spark,
+  .home-intro-cursor {
+    animation: none;
+  }
+
   .companion-sheet-pulse {
     animation: none;
   }
@@ -396,6 +492,10 @@ html.fyp-video-capture #app {
 .fyp-video-mode .exploration-c {
   border: none !important;
   border-radius: 0 !important;
+}
+
+html.fyp-video-capture .exploration-meta-pills {
+  display: none;
 }
 
 html.fyp-video-capture:not(.fyp-video-band-active) .exploration-right-panel-host {

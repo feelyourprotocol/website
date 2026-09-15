@@ -75,6 +75,14 @@ npm run capture:youtube-banner
 
 Output: `design/source/youtube/channel-banner.{png,webp}`
 
+X profile banner (1500×500, committed master):
+
+```bash
+npm run capture:twitter-banner
+```
+
+Output: `design/source/twitter/profile-banner.{png,webp}`
+
 ## Tests
 
 ```bash

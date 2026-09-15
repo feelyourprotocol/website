@@ -1,5 +1,4 @@
 import { computed, ref, type ShallowRef, shallowRef } from 'vue'
-import { useRouter } from 'vue-router'
 import type { PrefixedHexString } from '@ethereumjs/util'
 
 import type { Examples } from '@/explorations/REGISTRY'
@@ -11,8 +10,10 @@ import { dataToValueInput, isValidByteInputForm, valueToDataInput } from './util
 export interface PrecompileInitOptions {
   /** Value from `?example=` (parsed or raw string from route). */
   queryExample?: string
-  /** Current route query — used for field-level share URL params on init. */
-  routeQuery?: Record<string, unknown>
+}
+
+function exampleValueIndices(values: PrecompileConfig['values']): number[] {
+  return values.map((v, i) => (v.showInput === false ? -1 : i)).filter((i) => i !== -1)
 }
 
 function createState(config: PrecompileConfig) {
@@ -36,7 +37,7 @@ export function usePrecompileState<T = unknown>(
   const { data, hexVals, bigIntVals, lengthsMask, byteLengths, example } = createState(config)
   const result: ShallowRef<T | undefined> = shallowRef()
 
-  const editableIndices = config.values.map((v, i) => (v.urlParam ? i : -1)).filter((i) => i !== -1)
+  const syncedValueIndices = exampleValueIndices(config.values)
 
   const inputValues = computed(() =>
     config.values.map((def, index) => ({ ...def, index })).filter((def) => def.showInput !== false),
@@ -71,20 +72,10 @@ export function usePrecompileState<T = unknown>(
   async function selectExample() {
     if (example.value === '') return
     const exVals = examples[example.value]!.values
-    for (let j = 0; j < editableIndices.length; j++) {
-      hexVals.value[editableIndices[j]] = exVals[j]
+    for (let j = 0; j < syncedValueIndices.length; j++) {
+      hexVals.value[syncedValueIndices[j]!] = exVals[j]!
     }
     await values2Data()
-  }
-
-  function shareURL() {
-    const router = useRouter()
-    const query: Record<string, string> = {}
-    for (const i of editableIndices) {
-      query[config.values[i].urlParam!] = hexVals.value[i]
-    }
-    const routeData = router.resolve({ name: config.explorationId, query })
-    window.open(routeData.href, '_blank')
   }
 
   async function onDataInputFormChange() {
@@ -100,30 +91,9 @@ export function usePrecompileState<T = unknown>(
   // --- Initialization ---
 
   async function init(options: PrecompileInitOptions = {}) {
-    const routeQuery = options.routeQuery ?? {}
-    const resolvedExample = parseExampleQueryParam(options.queryExample ?? routeQuery.example)
-    if (resolvedExample !== undefined) {
-      example.value = resolveInitialExample(examples, config.defaultExample, resolvedExample)
-      await selectExample()
-      return
-    }
-
-    const urlParams = editableIndices.map((i) => config.values[i].urlParam!)
-    const hasAllParams = urlParams.length > 0 && urlParams.every((p) => p in routeQuery)
-
-    if (hasAllParams) {
-      try {
-        for (const i of editableIndices) {
-          hexVals.value[i] = routeQuery[config.values[i].urlParam!]!.toString()
-        }
-        await values2Data()
-      } catch {
-        // Fallback to default example on invalid URL params
-      }
-    } else {
-      example.value = config.defaultExample
-      await selectExample()
-    }
+    const resolvedExample = parseExampleQueryParam(options.queryExample)
+    example.value = resolveInitialExample(examples, config.defaultExample, resolvedExample)
+    await selectExample()
   }
 
   return {
@@ -135,7 +105,6 @@ export function usePrecompileState<T = unknown>(
     inputValues,
     result,
     selectExample,
-    shareURL,
     onDataInputFormChange,
     onValueInputFormChange,
     init,

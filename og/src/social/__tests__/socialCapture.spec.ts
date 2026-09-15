@@ -8,6 +8,9 @@ import {
   SOCIAL_OUTPUT_DIR,
   socialCardCaptureSpec,
   socialCardOutputBase,
+  TWITTER_BANNER_HEIGHT,
+  TWITTER_BANNER_OUTPUT_DIR,
+  TWITTER_BANNER_WIDTH,
   WEBSITE_ROOT,
   YOUTUBE_BANNER_HEIGHT,
   YOUTUBE_BANNER_OUTPUT_DIR,
@@ -77,5 +80,22 @@ describe('social config paths', () => {
       width: SOCIAL_CAPTURE_WIDTH,
       deviceScaleFactor: 2,
     })
+  })
+
+  it('twitter-banner outputs to design/source/twitter (committed master)', () => {
+    expect(socialCardOutputBase('twitter-banner')).toBe(
+      `${TWITTER_BANNER_OUTPUT_DIR}/profile-banner`,
+    )
+    expect(TWITTER_BANNER_OUTPUT_DIR).toBe(resolve(WEBSITE_ROOT, 'design/source/twitter'))
+  })
+
+  it('twitter-banner capture spec is 1500×500 at deviceScaleFactor 1', () => {
+    expect(socialCardCaptureSpec('twitter-banner')).toEqual({
+      width: TWITTER_BANNER_WIDTH,
+      height: TWITTER_BANNER_HEIGHT,
+      deviceScaleFactor: 1,
+    })
+    expect(TWITTER_BANNER_WIDTH).toBe(1500)
+    expect(TWITTER_BANNER_HEIGHT).toBe(500)
   })
 })

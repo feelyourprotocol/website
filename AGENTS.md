@@ -40,7 +40,7 @@ Default path for a **new protocol change** is the [round-trip skill](.cursor/ski
 
 Standalone widget work (no round-trip) still briefs first, then add-exploration. Read taxonomies from source (`TOPICS.ts`, `TIMELINE.ts`, `TAGS.ts`) — do not guess IDs. Tests passing is the quality bar, not the pedagogy bar — human reviews intro, usage, and examples.
 
-Website explorations and MCP are **twins** (same core question). Every **live** exploration needs `mcp-docs/use/eips/eip-NNNN.html` (Runnable or Planned); engine modules ship when a verb can run the change. A future website “See associated MCP docs” icon links to `/use/eips/<id>` when that page exists.
+Website explorations and MCP are **twins** (same core question). Every **live** exploration needs `mcp-docs/use/eips/eip-NNNN.html` (Runnable or Planned); engine modules ship when a verb can run the change. The **MCP** catalog pill on home cards and the exploration shell links to that page when `mcpDocsStatus` is runnable or planned-module.
 
 Field reference and human checklist: [adding-an-exploration.md](website-docs/contributing/adding-an-exploration.md).
 
@@ -55,7 +55,7 @@ Catalog: [`repo-structure.mdc`](.cursor/rules/repo-structure.mdc).
 
 - **Primitives (always-on):** `repo-structure.mdc`, `quality.mdc`, `testing.mdc`, `git.mdc`
 - **Task invariants (glob):** `explorations.mdc` when editing `src/explorations/` or `src/eComponents/`
-- **Design (glob):** `exploration-design.mdc` — cover column vs companion; same logical control → one UIC
+- **Design (glob):** `design.mdc` — site shell responsiveness, touch targets, shared chrome; `exploration-design.mdc` — cover column vs companion; same logical control → one UIC
 - **Specialized:** `video-recording.mdc`, `og-images.mdc`
 
 If your tool supports attaching folders (e.g. `@website-docs/`), include the relevant doc pages — but AGENTS.md + skill + source remain authoritative.

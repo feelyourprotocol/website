@@ -32,10 +32,10 @@ describe('EIP-7883 Exploration', () => {
       expect(config.values).toHaveLength(6)
     })
 
-    it('has 3 editable values with urlParams', () => {
-      const editable = config.values.filter((v) => v.urlParam)
+    it('has 3 editable value fields', () => {
+      const editable = config.values.filter((v) => v.showInput !== false)
       expect(editable).toHaveLength(3)
-      expect(editable.map((v) => v.urlParam)).toEqual(['b', 'e', 'm'])
+      expect(editable.map((v) => v.title)).toEqual(['Base', 'Exponent', 'Modulus'])
     })
 
     it('hides length fields from input display', () => {

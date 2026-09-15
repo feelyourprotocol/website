@@ -10,9 +10,9 @@ export const config: PrecompileConfig = {
     { title: 'Base length', expectedLen: 32n, initialHex: '00'.repeat(32), showInput: false },
     { title: 'Exponent length', expectedLen: 32n, initialHex: '00'.repeat(32), showInput: false },
     { title: 'Modulus length', expectedLen: 32n, initialHex: '00'.repeat(32), showInput: false },
-    { title: 'Base', urlParam: 'b' },
-    { title: 'Exponent', urlParam: 'e' },
-    { title: 'Modulus', urlParam: 'm' },
+    { title: 'Base' },
+    { title: 'Exponent' },
+    { title: 'Modulus' },
   ],
   assembleData: (hexVals, byteLengths) =>
     toHex(byteLengths[3], 32 * 2) +
