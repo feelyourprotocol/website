@@ -6,6 +6,7 @@ import BoardSocialCard from './components/BoardSocialCard.vue'
 import HeroSocialCard from './components/HeroSocialCard.vue'
 import LaunchSocialCard from './components/LaunchSocialCard.vue'
 import TimelineSocialCard from './components/TimelineSocialCard.vue'
+import TwitterBannerCard from './components/TwitterBannerCard.vue'
 import YouTubeBannerCard from './components/YouTubeBannerCard.vue'
 
 const params = new URLSearchParams(window.location.search)
@@ -26,5 +27,6 @@ const activeCards = computed((): SocialCardId[] => {
     <TimelineSocialCard v-if="activeCards.includes('timeline')" />
     <BoardSocialCard v-if="activeCards.includes('board')" />
     <YouTubeBannerCard v-if="activeCards.includes('youtube-banner')" />
+    <TwitterBannerCard v-if="activeCards.includes('twitter-banner')" />
   </div>
 </template>

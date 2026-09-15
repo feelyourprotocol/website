@@ -34,6 +34,7 @@
     "capture:social": "run-s social:build capture:social:run",
     "capture:social:run": "npm run capture:social:run --prefix og --",
     "capture:youtube-banner": "npm run social:build && npm run capture:social:run -- youtube-banner",
+    "capture:twitter-banner": "npm run social:build && npm run capture:social:run -- twitter-banner",
     "video:setup": "npm run setup --prefix video",
     "video:check": "npm run check --prefix video",
     "video:preflight": "npm run preflight --prefix video",

@@ -10,8 +10,8 @@ import {
   SOCIAL_DIST_DIR,
   SOCIAL_OUTPUT_DIR,
   socialCardCaptureSpec,
+  socialCardCommittedOutputDir,
   socialCardOutputBase,
-  YOUTUBE_BANNER_OUTPUT_DIR,
 } from './config.ts'
 import { parseSocialCardIds } from './parseCardIds.ts'
 
@@ -43,7 +43,7 @@ async function captureCard(
 
   const pngPath = `${socialCardOutputBase(id)}.png`
   const webpPath = `${socialCardOutputBase(id)}.webp`
-  mkdirSync(id === 'youtube-banner' ? YOUTUBE_BANNER_OUTPUT_DIR : SOCIAL_OUTPUT_DIR, {
+  mkdirSync(socialCardCommittedOutputDir(id) ?? SOCIAL_OUTPUT_DIR, {
     recursive: true,
   })
 
@@ -103,10 +103,13 @@ export async function captureSocialCards(cardArgs: string[]): Promise<void> {
   }
 
   console.log(`\nDone — ${ids.length} card(s)`)
-  if (ids.some((id) => id !== 'youtube-banner')) {
+  if (ids.some((id) => socialCardCommittedOutputDir(id) === null)) {
     console.log(`Twitter cards → ${SOCIAL_OUTPUT_DIR}`)
   }
   if (ids.includes('youtube-banner')) {
     console.log(`YouTube banner → ${socialCardOutputBase('youtube-banner')}.png`)
+  }
+  if (ids.includes('twitter-banner')) {
+    console.log(`X profile banner → ${socialCardOutputBase('twitter-banner')}.png`)
   }
 }

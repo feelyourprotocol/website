@@ -1017,3 +1017,215 @@ body.fyp-site-roadmap {
   text-transform: uppercase;
   color: var(--preview-accent, #a855f7);
 }
+
+/* X profile header — 1500×500 upload; safe zone avoids avatar (lower-left) */
+.fyp-twitter-banner {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  width: 1500px;
+  height: 500px;
+  box-sizing: border-box;
+  background-color: #faf8ff;
+  background-image: var(--fyp-dot-grid-brand);
+  background-size: var(--fyp-dot-size);
+  color: var(--vp-c-text-1);
+}
+
+.fyp-twitter-banner__panorama {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0.42;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.fyp-twitter-banner__bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 6px;
+  background: var(--fyp-gradient);
+  z-index: 3;
+}
+
+.fyp-twitter-banner__glow {
+  position: absolute;
+  border-radius: 999px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.fyp-twitter-banner__glow--primary {
+  width: 420px;
+  height: 420px;
+  top: -120px;
+  right: 80px;
+  background: linear-gradient(-45deg, rgba(124, 58, 237, 0.4), rgba(6, 182, 212, 0.28));
+  filter: blur(72px);
+  opacity: 0.85;
+}
+
+.fyp-twitter-banner__glow--secondary {
+  width: 360px;
+  height: 360px;
+  bottom: -100px;
+  left: 20px;
+  background: linear-gradient(135deg, rgba(6, 182, 212, 0.32), rgba(124, 58, 237, 0.2));
+  filter: blur(64px);
+  opacity: 0.7;
+}
+
+.fyp-twitter-banner__url {
+  position: absolute;
+  top: 22px;
+  right: 28px;
+  margin: 0;
+  z-index: 2;
+  font-family: var(--fyp-font-mono);
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--vp-c-brand-2);
+}
+
+.fyp-twitter-banner__safe {
+  position: absolute;
+  left: 300px;
+  top: 58px;
+  width: 980px;
+  height: 302px;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  box-sizing: border-box;
+}
+
+.fyp-twitter-banner__copy {
+  min-width: 0;
+  flex: 1 1 auto;
+  max-width: 520px;
+}
+
+.fyp-twitter-banner__eyebrow {
+  display: inline-block;
+  margin: 0 0 10px;
+  font-family: var(--fyp-font-mono);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--vp-c-brand-1);
+  padding: 6px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(124, 58, 237, 0.22);
+  background: rgba(124, 58, 237, 0.06);
+}
+
+.fyp-twitter-banner__headline {
+  margin: 0 0 8px;
+  font-family: var(--fyp-font-mono);
+  font-size: 56px;
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  background: var(--fyp-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.fyp-twitter-banner__subtitle {
+  margin: 0;
+  max-width: 480px;
+  font-size: 17px;
+  line-height: 1.4;
+  color: var(--vp-c-text-2);
+}
+
+.fyp-twitter-banner__covers {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  flex-shrink: 0;
+}
+
+.fyp-twitter-banner__cover {
+  width: 120px;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 2px solid rgba(15, 23, 42, 0.1);
+  background: #fff;
+  box-shadow:
+    0 12px 28px rgba(15, 23, 42, 0.18),
+    0 0 0 1px rgba(255, 255, 255, 0.5) inset;
+  transform: rotate(var(--cover-tilt, 0deg));
+}
+
+.fyp-twitter-banner__cover img {
+  display: block;
+  width: 100%;
+  height: auto;
+  vertical-align: top;
+}
+
+/* Dev-only safe-zone guides (hidden in ?mode=capture) */
+.fyp-twitter-banner__guides {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.fyp-twitter-banner__guide {
+  position: absolute;
+  box-sizing: border-box;
+  border: 2px dashed rgba(239, 68, 68, 0.55);
+  background: rgba(239, 68, 68, 0.06);
+}
+
+.fyp-twitter-banner__guide--crop-top {
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 40px;
+}
+
+.fyp-twitter-banner__guide--crop-bottom {
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 70px;
+}
+
+.fyp-twitter-banner__guide--avatar {
+  left: 16px;
+  bottom: 24px;
+  width: 260px;
+  height: 260px;
+  border-radius: 999px;
+}
+
+.fyp-twitter-banner__guide--follow {
+  right: 16px;
+  bottom: 28px;
+  width: 200px;
+  height: 100px;
+}
+
+.fyp-twitter-banner__guide--safe {
+  left: 300px;
+  top: 55px;
+  width: 980px;
+  height: 302px;
+  border-color: rgba(34, 197, 94, 0.55);
+  background: rgba(34, 197, 94, 0.04);
+}

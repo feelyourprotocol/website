@@ -9,6 +9,7 @@ Raw masters — **not** served directly and **not** imported by the app at runti
 | Feature art (ice cream, etc.) | `src/<feature>/assets/` | Bundled or `public/<feature>/` |
 | Bro & Bruh comics | `design/comics/eip-NNNN.png` + `eip-NNNN.yml` | Not bundled — [bro-bruh-comic skill](../../.cursor/skills/bro-bruh-comic/SKILL.md) |
 | YouTube channel banner | `design/source/youtube/channel-banner.png` | Regenerate via `npm run capture:youtube-banner` |
+| X profile banner | `design/source/twitter/profile-banner.png` | Regenerate via `npm run capture:twitter-banner` |
 | OG / social cards | — | `public/og/` via `npm run generate:og:*` |
 
 ## Logos
