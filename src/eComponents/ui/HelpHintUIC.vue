@@ -54,7 +54,7 @@ const hostLayoutClass = computed(() => {
   if (!hintText.value || displayMode.value === 'popover') {
     return 'inline-flex items-center gap-0.5'
   }
-  if (displayMode.value === 'inline') return 'flex flex-col gap-1'
+  if (displayMode.value === 'inline') return 'flex min-w-0 max-w-full flex-col gap-1'
   return 'inline-flex'
 })
 </script>

@@ -8,7 +8,7 @@ defineProps<{
 <template>
   <p
     v-if="text.trim()"
-    class="help-hint-inline font-mono text-xs leading-snug text-slate-500"
+    class="help-hint-inline w-0 min-w-full font-mono text-xs leading-snug text-slate-500"
     :class="hintClass"
   >
     {{ text }}
