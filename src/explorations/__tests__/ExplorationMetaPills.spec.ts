@@ -8,10 +8,7 @@ import { EXPLORATIONS } from '@/explorations/REGISTRY'
 import { TOPICS } from '@/explorations/TOPICS'
 import { mcpDocsEipPage } from '@/libs/roadmapUrls'
 
-function mountPills(
-  explorationId: string,
-  extra: { stopPropagation?: boolean } = {},
-) {
+function mountPills(explorationId: string, extra: { stopPropagation?: boolean } = {}) {
   const exploration = EXPLORATIONS[explorationId]!
   const router = createRouter({
     history: createMemoryHistory(),

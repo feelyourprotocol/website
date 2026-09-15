@@ -49,10 +49,7 @@ const fleet = [
   <main>
     <h1 class="sr-only">Feel Your Protocol — Ethereum Protocol Explorations for Humans and AI</h1>
 
-    <section
-      class="fyp-run-surface mb-6 p-4 md:p-5"
-      data-testid="home-intro-panel"
-    >
+    <section class="fyp-run-surface mb-6 p-4 md:p-5" data-testid="home-intro-panel">
       <p class="font-mono text-xs text-slate-500 mb-2" aria-hidden="true">fyp:~$</p>
       <p class="font-mono text-sm md:text-base text-slate-100 leading-relaxed max-w-3xl">
         Run upcoming Ethereum protocol changes

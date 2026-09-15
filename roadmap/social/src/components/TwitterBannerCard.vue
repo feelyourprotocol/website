@@ -1,8 +1,8 @@
 <script setup lang="ts">
+import panoramaUrl from '../../../../design/source/twitter/panorama.png'
 import cover7843 from '../../../../src/explorations/eip-7843/image_small.webp'
 import cover8037 from '../../../../src/explorations/eip-8037/image_small.webp'
 import cover8038 from '../../../../src/explorations/eip-8038/image_small.webp'
-import panoramaUrl from '../../../../design/source/twitter/panorama.png'
 import { SOCIAL_CARDS } from '../cards.ts'
 
 const meta = SOCIAL_CARDS['twitter-banner']
