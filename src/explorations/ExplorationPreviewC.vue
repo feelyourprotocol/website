@@ -50,15 +50,23 @@ const mcpDocsUrl = computed(() => mcpDocsEipPage(props.explorationId))
     ]"
   >
     <div :class="size === 'featured' ? 'flex flex-col gap-3' : 'flex gap-3 items-start'">
+      <div
+        v-if="thumbnail && size === 'featured'"
+        class="overflow-hidden rounded-lg w-full max-h-48 border border-slate-200/70 bg-white"
+      >
+        <img
+          :src="thumbnail"
+          alt=""
+          class="w-full max-h-48 object-contain mx-auto block"
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
       <img
-        v-if="thumbnail"
+        v-else-if="thumbnail"
         :src="thumbnail"
         alt=""
-        :class="
-          size === 'featured'
-            ? 'w-full max-h-48 object-contain rounded-md mx-auto'
-            : 'w-16 h-20 object-cover rounded-md shrink-0'
-        "
+        class="w-16 h-20 object-cover rounded-lg shrink-0"
         loading="lazy"
         decoding="async"
       />
