@@ -78,7 +78,7 @@ function reset() {
             trigger-class="min-w-0"
           >
             <button
-              class="flex items-center gap-1.5 px-2 py-1 min-h-11 rounded-md text-sm cursor-pointer transition-all duration-300 hover:bg-slate-50"
+              class="fyp-shell-tap-target flex items-center gap-1.5 rounded-md px-2 py-2 text-sm cursor-pointer transition-all duration-300 hover:bg-slate-50 sm:py-0.5"
               @click="navigate(id)"
             >
               <span class="emoji-mono">{{ entry.emoji }}</span>

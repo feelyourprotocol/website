@@ -57,7 +57,7 @@ const fleet = [
       <div class="flex flex-wrap items-center gap-2 mt-3">
         <a
           href="#latest"
-          class="inline-flex items-center px-3 py-2 min-h-11 rounded-md bg-slate-800 text-white text-sm font-medium no-underline hover:bg-slate-700"
+          class="fyp-shell-cta bg-slate-800 text-white hover:bg-slate-700"
         >
           Play an exploration
         </a>
@@ -65,7 +65,7 @@ const fleet = [
           :href="mcpCoverageUrl"
           target="_blank"
           rel="noopener"
-          class="inline-flex items-center px-3 py-2 min-h-11 rounded-md border border-slate-400 bg-white text-slate-600 text-sm no-underline hover:bg-slate-50"
+          class="fyp-shell-cta border border-slate-400 bg-white text-slate-600 hover:bg-slate-50"
         >
           For agents
         </a>

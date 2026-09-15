@@ -37,7 +37,7 @@
 }
 
 .ice-cream-stand__buy {
-  @apply inline-flex min-h-11 items-center justify-center rounded-md border border-purple-500 bg-gradient-to-r from-purple-600 to-cyan-500 px-5 py-2.5 font-mono text-sm font-bold text-white shadow-sm transition hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-50;
+  @apply inline-flex min-h-11 items-center justify-center rounded-md border border-purple-500 bg-gradient-to-r from-purple-600 to-cyan-500 px-5 py-2.5 font-mono text-sm font-bold text-white shadow-sm transition hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-50 sm:min-h-0 sm:px-4 sm:py-2;
 }
 
 .ice-cream-stand__secondary {
@@ -73,7 +73,7 @@
 }
 
 .ice-cream-stand__fyp-add {
-  @apply inline-flex min-h-7 items-center justify-center rounded border border-slate-200 bg-white px-2.5 py-1 font-mono text-[0.65rem] font-semibold text-slate-600 transition hover:border-purple-200 hover:text-purple-800 disabled:cursor-not-allowed disabled:opacity-50;
+  @apply inline-flex min-h-11 items-center justify-center rounded border border-slate-200 bg-white px-3 py-2 font-mono text-xs font-semibold text-slate-600 transition hover:border-purple-200 hover:text-purple-800 disabled:cursor-not-allowed disabled:opacity-50 sm:min-h-7 sm:px-2.5 sm:py-1 sm:text-[0.65rem];
 }
 
 .ice-cream-stand__fyp-status {

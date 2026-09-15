@@ -19,7 +19,7 @@ const props = withDefaults(
 )
 
 const pillLinkClass =
-  'exploration-meta-pill inline-flex items-center text-[0.65rem] font-mono px-2 py-0.5 rounded-full border no-underline cursor-pointer transition-colors hover:bg-slate-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-400'
+  'exploration-meta-pill inline-flex items-center justify-center font-mono rounded-full border no-underline cursor-pointer transition-colors hover:bg-slate-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-400 text-xs px-3 py-2 min-h-11 sm:min-h-0 sm:px-2 sm:py-0.5 sm:text-[0.65rem]'
 
 const timelineLabel = computed(
   () => TIMELINE[props.exploration.timeline]?.title ?? props.exploration.timeline,
@@ -45,7 +45,7 @@ function onPillClick(event: Event) {
 
 <template>
   <div
-    class="exploration-meta-pills flex flex-wrap gap-1.5"
+    class="exploration-meta-pills flex flex-wrap gap-2 sm:gap-1.5"
     data-testid="exploration-meta-pills"
   >
     <RouterLink

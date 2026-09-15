@@ -23,7 +23,7 @@ import { MCP_DOCS_HOME, ROADMAP_LAUNCH } from '@/libs/roadmapUrls'
           :href="ROADMAP_LAUNCH"
           target="_blank"
           rel="noopener"
-          class="inline-flex items-center px-3 py-2 min-h-11 rounded-md bg-violet-700 text-white text-sm font-medium no-underline hover:bg-violet-600"
+          class="fyp-shell-cta bg-violet-700 text-white hover:bg-violet-600"
         >
           Launch details
         </a>
@@ -31,7 +31,7 @@ import { MCP_DOCS_HOME, ROADMAP_LAUNCH } from '@/libs/roadmapUrls'
           :href="MCP_DOCS_HOME"
           target="_blank"
           rel="noopener"
-          class="inline-flex items-center px-3 py-2 min-h-11 rounded-md border border-slate-400 bg-white text-slate-700 text-sm no-underline hover:bg-slate-50"
+          class="fyp-shell-cta border border-slate-400 bg-white text-slate-700 hover:bg-slate-50"
         >
           MCP catalogue
         </a>

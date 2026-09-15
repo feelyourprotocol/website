@@ -55,7 +55,7 @@ Catalog: [`repo-structure.mdc`](.cursor/rules/repo-structure.mdc).
 
 - **Primitives (always-on):** `repo-structure.mdc`, `quality.mdc`, `testing.mdc`, `git.mdc`
 - **Task invariants (glob):** `explorations.mdc` when editing `src/explorations/` or `src/eComponents/`
-- **Design (glob):** `exploration-design.mdc` — cover column vs companion; same logical control → one UIC
+- **Design (glob):** `design.mdc` — site shell responsiveness, touch targets, shared chrome; `exploration-design.mdc` — cover column vs companion; same logical control → one UIC
 - **Specialized:** `video-recording.mdc`, `og-images.mdc`
 
 If your tool supports attaching folders (e.g. `@website-docs/`), include the relevant doc pages — but AGENTS.md + skill + source remain authoritative.

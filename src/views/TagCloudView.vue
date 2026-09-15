@@ -39,7 +39,7 @@ function reset() {
       <button
         v-for="item in items"
         :key="item.key"
-        class="tag-item cursor-pointer rounded-md px-1.5 py-0.5 transition-all duration-300 hover:bg-slate-50"
+        class="tag-item fyp-shell-tap-target cursor-pointer rounded-md px-2 py-2 transition-all duration-300 hover:bg-slate-50 sm:px-1.5 sm:py-0.5"
         :class="activeTag === item.key ? 'text-slate-800 font-semibold' : 'text-slate-600'"
         :style="{ fontSize: item.fontSize + 'rem' }"
         @click="navigate(item.key)"
