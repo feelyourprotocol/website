@@ -40,3 +40,6 @@ export function mcpDocsEipPage(explorationId: string): string {
  */
 export const FYP_X_HANDLE = '@FeelEthereum' as const
 export const FYP_X_URL = 'https://x.com/FeelEthereum'
+
+/** @FeelEthereum YouTube channel — same handle as X. */
+export const FYP_YOUTUBE_URL = 'https://www.youtube.com/@FeelEthereum'

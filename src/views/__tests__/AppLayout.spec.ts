@@ -120,6 +120,13 @@ describe('App layout', () => {
       const xLink = wrapper.find('footer a[href="https://x.com/FeelEthereum"]')
       expect(xLink.exists()).toBe(true)
     })
+
+    it('has YouTube link', async () => {
+      const wrapper = await mountApp(makeRouter())
+      const ytLink = wrapper.find('footer a[href="https://www.youtube.com/@FeelEthereum"]')
+      expect(ytLink.exists()).toBe(true)
+      expect(ytLink.text()).toBe('YouTube')
+    })
   })
 
   describe('Video mode', () => {

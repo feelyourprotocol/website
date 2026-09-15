@@ -3,7 +3,7 @@ import { onUnmounted, ref, watch } from 'vue'
 import { RouterLink, RouterView, useRoute, useRouter } from 'vue-router'
 
 import ExplorationNavListbox from '@/components/ExplorationNavListbox.vue'
-import { FYP_X_URL, ROADMAP_HOME } from '@/libs/roadmapUrls'
+import { FYP_X_URL, FYP_YOUTUBE_URL, ROADMAP_HOME } from '@/libs/roadmapUrls'
 import logoUrl from '@/logo.png'
 import { useVideoMode } from '@/video/useVideoMode'
 import VideoShell from '@/video/VideoShell.vue'
@@ -106,6 +106,8 @@ onUnmounted(() => {
         >
         <span class="text-purple-500 mx-2">◆</span>
         <a :href="FYP_X_URL" target="_blank" rel="noopener">X</a>
+        <span class="text-purple-500 mx-2">◆</span>
+        <a :href="FYP_YOUTUBE_URL" target="_blank" rel="noopener">YouTube</a>
         <span class="text-purple-500 mx-2">◆</span>
         <a href="https://github.com/feelyourprotocol/website" target="_blank" rel="noopener"
           >GitHub</a

@@ -3,6 +3,7 @@ import { describe, expect, it } from 'vitest'
 import {
   FYP_X_HANDLE,
   FYP_X_URL,
+  FYP_YOUTUBE_URL,
   MCP_DOCS_HOME,
   MCP_DOCS_ORIGIN,
   MCP_DOCS_OVERVIEW,
@@ -48,6 +49,10 @@ describe('roadmapUrls', () => {
   it('FYP_X_URL is the project handle', () => {
     expect(FYP_X_URL).toBe('https://x.com/FeelEthereum')
     expect(FYP_X_HANDLE).toBe('@FeelEthereum')
+  })
+
+  it('FYP_YOUTUBE_URL is the @FeelEthereum channel', () => {
+    expect(FYP_YOUTUBE_URL).toBe('https://www.youtube.com/@FeelEthereum')
   })
 })
 
