@@ -22,7 +22,7 @@ Integration model: [E-Components](/contributing/e-components).
 
 ## Precompile Interface
 
-**E-Component owns:** example selection, hex input, value fields, URL sharing.
+**E-Component owns:** example selection, hex input, value fields.
 
 **Exploration owns:** `run` callback and result visualization (`#result` slot). Standard pre/post hardfork compare: `useStandardPrecompileRun` in reference folder.
 

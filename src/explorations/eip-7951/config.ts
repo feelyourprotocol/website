@@ -5,10 +5,10 @@ export const config: PrecompileConfig = {
   defaultExample: 'valid',
   showBigInt: false,
   values: [
-    { title: 'Hash', urlParam: 'hash', expectedLen: 32n },
-    { title: 'R', urlParam: 'sigr', expectedLen: 32n },
-    { title: 'S', urlParam: 'sigs', expectedLen: 32n },
-    { title: 'Pub key X', urlParam: 'pubx', expectedLen: 32n },
-    { title: 'Pub key Y', urlParam: 'puby', expectedLen: 32n },
+    { title: 'Hash', expectedLen: 32n },
+    { title: 'R', expectedLen: 32n },
+    { title: 'S', expectedLen: 32n },
+    { title: 'Pub key X', expectedLen: 32n },
+    { title: 'Pub key Y', expectedLen: 32n },
   ],
 }

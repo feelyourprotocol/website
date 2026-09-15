@@ -28,7 +28,7 @@ website:build → static server → Playwright recordVideo (540×960)
 | `fyp-video=1` | Any route | Hides site chrome, mounts overlay shell |
 | `example=<key>` | Explorations | Pre-selects an example preset (all explorations) |
 
-`?example=` works for every exploration via `resolveInitialExample()` + `useExplorationExampleQuery()`. Invalid keys fall back to the exploration's `DEFAULT_*_ID`. For precompile explorations that also support field-level share URLs (`?b=`, `?hash=`), `?example=` takes precedence.
+`?example=` works for every exploration via `resolveInitialExample()` + `useExplorationExampleQuery()`. Invalid keys fall back to the exploration's `DEFAULT_*_ID`.
 
 ## Selectors (automation contract)
 

@@ -38,7 +38,6 @@ const {
   inputValues,
   result,
   selectExample,
-  shareURL,
   onDataInputFormChange,
   onValueInputFormChange,
   init,
@@ -46,7 +45,6 @@ const {
 
 await init({
   queryExample: parseExampleQueryParam(route.query?.example),
-  routeQuery: route.query,
 })
 </script>
 
@@ -56,7 +54,6 @@ await init({
     :explorationId="config.explorationId"
     :exploration="exploration"
     :topic="topic"
-    :shareURL="shareURL"
   >
     <template #content>
       <div class="min-w-0 max-w-full">

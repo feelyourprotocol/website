@@ -8,7 +8,7 @@ import { usePrecompileState } from '../usePrecompileState'
 const config: PrecompileConfig = {
   explorationId: 'test',
   defaultExample: 'ex1',
-  values: [{ title: 'A', urlParam: 'a', expectedLen: 4n }],
+  values: [{ title: 'A', expectedLen: 4n }],
 }
 
 const examples: Examples = {
@@ -87,6 +87,7 @@ describe('usePrecompileState', () => {
     expect(state.result).toBeDefined()
     expect(state).not.toHaveProperty('execResultPre')
     expect(state).not.toHaveProperty('execResultPost')
+    expect(state).not.toHaveProperty('shareURL')
   })
 
   it('loads example from ?example= query on init', async () => {
@@ -99,15 +100,6 @@ describe('usePrecompileState', () => {
     expect(run).toHaveBeenCalledWith('0xcafebabe')
   })
 
-  it('prefers ?example= over field url params on init', async () => {
-    const run = vi.fn().mockResolvedValue(undefined)
-    const state = usePrecompileState(config, examples, run)
-
-    await state.init({ queryExample: 'ex2', routeQuery: { a: 'deadbeef' } })
-
-    expect(run).toHaveBeenCalledWith('0xcafebabe')
-  })
-
   it('falls back to default when ?example= is unknown', async () => {
     const run = vi.fn().mockResolvedValue(undefined)
     const state = usePrecompileState(config, examples, run)
@@ -116,14 +108,5 @@ describe('usePrecompileState', () => {
 
     expect(state.example.value).toBe('ex1')
     expect(run).toHaveBeenCalledWith('0xdeadbeef')
-  })
-
-  it('loads field url params when ?example= is absent', async () => {
-    const run = vi.fn().mockResolvedValue(undefined)
-    const state = usePrecompileState(config, examples, run)
-
-    await state.init({ routeQuery: { a: 'aabbccdd' } })
-
-    expect(run).toHaveBeenCalledWith('0xaabbccdd')
   })
 })

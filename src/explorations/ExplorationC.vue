@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { ArrowTopRightOnSquareIcon, ShareIcon } from '@heroicons/vue/24/solid'
+import { ArrowTopRightOnSquareIcon } from '@heroicons/vue/24/solid'
 
 import ButtonUIC from '@/eComponents/ui/ButtonUIC.vue'
 
@@ -13,7 +13,6 @@ const props = withDefaults(
     explorationId: string
     exploration: Exploration
     topic: Topic
-    shareURL?: () => void
     asPageTitle?: boolean
     showUsageInstructions?: boolean
   }>(),
@@ -44,13 +43,6 @@ const showUsage = computed(
         {{ exploration.title }}
       </component>
       <div class="flex shrink-0 items-center gap-1">
-        <a v-if="shareURL" href="#" class="share-url-button" @click.stop.prevent="shareURL">
-          <ButtonUIC
-            :icon="ShareIcon"
-            tooltip="Open Shareable URL"
-            aria-label="Open shareable URL"
-          />
-        </a>
         <a
           :href="exploration.infoURL"
           target="_blank"

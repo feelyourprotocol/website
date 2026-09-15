@@ -57,7 +57,7 @@ describe('HelpHintUIC', () => {
 
     const wrapper = mount(HelpHintUIC, {
       props: {
-        text: 'Open shareable URL',
+        text: 'Open external EIP information',
         tier: 'decorative',
       },
       slots: {

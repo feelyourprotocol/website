@@ -2,8 +2,6 @@
 export interface PrecompileValueDef {
   /** Label shown beside the input. */
   title: string
-  /** URL query key for deep-linking this value. */
-  urlParam?: string
   /** Expected byte length for validation/display. */
   expectedLen?: bigint
   /** Initial hex string (with or without `0x`). */
