@@ -45,11 +45,11 @@ describe('App layout', () => {
       )
     })
 
-    it('exploration dropdown button is rendered', async () => {
+    it('exploration catalog trigger is rendered', async () => {
       const wrapper = await mountApp(makeRouter())
       const button = wrapper.find('#exploration-navi')
       expect(button.exists()).toBe(true)
-      expect(button.text()).toContain('All Explorations')
+      expect(button.attributes('aria-label')).toBe('Switch exploration')
     })
   })
 

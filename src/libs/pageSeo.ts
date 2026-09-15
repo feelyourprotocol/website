@@ -216,7 +216,7 @@ export function getBreadcrumbsForPath(path: string): BreadcrumbItem[] {
     return [
       { label: 'Home', to: '/' },
       { label: topicForExploration.title, to: topicForExploration.path },
-      { label: entry.exploration.title },
+      { label: formatEipSpecLabel(entry.id) },
     ]
   }
 

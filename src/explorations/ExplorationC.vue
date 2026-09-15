@@ -36,7 +36,7 @@ const showUsage = computed(
     class="exploration-c"
     data-testid="exploration-ready"
   >
-    <div class="items-start gap-2 mb-2" :class="asPageTitle ? 'hidden md:flex' : 'flex'">
+    <div class="flex items-start gap-2 mb-2">
       <component
         :is="asPageTitle ? 'h1' : 'h3'"
         class="font-bold text-lg tracking-tight flex-1 min-w-0 e-text"

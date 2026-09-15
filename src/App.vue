@@ -1,10 +1,8 @@
 <script setup lang="ts">
-import { computed, onUnmounted, ref, watch } from 'vue'
+import { onUnmounted, ref, watch } from 'vue'
 import { RouterLink, RouterView, useRoute, useRouter } from 'vue-router'
-import { Listbox, ListboxButton, ListboxOption, ListboxOptions } from '@headlessui/vue'
-import { ChevronUpDownIcon } from '@heroicons/vue/20/solid'
 
-import { EXPLORATIONS } from '@/explorations/REGISTRY'
+import ExplorationNavListbox from '@/components/ExplorationNavListbox.vue'
 import { FYP_X_URL, ROADMAP_HOME } from '@/libs/roadmapUrls'
 import logoUrl from '@/logo.png'
 import { useVideoMode } from '@/video/useVideoMode'
@@ -14,12 +12,6 @@ const router = useRouter()
 const route = useRoute()
 const isVideoMode = useVideoMode()
 const selectedRoute = ref(route.path.includes('eip-') ? route.path : '')
-
-const selectedLabel = computed(() => {
-  if (!selectedRoute.value) return 'All Explorations'
-  const exploration = Object.values(EXPLORATIONS).find((e) => e.path === selectedRoute.value)
-  return exploration?.title ?? 'All Explorations'
-})
 
 function navigate(path: string) {
   const target = path || '/'
@@ -55,23 +47,31 @@ onUnmounted(() => {
   <div :class="isVideoMode ? 'fyp-video-mode min-h-dvh bg-black' : ''">
     <header v-if="!isVideoMode" class="mt-3 mb-4">
       <div class="flex flex-col gap-2 sm:grid sm:grid-cols-2">
-        <div class="site-title sm:col-start-1 sm:row-start-1">
-          <RouterLink
-            to="/"
-            class="inline-flex items-center gap-2.5 md:gap-3 text-2xl md:text-4xl font-bold tracking-wider whitespace-nowrap no-underline"
-          >
-            <img
-              :src="logoUrl"
-              alt=""
-              class="h-[1em] w-auto shrink-0"
-              width="108"
-              height="128"
-              fetchpriority="high"
-            />
-            <span class="bg-gradient-to-r from-purple-600 to-cyan-500 bg-clip-text text-transparent"
-              >Feel Your Protocol</span
+        <div class="flex items-start justify-between gap-2 min-w-0 sm:contents">
+          <div class="site-title min-w-0 flex-1 sm:col-start-1 sm:row-start-1">
+            <RouterLink
+              to="/"
+              class="inline-flex max-w-full items-center gap-2.5 md:gap-3 text-2xl md:text-4xl font-bold tracking-wider whitespace-nowrap no-underline"
             >
-          </RouterLink>
+              <img
+                :src="logoUrl"
+                alt=""
+                class="h-[1em] w-auto shrink-0"
+                width="108"
+                height="128"
+                fetchpriority="high"
+              />
+              <span
+                class="bg-gradient-to-r from-purple-600 to-cyan-500 bg-clip-text text-transparent"
+                >Feel Your Protocol</span
+              >
+            </RouterLink>
+          </div>
+          <nav
+            class="flex shrink-0 items-center sm:col-start-2 sm:row-start-1 sm:justify-end sm:text-right"
+          >
+            <ExplorationNavListbox v-model="selectedRoute" @update:model-value="navigate" />
+          </nav>
         </div>
         <p
           class="flex items-baseline text-sm md:text-xl text-slate-500 tracking-wide sm:col-span-2 sm:row-start-2"
@@ -83,63 +83,6 @@ onUnmounted(() => {
             · · · · · · · · · · · ·</span
           >
         </p>
-        <nav
-          class="font-mono text-base md:text-xs sm:col-start-2 sm:row-start-1 sm:text-right flex sm:justify-end items-center"
-        >
-          <Listbox v-model="selectedRoute" @update:model-value="navigate">
-            <div class="relative inline-block w-full sm:w-auto">
-              <ListboxButton
-                class="inline-flex items-center justify-between gap-2 w-full sm:w-auto sm:max-w-md text-base md:text-xs sm:ml-6 border border-slate-400 bg-white rounded-md text-slate-500 px-3 py-2 min-h-11 md:min-h-9 md:py-1.5 cursor-pointer text-left font-normal"
-                id="exploration-navi"
-              >
-                <span class="min-w-0 line-clamp-2">{{ selectedLabel }}</span>
-                <ChevronUpDownIcon class="size-3.5 opacity-50" />
-              </ListboxButton>
-
-              <transition
-                enter-active-class="transition duration-100 ease-out"
-                enter-from-class="opacity-0 scale-95"
-                enter-to-class="opacity-100 scale-100"
-                leave-active-class="transition duration-75 ease-in"
-                leave-from-class="opacity-100 scale-100"
-                leave-to-class="opacity-0 scale-95"
-              >
-                <ListboxOptions
-                  class="absolute right-0 z-20 mt-1 w-max max-h-60 overflow-auto rounded-md border border-slate-400 bg-white text-base md:text-xs shadow-md focus:outline-none"
-                >
-                  <ListboxOption value="" v-slot="{ active, selected }" as="template">
-                    <li
-                      :class="[
-                        'cursor-pointer whitespace-nowrap px-3 py-2 select-none text-slate-500',
-                        active ? 'bg-slate-50 text-slate-700' : '',
-                        selected ? 'font-bold text-slate-700' : '',
-                      ]"
-                    >
-                      All Explorations
-                    </li>
-                  </ListboxOption>
-                  <ListboxOption
-                    v-for="exploration in Object.values(EXPLORATIONS)"
-                    :key="exploration.id"
-                    :value="exploration.path"
-                    v-slot="{ active, selected }"
-                    as="template"
-                  >
-                    <li
-                      :class="[
-                        'cursor-pointer text-left max-w-xs sm:max-w-md px-3 py-2 select-none text-slate-500',
-                        active ? 'bg-slate-50 text-slate-700' : '',
-                        selected ? 'font-bold text-slate-700' : '',
-                      ]"
-                    >
-                      {{ exploration.title }}
-                    </li>
-                  </ListboxOption>
-                </ListboxOptions>
-              </transition>
-            </div>
-          </Listbox>
-        </nav>
       </div>
     </header>
 

@@ -128,7 +128,11 @@ describe('pageSeo', () => {
     const topic = TOPICS[exploration.topic]
     const crumbs = getBreadcrumbsForPath(exploration.path)
 
-    expect(crumbs.map((item) => item.label)).toEqual(['Home', topic.title, exploration.title])
+    expect(crumbs.map((item) => item.label)).toEqual([
+      'Home',
+      topic.title,
+      formatEipSpecLabel(exploration.id),
+    ])
     expect(crumbs[1]?.to).toBe(topic.path)
   })
 
@@ -187,8 +191,10 @@ describe('pageSeo', () => {
       'Feel Your Protocol — Ethereum Protocol Explorations for Humans and AI',
     )
     expect(getStaticShellHeading('/robustness')).toBe('Robustness')
-    expect(getStaticShellHeading(exploration.path)).toBe(exploration.title)
-    expect(getBreadcrumbsForPath(exploration.path).at(-1)?.label).toBe(exploration.title)
+    expect(getStaticShellHeading(exploration.path)).toBe(formatEipSpecLabel(exploration.id))
+    expect(getBreadcrumbsForPath(exploration.path).at(-1)?.label).toBe(
+      formatEipSpecLabel(exploration.id),
+    )
     expect(getStaticShellHeading(topic.path)).toBe(topic.title)
   })
 
