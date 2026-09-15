@@ -52,7 +52,7 @@ function onSelect(key: string) {
           leave-to-class="opacity-0 scale-95"
         >
           <ListboxOptions
-            class="e-listbox-options absolute right-0 z-20 mt-1 max-h-60 overflow-auto rounded-sm border shadow-lg focus:outline-none w-max max-w-[min(100vw-1.5rem,100%)] max-md:w-full max-md:max-w-full"
+            class="e-listbox-options absolute right-0 z-20 mt-1 max-h-60 overflow-auto rounded-sm border shadow-lg focus:outline-none w-max max-md:w-full max-md:max-w-[min(100vw-1.5rem,100%)]"
           >
             <ListboxOption
               v-for="(val, key) in examples"

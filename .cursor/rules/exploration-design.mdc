@@ -72,6 +72,6 @@ Grid/flex items default to **`min-width: auto`**, so long hex in **`e-input` / `
 - `.exploration-c` and its direct children: **`min-w-0 max-w-full`** in `main.css`
 - **`e-input` / `e-textarea`**: **`min-w-0 max-w-full`**; textarea uses **`break-all`** for hex lines
 - **`ExplorationView`** widget column: **`min-w-0 max-w-full`**
-- **`ExamplesUIC`**: full-width below `md`; dropdown **`max-w-full`** on mobile, options may wrap
+- **`ExamplesUIC`**: full-width below `md`; dropdown **`w-full`** on mobile only — desktop keeps **`w-max`** (widest option title), never `max-w-full` on the menu
 
 New E-Components and `#content` roots should include **`min-w-0 max-w-full`** on the outer wrapper. Prefer shared UIC/CSS over per-exploration fixes.
