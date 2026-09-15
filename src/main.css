@@ -316,11 +316,11 @@ body {
 }
 
 .e-widget-chrome-action {
-  @apply grid w-full grid-cols-[minmax(0,1fr)_auto] items-center gap-2 md:flex md:w-auto md:flex-row;
+  @apply grid w-full grid-cols-[minmax(10rem,1fr)_auto] items-center gap-2 md:flex md:w-auto md:flex-row;
 }
 
 .e-widget-chrome-run {
-  @apply shrink-0 max-md:[&_.e-action-button]:min-h-9 max-md:[&_.e-action-button]:px-2 max-md:[&_.e-action-button]:py-1.5 max-md:[&_.e-action-button]:text-xs;
+  @apply min-w-0 shrink-0 max-md:[&_.e-action-button]:min-h-9 max-md:[&_.e-action-button]:px-2 max-md:[&_.e-action-button]:py-1.5 max-md:[&_.e-action-button]:text-xs;
 }
 
 /* --- Site shell (home, browse, card chrome) --- */

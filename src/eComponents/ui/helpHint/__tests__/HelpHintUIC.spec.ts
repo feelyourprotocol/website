@@ -31,6 +31,8 @@ describe('HelpHintUIC', () => {
     })
 
     expect(wrapper.find('.help-hint-inline').text()).toContain('Execute block')
+    expect(wrapper.find('.help-hint-inline').classes()).toContain('w-0')
+    expect(wrapper.find('.help-hint-inline').classes()).toContain('min-w-full')
     expect(wrapper.find('.help-hint-popover-trigger').exists()).toBe(false)
   })
 

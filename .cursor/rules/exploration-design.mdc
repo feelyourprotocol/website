@@ -32,7 +32,9 @@ Reference: `SegmentedToggleUIC` — Osaka | Amsterdam on `eip-7708` and `eip-803
 
 Mobile stacks bands (steps → toggles → examples+Run grid). Desktop: steps left; toggles + action cluster right. Omit unused slots — do not leave empty flex wrappers.
 
-**Form-style explorations** (precompile E-Component, bytecode stepper, 7594) keep examples above the editor; they do **not** use `WidgetChromeUIC`.
+On **touch**, `ActionButtonUIC` shows the Run tooltip as **inline** copy under the button. That caption must **not** set the action-row width (otherwise the examples select collapses to a chevron). Inline hints use `w-0 min-w-full`; the Run host is `flex min-w-0`, not `inline-flex`. The examples column is `minmax(10rem, 1fr)`.
+
+**Form-style explorations** (precompile E-Component, bytecode stepper, 7594) keep examples above the editor; they do **not** use `WidgetChromeUIC`. Bytecode Run/Step/Reset use **`decorative`** hints (no inline caption on touch). 7594 Run sits on its own row under a full-width examples select — same inline-width rule still applies.
 
 ## State chrome: selected must be obvious
 

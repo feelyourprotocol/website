@@ -37,7 +37,7 @@ const accessibleLabel = props.tooltip ? `${props.text}. ${props.tooltip}` : prop
   <HelpHintUIC
     :text="tooltip"
     :tier="hintTier ?? 'useful'"
-    host-class="inline-flex flex-col items-stretch gap-1"
+    host-class="flex max-w-full min-w-0 flex-col items-stretch gap-1"
     inline-class="text-right"
   >
     <button
