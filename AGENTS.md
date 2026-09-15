@@ -36,7 +36,7 @@ Default path for a **new protocol change** is the [round-trip skill](.cursor/ski
 | **3 — MCP** | GO (optional hints from the widget) | Engine [add-mcp-module](https://github.com/feelyourprotocol/mcp-execution-engine/blob/main/.cursor/skills/add-mcp-module/SKILL.md) — module and/or catalogue page; tests; MCP report. Well-scoped structural lab expansions may ship in this phase as a **side-trip** (same skill) — then **ask** whether to generate the comic |
 | **4 — Comic** | Yes on that ask (skippable) | [bro-bruh-comic](.cursor/skills/bro-bruh-comic/SKILL.md) — strip + `design/comics/eip-NNNN.yml` — then **ask** about video |
 | **5 — Video** | Yes on that ask (skippable) | [video-short](.cursor/skills/video-short/SKILL.md) — Shorts mp4 + `tweet.yml` / `youtube.yml` — then **stop** for close |
-| **6 — Close** | GO | [round-trip-close](.cursor/skills/round-trip-close/SKILL.md) — green CI + clean trees; wrap report; merge GO; marketing GO |
+| **6 — Close** | GO | [round-trip-close](.cursor/skills/round-trip-close/SKILL.md) — green CI + clean trees; wrap report; merge GO; YouTube GO when a Short exists; marketing GO |
 
 Standalone widget work (no round-trip) still briefs first, then add-exploration. Read taxonomies from source (`TOPICS.ts`, `TIMELINE.ts`, `TAGS.ts`) — do not guess IDs. Tests passing is the quality bar, not the pedagogy bar — human reviews intro, usage, and examples.
 

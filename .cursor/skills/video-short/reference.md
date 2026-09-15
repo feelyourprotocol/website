@@ -222,17 +222,18 @@ If `voice/manifest.json` is absent, `loadProject.ts` falls back to manual `cue`/
 
 ## Security
 
-The ElevenLabs API key is a **paid credential**. Treat it like any other secret.
+The ElevenLabs API key and YouTube OAuth refresh token are **paid / identity credentials**. Treat them like any other secret.
 
-- **Storage:** `video/.env` only. Never commit. `video/.gitignore` covers `.env`, `output/`, `projects/*/voice/`. `loadEnv.ts` reads it; `elevenlabs.ts` sends it as the `xi-api-key` header.
+- **Storage:** `video/.env` only. Never commit. `video/.gitignore` covers `.env`, `output/`, `projects/*/voice/`. `loadEnv.ts` reads it; `elevenlabs.ts` sends the ElevenLabs key as `xi-api-key`; the YouTube CLI uses `YOUTUBE_*` only in memory.
 - **Skill rules (agent-side):**
   - Never `Read` / `cat` / `head` / `less` on `video/.env`.
-  - Never print, echo, or log the key value. Never `env | grep ELEVENLABS`.
-  - Never pass the key as a CLI flag or in a URL.
-  - Never write the key to another file (including `.md`, `.env.example`, tests, or reports).
-  - Preflight the key via a non-printing exit code: `cd video && node -e "process.exit(process.env.ELEVENLABS_API_KEY && process.env.ELEVENLABS_VOICE_ID ? 0 : 1)"` after the CLI's `loadVideoEnv()` has run. Report only "present / missing".
-- **On missing key:** stop the phase, tell the human to copy `video/.env.example` → `video/.env` and paste their key + voice id. Do not offer to write the file.
-- **On accidental exposure:** stop, tell the human to rotate the key in the ElevenLabs dashboard, and audit `git log -p -- video/.env` + any recent commits touching `video/`.
+  - Never print, echo, or log secret values. Never `env | grep ELEVENLABS` or `env | grep YOUTUBE`.
+  - Never pass secrets as a CLI flag or in a URL.
+  - Never write secrets to another file (including `.md`, `.env.example`, tests, or reports).
+  - Preflight ElevenLabs via a non-printing exit code: `cd video && node -e "process.exit(process.env.ELEVENLABS_API_KEY && process.env.ELEVENLABS_VOICE_ID ? 0 : 1)"` after the CLI's `loadVideoEnv()` has run. Report only "present / missing".
+  - YouTube: same rule for `YOUTUBE_CLIENT_ID`, `YOUTUBE_CLIENT_SECRET`, `YOUTUBE_REFRESH_TOKEN`. Missing tokens → point at [YOUTUBE.md](../../../video/YOUTUBE.md); do not offer to write `.env`.
+- **On missing ElevenLabs key:** stop the phase, tell the human to copy `video/.env.example` → `video/.env` and paste their key + voice id. Do not offer to write the file.
+- **On accidental exposure:** stop, tell the human to rotate the ElevenLabs key and/or revoke the Google OAuth grant at https://myaccount.google.com/permissions, and audit `git log -p -- video/.env` + any recent commits touching `video/`.
 - **Follow-ups (out of skill scope):** root-level `**/.env` gitignore for the whole `feelyourprotocol` workspace; macOS Keychain lookup fallback in `loadEnv.ts`; a `gitleaks` pre-commit hook.
 
 ## Testing
@@ -253,6 +254,7 @@ Unit tests already cover the pipeline surface. Do not treat them as a substitute
 | `video/src/__tests__/trimLeadIn.spec.ts` | Frame-0 trim heuristic |
 | `video/src/__tests__/formats.spec.ts` | Output formats |
 | `video/src/__tests__/parseGenerateArgs.spec.ts` | Generate-CLI args |
+| `video/src/youtube/__tests__/*.spec.ts` | YouTube yaml parse, OAuth URL, upload plan, idempotent `published:` |
 | `src/explorations/<id>/videoReady.spec.ts` | **Per exploration** — mounts widget with `?fyp-video=1&example=<default>`, asserts every `data-testid` the playbook depends on + `?example=<key>` deep-link. See [`eip-7708/videoReady.spec.ts`](../../src/explorations/eip-7708/videoReady.spec.ts) |
 
 ## Troubleshooting
@@ -273,9 +275,12 @@ Unit tests already cover the pipeline surface. Do not treat them as a substitute
 | UI resets without explanation | Remove mid-video `selectExample` from recap beats; recap = text-only on current state |
 | Banner overlaps during focus | `zones.json` scroll margins; `--video-top-banner-max-h` in CSS |
 | `voice:synth` HTTP 401 | Missing / stale `ELEVENLABS_API_KEY` — do not print it; ask human to rotate in the ElevenLabs dashboard |
+| `video:youtube:auth` no refresh token | Google already granted the app without `prompt=consent`. Revoke at https://myaccount.google.com/permissions and re-run auth |
+| `video:youtube:upload` missing env | Client id/secret/refresh token absent — human fills `video/.env` per [YOUTUBE.md](../../../video/YOUTUBE.md); do not print values |
+| `video:youtube:upload` playlist not found | Should not happen — missing titles are created via `playlists.insert`. If create fails, check OAuth scopes include `youtube` |
+| YouTube Studio won't accept / show custom thumbnail | Use **Datei hochladen** (*Upload file*), not *Aus Video auswählen* (in-video frames only). File must be **JPEG** (or PNG/GIF/BMP) at **≥1280 px wide**, 9:16, **≤2 MB**. `video:thumb` emits `-final-thumb.jpg` at 1280×2276 — re-run `npm run video:thumb -- <id>` if you still have an old 1080-wide `.png`. Custom Shorts thumbnails may require a verified channel / YPP |
 | `voice:synth` HTTP 429 | Rate limit — re-run after backoff; cache hits do not re-request |
 | Audio starts before video | Trim offset — see `voice/mux-cli.ts`; default is `anchor on title beat` (silence before hook is trimmed from narration source) |
 | Title-card second hook line clipped by peek zone | The accent (last) line uses a larger italic font (`--hook-line--accent`). Keep it short — 5–12 chars, one line — otherwise it wraps and the peek zone crops it. Compare `eip-8024` (`GONE SOON…`) |
 | Receipts / right-panel content not visible on 540×960 | Right-panel explorations (`<Teleport to="#exploration-right-panel">`) render inside `CompanionSheet` at the bottom. `expandCompanion: 'half'` shows ~50 % viewport, `'full'` shows ~92 %. For a receipts-heavy climax, prefer `'full'` so the log rows are large enough to read; hold the beat longer (`wait ≥ 3 s`) to let the sheet animate open |
 | X/Twitter upload fails with "Incompatible video codecs" | The MP4 carries **VP9** (Chromium's default recording codec) inside an MP4 container. X only accepts H.264. Before 2026-09-03, `muxVideoAudio` only transcoded when it also had to scale (i.e. only in the 1080×1920 `shorts` path); the 540×960 `shorts-preview` path did `-c:v copy` and carried VP9 through. Fixed by always transcoding — every mux now emits H.264 + `yuv420p` + `+faststart`. If `ffprobe` reports VP9 on an old file, re-mux: `npm run video:voice:mux -- <id>`. YouTube accepts VP9 natively, which is why it silently worked there |
-| YouTube Studio won't accept / show custom thumbnail | Use **Datei hochladen** (*Upload file*), not *Aus Video auswählen* (in-video frames only). File must be **JPEG** (or PNG/GIF/BMP) at **≥1280 px wide**, 9:16, **≤2 MB**. `video:thumb` emits `-final-thumb.jpg` at 1280×2276 — re-run `npm run video:thumb -- <id>` if you still have an old 1080-wide `.png`. Custom Shorts thumbnails may require a verified channel / YPP |

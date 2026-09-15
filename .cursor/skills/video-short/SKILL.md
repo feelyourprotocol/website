@@ -45,7 +45,7 @@ Read, then derive. Do not re-brief the EIP. Do not invent verbs, numbers, or for
 10. **YouTube Shorts publication assets** — [YouTube Shorts publication](#youtube-shorts-publication). Extract thumbnail (`npm run video:thumb -- <id>`) and write `youtube.yml`; include paste-ready copy in the report.
 11. **Report** — [Report](#report), then **STOP**.
 
-Do not upload to any platform. Do not modify existing videos.
+Do not upload to any platform in this phase. Do not modify existing videos. YouTube upload is [round-trip-close](../round-trip-close/SKILL.md) §4–5 (or `npm run video:youtube:upload` for a standalone Short).
 
 ## Preflight (hard gates)
 
@@ -271,7 +271,7 @@ notes: <consumed opener + anything a later LLM must not repeat>
 
 The muxed `*-final.mp4` is uploadable **as-is** to YouTube Shorts. YouTube Studio asks for **title**, **description**, and **thumbnail** at minimum; we fill all three plus tags + playlist + category. Everything lives in `youtube.yml`; the thumbnail is auto-extracted from the video by `npm run video:thumb -- <id>`.
 
-The X arc (comic + video tweet) is the primary channel; YouTube Shorts is a **secondary evergreen index** — same clip, tuned for search rather than for a timeline hit. Copy is more descriptive, keywords matter more than voice. Publishing on YouTube is **optional per project** (human decides); the skill always produces the assets so the decision is one paste-and-upload away.
+The X arc (comic + video tweet) is the primary channel; YouTube Shorts is a **secondary evergreen index** — same clip, tuned for search rather than for a timeline hit. Copy is more descriptive, keywords matter more than voice. The skill always produces `youtube.yml` + the title-card JPEG so upload is one CLI away. **Do not upload in this phase.** Round-trip close owns the public upload after merge (exploration URL live). Standalone: the human may run `npm run video:youtube:upload -- <id>` after auth, or paste into Studio from this report.
 
 ### Title (aim ≤ 70 chars, hard cap 100)
 
@@ -313,7 +313,7 @@ Weak signal but still helps related-video ranking. Pick: `Ethereum`, `EIP-NNNN`,
 ### Category + Playlist
 
 - **Category:** *Science & Technology* (default for every FYP short).
-- **Playlist:** bucket by fork — e.g. *Feel Your Protocol · Amsterdam EIPs*. Create the playlist once per fork; add every new short to it.
+- **Playlists:** two memberships. Yaml `playlist:` is the **fork** shelf (*Feel Your Protocol · Amsterdam EIPs*). Upload / playlist-sync also add the **topic** shelf (*Feel Your Protocol · Robustness*, *UX*, …) from `video/src/explorationRegistry.ts` (same labels as `TOPICS.ts`). Create either playlist if it does not exist. Do not add a playlist per tag.
 
 ### Diversity check
 
@@ -348,7 +348,7 @@ tags:
   - <mechanism keyword>
 
 category: Science & Technology
-playlist: Feel Your Protocol · <fork> EIPs
+playlist: Feel Your Protocol · <fork> EIPs   # fork shelf; topic shelf is derived, not listed here
 
 thumbnail:
   file: <basename>-final-thumb.jpg
@@ -424,7 +424,7 @@ T2 (reply, no media):
 
 Human may edit; do not ask for a tweet-only GO.
 
-**YouTube Shorts** (`video/projects/eip-NNNN/youtube.yml`) — upload the muxed `*-final.mp4` as a Short:
+**YouTube Shorts** (`video/projects/eip-NNNN/youtube.yml`) — assets for `npm run video:youtube:upload -- eip-NNNN` (or Studio paste if OAuth is not set up). Do not upload in this phase.
 
 Titel (Title, ≤ 100 chars):
 
@@ -440,7 +440,8 @@ Beschreibung (Description):
 
 - **Tags:** <comma-separated>
 - **Kategorie / Category:** Science & Technology
-- **Playlist:** <playlist name>
+- **Playlist (fork):** <yaml playlist>
+- **Playlist (topic):** Feel Your Protocol · <Topic> (derived; upload adds both)
 - **Thumbnail:** `video/projects/eip-NNNN/output/<basename>-final-thumb.jpg` (1280×2276 JPEG — upload via *Datei hochladen* / *Upload file*, not *Aus Video auswählen*)
 
 Human may edit; do not ask for a YouTube-only GO.
@@ -458,5 +459,5 @@ Then **STOP**.
 - Iterate a beat — edit `narration.json` and re-run `voice:synth` + `npm run video:generate -- <id>` (segment files cache by beat name: delete `voice/segments/<beat>.mp3` to force a re-spend when the text changed)
 - Debug at layout size — `npm run video:generate:preview -- <id>` (540×960); then still ship 1080
 - X announcement (round-trip) — [round-trip-close](../round-trip-close/SKILL.md) after merge
-- YouTube Shorts — human, from this report’s YouTube block
+- YouTube Shorts — [round-trip-close](../round-trip-close/SKILL.md) §4–5, or `npm run video:youtube:upload -- <id>` ([YOUTUBE.md](../../../video/YOUTUBE.md))
 - Root-level `**/.env` gitignore, macOS Keychain fallback in `loadEnv.ts` — see [reference.md § Security](reference.md#security)

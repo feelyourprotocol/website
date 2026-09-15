@@ -2,8 +2,9 @@
 name: round-trip-close
 description: >-
   After round-trip comic and video: gate on green PR CI and clean trees,
-  wrap-up report, merge the three eip-NNNN PRs on GO, then show the X
-  announcement tweets. Do not use outside round-trip phase 6.
+  wrap-up report, merge the three eip-NNNN PRs on GO, upload the Short to
+  YouTube on GO (before X), then show the announcement tweets.
+  Do not use outside round-trip phase 6.
 ---
 
 # Round-trip close
@@ -14,7 +15,7 @@ Target: the confirmed id (`eip-NNNN`). The three siblings: `website`, `mcp-execu
 
 Inspect in parallel (`working_directory` + `required_permissions: ["all"]`). Mutating git and `gh pr merge` **one repo at a time**. Do **not** push. Do **not** `git branch -D`. Do **not** merge or delete remotes before the merge GO.
 
-This skill has **two human GOs** after the wrap report. Do not skip them. The agent never publishes to X.
+Human GOs after the wrap report: **merge**, then **YouTube** when a Short exists, then **marketing** (X). Do not skip them. The agent never publishes to X.
 
 ## 1 — Gates (hard)
 
@@ -69,7 +70,7 @@ Links must be clickable (GitHub PR URLs, `file://` to local comic/video when tho
 
 > Merge the three `eip-NNNN` PRs?
 
-Do not show announcement tweets in this report.
+Do not show the YouTube review or announcement tweets in this report.
 
 ## 3 — Merge GO
 
@@ -79,11 +80,63 @@ Per repo, in turn: `gh pr merge <number> --delete-branch`. Pass `--merge` if `gh
 
 After every merge succeeds: in each repo, `git fetch origin`, checkout the default branch (`main` / `origin/HEAD`), `git pull --ff-only origin <default>`, `git branch -d eip-NNNN` (safe delete). Do not `-D`. Do not delete a leftover that still has unique commits.
 
-**Success report** (short): merged PR URLs, now on default @ short SHA, local `eip-NNNN` gone. Then **STOP**:
+**Success report** (short): merged PR URLs, now on default @ short SHA, local `eip-NNNN` gone.
+
+Then: if `video/projects/eip-NNNN/youtube.yml` and `output/*-final.mp4` exist and `published.video_id` is absent, go to §4 **in this turn** (review + YouTube ask). Otherwise skip to the §6 ask (`Show the announcement tweets?`).
+
+## 4 — YouTube review — then STOP for YouTube GO
+
+Read `video/projects/eip-NNNN/youtube.yml`. Resolve the muxed `*-final.mp4` and `thumbnail.file` under `output/` (absolute `file://` links). Do not rewrite copy. Do not upload yet.
+
+````markdown
+## YouTube Shorts (eip-NNNN)
+
+**Video:** [*-final.mp4](file://<abs>)
+**Thumbnail:** [*-final-thumb.jpg](file://<abs>) — title-card JPEG
+
+**Title**
+
+```
+<title>
+```
+
+**Description**
+
+```
+<description>
+```
+
+- **Tags:** <comma-separated>
+- **Category:** Science & Technology
+- **Playlist (fork):** <youtube.yml playlist>
+- **Playlist (topic):** Feel Your Protocol · <Topic title from registry / TOPICS.ts>
+- **Privacy:** public (default)
+````
+
+Then **STOP**:
+
+> Upload to YouTube as public?
+
+Yes (or “upload”) → §5 with `--privacy public`. “Unlisted” / “private” → §5 with that privacy. No / skip → §6 ask only (do not upload).
+
+## 5 — YouTube GO
+
+Only after an explicit yes on that ask.
+
+Human one-time setup: [YOUTUBE.md](../../../video/YOUTUBE.md). Agent never `Read`s `video/.env` and never prints token values.
+
+1. Run with `required_permissions: ["all"]` from `website/`:
+   `npm run video:youtube:upload -- eip-NNNN --privacy public`
+   (or `--privacy unlisted` / `--privacy private` when the human named that).
+2. On success: report the `https://www.youtube.com/shorts/<id>` URL. `youtube.yml` now has `published:` — do not commit it unless asked.
+3. On missing client / refresh token: **STOP**. Point at `video/YOUTUBE.md`. Do not paste Studio copy unless the human asks for the fallback.
+4. On any other CLI error: high-level cause only. Do not retry with `--force` (that duplicates the video).
+
+Then **STOP**:
 
 > Show the announcement tweets?
 
-## 4 — Marketing GO
+## 6 — Marketing GO
 
 Only after an explicit yes on that ask. Read authored YAML; do not rewrite copy unless it is missing `intent` (then encode from `body` as in the comic/video skills). Generate nothing new.
 
@@ -136,7 +189,5 @@ Comic first; video a few hours later (or the next day). Human posts from the X a
 
 **Open in X (T2):** <t2.intent> — after T1 is live, append `&in_reply_to=<id>` or reply in the app.
 ```
-
-YouTube Shorts copy stays in the [video-short](../video-short/SKILL.md) report — not here.
 
 Then **STOP**. Round-trip complete.
