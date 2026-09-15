@@ -55,12 +55,12 @@ async function syncMobilePanelTop() {
       >
         <ListboxOptions
           :style="mobilePanelTop ? { top: mobilePanelTop } : undefined"
-          class="absolute right-0 z-30 mt-1 max-h-60 overflow-auto rounded-md border border-slate-400 bg-white font-mono text-base shadow-md focus:outline-none max-sm:fixed max-sm:left-3 max-sm:right-3 max-sm:mt-0 max-sm:w-auto max-sm:max-w-none sm:w-max sm:max-w-md md:text-xs"
+          class="absolute right-0 z-30 mt-1 max-h-60 overflow-y-auto overflow-x-hidden rounded-md border border-slate-400 bg-white font-mono text-base shadow-md focus:outline-none max-sm:fixed max-sm:left-3 max-sm:right-3 max-sm:mt-0 max-sm:w-auto max-sm:max-w-none sm:min-w-full sm:w-max sm:max-w-[min(100vw-1.5rem,36rem)] md:text-xs"
         >
           <ListboxOption value="" v-slot="{ active, selected }" as="template">
             <li
               :class="[
-                'cursor-pointer whitespace-nowrap px-3 py-2 select-none text-slate-500',
+                'cursor-pointer px-3 py-2 select-none text-slate-500 max-sm:whitespace-normal max-sm:break-words sm:whitespace-nowrap',
                 active ? 'bg-slate-50 text-slate-700' : '',
                 selected ? 'font-bold text-slate-700' : '',
               ]"
@@ -77,7 +77,7 @@ async function syncMobilePanelTop() {
           >
             <li
               :class="[
-                'cursor-pointer whitespace-nowrap px-3 py-2 text-left select-none text-slate-500',
+                'cursor-pointer px-3 py-2 text-left select-none text-slate-500 max-sm:whitespace-normal max-sm:break-words sm:whitespace-nowrap',
                 active ? 'bg-slate-50 text-slate-700' : '',
                 selected ? 'font-bold text-slate-700' : '',
               ]"
