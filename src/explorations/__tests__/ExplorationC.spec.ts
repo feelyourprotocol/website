@@ -1,12 +1,56 @@
 import { describe, expect, it, vi } from 'vitest'
 import { defineComponent } from 'vue'
+import { createMemoryHistory, createRouter } from 'vue-router'
 import { mount } from '@vue/test-utils'
 
 import ExplorationC from '@/explorations/ExplorationC.vue'
 import { EXPLORATIONS } from '@/explorations/REGISTRY'
 import { TOPICS } from '@/explorations/TOPICS'
+import { mcpDocsEipPage } from '@/libs/roadmapUrls'
 
 describe('ExplorationC', () => {
+  it('renders shared catalog meta pills including MCP when docs are live', () => {
+    const exploration = EXPLORATIONS['eip-7708']
+    const topic = TOPICS[exploration.topic]
+    const router = createRouter({
+      history: createMemoryHistory(),
+      routes: [{ path: '/ux', component: { template: '<div />' } }],
+    })
+    const wrapper = mount(ExplorationC, {
+      props: {
+        explorationId: 'eip-7708',
+        exploration,
+        topic,
+        showUsageInstructions: false,
+      },
+      global: { plugins: [router] },
+    })
+
+    expect(wrapper.find('[data-testid="exploration-meta-pills"]').exists()).toBe(true)
+    const mcp = wrapper.get('[data-testid="preview-pill-mcp"]')
+    expect(mcp.attributes('href')).toBe(mcpDocsEipPage('eip-7708'))
+  })
+
+  it('omits MCP pill on the shell when docs status is sunset', () => {
+    const exploration = EXPLORATIONS['eip-7594']
+    const topic = TOPICS[exploration.topic]
+    const router = createRouter({
+      history: createMemoryHistory(),
+      routes: [{ path: '/scaling', component: { template: '<div />' } }],
+    })
+    const wrapper = mount(ExplorationC, {
+      props: {
+        explorationId: 'eip-7594',
+        exploration,
+        topic,
+        showUsageInstructions: false,
+      },
+      global: { plugins: [router] },
+    })
+
+    expect(wrapper.find('[data-testid="preview-pill-mcp"]').exists()).toBe(false)
+  })
+
   it('external info link stops click propagation (safe inside RouterLink cards)', async () => {
     const exploration = EXPLORATIONS['eip-8024']
     const topic = TOPICS[exploration.topic]

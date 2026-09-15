@@ -3,9 +3,8 @@ import { computed } from 'vue'
 import { ArrowTopRightOnSquareIcon } from '@heroicons/vue/24/solid'
 
 import ButtonUIC from '@/eComponents/ui/ButtonUIC.vue'
-import { TIMELINE } from '@/explorations/TIMELINE'
-import { mcpDocsEipPage } from '@/libs/roadmapUrls'
 
+import ExplorationMetaPills from './ExplorationMetaPills.vue'
 import { type Exploration, getExplorationThumbnailImage } from './REGISTRY'
 import { type Topic, TOPIC_COLORS, topicCSSVars } from './TOPICS'
 
@@ -19,24 +18,7 @@ const props = withDefaults(
   { size: 'catalog' },
 )
 
-const pillLinkClass =
-  'exploration-preview-pill inline-flex items-center text-[0.65rem] font-mono px-2 py-0.5 rounded-full border no-underline cursor-pointer transition-colors hover:bg-slate-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-400'
-
 const thumbnail = computed(() => getExplorationThumbnailImage(props.exploration))
-const timelineLabel = computed(
-  () => TIMELINE[props.exploration.timeline]?.title ?? props.exploration.timeline,
-)
-const timelineBrowseTo = computed(() => ({
-  path: '/all',
-  query: { timeline: props.exploration.timeline },
-}))
-
-const showMcpPill = computed(
-  () =>
-    props.exploration.mcpDocsStatus === 'runnable' ||
-    props.exploration.mcpDocsStatus === 'planned-module',
-)
-const mcpDocsUrl = computed(() => mcpDocsEipPage(props.explorationId))
 </script>
 
 <template>
@@ -98,35 +80,13 @@ const mcpDocsUrl = computed(() => mcpDocsEipPage(props.explorationId))
           {{ exploration.coreQuestion }}
         </p>
 
-        <div class="flex flex-wrap gap-1.5 mt-2.5">
-          <RouterLink
-            :to="topic.path"
-            :class="[pillLinkClass, 'e-border e-bg-medium e-text']"
-            data-testid="preview-pill-topic"
-            @click.stop
-          >
-            {{ topic.title }}
-          </RouterLink>
-          <RouterLink
-            :to="timelineBrowseTo"
-            :class="[pillLinkClass, 'border-slate-300 text-slate-600']"
-            data-testid="preview-pill-timeline"
-            @click.stop
-          >
-            {{ timelineLabel }}
-          </RouterLink>
-          <a
-            v-if="showMcpPill"
-            :href="mcpDocsUrl"
-            target="_blank"
-            rel="noopener noreferrer"
-            :class="[pillLinkClass, 'border-slate-300 text-slate-500']"
-            data-testid="preview-pill-mcp"
-            @click.stop
-          >
-            MCP
-          </a>
-        </div>
+        <ExplorationMetaPills
+          class="mt-2.5"
+          :exploration-id="explorationId"
+          :exploration="exploration"
+          :topic="topic"
+          stop-propagation
+        />
       </div>
     </div>
   </article>

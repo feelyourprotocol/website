@@ -398,6 +398,10 @@ html.fyp-video-capture #app {
   border-radius: 0 !important;
 }
 
+html.fyp-video-capture .exploration-meta-pills {
+  display: none;
+}
+
 html.fyp-video-capture:not(.fyp-video-band-active) .exploration-right-panel-host {
   visibility: hidden;
 }

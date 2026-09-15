@@ -4,6 +4,7 @@ import { ArrowTopRightOnSquareIcon, ShareIcon } from '@heroicons/vue/24/solid'
 
 import ButtonUIC from '@/eComponents/ui/ButtonUIC.vue'
 
+import ExplorationMetaPills from './ExplorationMetaPills.vue'
 import type { Exploration } from './REGISTRY'
 import { type Topic, topicCSSVars } from './TOPICS'
 
@@ -65,6 +66,13 @@ const showUsage = computed(
         </a>
       </div>
     </div>
+
+    <ExplorationMetaPills
+      class="mb-2.5"
+      :exploration-id="explorationId"
+      :exploration="exploration"
+      :topic="topic"
+    />
 
     <div class="font-mono text-xs leading-relaxed mb-3.5 text-slate-600">
       <p v-html="exploration.introText"></p>
