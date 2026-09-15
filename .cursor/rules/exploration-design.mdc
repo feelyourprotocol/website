@@ -62,3 +62,16 @@ Before shipping copy, grep explorations for camelCase inside lesson/intro string
 `image_small.webp` is for **cards**. The exploration page always uses `image.webp` — never the thumbnail.
 
 Desktop check: cover-only right column should match the left card’s height, not dwarf it and not look like a postage stamp.
+
+## Mobile width: card must stay in the content column
+
+Grid/flex items default to **`min-width: auto`**, so long hex in **`e-input` / `e-textarea`**, or a **`w-max`** listbox menu, can widen the whole `.exploration-c` past the viewport (card flush to the right edge, body horizontal scroll).
+
+**Global guards** (do not rely on each exploration to remember):
+
+- `.exploration-c` and its direct children: **`min-w-0 max-w-full`** in `main.css`
+- **`e-input` / `e-textarea`**: **`min-w-0 max-w-full`**; textarea uses **`break-all`** for hex lines
+- **`ExplorationView`** widget column: **`min-w-0 max-w-full`**
+- **`ExamplesUIC`**: full-width below `md`; dropdown **`max-w-full`** on mobile, options may wrap
+
+New E-Components and `#content` roots should include **`min-w-0 max-w-full`** on the outer wrapper. Prefer shared UIC/CSS over per-exploration fixes.

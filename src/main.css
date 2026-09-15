@@ -130,7 +130,12 @@ body {
 .exploration-c {
   background-color: var(--e-bg);
   border: 1px solid var(--e-border);
-  @apply p-5 rounded-lg;
+  /* min-w-0: grid/flex default min-width:auto lets long hex blow out the card on mobile */
+  @apply min-w-0 max-w-full p-5 rounded-lg;
+}
+
+.exploration-c > * {
+  @apply min-w-0 max-w-full;
 }
 
 /* --- Result boxes (comparison panels) --- */
@@ -177,7 +182,7 @@ body {
 .e-textarea {
   background-color: var(--e-bg-light);
   border: 1px solid var(--e-border);
-  @apply block w-full mt-1.5 mb-2 font-mono text-base md:text-xs rounded-md text-slate-600 p-2;
+  @apply box-border block min-w-0 max-w-full w-full mt-1.5 mb-2 font-mono text-base md:text-xs rounded-md text-slate-600 p-2 break-all;
   transition:
     border-color 0.15s ease,
     box-shadow 0.15s ease;
@@ -214,7 +219,7 @@ body {
 .e-input {
   background-color: var(--e-bg-light);
   border: 1px solid var(--e-border);
-  @apply font-mono text-base md:text-xs rounded-md p-2 w-full;
+  @apply box-border min-w-0 max-w-full font-mono text-base md:text-xs rounded-md p-2 w-full;
   transition:
     border-color 0.15s ease,
     box-shadow 0.15s ease;

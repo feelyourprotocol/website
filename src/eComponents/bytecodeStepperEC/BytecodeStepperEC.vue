@@ -212,7 +212,7 @@ function formatStackWord(word: bigint): string {
       :topic="topic"
     >
       <template #content>
-        <div>
+        <div class="min-w-0 max-w-full">
           <ExamplesUIC v-model="example" :examples="examples" :change="onExampleChange" />
 
           <p class="font-mono text-xs font-bold mb-1 text-slate-700">Bytecode</p>

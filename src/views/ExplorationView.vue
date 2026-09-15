@@ -42,7 +42,13 @@ const ExplorationComponent = defineAsyncComponent(
 <template>
   <BreadcrumbNav v-if="!isVideoMode" :items="breadcrumbs" />
   <div class="grid md:grid-cols-2 gap-4" :class="isVideoMode ? 'fyp-video-exploration' : ''">
-    <div :class="exploration.rightPanel ? 'relative z-10 max-md:pb-[var(--companion-peek-h)]' : ''">
+    <div
+      :class="
+        exploration.rightPanel
+          ? 'relative z-10 min-w-0 max-w-full max-md:pb-[var(--companion-peek-h)]'
+          : 'min-w-0 max-w-full'
+      "
+    >
       <Suspense>
         <ExplorationComponent />
         <template #fallback>

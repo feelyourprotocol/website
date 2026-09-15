@@ -30,8 +30,8 @@ const hintText = computed(() => {
 </script>
 
 <template>
-  <div class="precompile-value-input">
-    <div class="grid grid-cols-6 items-center gap-y-1">
+  <div class="precompile-value-input min-w-0 max-w-full">
+    <div class="grid min-w-0 grid-cols-6 items-center gap-x-1 gap-y-1">
       <p class="col-span-1 font-bold text-lg sm:text-xl e-text">{{ title }}</p>
       <HelpHintUIC
         :text="hintText"

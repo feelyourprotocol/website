@@ -59,7 +59,7 @@ await init({
     :shareURL="shareURL"
   >
     <template #content>
-      <div>
+      <div class="min-w-0 max-w-full">
         <ExamplesUIC v-model="example" :examples="examples" :change="selectExample" />
         <HexDataInputUIC v-model="data" rows="6" :formChange="onDataInputFormChange" />
 
