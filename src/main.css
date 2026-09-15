@@ -298,6 +298,31 @@ body {
   @apply text-slate-600 hover:bg-white/80 hover:text-slate-900;
 }
 
+/* --- Widget chrome (scenario explorations: steps / toggles / examples / run) --- */
+.e-widget-chrome {
+  @apply mb-4 flex flex-col gap-2 md:flex-row md:flex-wrap md:items-center md:justify-between;
+}
+
+.e-widget-chrome-steps {
+  @apply flex w-full items-center gap-2 md:w-auto;
+}
+
+.e-widget-chrome-execute {
+  @apply flex w-full flex-col gap-2 md:ml-auto md:w-auto md:flex-row md:flex-wrap md:items-center md:justify-end;
+}
+
+.e-widget-chrome-toggles {
+  @apply flex w-full flex-wrap items-center justify-start gap-2 md:w-auto;
+}
+
+.e-widget-chrome-action {
+  @apply grid w-full grid-cols-[minmax(0,1fr)_auto] items-center gap-2 md:flex md:w-auto md:flex-row;
+}
+
+.e-widget-chrome-run {
+  @apply shrink-0 max-md:[&_.e-action-button]:min-h-9 max-md:[&_.e-action-button]:px-2 max-md:[&_.e-action-button]:py-1.5 max-md:[&_.e-action-button]:text-xs;
+}
+
 /* --- Site shell (home, browse, card chrome) --- */
 .fyp-shell-cta {
   @apply inline-flex items-center justify-center px-3 py-2 min-h-11 rounded-md text-sm font-medium no-underline sm:min-h-0 sm:py-1.5 sm:px-2.5;

@@ -5,6 +5,7 @@ import ActionButtonUIC from '@/eComponents/ui/ActionButtonUIC.vue'
 import ExamplesUIC from '@/eComponents/ui/ExamplesUIC.vue'
 import ResultBoxUIC from '@/eComponents/ui/resultBox/ResultBoxUIC.vue'
 import SegmentedToggleUIC from '@/eComponents/ui/SegmentedToggleUIC.vue'
+import WidgetChromeUIC from '@/eComponents/ui/WidgetChromeUIC.vue'
 import ExplorationC from '@/explorations/ExplorationC.vue'
 import PoweredByC from '@/explorations/PoweredByC.vue'
 import { TOPICS } from '@/explorations/TOPICS'
@@ -90,31 +91,33 @@ await init()
 <template>
   <ExplorationC asPageTitle explorationId="eip-8038" :exploration="exploration" :topic="topic">
     <template #content>
-      <div class="flex flex-wrap items-center justify-end gap-2 mb-4">
-        <SegmentedToggleUIC
-          :model-value="hardfork"
-          :options="hardforkOptions"
-          group-label="Hardfork"
-          test-id="hardfork-toggle"
-          @update:model-value="onHardforkInput"
-        />
-        <ExamplesUIC
-          v-model="example"
-          :examples="examples"
-          :change="selectExample"
-          select-min-width-class="min-w-[13.5rem] max-md:min-w-0 justify-between"
-        />
-        <div
-          class="shrink-0 max-md:[&_.e-action-button]:min-h-9 max-md:[&_.e-action-button]:px-2 max-md:[&_.e-action-button]:py-1.5 max-md:[&_.e-action-button]:text-xs"
-        >
+      <WidgetChromeUIC>
+        <template #toggles>
+          <SegmentedToggleUIC
+            :model-value="hardfork"
+            :options="hardforkOptions"
+            group-label="Hardfork"
+            test-id="hardfork-toggle"
+            @update:model-value="onHardforkInput"
+          />
+        </template>
+        <template #examples>
+          <ExamplesUIC
+            v-model="example"
+            :examples="examples"
+            :change="selectExample"
+            select-min-width-class="min-w-[13.5rem] max-md:min-w-0 justify-between"
+          />
+        </template>
+        <template #run>
           <ActionButtonUIC
             test-id="run-program"
             text="Run"
             tooltip="Run the program and split touch, change, and create"
             :onClick="runProgram"
           />
-        </div>
-      </div>
+        </template>
+      </WidgetChromeUIC>
 
       <template v-if="scenario && meta && osakaComponents && amsterdamComponents">
         <ScenarioBriefView

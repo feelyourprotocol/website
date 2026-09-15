@@ -24,7 +24,15 @@ After you can name the chrome controls, and **before** shipping a second copy of
    - UIC exists → use it.
    - No UIC yet → extract in-between: `src/eComponents/ui/<Name>UIC.vue` + a practically sufficient spec under `src/eComponents/ui/__tests__/`, then wire **all** call sites (new and old). Do not leave the old inline markup.
 
-Reference: `SegmentedToggleUIC` — Osaka | Amsterdam on `eip-7708` and `eip-8037`, plus the gas-limit pair on `eip-8037`.
+Reference: `SegmentedToggleUIC` — Osaka | Amsterdam on `eip-7708` and `eip-8037`, plus the gas-limit pair on `eip-8037`. Scenario step prev/next → **`ScenarioStepNavUIC`**. Scenario control row → **`WidgetChromeUIC`** (`.e-widget-chrome*` in `main.css`).
+
+## Widget chrome (scenario explorations)
+
+**Scenario widgets** (7708, 8037, 8038, 7928) share one chrome layout via **`WidgetChromeUIC`**: optional **`steps`** (`ScenarioStepNavUIC`), optional **`toggles`** (one or more `SegmentedToggleUIC`), then **`examples`** + **`run`** as a pair on the action band.
+
+Mobile stacks bands (steps → toggles → examples+Run grid). Desktop: steps left; toggles + action cluster right. Omit unused slots — do not leave empty flex wrappers.
+
+**Form-style explorations** (precompile E-Component, bytecode stepper, 7594) keep examples above the editor; they do **not** use `WidgetChromeUIC`.
 
 ## State chrome: selected must be obvious
 
