@@ -24,7 +24,7 @@ The hosted server will expose:
 
 | MCP tool | Shape | Purpose |
 | --- | --- | --- |
-| `describe_capabilities` | probe | Registry snapshot — forks, runnable EIP modules, opcodes, encoding |
+| `describe_capabilities` | probe | Registry: named fork capabilities, runnable EIP modules, opcodes, encoding |
 | `run_bytecode` | simulate | Run raw bytecode under a fork config |
 | `run_transaction` | transaction | Paid tx gas, receipt logs, first-touch / wallet gasLimit |
 | `run_block` | block | 1–8 txs as a lab block; optional header slot / number / timestamp |
@@ -38,6 +38,7 @@ Payments (x402) and the exact client config for Cursor, Claude, and other MCP ho
 You do not need to memorize tool names. Examples:
 
 - *"Simulate bytecode `0x600100` under Amsterdam and tell me the gas used."*
+- *"What can I run under Amsterdam on this server without picking an EIP?"*
 - *"What EIPs does the Feel Your Protocol MCP server support?"*
 - *"Run a 1 wei transfer to an empty account on Amsterdam vs Osaka — what gas would a wallet need?"*
 - *"Run two transfers as one Amsterdam block and show the receipts."*
@@ -50,7 +51,7 @@ The agent should route these to `run_bytecode`, `run_transaction`, `run_block`, 
 <Changelog
   title="Connect Changelog"
   :entries="[
-    { version: 'v0.11', date: '2026-09-10', summary: 'Added run_block (lab header + per-tx receipts).' },
+    { version: 'v0.12', date: '2026-09-16', summary: 'Example prompt for a generic Amsterdam run with no EIP named.' },
     { version: 'v0.10', date: '2026-09-08', summary: 'Added run_transaction; renamed run_evm_bytecode → run_bytecode.' },
     { version: 'v0.9', date: '2026-09-02', summary: 'Launch week countdown — 5–9 Oct 2026 target; link to roadmap launch page.' },
     { version: 'v0.7', date: '2026-08-31', summary: 'Not publicly launched — reframe page as developer early access; point most users to website explorations.' },

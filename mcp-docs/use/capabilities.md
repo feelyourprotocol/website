@@ -14,7 +14,7 @@ The MCP server exposes **intent-driven tools** — verbs that match how agents a
 | **Run block** | `run_block` | 1–8 txs as a lab block; header snapshot (optional slot) | Implemented — public launch pending |
 | **Generate** | — | Block-level access lists (EIP-7928) | Planned (Step 6) |
 
-To **optionally** compare baseline vs preview, call the same verb twice — **osaka** (current mainnet EL), then **amsterdam** (preview) — and diff gas, success, traces, or logs. One run on Amsterdam only is fully supported.
+To **optionally** compare baseline vs preview, call the same verb twice — **osaka** (current mainnet EL), then **amsterdam** (preview) — and diff gas, success, traces, or logs. One run on Amsterdam only is fully supported — you do **not** need to name an EIP.
 
 ## Scope boundaries
 
@@ -31,7 +31,7 @@ See [Guarantees](/use/guarantees) for limits and provenance details.
 <Changelog
   title="Capabilities Changelog"
   :entries="[
-    { version: 'v0.13', date: '2026-09-14', summary: 'run_bytecode is a VM message-call with optional accounts prestate; SSTORE program gas in-call.' },
+    { version: 'v0.14', date: '2026-09-16', summary: 'Generic hardfork runs (Amsterdam default) are first-class — EIP modules remain the per-change catalogue.' },
     { version: 'v0.12', date: '2026-09-14', summary: 'BYOS clarified: isolated from chain, demand-built prestate in-call; not an empty-world rule.' },
     { version: 'v0.11', date: '2026-09-10', summary: 'Fourth tool run_block — lab header snapshot and per-tx receipts.' },
     { version: 'v0.10', date: '2026-09-08', summary: 'Third tool run_transaction; renamed run_evm_bytecode → run_bytecode.' },

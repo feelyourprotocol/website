@@ -2,15 +2,15 @@
 
 > **Status:** Catalogue for the **upcoming public MCP** (not launched). Runnable modules are those the hosted server will advertise via probe. Until then, use the [website explorations](https://feelyourprotocol.org).
 
-Fork configuration is **à la carte**: a base hardfork plus an optional EIP list. Named forks are curated shortcuts — **`osaka`** (current mainnet EL baseline), **`prague`** (pre-Fusaka ModExp compare), and **`amsterdam`** (preview; alias `glamsterdam`).
+Fork configuration is **à la carte**: a base hardfork plus an optional EIP list. Named forks are **catalog capabilities** — not id-only shortcuts — **`osaka`** (current mainnet EL baseline), **`prague`** (pre-Fusaka ModExp compare), and **`amsterdam`** (preview; alias `glamsterdam`). A generic run under a named fork does **not** require naming an EIP.
 
 ## Named forks (live)
 
-| Fork        | Role       | Alias         | Use                                    |
-| ----------- | ---------- | ------------- | -------------------------------------- |
-| `osaka`     | baseline   | `mainnet-el`  | Current mainnet rules                  |
-| `prague`    | historical | —             | Pre-Fusaka ModExp gas (7883 compare)   |
-| `amsterdam` | preview    | `glamsterdam` | Upcoming fork — EIP deltas (e.g. 8024) |
+| Fork        | Role       | Alias         | Advertised EIPs | Catalogue |
+| ----------- | ---------- | ------------- | --------------- | --------- |
+| `osaka`     | baseline   | `mainnet-el`  | 7883, 7951 | [Osaka](/use/forks/osaka) |
+| `prague`    | historical | —             | 7883 | [Prague](/use/forks/prague) |
+| `amsterdam` | preview    | `glamsterdam` | 8024, 7843, 7708, 8037, 8038 (7928 planned) | [Amsterdam](/use/forks/amsterdam) |
 
 ## Runnable capabilities (live catalog)
 
@@ -52,7 +52,7 @@ Canonical metadata for twins lives in website `src/explorations/eip-NNNN/canonic
 <Changelog
   title="Coverage Changelog"
   :entries="[
-    { version: 'v0.19', date: '2026-09-14', summary: 'run_bytecode is a VM message-call — SSTORE program gas in-call; optional accounts on that verb.' },
+    { version: 'v0.20', date: '2026-09-16', summary: 'Named forks are catalog capabilities — generic Amsterdam / Osaka / Prague runs; advertised relatedEips; fork catalogue pages.' },
     { version: 'v0.18', date: '2026-09-14', summary: 'EIP-8038 named catalog row — SSTORE via run_transaction; SLOAD/EXTCODESIZE via run_bytecode.' },
     { version: 'v0.17', date: '2026-09-11', summary: 'EIP-8038 exploration twin — simulate gasUsed shows the SSTORE write jump; named catalog row follows.' },
     { version: 'v0.16', date: '2026-09-10', summary: 'EIP-7843 SLOTNUM runnable — run_block header.slotNumber; catalog row live.' },

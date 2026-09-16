@@ -40,7 +40,7 @@ mcp-gateway/
 <Changelog
   title="Gateway Changelog"
   :entries="[
-    { version: 'v0.1.6', date: '2026-09-10', summary: 'Added run_block (lab header snapshot + per-tx receipts).' },
+    { version: 'v0.1.7', date: '2026-09-16', summary: 'Server instructions claim generic hardfork prompts; named forks stay on the same verbs.' },
     { version: 'v0.1.5', date: '2026-09-08', summary: 'Added run_transaction; renamed run_evm_bytecode → run_bytecode.' },
     { version: 'v0.1.4', date: '2026-09-02', summary: 'Stdio framed as development transport; public path is hosted Connect.' },
     { version: 'v0.1.3', date: '2026-08-27', summary: 'Renamed simulate_evm_bytecode → run_evm_bytecode.' },

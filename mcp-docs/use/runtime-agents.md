@@ -7,7 +7,7 @@
 When MCP is **connected**, trust the live server first:
 
 1. **`listTools`** — tool names, descriptions, and input schemas
-2. **`describe_capabilities`** — `baselineForkId`, forks (osaka baseline, amsterdam preview), runnable EIP modules, opcodes, encoding, ceilings
+2. **`describe_capabilities`** — `baselineForkId`, named forks as capabilities (osaka baseline, amsterdam preview — summary, related EIPs, shapes), runnable EIP modules, opcodes, encoding, ceilings
 
 Markdown on this site is **secondary**. It can lag behind a gateway release; the probe response and tool schemas cannot.
 
@@ -23,7 +23,7 @@ Markdown on this site is **secondary**. It can lag behind a gateway release; the
 ## Calling tools
 
 1. Probe first — learn what is runnable and how opcodes encode
-2. Run with **caller-supplied** inputs on the fork you need (default **amsterdam**). Use **`run_bytecode`** for opcodes/precompiles and program-gas SSTORE/SLOAD; **`run_transaction`** for wallet gas, first-touch transfers, receipt logs, and `txStateGas`; **`run_block`** for several txs or a header slot. Prefund / code / storage in the **same** request when the observation needs a constructed world. Each call is a **new** lab unless you pass that prestate again. **Optionally** run again on **osaka** when comparing against mainnet — this server does not ship demo programs
+2. Run with **caller-supplied** inputs on the fork you need (default **amsterdam**). A generic hardfork run does **not** require an EIP number — omit `eips[]`. Use **`run_bytecode`** for opcodes/precompiles and program-gas SSTORE/SLOAD; **`run_transaction`** for wallet gas, first-touch transfers, receipt logs, and `txStateGas`; **`run_block`** for several txs or a header slot. Prefund / code / storage in the **same** request when the observation needs a constructed world. Each call is a **new** lab unless you pass that prestate again. **Optionally** run again on **osaka** when comparing against mainnet — this server does not ship demo programs
 3. **Do not** substitute the `mcp-execution-engine` lab, `npm run lab`, or repository source unless MCP is unavailable
 
 ## Replying to humans
@@ -36,7 +36,7 @@ When the user is a **human** (exploring protocol changes, not integrating the se
 
 ## Reporting results
 
-Always cite **`provenance.engineVersion`** and **`provenance.forkConfig`** when reporting simulation outcomes.
+Always cite **`provenance.engineVersion`** and **`provenance.forkConfig`** when reporting simulation outcomes. On a generic Amsterdam run, `forkConfig.eips` is empty and `perEip` lists advertised modules.
 
 ## When you are reading docs (no MCP)
 
@@ -57,7 +57,7 @@ Use this order:
 <Changelog
   title="Runtime Agents Changelog"
   :entries="[
-    { version: 'v0.13', date: '2026-09-14', summary: 'Constructed prestate in the same request; each call is a new lab unless that prestate is passed again.' },
+    { version: 'v0.14', date: '2026-09-16', summary: 'Generic hardfork runs (no EIP required); namedForks are catalog capabilities; provenance lists advertised modules.' },
     { version: 'v0.12', date: '2026-09-10', summary: 'run_block routing for header slot and multi-tx lab blocks.' },
     { version: 'v0.11', date: '2026-09-08', summary: 'run_bytecode + run_transaction routing; renamed from run_evm_bytecode.' },
     { version: 'v0.10', date: '2026-09-02', summary: 'No self-host onboarding — agents wait for the public MCP; lab is not a user fallback.' },

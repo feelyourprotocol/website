@@ -6,14 +6,14 @@
 
 Run **1–8 impersonated transactions as one lab block** and receive a **header snapshot** plus **per-tx receipts**. Senders are impersonated from each `from` — no private key.
 
-This is the verb for a chosen beacon slot (`header.slotNumber` / [EIP-7843](/use/eips/eip-7843)), several txs in one block, or a lab `number` / `timestamp`.
+This is the verb for a chosen beacon slot (`header.slotNumber` / [EIP-7843](/use/eips/eip-7843)), several txs in one block, a lab `number` / `timestamp`, or a **generic Amsterdam / Osaka lab block** with no EIP named.
 
 A **single** paid transfer still belongs on [Run Transaction](/use/tools/run-transaction). Raw opcode / stack programs belong on [Run Bytecode](/use/tools/run-bytecode). Block-level access lists stay on planned **generate**.
 
 ## When to use
 
 - “What does SLOTNUM push if the header slot is 42?”
-- Two transfers in one block — receipts in order
+- Two transfers in one **Amsterdam** block — receipts in order
 - Lab header `timestamp` or `number` the EVM can read
 
 ## MCP tool name
@@ -80,6 +80,6 @@ Max **8** transactions. See [Guarantees](/use/guarantees) for gas ceilings.
 <Changelog
   title="Run Block Changelog"
   :entries="[
-    { version: 'v0.1', date: '2026-09-10', summary: 'New MCP tool — lab runBlock; header snapshot, per-tx receipts, optional slotNumber.' },
+    { version: 'v0.2', date: '2026-09-16', summary: 'Generic Amsterdam / Osaka lab block is a first-class when-to-use.' },
   ]"
 />

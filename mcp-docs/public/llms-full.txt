@@ -1,7 +1,7 @@
 # Feel Your Protocol MCP Server — Use Layer (full text)
 # Source: mcp-docs/use/ — end-user documentation for humans and AI agents
 # https://mcp-docs.feelyourprotocol.org/llms-full.txt
-# Updated: 2026-09-02 — PUBLIC MCP NOT LAUNCHED; launch week 5–9 Oct 2026 target
+# Updated: 2026-09-16 — PUBLIC MCP NOT LAUNCHED; launch week 5–9 Oct 2026 target
 
 ================================================================================
 READ FIRST — LAUNCH STATUS
@@ -25,10 +25,12 @@ Do NOT fall back to mcp-execution-engine lab scripts or npm run lab unless MCP
 is unavailable. Trust listTools on the connected server over stale repo text.
 
 Tools:
-- describe_capabilities (probe) — registry: forks, runnable EIP modules, opcodes, encoding, shapes
+- describe_capabilities (probe) — registry: named fork capabilities, runnable EIP modules, opcodes, encoding, shapes
 - run_bytecode (simulate) — VM message-call; call-frame gas; optional accounts / stateGasSpilled
 - run_transaction — paid tx gas, receipt logs, wallet gasLimit, EIP-8037 dimensions
+- run_block — 1–8 txs as a lab block; optional header slot / number / timestamp
 
+A generic hardfork run (bytecode or a tx under Amsterdam) does NOT require naming an EIP.
 Compare gas or outcomes optionally by calling the same verb twice (e.g. osaka then amsterdam).
 
 Server: FeelYourProtocol (hosted at launch)
@@ -38,6 +40,7 @@ JSON schemas:
 - /schemas/describe_capabilities.input.json
 - /schemas/run_bytecode.input.json
 - /schemas/run_transaction.input.json
+- /schemas/run_block.input.json
 
 ================================================================================
 INTRODUCTION
@@ -61,9 +64,11 @@ Query shapes and MCP tools:
 - Probe → describe_capabilities — implemented (public launch pending)
 - Run bytecode → run_bytecode — implemented (public launch pending)
 - Run transaction → run_transaction — implemented (public launch pending)
+- Run block → run_block — implemented (public launch pending)
 - Generate (BAL) — planned Step 6
 
 Optional: compare baseline vs preview by calling run twice (osaka then amsterdam).
+A generic Amsterdam run does not require naming an EIP.
 
 Scope: stateless/BYOS, raw bytecode only, no Solidity compile, no archive node,
 no multi-block historical backtesting.
@@ -82,9 +87,9 @@ TOOL: DESCRIBE_CAPABILITIES (IMPLEMENTED — PUBLIC LAUNCH PENDING)
 
 MCP tool name: describe_capabilities
 Input: {} (no required fields)
-Output: engineVersion, ceilings, baselineForkId, namedForks, eips (runnable modules with opcodes + encoding + comparison; no demo programs), allowedBaseHardforks
+Output: engineVersion, ceilings, baselineForkId, namedForks (catalog capabilities: summary, relatedEips, shapes), eips (runnable modules with opcodes + encoding + comparison; no demo programs), allowedBaseHardforks
 
-Use first to learn baselineForkId (osaka — current mainnet EL), prague (pre-Fusaka ModExp compare), preview fork amsterdam (alias glamsterdam), and runnable EIPs (8024, 7708, 7883 ModExp, 7951 secp256r1, 8037 state gas, 8038 state-access gas). Unimplemented EIPs are omitted.
+Use first to learn named forks as capabilities (amsterdam preview default — alias glamsterdam; osaka baseline — alias mainnet-el; prague historical), and runnable EIPs (8024, 7708, 7843, 7883 ModExp, 7951 secp256r1, 8037 state gas, 8038 state-access gas). A generic hardfork run does not require an EIP number. Unimplemented EIPs are omitted.
 
 ================================================================================
 TOOL: RUN_BYTECODE (IMPLEMENTED — PUBLIC LAUNCH PENDING)
@@ -104,7 +109,8 @@ Inputs:
 
 Outputs: success, gasUsed (call-frame), gasUsedScope, stateGasSpilled?, returnValue, finalStack, error, steps?, provenance
 
-Amsterdam note: eips: [] on amsterdam is correct — EIP-8024 bundled in hardfork.
+Amsterdam note: eips: [] on amsterdam is correct — advertised modules are bundled in the hardfork.
+Generic run: omit fork (default amsterdam) or pass { baseHardfork: amsterdam, eips: [] }. Provenance lists advertised modules.
 Optional 8024 compare: run same bytecode on osaka (baseline, invalid 0xe6–0xe8) then amsterdam (preview).
 
 Examples:
@@ -137,8 +143,10 @@ Use for EIP-8037 and EIP-7708 plain ETH transfers, and paid txStateGas. Use run_
 COVERAGE
 ================================================================================
 
-Named forks: prague (ModExp compare), osaka (baseline, alias mainnet-el), amsterdam (preview, alias glamsterdam).
-baselineForkId: osaka. Runnable EIP modules at launch: 8024, 7708, 7883, 7951, 8037, 8038.
+Named forks are catalog capabilities: prague (ModExp compare), osaka (baseline, alias mainnet-el), amsterdam (preview, alias glamsterdam).
+A generic run under a named fork does not require naming an EIP.
+baselineForkId: osaka. Runnable EIP modules at launch: 8024, 7843, 7708, 7883, 7951, 8037, 8038.
+Fork catalogue: use/forks/amsterdam, osaka, prague.
 Exploration twins (human catalogue): 8024, 7708, 7883, 7951, 8037, 8038 ready for public MCP; 7928 planned (generate). See use/eips/.
 
 ================================================================================
@@ -163,10 +171,14 @@ FOR AI AGENTS
 ================================================================================
 
 1. If feel-your-protocol MCP connected → use describe_capabilities, then
-   run_bytecode (opcodes/precompiles/program-gas SSTORE) or run_transaction (wallet gas, transfers, receipts, txStateGas).
+   run_bytecode (opcodes/precompiles/program-gas SSTORE or generic bytecode under a fork),
+   run_transaction (wallet gas, transfers, receipts, txStateGas),
+   or run_block (several txs / header slot).
    Default fork amsterdam; optionally osaka for mainnet comparison.
+   A generic hardfork run does not require an EIP number.
    Do not use the execution-engine lab as a substitute.
 2. Cite provenance.engineVersion and provenance.forkConfig in answers.
+   On a generic Amsterdam run, forkConfig.eips is empty and perEip lists advertised modules.
 3. Index: /llms.txt. Schemas: /schemas/*.input.json
 
 Vision on roadmap; this file is operational reference.

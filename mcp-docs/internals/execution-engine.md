@@ -11,8 +11,8 @@ End-user tool semantics: [Describe Capabilities](/use/tools/describe-capabilitie
 ## Design principles
 
 - **Query shapes, not library APIs** — the MCP surface exposes generic verbs (`simulate`, `transaction`, `block`, `generate`, `probe`); the engine returns structured results.
-- **Fork = capability set** — `(baseHardfork, eips[])` à la carte; named forks (`osaka` baseline, `amsterdam` preview) are curated shortcuts.
-- **Provenance on every result** — engine version, fork config, optional EIP maturity metadata, stability rollup, human caveat.
+- **Fork = capability set** — `(baseHardfork, eips[])` à la carte; named forks (`osaka` baseline, `amsterdam` preview) are catalog capabilities (summary, advertised EIPs, shapes).
+- **Provenance on every result** — engine version, fork config, advertised or explicit EIP maturity metadata, stability rollup, human caveat.
 - **Boundaries** — raw bytecode or impersonated transaction fields **plus constructed prestate**; no Solidity compile; no archive node; no multi-block **historical** backtesting.
 
 See also [Design Principles](/internals/design-principles).
@@ -24,7 +24,7 @@ See also [Design Principles](/internals/design-principles).
 | `simulateBytecode(input)` | Run bytecode under a fork config; optional opcode trace |
 | `runTransaction(input)` | Run a value-bearing transaction (paid gas, receipt logs) |
 | `runBlock(input)` | Run 1–8 txs as a lab block (header snapshot + per-tx receipts) |
-| `describeCapabilities()` | Registry snapshot — runnable EIP modules (opcodes, encoding, no demos) |
+| `describeCapabilities()` | Registry snapshot — named fork capabilities + runnable EIP modules (opcodes, encoding, no demos) |
 | `listEipModules()` | Live EIP module list (source of the catalog) |
 | `buildCommon(config)` | Resolve `(baseHardfork, eips[])` → EthereumJS `Common` |
 
@@ -93,7 +93,7 @@ See also [Design Principles](/internals/design-principles).
 | 8037 | new-exec-model | yes | transaction, simulate |
 | 8038 | repricing | yes | simulate, transaction |
 
-Only runnable modules appear in `describeCapabilities()`. Wallet / receipt questions use **transaction**; opcode / precompile questions use **simulate**; header slot / multi-tx questions use **block**.
+Only runnable modules appear in `describeCapabilities().eips`. Named forks appear in `namedForks` with advertised `relatedEips`. Wallet / receipt questions use **transaction**; opcode / precompile questions use **simulate**; header slot / multi-tx questions use **block**. A generic Amsterdam run uses the same verbs with empty `eips[]`.
 
 Amsterdam in EthereumJS v10 already bundles EIP-8024 and EIP-7843 — `eips: [8024]` / `eips: [7843]` are not pre/post toggles. Use **osaka** baseline vs **amsterdam** preview for those comparisons.
 
@@ -106,7 +106,7 @@ See [Quality](/internals/quality).
 <Changelog
   title="Execution Engine Changelog"
   :entries="[
-    { version: 'v0.1.10', date: '2026-09-14', summary: 'simulateBytecode is a VM message-call; SSTORE persists in-call; optional stateGasSpilled.' },
+    { version: 'v0.1.11', date: '2026-09-16', summary: 'Named forks are catalog capabilities; generic-run provenance lists advertised modules.' },
     { version: 'v0.1.9', date: '2026-09-14', summary: 'Boundaries: isolated lab / constructed prestate; historical backtesting still out.' },
     { version: 'v0.1.8', date: '2026-09-14', summary: 'EIP-8038 state-access module; accounts[].storage seed; SSTORE via runTransaction.' },
     { version: 'v0.1.7', date: '2026-09-10', summary: 'EIP-7843 SLOTNUM module — runBlock header.slotNumber; catalog row live.' },

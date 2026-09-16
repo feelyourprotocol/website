@@ -12,6 +12,7 @@ Raw opcode / stack / precompile programs belong on [Run Bytecode](/use/tools/run
 
 ## When to use
 
+- A generic **Amsterdam** or **Osaka** transaction (no EIP named)
 - “Is 21,000 gas enough for this transfer after Amsterdam?”
 - Paid gas of a simple ETH transfer (Osaka ≈ 21,000; Amsterdam first-touch ≈ 204,600)
 - Receipt logs / decoded EIP-7708 Transfer rows
@@ -78,7 +79,7 @@ See [Guarantees](/use/guarantees) for gas ceilings.
 <Changelog
   title="Run Transaction Changelog"
   :entries="[
-    { version: 'v0.3', date: '2026-09-14', summary: 'SSTORE program gas moved to run_bytecode; this verb keeps paid tx gas and txStateGas.' },
+    { version: 'v0.4', date: '2026-09-16', summary: 'Generic Amsterdam / Osaka transaction is a first-class when-to-use.' },
     { version: 'v0.2', date: '2026-09-14', summary: 'accounts[].storage seeds slots (EIP-8038 existing-slot SSTORE).' },
     { version: 'v0.1', date: '2026-09-08', summary: 'New MCP tool — VM transaction execution; paid gas, 8037 dimensions, 7708 receipt logs.' },
   ]"

@@ -97,6 +97,15 @@ export default defineConfig({
             },
             { text: 'Coverage', link: '/use/coverage' },
             {
+              text: 'Forks',
+              collapsed: false,
+              items: [
+                { text: 'Amsterdam (preview)', link: '/use/forks/amsterdam' },
+                { text: 'Osaka (mainnet baseline)', link: '/use/forks/osaka' },
+                { text: 'Prague (ModExp history)', link: '/use/forks/prague' },
+              ],
+            },
+            {
               text: 'EIPs',
               collapsed: false,
               items: [
