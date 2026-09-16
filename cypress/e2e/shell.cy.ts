@@ -1,6 +1,8 @@
 describe('Home', () => {
-  it('loads and displays topics and explorations', () => {
+  it('loads intro, topics, and exploration cards', () => {
     cy.visit('/')
+    cy.get('[data-testid="home-intro-panel"]').should('be.visible')
+    cy.get('[data-mcp-launch-week]').should('exist')
     cy.contains('h2', 'Scaling').should('be.visible')
     cy.get('.exploration-c').should('have.length.gte', 1)
   })
@@ -15,13 +17,6 @@ describe('Home', () => {
     cy.visit('/')
     cy.get('.exploration-c').first().closest('a').click()
     cy.url().should('match', /\/eip-\d+/)
-  })
-})
-
-describe('Topic (Scaling)', () => {
-  it('loads exploration widgets', () => {
-    cy.visit('/scaling')
-    cy.get('#eip-7594-c', { timeout: 10000 }).should('exist')
   })
 })
 

@@ -1,13 +1,16 @@
+import { E2E_LAYOUT, e2eExploration } from '../../src/explorations/e2eCatalog'
 import { visitAsTouch } from '../support/touchVisit'
+import { visitExploration } from '../support/visitExploration'
 
 /**
- * Widget chrome on a phone-sized viewport with hover disabled.
- * Catches Run-hint / examples-select collisions that jsdom and default Cypress miss.
+ * Layout representatives only — not a viewport × page matrix.
+ * jsdom and default Cypress still report (hover: hover) and (pointer: fine).
  */
-describe('Widget chrome on touch', () => {
+describe('Layout', () => {
   it('keeps the 8038 example title readable beside Run, hint below the row', () => {
-    visitAsTouch('/eip-8038-state-access-gas')
-    cy.get('#eip-8038-c', { timeout: 10000 }).should('exist')
+    const exploration = e2eExploration(E2E_LAYOUT.touchChromeId)
+    visitAsTouch(exploration.path)
+    cy.get(`#${exploration.id}-c`, { timeout: 15000 }).should('exist')
 
     cy.get('[data-testid="example-select"]')
       .should('be.visible')
@@ -31,5 +34,20 @@ describe('Widget chrome on touch', () => {
         const select = Cypress.$('[data-testid="example-select"]')[0].getBoundingClientRect()
         expect(hint.top, 'hint sits under examples + Run').to.be.at.least(select.bottom - 12)
       })
+  })
+
+  it('opens the 7708 companion sheet from peek on a phone-sized viewport', () => {
+    const exploration = e2eExploration(E2E_LAYOUT.companionId)
+    cy.viewport(412, 915)
+    visitExploration(exploration)
+
+    cy.get('[data-testid="companion-peek"]').should('be.visible').click()
+    cy.get(`[data-testid="${E2E_LAYOUT.companionPanelTestId}"]`).should('be.visible')
+
+    cy.get('body').then(($body) => {
+      expect($body[0].scrollWidth, 'companion page should not overflow the viewport').to.be.lte(
+        $body[0].clientWidth + 1,
+      )
+    })
   })
 })

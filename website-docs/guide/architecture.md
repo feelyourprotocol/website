@@ -73,7 +73,7 @@ Brief agents: check [Available E-Components](/contributing/available-e-component
 
 **Lazy loading** — each exploration is its own chunk; users download only what they visit.
 
-**Testing** — Vitest for units; Cypress for lean navigation smoke tests.
+**Testing** — Vitest for units (including `e2eCatalog` vs `REGISTRY`); Cypress is layered (shell, browse, catalog visit-all, one play path per family, layout representatives). See `.cursor/rules/testing.mdc`.
 
 ## Video pipeline
 

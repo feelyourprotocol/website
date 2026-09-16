@@ -36,7 +36,7 @@ On **touch**, `ActionButtonUIC` shows the Run tooltip as **inline** copy. That c
 
 **Form-style explorations** (precompile E-Component, bytecode stepper, 7594) keep examples above the editor; they do **not** use `WidgetChromeUIC`. Bytecode Run/Step/Reset use **`decorative`** hints (no inline caption on touch). 7594 Run sits on its own row under a full-width examples select.
 
-**Layout / touch:** jsdom and default Cypress still report `(hover: hover) and (pointer: fine)`. After widget-chrome or Run-hint layout changes, run `cypress/e2e/widget-chrome-touch.cy.ts` (412px + `matchMedia` hover stub) before finishing.
+**Layout / touch:** jsdom and default Cypress still report `(hover: hover) and (pointer: fine)`. After widget-chrome, Run-hint, or companion-sheet layout changes, run `cypress/e2e/layout.cy.ts` (touch chrome + companion peek; 412px + `matchMedia` hover stub on the chrome case) before finishing. Do not add a viewport matrix per exploration — see [testing.mdc](./testing.mdc) § Cypress E2E.
 
 ## State chrome: selected must be obvious
 
