@@ -17,7 +17,7 @@ function mockMatchMedia(canHover: boolean) {
 }
 
 describe('ActionButtonUIC', () => {
-  it('keeps the touch inline hint from setting the host intrinsic width', () => {
+  it('shows the tooltip as inline copy when hover is unavailable', () => {
     mockMatchMedia(false)
 
     const wrapper = mount(ActionButtonUIC, {
@@ -30,9 +30,7 @@ describe('ActionButtonUIC', () => {
     })
 
     expect(wrapper.get('.help-hint-host').classes()).toContain('min-w-0')
-    expect(wrapper.get('.help-hint-host').classes()).toContain('flex')
-    expect(wrapper.get('.help-hint-host').classes()).not.toContain('inline-flex')
-    expect(wrapper.get('.help-hint-inline').classes()).toContain('w-0')
-    expect(wrapper.get('.help-hint-inline').classes()).toContain('min-w-full')
+    expect(wrapper.get('[data-testid="run-program"]').text()).toBe('Run')
+    expect(wrapper.get('.help-hint-inline').text()).toContain('split touch')
   })
 })
