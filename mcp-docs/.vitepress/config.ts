@@ -116,6 +116,7 @@ export default defineConfig({
                 { text: 'EIP-7951 secp256r1', link: '/use/eips/eip-7951' },
                 { text: 'EIP-7928 BAL', link: '/use/eips/eip-7928' },
                 { text: 'EIP-7843 SLOTNUM', link: '/use/eips/eip-7843' },
+                { text: 'EIP-7702 Set-code EOA', link: '/use/eips/eip-7702' },
                 { text: 'EIP-7708 ETH transfer logs', link: '/use/eips/eip-7708' },
                 { text: 'EIP-8037 State creation gas', link: '/use/eips/eip-8037' },
                 { text: 'EIP-8038 State-access gas', link: '/use/eips/eip-8038' },

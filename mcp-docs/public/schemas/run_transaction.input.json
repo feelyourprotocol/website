@@ -49,6 +49,23 @@
     "gasLimit": {
       "type": "string",
       "description": "Transaction gas limit as decimal string. Default 1000000. Pass 21000 for the wallet-era simple-transfer limit. Max 30000000."
+    },
+    "authorizationList": {
+      "type": "array",
+      "description": "Signed EIP-7702 authorization JSON items (Prague+ type-4 set-code tx).",
+      "items": {
+        "type": "object",
+        "required": ["chainId", "address", "nonce", "yParity", "r", "s"],
+        "properties": {
+          "chainId": { "type": "string" },
+          "address": { "type": "string" },
+          "nonce": { "type": "string" },
+          "yParity": { "type": "string" },
+          "r": { "type": "string" },
+          "s": { "type": "string" }
+        },
+        "additionalProperties": false
+      }
     }
   },
   "additionalProperties": false

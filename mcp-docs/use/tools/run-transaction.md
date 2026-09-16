@@ -34,6 +34,7 @@ Raw opcode / stack / precompile programs belong on [Run Bytecode](/use/tools/run
 | `accounts` | No | Extra accounts to prefund (`address`, optional `balance`, `code`, `storage` slots) |
 | `fork` | No | `{ baseHardfork, eips[] }` — default **`amsterdam`** |
 | `gasLimit` | No | Decimal string. Default `1000000`. Pass **`21000`** for the wallet-era simple-transfer limit. |
+| `authorizationList` | No | Signed EIP-7702 JSON items — **Prague+** type-4 set-code tx. Use [Inspect](/use/tools/inspect) `authorization-list` to validate first. |
 
 ### Fork notes
 

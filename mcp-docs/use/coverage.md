@@ -10,7 +10,7 @@ Fork configuration is **à la carte**: a base hardfork plus an optional EIP list
 
 | Order | Fork        | Role       | Aliases              | Runnable twins | Doc bucket |
 | ----- | ----------- | ---------- | -------------------- | -------------- | ---------- |
-| 0–5   | `berlin` … `prague` | historical | see probe | — | [Historical forks](/use/forks/historical-forks) |
+| 0–5   | `berlin` … `prague` | historical | see probe | 7702 on `prague` | [Historical forks](/use/forks/historical-forks) |
 | 6     | `osaka`     | current    | `fusaka`, `mainnet-el` | 7883, 7951 | [Mainnet — Osaka](/use/forks/osaka) |
 | 7     | `amsterdam` | preview    | `glamsterdam`        | 8024, 7843, 7708, 7928, 8037, 8038         | [Preview — Amsterdam](/use/forks/amsterdam) |
 
@@ -26,6 +26,7 @@ These appear in `describe_capabilities()` — engine modules with `runnable: tru
 | ---- | -------------- | -------- | ------------- | ------------------------ | ------------------------------ |
 | 8024 | new-capability | simulate | amsterdam     | osaka → amsterdam        | [EIP-8024](/use/eips/eip-8024) |
 | 7843 | new-capability | block    | amsterdam     | osaka → amsterdam        | [EIP-7843](/use/eips/eip-7843) |
+| 7702 | new-exec-model | transaction, inspect | prague | cancun → prague | [EIP-7702](/use/eips/eip-7702) |
 | 7708 | new-capability | transaction, simulate | amsterdam | osaka → amsterdam | [EIP-7708](/use/eips/eip-7708) |
 | 7883 | repricing      | simulate | osaka         | prague → osaka           | [EIP-7883](/use/eips/eip-7883) |
 | 7951 | new-capability | simulate | osaka         | prague → osaka           | [EIP-7951](/use/eips/eip-7951) |
@@ -45,6 +46,7 @@ Every **live** website exploration has an MCP-docs page mapping the same problem
 | 7951 | secp256r1          | Runnable               | [EIP-7951](/use/eips/eip-7951) |
 | 7928 | Block access lists | **Runnable** (generate, inspect) | [EIP-7928](/use/eips/eip-7928) |
 | 7843 | SLOTNUM opcode     | Runnable               | [EIP-7843](/use/eips/eip-7843) |
+| 7702 | Set-code EOA       | Runnable               | [EIP-7702](/use/eips/eip-7702) |
 | 7708 | ETH transfer logs  | Runnable               | [EIP-7708](/use/eips/eip-7708) |
 | 8037 | State creation gas | Runnable               | [EIP-8037](/use/eips/eip-8037) |
 | 8038 | State-access gas   | Runnable               | [EIP-8038](/use/eips/eip-8038) |
