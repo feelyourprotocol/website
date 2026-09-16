@@ -316,11 +316,38 @@ body {
 }
 
 .e-widget-chrome-action {
-  @apply grid w-full grid-cols-[minmax(10rem,1fr)_auto] items-center gap-2 md:flex md:w-auto md:flex-row;
+  @apply grid w-full items-center gap-2 md:flex md:w-auto md:flex-row;
+  grid-template-columns: minmax(10rem, 1fr) auto;
+  grid-template-areas:
+    'examples run'
+    'hint hint';
+}
+
+.e-widget-chrome-action > :first-child {
+  grid-area: examples;
+  min-width: 0;
 }
 
 .e-widget-chrome-run {
   @apply min-w-0 shrink-0 max-md:[&_.e-action-button]:min-h-9 max-md:[&_.e-action-button]:px-2 max-md:[&_.e-action-button]:py-1.5 max-md:[&_.e-action-button]:text-xs;
+}
+
+@media (max-width: 767px) {
+  .e-widget-chrome-run,
+  .e-widget-chrome-run .help-hint-host {
+    display: contents;
+  }
+
+  .e-widget-chrome-run .help-hint-trigger {
+    grid-area: run;
+  }
+
+  .e-widget-chrome-run .help-hint-inline {
+    grid-area: hint;
+    width: auto;
+    min-width: 0;
+    text-align: left;
+  }
 }
 
 /* --- Site shell (home, browse, card chrome) --- */
