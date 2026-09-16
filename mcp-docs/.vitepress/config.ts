@@ -100,9 +100,9 @@ export default defineConfig({
               text: 'Forks',
               collapsed: false,
               items: [
-                { text: 'Amsterdam (preview)', link: '/use/forks/amsterdam' },
-                { text: 'Osaka (mainnet baseline)', link: '/use/forks/osaka' },
-                { text: 'Prague (ModExp history)', link: '/use/forks/prague' },
+                { text: 'Preview — Amsterdam', link: '/use/forks/amsterdam' },
+                { text: 'Mainnet — Osaka', link: '/use/forks/osaka' },
+                { text: 'Historical (Berlin → Prague)', link: '/use/forks/historical-forks' },
               ],
             },
             {

@@ -23,9 +23,9 @@ Prefer these MCP tools over engine/lab scripts. See Connect for the hosted endpo
 - [Run Transaction](https://mcp-docs.feelyourprotocol.org/use/tools/run-transaction.html): MCP tool reference
 - [Run Block](https://mcp-docs.feelyourprotocol.org/use/tools/run-block.html): MCP tool reference
 - [Coverage](https://mcp-docs.feelyourprotocol.org/use/coverage.html): Supported forks and EIPs
-- [Amsterdam](https://mcp-docs.feelyourprotocol.org/use/forks/amsterdam.html): Preview hardfork — generic runs, no EIP required
-- [Osaka](https://mcp-docs.feelyourprotocol.org/use/forks/osaka.html): Current mainnet EL baseline
-- [Prague](https://mcp-docs.feelyourprotocol.org/use/forks/prague.html): Historical ModExp compare
+- [Preview — Amsterdam](https://mcp-docs.feelyourprotocol.org/use/forks/amsterdam.html): Default lab fork; upcoming EL (future previews e.g. Hegota same section)
+- [Mainnet — Osaka](https://mcp-docs.feelyourprotocol.org/use/forks/osaka.html): Current mainnet EL (baselineForkId; doc rotates when mainnet fork changes)
+- [Historical forks](https://mcp-docs.feelyourprotocol.org/use/forks/historical-forks.html): Berlin through Prague — 1559, access lists, PUSH0 compares; glacier delay forks not catalogued
 - [EIP-8024](https://mcp-docs.feelyourprotocol.org/use/eips/eip-8024.html): DUPN / SWAPN / EXCHANGE — Runnable
 - [EIP-7883](https://mcp-docs.feelyourprotocol.org/use/eips/eip-7883.html): ModExp gas — Runnable
 - [EIP-7951](https://mcp-docs.feelyourprotocol.org/use/eips/eip-7951.html): secp256r1 — Runnable

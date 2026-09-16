@@ -26,10 +26,11 @@ None required. Pass `{}` or omit arguments.
 | --- | --- |
 | `engineVersion` | Semver of `mcp-execution-engine` |
 | `ceilings` | `maxGasLimit`, `defaultGasLimit`, `maxBytecodeBytes`, `maxTraceSteps`, `maxTxsPerBlock` |
-| `baselineForkId` | Optional mainnet EL baseline for comparisons (`osaka`) — not required for every run |
-| `namedForks` | Catalog capabilities (`osaka` baseline, `amsterdam` preview, `prague` historical) — `summary`, `keywords`, `shapes`, advertised `relatedEips`, optional `plannedEips` |
-| `eips` | Runnable modules only — `runnable`, `summary`, `opcodes`, `comparison`, `keywords`, `shapes` |
-| `allowedBaseHardforks` | Valid `baseHardfork` values (`prague`, `osaka`, `amsterdam`) |
+| `baselineForkId` | Current mainnet EL baseline (`osaka`) — optional for comparisons |
+| `namedForks` | Berlin→Amsterdam lineage — `order`, `predecessorId`, `successorId`, `role`, `activatedEips`, advertised `relatedEips`, `shapes` |
+| `eipIntroductions` | When each EIP activated — use with predecessor compares (e.g. PUSH0 at Shanghai, predecessor Paris) |
+| `eips` | Runnable modules — `comparison` derived from `eipIntroductions` (predecessor vs `introducedAt`) |
+| `allowedBaseHardforks` | Lineage forks (`berlin` … `amsterdam`) plus aliases; glacier/BPO ids rejected |
 
 ## Example
 
@@ -46,7 +47,7 @@ _Output (abbreviated):_
   "engineVersion": "0.1.0",
   "baselineForkId": "osaka",
   "namedForks": [
-    { "id": "osaka", "role": "baseline", "aliases": ["mainnet-el"], "relatedEips": [7883, 7951], "…": "…" },
+    { "id": "osaka", "role": "current", "aliases": ["mainnet-el"], "relatedEips": [7883, 7951], "…": "…" },
     { "id": "amsterdam", "role": "preview", "aliases": ["glamsterdam"], "relatedEips": [7708, 7843, 8024, 8037, 8038], "plannedEips": [7928], "…": "…" }
   ],
   "eips": [{

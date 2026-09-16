@@ -7,7 +7,7 @@
 When MCP is **connected**, trust the live server first:
 
 1. **`listTools`** — tool names, descriptions, and input schemas
-2. **`describe_capabilities`** — `baselineForkId`, named forks as capabilities (osaka baseline, amsterdam preview — summary, related EIPs, shapes), runnable EIP modules, opcodes, encoding, ceilings
+2. **`describe_capabilities`** — `baselineForkId`, `namedForks` (Berlin→Amsterdam lineage: order, predecessorId, activatedEips, related twins), `eipIntroductions` (when each EIP appeared — compare with predecessor), runnable EIP modules with derived comparison pairs, opcodes, encoding, ceilings
 
 Markdown on this site is **secondary**. It can lag behind a gateway release; the probe response and tool schemas cannot.
 
@@ -36,7 +36,7 @@ When the user is a **human** (exploring protocol changes, not integrating the se
 
 ## Reporting results
 
-Always cite **`provenance.engineVersion`** and **`provenance.forkConfig`** when reporting simulation outcomes. On a generic Amsterdam run, `forkConfig.eips` is empty and `perEip` lists advertised modules.
+Always cite **`provenance.engineVersion`** and **`provenance.forkConfig`** when reporting simulation outcomes. On a generic Amsterdam run, `forkConfig.eips` is empty and `perEip` lists advertised modules. Historical forks may include **`provenance.predecessorForkId`** for compare hints.
 
 ## When you are reading docs (no MCP)
 
