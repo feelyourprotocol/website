@@ -32,10 +32,11 @@ function transferFees(totalGasSpent: bigint) {
 
 describe('EIP-7928 BAL Exploration', () => {
   describe('canonical', () => {
-    it('defines generate shape as planned MCP twin', () => {
+    it('defines generate and inspect as runnable MCP twins', () => {
       expect(CANONICAL.question.changeNature).toBe('new-structure')
       expect(CANONICAL.mcp.shapes).toContain('generate')
-      expect(CANONICAL.mcp.docsStatus).toBe('planned-module')
+      expect(CANONICAL.mcp.shapes).toContain('inspect')
+      expect(CANONICAL.mcp.docsStatus).toBe('runnable')
     })
   })
 

@@ -4,7 +4,7 @@
 
 ## Purpose
 
-Return a machine-readable snapshot of what this server can **actually run**: engine version, ceilings, **named fork capabilities**, and **runnable EIP modules**. Each named fork describes a generic hardfork run (summary, keywords, shapes, advertised `relatedEips`) — you do not need to name an EIP. Each EIP module describes **what became possible** (opcodes, encoding rules, keywords, `shapes`) — not demo programs. Unimplemented EIPs are omitted. Use `shapes` to pick **`run_bytecode`**, **`run_transaction`**, or **`run_block`**.
+Return a machine-readable snapshot of what this server can **actually run**: engine version, ceilings, **named fork capabilities**, **`inspectKinds`**, and **runnable EIP modules**. Each named fork describes a generic hardfork run (summary, keywords, shapes, advertised `relatedEips`) — you do not need to name an EIP. Each EIP module describes **what became possible** (opcodes, encoding rules, keywords, `shapes`) — not demo programs. Unimplemented EIPs are omitted. Use `shapes` to pick **`run_bytecode`**, **`run_transaction`**, **`run_block`**, **`generate`**, or **`inspect`**.
 
 ## When to use
 
@@ -48,7 +48,7 @@ _Output (abbreviated):_
   "baselineForkId": "osaka",
   "namedForks": [
     { "id": "osaka", "role": "current", "aliases": ["mainnet-el"], "relatedEips": [7883, 7951], "…": "…" },
-    { "id": "amsterdam", "role": "preview", "aliases": ["glamsterdam"], "relatedEips": [7708, 7843, 8024, 8037, 8038], "plannedEips": [7928], "…": "…" }
+    { "id": "amsterdam", "role": "preview", "aliases": ["glamsterdam"], "relatedEips": [7708, 7843, 7928, 8024, 8037, 8038], "…": "…" }
   ],
   "eips": [{
     "eip": 8024,

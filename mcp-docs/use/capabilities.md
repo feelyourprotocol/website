@@ -1,6 +1,6 @@
 # Capabilities
 
-> **Status:** Four tools **implemented** (`describe_capabilities` + `run_bytecode` + `run_transaction` + `run_block`). **Public MCP not launched.**
+> **Status:** Six tools **implemented** (`describe_capabilities`, `run_bytecode`, `run_transaction`, `run_block`, `generate`, `inspect`). **Public MCP not launched.**
 
 The MCP server exposes **intent-driven tools** — verbs that match how agents and integrators think about protocol work, not raw library APIs one-to-one.
 
@@ -12,7 +12,8 @@ The MCP server exposes **intent-driven tools** — verbs that match how agents a
 | **Run bytecode** | `run_bytecode` | Run raw bytecode as a message-call; optional trace and accounts | Implemented — public launch pending |
 | **Run transaction** | `run_transaction` | Paid tx gas, receipt logs, EIP-8037 dimensions | Implemented — public launch pending |
 | **Run block** | `run_block` | 1–8 txs as a lab block; header snapshot (optional slot) | Implemented — public launch pending |
-| **Generate** | — | Block-level access lists (EIP-7928) | Planned (Step 6) |
+| **Generate** | `generate` | Derive lab artifacts (BAL / EIP-7928 first) | Implemented — public launch pending |
+| **Inspect** | `inspect` | Structure + hash on caller-supplied BAL (no chain) | Implemented — public launch pending |
 
 To **optionally** compare baseline vs preview, call the same verb twice — **osaka** (current mainnet EL), then **amsterdam** (preview) — and diff gas, success, traces, or logs. One run on Amsterdam only is fully supported — you do **not** need to name an EIP.
 
@@ -31,6 +32,7 @@ See [Guarantees](/use/guarantees) for limits and provenance details.
 <Changelog
   title="Capabilities Changelog"
   :entries="[
+    { version: 'v0.15', date: '2026-09-16', summary: 'generate + inspect — BAL from lab block; inspect without chain state.' },
     { version: 'v0.14', date: '2026-09-16', summary: 'Generic hardfork runs (Amsterdam default) are first-class — EIP modules remain the per-change catalogue.' },
     { version: 'v0.12', date: '2026-09-14', summary: 'BYOS clarified: isolated from chain, demand-built prestate in-call; not an empty-world rule.' },
     { version: 'v0.11', date: '2026-09-10', summary: 'Fourth tool run_block — lab header snapshot and per-tx receipts.' },

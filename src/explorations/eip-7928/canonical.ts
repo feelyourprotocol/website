@@ -28,8 +28,8 @@ export const CANONICAL: ProtocolChangeCanonical = {
     testMaturity: 'Scenario curriculum tests',
   },
   mcp: {
-    shapes: ['generate'],
+    shapes: ['generate', 'inspect'],
     keywords: ['BAL', 'block-level access list', 'blockAccessListHash'],
-    docsStatus: 'planned-module',
+    docsStatus: 'runnable',
   },
 }

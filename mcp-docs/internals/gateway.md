@@ -1,6 +1,6 @@
 # Gateway
 
-> **Status:** **v0.1** — four tools implemented (development transport). HTTP on AWS planned (Steps 4–5). Public product path is the hosted endpoint — see [Connect](/use/connect).
+> **Status:** **v0.1** — six tools implemented (development transport). HTTP on AWS planned (Steps 4–5). Public product path is the hosted endpoint — see [Connect](/use/connect).
 
 The **`mcp-gateway`** repo is the public face of the MCP server:
 

@@ -8,7 +8,7 @@ Run **1–8 impersonated transactions as one lab block** and receive a **header 
 
 This is the verb for a chosen beacon slot (`header.slotNumber` / [EIP-7843](/use/eips/eip-7843)), several txs in one block, a lab `number` / `timestamp`, or a **generic Amsterdam / Osaka lab block** with no EIP named.
 
-A **single** paid transfer still belongs on [Run Transaction](/use/tools/run-transaction). Raw opcode / stack programs belong on [Run Bytecode](/use/tools/run-bytecode). Block-level access lists stay on planned **generate**.
+A **single** paid transfer still belongs on [Run Transaction](/use/tools/run-transaction). Raw opcode / stack programs belong on [Run Bytecode](/use/tools/run-bytecode). Block-level access list JSON belongs on **`generate`** (not this tool).
 
 ## When to use
 

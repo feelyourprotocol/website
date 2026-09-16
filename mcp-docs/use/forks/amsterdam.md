@@ -8,9 +8,9 @@ This page is the home for **preview** execution-layer hardforks on the MCP: what
 
 **Amsterdam** (alias **Glamsterdam**) is the upcoming EL fork and the **default** when you omit `fork`. You can run caller-supplied bytecode, a paid transaction, or a small lab block under Amsterdam rules.
 
-You do **not** need to name an EIP. Omit `fork` or pass `{ "baseHardfork": "amsterdam", "eips": [] }`. The probe lists `summary`, `keywords`, `shapes`, advertised **`relatedEips`**, and planned **7928**.
+You do **not** need to name an EIP. Omit `fork` or pass `{ "baseHardfork": "amsterdam", "eips": [] }`. The probe lists `summary`, `keywords`, `shapes`, and advertised **`relatedEips`**.
 
-**Advertised runnable modules:** **8024**, **7843**, **7708**, **8037**, **8038**. **7928** (BAL generate) is planned.
+**Advertised runnable modules:** **8024**, **7843**, **7708**, **7928** (BAL via **`generate`** / **`inspect`**), **8037**, **8038**.
 
 ## What you can ask your agent
 

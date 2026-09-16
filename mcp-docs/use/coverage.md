@@ -12,7 +12,7 @@ Fork configuration is **à la carte**: a base hardfork plus an optional EIP list
 | ----- | ----------- | ---------- | -------------------- | -------------- | ---------- |
 | 0–5   | `berlin` … `prague` | historical | see probe | — | [Historical forks](/use/forks/historical-forks) |
 | 6     | `osaka`     | current    | `fusaka`, `mainnet-el` | 7883, 7951 | [Mainnet — Osaka](/use/forks/osaka) |
-| 7     | `amsterdam` | preview    | `glamsterdam`        | 8024, 7843, 7708, 8037, 8038 (7928 planned) | [Preview — Amsterdam](/use/forks/amsterdam) |
+| 7     | `amsterdam` | preview    | `glamsterdam`        | 8024, 7843, 7708, 7928, 8037, 8038         | [Preview — Amsterdam](/use/forks/amsterdam) |
 
 Full per-fork ids, aliases, and `activatedEips` live in **`describe_capabilities`** — the table above is the human map to three doc pages.
 
@@ -43,7 +43,7 @@ Every **live** website exploration has an MCP-docs page mapping the same problem
 | 8024 | Stack opcodes      | Runnable               | [EIP-8024](/use/eips/eip-8024) |
 | 7883 | ModExp gas         | Runnable               | [EIP-7883](/use/eips/eip-7883) |
 | 7951 | secp256r1          | Runnable               | [EIP-7951](/use/eips/eip-7951) |
-| 7928 | Block access lists | **Planned** (generate) | [EIP-7928](/use/eips/eip-7928) |
+| 7928 | Block access lists | **Runnable** (generate, inspect) | [EIP-7928](/use/eips/eip-7928) |
 | 7843 | SLOTNUM opcode     | Runnable               | [EIP-7843](/use/eips/eip-7843) |
 | 7708 | ETH transfer logs  | Runnable               | [EIP-7708](/use/eips/eip-7708) |
 | 8037 | State creation gas | Runnable               | [EIP-8037](/use/eips/eip-8037) |

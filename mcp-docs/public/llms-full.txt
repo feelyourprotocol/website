@@ -146,7 +146,7 @@ COVERAGE
 Lineage forks: berlin, london, paris, shanghai, cancun, prague, osaka (baselineForkId), amsterdam (default preview).
 Compare: eipIntroductions → predecessor vs introducedAt. Runnable modules: 8024, 7843, 7708, 7883, 7951, 8037, 8038.
 Fork docs: use/forks/amsterdam (preview), use/forks/osaka (mainnet), use/forks/historical-forks (berlin→prague). Glacier delay forks not catalogued.
-Exploration twins (human catalogue): 8024, 7708, 7883, 7951, 8037, 8038 ready for public MCP; 7928 planned (generate). See use/eips/.
+Exploration twins (human catalogue): 8024, 7708, 7883, 7951, 7928, 8037, 8038 ready for public MCP (7928 via generate/inspect). See use/eips/.
 
 ================================================================================
 GUARANTEES
