@@ -1,61 +1,13 @@
-describe('EIP-7883 ModExp', () => {
-  it('loads and displays exploration content', () => {
-    cy.visit('/eip-7883-modexp-gas-cost-increase')
-    cy.get('header').contains('Feel Your Protocol')
-    cy.contains('h1', 'ModExp')
-    cy.get('#eip-7883-c', { timeout: 10000 }).should('exist')
-  })
+import { E2E_EXPLORATIONS } from '../../src/explorations/e2eCatalog'
+import { visitExploration } from '../support/visitExploration'
 
-  it('loads default example with inputs', () => {
-    cy.visit('/eip-7883-modexp-gas-cost-increase')
-    cy.get('#eip-7883-c textarea', { timeout: 10000 }).should('not.have.value', '')
-    cy.get('#eip-7883-c input').should('have.length.gte', 3)
-  })
-
-  it('example selector shows available options', () => {
-    cy.visit('/eip-7883-modexp-gas-cost-increase')
-    cy.get('#eip-7883-c .e-select', { timeout: 10000 }).click()
-    cy.get('[role="option"]').should('have.length.gte', 2)
-  })
-})
-
-describe('EIP-7594 PeerDAS', () => {
-  it('loads and displays exploration content', () => {
-    cy.visit('/eip-7594-peerdas-data-availability-sampling')
-    cy.get('header').contains('Feel Your Protocol')
-    cy.contains('h1', 'Peer Data Availability Sampling')
-    cy.get('#eip-7594-c', { timeout: 10000 }).should('exist')
-  })
-
-  it('loads default example with blob data', () => {
-    cy.visit('/eip-7594-peerdas-data-availability-sampling')
-    cy.get('#eip-7594-c textarea', { timeout: 10000 }).should('not.have.value', '')
-  })
-
-  it('example selector shows available options', () => {
-    cy.visit('/eip-7594-peerdas-data-availability-sampling')
-    cy.get('#eip-7594-c .e-select', { timeout: 10000 }).click()
-    cy.get('[role="option"]').should('have.length.gte', 2)
-  })
-})
-
-describe('EIP-7951 secp256r1', () => {
-  it('loads and displays exploration content', () => {
-    cy.visit('/eip-7951-secp256r1-precompile')
-    cy.get('header').contains('Feel Your Protocol')
-    cy.contains('h1', 'secp256r1 Precompile Support')
-    cy.get('#eip-7951-c', { timeout: 10000 }).should('exist')
-  })
-
-  it('loads default example with inputs', () => {
-    cy.visit('/eip-7951-secp256r1-precompile')
-    cy.get('#eip-7951-c textarea', { timeout: 10000 }).should('not.have.value', '')
-    cy.get('#eip-7951-c input').should('have.length.gte', 5)
-  })
-
-  it('example selector shows available options', () => {
-    cy.visit('/eip-7951-secp256r1-precompile')
-    cy.get('#eip-7951-c .e-select', { timeout: 10000 }).click()
-    cy.get('[role="option"]').should('have.length.gte', 2)
-  })
+describe('Explorations (catalog)', () => {
+  for (const exploration of E2E_EXPLORATIONS) {
+    it(`loads ${exploration.id} with an example picker`, () => {
+      visitExploration(exploration)
+      cy.get('[data-testid="example-select"]').should('be.visible').click()
+      cy.get('[role="option"]').should('have.length.gte', 2)
+      cy.get('h1').click()
+    })
+  }
 })

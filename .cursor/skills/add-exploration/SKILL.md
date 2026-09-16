@@ -88,6 +88,8 @@ Write `tests.spec.ts` (and Vue mounts) that cover:
 - Vue: mount `MyC` (or companions); the play path is present (example picker or primary control, result region)
 - Extracted UIC (if any this phase): `src/eComponents/ui/__tests__/<Name>UIC.spec.ts` — selected state, emit on change, no emit on same click, empty/beyond-edge
 
+**Cypress catalog (required):** add one row to `src/explorations/e2eCatalog.ts` (`id`, `path`, `family`). Vitest `src/explorations/__tests__/e2eCatalog.spec.ts` fails if `REGISTRY` and the catalog diverge — that is how the visit-all E2E loop picks up the new route. Do **not** add a per-EIP Cypress describe. Set `skipExecute: true` when the primary run is too slow for CI (see eip-7594). A new **family** (not a new EIP in form / scenario / bytecode) also needs an `E2E_FAMILY_PLAY` representative. Shared layout (touch chrome, companion peek) uses `cypress/e2e/layout.cy.ts` representatives — do not add one layout spec per EIP. Details: [testing.mdc](../rules/testing.mdc) § Cypress E2E.
+
 Also update `FEATURED_EXPLORATION_IDS` in `src/views/homeCatalog.ts` (HomeView tests import the helper — no duplicate array).
 
 Invariants and finish commands: [testing.mdc](../rules/testing.mdc), [quality.mdc](../rules/quality.mdc).
@@ -99,7 +101,7 @@ Invariants and finish commands: [testing.mdc](../rules/testing.mdc), [quality.md
 3. `info.ts` — website chrome; `introText` starts with `coreQuestion` from `CANONICAL`; copy `coreQuestion` and `mcpDocsStatus` onto `INFO` for home preview cards. Set `imageBoxHeight` per [exploration-design.mdc](../rules/exploration-design.mdc) (`COVER_COLUMN_IMAGE_HEIGHT` vs companion `16rem`–`19rem`).
 4. `examples.ts` + execution helpers — **tests for the protocol claim first** (or immediately with these files)
 5. `MyC.vue` (+ `config.ts` if E-Component-backed) — then Vue mount tests. After the first chrome pass, run the [cross-exploration UI check](#design-same-turn-before-files) (design §11). If a sibling already has the same control and there is no UIC, extract + tests **in this step**, then wire every call site.
-6. Register in `src/explorations/REGISTRY.ts` (nav dropdown is `Object.values(EXPLORATIONS)`)
+6. Register in `src/explorations/REGISTRY.ts` (nav dropdown is `Object.values(EXPLORATIONS)`). Add the matching row to `src/explorations/e2eCatalog.ts` (family + path). The Cypress catalog loop visits it automatically.
 7. **Engagement lexicon:** append one `problem_slices` row in [`social/watchlist.yml`](../../social/watchlist.yml) and add the id to `eip_number_fallback`. **3–4** search phrases from `coreQuestion` + `mcp.keywords` in builder language (wallet, gas, logs, stack — not `EIP-NNNN`). `path` from `info.ts`. `avoid_leading_with: EIP-NNNN`. Skip if `docsStatus` is `sunset` (and **remove** the row + fallback id if you are sunsetting). Do **not** edit the x-engagement skill for a new EIP.
 8. **Latest on the home page:** prepend `<id>` to `FEATURED_EXPLORATION_IDS` in `src/views/homeCatalog.ts`. `latestExplorationIds()` is the first 3 — the new one is Latest; the previous third Latest drops into Catalog. Home tests import the same helper.
 9. **Cover art (required):** [cover-image skill](../cover-image/SKILL.md). Round-trip default: Template B from signed-off `coreQuestion` unless the human named a subject at GO. Import `image.webp` in `info.ts`. Then `npm run generate:og:exploration -- <id>`.
@@ -137,7 +139,7 @@ If the briefing promised a twin, add or stub `mcp-docs/use/eips/eip-NNNN.md` in 
 ```bash
 npm run lf:ci
 npm run type-check
-npx vitest run src/explorations/<id>/
+npx vitest run src/explorations/<id>/ src/explorations/__tests__/e2eCatalog.spec.ts
 # plus src/eComponents/ui/__tests__/<Name>UIC.spec.ts when a UIC was extracted this phase
 ```
 
@@ -163,7 +165,7 @@ Tests passing is the quality bar, not the pedagogy bar. The report below is the 
 **Watchlist:** `problem_slices` + `eip_number_fallback` updated (or sunset removed)
 **Cover:** `image.webp` — Template A/B — shown in context
 
-**Tests:** `npx vitest run src/explorations/<id>/` — N specs, pass/fail (logic + UI + beyond-edge)
+**Tests:** `npx vitest run src/explorations/<id>/ src/explorations/__tests__/e2eCatalog.spec.ts` — N specs, pass/fail (logic + UI + beyond-edge + e2e catalog row)
 **Quality:** `lf:ci`, `type-check`
 **Browser:** route + home Latest; mobile / tablet / desktop — notes
 

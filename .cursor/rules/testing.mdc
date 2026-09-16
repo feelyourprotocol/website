@@ -29,15 +29,54 @@ roadmap/social/src/…      → roadmap/social/src/__tests__/…spec.ts
 og/src/social/…           → og/src/social/__tests__/…spec.ts
 ```
 
+## Cypress E2E
+
+Browser coverage is layered so a new page does **not** copy three smokes from a sibling spec. The contract lives in `src/explorations/e2eCatalog.ts`; Vitest `src/explorations/__tests__/e2eCatalog.spec.ts` fails if it drifts from `REGISTRY`.
+
+| Spec | What it locks | When it grows |
+| --- | --- | --- |
+| `cypress/e2e/shell.cy.ts` | Home intro, imprint, 404, header/footer nav | New chrome routes (imprint-like pages, home hero) |
+| `cypress/e2e/browse.cy.ts` | `/all`, one topic catalog, tag filter | New browse surfaces (timeline-only URL, empty filter) — **not** every topic |
+| `cypress/e2e/explorations.cy.ts` | Every catalog row: visit, widget, example picker | **Automatically** when you add a catalog row |
+| `cypress/e2e/families.cy.ts` | One play path per family (form / scenario / bytecode) | New **family**, or the representative EIP changes |
+| `cypress/e2e/layout.cy.ts` | Touch widget chrome + one companion peek | New **shared** layout pattern — one representative, not one test per EIP |
+
+### New exploration (required)
+
+1. Add a row to `e2eCatalog.ts`: `id`, `path` (must match `info.ts`), `family`.
+2. Set `skipExecute: true` when the primary run is too slow or unsafe for CI (KZG proofs — **eip-7594**). Never put a `skipExecute` id in `E2E_FAMILY_PLAY`.
+3. Run `npx vitest run src/explorations/__tests__/e2eCatalog.spec.ts` — it must pass before you call the exploration done.
+4. Do **not** add a per-EIP Cypress describe (load + inputs + selector). The catalog loop is that coverage.
+
+Family is the widget **shape**, not the EIP number:
+
+- **form** — precompile / hex-form (7883, 7951, 7594). Play path is changing an example, not a Run button.
+- **scenario** — `WidgetChromeUIC` (7708, 8037, 8038, 7928). Play path is one Run click.
+- **bytecode** — bytecode stepper (7843, 8024). Play path is `bytecode-run`.
+
+A new EIP in an **existing** family only needs the catalog row. Add or change `E2E_FAMILY_PLAY` only when you introduce a new family or replace the representative.
+
+### Do not
+
+- Visit every topic route; `/all` + one topic + a tag click is enough.
+- Click **eip-7594** `COMMIT/PROOF/RUN` (or any `skipExecute` control).
+- Add a 375 × 768 × 1280 matrix per page. Layout specs are representatives plus a cheap overflow check.
+- Duplicate unit coverage in Cypress (canonical numbers, opcode tables). Cypress is routing, chrome, and “the widget actually runs in a browser.”
+
+### After Cypress or a flow those specs cover
+
+Run targeted specs first (`npx cypress run --e2e --spec cypress/e2e/layout.cy.ts`), then `npm run test:e2e` from `feelyourprotocol/website/` before finishing. Needs a build (`preview` on :4173). Point `CYPRESS_CACHE_FOLDER` at the local Cypress cache if the sandbox cannot see Cypress.app.
+
 ## Before finishing
 
 1. Run targeted tests: `npx vitest run path/to/__tests__/`
 2. Run the **full CI suite locally**: `npm run test:unit:ci` (all `src/`, `community-token/`, `roadmap/`, `og/` specs).
 3. Run `npm run lf:ci` from `feelyourprotocol/website/`.
+4. If you changed Cypress, `e2eCatalog.ts`, or a user-visible flow the E2E layers cover: `npm run test:e2e`.
 
 Prefer **few well-named tests** over exhaustive coverage — test behavior that would hurt if it regressed.
 
-GitHub Actions (`.github/workflows/unit.yml`) runs `npm run test:unit:ci` on every push/PR — no per-folder CI wiring; match the include globs in `vitest.config.ts`.
+GitHub Actions (`.github/workflows/unit.yml`) runs `npm run test:unit:ci` on every push/PR — no per-folder CI wiring; match the include globs in `vitest.config.ts`. E2E is `.github/workflows/e2e.yml` → `npm run test:e2e`.
 
 ## Playwright / capture pipelines
 

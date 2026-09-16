@@ -26,7 +26,7 @@ src/explorations/eip-XXXX/
 └── *.vue / *.ts     # optional companions, helpers
 ```
 
-Register in `REGISTRY.ts` or the exploration will not appear.
+Register in `REGISTRY.ts` or the exploration will not appear. Add a matching row to `e2eCatalog.ts` (`id`, `path`, `family`) so Cypress visits the new route automatically.
 
 ## Canonical metadata (`canonical.ts`)
 
@@ -124,7 +124,7 @@ Tests green ≠ ready. Before OG/PR, review:
 ## Checklist
 
 - [ ] Round-trip briefing (or standalone brief) + human GO on core question **and** taxonomy
-- [ ] Folder + `canonical.ts` + `REGISTRY.ts` entry (nav)
+- [ ] Folder + `canonical.ts` + `REGISTRY.ts` entry (nav) + `e2eCatalog.ts` row
 - [ ] Home Latest (`FEATURED_EXPLORATION_IDS` prepend in `homeCatalog.ts`)
 - [ ] Engagement lexicon (`social/watchlist.yml` `problem_slices` + `eip_number_fallback`; remove on sunset)
 - [ ] Cover art (`image.webp`)
