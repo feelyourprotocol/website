@@ -13,7 +13,7 @@ The MCP server exposes **intent-driven tools** — verbs that match how agents a
 | **Run transaction** | `run_transaction` | Paid tx gas, receipt logs, EIP-8037 dimensions | Implemented — public launch pending |
 | **Run block** | `run_block` | 1–8 txs as a lab block; header snapshot (optional slot) | Implemented — public launch pending |
 | **Generate** | `generate` | Derive lab artifacts (BAL / EIP-7928 first) | Implemented — public launch pending |
-| **Inspect** | `inspect` | Structure + hash on caller-supplied BAL (no chain) | Implemented — public launch pending |
+| **Inspect** | `inspect` | Structure + hash on caller blobs (BAL, 7702 auth, typed tx, withdrawals, requests) | Implemented — public launch pending |
 
 To **optionally** compare baseline vs preview, call the same verb twice — **osaka** (current mainnet EL), then **amsterdam** (preview) — and diff gas, success, traces, or logs. One run on Amsterdam only is fully supported — you do **not** need to name an EIP.
 

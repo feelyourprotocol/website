@@ -6,7 +6,7 @@
 
 Judge a **caller-supplied** structured artifact **without chain state** — encoding (layer A), canonical structure and item cap (layer B), optional hash match (layer C). Not consensus replay against mainnet.
 
-First kind: **`block-access-list`** (EIP-7928).
+Kinds (see probe **`inspectKinds`**): **`block-access-list`** (7928), **`authorization-list`** (7702), **`typed-transaction`** (2718 RLP), **`withdrawals`** (4895), **`execution-requests`** (7685).
 
 ## MCP tool name
 
