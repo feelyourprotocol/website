@@ -4,13 +4,13 @@
 
 ## Purpose
 
-Return a machine-readable snapshot of what this server can **actually run**: engine version, ceilings, named forks, and **runnable EIP modules**. Each module describes **what became possible** (opcodes, encoding rules, keywords, `shapes`) — not demo programs. Unimplemented EIPs are omitted. Use `shapes` to pick **`run_bytecode`**, **`run_transaction`**, or **`run_block`**.
+Return a machine-readable snapshot of what this server can **actually run**: engine version, ceilings, **named fork capabilities**, **`inspectKinds`**, and **runnable EIP modules**. Each named fork describes a generic hardfork run (summary, keywords, shapes, advertised `relatedEips`) — you do not need to name an EIP. Each EIP module describes **what became possible** (opcodes, encoding rules, keywords, `shapes`) — not demo programs. Unimplemented EIPs are omitted. Use `shapes` to pick **`run_bytecode`**, **`run_transaction`**, **`run_block`**, **`generate`**, or **`inspect`**.
 
 ## When to use
 
 - **First call** when connecting — learn forks, modules, and limits before simulating
-- Answer support questions: “Is EIP-8024 supported?”, “Can I run Amsterdam bytecode with DUPN?”
-- Read opcode encoding so you can **construct** bytecode (this tool does not hand you a canned example program)
+- Answer support questions: “Is Amsterdam available?”, “Which EIPs does that fork advertise?”, “Is EIP-8024 supported?”, “Can I run Amsterdam bytecode with DUPN?”
+- Read the `amsterdam` named-fork row for a generic preview run; read opcode encoding so you can **construct** bytecode (this tool does not hand you a canned example program)
 
 ## MCP tool name
 
@@ -26,10 +26,11 @@ None required. Pass `{}` or omit arguments.
 | --- | --- |
 | `engineVersion` | Semver of `mcp-execution-engine` |
 | `ceilings` | `maxGasLimit`, `defaultGasLimit`, `maxBytecodeBytes`, `maxTraceSteps`, `maxTxsPerBlock` |
-| `baselineForkId` | Optional mainnet EL baseline for comparisons (`osaka`) — not required for every run |
-| `namedForks` | Curated shortcuts (`osaka` baseline, `amsterdam` preview; aliases `mainnet-el`, `glamsterdam`) |
-| `eips` | Runnable modules only — `runnable`, `summary`, `opcodes`, `comparison`, `keywords`, `shapes` |
-| `allowedBaseHardforks` | Valid `baseHardfork` values (`osaka`, `amsterdam`) |
+| `baselineForkId` | Current mainnet EL baseline (`osaka`) — optional for comparisons |
+| `namedForks` | Berlin→Amsterdam lineage — `order`, `predecessorId`, `successorId`, `role`, `activatedEips`, advertised `relatedEips`, `shapes` |
+| `eipIntroductions` | When each EIP activated — use with predecessor compares (e.g. PUSH0 at Shanghai, predecessor Paris) |
+| `eips` | Runnable modules — `comparison` derived from `eipIntroductions` (predecessor vs `introducedAt`) |
+| `allowedBaseHardforks` | Lineage forks (`berlin` … `amsterdam`) plus aliases; glacier/BPO ids rejected |
 
 ## Example
 
@@ -46,8 +47,8 @@ _Output (abbreviated):_
   "engineVersion": "0.1.0",
   "baselineForkId": "osaka",
   "namedForks": [
-    { "id": "osaka", "role": "baseline", "aliases": ["mainnet-el"], "…": "…" },
-    { "id": "amsterdam", "role": "preview", "aliases": ["glamsterdam"], "…": "…" }
+    { "id": "osaka", "role": "current", "aliases": ["mainnet-el"], "relatedEips": [7883, 7951], "…": "…" },
+    { "id": "amsterdam", "role": "preview", "aliases": ["glamsterdam"], "relatedEips": [7708, 7843, 7928, 8024, 8037, 8038], "…": "…" }
   ],
   "eips": [{
     "eip": 8024,
@@ -71,7 +72,7 @@ _Output (abbreviated):_
 <Changelog
   title="Describe Capabilities Changelog"
   :entries="[
-    { version: 'v0.12', date: '2026-09-14', summary: 'EIP-8038 state-access gas in the live catalog (shapes: simulate, transaction).' },
+    { version: 'v0.13', date: '2026-09-16', summary: 'namedForks are catalog capabilities (summary, relatedEips, shapes); generic hardfork questions are first-class.' },
     { version: 'v0.11', date: '2026-09-10', summary: 'EIP-7843 SLOTNUM in the live catalog (shapes: block).' },
     { version: 'v0.10', date: '2026-09-10', summary: 'ceilings.maxTxsPerBlock; shapes may include block (run_block).' },
     { version: 'v0.9', date: '2026-09-08', summary: 'shapes distinguish run_bytecode vs run_transaction (7708/8037 include transaction).' },

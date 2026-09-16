@@ -2,31 +2,38 @@
 
 > **Status:** Catalogue for the **upcoming public MCP** (not launched). Runnable modules are those the hosted server will advertise via probe. Until then, use the [website explorations](https://feelyourprotocol.org).
 
-Fork configuration is **à la carte**: a base hardfork plus an optional EIP list. Named forks are curated shortcuts — **`osaka`** (current mainnet EL baseline), **`prague`** (pre-Fusaka ModExp compare), and **`amsterdam`** (preview; alias `glamsterdam`).
+Fork configuration is **à la carte**: a base hardfork plus an optional EIP list (runnable modules only — history is “run under Shanghai”, not “enable 3855 on Paris”). Named forks are **catalog capabilities** in the **Berlin→Amsterdam lineage**. A generic run under a named fork does **not** require naming an EIP.
 
-## Named forks (live)
+**Compare pattern:** find the change in `eipIntroductions` → `introducedAt` → run the same verb on **predecessorFork(introducedAt)** and on **introducedAt**.
 
-| Fork        | Role       | Alias         | Use                                    |
-| ----------- | ---------- | ------------- | -------------------------------------- |
-| `osaka`     | baseline   | `mainnet-el`  | Current mainnet rules                  |
-| `prague`    | historical | —             | Pre-Fusaka ModExp gas (7883 compare)   |
-| `amsterdam` | preview    | `glamsterdam` | Upcoming fork — EIP deltas (e.g. 8024) |
+## Lineage (live)
+
+| Order | Fork        | Role       | Aliases              | Runnable twins | Doc bucket |
+| ----- | ----------- | ---------- | -------------------- | -------------- | ---------- |
+| 0–5   | `berlin` … `prague` | historical | see probe | 7702 on `prague` | [Historical forks](/use/forks/historical-forks) |
+| 6     | `osaka`     | current    | `fusaka`, `mainnet-el` | 7883, 7951 | [Mainnet — Osaka](/use/forks/osaka) |
+| 7     | `amsterdam` | preview    | `glamsterdam`        | 8024, 7843, 7708, 7928, 8037, 8038         | [Preview — Amsterdam](/use/forks/amsterdam) |
+
+Full per-fork ids, aliases, and `activatedEips` live in **`describe_capabilities`** — the table above is the human map to three doc pages.
+
+`baselineForkId` is **`osaka`** (current mainnet EL). Default lab fork is **`amsterdam`**.
 
 ## Runnable capabilities (live catalog)
 
-These appear in `describe_capabilities()` — engine modules with `runnable: true`.
+These appear in `describe_capabilities()` — engine modules with `runnable: true`. **Comparison pairs** on each row are derived from `eipIntroductions` (predecessor vs `introducedAt`).
 
-| EIP  | Nature         | Shapes   | Fork notes               | Catalogue                      |
-| ---- | -------------- | -------- | ------------------------ | ------------------------------ |
-| 8024 | new-capability | simulate | Amsterdam                | [EIP-8024](/use/eips/eip-8024) |
-| 7843 | new-capability | block    | Amsterdam; Osaka compare | [EIP-7843](/use/eips/eip-7843) |
-| 7708 | new-capability | transaction, simulate | Amsterdam; Osaka compare | [EIP-7708](/use/eips/eip-7708) |
-| 7883 | repricing      | simulate | Osaka; Prague compare    | [EIP-7883](/use/eips/eip-7883) |
-| 7951 | new-capability | simulate | Osaka                    | [EIP-7951](/use/eips/eip-7951) |
-| 8037 | new-exec-model | transaction, simulate | Amsterdam; Osaka compare | [EIP-8037](/use/eips/eip-8037) |
-| 8038 | repricing      | simulate, transaction | Amsterdam; Osaka compare | [EIP-8038](/use/eips/eip-8038) |
+| EIP  | Nature         | Shapes   | Introduced at | Compare (typical)        | Catalogue                      |
+| ---- | -------------- | -------- | ------------- | ------------------------ | ------------------------------ |
+| 8024 | new-capability | simulate | amsterdam     | osaka → amsterdam        | [EIP-8024](/use/eips/eip-8024) |
+| 7843 | new-capability | block    | amsterdam     | osaka → amsterdam        | [EIP-7843](/use/eips/eip-7843) |
+| 7702 | new-exec-model | transaction, inspect | prague | cancun → prague | [EIP-7702](/use/eips/eip-7702) |
+| 7708 | new-capability | transaction, simulate | amsterdam | osaka → amsterdam | [EIP-7708](/use/eips/eip-7708) |
+| 7883 | repricing      | simulate | osaka         | prague → osaka           | [EIP-7883](/use/eips/eip-7883) |
+| 7951 | new-capability | simulate | osaka         | prague → osaka           | [EIP-7951](/use/eips/eip-7951) |
+| 8037 | new-exec-model | transaction, simulate | amsterdam | osaka → amsterdam | [EIP-8037](/use/eips/eip-8037) |
+| 8038 | repricing      | simulate, transaction | amsterdam | osaka → amsterdam | [EIP-8038](/use/eips/eip-8038) |
 
-**Amsterdam note (8024 / 7843):** EthereumJS v10 already bundles these EIPs in the Amsterdam hardfork. Passing `eips: [8024]` or `eips: [7843]` is accepted but is not a pre/post toggle.
+**Amsterdam note (8024 / 7843):** The Amsterdam hardfork already bundles these EIPs. Passing `eips: [8024]` or `eips: [7843]` is accepted but is not a pre/post toggle.
 
 ## Exploration twins (human catalogue)
 
@@ -37,13 +44,14 @@ Every **live** website exploration has an MCP-docs page mapping the same problem
 | 8024 | Stack opcodes      | Runnable               | [EIP-8024](/use/eips/eip-8024) |
 | 7883 | ModExp gas         | Runnable               | [EIP-7883](/use/eips/eip-7883) |
 | 7951 | secp256r1          | Runnable               | [EIP-7951](/use/eips/eip-7951) |
-| 7928 | Block access lists | **Planned** (generate) | [EIP-7928](/use/eips/eip-7928) |
+| 7928 | Block access lists | **Runnable** (generate, inspect) | [EIP-7928](/use/eips/eip-7928) |
 | 7843 | SLOTNUM opcode     | Runnable               | [EIP-7843](/use/eips/eip-7843) |
+| 7702 | Set-code EOA       | Runnable               | [EIP-7702](/use/eips/eip-7702) |
 | 7708 | ETH transfer logs  | Runnable               | [EIP-7708](/use/eips/eip-7708) |
 | 8037 | State creation gas | Runnable               | [EIP-8037](/use/eips/eip-8037) |
 | 8038 | State-access gas   | Runnable               | [EIP-8038](/use/eips/eip-8038) |
 
-PeerDAS (7594) has no MCP twin — sunset path per exploration policy.
+PeerDAS (7594) has no MCP twin — listed in `eipIntroductions` at Osaka with no observable shape in this lab.
 
 Canonical metadata for twins lives in website `src/explorations/eip-NNNN/canonical.ts`.
 
@@ -52,7 +60,10 @@ Canonical metadata for twins lives in website `src/explorations/eip-NNNN/canonic
 <Changelog
   title="Coverage Changelog"
   :entries="[
-    { version: 'v0.19', date: '2026-09-14', summary: 'run_bytecode is a VM message-call — SSTORE program gas in-call; optional accounts on that verb.' },
+    { version: 'v0.23', date: '2026-09-16', summary: 'Lineage extended with Berlin and London (historical floor); glacier BPO forks excluded.' },
+    { version: 'v0.22', date: '2026-09-16', summary: 'Fork docs: preview (Amsterdam), mainnet (Osaka), combined historical page.' },
+    { version: 'v0.21', date: '2026-09-16', summary: 'Paris→Amsterdam lineage table; eipIntroductions compare pattern; Prague no longer ModExp-only.' },
+    { version: 'v0.20', date: '2026-09-16', summary: 'Named forks are catalog capabilities — generic Amsterdam / Osaka / Prague runs; advertised relatedEips; fork catalogue pages.' },
     { version: 'v0.18', date: '2026-09-14', summary: 'EIP-8038 named catalog row — SSTORE via run_transaction; SLOAD/EXTCODESIZE via run_bytecode.' },
     { version: 'v0.17', date: '2026-09-11', summary: 'EIP-8038 exploration twin — simulate gasUsed shows the SSTORE write jump; named catalog row follows.' },
     { version: 'v0.16', date: '2026-09-10', summary: 'EIP-7843 SLOTNUM runnable — run_block header.slotNumber; catalog row live.' },

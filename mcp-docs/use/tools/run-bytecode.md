@@ -10,6 +10,7 @@ Bytecode runs as a **VM message-call** (real execution account, call-frame gas �
 
 ## When to use
 
+- Generic hardfork runs (bytecode under **Amsterdam** with no EIP named)
 - Opcode and stack questions (e.g. **Amsterdam** EIP-8024 DUPN / SWAPN / EXCHANGE)
 - Precompile CALL programs (ModExp, P-256)
 - Program-gas `SSTORE` / `SLOAD` (EIP-8038) — existing-slot write is about **5,006 vs 12,106**
@@ -116,7 +117,7 @@ See [Guarantees](/use/guarantees) for ceilings (max gas, bytecode size, trace st
 <Changelog
   title="Run Bytecode Changelog"
   :entries="[
-    { version: 'v0.11', date: '2026-09-14', summary: 'VM message-call path — SSTORE persists in-call; optional accounts[] prestate; optional stateGasSpilled.' },
+    { version: 'v0.12', date: '2026-09-16', summary: 'Generic Amsterdam bytecode (no EIP named) is a first-class when-to-use.' },
     { version: 'v0.10', date: '2026-09-14', summary: 'SSTORE belongs on run_transaction — run_bytecode cannot persist storage writes.' },
     { version: 'v0.9', date: '2026-09-08', summary: 'Renamed run_evm_bytecode → run_bytecode. Value transfers moved to run_transaction.' },
     { version: 'v0.8', date: '2026-09-08', summary: 'messageCall results include approxTxGasUsed (21000 + call-frame); gasUsedScope always call-frame.' },

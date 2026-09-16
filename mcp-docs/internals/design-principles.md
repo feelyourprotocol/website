@@ -16,8 +16,8 @@ These boundaries apply to everything we ship.
 ## Engine design
 
 - **Query shapes, not library APIs** — generic verbs (`simulate`, `transaction`, `block`, `generate`, `probe`); structured results.
-- **Fork = capability set** — `(baseHardfork, eips[])` à la carte; named forks are curated shortcuts.
-- **Provenance on every result** — engine version, fork config, optional EIP maturity metadata.
+- **Fork = capability set** — `(baseHardfork, eips[])` à la carte; named forks are **catalog capabilities** (summary, advertised EIPs, shapes), not id-only shortcuts.
+- **Provenance on every result** — engine version, fork config, advertised or explicit EIP maturity metadata.
 
 End-user summary: [Capabilities](/use/capabilities), [Guarantees](/use/guarantees).
 
@@ -26,7 +26,7 @@ End-user summary: [Capabilities](/use/capabilities), [Guarantees](/use/guarantee
 <Changelog
   title="Design Principles Changelog"
   :entries="[
-    { version: 'v0.6', date: '2026-09-14', summary: 'Isolated lab vs empty world — BYOS includes demand-built prestate; MCP session is not EVM state.' },
+    { version: 'v0.7', date: '2026-09-16', summary: 'Named forks are catalog capabilities alongside EIP modules; generic hardfork runs stay on the same verbs.' },
     { version: 'v0.5', date: '2026-09-10', summary: 'block shape (run_block) alongside simulate / transaction / generate / probe.' },
     { version: 'v0.4', date: '2026-09-08', summary: 'transaction shape alongside simulate / generate / probe.' },
     { version: 'v0.3', date: '2026-07-20', summary: 'Consolidated from overview and execution-engine under internals/.' },

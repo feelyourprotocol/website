@@ -37,10 +37,10 @@ Build sequence (see [roadmap timeline](https://roadmap.feelyourprotocol.org/road
 
 1. ~~**MCP docs site**~~ — this site
 2. ~~**Execution engine**~~ — `simulateBytecode()` + `runTransaction()` + `runBlock()` + capability registry ([reference](/internals/execution-engine))
-3. ~~**Gateway (stdio)**~~ — development transport / PoC — **four tools implemented**
+3. ~~**Gateway (stdio)**~~ — development transport / PoC — **six tools implemented** (incl. generate, inspect)
 4. **AWS bootstrap** — EC2, nginx, TLS, deploy pipeline
 5. **HTTP transport** — remote MCP endpoint
-6. **Further tools** — EIP-7928 BAL generate, observability, x402, …
+6. **Further tools** — observability, x402, … (EIP-7928 BAL generate/inspect shipped)
 
 ## Changelog
 

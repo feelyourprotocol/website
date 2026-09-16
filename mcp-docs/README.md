@@ -39,6 +39,7 @@ mcp-docs/
 │   ├── connect.md
 │   ├── tools/                    # One page per MCP tool (grows as tools ship)
 │   ├── coverage.md
+│   ├── forks/                    # Preview (amsterdam), mainnet (osaka), historical-forks
 │   ├── eips/                     # Human catalogue — one page per runnable EIP module
 │   ├── guarantees.md
 │   ├── pricing.md

@@ -6,10 +6,12 @@
 
 When the feel-your-protocol MCP server is connected:
 
-- describe_capabilities — probe registry (forks, runnable EIP modules, opcodes, encoding)
+- describe_capabilities — probe registry (named fork capabilities, runnable EIP modules, opcodes, encoding)
 - run_bytecode — run raw bytecode under a fork config
 - run_transaction — paid tx gas, receipt logs, wallet gasLimit
 - run_block — 1–8 txs as a lab block; optional header slot / number / timestamp
+- generate — derive lab artifacts (BAL / EIP-7928 first); same inputs as run_block
+- inspect — BAL JSON or RLP structure + optional hash; no chain state
 
 Prefer these MCP tools over engine/lab scripts. See Connect for the hosted endpoint (not launched).
 
@@ -23,10 +25,13 @@ Prefer these MCP tools over engine/lab scripts. See Connect for the hosted endpo
 - [Run Transaction](https://mcp-docs.feelyourprotocol.org/use/tools/run-transaction.html): MCP tool reference
 - [Run Block](https://mcp-docs.feelyourprotocol.org/use/tools/run-block.html): MCP tool reference
 - [Coverage](https://mcp-docs.feelyourprotocol.org/use/coverage.html): Supported forks and EIPs
+- [Preview — Amsterdam](https://mcp-docs.feelyourprotocol.org/use/forks/amsterdam.html): Default lab fork; upcoming EL (future previews e.g. Hegota same section)
+- [Mainnet — Osaka](https://mcp-docs.feelyourprotocol.org/use/forks/osaka.html): Current mainnet EL (baselineForkId; doc rotates when mainnet fork changes)
+- [Historical forks](https://mcp-docs.feelyourprotocol.org/use/forks/historical-forks.html): Berlin through Prague — 1559, access lists, PUSH0 compares; glacier delay forks not catalogued
 - [EIP-8024](https://mcp-docs.feelyourprotocol.org/use/eips/eip-8024.html): DUPN / SWAPN / EXCHANGE — Runnable
 - [EIP-7883](https://mcp-docs.feelyourprotocol.org/use/eips/eip-7883.html): ModExp gas — Runnable
 - [EIP-7951](https://mcp-docs.feelyourprotocol.org/use/eips/eip-7951.html): secp256r1 — Runnable
-- [EIP-7928](https://mcp-docs.feelyourprotocol.org/use/eips/eip-7928.html): BAL — Planned (generate)
+- [EIP-7928](https://mcp-docs.feelyourprotocol.org/use/eips/eip-7928.html): BAL — Runnable (generate, inspect)
 - [EIP-7843](https://mcp-docs.feelyourprotocol.org/use/eips/eip-7843.html): SLOTNUM — Runnable (run_block)
 - [EIP-7708](https://mcp-docs.feelyourprotocol.org/use/eips/eip-7708.html): ETH transfer logs — Runnable (run_transaction)
 - [EIP-8037](https://mcp-docs.feelyourprotocol.org/use/eips/eip-8037.html): State creation gas — Runnable (run_transaction)

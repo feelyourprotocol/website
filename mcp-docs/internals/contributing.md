@@ -13,10 +13,11 @@ When a capability ships:
 
 1. Add or update a page under `use/tools/` (generic MCP tool reference)
 2. Add or update `use/eips/eip-NNNN.md` for **every live website exploration** — Runnable or Planned (human catalogue — prompts, twins; not demo bytecode). Runnable engine modules also update the live catalog in `use/coverage.md`.
-3. Update `use/coverage.md` index and sidebar in `.vitepress/config.ts`
-4. Update `internals/execution-engine` or `internals/gateway` as needed
-5. Add a changelog entry on the affected page
-6. Update `public/llms.txt` and `public/llms-full.txt`
+3. Add or update `use/forks/<id>.md` when a **named fork** catalog row changes (generic hardfork runs — Amsterdam, Osaka, Prague).
+4. Update `use/coverage.md` index and sidebar in `.vitepress/config.ts`
+5. Update `internals/execution-engine` or `internals/gateway` as needed
+6. Add a changelog entry on the affected page
+7. Update `public/llms.txt` and `public/llms-full.txt`
 
 **`use/` is the hosted product.** Do not document local stdio, Cursor `mcp.json`, or self-host setup on user-facing pages. Build steps belong in GitHub READMEs and `internals/` (development transport), not as a public early-access path.
 
@@ -29,6 +30,7 @@ See [Quality](/internals/quality) for test and lint commands.
 <Changelog
   title="Contributing Changelog"
   :entries="[
+    { version: 'v0.6', date: '2026-09-16', summary: 'Named-fork catalogue pages under use/forks/ when fork capability rows change.' },
     { version: 'v0.5', date: '2026-09-02', summary: 'use/ documents the hosted product only — no self-host early access.' },
     { version: 'v0.4', date: '2026-08-27', summary: 'EIP catalogue under use/eips/; link to engine/gateway AGENTS.md for builders.' },
     { version: 'v0.3', date: '2026-07-20', summary: 'Contributing page under internals/.' },
