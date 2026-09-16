@@ -1,5 +1,5 @@
 ---
-description: When to commit or open a PR, and how short titles should look
+description: When to commit/push/PR; sequential fingerprint signing; message style
 alwaysApply: true
 ---
 
@@ -31,15 +31,46 @@ Every git command for FYP (inspect included: `status`, `diff`, `log`) must:
 
 If you see `packages/ethereum-tests` in a git error, you are **not** in a FYP repo. Do not `cd` into that submodule or “fix” it. Re-run with the two bullets above.
 
-When a round-trip inspects more than one sibling, those inspects may run in parallel **only** when both bullets are set. Signed commit/push stay one-at-a-time (below).
+When a round-trip inspects more than one sibling, those inspects may run in parallel **only** when both bullets are set. Anything that touches remotes or signing stays **strictly sequential** ([below](#sequential-workflow-fingerprint)).
 
-## Signing
+## Sequential workflow (fingerprint)
 
-Commits **and** pushes are signed (SSH / Touch ID). The human confirms with a fingerprint; that can take a few seconds. Wait for the prompt.
+Commits, **pushes**, **pulls** (`git pull` / `git fetch` + merge), and **PR opens** (`gh pr create`) must run **one shell command at a time**. Wait until that command **exits 0** before starting the next. The human approves signed git with **Touch ID / fingerprint**; parallel ops race for one prompt and fail (`agent refused operation`, `Permission denied (publickey)`).
 
-Do **one** signed git operation at a time. Parallel commits or pushes fail — one fingerprint cannot answer several agents. After a commit-and-push ask: commit each **in-scope** repo in turn, then push each of those that is ahead in turn. One repo normally; three only in a round-trip.
+**Never** batch parallel tool calls that include commit, push, pull, or `gh pr create` — even across different repos.
 
-Do not retry in a tight loop, skip signing, or abandon because the signer has not answered yet.
+### One repo
+
+Typical order when asked to ship:
+
+1. Pre-push CI ([below](#before-a-push)) — may run local gates; not signed.
+2. `git commit` → **wait success**
+3. `git push` → **wait success**
+4. `gh pr view` / `gh pr create` (if asked) → **wait success**
+5. `gh pr edit` (if updating body) → **wait success**
+
+If a **pull** is needed first: one `git pull` (or fetch + merge) → **wait success**, then continue.
+
+### Several in-scope repos (round-trip or coordinated branch)
+
+Same rule: **finish the full step for repo A before repo B** — do not push three branches in parallel or open three PRs in parallel.
+
+Suggested dependency order when all three move together: **mcp-execution-engine → mcp-gateway → website** (engine probe, then gateway, then docs).
+
+Per repo, in turn:
+
+1. CI for that repo (if pushing)
+2. Commit → wait success
+3. Push → wait success
+4. PR lookup / create → wait success
+
+Then the next repo.
+
+### Signing
+
+Commits **and** pushes are signed (SSH / Touch ID). The human confirms with a fingerprint; that can take several seconds. Wait for the prompt — do not fire the next signed op until the previous one completed.
+
+Do not retry in a tight loop, skip signing (`--no-gpg-sign` / `--no-verify`), or abandon because the signer has not answered yet. One failed push is not a reason to parallel-retry the other repos.
 
 ## Before a push
 
@@ -59,12 +90,12 @@ Same `working_directory` + `required_permissions: ["all"]` as other git. CI is n
 
 ## After a push
 
-A push does not say whether a PR exists. For **each repo you just pushed**, look it up (`gh pr view <branch>`).
+A push does not say whether a PR exists. For **each repo you just pushed** (one repo at a time, after that push succeeded), look it up (`gh pr view <branch>`).
 
 - **PR exists:** update **that** PR’s body to match the work now on the branch. Do not open a second PR. On a **round-trip** PR, keep the [arch shape](#pull-requests), refresh **Round-trip** and **So far**, and do not retitle. Do not turn the body into a changelog of the last commit.
-- **No PR:** say so. Open one only if the human asked to open PRs.
+- **No PR:** say so. Open one only if the human asked to open PRs — **`gh pr create` immediately after that repo’s push**, wait success, then move to the next repo.
 
-Report the PR URL (or “no PR”) after the push. `gh pr edit` is not a signed git op — run it after the push, still with `working_directory` + `required_permissions: ["all"]`.
+Report the PR URL (or “no PR”) after each repo’s push+PR step. `gh pr edit` is not a signed git op — still run it **sequentially**, with `working_directory` + `required_permissions: ["all"]`.
 
 ## Commit messages
 
