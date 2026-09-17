@@ -1,7 +1,7 @@
 # Feel Your Protocol MCP Server — Use Layer (full text)
 # Source: mcp-docs/use/ — end-user documentation for humans and AI agents
 # https://mcp-docs.feelyourprotocol.org/llms-full.txt
-# Updated: 2026-09-16 — PUBLIC MCP NOT LAUNCHED; launch week 5–9 Oct 2026 target
+# Updated: 2026-09-17 — PUBLIC MCP NOT LAUNCHED; launch week 5–9 Oct 2026 target
 
 ================================================================================
 READ FIRST — LAUNCH STATUS
@@ -146,7 +146,7 @@ COVERAGE
 Lineage forks: berlin, london, paris, shapella (alias shanghai), dencun (alias cancun), pectra (alias prague), fusaka (baselineForkId; aliases osaka, mainnet-el), glamsterdam (default preview; alias amsterdam).
 Compare: eipIntroductions → predecessor vs introducedAt. Runnable modules: 8024, 7843, 7708, 7883, 7951, 7928, 8037, 8038. Set-code txs: run_transaction authorizationList on pectra+ (not a catalogue twin).
 Fork docs: use/forks/glamsterdam (preview), use/forks/fusaka (mainnet), use/forks/historical-forks (berlin→pectra). Glacier delay forks not catalogued.
-Exploration twins (human catalogue): 8024, 7708, 7883, 7951, 7928, 7843, 8037, 8038 ready for public MCP. See use/eips/.
+Exploration twins (human catalogue): 8024, 7708, 7883, 7951, 7928, 7843, 8037, 8038 ready for public MCP. EIP-7954 contract creation is Planned. See use/eips/.
 
 ================================================================================
 GUARANTEES

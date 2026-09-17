@@ -73,6 +73,15 @@ weather_mcp:
     x402-as-token or points, price, ETF.
 
 problem_slices:
+  - id: eip-7954
+    path: /eip-7954-contract-size-limit
+    core_question: How much contract code can you deploy before the protocol rejects it?
+    search:
+      - contract size limit Ethereum
+      - Solidity contract too large
+      - smart contract deployment size
+      - initcode limit Ethereum
+    avoid_leading_with: EIP-7954
   - id: eip-8038
     path: /eip-8038-state-access-gas
     core_question: When you SSTORE on Amsterdam, what are you paying for — touching the slot, changing it, or creating it?
@@ -144,6 +153,7 @@ problem_slices:
 
 # Last-resort ids if a hit already names an EIP (live only). Not a daily rotation.
 eip_number_fallback:
+  - eip-7954
   - eip-8038
   - eip-7843
   - eip-8037

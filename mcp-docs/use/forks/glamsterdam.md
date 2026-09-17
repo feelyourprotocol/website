@@ -21,6 +21,8 @@ You do **not** need to name an EIP. Omit `fork` or pass `{ "baseHardfork": "glam
 | 8037 | [State creation gas](/use/eips/eip-8037) |
 | 8038 | [State-access gas](/use/eips/eip-8038) |
 
+**Planned twin:** [EIP-7954 contract size limits](/use/eips/eip-7954) needs contract creation in `run_transaction` before it can join the advertised runnable list.
+
 ## What you can ask your agent
 
 - *“Run this bytecode under Glamsterdam and tell me the gas used.”*

@@ -31,6 +31,7 @@ Prefer these MCP tools over engine/lab scripts. See Connect for the hosted endpo
 - [EIP-8024](https://mcp-docs.feelyourprotocol.org/use/eips/eip-8024.html): DUPN / SWAPN / EXCHANGE — Runnable
 - [EIP-7883](https://mcp-docs.feelyourprotocol.org/use/eips/eip-7883.html): ModExp gas — Runnable
 - [EIP-7951](https://mcp-docs.feelyourprotocol.org/use/eips/eip-7951.html): secp256r1 — Runnable
+- [EIP-7954](https://mcp-docs.feelyourprotocol.org/use/eips/eip-7954.html): Contract size limits — Planned (contract creation)
 - [EIP-7928](https://mcp-docs.feelyourprotocol.org/use/eips/eip-7928.html): BAL — Runnable (generate, inspect)
 - [EIP-7843](https://mcp-docs.feelyourprotocol.org/use/eips/eip-7843.html): SLOTNUM — Runnable (run_block)
 - [EIP-7708](https://mcp-docs.feelyourprotocol.org/use/eips/eip-7708.html): ETH transfer logs — Runnable (run_transaction)

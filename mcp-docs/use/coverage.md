@@ -46,6 +46,7 @@ Every **live** website exploration has an MCP-docs page mapping the same problem
 | 8024 | Stack opcodes      | Runnable               | [EIP-8024](/use/eips/eip-8024) |
 | 7883 | ModExp gas         | Runnable               | [EIP-7883](/use/eips/eip-7883) |
 | 7951 | secp256r1          | Runnable               | [EIP-7951](/use/eips/eip-7951) |
+| 7954 | Contract size limits | **Planned** (`run_transaction` contract creation) | [EIP-7954](/use/eips/eip-7954) |
 | 7928 | Block access lists | **Runnable** (generate, inspect) | [EIP-7928](/use/eips/eip-7928) |
 | 7843 | SLOTNUM opcode     | Runnable               | [EIP-7843](/use/eips/eip-7843) |
 | 7708 | ETH transfer logs  | Runnable               | [EIP-7708](/use/eips/eip-7708) |
@@ -59,6 +60,7 @@ Canonical metadata for twins lives in website `src/explorations/eip-NNNN/canonic
 <Changelog
   title="Coverage Changelog"
   :entries="[
+    { version: 'v0.28', date: '2026-09-17', summary: 'EIP-7954 exploration twin — Planned until run_transaction supports contract creation.' },
     { version: 'v0.27', date: '2026-09-17', summary: 'EIP-7702 is fork-level run_transaction/inspect — not a catalogue twin or EIP docs page.' },
     { version: 'v0.26', date: '2026-09-17', summary: 'Retired PeerDAS exploration removed from website catalogue; Fusaka-only EIPs stay in probe.' },
     { version: 'v0.25', date: '2026-09-17', summary: 'Current-mainnet twins stay first-class; sunset is not “already activated.”' },
