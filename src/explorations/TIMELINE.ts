@@ -20,6 +20,9 @@ export const FORK_ROLE_HINT: Record<ForkRole, string> = {
   preview: 'Upcoming hardfork — EIP candidates under active consideration.',
 }
 
+/** Fork ids that have a browse pill on the website (subset of MCP lineage). */
+export type WebsiteTimelineId = 'fusaka' | 'glamsterdam'
+
 export const TIMELINE: Timeline = {
   fusaka: {
     title: 'Fusaka',
@@ -46,6 +49,4 @@ export interface TimelineEntry {
   order: number
 }
 
-export interface Timeline {
-  [key: string]: TimelineEntry
-}
+export type Timeline = Record<WebsiteTimelineId, TimelineEntry>

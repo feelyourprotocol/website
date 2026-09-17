@@ -1,4 +1,7 @@
+import type { McpForkId } from '@/explorations/forkCatalog'
 import type { Tag } from '@/explorations/TAGS'
+import type { WebsiteTimelineId } from '@/explorations/TIMELINE'
+import type { TopicId } from '@/explorations/topicIds'
 
 /**
  * Schema source of truth for protocol-change metadata shared by the explorations
@@ -34,14 +37,18 @@ export interface ProtocolChangeQuestion {
 }
 
 export interface ProtocolChangeTaxonomy {
-  topic: string
-  /** Catalog fork id — combined upgrade name (`fusaka`, `glamsterdam`, `pectra`, …). Same as MCP `namedForks[].id`. */
-  timeline: string
+  /** Topic hub id — one of the static pillars in `TOPICS.ts`. */
+  topic: TopicId
+  /** Fork id for browse pills — must exist in website `TIMELINE.ts` (subset of MCP lineage). */
+  timeline: WebsiteTimelineId
   tags: Tag[]
 }
 
+/** EIP process status on eips.ethereum.org (not fork role). */
+export type EipProcessStatus = 'Draft' | 'Review' | 'Last Call' | 'Final' | 'Stagnant' | 'Withdrawn'
+
 export interface ProtocolChangeMaturity {
-  eipStatus?: string
+  eipStatus?: EipProcessStatus
   implMaturity?: string
   testMaturity?: string
 }
@@ -55,8 +62,8 @@ export interface ProtocolChangeMcpHints {
    * (`fusaka`, `glamsterdam`, `pectra`, `dencun`, …), not EthereumJS EL names.
    */
   comparison?: {
-    baselineForkId: string
-    previewForkId: string
+    baselineForkId: McpForkId
+    previewForkId: McpForkId
     note?: string
   }
   /**

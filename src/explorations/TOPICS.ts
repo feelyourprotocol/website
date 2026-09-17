@@ -1,3 +1,5 @@
+import type { TopicId } from '@/explorations/topicIds'
+
 import { getTopicExplorationIds } from './REGISTRY'
 
 export type TopicColor = 'blue' | 'yellow' | 'green' | 'red' | 'orange' | 'purple'
@@ -145,7 +147,18 @@ export function topicCSSVars(color: TopicColor): Record<string, string> {
   }
 }
 
-export const TOPICS: Topics = {
+export interface Topic {
+  title: string
+  path: string
+  url: string
+  color: TopicColor
+  introText?: string
+  explorations: string[]
+}
+
+export type Topics = Record<TopicId, Topic>
+
+export const TOPICS = {
   scaling: {
     title: 'Scaling',
     path: '/scaling',
@@ -212,16 +225,4 @@ export const TOPICS: Topics = {
       'protocol support for other signature schemes — without compromising trust assumptions.',
     explorations: getTopicExplorationIds('interoperability'),
   },
-}
-
-export interface Topic {
-  title: string
-  path: string
-  url: string
-  color: TopicColor
-  introText?: string
-  explorations: string[]
-}
-export interface Topics {
-  [key: string]: Topic
-}
+} satisfies Topics

@@ -12,7 +12,7 @@ The probe exposes the **Berlin→Glamsterdam lineage** so agents can answer “w
 | Current mainnet EL | [Fusaka](/use/forks/fusaka) | `current` |
 | History | **This page** (Berlin → Pectra) | `historical` |
 
-Historical forks are generic run targets: `{ "baseHardfork": "<id>", "eips": [] }` on the three run tools. Use **`eipIntroductions`** from [Describe Capabilities](/use/tools/describe-capabilities) for facts and compare pairs. Advertised twins on a historical fork stay (7702 on Pectra today; Fusaka twins follow when that role rotates) — history is still a place to **run** those features, not only to compare them.
+Historical forks are generic run targets: `{ "baseHardfork": "<id>", "eips": [] }` on the three run tools. Use **`eipIntroductions`** from [Describe Capabilities](/use/tools/describe-capabilities) for facts and compare pairs. **Pectra+** also enables set-code type-4 txs via [Run transaction](/use/tools/run-transaction) `authorizationList` (fork feature, not a catalogue twin). Current-mainnet twins on Fusaka follow when that role rotates.
 
 From **Shapella** on, the catalog id is the combined upgrade name; the EL city name is an alias. **Paris** has no Shapella-style portmanteau — `paris` stays canonical (aliases `merge`, `the-merge`).
 
@@ -39,7 +39,7 @@ Examples:
 | 2 | `paris` | `merge`, `the-merge` | 3675 Merge (not replayable here), 4399 PREVRANDAO |
 | 3 | `shapella` | `shanghai` | 3855 PUSH0, 3860 initcode, 4895 withdrawals (limited in lab) |
 | 4 | `dencun` | `cancun` | 1153 transient storage, 5656 MCOPY, 4844 blobs (no blob txs in lab) |
-| 5 | `pectra` | `prague` | [7702 set-code](/use/eips/eip-7702), 2537 BLS precompiles, 7623 calldata |
+| 5 | `pectra` | `prague` | 7702 set-code (`authorizationList` on run_transaction), 2537 BLS precompiles, 7623 calldata |
 
 **Floor:** **Berlin** — Istanbul and earlier hardforks are out of scope for this MCP round.
 
@@ -58,6 +58,7 @@ The lab does not replay Merge consensus, beacon withdrawals, blob sidecars, or P
 <Changelog
   title="Historical Forks Catalogue Changelog"
   :entries="[
+    { version: 'v0.6', date: '2026-09-17', summary: '7702 set-code documented as Pectra fork feature — not a catalogue EIP page.' },
     { version: 'v0.5', date: '2026-09-17', summary: 'Historical forks still host advertised twins for adoption runs, not only compares.' },
     { version: 'v0.4', date: '2026-09-17', summary: 'Pectra 7702 twin linked from the lineage table.' },
     { version: 'v0.3', date: '2026-09-17', summary: 'Canonical ids from Shapella on are combined names (shapella, dencun, pectra); EL city names are aliases.' },

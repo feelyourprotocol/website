@@ -12,13 +12,13 @@ Fork configuration is **à la carte**: a base hardfork plus an optional EIP list
 
 | Order | Fork        | Role       | Aliases              | Runnable twins | Doc bucket |
 | ----- | ----------- | ---------- | -------------------- | -------------- | ---------- |
-| 0–5   | `berlin` … `pectra` | historical | see probe | 7702 on `pectra` | [Historical forks](/use/forks/historical-forks) |
+| 0–5   | `berlin` … `pectra` | historical | see probe | (generic runs; no advertised twins) | [Historical forks](/use/forks/historical-forks) |
 | 6     | `fusaka`     | current    | `osaka`, `mainnet-el` | 7883, 7951 | [Mainnet — Fusaka](/use/forks/fusaka) |
 | 7     | `glamsterdam` | preview    | `amsterdam`          | 8024, 7843, 7708, 7928, 8037, 8038         | [Preview — Glamsterdam](/use/forks/glamsterdam) |
 
 Full per-fork ids, aliases, and `activatedEips` live in **`describe_capabilities`** — the table above is the human map to three doc pages.
 
-`baselineForkId` is **`fusaka`** (current mainnet EL). Default lab fork is **`glamsterdam`**. Current-mainnet twins (7883, 7951) stay in this live catalog — they are first-class runs, not only a compare baseline vs preview. When mainnet moves on, those twins stay advertised on Fusaka (then a historical row), like 7702 on Pectra. `docsStatus: sunset` on the website is for retired explorations or no honest lab shape — not for “already activated.”
+`baselineForkId` is **`fusaka`** (current mainnet EL). Default lab fork is **`glamsterdam`**. Current-mainnet twins (7883, 7951) stay in this live catalog — they are first-class runs, not only a compare baseline vs preview. When mainnet moves on, those twins stay advertised on Fusaka (then a historical row). `docsStatus: sunset` on the website is for retired explorations or no honest lab shape — not for “already activated.”
 
 ## Runnable capabilities (live catalog)
 
@@ -28,8 +28,8 @@ These appear in `describe_capabilities()` — engine modules with `runnable: tru
 | ---- | -------------- | -------- | ------------- | ------------------------ | ------------------------------ |
 | 8024 | new-capability | simulate | glamsterdam     | fusaka → glamsterdam        | [EIP-8024](/use/eips/eip-8024) |
 | 7843 | new-capability | block    | glamsterdam     | fusaka → glamsterdam        | [EIP-7843](/use/eips/eip-7843) |
-| 7702 | new-exec-model | transaction, inspect | pectra | dencun → pectra | [EIP-7702](/use/eips/eip-7702) |
 | 7708 | new-capability | transaction, simulate | glamsterdam | fusaka → glamsterdam | [EIP-7708](/use/eips/eip-7708) |
+| 7928 | new-structure  | generate, inspect | glamsterdam | fusaka → glamsterdam | [EIP-7928](/use/eips/eip-7928) |
 | 7883 | repricing      | simulate | fusaka         | pectra → fusaka           | [EIP-7883](/use/eips/eip-7883) |
 | 7951 | new-capability | simulate | fusaka         | pectra → fusaka           | [EIP-7951](/use/eips/eip-7951) |
 | 8037 | new-exec-model | transaction, simulate | glamsterdam | fusaka → glamsterdam | [EIP-8037](/use/eips/eip-8037) |
@@ -48,7 +48,6 @@ Every **live** website exploration has an MCP-docs page mapping the same problem
 | 7951 | secp256r1          | Runnable               | [EIP-7951](/use/eips/eip-7951) |
 | 7928 | Block access lists | **Runnable** (generate, inspect) | [EIP-7928](/use/eips/eip-7928) |
 | 7843 | SLOTNUM opcode     | Runnable               | [EIP-7843](/use/eips/eip-7843) |
-| 7702 | Set-code EOA       | Runnable               | [EIP-7702](/use/eips/eip-7702) |
 | 7708 | ETH transfer logs  | Runnable               | [EIP-7708](/use/eips/eip-7708) |
 | 8037 | State creation gas | Runnable               | [EIP-8037](/use/eips/eip-8037) |
 | 8038 | State-access gas   | Runnable               | [EIP-8038](/use/eips/eip-8038) |
@@ -60,6 +59,7 @@ Canonical metadata for twins lives in website `src/explorations/eip-NNNN/canonic
 <Changelog
   title="Coverage Changelog"
   :entries="[
+    { version: 'v0.27', date: '2026-09-17', summary: 'EIP-7702 is fork-level run_transaction/inspect — not a catalogue twin or EIP docs page.' },
     { version: 'v0.26', date: '2026-09-17', summary: 'Retired PeerDAS exploration removed from website catalogue; Fusaka-only EIPs stay in probe.' },
     { version: 'v0.25', date: '2026-09-17', summary: 'Current-mainnet twins stay first-class; sunset is not “already activated.”' },
     { version: 'v0.24', date: '2026-09-17', summary: 'Human EIP index — per-EIP pages stay linked from this catalogue, not the sidebar.' },
