@@ -8,7 +8,7 @@ description: >-
 
 # Add an exploration
 
-Executable playbook for the **explorations website** only (`src/explorations/`). Phase 2 of the [round-trip](../round-trip-protocol-change/SKILL.md) (after [round-trip-branch-prep](../round-trip-branch-prep/SKILL.md)). Standalone use: do **not** run branch-prep — that skill is three-repo and round-trip only.
+Executable playbook for the **explorations website** only (`src/explorations/`). Phase 2 of the [round-trip](../round-trip-protocol-change/SKILL.md), or standalone after [brief-protocol-change](../brief-protocol-change/SKILL.md) GO. Do not create or switch branches unless the human asks.
 
 **Brief first:** [brief-protocol-change](../brief-protocol-change/SKILL.md) must already have a human GO (or this session *is* that GO). Signed-off core question, nature, and proposed `CANONICAL` are inputs — do not re-litigate them unless the spec contradicts the briefing.
 

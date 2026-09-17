@@ -32,7 +32,7 @@ Default path for a **new protocol change** is the [round-trip skill](.cursor/ski
 | Phase | Human trigger | Agent |
 | --- | --- | --- |
 | **1 — Brief** | “Round-trip for EIP-xxxx” | [brief-protocol-change](.cursor/skills/brief-protocol-change/SKILL.md) — EIP report, suitability, who/why, taxonomy (topic / timeline / tags + reasoning), exploration idea, MCP outline, working-tree prep (observe git only) — then **stop** |
-| **2 — Exploration** | GO | [round-trip-branch-prep](.cursor/skills/round-trip-branch-prep/SKILL.md) then [add-exploration](.cursor/skills/add-exploration/SKILL.md) — design with care, then implement; tests; cover; home Latest — then **stop** |
+| **2 — Exploration** | GO | [add-exploration](.cursor/skills/add-exploration/SKILL.md) — design with care, then implement; tests; cover; home Latest — then **stop** |
 | **3 — MCP** | GO (optional hints from the widget) | Engine [add-mcp-module](https://github.com/feelyourprotocol/mcp-execution-engine/blob/main/.cursor/skills/add-mcp-module/SKILL.md) — module and/or catalogue page; tests; MCP report. Well-scoped structural lab expansions may ship in this phase as a **side-trip** (same skill) — then **ask** whether to generate the comic |
 | **4 — Comic** | Yes on that ask (skippable) | [bro-bruh-comic](.cursor/skills/bro-bruh-comic/SKILL.md) — strip + `design/comics/eip-NNNN.yml` — then **ask** about video |
 | **5 — Video** | Yes on that ask (skippable) | [video-short](.cursor/skills/video-short/SKILL.md) — Shorts mp4 + `tweet.yml` / `youtube.yml` — then **stop** for close |
