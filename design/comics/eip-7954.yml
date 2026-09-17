@@ -1,0 +1,81 @@
+# Bro & Bruh comic metadata — schema bro-bruh-comic/v1
+# Keep this key set when adding files. Do not rename keys.
+schema: bro-bruh-comic/v1
+id: eip-7954
+episode: 7
+series: bro-bruh
+image: eip-7954.png
+
+exploration:
+  id: eip-7954
+  eip: 7954
+  name: EIP-7954 Increase Maximum Contract Size
+  core_question: How much contract code can you deploy before the protocol rejects it?
+
+engine: parallel-worlds
+bridge:
+  word: LIMIT
+  trader_sense: the price condition on Bruh's parked order
+  protocol_sense: the runtime-code and initcode size ceilings raised by EIP-7954
+
+vibe:
+  slug: post-fed-range
+  topic: ETH holding a narrow range while traders wait on parked orders
+  register: markets
+  recency: 2026-09
+  why_hot: >-
+    Rate-hike volatility and ETF outflows left ETH range-bound this week,
+    making patient order placement more current than another panic candle
+  why_narrative: >-
+    LIMIT is ordinary order language for Bruh and the exact EIP-7954 mechanism
+    for Bro; neither character enters the other's movie
+  repeat_of: null
+
+setting:
+  name: second-hand record shop listening corner
+  why: >-
+    A warm, unused retail nook gives both characters a shared quiet activity
+    without turning the protocol limit into scenery.
+
+easter_egg: >-
+  Turntable slipmat with a purple-to-cyan Ethereum octahedron worked into its
+  groove pattern
+
+copy:
+  panel1_bruh: >-
+    MY LIMIT ORDER IS STILL PARKED; I'M KEEPING THE BAG SMALL TODAY.
+  panel2_bro: >-
+    EIP-7954 LIFTS THE CONTRACT SIZE LIMIT. MORE ROOM FOR THE FEATURES WE
+    COULDN'T FIT.
+  panel2_affect: dreaming
+  title: '*BRO & BRUH EPISODE 7'
+  cta: A NEW FEEL YOUR PROTOCOL EXPLORATION HAS ARRIVED, CHECK IT OUT!
+
+tweet:
+  body: |-
+    24 KiB used to be the contract wall. EIP-7954 moves it to 64 KiB—while initcode grows to 128 KiB.
+
+    https://feelyourprotocol.org/eip-7954-contract-size-limit
+  url: https://feelyourprotocol.org/eip-7954-contract-size-limit
+  alt: >-
+    Bro & Bruh episode 7, two-panel comic in a warm second-hand record shop.
+    Panel 1: Bruh, short dark hair and green hoodie, studies a blank record
+    sleeve and thinks: MY LIMIT ORDER IS STILL PARKED; I'M KEEPING THE BAG
+    SMALL TODAY. Bro, blonde ponytail and backwards teal FYP cap, browses
+    records beside a turntable whose slipmat bears a purple Ethereum
+    octahedron. Panel 2: close-up of Bro, half-lidded, blushing and surrounded
+    by pink hearts. He thinks: EIP-7954 LIFTS THE CONTRACT SIZE LIMIT. MORE
+    ROOM FOR THE FEATURES WE COULDN'T FIT. Bottom-left: original circular FYP
+    mark and feelyourprotocol.org. Yellow box: A NEW FEEL YOUR PROTOCOL
+    EXPLORATION HAS ARRIVED, CHECK IT OUT!
+  intent: https://x.com/intent/post?text=24+KiB+used+to+be+the+contract+wall.+EIP-7954+moves+it+to+64+KiB%E2%80%94while+initcode+grows+to+128+KiB.%0A%0Ahttps%3A%2F%2Ffeelyourprotocol.org%2Feip-7954-contract-size-limit
+
+notes: >-
+  Do not copy this record shop, Ethereum turntable slipmat, or LIMIT as the
+  red word. Do not reuse this parked limit-order / small-bag Bruh line.
+  Discarded bridges: SIZE (too close to episode 4's Bruh line), ROOM (outcome
+  rather than the protocol mechanism), CODE (weak trader sense). Discarded
+  settings: greenhouse, bicycle co-op, planetarium lobby, birdwatching hide.
+  Panel 2 is dreaming with hearts. Logo is the with-circle mark plus
+  feelyourprotocol.org. Vibe is post-rate-hike range trading; keep prices,
+  policy names, and ETF figures out of bubbles and the tweet.
