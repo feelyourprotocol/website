@@ -42,7 +42,6 @@ describe('e2eCatalog', () => {
 
   it('marks skip-execute rows so Cypress never treats them as family play', () => {
     const skipIds = E2E_EXPLORATIONS.filter((row) => row.skipExecute).map((row) => row.id)
-    expect(skipIds).toContain('eip-7594')
     const playIds = new Set(E2E_FAMILY_PLAY.map((play) => play.id))
     for (const id of skipIds) {
       expect(playIds.has(id)).toBe(false)

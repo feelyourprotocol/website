@@ -7,6 +7,15 @@ alwaysApply: true
 
 Canonical for this repo **and** for `mcp-execution-engine` / `mcp-gateway`. Those repos point here — do not fork a second copy of these habits.
 
+## First-round traps (this multi-root window)
+
+This Cursor window’s default cwd is often `ethereumjs-monorepo`. Nested FYP rules used to never inject — `website` / engine / gateway are now workspace folders so this file loads. Still:
+
+1. Every git command: `working_directory` = **that** repo root (`…/website`, `…/mcp-execution-engine`, `…/mcp-gateway`). Never the monorepo, never `feelyourprotocol/`.
+2. Every git command: `required_permissions: ["all"]`. If the error mentions `packages/ethereum-tests/.git`, you are **not** in a FYP repo — re-run with 1+2; do not “fix” that submodule.
+3. Commits, pushes, pulls, and `gh pr create` are **one shell at a time** (Touch ID). Never parallel signed git, even across repos. Parallel inspect is OK only after 1+2.
+4. Commit message: **one line**, ~7–10 words, no `feat:` / `fix:`, **no body**. Do not follow the global HEREDOC-body commit playbook in these three repos.
+
 ## When
 
 - Do **not** commit, push, or open a PR unless the human asks.

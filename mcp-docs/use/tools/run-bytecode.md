@@ -10,8 +10,8 @@ Bytecode runs as a **VM message-call** (real execution account, call-frame gas �
 
 ## When to use
 
-- Generic hardfork runs (bytecode under **Amsterdam** with no EIP named)
-- Opcode and stack questions (e.g. **Amsterdam** EIP-8024 DUPN / SWAPN / EXCHANGE)
+- Generic hardfork runs (bytecode under **Glamsterdam** with no EIP named)
+- Opcode and stack questions (e.g. **Glamsterdam** EIP-8024 DUPN / SWAPN / EXCHANGE)
 - Precompile CALL programs (ModExp, P-256)
 - Program-gas `SSTORE` / `SLOAD` (EIP-8038) — existing-slot write is about **5,006 vs 12,106**
 - Inspect stack-level execution with an optional trace
@@ -29,27 +29,27 @@ Wallet gas limits, first-touch ETH transfers, receipt logs, and paid **`txStateG
 | --- | --- | --- |
 | `bytecode` | Yes | Hex-encoded bytecode (`0x` prefix optional). Max 24 576 bytes. |
 | `accounts` | No | Prefund code / balance / storage. Existing-slot SSTORE: put `storage` on `0x00000000000000000000000000000000000000b1` (the lab execution account). |
-| `fork` | No | `{ baseHardfork, eips[] }` — default **`amsterdam`**. Use **`osaka`** only when you want current mainnet baseline |
+| `fork` | No | `{ baseHardfork, eips[] }` — default **`glamsterdam`**. Use **`fusaka`** for current-mainnet features or as a compare baseline |
 | `gasLimit` | No | Decimal string. Default `1000000`. Max `30000000`. |
 | `trace` | No | When true, include stack-only execution steps (max 10 000) |
 
 ### Fork notes
 
-- **`amsterdam`** — preview fork (`{ "baseHardfork": "amsterdam", "eips": [] }`; alias `glamsterdam`). Default. EIP-8024 and other Amsterdam EIPs are **bundled in the hardfork** — you do not need `eips: [8024]` for DUPN/SWAPN/EXCHANGE to work.
-- **`osaka`** — optional current mainnet EL baseline (`{ "baseHardfork": "osaka", "eips": [] }`; alias `mainnet-el`). Use only when comparing against mainnet today.
+- **`glamsterdam`** — preview fork (`{ "baseHardfork": "glamsterdam", "eips": [] }`; alias `amsterdam`). Default. EIP-8024 and other Glamsterdam EIPs are **bundled in the hardfork** — you do not need `eips: [8024]` for DUPN/SWAPN/EXCHANGE to work.
+- **`fusaka`** — current mainnet EL (`{ "baseHardfork": "fusaka", "eips": [] }`; aliases `osaka`, `mainnet-el`). First-class for Fusaka twins (ModExp, P-256) and as the compare baseline vs Glamsterdam.
 
 ### Optional: compare baseline vs preview
 
-When you need a before/after view, run the **same bytecode twice** — `osaka`, then `amsterdam` — and diff `gasUsed`, `success`, and optional `steps`. See `baselineForkId` and `eips[].comparison` from [Describe Capabilities](/use/tools/describe-capabilities). Skip this if you only care about Amsterdam behavior.
+When you need a before/after view, run the **same bytecode twice** — `fusaka`, then `glamsterdam` — and diff `gasUsed`, `success`, and optional `steps`. See `baselineForkId` and `eips[].comparison` from [Describe Capabilities](/use/tools/describe-capabilities). Skip this if you only care about Glamsterdam behavior.
 
 ```json
 {
   "bytecode": "0x600160026003600460056006600760086009600a600b600c600d600e600f60106011e68000",
-  "fork": { "baseHardfork": "osaka", "eips": [] }
+  "fork": { "baseHardfork": "fusaka", "eips": [] }
 }
 ```
 
-Expected on baseline: `success: false` (invalid opcode `0xe6`). Re-run with `amsterdam` to see DUPN succeed.
+Expected on baseline: `success: false` (invalid opcode `0xe6`). Re-run with `glamsterdam` to see DUPN succeed.
 
 ## Outputs
 
@@ -58,7 +58,7 @@ Expected on baseline: `success: false` (invalid opcode `0xe6`). Re-run with `ams
 | `success` | Whether execution completed without revert |
 | `gasUsed` | Call-frame gas consumed (string). Does **not** include the 21,000 transaction intrinsic. |
 | `gasUsedScope` | Always `call-frame` |
-| `stateGasSpilled` | Present when non-zero (Amsterdam new-slot SSTORE). Program write cost ≈ `gasUsed` − `stateGasSpilled`. |
+| `stateGasSpilled` | Present when non-zero (Glamsterdam new-slot SSTORE). Program write cost ≈ `gasUsed` − `stateGasSpilled`. |
 | `returnValue` | Hex return data |
 | `finalStack` | Stack after execution (hex strings). With `trace: true`, full stack from last step. |
 | `error` | Error message if execution failed (e.g. `stack underflow`) |
@@ -74,35 +74,35 @@ Expected on baseline: `success: false` (invalid opcode `0xe6`). Re-run with `ams
 ```json
 {
   "bytecode": "0x600100",
-  "fork": { "baseHardfork": "amsterdam", "eips": [] }
+  "fork": { "baseHardfork": "glamsterdam", "eips": [] }
 }
 ```
 
 Expected: `success: true`, `gasUsed: "3"`.
 
-### Amsterdam-only — EIP-8024 EXCHANGE (15 gas)
+### Glamsterdam-only — EIP-8024 EXCHANGE (15 gas)
 
 ```json
 {
   "bytecode": "0x6001600260036004e88e00",
-  "fork": { "baseHardfork": "amsterdam", "eips": [] },
+  "fork": { "baseHardfork": "glamsterdam", "eips": [] },
   "trace": true
 }
 ```
 
 Pushes `1, 2, 3, 4`, runs `EXCHANGE`, then `STOP`. Trace includes opcode `EXCHANGE`.
 
-### Amsterdam-only — EIP-8024 DUPN (54 gas)
+### Glamsterdam-only — EIP-8024 DUPN (54 gas)
 
 ```json
 {
   "bytecode": "0x600160026003600460056006600760086009600a600b600c600d600e600f60106011e68000",
-  "fork": { "baseHardfork": "amsterdam", "eips": [] },
+  "fork": { "baseHardfork": "glamsterdam", "eips": [] },
   "trace": true
 }
 ```
 
-Deep stack + `DUPN` — invalid on osaka baseline; valid on Amsterdam preview.
+Deep stack + `DUPN` — invalid on fusaka baseline; valid on Glamsterdam preview.
 
 ## JSON schema
 
@@ -117,14 +117,15 @@ See [Guarantees](/use/guarantees) for ceilings (max gas, bytecode size, trace st
 <Changelog
   title="Run Bytecode Changelog"
   :entries="[
-    { version: 'v0.12', date: '2026-09-16', summary: 'Generic Amsterdam bytecode (no EIP named) is a first-class when-to-use.' },
+    { version: 'v0.13', date: '2026-09-17', summary: 'Fusaka is first-class for current-mainnet features, not only a compare baseline.' },
+    { version: 'v0.12', date: '2026-09-16', summary: 'Generic Glamsterdam bytecode (no EIP named) is a first-class when-to-use.' },
     { version: 'v0.10', date: '2026-09-14', summary: 'SSTORE belongs on run_transaction — run_bytecode cannot persist storage writes.' },
     { version: 'v0.9', date: '2026-09-08', summary: 'Renamed run_evm_bytecode → run_bytecode. Value transfers moved to run_transaction.' },
     { version: 'v0.8', date: '2026-09-08', summary: 'messageCall results include approxTxGasUsed (21000 + call-frame); gasUsedScope always call-frame.' },
     { version: 'v0.7', date: '2026-09-02', summary: 'Implemented for public launch — not a local stdio product path.' },
-    { version: 'v0.6', date: '2026-08-27', summary: 'Osaka mainnet baseline fork for run-twice comparisons against Amsterdam preview.' },
+    { version: 'v0.6', date: '2026-08-27', summary: 'Fusaka mainnet baseline fork for run-twice comparisons against Glamsterdam preview.' },
     { version: 'v0.5', date: '2026-08-27', summary: 'Renamed MCP tool simulate_evm_bytecode → run_evm_bytecode.' },
-    { version: 'v0.4', date: '2026-07-22', summary: 'Live MCP tool — real tool name, Amsterdam examples, JSON schema link.' },
+    { version: 'v0.4', date: '2026-07-22', summary: 'Live MCP tool — real tool name, Glamsterdam examples, JSON schema link.' },
     { version: 'v0.3', date: '2026-07-20', summary: 'Tool page shell under use/tools/ — reframed from execution-engine reference.' },
   ]"
 />

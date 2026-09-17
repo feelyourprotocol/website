@@ -10,7 +10,7 @@ These boundaries apply to everything we ship.
 - **Raw bytecode, base-layer only** — No Solidity compilation in the service. ERC/application-layer concerns are out of scope.
 - **Observability first** — Rich execution traces (stack, memory, gas, opcodes) are a primary deliverable.
 - **Intent-driven MCP tools** — Tools match use cases (run bytecode, run transaction, run block, generate BAL, …), not raw library APIs one-to-one.
-- **Exploration twins** — Every live website exploration has an MCP-docs EIP page mapping the same problem set; engine modules ship when a verb can run the change. Canonical metadata lives in website `canonical.ts`.
+- **Exploration twins** — Every live website exploration has an MCP-docs EIP page mapping the same problem set; engine modules ship when a verb can run the change. Canonical metadata lives in website `canonical.ts`. Twins stay after the EIP is on mainnet; fork `role` may rotate around them. `sunset` is for no honest lab observation, not for activation.
 - **Hard wall** — No sequential multi-block **historical** backtesting (archive-node / `revm` territory). A lab block of 1–8 constructed txs is not that.
 
 ## Engine design
@@ -26,6 +26,7 @@ End-user summary: [Capabilities](/use/capabilities), [Guarantees](/use/guarantee
 <Changelog
   title="Design Principles Changelog"
   :entries="[
+    { version: 'v0.8', date: '2026-09-17', summary: 'Twins stay after mainnet activation; sunset is for no honest lab observation.' },
     { version: 'v0.7', date: '2026-09-16', summary: 'Named forks are catalog capabilities alongside EIP modules; generic hardfork runs stay on the same verbs.' },
     { version: 'v0.5', date: '2026-09-10', summary: 'block shape (run_block) alongside simulate / transaction / generate / probe.' },
     { version: 'v0.4', date: '2026-09-08', summary: 'transaction shape alongside simulate / generate / probe.' },

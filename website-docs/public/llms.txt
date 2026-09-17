@@ -6,9 +6,9 @@
 > Does **not** cover roadmap, community token, or MCP server development (see each
 > folder's README in the GitHub repo).
 
-Each exploration is a self-contained folder under `src/explorations/` with metadata
-(`info.ts`) and an interactive widget (`MyC.vue`). Real Ethereum library code runs
-in the browser.
+Each exploration is a self-contained folder under `src/explorations/` with shared
+metadata (`canonical.ts`, schema in `canonicalTypes.ts`), website chrome (`info.ts`),
+and an interactive widget (`MyC.vue`). Real Ethereum library code runs in the browser.
 
 Repo agent entrypoint: https://github.com/feelyourprotocol/website/blob/main/AGENTS.md
 Round-trip skill (EIP → exploration → MCP → optional comic): https://github.com/feelyourprotocol/website/blob/main/.cursor/skills/round-trip-protocol-change/SKILL.md
@@ -26,7 +26,7 @@ X-engagement skill: https://github.com/feelyourprotocol/website/blob/main/.curso
 ## Building
 
 - [Overview](https://website-docs.feelyourprotocol.org/building/overview.html): Brief an agent, review the result — file map and quality gates
-- [Adding an Exploration](https://website-docs.feelyourprotocol.org/contributing/adding-an-exploration.html): Folder contract, metadata judgment table, human review checklist
+- [Adding an Exploration](https://website-docs.feelyourprotocol.org/contributing/adding-an-exploration.html): Folder contract, canonical.ts judgment table, human review checklist
 - [Images](https://website-docs.feelyourprotocol.org/contributing/images.html): Cover art rules (human brief); prompts in cover-image skill
 - [UI Components](https://website-docs.feelyourprotocol.org/contributing/ui-components.html): Placement rules — shared vs exploration-local
 - [E-Components](https://website-docs.feelyourprotocol.org/contributing/e-components.html): Integration intent, slots, composition direction

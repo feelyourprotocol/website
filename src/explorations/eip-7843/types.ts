@@ -1,1 +1,1 @@
-export type HardforkChoice = 'amsterdam' | 'osaka'
+export type HardforkChoice = 'glamsterdam' | 'fusaka'

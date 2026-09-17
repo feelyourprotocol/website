@@ -4,7 +4,7 @@ Tool-agnostic entrypoint for coding agents (Cursor, Claude Code, Codex, etc.) in
 
 **Read this file first.** Then load the task skill if one exists.
 
-**website-docs** are the human conceptual guide — taxonomies, how to brief and review, structural rules. **Skills** are the executable path for implementation. Canonical field names and CSS live in **source** (`REGISTRY.ts`, `types.ts`, `main.css`) — do not duplicate catalogs into prompts.
+**website-docs** are the human conceptual guide — taxonomies, how to brief and review, structural rules. **Skills** are the executable path for implementation. Shared protocol metadata lives in **`src/explorations/canonicalTypes.ts`** and per-EIP **`canonical.ts`** (then `info.ts` for website chrome only). Taxonomy ids: `TOPICS.ts`, `TIMELINE.ts`, `TAGS.ts`, `forkCatalog.ts`. UI/CSS: `REGISTRY.ts`, `main.css` — do not duplicate catalogs into prompts.
 
 ## Docs map
 

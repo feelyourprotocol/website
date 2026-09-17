@@ -24,7 +24,7 @@ const topic = TOPICS[exploration.topic]
 const exampleQuery = useExplorationExampleQuery()
 
 const example = ref('')
-const hardfork = ref<HardforkChoice>('amsterdam')
+const hardfork = ref<HardforkChoice>('glamsterdam')
 const errorMsg = ref('')
 const result = ref<RunScenarioOutput | null>(null)
 
@@ -32,10 +32,10 @@ const scenario = computed(() => (example.value ? getScenario(example.value) : un
 const meta = computed(() => (example.value ? exampleMeta[example.value] : undefined))
 
 const osakaComponents = computed(() =>
-  example.value ? previewComponents(example.value, 'osaka') : undefined,
+  example.value ? previewComponents(example.value, 'fusaka') : undefined,
 )
 const amsterdamComponents = computed(() =>
-  example.value ? previewComponents(example.value, 'amsterdam') : undefined,
+  example.value ? previewComponents(example.value, 'glamsterdam') : undefined,
 )
 
 function resetRunState() {
@@ -55,12 +55,12 @@ function setHardfork(next: HardforkChoice) {
 }
 
 function onHardforkInput(value: string) {
-  if (value === 'amsterdam' || value === 'osaka') setHardfork(value)
+  if (value === 'glamsterdam' || value === 'fusaka') setHardfork(value)
 }
 
 const hardforkOptions = [
-  { value: 'amsterdam', label: 'Amsterdam', testId: 'hardfork-amsterdam' },
-  { value: 'osaka', label: 'Osaka', testId: 'hardfork-osaka' },
+  { value: 'glamsterdam', label: 'Glamsterdam', testId: 'hardfork-glamsterdam' },
+  { value: 'fusaka', label: 'Fusaka', testId: 'hardfork-fusaka' },
 ]
 
 async function runProgram(): Promise<void> {
@@ -81,7 +81,7 @@ async function init() {
 
 watch(example, (next, prev) => {
   if (prev !== '' && next !== prev) {
-    hardfork.value = 'amsterdam'
+    hardfork.value = 'glamsterdam'
   }
 })
 
@@ -130,11 +130,11 @@ await init()
         <ComponentBreakdownView
           :has-run="result !== null"
           :hardfork="hardfork"
-          :osaka="osakaComponents"
-          :amsterdam="amsterdamComponents"
+          :fusaka="osakaComponents"
+          :glamsterdam="amsterdamComponents"
           :program-gas="result?.programGas ?? 0n"
-          :osaka-program-gas="scenario.expectedProgramGas.osaka"
-          :amsterdam-program-gas="scenario.expectedProgramGas.amsterdam"
+          :fusaka-program-gas="scenario.expectedProgramGas.fusaka"
+          :glamsterdam-program-gas="scenario.expectedProgramGas.glamsterdam"
           :state-gas="result?.stateGas ?? 0n"
         />
 

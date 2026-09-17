@@ -1,6 +1,6 @@
 # Adding an Exploration
 
-An exploration is a folder under `src/explorations/` with metadata and an interactive widget. **You** define the pedagogical goal and review the result; **your agent** implements.
+An exploration is a folder under `src/explorations/` with `canonical.ts`, website chrome, and an interactive widget. **You** define the pedagogical goal and review the result; **your agent** implements.
 
 **Default for a new EIP:** tell the agent “round-trip for EIP-xxxx”. That runs the [round-trip skill](https://github.com/feelyourprotocol/website/blob/main/.cursor/skills/round-trip-protocol-change/SKILL.md) — brief, then exploration, then MCP, then an optional Bro & Bruh comic — with a GO from you between phases. Widget-only work still uses [brief-protocol-change](https://github.com/feelyourprotocol/website/blob/main/.cursor/skills/brief-protocol-change/SKILL.md) then [add-exploration](https://github.com/feelyourprotocol/website/blob/main/.cursor/skills/add-exploration/SKILL.md).
 
@@ -41,7 +41,7 @@ export const CANONICAL: ProtocolChangeCanonical = {
   identity: { id: 'eip-XXXX', eip: 0, specUrl: 'https://eips.ethereum.org/EIPS/eip-XXXX', name: '…' },
   question: { coreQuestion: '…', changeNature: 'new-capability' },
   taxonomy: { topic: 'scaling', timeline: 'fusaka', tags: [Tag.EVM] },
-  maturity: { eipStatus: 'Final', forkInclusion: 'Fusaka' },
+  maturity: { eipStatus: 'Final' },
   mcp: { shapes: ['simulate'], docsStatus: 'runnable' },
 }
 ```
@@ -87,6 +87,10 @@ export const INFO: Exploration = {
 | `rightPanel` | Set when a companion teleports into `#exploration-right-panel`; otherwise omit. |
 
 Agent field lookup: JSDoc on `Exploration` in `REGISTRY.ts`.
+
+## After mainnet
+
+Keep the exploration and its MCP twin when the EIP activates. Fork `role` may rotate (`preview` → `current` → `historical`); that is not a cue to sunset. Use `docsStatus: sunset` only when the lab cannot honestly show the effect, or for a later explicit cleanup.
 
 ## Discovery & SEO
 

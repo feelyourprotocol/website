@@ -24,7 +24,6 @@ export enum Tag {
   EVM = 'EVM',
   GasCosts = 'Gas Costs',
   Logs = 'Logs',
-  PeerDAS = 'PeerDAS',
   Precompiles = 'Precompiles',
   Signatures = 'Signatures',
 }

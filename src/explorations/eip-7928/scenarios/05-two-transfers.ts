@@ -37,7 +37,7 @@ export const twoTransfersScenario: BalScenarioDefinition = {
   txSummary: [
     {
       label: 'tx 1',
-      detail: `legacy transfer: 1 wei → ${RECIPIENT_ADDRESS}, Amsterdam first-touch gas`,
+      detail: `legacy transfer: 1 wei → ${RECIPIENT_ADDRESS}, Glamsterdam first-touch gas`,
     },
     {
       label: 'tx 2',

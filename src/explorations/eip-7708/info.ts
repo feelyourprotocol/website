@@ -27,9 +27,9 @@ export const INFO: Exploration = {
     '<code>CREATE</code> endowment, and <code>SELFDESTRUCT</code>. Zero-value moves and reverted ' +
     'transfers stay silent.',
   usageText:
-    'Pick a scenario, choose <b>Amsterdam</b> or <b>Osaka</b>, then press <b>Run block</b>. ' +
+    'Pick a scenario, choose <b>Glamsterdam</b> or <b>Fusaka</b>, then press <b>Run block</b>. ' +
     'Decoded Transfer rows appear in the receipt panel on the right. Try the same scenario on ' +
-    'Osaka to see the baseline without EIP-7708 logs.',
+    'Fusaka to see the baseline without EIP-7708 logs.',
   creatorName: 'HolgerD77',
   creatorURL: 'https://x.com/HolgerD77',
   poweredBy: [{ name: 'EthereumJS', href: 'https://github.com/ethereumjs/ethereumjs-monorepo' }],

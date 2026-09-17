@@ -47,8 +47,8 @@ describe('EIP-8037 video-readiness contract', () => {
 
     expect(wrapper.find('[data-testid="exploration-ready"]').exists()).toBe(true)
     expect(wrapper.find('[data-testid="example-select"]').exists()).toBe(true)
-    expect(wrapper.find('[data-testid="hardfork-amsterdam"]').exists()).toBe(true)
-    expect(wrapper.find('[data-testid="hardfork-osaka"]').exists()).toBe(true)
+    expect(wrapper.find('[data-testid="hardfork-glamsterdam"]').exists()).toBe(true)
+    expect(wrapper.find('[data-testid="hardfork-fusaka"]').exists()).toBe(true)
     expect(wrapper.find('[data-testid="gas-limit-classic"]').exists()).toBe(true)
     expect(wrapper.find('[data-testid="gas-limit-recommended"]').exists()).toBe(true)
     expect(wrapper.find('[data-testid="run-tx"]').exists()).toBe(true)

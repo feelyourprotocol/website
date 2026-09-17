@@ -11,7 +11,7 @@ End-user tool semantics: [Describe Capabilities](/use/tools/describe-capabilitie
 ## Design principles
 
 - **Query shapes, not library APIs** — the MCP surface exposes generic verbs (`simulate`, `transaction`, `block`, `generate`, `probe`); the engine returns structured results.
-- **Fork = capability set** — `(baseHardfork, eips[])` à la carte; named forks (`osaka` baseline, `amsterdam` preview) are catalog capabilities (summary, advertised EIPs, shapes).
+- **Fork = capability set** — `(baseHardfork, eips[])` à la carte; named forks (`fusaka` baseline, `glamsterdam` preview) are catalog capabilities (summary, advertised EIPs, shapes).
 - **Provenance on every result** — engine version, fork config, advertised or explicit EIP maturity metadata, stability rollup, human caveat.
 - **Boundaries** — raw bytecode or impersonated transaction fields **plus constructed prestate**; no Solidity compile; no archive node; no multi-block **historical** backtesting.
 
@@ -41,7 +41,7 @@ See also [Design Principles](/internals/design-principles).
 }
 
 // SimulateBytecodeResult — gasUsedScope: 'call-frame'
-// Optional stateGasSpilled when Amsterdam spills EIP-8037 state gas into the frame.
+// Optional stateGasSpilled when Glamsterdam spills EIP-8037 state gas into the frame.
 
 // RunTransactionInput
 {
@@ -56,7 +56,7 @@ See also [Design Principles](/internals/design-principles).
 }
 
 // RunTransactionResult — gasUsedScope: 'transaction'
-// gasUsed is paid tx gas. Amsterdam may include txRegularGas / txStateGas.
+// gasUsed is paid tx gas. Glamsterdam may include txRegularGas / txStateGas.
 
 // RunBlockInput
 {
@@ -67,7 +67,7 @@ See also [Design Principles](/internals/design-principles).
 }
 
 // RunBlockResult — gasUsedScope: 'block'
-// header.gasUsed is the generated header field (Amsterdam may be the 8037 state-gas dimension).
+// header.gasUsed is the generated header field (Glamsterdam may be the 8037 state-gas dimension).
 // Paid gas / logs live on transactions[].
 ```
 
@@ -93,9 +93,9 @@ See also [Design Principles](/internals/design-principles).
 | 8037 | new-exec-model | yes | transaction, simulate |
 | 8038 | repricing | yes | simulate, transaction |
 
-Only runnable modules appear in `describeCapabilities().eips`. Named forks appear in `namedForks` with advertised `relatedEips`. Wallet / receipt questions use **transaction**; opcode / precompile questions use **simulate**; header slot / multi-tx questions use **block**. A generic Amsterdam run uses the same verbs with empty `eips[]`.
+Only runnable modules appear in `describeCapabilities().eips`. Named forks appear in `namedForks` with advertised `relatedEips`. Wallet / receipt questions use **transaction**; opcode / precompile questions use **simulate**; header slot / multi-tx questions use **block**. A generic Glamsterdam run uses the same verbs with empty `eips[]`.
 
-Amsterdam in EthereumJS v10 already bundles EIP-8024 and EIP-7843 — `eips: [8024]` / `eips: [7843]` are not pre/post toggles. Use **osaka** baseline vs **amsterdam** preview for those comparisons.
+Glamsterdam in EthereumJS v10 already bundles EIP-8024 and EIP-7843 — `eips: [8024]` / `eips: [7843]` are not pre/post toggles. Use **fusaka** baseline vs **glamsterdam** preview for those comparisons.
 
 ## Development
 
@@ -113,7 +113,7 @@ See [Quality](/internals/quality).
     { version: 'v0.1.6', date: '2026-09-10', summary: 'runBlock lab verb — header snapshot, per-tx receipts, optional slotNumber.' },
     { version: 'v0.1.5', date: '2026-09-08', summary: 'runTransaction (VM tx path); paid gas, 8037 dimensions, 7708 receipt logs.' },
     { version: 'v0.1.4', date: '2026-09-08', summary: 'Simulate result: gasUsedScope plus messageCall approxTxGasUsed (21000 + call-frame).' },
-    { version: 'v0.1.3', date: '2026-08-27', summary: 'Osaka mainnet baseline fork; baselineForkId and EIP comparison pairs in probe.' },
+    { version: 'v0.1.3', date: '2026-08-27', summary: 'Fusaka mainnet baseline fork; baselineForkId and EIP comparison pairs in probe.' },
     { version: 'v0.1.2', date: '2026-08-27', summary: 'Removed compareVariants — agents call simulateBytecode twice to diff.' },
     { version: 'v0.1.1', date: '2026-08-27', summary: 'EIP module catalog (8024 opcodes/encoding only); stub EIPs and demo scenarios removed.' },
     { version: 'v0.1.0', date: '2026-07-20', summary: 'Initial engine — simulateBytecode, registry, provenance, compareVariants composer, seed presets.' },

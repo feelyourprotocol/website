@@ -25,7 +25,6 @@ contributions. It is educational and non-commercial in character.
 - [EIP-7928 — Block-Level Access Lists](https://feelyourprotocol.org/eip-7928-block-level-access-lists)
 - [EIP-8024 — Stack Opcodes (DUPN / SWAPN / EXCHANGE)](https://feelyourprotocol.org/eip-8024-stack-opcodes-dupn-swapn-exchange)
 - [EIP-7883 — ModExp Gas Cost Increase](https://feelyourprotocol.org/eip-7883-modexp-gas-cost-increase)
-- [EIP-7594 — PeerDAS Data Availability Sampling](https://feelyourprotocol.org/eip-7594-peerdas-data-availability-sampling)
 - [EIP-7951 — secp256r1 Precompile](https://feelyourprotocol.org/eip-7951-secp256r1-precompile)
 
 ## Topics

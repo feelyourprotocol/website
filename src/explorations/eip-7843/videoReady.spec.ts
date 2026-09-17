@@ -53,8 +53,8 @@ describe('EIP-7843 video-readiness contract', () => {
 
     const panel = document.getElementById('exploration-right-panel')
     expect(panel?.querySelector('[data-testid="slot-number-input"]')).not.toBeNull()
-    expect(panel?.querySelector('[data-testid="hardfork-amsterdam"]')).not.toBeNull()
-    expect(panel?.querySelector('[data-testid="hardfork-osaka"]')).not.toBeNull()
+    expect(panel?.querySelector('[data-testid="hardfork-glamsterdam"]')).not.toBeNull()
+    expect(panel?.querySelector('[data-testid="hardfork-fusaka"]')).not.toBeNull()
     expect(panel?.querySelector('[data-testid="slot-readout-push"]')?.textContent).toContain('42')
   })
 

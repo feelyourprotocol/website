@@ -4,13 +4,13 @@
 
 ## What we're launching
 
-Feel Your Protocol's **deterministic oracle for the future Ethereum protocol** — a headless MCP server so AI agents run exact EVM simulations under upcoming fork rules (starting with the Glamsterdam hardfork — Amsterdam on the execution layer).
+Feel Your Protocol's **deterministic oracle for the future Ethereum protocol** — a headless MCP server so AI agents run exact EVM simulations under upcoming fork rules (starting with the Glamsterdam hardfork).
 
 | At launch | Status today |
 | --- | --- |
 | Hosted MCP at `https://mcp.feelyourprotocol.org/mcp` | Not launched |
 | Tools: `describe_capabilities`, `run_bytecode`, `run_transaction` | Implemented (gateway v0.1) |
-| EIP catalogue on mcp-docs | Growing — Amsterdam EIPs filling |
+| EIP catalogue on mcp-docs | Growing — Glamsterdam EIPs filling |
 | [x402](/concepts/x402) payment (USDC on Base) | Decided for launch week — integration + docs in progress |
 | [Token holder discounts](/monetization/token) | Planned alongside x402 — never a gate |
 

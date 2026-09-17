@@ -95,14 +95,14 @@ export const TIMELINE_EVENTS: TimelineEvent[] = [
     date: '2026-08',
     label: 'EIP catalogue twins',
     phase: 3,
-    note: 'Osaka vs Amsterdam compare; runnable modules for 8024, 7708, 7883, 7951.',
+    note: 'Fusaka vs Glamsterdam compare; runnable modules for 8024, 7708, 7883, 7951.',
     done: true,
   },
   {
     date: '2026-09',
     label: 'Round-trip pipeline',
     phase: 3,
-    note: 'EIP → exploration → MCP catalogue in ~30 minutes; Amsterdam EIPs filling the catalog.',
+    note: 'EIP → exploration → MCP catalogue in ~30 minutes; Glamsterdam EIPs filling the catalog.',
     done: true,
   },
   {

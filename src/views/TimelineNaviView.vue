@@ -4,7 +4,7 @@ import { useRoute, useRouter } from 'vue-router'
 
 import HelpHintUIC from '@/eComponents/ui/HelpHintUIC.vue'
 import { EXPLORATIONS } from '@/explorations/REGISTRY'
-import { TIMELINE } from '@/explorations/TIMELINE'
+import { FORK_ROLE_HINT, TIMELINE } from '@/explorations/TIMELINE'
 
 const props = defineProps<{
   basePath?: string
@@ -70,7 +70,7 @@ function reset() {
         <!-- Clickable emoji + name -->
         <div class="flex items-center py-1 gap-0.5 min-w-0">
           <HelpHintUIC
-            :text="entry.shortDescription"
+            :text="FORK_ROLE_HINT[entry.role]"
             tier="useful"
             touch-fallback="popover"
             :popover-label="`${entry.title} timeline description`"

@@ -2,7 +2,7 @@ import type { Common } from '@ethereumjs/common'
 import type { TypedTransaction } from '@ethereumjs/tx'
 import type { PrefixedHexString } from '@ethereumjs/util'
 
-export type HardforkChoice = 'amsterdam' | 'osaka'
+export type HardforkChoice = 'glamsterdam' | 'fusaka'
 
 export interface StorageSlot {
   slot: PrefixedHexString

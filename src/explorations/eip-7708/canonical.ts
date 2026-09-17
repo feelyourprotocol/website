@@ -24,8 +24,7 @@ export const CANONICAL: ProtocolChangeCanonical = {
   },
   maturity: {
     eipStatus: 'Review',
-    forkInclusion: 'Scheduled (Amsterdam)',
-    implMaturity: 'Implemented in EthereumJS (Amsterdam)',
+    implMaturity: 'Implemented in EthereumJS (Glamsterdam)',
     testMaturity: 'execution-specs eip7708_eth_transfer_logs',
   },
   mcp: {
@@ -38,8 +37,8 @@ export const CANONICAL: ProtocolChangeCanonical = {
       'receipt logs',
     ],
     comparison: {
-      baselineForkId: 'osaka',
-      previewForkId: 'amsterdam',
+      baselineForkId: 'fusaka',
+      previewForkId: 'glamsterdam',
       note: 'Transfer logs only on preview; same tx on baseline has no EIP-7708 logs.',
     },
     docsStatus: 'runnable',

@@ -6,7 +6,7 @@ export interface TransferExampleMeta {
   title: string
   lesson: string
   step: number
-  expectedTransferLogsOnAmsterdam: number
+  expectedTransferLogsOnGlamsterdam: number
 }
 
 export const exampleMeta: Record<string, TransferExampleMeta> = Object.fromEntries(
@@ -18,7 +18,7 @@ export const exampleMeta: Record<string, TransferExampleMeta> = Object.fromEntri
         title: scenario.title,
         lesson: scenario.lesson,
         step: scenario.step,
-        expectedTransferLogsOnAmsterdam: scenario.expectedTransferLogsOnAmsterdam,
+        expectedTransferLogsOnGlamsterdam: scenario.expectedTransferLogsOnGlamsterdam,
       },
     ]
   }),

@@ -120,17 +120,30 @@ describe('HomeView', () => {
   })
 
   describe('Topics', () => {
-    it('renders a tile for every topic, including empty pillars', () => {
-      for (const topic of Object.values(TOPICS)) {
+    const navTopicEntries = Object.entries(TOPICS).filter(
+      ([, topic]) => topic.explorations.length > 0,
+    )
+    const emptyTopicEntries = Object.entries(TOPICS).filter(
+      ([, topic]) => topic.explorations.length === 0,
+    )
+
+    it('renders tiles only for topic hubs with live explorations', () => {
+      for (const [, topic] of navTopicEntries) {
         expect(wrapper.text()).toContain(topic.title)
       }
-      expect(wrapper.text()).toContain('coming')
+      for (const [topicId, topic] of emptyTopicEntries) {
+        expect(wrapper.text()).not.toContain(topic.title)
+        expect(wrapper.find(`[data-topic-id="${topicId}"]`).exists()).toBe(false)
+      }
     })
 
-    it('topic tiles link to topic paths', () => {
+    it('topic tiles link to topic paths for nav hubs only', () => {
       const links = wrapper.findAllComponents(RouterLinkStub)
-      for (const topic of Object.values(TOPICS)) {
+      for (const [, topic] of navTopicEntries) {
         expect(links.some((l) => l.props('to') === topic.path)).toBe(true)
+      }
+      for (const [, topic] of emptyTopicEntries) {
+        expect(links.some((l) => l.props('to') === topic.path)).toBe(false)
       }
     })
 

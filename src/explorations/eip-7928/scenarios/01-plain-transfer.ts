@@ -7,7 +7,7 @@ export const plainTransferScenario: BalScenarioDefinition = {
   title: '1. Plain ETH transfer',
   lesson:
     'A simple value transfer touches sender and recipient balances and bumps the sender nonce. ' +
-    'On Amsterdam, a first-touch recipient also needs enough gas for EIP-8037 state creation — ' +
+    'On Glamsterdam, a first-touch recipient also needs enough gas for EIP-8037 state creation — ' +
     '21,000 alone is not enough. EIP-7708 adds a Transfer log in the receipt.',
   step: 1,
   adjustable: false,
@@ -27,7 +27,7 @@ export const plainTransferScenario: BalScenarioDefinition = {
   txSummary: [
     {
       label: 'tx 1',
-      detail: `legacy transfer: 1 wei → ${RECIPIENT_ADDRESS}, gas limit sized for Amsterdam first-touch`,
+      detail: `legacy transfer: 1 wei → ${RECIPIENT_ADDRESS}, gas limit sized for Glamsterdam first-touch`,
     },
   ],
   buildTransactions(common) {

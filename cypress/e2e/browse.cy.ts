@@ -14,7 +14,7 @@ describe('Browse', () => {
     cy.visit('/scaling')
     cy.contains('h1', 'Scaling')
     cy.get('[data-testid="exploration-catalog-grid"]').should('exist')
-    cy.get('#eip-7594-c').should('exist')
+    cy.get('#eip-7928-c').should('exist')
   })
 
   it('filters /all when a tag is clicked', () => {

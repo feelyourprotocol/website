@@ -1,5 +1,4 @@
 import type { ProtocolChangeMcpHints } from './canonicalTypes'
-import { INFO as eip7594 } from './eip-7594/info'
 import { INFO as eip7708 } from './eip-7708/info'
 import { INFO as eip7843 } from './eip-7843/info'
 import { INFO as eip7883 } from './eip-7883/info'
@@ -9,11 +8,12 @@ import { INFO as eip8024 } from './eip-8024/info'
 import { INFO as eip8037 } from './eip-8037/info'
 import { INFO as eip8038 } from './eip-8038/info'
 import type { Tag } from './TAGS'
+import type { WebsiteTimelineId } from './TIMELINE'
+import type { TopicId } from './topicIds'
 
 export { COVER_COLUMN_IMAGE_HEIGHT } from './layout'
 
 export const EXPLORATIONS: Explorations = {
-  [eip7594.id]: eip7594,
   [eip7708.id]: eip7708,
   [eip7843.id]: eip7843,
   [eip7883.id]: eip7883,
@@ -46,9 +46,9 @@ export interface Exploration {
   /** Link to the canonical spec (EIPs site, ERC, or research note). */
   infoURL: string
   /** Topic ID — fixed set in `TOPICS.ts` (scaling, privacy, ux, …). Drives card grouping and topic colors. */
-  topic: string
-  /** Timeline entry ID from `TIMELINE.ts` (hardfork or maturity stage). */
-  timeline: string
+  topic: TopicId
+  /** Timeline fork id from `TIMELINE.ts` (catalog subset of MCP lineage ids). */
+  timeline: WebsiteTimelineId
   /** Up to 3–4 reusable technical concepts from `TAGS.ts`. See architecture § tags. */
   tags: Tag[]
   image?: string

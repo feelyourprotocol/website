@@ -65,7 +65,19 @@ describe('ExplorationPreviewC', () => {
   })
 
   it('omits MCP pill when docs status is sunset', () => {
-    const wrapper = mountPreview('eip-7594')
+    const base = EXPLORATIONS['eip-7708']!
+    const router = createRouter({
+      history: createMemoryHistory(),
+      routes: [{ path: '/ux', name: 'ux', component: { template: '<div />' } }],
+    })
+    const wrapper = mount(ExplorationPreviewC, {
+      props: {
+        explorationId: 'eip-7708',
+        exploration: { ...base, mcpDocsStatus: 'sunset' },
+        topic: TOPICS[base.topic],
+      },
+      global: { plugins: [router] },
+    })
     expect(wrapper.find('[data-testid="preview-pill-mcp"]').exists()).toBe(false)
   })
 

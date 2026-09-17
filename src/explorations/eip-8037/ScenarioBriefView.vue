@@ -12,7 +12,7 @@ const props = defineProps<{
   meta: GasExampleMeta
   result?: RunScenarioOutput | null
   hasRun: boolean
-  hardfork: 'amsterdam' | 'osaka'
+  hardfork: 'glamsterdam' | 'fusaka'
 }>()
 
 const preStateChips = computed(() => formatPreStateChips(props.scenario.preState))

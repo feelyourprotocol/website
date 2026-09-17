@@ -8,17 +8,17 @@ import { getScenario } from './scenarios'
 import { applyPreState, buildBlock } from './scenarios/helpers'
 import type { ScenarioRunResult } from './scenarios/types'
 
-export type HardforkChoice = 'amsterdam' | 'osaka'
+export type HardforkChoice = 'glamsterdam' | 'fusaka'
 
 const HARD_FORK_LABELS: Record<HardforkChoice, string> = {
-  amsterdam: 'Amsterdam (EIP-7708 active)',
-  osaka: 'Osaka (baseline)',
+  glamsterdam: 'Glamsterdam (EIP-7708 active)',
+  fusaka: 'Fusaka (baseline)',
 }
 
 function commonForHardfork(hardfork: HardforkChoice): Common {
   return new Common({
     chain: Mainnet,
-    hardfork: hardfork === 'amsterdam' ? Hardfork.Amsterdam : Hardfork.Osaka,
+    hardfork: hardfork === 'glamsterdam' ? Hardfork.Amsterdam : Hardfork.Osaka,
   })
 }
 
@@ -55,11 +55,11 @@ export async function runScenario(
 
   let emptyHint: string | undefined
   if (rows.length === 0) {
-    if (hardfork === 'osaka') {
+    if (hardfork === 'fusaka') {
       emptyHint =
-        'Osaka has no EIP-7708 transfer logs — compare with Amsterdam on the same scenario.'
-    } else if (scenario.emptyAmsterdamHint) {
-      emptyHint = scenario.emptyAmsterdamHint
+        'Fusaka has no EIP-7708 transfer logs — compare with Glamsterdam on the same scenario.'
+    } else if (scenario.emptyGlamsterdamHint) {
+      emptyHint = scenario.emptyGlamsterdamHint
     } else {
       emptyHint = 'No logs in the receipt for this run.'
     }
@@ -87,12 +87,12 @@ export async function runScenario(
 }
 
 export async function runScenarioComparison(scenarioId: string): Promise<{
-  amsterdam: RunScenarioOutput
-  osaka: RunScenarioOutput
+  glamsterdam: RunScenarioOutput
+  fusaka: RunScenarioOutput
 }> {
-  const [amsterdam, osaka] = await Promise.all([
-    runScenario(scenarioId, 'amsterdam'),
-    runScenario(scenarioId, 'osaka'),
+  const [glamsterdam, fusaka] = await Promise.all([
+    runScenario(scenarioId, 'glamsterdam'),
+    runScenario(scenarioId, 'fusaka'),
   ])
-  return { amsterdam, osaka }
+  return { glamsterdam, fusaka }
 }

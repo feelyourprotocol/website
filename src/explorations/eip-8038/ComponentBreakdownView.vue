@@ -7,11 +7,11 @@ import type { CostComponents, HardforkChoice } from './types'
 const props = defineProps<{
   hasRun: boolean
   hardfork: HardforkChoice
-  osaka: CostComponents
-  amsterdam: CostComponents
+  fusaka: CostComponents
+  glamsterdam: CostComponents
   programGas: bigint
-  osakaProgramGas: bigint
-  amsterdamProgramGas: bigint
+  fusakaProgramGas: bigint
+  glamsterdamProgramGas: bigint
   stateGas: bigint
 }>()
 
@@ -20,23 +20,23 @@ const rows = computed(() => [
     id: 'touch',
     label: 'Touch',
     hint: 'load the slot',
-    osaka: props.osaka.access,
-    amsterdam: props.amsterdam.access,
+    fusaka: props.fusaka.access,
+    glamsterdam: props.glamsterdam.access,
   },
   {
     id: 'change',
     label: 'Change',
     hint: 'write a new value',
-    osaka: props.osaka.write,
-    amsterdam: props.amsterdam.write,
+    fusaka: props.fusaka.write,
+    glamsterdam: props.glamsterdam.write,
   },
   {
     id: 'create',
     label: 'Create',
-    hint: props.amsterdam.createMeter === 'state' ? 'new slot · state gas' : 'new slot',
-    osaka: props.osaka.create,
-    amsterdam: props.amsterdam.create,
-    amsterdamIsState: props.amsterdam.createMeter === 'state',
+    hint: props.glamsterdam.createMeter === 'state' ? 'new slot · state gas' : 'new slot',
+    fusaka: props.fusaka.create,
+    glamsterdam: props.glamsterdam.create,
+    glamsterdamIsState: props.glamsterdam.createMeter === 'state',
   },
 ])
 
@@ -47,7 +47,7 @@ function cell(value: bigint, hasRun: boolean): string {
 }
 
 const activeProgram = computed(() =>
-  props.hardfork === 'amsterdam' ? props.amsterdamProgramGas : props.osakaProgramGas,
+  props.hardfork === 'glamsterdam' ? props.glamsterdamProgramGas : props.fusakaProgramGas,
 )
 </script>
 
@@ -79,15 +79,15 @@ const activeProgram = computed(() =>
             <th class="text-left font-normal px-4 py-2">Part</th>
             <th
               class="text-right font-normal px-4 py-2"
-              :class="hardfork === 'osaka' ? 'e-text' : ''"
+              :class="hardfork === 'fusaka' ? 'e-text' : ''"
             >
-              Osaka
+              Fusaka
             </th>
             <th
               class="text-right font-normal px-4 py-2"
-              :class="hardfork === 'amsterdam' ? 'e-text' : ''"
+              :class="hardfork === 'glamsterdam' ? 'e-text' : ''"
             >
-              Amsterdam
+              Glamsterdam
             </th>
           </tr>
         </thead>
@@ -103,15 +103,15 @@ const activeProgram = computed(() =>
               <p class="text-[0.65rem] font-mono opacity-50">{{ row.hint }}</p>
             </td>
             <td class="px-4 py-2.5 text-right font-mono" :class="hasRun ? '' : 'opacity-40'">
-              {{ cell(row.osaka, hasRun) }}
+              {{ cell(row.fusaka, hasRun) }}
             </td>
             <td
               class="px-4 py-2.5 text-right font-mono"
               :class="hasRun ? 'e-text font-semibold' : 'opacity-40'"
             >
-              {{ cell(row.amsterdam, hasRun) }}
+              {{ cell(row.glamsterdam, hasRun) }}
               <span
-                v-if="hasRun && row.amsterdamIsState && row.amsterdam > 0n"
+                v-if="hasRun && row.glamsterdamIsState && row.glamsterdam > 0n"
                 class="block text-[0.6rem] font-normal opacity-55"
               >
                 state gas
@@ -126,7 +126,7 @@ const activeProgram = computed(() =>
       <template v-if="hasRun">
         Program gas is the call (PUSH + opcode), not the 21,000 transaction wrapper. Expected
         {{ formatGas(activeProgram) }}
-        on {{ hardfork === 'amsterdam' ? 'Amsterdam' : 'Osaka' }}.
+        on {{ hardfork === 'glamsterdam' ? 'Glamsterdam' : 'Fusaka' }}.
       </template>
       <template v-else>
         Run the program to fill touch, change, and create. The table stays put so the layout does

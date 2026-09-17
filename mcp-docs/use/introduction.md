@@ -38,7 +38,7 @@ For architecture, repositories, and build procedures, see [Internals](/internals
     { version: 'v0.11', date: '2026-09-08', summary: 'Three launch tools — describe_capabilities, run_bytecode, run_transaction.' },
     { version: 'v0.10', date: '2026-09-02', summary: 'User docs describe the hosted product only — no local stdio / self-host early access.' },
     { version: 'v0.9', date: '2026-08-31', summary: 'Lead with not publicly launched — website explorations for most visitors; local stdio as early access only.' },
-    { version: 'v0.8', date: '2026-08-27', summary: 'Osaka mainnet baseline fork for run-twice comparisons against Amsterdam preview.' },
+    { version: 'v0.8', date: '2026-08-27', summary: 'Fusaka mainnet baseline fork for run-twice comparisons against Glamsterdam preview.' },
     { version: 'v0.7', date: '2026-08-27', summary: 'Two live MCP tools — compare removed; use simulate twice.' },
     { version: 'v0.6', date: '2026-08-27', summary: 'Catalog describes capabilities (opcodes/encoding), not website demo programs.' },
     { version: 'v0.4', date: '2026-07-22', summary: 'Local stdio gateway v0.1 live — two MCP tools.' },

@@ -38,7 +38,8 @@ Details: [Adding an Exploration](/contributing/adding-an-exploration), [E-Compon
 | What | Where |
 | --- | --- |
 | New exploration | `src/explorations/<id>/` |
-| Metadata | `info.ts` |
+| Shared metadata (website + MCP) | `canonical.ts` — schema in `canonicalTypes.ts` |
+| Website chrome (path, HTML, images, SEO) | `info.ts` |
 | Widget | `MyC.vue` |
 | Registry (required) | `src/explorations/REGISTRY.ts` |
 | E-Components | `src/eComponents/<name>EC/` |
@@ -54,5 +55,5 @@ Structural-base changes (E-Components, building workflow): bump patch in `packag
 ## Further reading
 
 - [Architecture](/guide/architecture) — content model
-- [Adding an Exploration](/contributing/adding-an-exploration) — checklist and metadata
+- [Adding an Exploration](/contributing/adding-an-exploration) — checklist and canonical contract
 - [Third-Party Libraries](/contributing/third-party-libraries) — when new runtime deps need approval

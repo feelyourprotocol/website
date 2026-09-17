@@ -4,11 +4,11 @@ import { mount } from '@vue/test-utils'
 import SlotCompanion from './SlotCompanion.vue'
 
 describe('SlotCompanion', () => {
-  it('shows Amsterdam readout for the default slot', () => {
+  it('shows Glamsterdam readout for the default slot', () => {
     const wrapper = mount(SlotCompanion, {
       props: {
         slotInput: '42',
-        hardfork: 'amsterdam',
+        hardfork: 'glamsterdam',
       },
     })
 
@@ -16,15 +16,15 @@ describe('SlotCompanion', () => {
     expect(wrapper.text()).toContain('Timestamp ÷ 12')
   })
 
-  it('shows Osaka invalid copy when the fork is Osaka', async () => {
+  it('shows Fusaka invalid copy when the fork is Fusaka', async () => {
     const wrapper = mount(SlotCompanion, {
       props: {
         slotInput: '42',
-        hardfork: 'amsterdam',
+        hardfork: 'glamsterdam',
       },
     })
 
-    await wrapper.setProps({ hardfork: 'osaka' })
+    await wrapper.setProps({ hardfork: 'fusaka' })
 
     expect(wrapper.get('[data-testid="slot-readout"]').text()).toContain('not a valid opcode')
     expect(wrapper.find('[data-testid="slot-readout-push"]').exists()).toBe(false)
@@ -34,7 +34,7 @@ describe('SlotCompanion', () => {
     const wrapper = mount(SlotCompanion, {
       props: {
         slotInput: '42',
-        hardfork: 'amsterdam',
+        hardfork: 'glamsterdam',
       },
     })
 
@@ -48,7 +48,7 @@ describe('SlotCompanion', () => {
     const wrapper = mount(SlotCompanion, {
       props: {
         slotInput: '42',
-        hardfork: 'amsterdam',
+        hardfork: 'glamsterdam',
       },
     })
 

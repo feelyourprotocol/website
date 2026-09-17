@@ -27,7 +27,7 @@ The Bankr community token launched at the start of June and was claimed on **Fri
 Evolve into a sustainable business: a deterministic [MCP server](/concepts/api-mcp) for AI agents — simulating upcoming forks, EIPs, and research — built in parallel to the website. The engineering core landed in summer 2026; the current chapter is **build to public launch**.
 
 - **2026-07** — MCP docs live; execution engine v0.1; gateway tools implemented.
-- **2026-08** — EIP catalogue twins; Osaka vs Amsterdam compare; runnable modules (8024, 7708, 7883, 7951).
+- **2026-08** — EIP catalogue twins; Fusaka vs Glamsterdam compare; runnable modules (8024, 7708, 7883, 7951).
 - **2026-09** — Round-trip pipeline (EIP → exploration → MCP catalogue in ~30 minutes).
 - **2026-10-05 – 09 (target)** — [Public MCP launch week](/roadmap/launch): hosted HTTP + x402 payment rails.
 - **Later** — Enterprise annual tier and revenue→token loop, "when they come".

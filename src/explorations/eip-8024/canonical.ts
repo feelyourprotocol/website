@@ -23,7 +23,6 @@ export const CANONICAL: ProtocolChangeCanonical = {
   },
   maturity: {
     eipStatus: 'Review',
-    forkInclusion: 'Scheduled (Amsterdam)',
     implMaturity: 'Implemented in EthereumJS',
     testMaturity: 'Opcode execution tests',
   },
@@ -31,8 +30,8 @@ export const CANONICAL: ProtocolChangeCanonical = {
     shapes: ['simulate'],
     keywords: ['DUPN', 'SWAPN', 'EXCHANGE', 'stack opcodes', 'stack too deep'],
     comparison: {
-      baselineForkId: 'osaka',
-      previewForkId: 'amsterdam',
+      baselineForkId: 'fusaka',
+      previewForkId: 'glamsterdam',
       note: 'Opcodes 0xe6–0xe8 are invalid on baseline; valid on preview.',
     },
     docsStatus: 'runnable',

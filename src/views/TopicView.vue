@@ -8,7 +8,8 @@ import ExplorationPreviewC from '@/explorations/ExplorationPreviewC.vue'
 import NoExplorationsC from '@/explorations/NoExplorationsC.vue'
 import { EXPLORATIONS, getTopicExplorationIds } from '@/explorations/REGISTRY'
 import { Tag } from '@/explorations/TAGS'
-import { TIMELINE } from '@/explorations/TIMELINE'
+import { TIMELINE, type WebsiteTimelineId } from '@/explorations/TIMELINE'
+import type { TopicId } from '@/explorations/topicIds'
 import { topicCSSVars, TOPICS } from '@/explorations/TOPICS'
 import { getBreadcrumbsForPath } from '@/libs/pageSeo'
 
@@ -16,13 +17,14 @@ import TagCloudView from './TagCloudView.vue'
 import TimelineNaviView from './TimelineNaviView.vue'
 
 const route = useRoute()
-const topicId = route.name as string
-const isAll = topicId === 'all'
-const topic = isAll ? undefined : TOPICS[topicId]
+const routeName = route.name
+const isAll = routeName === 'all'
+const topicId = isAll ? undefined : (routeName as TopicId)
+const topic = topicId ? TOPICS[topicId] : undefined
 const breadcrumbs = computed(() => getBreadcrumbsForPath(route.path))
 const browseBasePath = isAll ? '/all' : topic!.path
 
-const allExplorationIds = isAll ? Object.keys(EXPLORATIONS) : getTopicExplorationIds(topicId)
+const allExplorationIds = isAll ? Object.keys(EXPLORATIONS) : getTopicExplorationIds(topicId!)
 
 const activeTagValue = computed(() => {
   const tagKey = route.query.tag as string | undefined
@@ -59,7 +61,8 @@ const filterSummary = computed(() => {
   const parts: string[] = []
   if (activeTagValue.value) parts.push(`tag ${activeTagValue.value}`)
   if (activeTimelineId.value) {
-    const label = TIMELINE[activeTimelineId.value]?.title ?? activeTimelineId.value
+    const tid = activeTimelineId.value as WebsiteTimelineId
+    const label = tid in TIMELINE ? TIMELINE[tid].title : activeTimelineId.value
     parts.push(`timeline ${label}`)
   }
   return parts.join(' · ')

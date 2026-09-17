@@ -47,8 +47,8 @@ describe('EIP-8038 video-readiness contract', () => {
 
     expect(wrapper.find('[data-testid="exploration-ready"]').exists()).toBe(true)
     expect(wrapper.find('[data-testid="example-select"]').exists()).toBe(true)
-    expect(wrapper.find('[data-testid="hardfork-amsterdam"]').exists()).toBe(true)
-    expect(wrapper.find('[data-testid="hardfork-osaka"]').exists()).toBe(true)
+    expect(wrapper.find('[data-testid="hardfork-glamsterdam"]').exists()).toBe(true)
+    expect(wrapper.find('[data-testid="hardfork-fusaka"]').exists()).toBe(true)
     expect(wrapper.find('[data-testid="run-program"]').exists()).toBe(true)
     expect(wrapper.find('[data-testid="cost-breakdown"]').exists()).toBe(true)
     expect(wrapper.find('[data-testid="cost-row-touch"]').exists()).toBe(true)

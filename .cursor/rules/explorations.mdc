@@ -17,14 +17,14 @@ When editing `src/explorations/` or shared `src/eComponents/`:
 
 ## No orphan explorations
 
-Every live exploration needs `mcp-docs/use/eips/eip-NNNN.md` (Runnable or Planned). See [brief-protocol-change skill](../skills/brief-protocol-change/SKILL.md).
+Every live exploration needs `mcp-docs/use/eips/eip-NNNN.md` (Runnable or Planned). See [brief-protocol-change skill](../skills/brief-protocol-change/SKILL.md). Landing on mainnet does **not** sunset the exploration or twin.
 
 ## Taxonomies
 
 Read valid IDs from source — do not guess:
 
 - `src/explorations/TOPICS.ts` — static set
-- `src/explorations/TIMELINE.ts` — hardforks + maturity stages
+- `src/explorations/TIMELINE.ts` — forks that have explorations (combined upgrade names; same ids as MCP lineage)
 - `src/explorations/TAGS.ts` — enum; new tags must follow [architecture § tags](../../website-docs/guide/architecture.md#tags)
 
 ## Building blocks

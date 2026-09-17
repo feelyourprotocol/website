@@ -9,7 +9,7 @@ export const plainTransferScenario: TransferScenarioDefinition = {
     'A nonzero tx value emits a synthetic ERC-20-style Transfer log from the system address — ' +
     'before any contract logs. Indexers can treat native ETH like a token event.',
   step: 1,
-  expectedTransferLogsOnAmsterdam: 1,
+  expectedTransferLogsOnGlamsterdam: 1,
   preState: [
     {
       label: 'sender',

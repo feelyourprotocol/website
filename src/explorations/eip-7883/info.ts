@@ -29,7 +29,7 @@ export const INFO: Exploration = {
     'Pick an example preset or enter your own ModExp input hex. Values around 32 bytes are ' +
     'especially interesting — that size shows up often when verifying RSA signatures in ' +
     'airdrop contracts. Compare the before/after gas costs side by side. The ' +
-    '<b>1025-byte invalid</b> example shows EIP-7823 rejection on Osaka.',
+    '<b>1025-byte invalid</b> example shows EIP-7823 rejection on Fusaka.',
   creatorName: 'HolgerD77',
   creatorURL: 'https://x.com/HolgerD77',
   poweredBy: [{ name: 'EthereumJS', href: 'https://github.com/ethereumjs/ethereumjs-monorepo' }],

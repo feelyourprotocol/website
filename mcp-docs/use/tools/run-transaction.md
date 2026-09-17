@@ -12,11 +12,11 @@ Raw opcode / stack / precompile programs belong on [Run Bytecode](/use/tools/run
 
 ## When to use
 
-- A generic **Amsterdam** or **Osaka** transaction (no EIP named)
-- “Is 21,000 gas enough for this transfer after Amsterdam?”
-- Paid gas of a simple ETH transfer (Osaka ≈ 21,000; Amsterdam first-touch ≈ 204,600)
+- A generic **Glamsterdam** or **Fusaka** transaction (no EIP named)
+- “Is 21,000 gas enough for this transfer after Glamsterdam?”
+- Paid gas of a simple ETH transfer (Fusaka ≈ 21,000; Glamsterdam first-touch ≈ 204,600)
 - Receipt logs / decoded EIP-7708 Transfer rows
-- Amsterdam `txRegularGas` / `txStateGas` when present
+- Glamsterdam `txRegularGas` / `txStateGas` when present
 
 ## MCP tool name
 
@@ -32,13 +32,13 @@ Raw opcode / stack / precompile programs belong on [Run Bytecode](/use/tools/run
 | `data` | No | Calldata hex |
 | `code` | No | Runtime bytecode installed at `to` before the tx (contract-wallet / SSTORE) |
 | `accounts` | No | Extra accounts to prefund (`address`, optional `balance`, `code`, `storage` slots) |
-| `fork` | No | `{ baseHardfork, eips[] }` — default **`amsterdam`** |
+| `fork` | No | `{ baseHardfork, eips[] }` — default **`glamsterdam`** |
 | `gasLimit` | No | Decimal string. Default `1000000`. Pass **`21000`** for the wallet-era simple-transfer limit. |
-| `authorizationList` | No | Signed EIP-7702 JSON items — **Prague+** type-4 set-code tx. Use [Inspect](/use/tools/inspect) `authorization-list` to validate first. |
+| `authorizationList` | No | Signed EIP-7702 JSON items — **Pectra+** type-4 set-code tx. Use [Inspect](/use/tools/inspect) `authorization-list` to validate first. |
 
 ### Fork notes
 
-Same named forks as [Run Bytecode](/use/tools/run-bytecode): default **amsterdam**, optional **osaka** for a mainnet baseline compare.
+Same named forks as [Run Bytecode](/use/tools/run-bytecode): default **glamsterdam**; **fusaka** for current-mainnet features or a compare baseline.
 
 ## Outputs
 
@@ -47,25 +47,25 @@ Same named forks as [Run Bytecode](/use/tools/run-bytecode): default **amsterdam
 | `success` | Tx completed without revert or intrinsic failure |
 | `gasUsed` | **Paid** transaction gas (intrinsic + execution − refund) |
 | `gasUsedScope` | Always `transaction` |
-| `txRegularGas` | Amsterdam only — regular-gas total |
-| `txStateGas` | Amsterdam only — state-gas total |
+| `txRegularGas` | Glamsterdam only — regular-gas total |
+| `txStateGas` | Glamsterdam only — state-gas total |
 | `returnValue` | Hex return data |
 | `error` | Failure message (e.g. intrinsic gas too low), else `null` |
 | `logs` / `decodedLogs` | Receipt logs; EIP-7708 Transfer/Burn decorations when present |
 | `provenance` | Always present |
 
-## Example — first-touch 1 wei (Amsterdam)
+## Example — first-touch 1 wei (Glamsterdam)
 
 ```json
 {
   "from": "0x00000000000000000000000000000000000000ee",
   "to": "0x00000000000000000000000000000000000000aa",
   "value": "1",
-  "fork": { "baseHardfork": "amsterdam" }
+  "fork": { "baseHardfork": "glamsterdam" }
 }
 ```
 
-Expected: `success: true`, `gasUsed: "204600"`, `txStateGas: "183600"`. The same call on **osaka** is `gasUsed: "21000"`. With `"gasLimit": "21000"` Amsterdam fails.
+Expected: `success: true`, `gasUsed: "204600"`, `txStateGas: "183600"`. The same call on **fusaka** is `gasUsed: "21000"`. With `"gasLimit": "21000"` Glamsterdam fails.
 
 ## JSON schema
 
@@ -80,7 +80,8 @@ See [Guarantees](/use/guarantees) for gas ceilings.
 <Changelog
   title="Run Transaction Changelog"
   :entries="[
-    { version: 'v0.4', date: '2026-09-16', summary: 'Generic Amsterdam / Osaka transaction is a first-class when-to-use.' },
+    { version: 'v0.5', date: '2026-09-17', summary: 'Fusaka fork note: current-mainnet features, not only a compare baseline.' },
+    { version: 'v0.4', date: '2026-09-16', summary: 'Generic Glamsterdam / Fusaka transaction is a first-class when-to-use.' },
     { version: 'v0.2', date: '2026-09-14', summary: 'accounts[].storage seeds slots (EIP-8038 existing-slot SSTORE).' },
     { version: 'v0.1', date: '2026-09-08', summary: 'New MCP tool — VM transaction execution; paid gas, 8037 dimensions, 7708 receipt logs.' },
   ]"

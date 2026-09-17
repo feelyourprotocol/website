@@ -32,15 +32,16 @@ describe('ExplorationC', () => {
   })
 
   it('omits MCP pill on the shell when docs status is sunset', () => {
-    const exploration = EXPLORATIONS['eip-7594']
+    const base = EXPLORATIONS['eip-7708']
+    const exploration = { ...base, mcpDocsStatus: 'sunset' as const }
     const topic = TOPICS[exploration.topic]
     const router = createRouter({
       history: createMemoryHistory(),
-      routes: [{ path: '/scaling', component: { template: '<div />' } }],
+      routes: [{ path: '/ux', component: { template: '<div />' } }],
     })
     const wrapper = mount(ExplorationC, {
       props: {
-        explorationId: 'eip-7594',
+        explorationId: 'eip-7708',
         exploration,
         topic,
         showUsageInstructions: false,

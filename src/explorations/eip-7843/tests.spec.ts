@@ -17,7 +17,7 @@ import { examples } from './examples'
 import { INFO } from './info'
 import { parseSlotNumber, UINT64_MAX } from './parseSlot'
 
-async function createAmsterdamEvm() {
+async function createGlamsterdamEvm() {
   const common = new Common({ chain: Mainnet, hardfork: Hardfork.Amsterdam })
   return { common, evm: await createEVM({ common }) }
 }
@@ -28,8 +28,8 @@ describe('EIP-7843 Exploration', () => {
       expect(CANONICAL.question.changeNature).toBe('new-capability')
       expect(CANONICAL.mcp.docsStatus).toBe('runnable')
       expect(CANONICAL.mcp.shapes).toEqual(['block'])
-      expect(CANONICAL.mcp.comparison?.previewForkId).toBe('amsterdam')
-      expect(CANONICAL.mcp.comparison?.baselineForkId).toBe('osaka')
+      expect(CANONICAL.mcp.comparison?.previewForkId).toBe('glamsterdam')
+      expect(CANONICAL.mcp.comparison?.baselineForkId).toBe('fusaka')
     })
   })
 
@@ -101,7 +101,7 @@ describe('EIP-7843 Exploration', () => {
 
   describe('bytecode execution', () => {
     it('SLOTNUM pushes the header slot', async () => {
-      const { common, evm } = await createAmsterdamEvm()
+      const { common, evm } = await createGlamsterdamEvm()
       const slotNumber = 42n
       const result = await runBytecode({
         evm,
@@ -117,7 +117,7 @@ describe('EIP-7843 Exploration', () => {
     })
 
     it('changing the slot changes the stack top', async () => {
-      const { common, evm } = await createAmsterdamEvm()
+      const { common, evm } = await createGlamsterdamEvm()
       const result = await runBytecode({
         evm,
         code: slotnumBytecode(),
@@ -131,7 +131,7 @@ describe('EIP-7843 Exploration', () => {
     })
 
     it('TIMESTAMP and SLOTNUM are different numbers', async () => {
-      const { common, evm } = await createAmsterdamEvm()
+      const { common, evm } = await createGlamsterdamEvm()
       const slotNumber = 42n
       const result = await runBytecode({
         evm,
@@ -147,7 +147,7 @@ describe('EIP-7843 Exploration', () => {
     })
 
     it('TIMESTAMP ÷ 12 is not the slot', async () => {
-      const { common, evm } = await createAmsterdamEvm()
+      const { common, evm } = await createGlamsterdamEvm()
       const slotNumber = 42n
       const result = await runBytecode({
         evm,
@@ -163,7 +163,7 @@ describe('EIP-7843 Exploration', () => {
       expect(LAB_TIMESTAMP_DIV_12).not.toBe(slotNumber)
     })
 
-    it('SLOTNUM is invalid on Osaka', async () => {
+    it('SLOTNUM is invalid on Fusaka', async () => {
       const common = new Common({ chain: Mainnet, hardfork: Hardfork.Osaka })
       const evm = await createEVM({ common })
       const result = await runBytecode({

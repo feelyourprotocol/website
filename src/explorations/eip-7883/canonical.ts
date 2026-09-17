@@ -23,7 +23,6 @@ export const CANONICAL: ProtocolChangeCanonical = {
   },
   maturity: {
     eipStatus: 'Final',
-    forkInclusion: 'Fusaka (Osaka on mainnet)',
     implMaturity: 'Implemented in EthereumJS',
     testMaturity: 'Precompile gas tests',
   },
@@ -31,9 +30,9 @@ export const CANONICAL: ProtocolChangeCanonical = {
     shapes: ['simulate'],
     keywords: ['ModExp', 'modular exponentiation', 'gas repricing', 'precompile 0x05', 'RSA'],
     comparison: {
-      baselineForkId: 'prague',
-      previewForkId: 'osaka',
-      note: 'ModExp gas formula changed at Fusaka; EIP-7823 input bounds apply on Osaka.',
+      baselineForkId: 'pectra',
+      previewForkId: 'fusaka',
+      note: 'ModExp gas formula changed at Fusaka (now current mainnet); EIP-7823 input bounds apply on Fusaka.',
     },
     docsStatus: 'runnable',
   },

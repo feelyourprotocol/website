@@ -47,16 +47,20 @@ roadmap/
 └── public/                       # robots.txt, fonts/, og/
 ```
 
-## Fork naming (Glamsterdam / Amsterdam)
+## Fork naming (Glamsterdam / Fusaka)
 
-**One fork, two labels** — not two forks, not a timeline:
+**Combined upgrade names are canonical** from Shapella on. EL city names are aliases (EthereumJS `Hardfork.Amsterdam`, MCP `baseHardfork: "amsterdam"` still resolve).
 
 | Label | Use for |
 | --- | --- |
-| **Glamsterdam** | Hardfork name in public copy and narrative (“Road to Glamsterdam”) |
-| **Amsterdam** | Execution-layer rules, catalogue rows, MCP fork id (`amsterdam`, alias `glamsterdam`) |
+| **Glamsterdam** | Public copy, website timeline, MCP catalog id (`glamsterdam`; EL alias `amsterdam`) |
+| **Fusaka** | Current mainnet EL, MCP catalog id (`fusaka`; EL aliases `osaka`, `mainnet-el`) |
+| **Pectra**, **Dencun**, **Shapella** | Same pattern; EL aliases `prague`, `cancun`, `shanghai` |
+| **Paris** | Stays canonical (aliases `merge`, `the-merge`) — no Shapella-style portmanteau |
 
-Do **not** write “Amsterdam today, Glamsterdam later” or “Amsterdam / Glamsterdam” as if they were sequential or distinct forks. Hegota is a **different** future fork — the only real “next fork after Glamsterdam” in scope talk.
+Do **not** write “Amsterdam today, Glamsterdam later” or treat Amsterdam / Glamsterdam as two forks. Hegota is a **different** future fork — the only real “next fork after Glamsterdam” in scope talk.
+
+Website `TIMELINE` is the subset with explorations (Fusaka + Glamsterdam today). MCP lineage is Berlin→Glamsterdam.
 
 See also [Launch-Strategie.md](../../Launch-Strategie.md) §2 and [Announcement-Anchor.md](../../Announcement-Anchor.md) (tweet guardrails).
 

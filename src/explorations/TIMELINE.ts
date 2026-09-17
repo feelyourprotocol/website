@@ -1,66 +1,52 @@
 /**
- * Timeline is a taxonomy that combines two dimensions: how settled an idea is (from
- * early mention to finalized spec) and where it sits relative to mainnet Ethereum
- * (specific hardfork vs. general readiness stage). Hardfork entries are named after
- * their Ethereum community event city of origin.
+ * Website catalog timeline — forks that have explorations.
  *
- * The non-hardfork categories (Ready, Research, Ideas) are static. New hardfork
- * entries can be added as Ethereum's upgrade schedule evolves.
+ * Ids match the MCP lineage catalog (`mcp-execution-engine` `LINEAGE_FORK_IDS`).
+ * From Shapella on, the combined upgrade name is canonical; the EL city name
+ * is an alias (osaka → fusaka, amsterdam → glamsterdam). Historical lineage
+ * forks (berlin … pectra) exist on MCP for lab runs; add them here only when
+ * an exploration is registered.
+ *
+ * Role (`historical` | `current` | `preview`) is the same `ForkRole` as MCP
+ * `namedForks`. Tooltips come from `FORK_ROLE_HINT`. Fork roles stay sharp;
+ * EIP twins stay after activation (adoption still matters). Do not drop a
+ * TIMELINE row or exploration just because that fork is live on mainnet.
  */
+export type ForkRole = 'historical' | 'current' | 'preview'
+
+export const FORK_ROLE_HINT: Record<ForkRole, string> = {
+  historical: 'Past hardfork — already superseded on mainnet.',
+  current: 'Active hardfork — live on mainnet today.',
+  preview: 'Upcoming hardfork — EIP candidates under active consideration.',
+}
+
+/** Fork ids that have a browse pill on the website (subset of MCP lineage). */
+export type WebsiteTimelineId = 'fusaka' | 'glamsterdam'
+
 export const TIMELINE: Timeline = {
   fusaka: {
     title: 'Fusaka',
-    shortDescription: 'Active hardfork — EIPs finalized and scheduled for mainnet deployment.',
+    role: 'current',
     emoji: '🏯',
-    onChain: true,
     order: 100,
   },
   glamsterdam: {
     title: 'Glamsterdam',
-    shortDescription: 'Upcoming hardfork — EIP candidates under active consideration.',
+    role: 'preview',
     emoji: '🌷',
-    onChain: false,
     order: 110,
-  },
-  ready: {
-    title: 'Ready',
-    shortDescription:
-      'Mature proposals that could be picked for a future hardfork with little friction.',
-    emoji: '✅',
-    onChain: false,
-    order: 500,
-  },
-  research: {
-    title: 'Research',
-    shortDescription:
-      'Substantial drafts and papers with a clear direction, but final shaping still in progress.',
-    emoji: '🔬',
-    onChain: false,
-    order: 600,
-  },
-  ideas: {
-    title: 'Ideas',
-    shortDescription:
-      'Early-stage concepts — a mention on a forum or social media, not yet a formal proposal.',
-    emoji: '💡',
-    onChain: false,
-    order: 700,
   },
 }
 
 export interface TimelineEntry {
-  /** Display name. */
+  /** Display name (combined upgrade name). */
   title: string
-  /** One-liner description, e.g. for tooltips or hover states. */
-  shortDescription: string
+  /** Same role vocabulary as MCP `namedForks[].role`. */
+  role: ForkRole
   /** Emoji representing the entry visually. */
   emoji: string
-  /** Whether the related EIP/research is already active on mainnet. */
-  onChain: boolean
   /** Numeric ordering key; higher values appear first (top) on the timeline. */
   order: number
 }
 
-export interface Timeline {
-  [key: string]: TimelineEntry
-}
+export type Timeline = Record<WebsiteTimelineId, TimelineEntry>

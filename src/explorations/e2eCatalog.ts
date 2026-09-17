@@ -18,12 +18,6 @@ export interface E2eExploration {
 }
 
 export const E2E_EXPLORATIONS: E2eExploration[] = [
-  {
-    id: 'eip-7594',
-    path: '/eip-7594-peerdas-data-availability-sampling',
-    family: 'form',
-    skipExecute: true,
-  },
   { id: 'eip-7708', path: '/eip-7708-eth-transfer-logs', family: 'scenario' },
   { id: 'eip-7843', path: '/eip-7843-slotnum-opcode', family: 'bytecode' },
   { id: 'eip-7883', path: '/eip-7883-modexp-gas-cost-increase', family: 'form' },

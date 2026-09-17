@@ -24,7 +24,7 @@ export const COLD_STORAGE_ACCESS = 2_100n
 export const OSAKA_STORAGE_WRITE = 2_800n
 /** EIP-8038 STORAGE_WRITE. */
 export const AMSTERDAM_STORAGE_WRITE = 10_000n
-/** Pre-Amsterdam fused cost of setting a new slot (regular gas). */
+/** Pre-Glamsterdam fused cost of setting a new slot (regular gas). */
 export const OSAKA_STORAGE_SET = 20_000n
 /** EIP-8037 new storage slot: 64 bytes × 1530, charged as state gas. */
 export const NEW_STORAGE_SLOT_STATE_GAS = 64n * 1530n

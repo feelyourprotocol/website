@@ -9,8 +9,8 @@ describe('EIP-7883 Exploration', () => {
   describe('canonical', () => {
     it('defines repricing nature and gas comparison hint', () => {
       expect(CANONICAL.question.changeNature).toBe('repricing')
-      expect(CANONICAL.mcp.comparison?.baselineForkId).toBe('prague')
-      expect(CANONICAL.mcp.comparison?.previewForkId).toBe('osaka')
+      expect(CANONICAL.mcp.comparison?.baselineForkId).toBe('pectra')
+      expect(CANONICAL.mcp.comparison?.previewForkId).toBe('fusaka')
     })
   })
 

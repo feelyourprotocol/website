@@ -21,13 +21,13 @@ import { getScenario, SCENARIO_ORDER } from './scenarios'
 
 describe('EIP-8038 state-access gas exploration', () => {
   describe('canonical', () => {
-    it('defines a repricing twin with Osaka vs Amsterdam comparison', () => {
+    it('defines a repricing twin with Fusaka vs Glamsterdam comparison', () => {
       expect(CANONICAL.question.changeNature).toBe('repricing')
       expect(CANONICAL.mcp.shapes).toContain('simulate')
       expect(CANONICAL.mcp.shapes).toContain('transaction')
       expect(CANONICAL.mcp.docsStatus).toBe('runnable')
-      expect(CANONICAL.mcp.comparison?.previewForkId).toBe('amsterdam')
-      expect(CANONICAL.mcp.comparison?.baselineForkId).toBe('osaka')
+      expect(CANONICAL.mcp.comparison?.previewForkId).toBe('glamsterdam')
+      expect(CANONICAL.mcp.comparison?.baselineForkId).toBe('fusaka')
       expect(CANONICAL.taxonomy.topic).toBe('robustness')
       expect(CANONICAL.taxonomy.timeline).toBe('glamsterdam')
     })
@@ -78,43 +78,43 @@ describe('EIP-8038 state-access gas exploration', () => {
   })
 
   describe('runScenario', () => {
-    it('charges the write jump on an existing slot (Amsterdam vs Osaka)', async () => {
-      const amsterdam = await runScenario('01-existing-slot', 'amsterdam')
-      const osaka = await runScenario('01-existing-slot', 'osaka')
-      expect(amsterdam.programSuccessful).toBe(true)
-      expect(osaka.programSuccessful).toBe(true)
-      expect(amsterdam.programGas).toBe(AMSTERDAM_EXISTING_PROGRAM_GAS)
-      expect(osaka.programGas).toBe(OSAKA_EXISTING_PROGRAM_GAS)
-      expect(amsterdam.components.write).toBe(AMSTERDAM_STORAGE_WRITE)
-      expect(amsterdam.components.access).toBe(COLD_STORAGE_ACCESS)
-      expect(osaka.components.access).toBe(COLD_STORAGE_ACCESS)
-      expect(amsterdam.stateGas).toBe(0n)
+    it('charges the write jump on an existing slot (Glamsterdam vs Fusaka)', async () => {
+      const glamsterdam = await runScenario('01-existing-slot', 'glamsterdam')
+      const fusaka = await runScenario('01-existing-slot', 'fusaka')
+      expect(glamsterdam.programSuccessful).toBe(true)
+      expect(fusaka.programSuccessful).toBe(true)
+      expect(glamsterdam.programGas).toBe(AMSTERDAM_EXISTING_PROGRAM_GAS)
+      expect(fusaka.programGas).toBe(OSAKA_EXISTING_PROGRAM_GAS)
+      expect(glamsterdam.components.write).toBe(AMSTERDAM_STORAGE_WRITE)
+      expect(glamsterdam.components.access).toBe(COLD_STORAGE_ACCESS)
+      expect(fusaka.components.access).toBe(COLD_STORAGE_ACCESS)
+      expect(glamsterdam.stateGas).toBe(0n)
     })
 
     it('keeps SLOAD program gas the same on both forks', async () => {
-      const amsterdam = await runScenario('02-read-slot', 'amsterdam')
-      const osaka = await runScenario('02-read-slot', 'osaka')
-      expect(amsterdam.programSuccessful).toBe(true)
-      expect(osaka.programSuccessful).toBe(true)
-      expect(amsterdam.programGas).toBe(SLOAD_PROGRAM_GAS)
-      expect(osaka.programGas).toBe(SLOAD_PROGRAM_GAS)
-      expect(amsterdam.components.write).toBe(0n)
-      expect(amsterdam.components.create).toBe(0n)
+      const glamsterdam = await runScenario('02-read-slot', 'glamsterdam')
+      const fusaka = await runScenario('02-read-slot', 'fusaka')
+      expect(glamsterdam.programSuccessful).toBe(true)
+      expect(fusaka.programSuccessful).toBe(true)
+      expect(glamsterdam.programGas).toBe(SLOAD_PROGRAM_GAS)
+      expect(fusaka.programGas).toBe(SLOAD_PROGRAM_GAS)
+      expect(glamsterdam.components.write).toBe(0n)
+      expect(glamsterdam.components.create).toBe(0n)
     })
 
-    it('meters a new slot create as state gas on Amsterdam', async () => {
-      const amsterdam = await runScenario('03-new-slot', 'amsterdam')
-      const osaka = await runScenario('03-new-slot', 'osaka')
-      expect(amsterdam.programSuccessful).toBe(true)
-      expect(osaka.programSuccessful).toBe(true)
-      expect(amsterdam.stateGas).toBe(NEW_STORAGE_SLOT_STATE_GAS)
-      expect(osaka.stateGas).toBe(0n)
-      expect(amsterdam.components.createMeter).toBe('state')
-      expect(osaka.components.createMeter).toBe('regular')
+    it('meters a new slot create as state gas on Glamsterdam', async () => {
+      const glamsterdam = await runScenario('03-new-slot', 'glamsterdam')
+      const fusaka = await runScenario('03-new-slot', 'fusaka')
+      expect(glamsterdam.programSuccessful).toBe(true)
+      expect(fusaka.programSuccessful).toBe(true)
+      expect(glamsterdam.stateGas).toBe(NEW_STORAGE_SLOT_STATE_GAS)
+      expect(fusaka.stateGas).toBe(0n)
+      expect(glamsterdam.components.createMeter).toBe('state')
+      expect(fusaka.components.createMeter).toBe('regular')
     })
 
     it('rejects unknown scenario ids without crashing the helper', async () => {
-      await expect(runScenario('nope', 'amsterdam')).rejects.toThrow(/Unknown EIP-8038 scenario/)
+      await expect(runScenario('nope', 'glamsterdam')).rejects.toThrow(/Unknown EIP-8038 scenario/)
     })
   })
 
@@ -148,10 +148,10 @@ describe('EIP-8038 state-access gas exploration', () => {
       await flushPromises()
       await flushPromises()
       expect(wrapper.text()).toContain('Run')
-      expect(wrapper.text()).toContain('Amsterdam')
-      const amsterdam = wrapper.find('[aria-pressed="true"]')
-      expect(amsterdam.exists()).toBe(true)
-      expect(amsterdam.text()).toBe('Amsterdam')
+      expect(wrapper.text()).toContain('Glamsterdam')
+      const glamsterdam = wrapper.find('[aria-pressed="true"]')
+      expect(glamsterdam.exists()).toBe(true)
+      expect(glamsterdam.text()).toBe('Glamsterdam')
       expect(wrapper.find('[data-testid="cost-breakdown"]').attributes('data-has-run')).toBe(
         'false',
       )
@@ -192,16 +192,18 @@ describe('EIP-8038 state-access gas exploration', () => {
       await flushPromises()
       await flushPromises()
 
-      const osaka = wrapper.findAll('button').find((b) => b.text() === 'Osaka')
-      expect(osaka).toBeDefined()
-      await osaka!.trigger('click')
-      expect(wrapper.find('[data-testid="hardfork-osaka"]').attributes('aria-pressed')).toBe('true')
+      const fusaka = wrapper.findAll('button').find((b) => b.text() === 'Fusaka')
+      expect(fusaka).toBeDefined()
+      await fusaka!.trigger('click')
+      expect(wrapper.find('[data-testid="hardfork-fusaka"]').attributes('aria-pressed')).toBe(
+        'true',
+      )
 
       await wrapper.find('[data-testid="example-select"]').trigger('click')
       await flushPromises()
       await wrapper.find('[data-testid="example-02-read-slot"]').trigger('click')
       await flushPromises()
-      expect(wrapper.find('[data-testid="hardfork-amsterdam"]').attributes('aria-pressed')).toBe(
+      expect(wrapper.find('[data-testid="hardfork-glamsterdam"]').attributes('aria-pressed')).toBe(
         'true',
       )
     })

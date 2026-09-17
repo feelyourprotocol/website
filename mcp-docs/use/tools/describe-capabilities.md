@@ -9,8 +9,8 @@ Return a machine-readable snapshot of what this server can **actually run**: eng
 ## When to use
 
 - **First call** when connecting — learn forks, modules, and limits before simulating
-- Answer support questions: “Is Amsterdam available?”, “Which EIPs does that fork advertise?”, “Is EIP-8024 supported?”, “Can I run Amsterdam bytecode with DUPN?”
-- Read the `amsterdam` named-fork row for a generic preview run; read opcode encoding so you can **construct** bytecode (this tool does not hand you a canned example program)
+- Answer support questions: “Is Glamsterdam available?”, “Which EIPs does that fork advertise?”, “Is EIP-8024 supported?”, “Can I run Glamsterdam bytecode with DUPN?”
+- Read the `glamsterdam` named-fork row for a generic preview run; read opcode encoding so you can **construct** bytecode (this tool does not hand you a canned example program)
 
 ## MCP tool name
 
@@ -26,11 +26,11 @@ None required. Pass `{}` or omit arguments.
 | --- | --- |
 | `engineVersion` | Semver of `mcp-execution-engine` |
 | `ceilings` | `maxGasLimit`, `defaultGasLimit`, `maxBytecodeBytes`, `maxTraceSteps`, `maxTxsPerBlock` |
-| `baselineForkId` | Current mainnet EL baseline (`osaka`) — optional for comparisons |
-| `namedForks` | Berlin→Amsterdam lineage — `order`, `predecessorId`, `successorId`, `role`, `activatedEips`, advertised `relatedEips`, `shapes` |
-| `eipIntroductions` | When each EIP activated — use with predecessor compares (e.g. PUSH0 at Shanghai, predecessor Paris) |
+| `baselineForkId` | Current mainnet EL (`fusaka`) — first-class run target and optional compare baseline |
+| `namedForks` | Berlin→Glamsterdam lineage — `order`, `predecessorId`, `successorId`, `role`, `activatedEips`, advertised `relatedEips`, `shapes` |
+| `eipIntroductions` | When each EIP activated — use with predecessor compares (e.g. PUSH0 at Shapella, predecessor Paris) |
 | `eips` | Runnable modules — `comparison` derived from `eipIntroductions` (predecessor vs `introducedAt`) |
-| `allowedBaseHardforks` | Lineage forks (`berlin` … `amsterdam`) plus aliases; glacier/BPO ids rejected |
+| `allowedBaseHardforks` | Lineage forks (`berlin` … `glamsterdam`) plus aliases; glacier/BPO ids rejected |
 
 ## Example
 
@@ -45,16 +45,16 @@ _Output (abbreviated):_
 ```json
 {
   "engineVersion": "0.1.0",
-  "baselineForkId": "osaka",
+  "baselineForkId": "fusaka",
   "namedForks": [
-    { "id": "osaka", "role": "current", "aliases": ["mainnet-el"], "relatedEips": [7883, 7951], "…": "…" },
-    { "id": "amsterdam", "role": "preview", "aliases": ["glamsterdam"], "relatedEips": [7708, 7843, 7928, 8024, 8037, 8038], "…": "…" }
+    { "id": "fusaka", "role": "current", "aliases": ["osaka", "mainnet-el"], "relatedEips": [7883, 7951], "…": "…" },
+    { "id": "glamsterdam", "role": "preview", "aliases": ["amsterdam"], "relatedEips": [7708, 7843, 7928, 8024, 8037, 8038], "…": "…" }
   ],
   "eips": [{
     "eip": 8024,
     "runnable": true,
-    "comparison": { "baselineForkId": "osaka", "previewForkId": "amsterdam", "note": "…" },
-    "summary": "Amsterdam EVM executes DUPN, SWAPN, and EXCHANGE. Supply any bytecode; this server does not ship demo programs.",
+    "comparison": { "baselineForkId": "fusaka", "previewForkId": "glamsterdam", "note": "…" },
+    "summary": "Glamsterdam EVM executes DUPN, SWAPN, and EXCHANGE. Supply any bytecode; this server does not ship demo programs.",
     "shapes": ["simulate"],
     "opcodes": [
       { "name": "DUPN", "opcodeHex": "0xe6", "effect": "Copy the stack item at depth n onto the top.", "immediate": { "encoding": "n = (immediate + 145) mod 256; …", "minDepth": 17, "maxDepth": 235 } }
@@ -72,6 +72,7 @@ _Output (abbreviated):_
 <Changelog
   title="Describe Capabilities Changelog"
   :entries="[
+    { version: 'v0.14', date: '2026-09-17', summary: 'baselineForkId is a first-class run target, not only a compare hint.' },
     { version: 'v0.13', date: '2026-09-16', summary: 'namedForks are catalog capabilities (summary, relatedEips, shapes); generic hardfork questions are first-class.' },
     { version: 'v0.11', date: '2026-09-10', summary: 'EIP-7843 SLOTNUM in the live catalog (shapes: block).' },
     { version: 'v0.10', date: '2026-09-10', summary: 'ceilings.maxTxsPerBlock; shapes may include block (run_block).' },

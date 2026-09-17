@@ -85,7 +85,6 @@ problem_slices:
   - id: eip-7843
     path: /eip-7843-slotnum-opcode
     core_question: How do you read the beacon slot on-chain without hardcoding 12-second slots?
-    mcp_docs: planned-module
     search:
       - beacon slot on-chain Ethereum
       - TIMESTAMP divide 12 slot
@@ -113,7 +112,6 @@ problem_slices:
   - id: eip-7928
     path: /eip-7928-block-level-access-lists
     core_question: What does the block commit to besides state root?
-    mcp_docs: planned-module
     search:
       - block-level access list Ethereum
       - Ethereum BAL parallel IO

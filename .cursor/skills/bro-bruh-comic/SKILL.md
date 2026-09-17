@@ -118,7 +118,7 @@ The strip is the **first exploration announcement** on @FeelEthereum — the *sp
 2. Optional **one** brand beat (`feel` / a single ❤️) only if it maps to FYP without spoiling the pun. Skip rather than force.
 3. Naked URL last: `https://feelyourprotocol.org` + `info.ts` `path`. Blank line before the URL is fine (layout).
 
-**Do not:** hashtag block; self-@; MCP / x402 / token; “you’ve been waiting”; joke explanation; price; analyst names; call Glamsterdam and Amsterdam two forks. Fork name only if it earns its characters (**Glamsterdam** = hardfork, **Amsterdam** = EL rules — one label, not both as a sequence). Don’t force “headliner.”
+**Do not:** hashtag block; self-@; MCP / x402 / token; “you’ve been waiting”; joke explanation; price; analyst names; call Glamsterdam and Amsterdam two forks. Fork name only if it earns its characters (combined upgrade name: **Glamsterdam**, **Fusaka** — not the EL city name). Don’t force “headliner.”
 
 **Diversity:** do not clone 8024’s “closer to your heart” or 7928’s “New FYP exploration of the #… headliner.” Scan existing `tweet.body` and write a new sentence.
 

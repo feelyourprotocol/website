@@ -19,7 +19,7 @@ describe('EIP-7708 transfer-log exploration', () => {
       expect(CANONICAL.mcp.shapes).toContain('transaction')
       expect(CANONICAL.mcp.shapes).toContain('simulate')
       expect(CANONICAL.mcp.docsStatus).toBe('runnable')
-      expect(CANONICAL.mcp.comparison?.previewForkId).toBe('amsterdam')
+      expect(CANONICAL.mcp.comparison?.previewForkId).toBe('glamsterdam')
     })
   })
 
@@ -70,8 +70,8 @@ describe('EIP-7708 transfer-log exploration', () => {
   })
 
   describe('runScenario', () => {
-    it('emits one Transfer log on Amsterdam for plain transfer', async () => {
-      const result = await runScenario('01-plain-transfer', 'amsterdam')
+    it('emits one Transfer log on Glamsterdam for plain transfer', async () => {
+      const result = await runScenario('01-plain-transfer', 'glamsterdam')
       expect(result.transferLogCount).toBe(1)
       expect(result.totalLogCount).toBeGreaterThanOrEqual(1)
       expect(result.receiptLogs.rows[0]?.decoration?.kind).toBe('eth-transfer')
@@ -89,33 +89,33 @@ describe('EIP-7708 transfer-log exploration', () => {
       )
     })
 
-    it('has no EIP-7708 Transfer logs on Osaka for plain transfer', async () => {
-      const result = await runScenario('01-plain-transfer', 'osaka')
+    it('has no EIP-7708 Transfer logs on Fusaka for plain transfer', async () => {
+      const result = await runScenario('01-plain-transfer', 'fusaka')
       expect(result.transferLogCount).toBe(0)
-      expect(result.receiptLogs.emptyHint).toContain('Osaka')
+      expect(result.receiptLogs.emptyHint).toContain('Fusaka')
     })
 
-    it('logs contract-wallet CALL transfer on Amsterdam', async () => {
-      const result = await runScenario('02-contract-wallet', 'amsterdam')
+    it('logs contract-wallet CALL transfer on Glamsterdam', async () => {
+      const result = await runScenario('02-contract-wallet', 'glamsterdam')
       expect(result.transferLogCount).toBe(1)
     })
 
-    it('stays silent for zero-value on Amsterdam', async () => {
-      const result = await runScenario('03-zero-value', 'amsterdam')
+    it('stays silent for zero-value on Glamsterdam', async () => {
+      const result = await runScenario('03-zero-value', 'glamsterdam')
       expect(result.transferLogCount).toBe(0)
       expect(result.receiptLogs.emptyHint).toContain('zero-value')
     })
 
-    it('stays silent when inner CALL reverts on Amsterdam', async () => {
-      const result = await runScenario('04-reverted-call', 'amsterdam')
+    it('stays silent when inner CALL reverts on Glamsterdam', async () => {
+      const result = await runScenario('04-reverted-call', 'glamsterdam')
       expect(result.transferLogCount).toBe(0)
       expect(result.receiptLogs.emptyHint).toContain('reverted')
     })
 
-    it('matches expected transfer counts for every scenario on Amsterdam', async () => {
+    it('matches expected transfer counts for every scenario on Glamsterdam', async () => {
       for (const id of SCENARIO_ORDER) {
-        const expected = SCENARIOS[id]!.expectedTransferLogsOnAmsterdam
-        const result = await runScenario(id, 'amsterdam')
+        const expected = SCENARIOS[id]!.expectedTransferLogsOnGlamsterdam
+        const result = await runScenario(id, 'glamsterdam')
         expect(result.transferLogCount).toBe(expected)
       }
     })
@@ -151,14 +151,14 @@ describe('EIP-7708 transfer-log exploration', () => {
       await flushPromises()
       await flushPromises()
       expect(wrapper.text()).toContain('Run block')
-      expect(wrapper.text()).toContain('Amsterdam')
-      const amsterdam = wrapper.find('[aria-pressed="true"]')
-      expect(amsterdam.exists()).toBe(true)
-      expect(amsterdam.text()).toBe('Amsterdam')
+      expect(wrapper.text()).toContain('Glamsterdam')
+      const glamsterdam = wrapper.find('[aria-pressed="true"]')
+      expect(glamsterdam.exists()).toBe(true)
+      expect(glamsterdam.text()).toBe('Glamsterdam')
       expect(wrapper.text()).toContain('Run the block to inspect receipt logs')
     })
 
-    it('resets hardfork to Amsterdam when the scenario changes', async () => {
+    it('resets hardfork to Glamsterdam when the scenario changes', async () => {
       document.body.innerHTML = '<div id="root"></div><div id="exploration-right-panel"></div>'
       const router = createRouter({
         history: createMemoryHistory(),
@@ -187,14 +187,14 @@ describe('EIP-7708 transfer-log exploration', () => {
       await flushPromises()
       await flushPromises()
 
-      const osaka = wrapper.findAll('button').find((b) => b.text() === 'Osaka')
-      expect(osaka).toBeDefined()
-      await osaka!.trigger('click')
-      expect(wrapper.find('[aria-pressed="true"]').text()).toBe('Osaka')
+      const fusaka = wrapper.findAll('button').find((b) => b.text() === 'Fusaka')
+      expect(fusaka).toBeDefined()
+      await fusaka!.trigger('click')
+      expect(wrapper.find('[aria-pressed="true"]').text()).toBe('Fusaka')
 
       const next = wrapper.findAll('button').find((b) => b.text().includes('next'))
       await next!.trigger('click')
-      expect(wrapper.find('[aria-pressed="true"]').text()).toBe('Amsterdam')
+      expect(wrapper.find('[aria-pressed="true"]').text()).toBe('Glamsterdam')
     })
   })
 })

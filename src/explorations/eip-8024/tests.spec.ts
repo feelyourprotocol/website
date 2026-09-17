@@ -26,7 +26,7 @@ describe('EIP-8024 Exploration', () => {
     it('defines stack opcode capability and fork comparison', () => {
       expect(CANONICAL.question.changeNature).toBe('new-capability')
       expect(CANONICAL.mcp.shapes).toContain('simulate')
-      expect(CANONICAL.mcp.comparison?.previewForkId).toBe('amsterdam')
+      expect(CANONICAL.mcp.comparison?.previewForkId).toBe('glamsterdam')
     })
   })
 

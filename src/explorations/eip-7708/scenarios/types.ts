@@ -23,16 +23,16 @@ export interface TransferScenarioDefinition {
   step: number
   preState: PreStateAccount[]
   txSummary: TxSummaryLine[]
-  /** Expected EIP-7708 Transfer logs on Amsterdam after a successful run. */
-  expectedTransferLogsOnAmsterdam: number
-  /** Short teaching line when the receipt is empty on Amsterdam. */
-  emptyAmsterdamHint?: string
+  /** Expected EIP-7708 Transfer logs on Glamsterdam after a successful run. */
+  expectedTransferLogsOnGlamsterdam: number
+  /** Short teaching line when the receipt is empty on Glamsterdam. */
+  emptyGlamsterdamHint?: string
   buildTransactions: (common: Common) => TypedTransaction[]
 }
 
 export interface ScenarioRunResult {
   scenarioId: string
-  hardforkId: 'amsterdam' | 'osaka'
+  hardforkId: 'glamsterdam' | 'fusaka'
   hardforkLabel: string
   gasUsed: bigint
   txCount: number

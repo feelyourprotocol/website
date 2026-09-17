@@ -23,16 +23,15 @@ export const CANONICAL: ProtocolChangeCanonical = {
   },
   maturity: {
     eipStatus: 'Review',
-    forkInclusion: 'Scheduled (Amsterdam)',
-    implMaturity: 'Implemented in EthereumJS (Amsterdam)',
+    implMaturity: 'Implemented in EthereumJS (Glamsterdam)',
     testMaturity: 'EthereumJS eip7843 opcode tests; glamsterdam-devnet EST',
   },
   mcp: {
     shapes: ['block'],
     keywords: ['SLOTNUM', 'slot number', 'beacon slot', 'TIMESTAMP', 'header.slotNumber'],
     comparison: {
-      baselineForkId: 'osaka',
-      previewForkId: 'amsterdam',
+      baselineForkId: 'fusaka',
+      previewForkId: 'glamsterdam',
       note: 'Opcode 0x4b is invalid on baseline; on preview it pushes header.slotNumber (2 gas).',
     },
     docsStatus: 'runnable',

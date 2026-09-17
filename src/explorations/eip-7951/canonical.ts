@@ -23,7 +23,6 @@ export const CANONICAL: ProtocolChangeCanonical = {
   },
   maturity: {
     eipStatus: 'Final',
-    forkInclusion: 'Fusaka (Osaka on mainnet)',
     implMaturity: 'Implemented in EthereumJS',
     testMaturity: 'Precompile verification vectors',
   },

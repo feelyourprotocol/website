@@ -7,7 +7,7 @@ export const fundedRecipientScenario: GasScenarioDefinition = {
   title: '2. Funded recipient',
   lesson:
     'The same 1-wei transfer to an account that already holds ETH does not create state. The ' +
-    'state-gas bar collapses — 21,000 is enough again, even on Amsterdam.',
+    'state-gas bar collapses — 21,000 is enough again, even on Glamsterdam.',
   step: 2,
   expectedAmsterdamStateGas: 0n,
   preState: [

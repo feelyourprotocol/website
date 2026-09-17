@@ -29,7 +29,7 @@ Read, then derive. Do not re-brief the EIP. Do not invent verbs, numbers, or for
 4. **Every** existing `video/projects/*/` — consumed openings, hooks, outro CTAs, pacing (look at `narration.json`, `content.json`, `playbook.json`; do not repeat their exact phrasing)
 5. `video/src/explorationRegistry.ts` — must contain the exploration id (add if missing)
 
-**Core-question rule (hard):** the title-card overlay AND the first narration segment (`hook`) both carry `CANONICAL.question.coreQuestion` — verbatim or a punchy ≤10-word paraphrase. Everything else answers it. The outro references `mcp.comparison` when present ("try baseline on Osaka to see it silent").
+**Core-question rule (hard):** the title-card overlay AND the first narration segment (`hook`) both carry `CANONICAL.question.coreQuestion` — verbatim or a punchy ≤10-word paraphrase. Everything else answers it. The outro references `mcp.comparison` when present ("try baseline on Fusaka to see it silent").
 
 ## Workflow
 
@@ -63,14 +63,14 @@ Do **not** copy title-card wording, hook lines, or outro CTAs from prior videos.
 
 1. **Anchor** = `CANONICAL.question.coreQuestion`. Title-card carries it (or a ≤10-word punchy paraphrase); first narration `hook` segment carries the same anchor.
 2. **Arc** (≈45–60 s):
-   - `hook` — anchor + fork context (`CANONICAL.maturity.forkInclusion` when present)
+   - `hook` — anchor + fork context (`CANONICAL.taxonomy.timeline` title, e.g. Glamsterdam)
    - `context` — 1 sentence: what problem, why now
    - one beat per **teaching example** from `examples.ts` (usually 2–4 beats) — read `exampleMeta[id].lesson` (or `SCENARIOS[id].lesson`); each beat ends by running the primary action so the viewer sees the effect
    - `climax` — the beat that makes the anchor visible (e.g. the transfer log row appearing, the stack copying depth 17); use `highlightSet` if the widget exposes cell-level `data-*` hooks
    - `recap` — text-only on the current state; tie back to the anchor
    - `outro` — one-line closing + 2 CTAs (Forkcast for the spec, `feelyourprotocol.org<INFO.path>` for the exploration)
 3. **Comparison beat** — if `CANONICAL.mcp.comparison` is set, the outro or recap must acknowledge it ("run the same on `<baseline>` to see it silent").
-4. **Do not** invent numbers, verbs, or fork names not present in `canonical.ts` / `examples.ts`. If a scenario has `expectedTransferLogsOnAmsterdam: 1`, the narration says "one Transfer log", not "a transfer log or two".
+4. **Do not** invent numbers, verbs, or fork names not present in `canonical.ts` / `examples.ts`. If a scenario has `expectedTransferLogsOnGlamsterdam: 1`, the narration says "one Transfer log", not "a transfer log or two".
 5. **Diversity check** — scan prior `narration.json` `hook` and `outro` segments. If your draft repeats a stock phrase ("Read the EIP on Forkcast. Explore it on Feel Your Protocol."), reword. The URL and platform names can repeat; the framing cannot.
 6. **Click-target inventory** (hard — write the table, then draft `playbook.json`). One row per planned `click`, `step`, and `selectExample`:
 
@@ -184,7 +184,7 @@ Single-tweet form is allowed **only** when context + one line of mechanism + all
 
 Pick **two** of these three, in this order, then the URL:
 
-1. **Context** (1 line, no fluff) — `EIP-NNNN · <fork>` and one verb that says what ships. Use `CANONICAL.maturity.forkInclusion` when set. Fork wording: **Glamsterdam** = hardfork, **Amsterdam** = EL rules — one label, whichever is truer for this EIP; not both as a sequence.
+1. **Context** (1 line, no fluff) — `EIP-NNNN · <fork>` and one verb that says what ships. Use `CANONICAL.taxonomy.timeline` (combined upgrade name: **Glamsterdam**, **Fusaka**, **Pectra**, …). Do not use the EL city name as the public label.
 2. **Mechanism** (1 line, plain words) — the video's climax / recap distilled. Say what *happens* (a Transfer log fires; the stack copies depth 17), not what an app should *do*. Derived from `canonical.ts` + the recap narration segment, not invented.
 3. **Diagnostic** (1 line, invites reflection) — a question that maps the mechanism to the reader's own surface. Examples of the shape: "Does your indexer see native ETH the way it sees ERC-20?", "How deep does your compiler pack the stack?". Never generic ("Is your dapp ready?") — always something they can actually check.
 
@@ -203,7 +203,7 @@ Two naked URLs stacked. Optional one line of framing before them (e.g. "Where it
 - Recap the video ("in this 60-second clip…")
 - Hashtag block, self-`@FeelEthereum`, "check out", "you've been waiting", "don't miss"
 - Analyst tone, price, MCP / x402 / token
-- Mention Glamsterdam **and** Amsterdam in the same tweet as if they were a sequence
+- Treat Glamsterdam and Amsterdam as two forks or a sequence (Amsterdam is the EL alias, not a second name to put in the tweet)
 - Invent numbers, fork names, or verbs not present in `canonical.ts` / `examples.ts`
 - Emojis by default. One "↓" or "→" as an arrow is fine when it earns its character; skip otherwise
 
@@ -277,7 +277,7 @@ The X arc (comic + video tweet) is the primary channel; YouTube Shorts is a **se
 
 - Lead with **`EIP-NNNN`** — that's the search anchor
 - Follow with the mechanism in plain words (verb + object)
-- Optional fork label in parens: `(Amsterdam)`
+- Optional fork label in parens: `(Glamsterdam)`
 - End with ` #Shorts` (unlocks Shorts shelf placement)
 
 Do **not** clone the X tweet opener — YouTube is a different intent surface (search, not timeline). Do not add emojis, question marks, or clickbait phrasing.
@@ -308,12 +308,12 @@ YouTube Studio upload rules (Shorts custom thumbnail):
 
 ### Tags (5–10 loose keywords)
 
-Weak signal but still helps related-video ranking. Pick: `Ethereum`, `EIP-NNNN`, the fork name (both `Amsterdam` and `Glamsterdam` are OK here — this is search metadata, not tweet copy), the topic (`taxonomy.topic`), and 1–3 mechanism words drawn from `CANONICAL.mcp.keywords`.
+Weak signal but still helps related-video ranking. Pick: `Ethereum`, `EIP-NNNN`, the combined fork name (`Glamsterdam`, `Fusaka`, …), the topic (`taxonomy.topic`), and 1–3 mechanism words drawn from `CANONICAL.mcp.keywords`. Already-published shorts may still list the EL city name as a search alias — do not add it on new videos.
 
 ### Category + Playlist
 
 - **Category:** *Science & Technology* (default for every FYP short).
-- **Playlists:** two memberships. Yaml `playlist:` is the **fork** shelf (*Feel Your Protocol · Amsterdam EIPs*). Upload / playlist-sync also add the **topic** shelf (*Feel Your Protocol · Robustness*, *UX*, …) from `video/src/explorationRegistry.ts` (same labels as `TOPICS.ts`). Create either playlist if it does not exist. Do not add a playlist per tag.
+- **Playlists:** two memberships. Yaml `playlist:` is the **fork** shelf (*Feel Your Protocol · Glamsterdam EIPs*). Already-published `youtube.yml` files may still name the live YouTube playlist *Amsterdam EIPs* — do not rename those fields. New videos use Glamsterdam. Upload / playlist-sync also add the **topic** shelf (*Feel Your Protocol · Robustness*, *UX*, …) from `video/src/explorationRegistry.ts` (same labels as `TOPICS.ts`). Create either playlist if it does not exist. Do not add a playlist per tag.
 
 ### Diversity check
 
