@@ -188,6 +188,6 @@ describe('HomeView', () => {
   })
 
   it('keeps featured order in sync with homeCatalog', () => {
-    expect(FEATURED_EXPLORATION_IDS[0]).toBe('eip-8038')
+    expect(FEATURED_EXPLORATION_IDS[0]).toBe('eip-7954')
   })
 })

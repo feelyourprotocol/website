@@ -21,6 +21,7 @@
  */
 export enum Tag {
   BAL = 'BAL',
+  Contracts = 'Contracts',
   EVM = 'EVM',
   GasCosts = 'Gas Costs',
   Logs = 'Logs',

@@ -23,6 +23,7 @@ export const E2E_EXPLORATIONS: E2eExploration[] = [
   { id: 'eip-7883', path: '/eip-7883-modexp-gas-cost-increase', family: 'form' },
   { id: 'eip-7928', path: '/eip-7928-block-level-access-lists', family: 'scenario' },
   { id: 'eip-7951', path: '/eip-7951-secp256r1-precompile', family: 'form' },
+  { id: 'eip-7954', path: '/eip-7954-contract-size-limit', family: 'scenario' },
   { id: 'eip-8024', path: '/eip-8024-stack-opcodes-dupn-swapn-exchange', family: 'bytecode' },
   { id: 'eip-8037', path: '/eip-8037-state-creation-gas', family: 'scenario' },
   { id: 'eip-8038', path: '/eip-8038-state-access-gas', family: 'scenario' },

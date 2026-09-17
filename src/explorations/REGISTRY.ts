@@ -4,6 +4,7 @@ import { INFO as eip7843 } from './eip-7843/info'
 import { INFO as eip7883 } from './eip-7883/info'
 import { INFO as eip7928 } from './eip-7928/info'
 import { INFO as eip7951 } from './eip-7951/info'
+import { INFO as eip7954 } from './eip-7954/info'
 import { INFO as eip8024 } from './eip-8024/info'
 import { INFO as eip8037 } from './eip-8037/info'
 import { INFO as eip8038 } from './eip-8038/info'
@@ -19,6 +20,7 @@ export const EXPLORATIONS: Explorations = {
   [eip7883.id]: eip7883,
   [eip7928.id]: eip7928,
   [eip7951.id]: eip7951,
+  [eip7954.id]: eip7954,
   [eip8024.id]: eip8024,
   [eip8037.id]: eip8037,
   [eip8038.id]: eip8038,

@@ -1,0 +1,76 @@
+{
+  "format": "shorts",
+  "exploration": "eip-7954",
+  "defaultExample": "01-runtime-old-wall",
+  "steps": [
+    {
+      "beat": "hook",
+      "overlay": "title-card",
+      "wait": 4500
+    },
+    {
+      "beat": "context",
+      "overlay": "context",
+      "placement": "top-banner",
+      "focus": "deployment-results",
+      "cue": 3400,
+      "hideOverlay": true,
+      "wait": 600
+    },
+    {
+      "beat": "old-wall-run",
+      "overlay": "old-wall-run",
+      "annotate": "guide-run",
+      "placement": "top-banner",
+      "focus": "run-deployment",
+      "cue": 2600,
+      "click": "run-deployment",
+      "wait": 1200
+    },
+    {
+      "beat": "old-wall-read",
+      "overlay": "old-wall-read",
+      "annotate": "guide-results",
+      "placement": "top-banner",
+      "focus": "deployment-results",
+      "cue": 2800,
+      "hideOverlay": true,
+      "wait": 900
+    },
+    {
+      "beat": "initcode-run",
+      "overlay": "initcode-run",
+      "annotate": "guide-example",
+      "placement": "top-banner",
+      "focus": "example-select",
+      "cue": 3400,
+      "hideOverlay": true,
+      "selectExample": "04-initcode-old-wall",
+      "click": "run-deployment",
+      "wait": 1200
+    },
+    {
+      "beat": "initcode-read",
+      "overlay": "initcode-read",
+      "annotate": "guide-results",
+      "placement": "top-banner",
+      "focus": "deployment-results",
+      "cue": 3000,
+      "hideOverlay": true,
+      "wait": 900
+    },
+    {
+      "beat": "recap",
+      "overlay": "recap",
+      "annotate": "guide-results",
+      "placement": "top-banner",
+      "focus": "deployment-results",
+      "wait": 4300
+    },
+    {
+      "beat": "outro",
+      "overlay": "outro-card",
+      "wait": 5000
+    }
+  ]
+}

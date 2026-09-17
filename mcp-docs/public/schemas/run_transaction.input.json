@@ -3,10 +3,13 @@
   "$id": "https://mcp-docs.feelyourprotocol.org/schemas/run_transaction.input.json",
   "title": "run_transaction input",
   "type": "object",
-  "required": ["from", "to"],
+  "required": ["from"],
   "properties": {
     "from": { "type": "string", "description": "Hex sender address (impersonated)." },
-    "to": { "type": "string", "description": "Hex recipient address." },
+    "to": {
+      "type": "string",
+      "description": "Hex recipient address. Omit for contract creation; then data is initcode."
+    },
     "value": { "type": "string", "description": "Value in wei (decimal string). Default 0." },
     "data": { "type": "string", "description": "Optional calldata hex." },
     "code": {
@@ -48,7 +51,7 @@
     },
     "gasLimit": {
       "type": "string",
-      "description": "Transaction gas limit as decimal string. Default 1000000. Pass 21000 for the wallet-era simple-transfer limit. Max 30000000."
+      "description": "Transaction gas limit as decimal string. Default 1000000. Maximum 110000000; large Glamsterdam deployments use the EIP-8037 state-gas reservoir."
     },
     "authorizationList": {
       "type": "array",

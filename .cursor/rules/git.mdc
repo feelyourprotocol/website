@@ -19,8 +19,8 @@ This Cursor window’s default cwd is often `ethereumjs-monorepo`. Nested FYP ru
 ## When
 
 - Do **not** commit, push, or open a PR unless the human asks.
-- Working-tree **inspection** (branch, dirty files) is fine. Do not stash, checkout, create, rename, or push branches unless asked.
-- **Exception:** [round-trip-branch-prep](../skills/round-trip-branch-prep/SKILL.md) at exploration GO (checkout / pull / safe-delete merged local branches / create `eip-NNNN`); [round-trip-close](../skills/round-trip-close/SKILL.md) at merge GO (merge PRs, delete remote `eip-NNNN`, checkout / pull default, safe-delete local). Those skills are the ask. Do not run them outside those phases.
+- Working-tree **inspection** (branch, dirty files) is fine. Do not stash, checkout, create, rename, or push branches unless the human asks (including round-trip phase 2 — branches are human-led or explicit instruction).
+- **Exception:** [round-trip-close](../skills/round-trip-close/SKILL.md) at merge GO (merge PRs, delete remote `eip-NNNN`, checkout / pull default, safe-delete local). Do not run close outside phase 6.
 - A **push** ask includes the [pre-push CI](#before-a-push) loop: fix failures and commit those fixes without a second ask, then push.
 
 ## Scope

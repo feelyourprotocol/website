@@ -14,7 +14,8 @@
 
 | Limit | Value |
 | --- | --- |
-| Max gas limit | 30_000_000 |
+| Max bytecode / lab-block gas limit | 30_000_000 |
+| Max single-transaction gas limit | 110_000_000 |
 | Default gas limit | 1_000_000 |
 | Max bytecode size | 24_576 bytes |
 | Max trace steps | 10_000 |
@@ -31,6 +32,7 @@
 <Changelog
   title="Guarantees Changelog"
   :entries="[
+    { version: 'v0.7', date: '2026-09-17', summary: '110M transaction-only ceiling supports Glamsterdam EIP-8037 state gas for large contract creation.' },
     { version: 'v0.6', date: '2026-09-16', summary: 'Generic hardfork runs list advertised modules on provenance when eips[] is empty.' },
     { version: 'v0.4', date: '2026-09-10', summary: 'Max 8 transactions on run_block.' },
     { version: 'v0.3', date: '2026-07-20', summary: 'Split from execution-engine — user-facing limits and provenance under use/.' },

@@ -1,7 +1,7 @@
 # Feel Your Protocol MCP Server — Use Layer (full text)
 # Source: mcp-docs/use/ — end-user documentation for humans and AI agents
 # https://mcp-docs.feelyourprotocol.org/llms-full.txt
-# Updated: 2026-09-16 — PUBLIC MCP NOT LAUNCHED; launch week 5–9 Oct 2026 target
+# Updated: 2026-09-17 — PUBLIC MCP NOT LAUNCHED; launch week 5–9 Oct 2026 target
 
 ================================================================================
 READ FIRST — LAUNCH STATUS
@@ -124,36 +124,38 @@ TOOL: RUN_TRANSACTION (IMPLEMENTED — PUBLIC LAUNCH PENDING)
 
 MCP tool name: run_transaction
 
-Purpose: Run a value-bearing transaction. Returns paid gasUsed (gasUsedScope: transaction),
-optional Amsterdam txRegularGas/txStateGas, receipt logs/decodedLogs.
+Purpose: Run a message-call or contract-creation transaction. Returns paid gasUsed
+(gasUsedScope: transaction), optional Amsterdam txRegularGas/txStateGas,
+receipt logs/decodedLogs, and successful creation address/code size.
 
 Inputs:
-- from, to (required): hex addresses (from is impersonated)
+- from (required): impersonated hex sender
+- to (optional): hex recipient; omit for contract creation, where data is initcode
 - value (optional): wei decimal string
-- data, code, accounts, fork, gasLimit (optional). Default gasLimit 1000000. Pass 21000 for wallet-era limit.
+- data, code, accounts, fork, gasLimit (optional). Default gasLimit 1000000; transaction ceiling 110000000.
   accounts[] may include storage: [{ slot, value }] hex words (EIP-8038 existing-slot SSTORE).
 
-Outputs: success, gasUsed, gasUsedScope, txRegularGas?, txStateGas?, returnValue, error, logs?, decodedLogs?, provenance
+Outputs: success, gasUsed, gasUsedScope, txRegularGas?, txStateGas?, returnValue, error, createdAddress?, deployedCodeSize?, logs?, decodedLogs?, provenance
 
 First-touch 1 wei to empty account: Osaka gasUsed 21000; Amsterdam ≈ 204600 (txStateGas 183600).
 gasLimit 21000 fails on Amsterdam first-touch.
 
-Use for EIP-8037 and EIP-7708 plain ETH transfers, and paid txStateGas. Use run_bytecode for opcodes/precompiles, SLOAD / EXTCODESIZE, and SSTORE program gas.
+Use for EIP-7954 contract creation, EIP-8037 and EIP-7708 plain ETH transfers, and paid txStateGas. Use run_bytecode for opcodes/precompiles, SLOAD / EXTCODESIZE, and SSTORE program gas.
 ================================================================================
 COVERAGE
 ================================================================================
 
 Lineage forks: berlin, london, paris, shapella (alias shanghai), dencun (alias cancun), pectra (alias prague), fusaka (baselineForkId; aliases osaka, mainnet-el), glamsterdam (default preview; alias amsterdam).
-Compare: eipIntroductions → predecessor vs introducedAt. Runnable modules: 8024, 7843, 7708, 7883, 7951, 7928, 8037, 8038. Set-code txs: run_transaction authorizationList on pectra+ (not a catalogue twin).
+Compare: eipIntroductions → predecessor vs introducedAt. Runnable modules: 8024, 7843, 7708, 7883, 7951, 7954, 7928, 8037, 8038. Set-code txs: run_transaction authorizationList on pectra+ (not a catalogue twin).
 Fork docs: use/forks/glamsterdam (preview), use/forks/fusaka (mainnet), use/forks/historical-forks (berlin→pectra). Glacier delay forks not catalogued.
-Exploration twins (human catalogue): 8024, 7708, 7883, 7951, 7928, 7843, 8037, 8038 ready for public MCP. See use/eips/.
+Exploration twins (human catalogue): 8024, 7708, 7883, 7951, 7954, 7928, 7843, 8037, 8038 ready for public MCP. See use/eips/.
 
 ================================================================================
 GUARANTEES
 ================================================================================
 
 Deterministic execution. Provenance on every result. Limits:
-- Max gas 30000000, default 1000000
+- Max bytecode/lab-block gas 30000000; max single-transaction gas 110000000; default 1000000
 - Max bytecode 24576 bytes
 - Max trace steps 10000
 
