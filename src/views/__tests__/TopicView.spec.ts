@@ -4,11 +4,12 @@ import { mount, RouterLinkStub } from '@vue/test-utils'
 
 import { EXPLORATIONS, getTopicExplorationIds } from '@/explorations/REGISTRY'
 import { Tag } from '@/explorations/TAGS'
+import type { TopicId } from '@/explorations/topicIds'
 import { TOPICS } from '@/explorations/TOPICS'
 
 import TopicView from '../TopicView.vue'
 
-const topicId = Object.keys(TOPICS)[0]
+const topicId = Object.keys(TOPICS)[0] as TopicId
 const topic = TOPICS[topicId]
 const explorationIds = getTopicExplorationIds(topicId)
 
@@ -20,7 +21,10 @@ const router = createRouter({
   ],
 })
 
-async function mountTopicView(routeName = topicId, query: Record<string, string> = {}) {
+async function mountTopicView(
+  routeName: TopicId | 'all' = topicId,
+  query: Record<string, string> = {},
+) {
   await router.push({ name: routeName, query })
   await router.isReady()
   return mount(TopicView, {
@@ -102,8 +106,10 @@ describe('TopicView', () => {
   })
 
   it('still serves empty topic hubs at their route', async () => {
-    const emptyId = Object.entries(TOPICS).find(([, t]) => t.explorations.length === 0)![0]
-    const emptyTopic = TOPICS[emptyId as keyof typeof TOPICS]
+    const emptyId = Object.entries(TOPICS).find(
+      ([, t]) => t.explorations.length === 0,
+    )![0] as TopicId
+    const emptyTopic = TOPICS[emptyId]
     const emptyRouter = createRouter({
       history: createMemoryHistory(),
       routes: [{ path: emptyTopic.path, name: emptyId, component: TopicView }],
