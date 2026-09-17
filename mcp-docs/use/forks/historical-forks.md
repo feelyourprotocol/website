@@ -39,7 +39,7 @@ Examples:
 | 2 | `paris` | `merge`, `the-merge` | 3675 Merge (not replayable here), 4399 PREVRANDAO |
 | 3 | `shapella` | `shanghai` | 3855 PUSH0, 3860 initcode, 4895 withdrawals (limited in lab) |
 | 4 | `dencun` | `cancun` | 1153 transient storage, 5656 MCOPY, 4844 blobs (no blob txs in lab) |
-| 5 | `pectra` | `prague` | 7702 set-code, 2537 BLS precompiles, 7623 calldata |
+| 5 | `pectra` | `prague` | [7702 set-code](/use/eips/eip-7702), 2537 BLS precompiles, 7623 calldata |
 
 **Floor:** **Berlin** — Istanbul and earlier hardforks are out of scope for this MCP round.
 
@@ -58,6 +58,7 @@ The lab does not replay Merge consensus, beacon withdrawals, blob sidecars, or P
 <Changelog
   title="Historical Forks Catalogue Changelog"
   :entries="[
+    { version: 'v0.4', date: '2026-09-17', summary: 'Pectra 7702 twin linked from the lineage table.' },
     { version: 'v0.3', date: '2026-09-17', summary: 'Canonical ids from Shapella on are combined names (shapella, dencun, pectra); EL city names are aliases.' },
     { version: 'v0.2', date: '2026-09-16', summary: 'Berlin and London added to lineage floor; glacier delay forks excluded from catalog.' },
     { version: 'v0.1', date: '2026-09-16', summary: 'Combined historical doc; preview / mainnet / history trio.' },

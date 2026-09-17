@@ -10,7 +10,16 @@ This page is the home for **preview** execution-layer hardforks on the MCP: what
 
 You do **not** need to name an EIP. Omit `fork` or pass `{ "baseHardfork": "glamsterdam", "eips": [] }`. The probe lists `summary`, `keywords`, `shapes`, and advertised **`relatedEips`**.
 
-**Advertised runnable modules:** **8024**, **7843**, **7708**, **7928** (BAL via **`generate`** / **`inspect`**), **8037**, **8038**.
+**Advertised runnable twins:**
+
+| EIP | Page |
+| --- | --- |
+| 8024 | [DUPN / SWAPN / EXCHANGE](/use/eips/eip-8024) |
+| 7843 | [SLOTNUM](/use/eips/eip-7843) |
+| 7708 | [ETH transfer logs](/use/eips/eip-7708) |
+| 7928 | [BAL](/use/eips/eip-7928) (`generate` / `inspect`) |
+| 8037 | [State creation gas](/use/eips/eip-8037) |
+| 8038 | [State-access gas](/use/eips/eip-8038) |
 
 ## What you can ask your agent
 
@@ -40,7 +49,7 @@ Other bundled changes may execute in the client but stay **uncatalogued** until 
 | --- | --- |
 | [Current mainnet (Fusaka)](/use/forks/fusaka) | Today’s EL baseline |
 | [Historical forks](/use/forks/historical-forks) | Paris → Pectra |
-| [Coverage](/use/coverage) | Lineage + EIP twins |
+| [EIP catalogue](/use/coverage) | Lineage + EIP twins |
 | [EIP-7773](https://eips.ethereum.org/EIPS/eip-7773) | Glamsterdam meta |
 
 ## Changelog
@@ -48,6 +57,7 @@ Other bundled changes may execute in the client but stay **uncatalogued** until 
 <Changelog
   title="Preview Forks (Glamsterdam) Changelog"
   :entries="[
+    { version: 'v0.4', date: '2026-09-17', summary: 'Twin pages linked from this fork doc (sidebar no longer lists EIPs).' },
     { version: 'v0.3', date: '2026-09-17', summary: 'Canonical catalog id is glamsterdam; amsterdam is the EL alias.' },
     { version: 'v0.2', date: '2026-09-16', summary: 'Framed as preview/upcoming section; room for post-Glamsterdam forks (e.g. Hegota).' },
     { version: 'v0.1', date: '2026-09-16', summary: 'Named fork capability — generic Glamsterdam runs.' },

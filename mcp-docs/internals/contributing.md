@@ -13,8 +13,8 @@ When a capability ships:
 
 1. Add or update a page under `use/tools/` (generic MCP tool reference)
 2. Add or update `use/eips/eip-NNNN.md` for **every live website exploration** — Runnable or Planned (human catalogue — prompts, twins; not demo bytecode). Runnable engine modules also update the live catalog in `use/coverage.md`.
-3. Add or update `use/forks/<id>.md` when a **named fork** catalog row changes (generic hardfork runs — Glamsterdam, Fusaka, Pectra).
-4. Update `use/coverage.md` index and sidebar in `.vitepress/config.ts`
+3. Add or update `use/forks/<id>.md` when a **named fork** catalog row changes (generic hardfork runs — Glamsterdam, Fusaka, Pectra). Link new twins from that fork page.
+4. Update `use/coverage.md` (the human EIP index). Do **not** add per-EIP rows to the VitePress sidebar.
 5. Update `internals/execution-engine` or `internals/gateway` as needed
 6. Add a changelog entry on the affected page
 7. Update `public/llms.txt` and `public/llms-full.txt`
@@ -30,6 +30,7 @@ See [Quality](/internals/quality) for test and lint commands.
 <Changelog
   title="Contributing Changelog"
   :entries="[
+    { version: 'v0.7', date: '2026-09-17', summary: 'EIP pages stay off the sidebar — index them on Coverage and the matching fork page.' },
     { version: 'v0.6', date: '2026-09-16', summary: 'Named-fork catalogue pages under use/forks/ when fork capability rows change.' },
     { version: 'v0.5', date: '2026-09-02', summary: 'use/ documents the hosted product only — no self-host early access.' },
     { version: 'v0.4', date: '2026-08-27', summary: 'EIP catalogue under use/eips/; link to engine/gateway AGENTS.md for builders.' },

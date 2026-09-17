@@ -2,6 +2,8 @@
 
 > **Status:** Catalogue for the **upcoming public MCP** (not launched). Runnable modules are those the hosted server will advertise via probe. Until then, use the [website explorations](https://feelyourprotocol.org).
 
+This page is the **human EIP index**. Per-EIP pages live at `/use/eips/eip-NNNN` but are not listed in the sidebar — open them from the tables below, from a [fork page](/use/forks/glamsterdam), or via search. Agents use `describe_capabilities`, not this nav.
+
 Fork configuration is **à la carte**: a base hardfork plus an optional EIP list (runnable modules only — history is “run under Shapella”, not “enable 3855 on Paris”). Named forks are **catalog capabilities** in the **Berlin→Glamsterdam lineage**. A generic run under a named fork does **not** require naming an EIP.
 
 **Compare pattern:** find the change in `eipIntroductions` → `introducedAt` → run the same verb on **predecessorFork(introducedAt)** and on **introducedAt**.
@@ -60,6 +62,7 @@ Canonical metadata for twins lives in website `src/explorations/eip-NNNN/canonic
 <Changelog
   title="Coverage Changelog"
   :entries="[
+    { version: 'v0.24', date: '2026-09-17', summary: 'Human EIP index — per-EIP pages stay linked from this catalogue, not the sidebar.' },
     { version: 'v0.23', date: '2026-09-16', summary: 'Lineage extended with Berlin and London (historical floor); glacier BPO forks excluded.' },
     { version: 'v0.22', date: '2026-09-16', summary: 'Fork docs: preview (Glamsterdam), mainnet (Fusaka), combined historical page.' },
     { version: 'v0.21', date: '2026-09-16', summary: 'Paris→Glamsterdam lineage table; eipIntroductions compare pattern; Pectra no longer ModExp-only.' },

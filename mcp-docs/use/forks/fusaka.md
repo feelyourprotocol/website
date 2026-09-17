@@ -12,7 +12,12 @@ Activated EIP numbers are in the probe (`namedForks[].activatedEips`, **`eipIntr
 
 ## Runnable FYP twins on Fusaka
 
-**7883**, **7951** — [Coverage](/use/coverage).
+| EIP | Page |
+| --- | --- |
+| 7883 | [ModExp gas](/use/eips/eip-7883) |
+| 7951 | [secp256r1](/use/eips/eip-7951) |
+
+Full index: [EIP catalogue](/use/coverage).
 
 ## Compare
 
@@ -37,6 +42,7 @@ Provenance on a generic Fusaka run lists advertised modules **7883** and **7951*
 | --- | --- |
 | [Preview (Glamsterdam)](/use/forks/glamsterdam) | Default lab / upcoming |
 | [Historical forks](/use/forks/historical-forks) | Paris → Pectra |
+| [EIP catalogue](/use/coverage) | Lineage + EIP twins |
 | [Fork timeline](https://ethereum.org/ethereum-forks/) | External reference |
 
 ## Changelog
@@ -44,6 +50,7 @@ Provenance on a generic Fusaka run lists advertised modules **7883** and **7951*
 <Changelog
   title="Current Mainnet Fork Changelog"
   :entries="[
+    { version: 'v0.5', date: '2026-09-17', summary: 'Twin pages linked from this fork doc (sidebar no longer lists EIPs).' },
     { version: 'v0.4', date: '2026-09-17', summary: 'Canonical catalog id is fusaka; osaka is the EL alias; mainnet-el remains the role alias.' },
     { version: 'v0.3', date: '2026-09-16', summary: 'Doc framed as rotating mainnet section (Fusaka now; updates when mainnet fork changes).' },
     { version: 'v0.2', date: '2026-09-16', summary: 'Lineage and predecessor compare pattern.' },
