@@ -26,7 +26,7 @@ describe('EIP-7954 contract-size exploration', () => {
     expect(CANONICAL.taxonomy.tags).toContain(Tag.Contracts)
     expect(CANONICAL.taxonomy.timeline).toBe('glamsterdam')
     expect(CANONICAL.mcp.shapes).toEqual(['transaction'])
-    expect(CANONICAL.mcp.docsStatus).toBe('planned-module')
+    expect(CANONICAL.mcp.docsStatus).toBe('runnable')
     expect(CANONICAL.mcp.comparison).toEqual(
       expect.objectContaining({
         baselineForkId: 'fusaka',

@@ -25,7 +25,7 @@ None required. Pass `{}` or omit arguments.
 | Field | Description |
 | --- | --- |
 | `engineVersion` | Semver of `mcp-execution-engine` |
-| `ceilings` | `maxGasLimit`, `defaultGasLimit`, `maxBytecodeBytes`, `maxTraceSteps`, `maxTxsPerBlock` |
+| `ceilings` | `maxGasLimit`, `maxTransactionGasLimit`, `defaultGasLimit`, `maxBytecodeBytes`, `maxTraceSteps`, `maxTxsPerBlock` |
 | `baselineForkId` | Current mainnet EL (`fusaka`) — first-class run target and optional compare baseline |
 | `namedForks` | Berlin→Glamsterdam lineage — `order`, `predecessorId`, `successorId`, `role`, `activatedEips`, advertised `relatedEips`, `shapes` |
 | `eipIntroductions` | When each EIP activated — use with predecessor compares (e.g. PUSH0 at Shapella, predecessor Paris) |
@@ -72,6 +72,7 @@ _Output (abbreviated):_
 <Changelog
   title="Describe Capabilities Changelog"
   :entries="[
+    { version: 'v0.15', date: '2026-09-17', summary: 'maxTransactionGasLimit exposes the separate 110M transaction-only ceiling.' },
     { version: 'v0.14', date: '2026-09-17', summary: 'baselineForkId is a first-class run target, not only a compare hint.' },
     { version: 'v0.13', date: '2026-09-16', summary: 'namedForks are catalog capabilities (summary, relatedEips, shapes); generic hardfork questions are first-class.' },
     { version: 'v0.11', date: '2026-09-10', summary: 'EIP-7843 SLOTNUM in the live catalog (shapes: block).' },

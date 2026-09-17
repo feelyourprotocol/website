@@ -4,9 +4,9 @@
 
 ## Purpose
 
-Run a **value-bearing transaction** under a chosen fork and receive **paid transaction gas** plus receipt logs. The sender is impersonated from `from` — no private key.
+Run a **message-call or contract-creation transaction** under a chosen fork and receive **paid transaction gas** plus receipt logs. The sender is impersonated from `from` — no private key.
 
-This is the verb for wallet gas limits, first-touch ETH transfers (EIP-8037), EIP-7708 Transfer logs on **tx value**, and paid **`txStateGas`** (new-slot SSTORE / first-touch). Program-gas SSTORE / SLOAD belongs on [Run Bytecode](/use/tools/run-bytecode).
+This is the verb for wallet gas limits, contract deployment boundaries (EIP-7954), first-touch ETH transfers (EIP-8037), EIP-7708 Transfer logs on **tx value**, and paid **`txStateGas`** (new-slot SSTORE / first-touch). Program-gas SSTORE / SLOAD belongs on [Run Bytecode](/use/tools/run-bytecode).
 
 Raw opcode / stack / precompile programs belong on [Run Bytecode](/use/tools/run-bytecode).
 
@@ -17,6 +17,7 @@ Raw opcode / stack / precompile programs belong on [Run Bytecode](/use/tools/run
 - Paid gas of a simple ETH transfer (Fusaka ≈ 21,000; Glamsterdam first-touch ≈ 204,600)
 - Receipt logs / decoded EIP-7708 Transfer rows
 - Glamsterdam `txRegularGas` / `txStateGas` when present
+- Contract creation with caller-supplied initcode and deployed runtime-code size
 
 ## MCP tool name
 
@@ -27,13 +28,13 @@ Raw opcode / stack / precompile programs belong on [Run Bytecode](/use/tools/run
 | Field | Required | Description |
 | --- | --- | --- |
 | `from` | Yes | Hex sender (impersonated) |
-| `to` | Yes | Hex recipient |
+| `to` | No | Hex recipient. Omit for contract creation; then `data` is initcode |
 | `value` | No | Wei as a decimal string (default `0`) |
-| `data` | No | Calldata hex |
+| `data` | No | Calldata hex, or initcode when `to` is omitted |
 | `code` | No | Runtime bytecode installed at `to` before the tx (contract-wallet / SSTORE) |
 | `accounts` | No | Extra accounts to prefund (`address`, optional `balance`, `code`, `storage` slots) |
 | `fork` | No | `{ baseHardfork, eips[] }` — default **`glamsterdam`** |
-| `gasLimit` | No | Decimal string. Default `1000000`. Pass **`21000`** for the wallet-era simple-transfer limit. |
+| `gasLimit` | No | Decimal string. Default `1000000`. Tool ceiling `110000000`; fork validity rules still apply |
 | `authorizationList` | No | Signed EIP-7702 JSON items — **Pectra+** type-4 set-code tx. Use [Inspect](/use/tools/inspect) `authorization-list` to validate first. |
 
 ### Fork notes
@@ -51,6 +52,8 @@ Same named forks as [Run Bytecode](/use/tools/run-bytecode): default **glamsterd
 | `txStateGas` | Glamsterdam only — state-gas total |
 | `returnValue` | Hex return data |
 | `error` | Failure message (e.g. intrinsic gas too low), else `null` |
+| `createdAddress` | Successful creation only — deployed contract address |
+| `deployedCodeSize` | Successful creation only — stored runtime-code bytes |
 | `logs` / `decodedLogs` | Receipt logs; EIP-7708 Transfer/Burn decorations when present |
 | `provenance` | Always present |
 
@@ -73,13 +76,14 @@ Expected: `success: true`, `gasUsed: "204600"`, `txStateGas: "183600"`. The same
 
 ## Limits
 
-See [Guarantees](/use/guarantees) for gas ceilings.
+See [Guarantees](/use/guarantees) for gas ceilings. The higher transaction-only ceiling supports Glamsterdam's EIP-8037 state-gas reservoir for large deployments.
 
 ## Changelog
 
 <Changelog
   title="Run Transaction Changelog"
   :entries="[
+    { version: 'v0.6', date: '2026-09-17', summary: 'Contract creation via omitted to; createdAddress and deployedCodeSize; 110M transaction-only ceiling.' },
     { version: 'v0.5', date: '2026-09-17', summary: 'Fusaka fork note: current-mainnet features, not only a compare baseline.' },
     { version: 'v0.4', date: '2026-09-16', summary: 'Generic Glamsterdam / Fusaka transaction is a first-class when-to-use.' },
     { version: 'v0.2', date: '2026-09-14', summary: 'accounts[].storage seeds slots (EIP-8038 existing-slot SSTORE).' },

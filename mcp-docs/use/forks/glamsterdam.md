@@ -18,10 +18,9 @@ You do **not** need to name an EIP. Omit `fork` or pass `{ "baseHardfork": "glam
 | 7843 | [SLOTNUM](/use/eips/eip-7843) |
 | 7708 | [ETH transfer logs](/use/eips/eip-7708) |
 | 7928 | [BAL](/use/eips/eip-7928) (`generate` / `inspect`) |
+| 7954 | [Contract size limits](/use/eips/eip-7954) |
 | 8037 | [State creation gas](/use/eips/eip-8037) |
 | 8038 | [State-access gas](/use/eips/eip-8038) |
-
-**Planned twin:** [EIP-7954 contract size limits](/use/eips/eip-7954) needs contract creation in `run_transaction` before it can join the advertised runnable list.
 
 ## What you can ask your agent
 
@@ -59,6 +58,7 @@ Other bundled changes may execute in the client but stay **uncatalogued** until 
 <Changelog
   title="Preview Forks (Glamsterdam) Changelog"
   :entries="[
+    { version: 'v0.5', date: '2026-09-17', summary: 'EIP-7954 contract creation added to advertised runnable twins.' },
     { version: 'v0.4', date: '2026-09-17', summary: 'Twin pages linked from this fork doc (sidebar no longer lists EIPs).' },
     { version: 'v0.3', date: '2026-09-17', summary: 'Canonical catalog id is glamsterdam; amsterdam is the EL alias.' },
     { version: 'v0.2', date: '2026-09-16', summary: 'Framed as preview/upcoming section; room for post-Glamsterdam forks (e.g. Hegota).' },

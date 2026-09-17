@@ -41,6 +41,6 @@ export const CANONICAL: ProtocolChangeCanonical = {
       previewForkId: 'glamsterdam',
       note: 'Deploy identical boundary-size initcode before and after the limit increase.',
     },
-    docsStatus: 'planned-module',
+    docsStatus: 'runnable',
   },
 }
