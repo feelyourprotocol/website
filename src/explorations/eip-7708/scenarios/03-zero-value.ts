@@ -9,8 +9,8 @@ export const zeroValueScenario: TransferScenarioDefinition = {
     'Zero-value moves are intentionally silent — no Transfer log. Filters that only watch ' +
     'ERC-20 events stay quiet when nothing actually moved.',
   step: 3,
-  expectedTransferLogsOnAmsterdam: 0,
-  emptyAmsterdamHint: 'Correct — zero-value transfers do not emit EIP-7708 logs.',
+  expectedTransferLogsOnGlamsterdam: 0,
+  emptyGlamsterdamHint: 'Correct — zero-value transfers do not emit EIP-7708 logs.',
   preState: [
     {
       label: 'sender',

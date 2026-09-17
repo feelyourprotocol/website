@@ -44,7 +44,7 @@ When instructing an agent: pick the topic that best reflects the **primary conce
 
 ### Timeline
 
-Maturity + hardfork placement — one entry per exploration in `TIMELINE.ts`. Hardfork names follow Ethereum upgrade cities; categories like `research` and `ideas` are stable. New hardfork entries can be added as the schedule evolves.
+Forks that have explorations — ids in `TIMELINE.ts` match the MCP lineage catalog (`fusaka`, `glamsterdam`, …). From Shapella on, the combined upgrade name is canonical; the EL city name is an alias. Website nav is this subset only (do not add empty historical forks). Role is `historical` | `current` | `preview` (same as MCP `namedForks[].role`). Add a row when an exploration for that fork ships.
 
 ### Tags
 

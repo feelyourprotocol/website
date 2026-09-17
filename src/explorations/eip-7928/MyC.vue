@@ -128,7 +128,7 @@ await init()
           <ActionButtonUIC
             test-id="run-block"
             text="Run block"
-            tooltip="Execute block on Amsterdam VM and generate BAL"
+            tooltip="Execute block on Glamsterdam VM and generate BAL"
             :onClick="runBlock"
           />
         </template>

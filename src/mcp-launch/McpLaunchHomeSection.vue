@@ -14,7 +14,7 @@ import { MCP_DOCS_HOME, ROADMAP_LAUNCH } from '@/libs/roadmapUrls'
         The deterministic MCP lab is built — the
         <strong>public hosted server</strong> at
         <span class="font-mono text-xs">mcp.feelyourprotocol.org</span>
-        opens in launch week. Explore Amsterdam EIPs here today; agents connect at launch.
+        opens in launch week. Explore Glamsterdam EIPs here today; agents connect at launch.
       </p>
       <div class="flex flex-wrap items-center gap-2 mt-4">
         <a

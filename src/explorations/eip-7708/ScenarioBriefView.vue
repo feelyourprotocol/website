@@ -11,7 +11,7 @@ const props = defineProps<{
   meta: TransferExampleMeta
   result?: RunScenarioOutput | null
   hasRun: boolean
-  hardfork: 'amsterdam' | 'osaka'
+  hardfork: 'glamsterdam' | 'fusaka'
 }>()
 
 const preStateChips = computed(() => formatPreStateChips(props.scenario.preState))
@@ -26,8 +26,8 @@ const outcomeLine = computed(() => {
 })
 
 const expectationMet = computed(() => {
-  if (!props.hasRun || !props.result || props.hardfork !== 'amsterdam') return null
-  return props.result.transferLogCount === props.scenario.expectedTransferLogsOnAmsterdam
+  if (!props.hasRun || !props.result || props.hardfork !== 'glamsterdam') return null
+  return props.result.transferLogCount === props.scenario.expectedTransferLogsOnGlamsterdam
 })
 </script>
 
@@ -76,14 +76,14 @@ const expectationMet = computed(() => {
         class="block mt-1 min-h-[1.25rem]"
         :class="expectationMet === false ? 'opacity-80' : 'invisible'"
       >
-        Expected {{ scenario.expectedTransferLogsOnAmsterdam }} Transfer log(s) on Amsterdam — check
-        the scenario or hardfork.
+        Expected {{ scenario.expectedTransferLogsOnGlamsterdam }} Transfer log(s) on Glamsterdam —
+        check the scenario or hardfork.
       </span>
       <span
         class="block mt-1 min-h-[1.25rem]"
-        :class="hardfork === 'osaka' && hasRun ? 'opacity-70' : 'invisible'"
+        :class="hardfork === 'fusaka' && hasRun ? 'opacity-70' : 'invisible'"
       >
-        Switch to Amsterdam on the same scenario to see EIP-7708 logs appear.
+        Switch to Glamsterdam on the same scenario to see EIP-7708 logs appear.
       </span>
     </footer>
   </section>

@@ -24,7 +24,6 @@ export const CANONICAL: ProtocolChangeCanonical = {
   },
   maturity: {
     eipStatus: 'Final',
-    forkInclusion: 'Pectra (Prague)',
     implMaturity: 'Implemented in EthereumJS (Prague hardfork)',
     testMaturity: 'EthereumJS vm eip-7702; FYP MCP run_transaction + inspect',
   },
@@ -32,9 +31,9 @@ export const CANONICAL: ProtocolChangeCanonical = {
     shapes: ['transaction', 'inspect'],
     keywords: ['7702', 'eoa', 'delegation', 'set-code', 'authorization list', 'type-4'],
     comparison: {
-      baselineForkId: 'cancun',
-      previewForkId: 'prague',
-      note: 'Type-4 set-code txs and delegation require Prague; Cancun rejects authorizationList runs.',
+      baselineForkId: 'dencun',
+      previewForkId: 'pectra',
+      note: 'Type-4 set-code txs and delegation require Pectra; Dencun rejects authorizationList runs.',
     },
     docsStatus: 'runnable',
   },

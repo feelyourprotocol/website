@@ -35,7 +35,7 @@ describe('validateCompanionCoverage', () => {
   it('allows a companion click after expand, then a stepper click after peek', () => {
     const issues = validateCompanionCoverage(
       playbook([
-        { beat: 'osaka', expandCompanion: 'full', click: 'hardfork-osaka' },
+        { beat: 'fusaka', expandCompanion: 'full', click: 'hardfork-fusaka' },
         { beat: 'run', expandCompanion: 'peek', click: 'bytecode-run' },
       ]),
     )
@@ -55,7 +55,7 @@ describe('validateCompanionCoverage', () => {
 })
 
 describe('companion coverage on shipped playbooks', () => {
-  it('accepts eip-7843 (peek before stepper, expand before Osaka toggle)', () => {
+  it('accepts eip-7843 (peek before stepper, expand before Fusaka toggle)', () => {
     const project = loadVideoProject('eip-7843', PROJECTS_ROOT)
     const issues = validateStoryboard(project.playbook, project.content, project.zones)
     expect(issues.filter((i) => i.severity === 'error')).toHaveLength(0)

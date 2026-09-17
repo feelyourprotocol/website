@@ -23,8 +23,8 @@ const SLOT_PRESETS = [
 ]
 
 const hardforkOptions = [
-  { value: 'amsterdam', label: 'Amsterdam', testId: 'hardfork-amsterdam' },
-  { value: 'osaka', label: 'Osaka', testId: 'hardfork-osaka' },
+  { value: 'glamsterdam', label: 'Glamsterdam', testId: 'hardfork-glamsterdam' },
+  { value: 'fusaka', label: 'Fusaka', testId: 'hardfork-fusaka' },
 ]
 
 const parsed = computed(() => parseSlotNumber(slotInput.value))
@@ -46,9 +46,9 @@ watch(
       setCompanionStatus({ label: parsed.value.error, state: 'idle' })
       return
     }
-    if (hardfork.value === 'osaka') {
+    if (hardfork.value === 'fusaka') {
       setCompanionStatus({
-        label: 'SLOTNUM is invalid on Osaka',
+        label: 'SLOTNUM is invalid on Fusaka',
         state: 'active',
       })
       return
@@ -121,8 +121,8 @@ watch(
       class="rounded-md border border-dashed border-slate-200 bg-slate-50 px-3 py-2.5 mt-auto min-h-[6.5rem] flex flex-col justify-center gap-1"
       data-testid="slot-readout"
     >
-      <p v-if="hardfork === 'osaka'" class="font-mono text-sm font-semibold e-text">
-        SLOTNUM is not a valid opcode on Osaka.
+      <p v-if="hardfork === 'fusaka'" class="font-mono text-sm font-semibold e-text">
+        SLOTNUM is not a valid opcode on Fusaka.
       </p>
       <template v-else>
         <p class="font-mono text-sm font-semibold e-text" data-testid="slot-readout-push">

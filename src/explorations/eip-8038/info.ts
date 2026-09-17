@@ -10,7 +10,7 @@ export const INFO: Exploration = {
   path: '/eip-8038-state-access-gas',
   title: CANONICAL.identity.name,
   seoDescription:
-    'Interactive explainer for EIP-8038 — see why an SSTORE on Amsterdam pays separately for touching a slot, changing it, or creating it.',
+    'Interactive explainer for EIP-8038 — see why an SSTORE on Glamsterdam pays separately for touching a slot, changing it, or creating it.',
   infoURL: CANONICAL.identity.specUrl,
   topic: CANONICAL.taxonomy.topic,
   timeline: CANONICAL.taxonomy.timeline,
@@ -26,8 +26,8 @@ export const INFO: Exploration = {
     '<b>create</b> (new leaf). Cold reads barely move. The change surcharge on an existing slot ' +
     'jumps from about 2,800 to 10,000. Creating a slot still uses EIP-8037 state gas.',
   usageText:
-    'The default is Amsterdam + an <b>existing slot</b>. Press <b>Run</b> and the three rows ' +
-    'fill: touch stays 2,100, change jumps, create stays empty. Switch to <b>Osaka</b> to see ' +
+    'The default is Glamsterdam + an <b>existing slot</b>. Press <b>Run</b> and the three rows ' +
+    'fill: touch stays 2,100, change jumps, create stays empty. Switch to <b>Fusaka</b> to see ' +
     'the smaller write. Try a <b>read</b> (touch only) or a <b>new slot</b> (create becomes ' +
     'state gas).',
   creatorName: 'HolgerD77',

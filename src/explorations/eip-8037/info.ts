@@ -10,7 +10,7 @@ export const INFO: Exploration = {
   path: '/eip-8037-state-creation-gas',
   title: CANONICAL.identity.name,
   seoDescription:
-    'EIP-8037 state-creation gas — see why a 21,000 gas limit is not enough for a first-touch ETH transfer on Amsterdam, and how execution vs state gas split.',
+    'EIP-8037 state-creation gas — see why a 21,000 gas limit is not enough for a first-touch ETH transfer on Glamsterdam, and how execution vs state gas split.',
   infoURL: CANONICAL.identity.specUrl,
   topic: CANONICAL.taxonomy.topic,
   timeline: CANONICAL.taxonomy.timeline,
@@ -24,11 +24,11 @@ export const INFO: Exploration = {
     `<b>${CANONICAL.question.coreQuestion}</b> ` +
     'EIP-8037 splits gas into an <b>execution</b> dimension and a <b>state</b> dimension. ' +
     'Creating a new account (or a new storage slot) charges state gas — about 183,600 for a ' +
-    'first-touch transfer — on top of the familiar 21,000. Osaka still fits in 21,000.',
+    'first-touch transfer — on top of the familiar 21,000. Fusaka still fits in 21,000.',
   usageText:
-    'The default run is Amsterdam + first-touch + a <b>recommended</b> gas limit, so the ' +
+    'The default run is Glamsterdam + first-touch + a <b>recommended</b> gas limit, so the ' +
     'transfer succeeds and the two bars appear with a 21,000 marker. Switch to ' +
-    '<b>21,000</b> to see the out-of-gas failure wallets still hit. Try Osaka, or a funded ' +
+    '<b>21,000</b> to see the out-of-gas failure wallets still hit. Try Fusaka, or a funded ' +
     'recipient, to watch the state bar collapse.',
   creatorName: 'HolgerD77',
   creatorURL: 'https://x.com/HolgerD77',

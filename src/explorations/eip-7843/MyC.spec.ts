@@ -29,7 +29,7 @@ async function mountExploration(): Promise<ReturnType<typeof mount>> {
       evm,
       block,
       slotInput: DEFAULT_SLOT.toString(),
-      hardfork: 'amsterdam' as const,
+      hardfork: 'glamsterdam' as const,
     }),
     template: `
       <Suspense>

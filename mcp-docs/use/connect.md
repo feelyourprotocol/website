@@ -29,7 +29,7 @@ The hosted server will expose:
 | `run_transaction` | transaction | Paid tx gas, receipt logs, first-touch / wallet gasLimit |
 | `run_block` | block | 1–8 txs as a lab block; optional header slot / number / timestamp |
 
-To **optionally** compare baseline vs preview, call the **same verb** twice — **`osaka`** then **`amsterdam`** — and diff gas or outcomes. A single run on Amsterdam alone is fine.
+To **optionally** compare baseline vs preview, call the **same verb** twice — **`fusaka`** then **`glamsterdam`** — and diff gas or outcomes. A single run on Glamsterdam alone is fine.
 
 Payments (x402) and the exact client config for Cursor, Claude, and other MCP hosts will be documented here when the endpoint ships. Same tools; remote HTTP — no local build required.
 
@@ -37,12 +37,12 @@ Payments (x402) and the exact client config for Cursor, Claude, and other MCP ho
 
 You do not need to memorize tool names. Examples:
 
-- *"Simulate bytecode `0x600100` under Amsterdam and tell me the gas used."*
-- *"What can I run under Amsterdam on this server without picking an EIP?"*
+- *"Simulate bytecode `0x600100` under Glamsterdam and tell me the gas used."*
+- *"What can I run under Glamsterdam on this server without picking an EIP?"*
 - *"What EIPs does the Feel Your Protocol MCP server support?"*
-- *"Run a 1 wei transfer to an empty account on Amsterdam vs Osaka — what gas would a wallet need?"*
-- *"Run two transfers as one Amsterdam block and show the receipts."*
-- *"Run ModExp gas compare on Prague vs Osaka."*
+- *"Run a 1 wei transfer to an empty account on Glamsterdam vs Fusaka — what gas would a wallet need?"*
+- *"Run two transfers as one Glamsterdam block and show the receipts."*
+- *"Run ModExp gas compare on Pectra vs Fusaka."*
 
 The agent should route these to `run_bytecode`, `run_transaction`, `run_block`, or `describe_capabilities`.
 
@@ -51,7 +51,7 @@ The agent should route these to `run_bytecode`, `run_transaction`, `run_block`, 
 <Changelog
   title="Connect Changelog"
   :entries="[
-    { version: 'v0.12', date: '2026-09-16', summary: 'Example prompt for a generic Amsterdam run with no EIP named.' },
+    { version: 'v0.12', date: '2026-09-16', summary: 'Example prompt for a generic Glamsterdam run with no EIP named.' },
     { version: 'v0.10', date: '2026-09-08', summary: 'Added run_transaction; renamed run_evm_bytecode → run_bytecode.' },
     { version: 'v0.9', date: '2026-09-02', summary: 'Launch week countdown — 5–9 Oct 2026 target; link to roadmap launch page.' },
     { version: 'v0.7', date: '2026-08-31', summary: 'Not publicly launched — reframe page as developer early access; point most users to website explorations.' },

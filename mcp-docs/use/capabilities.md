@@ -15,7 +15,7 @@ The MCP server exposes **intent-driven tools** — verbs that match how agents a
 | **Generate** | `generate` | Derive lab artifacts (BAL / EIP-7928 first) | Implemented — public launch pending |
 | **Inspect** | `inspect` | Structure + hash on caller blobs (BAL, 7702 auth, typed tx, withdrawals, requests) | Implemented — public launch pending |
 
-To **optionally** compare baseline vs preview, call the same verb twice — **osaka** (current mainnet EL), then **amsterdam** (preview) — and diff gas, success, traces, or logs. One run on Amsterdam only is fully supported — you do **not** need to name an EIP.
+To **optionally** compare baseline vs preview, call the same verb twice — **fusaka** (current mainnet EL), then **glamsterdam** (preview) — and diff gas, success, traces, or logs. One run on Glamsterdam only is fully supported — you do **not** need to name an EIP.
 
 ## Scope boundaries
 
@@ -33,7 +33,7 @@ See [Guarantees](/use/guarantees) for limits and provenance details.
   title="Capabilities Changelog"
   :entries="[
     { version: 'v0.15', date: '2026-09-16', summary: 'generate + inspect — BAL from lab block; inspect without chain state.' },
-    { version: 'v0.14', date: '2026-09-16', summary: 'Generic hardfork runs (Amsterdam default) are first-class — EIP modules remain the per-change catalogue.' },
+    { version: 'v0.14', date: '2026-09-16', summary: 'Generic hardfork runs (Glamsterdam default) are first-class — EIP modules remain the per-change catalogue.' },
     { version: 'v0.12', date: '2026-09-14', summary: 'BYOS clarified: isolated from chain, demand-built prestate in-call; not an empty-world rule.' },
     { version: 'v0.11', date: '2026-09-10', summary: 'Fourth tool run_block — lab header snapshot and per-tx receipts.' },
     { version: 'v0.10', date: '2026-09-08', summary: 'Third tool run_transaction; renamed run_evm_bytecode → run_bytecode.' },

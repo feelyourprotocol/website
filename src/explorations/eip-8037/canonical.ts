@@ -23,8 +23,7 @@ export const CANONICAL: ProtocolChangeCanonical = {
   },
   maturity: {
     eipStatus: 'Review',
-    forkInclusion: 'Scheduled (Amsterdam)',
-    implMaturity: 'Implemented in EthereumJS (Amsterdam, experimental)',
+    implMaturity: 'Implemented in EthereumJS (Glamsterdam, experimental)',
     testMaturity: 'execution-specs / glamsterdam-devnet (v8.1.x)',
   },
   mcp: {
@@ -37,9 +36,9 @@ export const CANONICAL: ProtocolChangeCanonical = {
       'gas limit 21000',
     ],
     comparison: {
-      baselineForkId: 'osaka',
-      previewForkId: 'amsterdam',
-      note: 'Value tx to empty account: Amsterdam gasUsed ≈ 204600 (21000 + 183600 state); Osaka 21000. gasLimit 21000 fails on Amsterdam.',
+      baselineForkId: 'fusaka',
+      previewForkId: 'glamsterdam',
+      note: 'Value tx to empty account: Glamsterdam gasUsed ≈ 204600 (21000 + 183600 state); Fusaka 21000. gasLimit 21000 fails on Glamsterdam.',
     },
     docsStatus: 'runnable',
   },

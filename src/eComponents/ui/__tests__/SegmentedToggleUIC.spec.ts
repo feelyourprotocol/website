@@ -4,15 +4,15 @@ import { mount } from '@vue/test-utils'
 import SegmentedToggleUIC from '@/eComponents/ui/SegmentedToggleUIC.vue'
 
 const twoOptions = [
-  { value: 'amsterdam', label: 'Amsterdam', testId: 'hardfork-amsterdam' },
-  { value: 'osaka', label: 'Osaka', testId: 'hardfork-osaka' },
+  { value: 'glamsterdam', label: 'Glamsterdam', testId: 'hardfork-glamsterdam' },
+  { value: 'fusaka', label: 'Fusaka', testId: 'hardfork-fusaka' },
 ]
 
 describe('SegmentedToggleUIC', () => {
   it('marks the selected option as pressed and exposes group + option test ids', () => {
     const wrapper = mount(SegmentedToggleUIC, {
       props: {
-        modelValue: 'amsterdam',
+        modelValue: 'glamsterdam',
         options: twoOptions,
         groupLabel: 'Hardfork',
         testId: 'hardfork-toggle',
@@ -22,46 +22,46 @@ describe('SegmentedToggleUIC', () => {
     expect(wrapper.find('[data-testid="hardfork-toggle"]').exists()).toBe(true)
     expect(wrapper.find('[role="group"]').attributes('aria-label')).toBe('Hardfork')
     expect(wrapper.find('[role="group"]').classes()).toContain('e-segmented-toggle')
-    expect(wrapper.find('[data-testid="hardfork-amsterdam"]').attributes('aria-pressed')).toBe(
+    expect(wrapper.find('[data-testid="hardfork-glamsterdam"]').attributes('aria-pressed')).toBe(
       'true',
     )
-    expect(wrapper.find('[data-testid="hardfork-amsterdam"]').classes()).toContain(
+    expect(wrapper.find('[data-testid="hardfork-glamsterdam"]').classes()).toContain(
       'e-segmented-toggle-option-selected',
     )
-    expect(wrapper.find('[data-testid="hardfork-osaka"]').attributes('aria-pressed')).toBe('false')
-    expect(wrapper.find('[data-testid="hardfork-osaka"]').classes()).toContain(
+    expect(wrapper.find('[data-testid="hardfork-fusaka"]').attributes('aria-pressed')).toBe('false')
+    expect(wrapper.find('[data-testid="hardfork-fusaka"]').classes()).toContain(
       'e-segmented-toggle-option-idle',
     )
-    expect(wrapper.find('[data-testid="hardfork-osaka"]').classes()).not.toContain(
+    expect(wrapper.find('[data-testid="hardfork-fusaka"]').classes()).not.toContain(
       'e-segmented-toggle-option-selected',
     )
-    expect(wrapper.text()).toContain('Amsterdam')
-    expect(wrapper.text()).toContain('Osaka')
+    expect(wrapper.text()).toContain('Glamsterdam')
+    expect(wrapper.text()).toContain('Fusaka')
   })
 
   it('emits the new value when a different option is clicked', async () => {
     const wrapper = mount(SegmentedToggleUIC, {
       props: {
-        modelValue: 'amsterdam',
+        modelValue: 'glamsterdam',
         options: twoOptions,
         groupLabel: 'Hardfork',
       },
     })
 
-    await wrapper.find('[data-testid="hardfork-osaka"]').trigger('click')
-    expect(wrapper.emitted('update:modelValue')).toEqual([['osaka']])
+    await wrapper.find('[data-testid="hardfork-fusaka"]').trigger('click')
+    expect(wrapper.emitted('update:modelValue')).toEqual([['fusaka']])
   })
 
   it('does not emit when the already-selected option is clicked', async () => {
     const wrapper = mount(SegmentedToggleUIC, {
       props: {
-        modelValue: 'amsterdam',
+        modelValue: 'glamsterdam',
         options: twoOptions,
         groupLabel: 'Hardfork',
       },
     })
 
-    await wrapper.find('[data-testid="hardfork-amsterdam"]').trigger('click')
+    await wrapper.find('[data-testid="hardfork-glamsterdam"]').trigger('click')
     expect(wrapper.emitted('update:modelValue')).toBeUndefined()
   })
 

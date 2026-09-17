@@ -47,7 +47,7 @@ export interface Exploration {
   infoURL: string
   /** Topic ID — fixed set in `TOPICS.ts` (scaling, privacy, ux, …). Drives card grouping and topic colors. */
   topic: string
-  /** Timeline entry ID from `TIMELINE.ts` (hardfork or maturity stage). */
+  /** Timeline fork id from `TIMELINE.ts` (catalog subset of MCP lineage ids). */
   timeline: string
   /** Up to 3–4 reusable technical concepts from `TAGS.ts`. See architecture § tags. */
   tags: Tag[]

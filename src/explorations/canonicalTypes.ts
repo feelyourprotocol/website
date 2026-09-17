@@ -35,13 +35,13 @@ export interface ProtocolChangeQuestion {
 
 export interface ProtocolChangeTaxonomy {
   topic: string
+  /** Catalog fork id — combined upgrade name (`fusaka`, `glamsterdam`, `pectra`, …). Same as MCP `namedForks[].id`. */
   timeline: string
   tags: Tag[]
 }
 
 export interface ProtocolChangeMaturity {
   eipStatus?: string
-  forkInclusion?: string
   implMaturity?: string
   testMaturity?: string
 }
@@ -50,7 +50,10 @@ export interface ProtocolChangeMcpHints {
   /** Shapes that address this problem set (`simulate`, `transaction`, `block`, `generate`, …). */
   shapes: McpQueryShape[]
   keywords?: string[]
-  /** Optional baseline vs preview fork pair for comparisons. */
+  /**
+   * Optional baseline vs preview fork pair. Ids are MCP catalog ids
+   * (`fusaka`, `glamsterdam`, `pectra`, `dencun`, …), not EthereumJS EL names.
+   */
   comparison?: {
     baselineForkId: string
     previewForkId: string

@@ -2,7 +2,7 @@ import type { Common } from '@ethereumjs/common'
 import type { TypedTransaction } from '@ethereumjs/tx'
 import type { PrefixedHexString } from '@ethereumjs/util'
 
-export type HardforkChoice = 'amsterdam' | 'osaka'
+export type HardforkChoice = 'glamsterdam' | 'fusaka'
 export type GasLimitMode = 'classic' | 'recommended'
 
 /** Account pre-state applied via the state manager before tx execution. */
@@ -31,7 +31,7 @@ export interface GasScenarioDefinition {
    * execution-only state gas (SSTORE).
    */
   recommendedGasLimitFloor?: bigint
-  /** Expected Amsterdam `txStateGas` after a successful run (protocol claim). */
+  /** Expected Glamsterdam `txStateGas` after a successful run (protocol claim). */
   expectedAmsterdamStateGas: bigint
   buildTx: (common: Common, gasLimit: bigint) => TypedTransaction
 }

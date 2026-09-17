@@ -20,8 +20,8 @@ describe('ReceiptLogsPanelEC', () => {
 
   it('renders decoded ETH transfer rows after a run', () => {
     const state: ReceiptLogsViewState = {
-      hardforkId: 'amsterdam',
-      hardforkLabel: 'Amsterdam',
+      hardforkId: 'glamsterdam',
+      hardforkLabel: 'Glamsterdam',
       focusKind: 'eth-transfer',
       rows: [
         {
@@ -55,9 +55,9 @@ describe('ReceiptLogsPanelEC', () => {
 
   it('shows empty-run hint when receipt has no logs', () => {
     const state: ReceiptLogsViewState = {
-      hardforkId: 'osaka',
-      hardforkLabel: 'Osaka',
-      emptyHint: 'Osaka has no EIP-7708 transfer logs.',
+      hardforkId: 'fusaka',
+      hardforkLabel: 'Fusaka',
+      emptyHint: 'Fusaka has no EIP-7708 transfer logs.',
       rows: [],
     }
 
@@ -65,6 +65,6 @@ describe('ReceiptLogsPanelEC', () => {
       props: { topic, state, hasRun: true },
     })
 
-    expect(wrapper.text()).toContain('Osaka has no EIP-7708 transfer logs.')
+    expect(wrapper.text()).toContain('Fusaka has no EIP-7708 transfer logs.')
   })
 })

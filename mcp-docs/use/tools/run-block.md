@@ -6,14 +6,14 @@
 
 Run **1–8 impersonated transactions as one lab block** and receive a **header snapshot** plus **per-tx receipts**. Senders are impersonated from each `from` — no private key.
 
-This is the verb for a chosen beacon slot (`header.slotNumber` / [EIP-7843](/use/eips/eip-7843)), several txs in one block, a lab `number` / `timestamp`, or a **generic Amsterdam / Osaka lab block** with no EIP named.
+This is the verb for a chosen beacon slot (`header.slotNumber` / [EIP-7843](/use/eips/eip-7843)), several txs in one block, a lab `number` / `timestamp`, or a **generic Glamsterdam / Fusaka lab block** with no EIP named.
 
 A **single** paid transfer still belongs on [Run Transaction](/use/tools/run-transaction). Raw opcode / stack programs belong on [Run Bytecode](/use/tools/run-bytecode). Block-level access list JSON belongs on **`generate`** (not this tool).
 
 ## When to use
 
 - “What does SLOTNUM push if the header slot is 42?”
-- Two transfers in one **Amsterdam** block — receipts in order
+- Two transfers in one **Glamsterdam** block — receipts in order
 - Lab header `timestamp` or `number` the EVM can read
 
 ## MCP tool name
@@ -25,15 +25,15 @@ A **single** paid transfer still belongs on [Run Transaction](/use/tools/run-tra
 | Field | Required | Description |
 | --- | --- | --- |
 | `transactions` | Yes | 1–8 txs. Each has `from`, `to`, optional `value` / `data` / `code` / `gasLimit` |
-| `header.slotNumber` | No | Beacon slot (decimal). **Amsterdam only** |
+| `header.slotNumber` | No | Beacon slot (decimal). **Glamsterdam only** |
 | `header.number` | No | Block number (decimal). Default `1` |
 | `header.timestamp` | No | Unix timestamp (decimal). Default `1` |
 | `accounts` | No | Extra accounts to prefund |
-| `fork` | No | `{ baseHardfork, eips[] }` — default **`amsterdam`** |
+| `fork` | No | `{ baseHardfork, eips[] }` — default **`glamsterdam`** |
 
 ### Fork notes
 
-Same named forks as [Run Bytecode](/use/tools/run-bytecode): default **amsterdam**, optional **osaka** for a mainnet baseline compare. `slotNumber` is rejected on Osaka.
+Same named forks as [Run Bytecode](/use/tools/run-bytecode): default **glamsterdam**, optional **fusaka** for a mainnet baseline compare. `slotNumber` is rejected on Fusaka.
 
 ## Outputs
 
@@ -42,15 +42,15 @@ Same named forks as [Run Bytecode](/use/tools/run-bytecode): default **amsterdam
 | `success` | Every tx completed without revert or intrinsic failure |
 | `gasUsed` | Header `gasUsed` after lab generate (`gasUsedScope: block`) |
 | `header` | `number`, `timestamp`, `gasUsed`, optional `slotNumber` |
-| `transactions[]` | Per-tx paid gas, optional Amsterdam `txRegularGas` / `txStateGas`, logs |
+| `transactions[]` | Per-tx paid gas, optional Glamsterdam `txRegularGas` / `txStateGas`, logs |
 | `error` | First tx failure or a block-level catch, else `null` |
 | `provenance` | Always present |
 
-On Amsterdam, header `gasUsed` may track the state-gas dimension (EIP-8037). Paid tx gas lives on `transactions[].gasUsed`.
+On Glamsterdam, header `gasUsed` may track the state-gas dimension (EIP-8037). Paid tx gas lives on `transactions[].gasUsed`.
 
 Not in this version: BAL JSON, builder requests, historical replay.
 
-## Example — first-touch 1 wei (Amsterdam)
+## Example — first-touch 1 wei (Glamsterdam)
 
 ```json
 {
@@ -61,11 +61,11 @@ Not in this version: BAL JSON, builder requests, historical replay.
       "value": "1"
     }
   ],
-  "fork": { "baseHardfork": "amsterdam" }
+  "fork": { "baseHardfork": "glamsterdam" }
 }
 ```
 
-Expected: `success: true`, `transactions[0].gasUsed: "204600"`, `txStateGas: "183600"`. The same call on **osaka** is paid `21000`.
+Expected: `success: true`, `transactions[0].gasUsed: "204600"`, `txStateGas: "183600"`. The same call on **fusaka** is paid `21000`.
 
 ## JSON schema
 
@@ -80,6 +80,6 @@ Max **8** transactions. See [Guarantees](/use/guarantees) for gas ceilings.
 <Changelog
   title="Run Block Changelog"
   :entries="[
-    { version: 'v0.2', date: '2026-09-16', summary: 'Generic Amsterdam / Osaka lab block is a first-class when-to-use.' },
+    { version: 'v0.2', date: '2026-09-16', summary: 'Generic Glamsterdam / Fusaka lab block is a first-class when-to-use.' },
   ]"
 />

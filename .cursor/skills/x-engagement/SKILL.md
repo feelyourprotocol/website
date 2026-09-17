@@ -74,7 +74,7 @@ After both rounds:
 
 ## Voice (replies and quotes)
 
-Match the announcement skills’ peer register: protocol-curious, not analyst, not shill. Short. Second person is fine when it invites a check (“does your indexer see native ETH the way it sees ERC-20?”). Naked URL last when used. Do not recap Bro & Bruh. Do not mention Glamsterdam and Amsterdam as a sequence — one fork label, whichever is truer for this EIP (**Glamsterdam** = hardfork, **Amsterdam** = EL rules).
+Match the announcement skills’ peer register: protocol-curious, not analyst, not shill. Short. Second person is fine when it invites a check (“does your indexer see native ETH the way it sees ERC-20?”). Naked URL last when used. Do not recap Bro & Bruh. Use the combined fork name (**Glamsterdam**, **Fusaka**) — do not mention Glamsterdam and Amsterdam as a sequence.
 
 Retweet cards have **empty** draft text.
 

@@ -23,7 +23,6 @@ export const CANONICAL: ProtocolChangeCanonical = {
   },
   maturity: {
     eipStatus: 'Draft',
-    forkInclusion: 'Scheduled (Amsterdam)',
     implMaturity: 'Implemented in EthereumJS (experimental)',
     testMaturity: 'Scenario curriculum tests',
   },

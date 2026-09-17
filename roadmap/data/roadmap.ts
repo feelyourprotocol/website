@@ -56,10 +56,10 @@ export const ROADMAP_TRACKS: RoadmapTrack[] = [
         note: 'describe_capabilities + run_bytecode + run_transaction; generic verbs, not per-EIP tools.',
       },
       {
-        title: 'Amsterdam EIP catalogue',
+        title: 'Glamsterdam EIP catalogue',
         horizon: 'now',
         status: 'in-progress',
-        note: 'Same fork: Amsterdam = EL rules label, Glamsterdam = fork name. Round-trip pipeline filling runnable modules.',
+        note: 'Canonical id is the combined name (glamsterdam); amsterdam remains the EthereumJS / EL alias. Round-trip pipeline filling runnable modules.',
       },
       {
         title: 'Public hosted MCP',

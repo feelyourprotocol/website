@@ -20,7 +20,7 @@ const amsterdamEvm = await createEVM({ common: amsterdamCommon })
 const osakaEvm = await createEVM({ common: osakaCommon })
 
 const exampleQuery = useExplorationExampleQuery()
-const hardfork = ref<HardforkChoice>('amsterdam')
+const hardfork = ref<HardforkChoice>('glamsterdam')
 const slotInput = ref(DEFAULT_SLOT.toString())
 const appliedSlot = ref(DEFAULT_SLOT)
 
@@ -29,8 +29,8 @@ watch(slotInput, (raw) => {
   if (parsed.ok) appliedSlot.value = parsed.value
 })
 
-const evm = computed(() => (hardfork.value === 'amsterdam' ? amsterdamEvm : osakaEvm))
-const common = computed(() => (hardfork.value === 'amsterdam' ? amsterdamCommon : osakaCommon))
+const evm = computed(() => (hardfork.value === 'glamsterdam' ? amsterdamEvm : osakaEvm))
+const common = computed(() => (hardfork.value === 'glamsterdam' ? amsterdamCommon : osakaCommon))
 const block = computed(() => createLabBlock(common.value, appliedSlot.value))
 </script>
 

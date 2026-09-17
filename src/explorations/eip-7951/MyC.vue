@@ -40,7 +40,7 @@ function verificationDetail(result: ExecResult | undefined): string {
     :run="run"
   >
     <template #result="{ result }">
-      <ResultBoxUIC title="Verification (Osaka)" :left="true">
+      <ResultBoxUIC title="Verification (Fusaka)" :left="true">
         <div class="min-h-[4.5rem]">
           <template v-if="result">
             <p class="e-result-text-lg">{{ verificationLabel(result.post) }}</p>

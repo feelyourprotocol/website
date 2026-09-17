@@ -14,7 +14,7 @@ export const CANONICAL: ProtocolChangeCanonical = {
   },
   question: {
     coreQuestion:
-      'When you SSTORE on Amsterdam, what are you paying for — touching the slot, changing it, or creating it?',
+      'When you SSTORE on Glamsterdam, what are you paying for — touching the slot, changing it, or creating it?',
     changeNature: 'repricing',
   },
   taxonomy: {
@@ -24,17 +24,16 @@ export const CANONICAL: ProtocolChangeCanonical = {
   },
   maturity: {
     eipStatus: 'Review',
-    forkInclusion: 'Scheduled (Amsterdam)',
-    implMaturity: 'Implemented in EthereumJS (Amsterdam, experimental)',
+    implMaturity: 'Implemented in EthereumJS (Glamsterdam, experimental)',
     testMaturity: 'execution-specs / glamsterdam-devnet (v8.1.x)',
   },
   mcp: {
     shapes: ['simulate', 'transaction'],
     keywords: ['state access gas', 'STORAGE_WRITE', 'ACCOUNT_WRITE', 'SSTORE', 'EXTCODESIZE'],
     comparison: {
-      baselineForkId: 'osaka',
-      previewForkId: 'amsterdam',
-      note: 'Existing-slot first SSTORE (cold): Amsterdam regular gas 12_100 (2_100 access + 10_000 write) vs Osaka ~5_000. Cold SLOAD stays 2_100. EXTCODESIZE adds an extra 100 for the second read.',
+      baselineForkId: 'fusaka',
+      previewForkId: 'glamsterdam',
+      note: 'Existing-slot first SSTORE (cold): Glamsterdam regular gas 12_100 (2_100 access + 10_000 write) vs Fusaka ~5_000. Cold SLOAD stays 2_100. EXTCODESIZE adds an extra 100 for the second read.',
     },
     docsStatus: 'runnable',
   },

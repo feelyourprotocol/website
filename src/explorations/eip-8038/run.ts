@@ -9,8 +9,8 @@ import type { CostComponents, HardforkChoice, ScenarioRunResult } from './types'
 export type { HardforkChoice }
 
 const HARD_FORK_LABELS: Record<HardforkChoice, string> = {
-  amsterdam: 'Amsterdam (EIP-8038 active)',
-  osaka: 'Osaka (baseline)',
+  glamsterdam: 'Glamsterdam (EIP-8038 active)',
+  fusaka: 'Fusaka (baseline)',
 }
 
 const commonByFork = new Map<HardforkChoice, Common>()
@@ -20,7 +20,7 @@ function commonForHardfork(hardfork: HardforkChoice): Common {
   if (cached !== undefined) return cached
   const common = new Common({
     chain: Mainnet,
-    hardfork: hardfork === 'amsterdam' ? Hardfork.Amsterdam : Hardfork.Osaka,
+    hardfork: hardfork === 'glamsterdam' ? Hardfork.Amsterdam : Hardfork.Osaka,
   })
   commonByFork.set(hardfork, common)
   return common
@@ -29,8 +29,8 @@ function commonForHardfork(hardfork: HardforkChoice): Common {
 /** Load EthereumJS so the first Run click is not a cold createVM. */
 export function warmExecution(): Promise<void> {
   return Promise.all([
-    createVM({ common: commonForHardfork('amsterdam') }),
-    createVM({ common: commonForHardfork('osaka') }),
+    createVM({ common: commonForHardfork('glamsterdam') }),
+    createVM({ common: commonForHardfork('fusaka') }),
   ]).then(() => undefined)
 }
 

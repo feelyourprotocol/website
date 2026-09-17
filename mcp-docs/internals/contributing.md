@@ -13,7 +13,7 @@ When a capability ships:
 
 1. Add or update a page under `use/tools/` (generic MCP tool reference)
 2. Add or update `use/eips/eip-NNNN.md` for **every live website exploration** — Runnable or Planned (human catalogue — prompts, twins; not demo bytecode). Runnable engine modules also update the live catalog in `use/coverage.md`.
-3. Add or update `use/forks/<id>.md` when a **named fork** catalog row changes (generic hardfork runs — Amsterdam, Osaka, Prague).
+3. Add or update `use/forks/<id>.md` when a **named fork** catalog row changes (generic hardfork runs — Glamsterdam, Fusaka, Pectra).
 4. Update `use/coverage.md` index and sidebar in `.vitepress/config.ts`
 5. Update `internals/execution-engine` or `internals/gateway` as needed
 6. Add a changelog entry on the affected page

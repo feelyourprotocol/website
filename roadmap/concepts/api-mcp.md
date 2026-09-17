@@ -33,7 +33,7 @@ Full schemas and limits: [mcp-docs/use/tools/](https://mcp-docs.feelyourprotocol
 
 Three scopes mapped onto the stack — v1 focuses on **run** under upcoming fork rules:
 
-1. **Future-fork gas & opcode simulator** — run bytecode under Osaka vs Amsterdam; compare gas, logs, stack. _Audience:_ DeFi engineers, MEV searchers, auditors. _(8024, 7708, 7883, 7951 in catalogue today.)_
+1. **Future-fork gas & opcode simulator** — run bytecode under Fusaka vs Glamsterdam; compare gas, logs, stack. _Audience:_ DeFi engineers, MEV searchers, auditors. _(8024, 7708, 7883, 7951 in catalogue today.)_
 2. **Deep-state security tracer** — return exact stack/memory at sensitive opcodes via optional trace. _Audience:_ security auditors._
 3. **Block-level access lists (EIP-7928)** — **generate** shape planned; website exploration is the textbook twin today.
 
@@ -46,9 +46,9 @@ Programmatic actors with urgent incentive to understand upcoming forks **before*
 An early design explored per-EIP tool names. We rejected that in favour of generic verbs + a live catalogue. The handler shape is still instructive:
 
 ```typescript
-// Today: one run tool, fork config selects Amsterdam + bundled EIPs
-const common = new Common({ chain: 'mainnet', hardfork: 'amsterdam' })
-const result = await simulateBytecode({ bytecode, fork: { baseHardfork: 'amsterdam' } })
+// Today: one run tool, fork config selects Glamsterdam + bundled EIPs
+const common = new Common({ chain: 'mainnet', hardfork: 'amsterdam' }) // EthereumJS EL id
+const result = await simulateBytecode({ bytecode, fork: { baseHardfork: 'glamsterdam' } })
 // → gasUsed, stack, logs, provenance JSON back to the agent
 ```
 

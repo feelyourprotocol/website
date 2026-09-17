@@ -23,7 +23,6 @@ export const CANONICAL: ProtocolChangeCanonical = {
   },
   maturity: {
     eipStatus: 'Final',
-    forkInclusion: 'Fusaka',
     implMaturity: 'Browser KZG only (website)',
     testMaturity: 'Manual blob verification',
   },

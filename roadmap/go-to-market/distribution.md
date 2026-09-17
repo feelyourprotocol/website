@@ -16,7 +16,7 @@ Until the public endpoint is live, the play is **substance, not hype**:
 
 | Rhythm | Channel | Content |
 | --- | --- | --- |
-| **~2–3× / week** | Twitter/X ([@FeelEthereum](https://x.com/FeelEthereum)) | New Amsterdam explorations — each ships with a per-exploration [announcement arc](/go-to-market/marketing#announcement-cadence-per-exploration): comic (spark) + video (engage), MCP tweet (equip) added at launch |
+| **~2–3× / week** | Twitter/X ([@FeelEthereum](https://x.com/FeelEthereum)) | New Glamsterdam explorations — each ships with a per-exploration [announcement arc](/go-to-market/marketing#announcement-cadence-per-exploration): comic (spark) + video (engage), MCP tweet (equip) added at launch |
 | **1× / week** | Personal dev account | x402 / payment integration build-in-public (technical, not token news) |
 | **As ready** | Website + mcp-docs | **Without MCP vs with MCP** proofs — same prompt, same model, checked outcomes |
 | **Pinned anchor** | Official account | [Launch week](/roadmap/launch) countdown — hosted MCP, not self-host |

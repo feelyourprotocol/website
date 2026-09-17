@@ -32,7 +32,7 @@ const topic = TOPICS[exploration.topic]
 const exampleQuery = useExplorationExampleQuery()
 
 const example = ref('')
-const hardfork = ref<HardforkChoice>('amsterdam')
+const hardfork = ref<HardforkChoice>('glamsterdam')
 const gasLimitMode = ref<GasLimitMode>('recommended')
 const errorMsg = ref('')
 const result = ref<RunScenarioOutput | null>(null)
@@ -74,7 +74,7 @@ function setHardfork(next: HardforkChoice) {
 }
 
 function onHardforkInput(value: string) {
-  if (value === 'amsterdam' || value === 'osaka') setHardfork(value)
+  if (value === 'glamsterdam' || value === 'fusaka') setHardfork(value)
 }
 
 function setGasLimitMode(next: GasLimitMode) {
@@ -88,8 +88,8 @@ function onGasLimitInput(value: string) {
 }
 
 const hardforkOptions = [
-  { value: 'amsterdam', label: 'Amsterdam', testId: 'hardfork-amsterdam' },
-  { value: 'osaka', label: 'Osaka', testId: 'hardfork-osaka' },
+  { value: 'glamsterdam', label: 'Glamsterdam', testId: 'hardfork-glamsterdam' },
+  { value: 'fusaka', label: 'Fusaka', testId: 'hardfork-fusaka' },
 ]
 
 const gasLimitOptions = computed(() => [
@@ -114,7 +114,7 @@ async function init() {
 
 watch(example, (next, prev) => {
   if (prev !== '' && next !== prev) {
-    hardfork.value = 'amsterdam'
+    hardfork.value = 'glamsterdam'
     gasLimitMode.value = 'recommended'
   }
 })

@@ -21,8 +21,12 @@ const { run } = useStandardPrecompileRun(Hardfork.Prague, Hardfork.Osaka, '05')
   >
     <template #result="{ result }">
       <div class="e-grid-double">
-        <PrecompileInterfaceResultEC :model-value="result?.pre" title="Pre-Osaka" :left="true" />
-        <PrecompileInterfaceResultEC :model-value="result?.post" title="Post-Osaka" :left="false" />
+        <PrecompileInterfaceResultEC :model-value="result?.pre" title="Pre-Fusaka" :left="true" />
+        <PrecompileInterfaceResultEC
+          :model-value="result?.post"
+          title="Post-Fusaka"
+          :left="false"
+        />
       </div>
     </template>
   </PrecompileInterfaceEC>

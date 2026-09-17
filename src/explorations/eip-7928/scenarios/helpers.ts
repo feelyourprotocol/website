@@ -31,7 +31,7 @@ function legacyEmptyTransferIntrinsicGas(common: Common): bigint {
   return probe.getIntrinsicGas()
 }
 
-/** Gas limit for a legacy value transfer to a first-touch recipient on Amsterdam (EIP-8037 state gas). */
+/** Gas limit for a legacy value transfer to a first-touch recipient on Glamsterdam (EIP-8037 state gas). */
 export function amsterdamValueTransferGasLimit(common: Common): bigint {
   const minGas = legacyEmptyTransferIntrinsicGas(common)
   if (!common.isActivatedEIP(8037)) {
@@ -59,7 +59,7 @@ export function legacyExistingRecipientGasLimit(
   ).getIntrinsicGas()
 }
 
-/** Signed legacy transfer tx with Amsterdam-safe gas for a first-touch recipient. */
+/** Signed legacy transfer tx with Glamsterdam-safe gas for a first-touch recipient. */
 export function buildFirstTouchLegacyTransfer(common: Common, value: bigint, nonce: bigint) {
   return createLegacyTx(
     {

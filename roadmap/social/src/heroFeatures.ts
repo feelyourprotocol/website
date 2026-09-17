@@ -6,7 +6,7 @@ export const HERO_FEATURES = [
   },
   {
     title: 'Vision & Strategy',
-    detail: 'Oracle thesis, two legs, Amsterdam catalogue.',
+    detail: 'Oracle thesis, two legs, Glamsterdam catalogue.',
   },
   {
     title: 'Roadmap & Timeline',

@@ -9,7 +9,7 @@ export const INFO: Exploration = {
   path: '/eip-8024-stack-opcodes-dupn-swapn-exchange',
   title: CANONICAL.identity.name,
   seoDescription:
-    'Interactive EVM explainer for EIP-8024 DUPN, SWAPN, and EXCHANGE stack opcodes — step through deep stack access in an Amsterdam-fork EVM in your browser.',
+    'Interactive EVM explainer for EIP-8024 DUPN, SWAPN, and EXCHANGE stack opcodes — step through deep stack access in a Glamsterdam-fork EVM in your browser.',
   infoURL: CANONICAL.identity.specUrl,
   topic: CANONICAL.taxonomy.topic,
   timeline: CANONICAL.taxonomy.timeline,
@@ -31,7 +31,7 @@ export const INFO: Exploration = {
     'sequence. Watch the stack panel update after each step; the immediate decoder on the right ' +
     'latches when you rest on DUPN, SWAPN, or EXCHANGE. The DUPN demo uses a 17-item stack ' +
     '(the minimum for depth 16); SWAPN needs one slot more at the same depth; EXCHANGE fits in ' +
-    'four pushes. Execution runs on an Amsterdam-fork EVM via EthereumJS.',
+    'four pushes. Execution runs on a Glamsterdam-fork EVM via EthereumJS.',
   creatorName: 'HolgerD77',
   creatorURL: 'https://x.com/HolgerD77',
   poweredBy: [{ name: 'EthereumJS', href: 'https://github.com/ethereumjs/ethereumjs-monorepo' }],

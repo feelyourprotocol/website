@@ -15,14 +15,14 @@ import type {
 export type { GasLimitMode, HardforkChoice }
 
 const HARD_FORK_LABELS: Record<HardforkChoice, string> = {
-  amsterdam: 'Amsterdam (EIP-8037 active)',
-  osaka: 'Osaka (baseline)',
+  glamsterdam: 'Glamsterdam (EIP-8037 active)',
+  fusaka: 'Fusaka (baseline)',
 }
 
 function commonForHardfork(hardfork: HardforkChoice): Common {
   return new Common({
     chain: Mainnet,
-    hardfork: hardfork === 'amsterdam' ? Hardfork.Amsterdam : Hardfork.Osaka,
+    hardfork: hardfork === 'glamsterdam' ? Hardfork.Amsterdam : Hardfork.Osaka,
   })
 }
 
@@ -45,13 +45,13 @@ export function previewGasBars(
 ): { regular: bigint; state: bigint } {
   return {
     regular: CLASSIC_GAS_LIMIT,
-    state: hardfork === 'amsterdam' ? scenario.expectedAmsterdamStateGas : 0n,
+    state: hardfork === 'glamsterdam' ? scenario.expectedAmsterdamStateGas : 0n,
   }
 }
 
 export function displayGasBars(result: RunScenarioOutput): { regular: bigint; state: bigint } {
   if (result.txSuccessful) {
-    // `txRegularGas` is only filled when EIP-8037 is active; Osaka uses totalGasSpent.
+    // `txRegularGas` is only filled when EIP-8037 is active; Fusaka uses totalGasSpent.
     const regular = result.txRegularGas > 0n ? result.txRegularGas : result.totalGasSpent
     return { regular, state: result.txStateGas }
   }
@@ -61,7 +61,7 @@ export function displayGasBars(result: RunScenarioOutput): { regular: bigint; st
       state: result.estimate.estimatedStateGas,
     }
   }
-  const state = result.hardforkId === 'amsterdam' ? result.expectedAmsterdamStateGas : 0n
+  const state = result.hardforkId === 'glamsterdam' ? result.expectedAmsterdamStateGas : 0n
   return { regular: result.estimate.minimumGasLimit, state }
 }
 

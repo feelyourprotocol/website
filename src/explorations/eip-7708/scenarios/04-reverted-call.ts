@@ -16,8 +16,8 @@ export const revertedCallScenario: TransferScenarioDefinition = {
     'If a value-bearing CALL reverts, the ETH move rolls back — and the Transfer log disappears ' +
     'with it. Only successful nonzero transfers are logged.',
   step: 4,
-  expectedTransferLogsOnAmsterdam: 0,
-  emptyAmsterdamHint: 'Correct — reverted value transfers leave no EIP-7708 log.',
+  expectedTransferLogsOnGlamsterdam: 0,
+  emptyGlamsterdamHint: 'Correct — reverted value transfers leave no EIP-7708 log.',
   preState: [
     {
       label: 'sender',

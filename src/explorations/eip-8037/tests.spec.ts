@@ -18,13 +18,13 @@ import {
 
 describe('EIP-8037 state-creation gas exploration', () => {
   describe('canonical', () => {
-    it('defines transaction + simulate twin with Osaka vs Amsterdam comparison', () => {
+    it('defines transaction + simulate twin with Fusaka vs Glamsterdam comparison', () => {
       expect(CANONICAL.question.changeNature).toBe('new-exec-model')
       expect(CANONICAL.mcp.shapes).toContain('transaction')
       expect(CANONICAL.mcp.shapes).toContain('simulate')
       expect(CANONICAL.mcp.docsStatus).toBe('runnable')
-      expect(CANONICAL.mcp.comparison?.previewForkId).toBe('amsterdam')
-      expect(CANONICAL.mcp.comparison?.baselineForkId).toBe('osaka')
+      expect(CANONICAL.mcp.comparison?.previewForkId).toBe('glamsterdam')
+      expect(CANONICAL.mcp.comparison?.baselineForkId).toBe('fusaka')
       expect(CANONICAL.taxonomy.topic).toBe('robustness')
     })
   })
@@ -64,16 +64,16 @@ describe('EIP-8037 state-creation gas exploration', () => {
   })
 
   describe('previewGasBars', () => {
-    it('uses classic execution and Amsterdam state expectations per scenario', () => {
+    it('uses classic execution and Glamsterdam state expectations per scenario', () => {
       for (const scenarioId of SCENARIO_ORDER) {
         const scenario = getScenario(scenarioId)
-        const amsterdam = previewGasBars(scenario, 'amsterdam')
-        expect(amsterdam.regular).toBe(CLASSIC_GAS_LIMIT)
-        expect(amsterdam.state).toBe(scenario.expectedAmsterdamStateGas)
+        const glamsterdam = previewGasBars(scenario, 'glamsterdam')
+        expect(glamsterdam.regular).toBe(CLASSIC_GAS_LIMIT)
+        expect(glamsterdam.state).toBe(scenario.expectedAmsterdamStateGas)
 
-        const osaka = previewGasBars(scenario, 'osaka')
-        expect(osaka.regular).toBe(CLASSIC_GAS_LIMIT)
-        expect(osaka.state).toBe(0n)
+        const fusaka = previewGasBars(scenario, 'fusaka')
+        expect(fusaka.regular).toBe(CLASSIC_GAS_LIMIT)
+        expect(fusaka.state).toBe(0n)
       }
     })
   })
@@ -81,16 +81,16 @@ describe('EIP-8037 state-creation gas exploration', () => {
   describe('displayGasBars', () => {
     const matrix: Array<{
       scenarioId: (typeof SCENARIO_ORDER)[number]
-      hardfork: 'amsterdam' | 'osaka'
+      hardfork: 'glamsterdam' | 'fusaka'
       gasLimitMode: 'classic' | 'recommended'
     }> = [
-      { scenarioId: '01-first-touch', hardfork: 'amsterdam', gasLimitMode: 'recommended' },
-      { scenarioId: '01-first-touch', hardfork: 'amsterdam', gasLimitMode: 'classic' },
-      { scenarioId: '01-first-touch', hardfork: 'osaka', gasLimitMode: 'classic' },
-      { scenarioId: '02-funded-recipient', hardfork: 'amsterdam', gasLimitMode: 'classic' },
-      { scenarioId: '02-funded-recipient', hardfork: 'osaka', gasLimitMode: 'classic' },
-      { scenarioId: '03-new-storage', hardfork: 'amsterdam', gasLimitMode: 'recommended' },
-      { scenarioId: '03-new-storage', hardfork: 'osaka', gasLimitMode: 'recommended' },
+      { scenarioId: '01-first-touch', hardfork: 'glamsterdam', gasLimitMode: 'recommended' },
+      { scenarioId: '01-first-touch', hardfork: 'glamsterdam', gasLimitMode: 'classic' },
+      { scenarioId: '01-first-touch', hardfork: 'fusaka', gasLimitMode: 'classic' },
+      { scenarioId: '02-funded-recipient', hardfork: 'glamsterdam', gasLimitMode: 'classic' },
+      { scenarioId: '02-funded-recipient', hardfork: 'fusaka', gasLimitMode: 'classic' },
+      { scenarioId: '03-new-storage', hardfork: 'glamsterdam', gasLimitMode: 'recommended' },
+      { scenarioId: '03-new-storage', hardfork: 'fusaka', gasLimitMode: 'recommended' },
     ]
 
     it.each(matrix)(
@@ -106,7 +106,7 @@ describe('EIP-8037 state-creation gas exploration', () => {
       ({ scenarioId, hardfork, gasLimitMode }) =>
         !(
           scenarioId === '01-first-touch' &&
-          hardfork === 'amsterdam' &&
+          hardfork === 'glamsterdam' &&
           gasLimitMode === 'classic'
         ),
     )
@@ -123,8 +123,8 @@ describe('EIP-8037 state-creation gas exploration', () => {
   })
 
   describe('runScenario', () => {
-    it('charges first-touch state gas on Amsterdam with recommended gasLimit', async () => {
-      const result = await runScenario('01-first-touch', 'amsterdam', 'recommended')
+    it('charges first-touch state gas on Glamsterdam with recommended gasLimit', async () => {
+      const result = await runScenario('01-first-touch', 'glamsterdam', 'recommended')
       expect(result.txSuccessful).toBe(true)
       expect(result.estimate.estimatedStateGas).toBe(FIRST_TOUCH_STATE_GAS)
       expect(result.txStateGas).toBe(FIRST_TOUCH_STATE_GAS)
@@ -134,8 +134,8 @@ describe('EIP-8037 state-creation gas exploration', () => {
       expect(bars.state).toBe(FIRST_TOUCH_STATE_GAS)
     })
 
-    it('does not charge state gas on Osaka for first-touch', async () => {
-      const result = await runScenario('01-first-touch', 'osaka', 'classic')
+    it('does not charge state gas on Fusaka for first-touch', async () => {
+      const result = await runScenario('01-first-touch', 'fusaka', 'classic')
       expect(result.txSuccessful).toBe(true)
       expect(result.estimate.estimatedStateGas).toBe(0n)
       expect(result.txStateGas).toBe(0n)
@@ -144,8 +144,8 @@ describe('EIP-8037 state-creation gas exploration', () => {
       expect(displayGasBars(result).state).toBe(0n)
     })
 
-    it('fails first-touch on Amsterdam at gasLimit 21000', async () => {
-      const result = await runScenario('01-first-touch', 'amsterdam', 'classic')
+    it('fails first-touch on Glamsterdam at gasLimit 21000', async () => {
+      const result = await runScenario('01-first-touch', 'glamsterdam', 'classic')
       expect(result.txSuccessful).toBe(false)
       expect(result.gasLimit).toBe(CLASSIC_GAS_LIMIT)
       expect(result.exceptionError?.toLowerCase()).toMatch(/out of gas|intrinsic|gas/)
@@ -153,15 +153,15 @@ describe('EIP-8037 state-creation gas exploration', () => {
       expect(bars.state).toBe(FIRST_TOUCH_STATE_GAS)
     })
 
-    it('collapses state gas for a funded recipient on Amsterdam', async () => {
-      const result = await runScenario('02-funded-recipient', 'amsterdam', 'classic')
+    it('collapses state gas for a funded recipient on Glamsterdam', async () => {
+      const result = await runScenario('02-funded-recipient', 'glamsterdam', 'classic')
       expect(result.txSuccessful).toBe(true)
       expect(result.estimate.estimatedStateGas).toBe(0n)
       expect(result.txStateGas).toBe(0n)
     })
 
-    it('charges new-storage state gas on Amsterdam SSTORE', async () => {
-      const result = await runScenario('03-new-storage', 'amsterdam', 'recommended')
+    it('charges new-storage state gas on Glamsterdam SSTORE', async () => {
+      const result = await runScenario('03-new-storage', 'glamsterdam', 'recommended')
       expect(result.txSuccessful).toBe(true)
       expect(result.estimate.estimatedStateGas).toBe(0n)
       expect(result.txStateGas).toBe(NEW_STORAGE_SLOT_STATE_GAS)
@@ -198,11 +198,11 @@ describe('EIP-8037 state-creation gas exploration', () => {
       await flushPromises()
       await flushPromises()
       expect(wrapper.text()).toContain('Run tx')
-      expect(wrapper.text()).toContain('Amsterdam')
+      expect(wrapper.text()).toContain('Glamsterdam')
       expect(wrapper.text()).toContain('Recommended')
-      const amsterdam = wrapper.find('[aria-pressed="true"]')
-      expect(amsterdam.exists()).toBe(true)
-      expect(amsterdam.text()).toBe('Amsterdam')
+      const glamsterdam = wrapper.find('[aria-pressed="true"]')
+      expect(glamsterdam.exists()).toBe(true)
+      expect(glamsterdam.text()).toBe('Glamsterdam')
       expect(wrapper.find('[data-testid="gas-bars"]').attributes('data-has-run')).toBe('false')
       expect(wrapper.text()).toContain('Run tx to fill execution and state bars')
       const gasBars = wrapper.find('[data-testid="gas-bars"]')
@@ -239,10 +239,12 @@ describe('EIP-8037 state-creation gas exploration', () => {
       await flushPromises()
       await flushPromises()
 
-      const osaka = wrapper.findAll('button').find((b) => b.text() === 'Osaka')
-      expect(osaka).toBeDefined()
-      await osaka!.trigger('click')
-      expect(wrapper.find('[data-testid="hardfork-osaka"]').attributes('aria-pressed')).toBe('true')
+      const fusaka = wrapper.findAll('button').find((b) => b.text() === 'Fusaka')
+      expect(fusaka).toBeDefined()
+      await fusaka!.trigger('click')
+      expect(wrapper.find('[data-testid="hardfork-fusaka"]').attributes('aria-pressed')).toBe(
+        'true',
+      )
 
       const classic = wrapper.find('[data-testid="gas-limit-classic"]')
       await classic.trigger('click')
@@ -250,7 +252,7 @@ describe('EIP-8037 state-creation gas exploration', () => {
 
       const next = wrapper.findAll('button').find((b) => b.text().includes('next'))
       await next!.trigger('click')
-      expect(wrapper.find('[data-testid="hardfork-amsterdam"]').attributes('aria-pressed')).toBe(
+      expect(wrapper.find('[data-testid="hardfork-glamsterdam"]').attributes('aria-pressed')).toBe(
         'true',
       )
       expect(wrapper.find('[data-testid="gas-limit-recommended"]').attributes('aria-pressed')).toBe(

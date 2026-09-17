@@ -114,7 +114,7 @@ Caveats the human must see: underspecified mechanics, no existing E-Component (c
 Read valid IDs from `src/explorations/TOPICS.ts`, `TIMELINE.ts`, `TAGS.ts` — do not invent. Propose with **short reasoning**; the human confirms or adjusts when giving the exploration GO.
 
 - **topic** — exactly one; primary concern of the change (not “a bit of everything”)
-- **timeline** — hardfork or stage (`fusaka`, `glamsterdam`, `ready`, `research`, `ideas`, …)
+- **timeline** — catalog fork id with an exploration (`fusaka`, `glamsterdam`, …). Same ids as MCP `namedForks`. Do not invent Ideas/Research/Ready stages.
 - **tags** — 3–4 reusable concepts; [architecture § tags](../../website-docs/guide/architecture.md#tags). A **new** tag is a caveat (must be reusable beyond this EIP)
 
 These fields go into proposed `CANONICAL.taxonomy` **and** in the report with the why — not only inside the object.

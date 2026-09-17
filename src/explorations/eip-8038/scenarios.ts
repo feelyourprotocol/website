@@ -26,13 +26,13 @@ const SLOT0 = `0x${'00'.repeat(32)}` as PrefixedHexString
 const VALUE1 = `0x${'00'.repeat(31)}01` as PrefixedHexString
 
 const EXISTING_COMPONENTS = {
-  osaka: {
+  fusaka: {
     access: COLD_STORAGE_ACCESS,
     write: OSAKA_STORAGE_WRITE,
     create: 0n,
     createMeter: 'none',
   },
-  amsterdam: {
+  glamsterdam: {
     access: COLD_STORAGE_ACCESS,
     write: AMSTERDAM_STORAGE_WRITE,
     create: 0n,
@@ -41,13 +41,13 @@ const EXISTING_COMPONENTS = {
 } as const satisfies Record<string, CostComponents>
 
 const READ_COMPONENTS = {
-  osaka: {
+  fusaka: {
     access: COLD_STORAGE_ACCESS,
     write: 0n,
     create: 0n,
     createMeter: 'none',
   },
-  amsterdam: {
+  glamsterdam: {
     access: COLD_STORAGE_ACCESS,
     write: 0n,
     create: 0n,
@@ -56,13 +56,13 @@ const READ_COMPONENTS = {
 } as const satisfies Record<string, CostComponents>
 
 const NEW_SLOT_COMPONENTS = {
-  osaka: {
+  fusaka: {
     access: COLD_STORAGE_ACCESS,
     write: 0n,
     create: OSAKA_STORAGE_SET,
     createMeter: 'regular',
   },
-  amsterdam: {
+  glamsterdam: {
     access: COLD_STORAGE_ACCESS,
     write: AMSTERDAM_STORAGE_WRITE,
     create: NEW_STORAGE_SLOT_STATE_GAS,
@@ -78,7 +78,7 @@ export const existingSlotScenario: AccessScenarioDefinition = {
   id: '01-existing-slot',
   title: '1. Update existing slot',
   lesson:
-    'The slot already holds a value. Amsterdam still charges a touch (same as Osaka) and then a ' +
+    'The slot already holds a value. Glamsterdam still charges a touch (same as Fusaka) and then a ' +
     'much larger change surcharge. Nothing is created — that meter stays empty.',
   step: 1,
   preState: [
@@ -103,8 +103,8 @@ export const existingSlotScenario: AccessScenarioDefinition = {
     },
   ],
   expectedProgramGas: {
-    osaka: OSAKA_EXISTING_PROGRAM_GAS,
-    amsterdam: AMSTERDAM_EXISTING_PROGRAM_GAS,
+    fusaka: OSAKA_EXISTING_PROGRAM_GAS,
+    glamsterdam: AMSTERDAM_EXISTING_PROGRAM_GAS,
   },
   expectedComponents: EXISTING_COMPONENTS,
   expectedAmsterdamStateGas: 0n,
@@ -140,8 +140,8 @@ export const readSlotScenario: AccessScenarioDefinition = {
     },
   ],
   expectedProgramGas: {
-    osaka: SLOAD_PROGRAM_GAS,
-    amsterdam: SLOAD_PROGRAM_GAS,
+    fusaka: SLOAD_PROGRAM_GAS,
+    glamsterdam: SLOAD_PROGRAM_GAS,
   },
   expectedComponents: READ_COMPONENTS,
   expectedAmsterdamStateGas: 0n,
@@ -152,7 +152,7 @@ export const newSlotScenario: AccessScenarioDefinition = {
   id: '03-new-slot',
   title: '3. Create a new slot',
   lesson:
-    'First write to an empty slot adds a create charge. On Amsterdam that create is state gas ' +
+    'First write to an empty slot adds a create charge. On Glamsterdam that create is state gas ' +
     '(about 97,920) — the same meter as EIP-8037. Touch and change still sit on regular gas.',
   step: 3,
   preState: [
@@ -176,8 +176,8 @@ export const newSlotScenario: AccessScenarioDefinition = {
     },
   ],
   expectedProgramGas: {
-    osaka: OSAKA_NEW_SLOT_PROGRAM_GAS,
-    amsterdam: AMSTERDAM_NEW_SLOT_REGULAR_GAS,
+    fusaka: OSAKA_NEW_SLOT_PROGRAM_GAS,
+    glamsterdam: AMSTERDAM_NEW_SLOT_REGULAR_GAS,
   },
   expectedComponents: NEW_SLOT_COMPONENTS,
   expectedAmsterdamStateGas: NEW_STORAGE_SLOT_STATE_GAS,

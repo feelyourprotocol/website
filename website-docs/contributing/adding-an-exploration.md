@@ -41,7 +41,7 @@ export const CANONICAL: ProtocolChangeCanonical = {
   identity: { id: 'eip-XXXX', eip: 0, specUrl: 'https://eips.ethereum.org/EIPS/eip-XXXX', name: '…' },
   question: { coreQuestion: '…', changeNature: 'new-capability' },
   taxonomy: { topic: 'scaling', timeline: 'fusaka', tags: [Tag.EVM] },
-  maturity: { eipStatus: 'Final', forkInclusion: 'Fusaka' },
+  maturity: { eipStatus: 'Final' },
   mcp: { shapes: ['simulate'], docsStatus: 'runnable' },
 }
 ```

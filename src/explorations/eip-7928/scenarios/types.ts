@@ -36,7 +36,7 @@ export interface BytecodeStep {
 
 /**
  * One curriculum scenario: pre-state, txs, and metadata for the exploration UI.
- * Execution always goes through {@link runScenario} → `runBlock()` on Amsterdam.
+ * Execution always goes through {@link runScenario} → `runBlock()` on Glamsterdam.
  */
 export interface BalScenarioDefinition {
   id: string

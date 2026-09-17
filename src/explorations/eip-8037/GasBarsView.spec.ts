@@ -59,7 +59,7 @@ describe('GasBarsView', () => {
     expect(stateBarStyle(wrapper)).toMatch(/width:\s*[1-9]/)
   })
 
-  it('keeps execution bar visible after run when state gas is zero (Osaka baseline)', () => {
+  it('keeps execution bar visible after run when state gas is zero (Fusaka baseline)', () => {
     const wrapper = mount(GasBarsView, {
       props: {
         hasRun: true,

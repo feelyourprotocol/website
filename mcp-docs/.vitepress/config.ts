@@ -102,9 +102,9 @@ export default defineConfig({
               text: 'Forks',
               collapsed: false,
               items: [
-                { text: 'Preview — Amsterdam', link: '/use/forks/amsterdam' },
-                { text: 'Mainnet — Osaka', link: '/use/forks/osaka' },
-                { text: 'Historical (Berlin → Prague)', link: '/use/forks/historical-forks' },
+                { text: 'Preview — Glamsterdam', link: '/use/forks/glamsterdam' },
+                { text: 'Mainnet — Fusaka', link: '/use/forks/fusaka' },
+                { text: 'Historical (Berlin → Pectra)', link: '/use/forks/historical-forks' },
               ],
             },
             {

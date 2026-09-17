@@ -15,7 +15,7 @@ export const contractWalletScenario: TransferScenarioDefinition = {
     'When a contract moves ETH via CALL, the Transfer log still appears — even though the ' +
     'transaction is sent to the wallet, not the final recipient. Deposits to smart contract wallets become visible.',
   step: 2,
-  expectedTransferLogsOnAmsterdam: 1,
+  expectedTransferLogsOnGlamsterdam: 1,
   preState: [
     {
       label: 'sender',
