@@ -18,7 +18,7 @@ Fork configuration is **à la carte**: a base hardfork plus an optional EIP list
 
 Full per-fork ids, aliases, and `activatedEips` live in **`describe_capabilities`** — the table above is the human map to three doc pages.
 
-`baselineForkId` is **`fusaka`** (current mainnet EL). Default lab fork is **`glamsterdam`**. Current-mainnet twins (7883, 7951) stay in this live catalog — they are first-class runs, not only a compare baseline vs preview. When mainnet moves on, those twins stay advertised on Fusaka (then a historical row), like 7702 on Pectra. `sunset` is for no honest lab shape (PeerDAS), not for “already activated.”
+`baselineForkId` is **`fusaka`** (current mainnet EL). Default lab fork is **`glamsterdam`**. Current-mainnet twins (7883, 7951) stay in this live catalog — they are first-class runs, not only a compare baseline vs preview. When mainnet moves on, those twins stay advertised on Fusaka (then a historical row), like 7702 on Pectra. `docsStatus: sunset` on the website is for retired explorations or no honest lab shape — not for “already activated.”
 
 ## Runnable capabilities (live catalog)
 
@@ -53,8 +53,6 @@ Every **live** website exploration has an MCP-docs page mapping the same problem
 | 8037 | State creation gas | Runnable               | [EIP-8037](/use/eips/eip-8037) |
 | 8038 | State-access gas   | Runnable               | [EIP-8038](/use/eips/eip-8038) |
 
-PeerDAS (7594) has no MCP twin — listed in `eipIntroductions` at Fusaka with no observable shape in this lab.
-
 Canonical metadata for twins lives in website `src/explorations/eip-NNNN/canonical.ts`.
 
 ## Changelog
@@ -62,6 +60,7 @@ Canonical metadata for twins lives in website `src/explorations/eip-NNNN/canonic
 <Changelog
   title="Coverage Changelog"
   :entries="[
+    { version: 'v0.26', date: '2026-09-17', summary: 'Retired PeerDAS exploration removed from website catalogue; Fusaka-only EIPs stay in probe.' },
     { version: 'v0.25', date: '2026-09-17', summary: 'Current-mainnet twins stay first-class; sunset is not “already activated.”' },
     { version: 'v0.24', date: '2026-09-17', summary: 'Human EIP index — per-EIP pages stay linked from this catalogue, not the sidebar.' },
     { version: 'v0.23', date: '2026-09-16', summary: 'Lineage extended with Berlin and London (historical floor); glacier BPO forks excluded.' },

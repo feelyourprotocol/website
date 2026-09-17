@@ -23,10 +23,6 @@ export const EXPLORATION_REGISTRY: Record<string, ExplorationMeta> = {
     path: '/eip-7951-secp256r1-precompile',
     topic: 'interoperability',
   },
-  'eip-7594': {
-    path: '/eip-7594-peerdas-data-availability-sampling',
-    topic: 'scaling',
-  },
   'eip-7708': {
     path: '/eip-7708-eth-transfer-logs',
     topic: 'ux',

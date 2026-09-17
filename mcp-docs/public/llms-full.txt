@@ -146,7 +146,7 @@ COVERAGE
 Lineage forks: berlin, london, paris, shapella (alias shanghai), dencun (alias cancun), pectra (alias prague), fusaka (baselineForkId; aliases osaka, mainnet-el), glamsterdam (default preview; alias amsterdam).
 Compare: eipIntroductions → predecessor vs introducedAt. Runnable modules: 8024, 7843, 7702, 7708, 7883, 7951, 7928, 8037, 8038.
 Fork docs: use/forks/glamsterdam (preview), use/forks/fusaka (mainnet), use/forks/historical-forks (berlin→pectra). Glacier delay forks not catalogued.
-Exploration twins (human catalogue): 8024, 7708, 7883, 7951, 7928, 7843, 7702, 8037, 8038 ready for public MCP. 7594 PeerDAS has no MCP twin (not observable in this lab). See use/eips/.
+Exploration twins (human catalogue): 8024, 7708, 7883, 7951, 7928, 7843, 7702, 8037, 8038 ready for public MCP. See use/eips/.
 
 ================================================================================
 GUARANTEES

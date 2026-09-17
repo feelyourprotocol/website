@@ -10,7 +10,6 @@ export const FEATURED_EXPLORATION_IDS = [
   'eip-7928',
   'eip-8024',
   'eip-7883',
-  'eip-7594',
   'eip-7951',
 ]
 

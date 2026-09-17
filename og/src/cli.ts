@@ -7,7 +7,7 @@ import { generateRoadmapOg } from './generate-roadmap-og.ts'
 
 function usage(): never {
   console.error(`Usage:
-  npm run generate -- exploration <id>   e.g.  npm run generate -- exploration eip-7594
+  npm run generate -- exploration <id>   e.g.  npm run generate -- exploration eip-7883
   npm run generate -- topic <id>         e.g.  npm run generate -- topic scaling
   npm run generate -- roadmap            e.g.  npm run generate -- roadmap
   npm run generate -- all`)

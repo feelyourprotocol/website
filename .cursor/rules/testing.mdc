@@ -44,13 +44,13 @@ Browser coverage is layered so a new page does **not** copy three smokes from a 
 ### New exploration (required)
 
 1. Add a row to `e2eCatalog.ts`: `id`, `path` (must match `info.ts`), `family`.
-2. Set `skipExecute: true` when the primary run is too slow or unsafe for CI (KZG proofs — **eip-7594**). Never put a `skipExecute` id in `E2E_FAMILY_PLAY`.
+2. Set `skipExecute: true` when the primary run is too slow or unsafe for CI (heavy crypto, long runs). Never put a `skipExecute` id in `E2E_FAMILY_PLAY`.
 3. Run `npx vitest run src/explorations/__tests__/e2eCatalog.spec.ts` — it must pass before you call the exploration done.
 4. Do **not** add a per-EIP Cypress describe (load + inputs + selector). The catalog loop is that coverage.
 
 Family is the widget **shape**, not the EIP number:
 
-- **form** — precompile / hex-form (7883, 7951, 7594). Play path is changing an example, not a Run button.
+- **form** — precompile / hex-form (7883, 7951). Play path is changing an example, not a Run button.
 - **scenario** — `WidgetChromeUIC` (7708, 8037, 8038, 7928). Play path is one Run click.
 - **bytecode** — bytecode stepper (7843, 8024). Play path is `bytecode-run`.
 
@@ -59,7 +59,7 @@ A new EIP in an **existing** family only needs the catalog row. Add or change `E
 ### Do not
 
 - Visit every topic route; `/all` + one topic + a tag click is enough.
-- Click **eip-7594** `COMMIT/PROOF/RUN` (or any `skipExecute` control).
+- Click any `skipExecute` primary control (slow KZG / similar).
 - Add a 375 × 768 × 1280 matrix per page. Layout specs are representatives plus a cheap overflow check.
 - Duplicate unit coverage in Cypress (canonical numbers, opcode tables). Cypress is routing, chrome, and “the widget actually runs in a browser.”
 

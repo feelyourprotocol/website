@@ -38,7 +38,7 @@ real user cache automatically — agents should not need setup again after you r
 From `website/`:
 
 ```bash
-npm run generate:og:exploration -- eip-7594
+npm run generate:og:exploration -- eip-7883
 npm run generate:og:topic -- scaling
 npm run generate:og:roadmap
 npm run generate:og:all

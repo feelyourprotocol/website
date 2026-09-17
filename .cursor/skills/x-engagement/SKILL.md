@@ -30,7 +30,7 @@ This is **not** the announcement arc ([`bro-bruh-comic`](../bro-bruh-comic/SKILL
 - Quality before quantity. **0 action cards is success.** Prefer **3**; cap **5** across reply + quote + retweet combined. Never fill the cap with weak hits.
 - **Diversity:** at most **one action card per handle** this run. Do not suggest a handle seen in Memories in the last **5 days** (tune `cooldown_days` in the watchlist). Do not orbit the same 3–5 accounts. Do **not** lead with `EIP-NNNN` search or `allowed_x_handles`. Do **not** pick EIPs by weekday.
 - Bro register, not Bruh. Warm, honest, precise. No hashtag salad, no self-`@`, no token / x402-as-hook, no “check out” / “don’t miss”. Weather may **report** a Base/x402 rail; action cards must not use it as the hook. One exploration URL only when it earns its place.
-- Sunset explorations (today: `eip-7594`) are **not** answers. Do not point at them.
+- Only ids in `REGISTRY` are answer targets. Retired explorations are **not** answers.
 - If secrets are missing, write the would-be Telegram bodies in the run transcript and **STOP**. Do not invent keys. Do not scrape `x.com` in a browser.
 
 ## Inputs (do not invent)

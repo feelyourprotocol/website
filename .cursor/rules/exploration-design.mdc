@@ -34,7 +34,7 @@ Mobile stacks bands (steps → toggles → examples+Run grid). Desktop: steps le
 
 On **touch**, `ActionButtonUIC` shows the Run tooltip as **inline** copy. That caption belongs on a **full-width row under** examples + Run — never in the Run column (a `w-0 min-w-full` caption beside a short “Run” label stacks one word per line). `.e-widget-chrome-run` uses `display: contents` below `md` so the hint can take `grid-area: hint`.
 
-**Form-style explorations** (precompile E-Component, bytecode stepper, 7594) keep examples above the editor; they do **not** use `WidgetChromeUIC`. Bytecode Run/Step/Reset use **`decorative`** hints (no inline caption on touch). 7594 Run sits on its own row under a full-width examples select.
+**Form-style explorations** (precompile E-Component, bytecode stepper) keep examples above the editor; they do **not** use `WidgetChromeUIC`. Bytecode Run/Step/Reset use **`decorative`** hints (no inline caption on touch). Slow primary runs may sit on their own row under a full-width examples select.
 
 **Layout / touch:** jsdom and default Cypress still report `(hover: hover) and (pointer: fine)`. After widget-chrome, Run-hint, or companion-sheet layout changes, run `cypress/e2e/layout.cy.ts` (touch chrome + companion peek; 412px + `matchMedia` hover stub on the chrome case) before finishing. Do not add a viewport matrix per exploration — see [testing.mdc](./testing.mdc) § Cypress E2E.
 
