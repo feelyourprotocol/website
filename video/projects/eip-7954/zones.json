@@ -1,0 +1,46 @@
+{
+  "format": { "width": 540, "height": 960 },
+  "safeZone": {
+    "topPx": 56,
+    "bottomPx": 120,
+    "leftPx": 32,
+    "rightPx": 48,
+    "description": "YouTube Shorts — keep readable text/UI inside; black bars may bleed to edges"
+  },
+  "focusAreas": {
+    "example-select": {
+      "selector": "[data-testid=\"example-select\"]",
+      "description": "Deployment boundary scenario picker"
+    },
+    "run-deployment": {
+      "selector": "[data-testid=\"run-deployment\"]",
+      "description": "Deploy the selected scenario on both forks"
+    },
+    "deployment-results": {
+      "selector": "[data-testid=\"deployment-results\"]",
+      "description": "Boundary graphic and Fusaka/Glamsterdam verdicts"
+    },
+    "outcome-fusaka": {
+      "selector": "[data-testid=\"outcome-fusaka\"]",
+      "description": "Fusaka deployment verdict"
+    },
+    "outcome-glamsterdam": {
+      "selector": "[data-testid=\"outcome-glamsterdam\"]",
+      "description": "Glamsterdam deployment verdict"
+    }
+  },
+  "placements": {
+    "top-banner": {
+      "anchor": "top",
+      "insetPx": 0,
+      "maxHeightPx": 184,
+      "description": "Full-bleed black bar; text inset via CSS safe zone"
+    },
+    "bottom-banner": {
+      "anchor": "bottom",
+      "insetPx": 120,
+      "maxHeightPx": 140,
+      "description": "Bar above Shorts bottom action row"
+    }
+  }
+}

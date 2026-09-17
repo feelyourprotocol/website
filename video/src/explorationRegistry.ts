@@ -39,6 +39,10 @@ export const EXPLORATION_REGISTRY: Record<string, ExplorationMeta> = {
     path: '/eip-8038-state-access-gas',
     topic: 'robustness',
   },
+  'eip-7954': {
+    path: '/eip-7954-contract-size-limit',
+    topic: 'ux',
+  },
 }
 
 /** Topic → overlay theme (aligned with og/src/topic-colors.ts). */

@@ -1,0 +1,37 @@
+{
+  "segmentGapMs": 350,
+  "segments": [
+    {
+      "beat": "hook",
+      "text": "How much contract code can you deploy before the protocol rejects it?"
+    },
+    {
+      "beat": "context",
+      "text": "Runtime code and deployment initcode have separate size walls. Glamsterdam raises both."
+    },
+    {
+      "beat": "old-wall-run",
+      "text": "Start one byte beyond the old twenty-four kibibyte runtime wall."
+    },
+    {
+      "beat": "old-wall-read",
+      "text": "Fusaka rejects. Glamsterdam deploys it."
+    },
+    {
+      "beat": "initcode-run",
+      "text": "Initcode has its own limit: forty-eight kibibytes plus one."
+    },
+    {
+      "beat": "initcode-read",
+      "text": "Fusaka rejects. Glamsterdam reaches one hundred twenty-eight kibibytes."
+    },
+    {
+      "beat": "recap",
+      "text": "Runtime: twenty-four to sixty-four. Initcode: forty-eight to one hundred twenty-eight. One byte past sixty-four still fails. Fusaka keeps the old walls."
+    },
+    {
+      "beat": "outro",
+      "text": "Read the spec. Try every boundary on feelyourprotocol dot org."
+    }
+  ]
+}

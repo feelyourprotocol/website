@@ -1,0 +1,104 @@
+{
+  "meta": {
+    "exploration": "eip-7954",
+    "defaultExample": "01-runtime-old-wall"
+  },
+  "overlays": {
+    "title-card": {
+      "type": "title-card",
+      "eyebrow": "Ethereum · Glamsterdam",
+      "title": "EIP-7954",
+      "subtitle": "Contract size limits",
+      "hook": ["How much contract code", "can you deploy?"]
+    },
+    "context": {
+      "type": "punch",
+      "layout": "banner",
+      "placement": "top-banner",
+      "text": "TWO LIMITS",
+      "sub": "Runtime code and initcode both get more room",
+      "invert": true
+    },
+    "old-wall-run": {
+      "type": "split",
+      "layout": "banner",
+      "placement": "top-banner",
+      "segments": [
+        { "text": "24 KiB + 1 byte", "size": "lg" },
+        { "text": "Cross the old runtime wall ↓", "size": "md", "emphasis": true }
+      ]
+    },
+    "old-wall-read": {
+      "type": "split",
+      "layout": "banner",
+      "placement": "top-banner",
+      "segments": [
+        { "text": "Fusaka rejects", "size": "lg" },
+        { "text": "Glamsterdam deploys", "size": "lg", "emphasis": true }
+      ]
+    },
+    "initcode-run": {
+      "type": "split",
+      "layout": "banner",
+      "placement": "top-banner",
+      "segments": [
+        { "text": "Initcode · 48 KiB + 1", "size": "lg" },
+        { "text": "Deployment input has its own wall ↓", "size": "md", "emphasis": true }
+      ]
+    },
+    "initcode-read": {
+      "type": "split",
+      "layout": "banner",
+      "placement": "top-banner",
+      "segments": [
+        { "text": "Fusaka: 48 KiB", "size": "lg" },
+        { "text": "Glamsterdam: 128 KiB", "size": "lg", "emphasis": true }
+      ]
+    },
+    "recap": {
+      "type": "split",
+      "layout": "banner",
+      "placement": "top-banner",
+      "segments": [
+        { "text": "Runtime · 24 → 64 KiB", "size": "lg" },
+        { "text": "Initcode · 48 → 128 KiB", "size": "lg", "emphasis": true }
+      ]
+    },
+    "outro-card": {
+      "type": "outro-card",
+      "closing": "EIP-7954 expands both deployment limits in Glamsterdam. Compare Fusaka to feel the old walls.",
+      "ctas": [
+        {
+          "label": "READ THE SPEC",
+          "url": "EIPS.ETHEREUM.ORG",
+          "variant": "secondary"
+        },
+        {
+          "label": "TRY THE BOUNDARIES",
+          "url": "FEELYOURPROTOCOL.ORG",
+          "variant": "primary"
+        }
+      ]
+    }
+  },
+  "annotations": {
+    "guide-run": {
+      "target": "run-deployment",
+      "label": "Deploy",
+      "hint": "Runs on Fusaka and Glamsterdam",
+      "side": "bottom"
+    },
+    "guide-example": {
+      "target": "example-select",
+      "label": "Boundary",
+      "hint": "Runtime code or initcode",
+      "side": "bottom"
+    },
+    "guide-results": {
+      "target": "deployment-results",
+      "label": "Fork verdicts",
+      "hint": "Same payload, different limits",
+      "side": "top"
+    }
+  }
+}
