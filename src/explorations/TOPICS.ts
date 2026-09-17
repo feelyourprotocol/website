@@ -1,4 +1,4 @@
-import type { TopicId } from '@/explorations/topicIds'
+import { TOPIC_IDS, type TopicId } from '@/explorations/topicIds'
 
 import { getTopicExplorationIds } from './REGISTRY'
 
@@ -226,3 +226,8 @@ export const TOPICS = {
     explorations: getTopicExplorationIds('interoperability'),
   },
 } satisfies Topics
+
+/** Topic hubs with live explorations — home topic grid and similar browse chrome only. */
+export function getNavTopicIds(): TopicId[] {
+  return TOPIC_IDS.filter((id) => TOPICS[id].explorations.length > 0)
+}

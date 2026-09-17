@@ -8,7 +8,8 @@ Naming rules agents should follow. Lint, format, and test gates: `.cursor/rules/
 
 - Folder: lowercase, hyphen-separated (`eip-7883`)
 - Widget: always `MyC.vue`
-- Metadata: `info.ts`
+- Shared metadata: `canonical.ts` (`CANONICAL` — topic, timeline, MCP hints; see `canonicalTypes.ts`)
+- Website chrome: `info.ts` (path, intro/usage HTML, images — copy fields from `CANONICAL`, do not invent taxonomy here)
 - Examples: `examples.ts`
 
 ### E-Components and UI

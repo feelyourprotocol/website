@@ -2,7 +2,7 @@
 import SectionLabel from '@/components/SectionLabel.vue'
 import ExplorationPreviewC from '@/explorations/ExplorationPreviewC.vue'
 import { EXPLORATIONS } from '@/explorations/REGISTRY'
-import { TOPICS } from '@/explorations/TOPICS'
+import { getNavTopicIds, TOPICS } from '@/explorations/TOPICS'
 import { COMMUNITY_TOKEN_HOME } from '@/libs/communityToken'
 import { WEBSITE_DOCS_HOME } from '@/libs/docsUrls'
 import { MCP_DOCS_HOME, mcpDocsPage, ROADMAP_LAUNCH } from '@/libs/roadmapUrls'
@@ -18,7 +18,7 @@ const latestIds = latestExplorationIds()
 const catalogIds = catalogExplorationIds()
 const forkLabels = catalogForkLabels()
 const explorationCount = allExplorationIds.length
-const topicIds = Object.keys(TOPICS)
+const topicIds = getNavTopicIds()
 const mcpCoverageUrl = mcpDocsPage('use/coverage')
 
 const fleet = [

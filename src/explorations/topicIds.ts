@@ -1,4 +1,7 @@
-/** Static topic hub ids — must match keys in `TOPICS.ts`. */
+/**
+ * Static topic hub ids — must match keys in `TOPICS.ts`.
+ * Used as `ProtocolChangeTaxonomy.topic`; not added per exploration.
+ */
 export const TOPIC_IDS = [
   'scaling',
   'privacy',

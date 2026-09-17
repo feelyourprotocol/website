@@ -31,7 +31,7 @@ Landing on mainnet does **not** retire the exploration or the twin. Fork `role` 
 
 ### Topics
 
-Strategic pillars — **static curated set**, not added with regular explorations. Each exploration has exactly one `topic` in `info.ts`. Valid IDs live in `TOPICS.ts`.
+Strategic pillars — **static curated set**, not added with regular explorations. Each exploration has exactly one `topic` in **`canonical.ts`** (`ProtocolChangeTaxonomy`). Valid IDs live in `TOPICS.ts` / `topicIds.ts`.
 
 | ID | Title | Description |
 | --- | --- | --- |

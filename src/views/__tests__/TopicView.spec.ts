@@ -101,6 +101,22 @@ describe('TopicView', () => {
     expect(catalogCards(wrapper)).toHaveLength(expected.length)
   })
 
+  it('still serves empty topic hubs at their route', async () => {
+    const emptyId = Object.entries(TOPICS).find(([, t]) => t.explorations.length === 0)![0]
+    const emptyTopic = TOPICS[emptyId as keyof typeof TOPICS]
+    const emptyRouter = createRouter({
+      history: createMemoryHistory(),
+      routes: [{ path: emptyTopic.path, name: emptyId, component: TopicView }],
+    })
+    await emptyRouter.push({ name: emptyId })
+    await emptyRouter.isReady()
+    const wrapper = mount(TopicView, {
+      global: { plugins: [emptyRouter], stubs: { RouterLink: RouterLinkStub } },
+    })
+    expect(wrapper.text()).toContain(emptyTopic.title)
+    expect(wrapper.text()).toContain('No explorations here yet')
+  })
+
   describe('/all catalog', () => {
     it('lists every exploration in a responsive grid', async () => {
       const wrapper = await mountTopicView('all')
