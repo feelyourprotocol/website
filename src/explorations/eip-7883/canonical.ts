@@ -32,7 +32,7 @@ export const CANONICAL: ProtocolChangeCanonical = {
     comparison: {
       baselineForkId: 'pectra',
       previewForkId: 'fusaka',
-      note: 'ModExp gas formula changed at Fusaka; EIP-7823 input bounds apply on Fusaka.',
+      note: 'ModExp gas formula changed at Fusaka (now current mainnet); EIP-7823 input bounds apply on Fusaka.',
     },
     docsStatus: 'runnable',
   },

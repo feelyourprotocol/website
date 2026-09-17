@@ -23,7 +23,7 @@ Markdown on this site is **secondary**. It can lag behind a gateway release; the
 ## Calling tools
 
 1. Probe first — learn what is runnable and how opcodes encode
-2. Run with **caller-supplied** inputs on the fork you need (default **glamsterdam**). A generic hardfork run does **not** require an EIP number — omit `eips[]`. Use **`run_bytecode`** for opcodes/precompiles and program-gas SSTORE/SLOAD; **`run_transaction`** for wallet gas, first-touch transfers, receipt logs, and `txStateGas`; **`run_block`** for several txs or a header slot. Prefund / code / storage in the **same** request when the observation needs a constructed world. Each call is a **new** lab unless you pass that prestate again. **Optionally** run again on **fusaka** when comparing against mainnet — this server does not ship demo programs
+2. Run with **caller-supplied** inputs on the fork you need (default **glamsterdam**). A generic hardfork run does **not** require an EIP number — omit `eips[]`. Use **`run_bytecode`** for opcodes/precompiles and program-gas SSTORE/SLOAD; **`run_transaction`** for wallet gas, first-touch transfers, receipt logs, and `txStateGas`; **`run_block`** for several txs or a header slot. Prefund / code / storage in the **same** request when the observation needs a constructed world. Each call is a **new** lab unless you pass that prestate again. Use **fusaka** when the question is current mainnet EL (or a compare against it) — this server does not ship demo programs
 3. **Do not** substitute the `mcp-execution-engine` lab, `npm run lab`, or repository source unless MCP is unavailable
 
 ## Replying to humans
@@ -57,6 +57,7 @@ Use this order:
 <Changelog
   title="Runtime Agents Changelog"
   :entries="[
+    { version: 'v0.15', date: '2026-09-17', summary: 'Fusaka runs are first-class for current-mainnet features, not only preview compares.' },
     { version: 'v0.14', date: '2026-09-16', summary: 'Generic hardfork runs (no EIP required); namedForks are catalog capabilities; provenance lists advertised modules.' },
     { version: 'v0.12', date: '2026-09-10', summary: 'run_block routing for header slot and multi-tx lab blocks.' },
     { version: 'v0.11', date: '2026-09-08', summary: 'run_bytecode + run_transaction routing; renamed from run_evm_bytecode.' },

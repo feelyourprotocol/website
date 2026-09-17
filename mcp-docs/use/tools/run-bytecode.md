@@ -29,14 +29,14 @@ Wallet gas limits, first-touch ETH transfers, receipt logs, and paid **`txStateG
 | --- | --- | --- |
 | `bytecode` | Yes | Hex-encoded bytecode (`0x` prefix optional). Max 24 576 bytes. |
 | `accounts` | No | Prefund code / balance / storage. Existing-slot SSTORE: put `storage` on `0x00000000000000000000000000000000000000b1` (the lab execution account). |
-| `fork` | No | `{ baseHardfork, eips[] }` — default **`glamsterdam`**. Use **`fusaka`** only when you want current mainnet baseline |
+| `fork` | No | `{ baseHardfork, eips[] }` — default **`glamsterdam`**. Use **`fusaka`** for current-mainnet features or as a compare baseline |
 | `gasLimit` | No | Decimal string. Default `1000000`. Max `30000000`. |
 | `trace` | No | When true, include stack-only execution steps (max 10 000) |
 
 ### Fork notes
 
 - **`glamsterdam`** — preview fork (`{ "baseHardfork": "glamsterdam", "eips": [] }`; alias `amsterdam`). Default. EIP-8024 and other Glamsterdam EIPs are **bundled in the hardfork** — you do not need `eips: [8024]` for DUPN/SWAPN/EXCHANGE to work.
-- **`fusaka`** — optional current mainnet EL baseline (`{ "baseHardfork": "fusaka", "eips": [] }`; alias `mainnet-el`). Use only when comparing against mainnet today.
+- **`fusaka`** — current mainnet EL (`{ "baseHardfork": "fusaka", "eips": [] }`; aliases `osaka`, `mainnet-el`). First-class for Fusaka twins (ModExp, P-256) and as the compare baseline vs Glamsterdam.
 
 ### Optional: compare baseline vs preview
 
@@ -117,6 +117,7 @@ See [Guarantees](/use/guarantees) for ceilings (max gas, bytecode size, trace st
 <Changelog
   title="Run Bytecode Changelog"
   :entries="[
+    { version: 'v0.13', date: '2026-09-17', summary: 'Fusaka is first-class for current-mainnet features, not only a compare baseline.' },
     { version: 'v0.12', date: '2026-09-16', summary: 'Generic Glamsterdam bytecode (no EIP named) is a first-class when-to-use.' },
     { version: 'v0.10', date: '2026-09-14', summary: 'SSTORE belongs on run_transaction — run_bytecode cannot persist storage writes.' },
     { version: 'v0.9', date: '2026-09-08', summary: 'Renamed run_evm_bytecode → run_bytecode. Value transfers moved to run_transaction.' },

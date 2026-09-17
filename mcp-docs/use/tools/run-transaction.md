@@ -38,7 +38,7 @@ Raw opcode / stack / precompile programs belong on [Run Bytecode](/use/tools/run
 
 ### Fork notes
 
-Same named forks as [Run Bytecode](/use/tools/run-bytecode): default **glamsterdam**, optional **fusaka** for a mainnet baseline compare.
+Same named forks as [Run Bytecode](/use/tools/run-bytecode): default **glamsterdam**; **fusaka** for current-mainnet features or a compare baseline.
 
 ## Outputs
 
@@ -80,6 +80,7 @@ See [Guarantees](/use/guarantees) for gas ceilings.
 <Changelog
   title="Run Transaction Changelog"
   :entries="[
+    { version: 'v0.5', date: '2026-09-17', summary: 'Fusaka fork note: current-mainnet features, not only a compare baseline.' },
     { version: 'v0.4', date: '2026-09-16', summary: 'Generic Glamsterdam / Fusaka transaction is a first-class when-to-use.' },
     { version: 'v0.2', date: '2026-09-14', summary: 'accounts[].storage seeds slots (EIP-8038 existing-slot SSTORE).' },
     { version: 'v0.1', date: '2026-09-08', summary: 'New MCP tool — VM transaction execution; paid gas, 8037 dimensions, 7708 receipt logs.' },

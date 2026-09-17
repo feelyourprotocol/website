@@ -8,7 +8,9 @@
  * an exploration is registered.
  *
  * Role (`historical` | `current` | `preview`) is the same `ForkRole` as MCP
- * `namedForks`. Tooltips come from `FORK_ROLE_HINT`.
+ * `namedForks`. Tooltips come from `FORK_ROLE_HINT`. Fork roles stay sharp;
+ * EIP twins stay after activation (adoption still matters). Do not drop a
+ * TIMELINE row or exploration just because that fork is live on mainnet.
  */
 export type ForkRole = 'historical' | 'current' | 'preview'
 

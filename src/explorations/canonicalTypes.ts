@@ -60,7 +60,10 @@ export interface ProtocolChangeMcpHints {
     note?: string
   }
   /**
-   * Layer A docs page status. `planned-module` = page ships before runnable catalog entry.
+   * Layer A docs page status. `planned-module` = page ships before a runnable catalog entry.
+   * `sunset` means the lab cannot show the effect, or a later explicit cleanup — not
+   * "already on mainnet." Activation keeps the exploration and MCP twin; fork `role`
+   * may rotate around them.
    */
   docsStatus?: 'runnable' | 'planned-module' | 'sunset'
 }

@@ -6,7 +6,7 @@ import { INFO } from './info'
 
 describe('EIP-7594 Exploration', () => {
   describe('canonical', () => {
-    it('is marked sunset for MCP twin policy', () => {
+    it('is sunset because PeerDAS is not observable in this lab', () => {
       expect(CANONICAL.mcp.docsStatus).toBe('sunset')
       expect(CANONICAL.mcp.shapes).toHaveLength(0)
     })

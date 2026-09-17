@@ -88,6 +88,10 @@ export const INFO: Exploration = {
 
 Agent field lookup: JSDoc on `Exploration` in `REGISTRY.ts`.
 
+## After mainnet
+
+Keep the exploration and its MCP twin when the EIP activates. Fork `role` may rotate (`preview` → `current` → `historical`); that is not a cue to sunset. Use `docsStatus: sunset` only when the lab cannot honestly show the effect, or for a later explicit cleanup.
+
 ## Discovery & SEO
 
 Write `seoDescription` for how people search (EIP number, acronyms, “interactive explainer”). Keep pedagogical framing in `introText`.

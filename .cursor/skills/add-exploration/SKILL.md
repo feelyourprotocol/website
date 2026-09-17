@@ -133,6 +133,7 @@ If the briefing promised a twin, add or stub `mcp-docs/use/eips/eip-NNNN.md` in 
 - **Engagement lexicon** — `social/watchlist.yml` `problem_slices` + `eip_number_fallback` for live ids; remove on sunset
 - **Cover art** — `image.webp` on every exploration
 - **New shared fields only on `canonicalTypes.ts`**
+- **Keep after mainnet** — do not set `docsStatus: sunset` because the fork activated
 
 ## Finish gates
 

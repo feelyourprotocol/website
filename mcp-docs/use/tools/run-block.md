@@ -33,7 +33,7 @@ A **single** paid transfer still belongs on [Run Transaction](/use/tools/run-tra
 
 ### Fork notes
 
-Same named forks as [Run Bytecode](/use/tools/run-bytecode): default **glamsterdam**, optional **fusaka** for a mainnet baseline compare. `slotNumber` is rejected on Fusaka.
+Same named forks as [Run Bytecode](/use/tools/run-bytecode): default **glamsterdam**; **fusaka** for current-mainnet features or a compare baseline. `slotNumber` is rejected on Fusaka.
 
 ## Outputs
 
@@ -80,6 +80,7 @@ Max **8** transactions. See [Guarantees](/use/guarantees) for gas ceilings.
 <Changelog
   title="Run Block Changelog"
   :entries="[
+    { version: 'v0.3', date: '2026-09-17', summary: 'Fusaka fork note: current-mainnet features, not only a compare baseline.' },
     { version: 'v0.2', date: '2026-09-16', summary: 'Generic Glamsterdam / Fusaka lab block is a first-class when-to-use.' },
   ]"
 />

@@ -2,11 +2,11 @@
 
 > **Status:** **Ready for the public MCP** (not launched). **`baselineForkId`** in the probe — today’s mainnet execution-layer rules.
 
-This page tracks **whatever fork mainnet EL is on right now**. Today that is **Fusaka** (EL alias **`osaka`**; role alias **`mainnet-el`**). After Glamsterdam activates on mainnet, this doc (and probe metadata) will switch to Glamsterdam as `current` / `baselineForkId`, and the next preview fork moves under [Preview forks](/use/forks/glamsterdam).
+This page tracks **whatever fork mainnet EL is on right now**. Today that is **Fusaka** (EL alias **`osaka`**; role alias **`mainnet-el`**). After Glamsterdam activates on mainnet, this doc (and probe metadata) will switch to Glamsterdam as `current` / `baselineForkId`, and the next preview fork moves under [Preview forks](/use/forks/glamsterdam). Fusaka twins stay advertised (this page becomes history); they are not dropped on activation.
 
 ## Fusaka today
 
-ModExp repricing (**7883**), secp256r1 precompile (**7951**), and related Fusaka EL changes are active on mainnet. **Predecessor in lineage:** Pectra ([historical table](/use/forks/historical-forks)). **Preview successor:** [Glamsterdam](/use/forks/glamsterdam).
+ModExp repricing (**7883**), secp256r1 precompile (**7951**), and related Fusaka EL changes are active on mainnet. Use this fork to **run those features** (adoption at your own pace) as well as to compare against Pectra or Glamsterdam. **Predecessor in lineage:** Pectra ([historical table](/use/forks/historical-forks)). **Preview successor:** [Glamsterdam](/use/forks/glamsterdam).
 
 Activated EIP numbers are in the probe (`namedForks[].activatedEips`, **`eipIntroductions`**). PeerDAS and blob-sidecar behaviour are not fully observable in this lab.
 
@@ -29,6 +29,7 @@ Full index: [EIP catalogue](/use/coverage).
 ## What you can ask your agent
 
 - *“Run this under current mainnet EL (Fusaka / mainnet-el).”*
+- *“Verify this P-256 payload on Fusaka — does 0x100 return 0x01?”*
 - *“Compare ModExp gas: Pectra then Fusaka.”*
 - *“Same transfer on Fusaka vs Glamsterdam.”*
 
@@ -50,6 +51,7 @@ Provenance on a generic Fusaka run lists advertised modules **7883** and **7951*
 <Changelog
   title="Current Mainnet Fork Changelog"
   :entries="[
+    { version: 'v0.6', date: '2026-09-17', summary: 'Fusaka twins stay first-class after activation (adoption runs, not only compares).' },
     { version: 'v0.5', date: '2026-09-17', summary: 'Twin pages linked from this fork doc (sidebar no longer lists EIPs).' },
     { version: 'v0.4', date: '2026-09-17', summary: 'Canonical catalog id is fusaka; osaka is the EL alias; mainnet-el remains the role alias.' },
     { version: 'v0.3', date: '2026-09-16', summary: 'Doc framed as rotating mainnet section (Fusaka now; updates when mainnet fork changes).' },

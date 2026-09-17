@@ -15,7 +15,7 @@ The MCP server exposes **intent-driven tools** — verbs that match how agents a
 | **Generate** | `generate` | Derive lab artifacts (BAL / EIP-7928 first) | Implemented — public launch pending |
 | **Inspect** | `inspect` | Structure + hash on caller blobs (BAL, 7702 auth, typed tx, withdrawals, requests) | Implemented — public launch pending |
 
-To **optionally** compare baseline vs preview, call the same verb twice — **fusaka** (current mainnet EL), then **glamsterdam** (preview) — and diff gas, success, traces, or logs. One run on Glamsterdam only is fully supported — you do **not** need to name an EIP.
+To **optionally** compare baseline vs preview, call the same verb twice — **fusaka** (current mainnet EL), then **glamsterdam** (preview) — and diff gas, success, traces, or logs. One run on Glamsterdam only is fully supported — you do **not** need to name an EIP. One run on **fusaka** is also first-class when the question is a current-mainnet feature (ModExp, P-256, a generic mainnet-EL program).
 
 ## Scope boundaries
 
@@ -32,6 +32,7 @@ See [Guarantees](/use/guarantees) for limits and provenance details.
 <Changelog
   title="Capabilities Changelog"
   :entries="[
+    { version: 'v0.16', date: '2026-09-17', summary: 'Fusaka runs are first-class for current-mainnet features, not only preview compares.' },
     { version: 'v0.15', date: '2026-09-16', summary: 'generate + inspect — BAL from lab block; inspect without chain state.' },
     { version: 'v0.14', date: '2026-09-16', summary: 'Generic hardfork runs (Glamsterdam default) are first-class — EIP modules remain the per-change catalogue.' },
     { version: 'v0.12', date: '2026-09-14', summary: 'BYOS clarified: isolated from chain, demand-built prestate in-call; not an empty-world rule.' },

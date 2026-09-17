@@ -12,7 +12,7 @@ The probe exposes the **Berlin→Glamsterdam lineage** so agents can answer “w
 | Current mainnet EL | [Fusaka](/use/forks/fusaka) | `current` |
 | History | **This page** (Berlin → Pectra) | `historical` |
 
-Historical forks are generic run targets: `{ "baseHardfork": "<id>", "eips": [] }` on the three run tools. Use **`eipIntroductions`** from [Describe Capabilities](/use/tools/describe-capabilities) for facts and compare pairs.
+Historical forks are generic run targets: `{ "baseHardfork": "<id>", "eips": [] }` on the three run tools. Use **`eipIntroductions`** from [Describe Capabilities](/use/tools/describe-capabilities) for facts and compare pairs. Advertised twins on a historical fork stay (7702 on Pectra today; Fusaka twins follow when that role rotates) — history is still a place to **run** those features, not only to compare them.
 
 From **Shapella** on, the catalog id is the combined upgrade name; the EL city name is an alias. **Paris** has no Shapella-style portmanteau — `paris` stays canonical (aliases `merge`, `the-merge`).
 
@@ -58,6 +58,7 @@ The lab does not replay Merge consensus, beacon withdrawals, blob sidecars, or P
 <Changelog
   title="Historical Forks Catalogue Changelog"
   :entries="[
+    { version: 'v0.5', date: '2026-09-17', summary: 'Historical forks still host advertised twins for adoption runs, not only compares.' },
     { version: 'v0.4', date: '2026-09-17', summary: 'Pectra 7702 twin linked from the lineage table.' },
     { version: 'v0.3', date: '2026-09-17', summary: 'Canonical ids from Shapella on are combined names (shapella, dencun, pectra); EL city names are aliases.' },
     { version: 'v0.2', date: '2026-09-16', summary: 'Berlin and London added to lineage floor; glacier delay forks excluded from catalog.' },

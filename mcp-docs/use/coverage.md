@@ -18,7 +18,7 @@ Fork configuration is **à la carte**: a base hardfork plus an optional EIP list
 
 Full per-fork ids, aliases, and `activatedEips` live in **`describe_capabilities`** — the table above is the human map to three doc pages.
 
-`baselineForkId` is **`fusaka`** (current mainnet EL). Default lab fork is **`glamsterdam`**.
+`baselineForkId` is **`fusaka`** (current mainnet EL). Default lab fork is **`glamsterdam`**. Current-mainnet twins (7883, 7951) stay in this live catalog — they are first-class runs, not only a compare baseline vs preview. When mainnet moves on, those twins stay advertised on Fusaka (then a historical row), like 7702 on Pectra. `sunset` is for no honest lab shape (PeerDAS), not for “already activated.”
 
 ## Runnable capabilities (live catalog)
 
@@ -62,6 +62,7 @@ Canonical metadata for twins lives in website `src/explorations/eip-NNNN/canonic
 <Changelog
   title="Coverage Changelog"
   :entries="[
+    { version: 'v0.25', date: '2026-09-17', summary: 'Current-mainnet twins stay first-class; sunset is not “already activated.”' },
     { version: 'v0.24', date: '2026-09-17', summary: 'Human EIP index — per-EIP pages stay linked from this catalogue, not the sidebar.' },
     { version: 'v0.23', date: '2026-09-16', summary: 'Lineage extended with Berlin and London (historical floor); glacier BPO forks excluded.' },
     { version: 'v0.22', date: '2026-09-16', summary: 'Fork docs: preview (Glamsterdam), mainnet (Fusaka), combined historical page.' },

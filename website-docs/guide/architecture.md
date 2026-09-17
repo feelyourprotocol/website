@@ -25,6 +25,8 @@ Schema for all explorations: `src/explorations/canonicalTypes.ts`. Replicate `CA
 
 Every **live** exploration needs a matching MCP usage story — at minimum [`mcp-docs/use/eips/eip-NNNN`](https://mcp-docs.feelyourprotocol.org/use/coverage.html) (Runnable or Planned). The exploration is the textbook slice; MCP is the superset lab. Full path: [round-trip skill](https://github.com/feelyourprotocol/website/blob/main/.cursor/skills/round-trip-protocol-change/SKILL.md) (optional Bro & Bruh comic after MCP). Brief first: [brief-protocol-change skill](https://github.com/feelyourprotocol/website/blob/main/.cursor/skills/brief-protocol-change/SKILL.md).
 
+Landing on mainnet does **not** retire the exploration or the twin. Fork `role` may move from `preview` → `current` → `historical`; advertised twins stay until a later explicit cleanup. `docsStatus: sunset` is for cases the lab cannot honestly run (PeerDAS today), not for “this fork already activated.”
+
 `REGISTRY.ts` assembles all explorations into routes — no manual route registration.
 
 ### Topics
@@ -44,7 +46,7 @@ When instructing an agent: pick the topic that best reflects the **primary conce
 
 ### Timeline
 
-Forks that have explorations — ids in `TIMELINE.ts` match the MCP lineage catalog (`fusaka`, `glamsterdam`, …). From Shapella on, the combined upgrade name is canonical; the EL city name is an alias. Website nav is this subset only (do not add empty historical forks). Role is `historical` | `current` | `preview` (same as MCP `namedForks[].role`). Add a row when an exploration for that fork ships.
+Forks that have explorations — ids in `TIMELINE.ts` match the MCP lineage catalog (`fusaka`, `glamsterdam`, …). From Shapella on, the combined upgrade name is canonical; the EL city name is an alias. Website nav is this subset only (do not add empty historical forks). Role is `historical` | `current` | `preview` (same as MCP `namedForks[].role`). Add a row when an exploration for that fork ships. Keep the row and the explorations after that fork is live on mainnet — role may later become `historical`; do not delete on activation.
 
 ### Tags
 

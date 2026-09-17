@@ -95,7 +95,7 @@ Read `ChangeNature` in `canonicalTypes.ts`.
 ## Shape / twin (no orphan explorations)
 
 7. **Query shape:** `simulate` · `transaction` · `generate` · (future) other verb. Wallet gasLimit, paid gas, receipts, first-touch transfers → `transaction`. Opcodes, stack, precompiles → `simulate`.
-8. **MCP docs page:** Can we honestly explain how MCP addresses this problem set *today* or with a **named planned verb**? If neither — do not add the exploration (or sunset it).
+8. **MCP docs page:** Can we honestly explain how MCP addresses this problem set *today* or with a **named planned verb**? If neither — do not add the exploration (or sunset it). Do **not** sunset because the EIP is already on mainnet.
 
 ## Suitability
 

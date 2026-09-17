@@ -17,7 +17,7 @@ When editing `src/explorations/` or shared `src/eComponents/`:
 
 ## No orphan explorations
 
-Every live exploration needs `mcp-docs/use/eips/eip-NNNN.md` (Runnable or Planned). See [brief-protocol-change skill](../skills/brief-protocol-change/SKILL.md).
+Every live exploration needs `mcp-docs/use/eips/eip-NNNN.md` (Runnable or Planned). See [brief-protocol-change skill](../skills/brief-protocol-change/SKILL.md). Landing on mainnet does **not** sunset the exploration or twin.
 
 ## Taxonomies
 

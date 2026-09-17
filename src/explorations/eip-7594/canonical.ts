@@ -29,6 +29,7 @@ export const CANONICAL: ProtocolChangeCanonical = {
   mcp: {
     shapes: [],
     keywords: ['PeerDAS', 'cell proofs', 'KZG', 'blob transactions'],
+    // Not observable in this EL lab (no blob sidecars) — not sunset because Fusaka is on mainnet.
     docsStatus: 'sunset',
   },
 }
