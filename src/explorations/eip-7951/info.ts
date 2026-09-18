@@ -12,6 +12,10 @@ export const INFO: Exploration = {
   seoDescription:
     'EIP-7951 secp256r1 precompile — try passkey-friendly signature verification on Ethereum with an interactive precompile demo.',
   infoURL: CANONICAL.identity.specUrl,
+  specDate: CANONICAL.identity.specDate,
+  specStatus: CANONICAL.identity.status,
+  testReleaseUrl: CANONICAL.identity.testReleaseUrl,
+  testReleaseName: CANONICAL.identity.testReleaseName,
   topic: CANONICAL.taxonomy.topic,
   timeline: CANONICAL.taxonomy.timeline,
   tags: CANONICAL.taxonomy.tags,

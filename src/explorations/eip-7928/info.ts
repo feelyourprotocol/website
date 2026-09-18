@@ -11,6 +11,10 @@ export const INFO: Exploration = {
   seoDescription:
     'Explore Ethereum block-level access lists (BAL) with EIP-7928 — interactive walkthrough of block access patterns and the block access list hash.',
   infoURL: CANONICAL.identity.specUrl,
+  specDate: CANONICAL.identity.specDate,
+  specStatus: CANONICAL.identity.status,
+  testReleaseUrl: CANONICAL.identity.testReleaseUrl,
+  testReleaseName: CANONICAL.identity.testReleaseName,
   topic: CANONICAL.taxonomy.topic,
   timeline: CANONICAL.taxonomy.timeline,
   tags: CANONICAL.taxonomy.tags,

@@ -35,6 +35,7 @@ describe('canonical taxonomy ids', () => {
       expect(identity.status).toBeTruthy()
       expect(identity.specDate).toMatch(/^\d{4}-\d{2}-\d{2}$/)
       expect(identity.testReleaseUrl).toContain('tests-glamsterdam-devnet@v8.1.0')
+      expect(identity.testReleaseName).toBe('tests-glamsterdam-devnet@v8.1.0')
     }
   })
 

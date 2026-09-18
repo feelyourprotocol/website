@@ -60,11 +60,14 @@ export interface ProtocolChangeIdentity {
    * Example: `https://github.com/ethereum/execution-specs/releases/tag/tests-glamsterdam-devnet@v8.1.0`
    */
   testReleaseUrl?: string
+  /** Release tag used as the human link label (same tag as in `testReleaseUrl`). */
+  testReleaseName?: string
 }
 
 /** EST tag EthereumJS Glamsterdam preview currently aligns with. Refresh via update-ethereumjs. */
-export const GLAMSTERDAM_DEVNET_TEST_RELEASE_URL =
-  'https://github.com/ethereum/execution-specs/releases/tag/tests-glamsterdam-devnet@v8.1.0'
+export const GLAMSTERDAM_DEVNET_TEST_RELEASE_NAME = 'tests-glamsterdam-devnet@v8.1.0'
+
+export const GLAMSTERDAM_DEVNET_TEST_RELEASE_URL = `https://github.com/ethereum/execution-specs/releases/tag/${GLAMSTERDAM_DEVNET_TEST_RELEASE_NAME}`
 
 /** Problem framing — drives home cards, intro lead, and MCP docs opening. */
 export interface ProtocolChangeQuestion {

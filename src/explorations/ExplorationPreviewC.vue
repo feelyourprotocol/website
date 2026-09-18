@@ -1,11 +1,9 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { ArrowTopRightOnSquareIcon } from '@heroicons/vue/24/solid'
-
-import ButtonUIC from '@/eComponents/ui/ButtonUIC.vue'
 
 import ExplorationMetaPills from './ExplorationMetaPills.vue'
 import { type Exploration, getExplorationThumbnailImage } from './REGISTRY'
+import SpecSnapshotUIC from './SpecSnapshotUIC.vue'
 import { type Topic, TOPIC_COLORS, topicCSSVars } from './TOPICS'
 
 const props = withDefaults(
@@ -54,26 +52,14 @@ const thumbnail = computed(() => getExplorationThumbnailImage(props.exploration)
       />
 
       <div class="min-w-0 flex-1">
-        <div class="flex items-start gap-2">
+        <div class="relative z-10 flex items-start gap-2">
           <h3
             class="font-bold tracking-tight flex-1 min-w-0 e-text"
             :class="size === 'featured' ? 'text-lg' : 'text-sm'"
           >
             {{ exploration.title }}
           </h3>
-          <a
-            :href="exploration.infoURL"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="visit-exploration-button shrink-0"
-            @click.stop
-          >
-            <ButtonUIC
-              :icon="ArrowTopRightOnSquareIcon"
-              tooltip="External Link with more information"
-              aria-label="Open external EIP information"
-            />
-          </a>
+          <SpecSnapshotUIC :exploration="exploration" />
         </div>
 
         <p class="font-mono text-xs leading-relaxed text-slate-600 mt-1.5">

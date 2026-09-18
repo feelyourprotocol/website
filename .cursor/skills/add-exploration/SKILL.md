@@ -98,7 +98,7 @@ Invariants and finish commands: [testing.mdc](../rules/testing.mdc), [quality.md
 ## Implementation steps
 
 1. Create `src/explorations/<id>/`
-2. `canonical.ts` — `CANONICAL` per `canonicalTypes.ts` (SoT), from the signed-off proposal. Pin `identity.specUrl`, `identity.specDate`, `identity.status`, and `identity.testReleaseUrl` per [eip-canonical-data.mdc](../rules/eip-canonical-data.mdc) § Spec versioning (GitHub/web only — no local EIPs checkout). If the starting point is unclear, **ask**. EthereumJS bumps later: [update-ethereumjs](../update-ethereumjs/SKILL.md).
+2. `canonical.ts` — `CANONICAL` per `canonicalTypes.ts` (SoT), from the signed-off proposal. Pin `identity.specUrl`, `identity.specDate`, `identity.status`, `identity.testReleaseUrl`, and `identity.testReleaseName` per [eip-canonical-data.mdc](../rules/eip-canonical-data.mdc) § Spec versioning (GitHub/web only — no local EIPs checkout). If the starting point is unclear, **ask**. EthereumJS bumps later: [update-ethereumjs](../update-ethereumjs/SKILL.md).
 3. `info.ts` — website chrome; `introText` starts with `coreQuestion` from `CANONICAL`; copy `coreQuestion` and `mcpDocsStatus` onto `INFO` for home preview cards. Set `imageBoxHeight` per [exploration-design.mdc](../rules/exploration-design.mdc) (`COVER_COLUMN_IMAGE_HEIGHT` vs companion `16rem`–`19rem`).
 4. `examples.ts` + execution helpers — **tests for the protocol claim first** (or immediately with these files)
 5. `MyC.vue` (+ `config.ts` if E-Component-backed) — then Vue mount tests. After the first chrome pass, run the [cross-exploration UI check](#design-same-turn-before-files) (design §11). If a sibling already has the same control and there is no UIC, extract + tests **in this step**, then wire every call site.
@@ -142,7 +142,7 @@ Design ([exploration-design.mdc](../rules/exploration-design.mdc)):
 Data ([eip-canonical-data.mdc](../rules/eip-canonical-data.mdc)):
 
 - **New shared fields only on `canonicalTypes.ts`**
-- **Pin the spec** — commit-pinned `specUrl`, commit `specDate`, preamble `status`, optional `testReleaseUrl`
+- **Pin the spec** — commit-pinned `specUrl`, commit `specDate`, preamble `status`, optional `testReleaseUrl` / `testReleaseName`
 - **Keep after mainnet** — do not set `docsStatus: sunset` because the fork activated
 
 ## Finish gates

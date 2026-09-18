@@ -19,7 +19,7 @@ EthereumJS hardfork EIP work tracks official cross-client spec tests. The Ethere
 
 **Do not** use a local `ethereum/EIPs` or execution-specs git checkout. Collect from GitHub/web only. If the test release, devnet branch, or `ref_spec` is unclear, **ask**.
 
-Then write `identity.specUrl`, `identity.specDate`, `identity.status`, and `identity.testReleaseUrl` on affected `canonical.ts` files, replicate into engine modules / provenance, and update mcp-docs “Canonical spec” / “Spec date” rows.
+Then write `identity.specUrl`, `identity.specDate`, `identity.status`, `identity.testReleaseUrl`, and `identity.testReleaseName` on affected `canonical.ts` files, replicate into engine modules / provenance, and update mcp-docs “Canonical spec” / “Spec date” rows.
 
 ## Later
 

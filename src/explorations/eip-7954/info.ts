@@ -12,6 +12,10 @@ export const INFO: Exploration = {
   seoDescription:
     'Explore EIP-7954 contract size limits interactively: compare 24 KiB with 64 KiB runtime code and 48 KiB with 128 KiB initcode.',
   infoURL: CANONICAL.identity.specUrl,
+  specDate: CANONICAL.identity.specDate,
+  specStatus: CANONICAL.identity.status,
+  testReleaseUrl: CANONICAL.identity.testReleaseUrl,
+  testReleaseName: CANONICAL.identity.testReleaseName,
   topic: CANONICAL.taxonomy.topic,
   timeline: CANONICAL.taxonomy.timeline,
   tags: CANONICAL.taxonomy.tags,

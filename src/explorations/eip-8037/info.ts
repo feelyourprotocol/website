@@ -12,6 +12,10 @@ export const INFO: Exploration = {
   seoDescription:
     'EIP-8037 state-creation gas — see why a 21,000 gas limit is not enough for a first-touch ETH transfer on Glamsterdam, and how execution vs state gas split.',
   infoURL: CANONICAL.identity.specUrl,
+  specDate: CANONICAL.identity.specDate,
+  specStatus: CANONICAL.identity.status,
+  testReleaseUrl: CANONICAL.identity.testReleaseUrl,
+  testReleaseName: CANONICAL.identity.testReleaseName,
   topic: CANONICAL.taxonomy.topic,
   timeline: CANONICAL.taxonomy.timeline,
   tags: CANONICAL.taxonomy.tags,

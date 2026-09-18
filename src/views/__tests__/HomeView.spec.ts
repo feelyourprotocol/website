@@ -96,13 +96,15 @@ describe('HomeView', () => {
       }
     })
 
-    it('external info link on latest cards points to EIP spec', () => {
+    it('Spec control on latest cards opens the snapshot panel', async () => {
       for (const id of latest) {
-        const link = wrapper.find(
-          `#${id}-c a.visit-exploration-button[href="${EXPLORATIONS[id].infoURL}"]`,
+        const card = wrapper.get(`#${id}-c`)
+        const trigger = card.get('[data-testid="spec-pin"]')
+        expect(trigger.text()).toBe('Spec')
+        await trigger.trigger('click')
+        expect(card.get('[data-testid="spec-pin-url"]').attributes('href')).toBe(
+          EXPLORATIONS[id].infoURL,
         )
-        expect(link.exists()).toBe(true)
-        expect(link.attributes('target')).toBe('_blank')
       }
     })
   })

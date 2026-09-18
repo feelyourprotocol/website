@@ -12,6 +12,10 @@ export const INFO: Exploration = {
   seoDescription:
     'EIP-7883 ModExp gas cost increase — interactive look at Ethereum precompile gas recalibration and its security motivation.',
   infoURL: CANONICAL.identity.specUrl,
+  specDate: CANONICAL.identity.specDate,
+  specStatus: CANONICAL.identity.status,
+  testReleaseUrl: CANONICAL.identity.testReleaseUrl,
+  testReleaseName: CANONICAL.identity.testReleaseName,
   topic: CANONICAL.taxonomy.topic,
   timeline: CANONICAL.taxonomy.timeline,
   tags: CANONICAL.taxonomy.tags,

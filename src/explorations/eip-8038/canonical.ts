@@ -3,7 +3,10 @@
  * Replicate into engine EipCapability and mcp-docs; do not invent shared meaning in replicas.
  */
 import type { ProtocolChangeCanonical } from '@/explorations/canonicalTypes'
-import { GLAMSTERDAM_DEVNET_TEST_RELEASE_URL } from '@/explorations/canonicalTypes'
+import {
+  GLAMSTERDAM_DEVNET_TEST_RELEASE_NAME,
+  GLAMSTERDAM_DEVNET_TEST_RELEASE_URL,
+} from '@/explorations/canonicalTypes'
 import { Tag } from '@/explorations/TAGS'
 
 export const CANONICAL: ProtocolChangeCanonical = {
@@ -16,6 +19,7 @@ export const CANONICAL: ProtocolChangeCanonical = {
     name: 'EIP-8038 State-Access Gas Cost Update',
     status: 'Review',
     testReleaseUrl: GLAMSTERDAM_DEVNET_TEST_RELEASE_URL,
+    testReleaseName: GLAMSTERDAM_DEVNET_TEST_RELEASE_NAME,
   },
   question: {
     coreQuestion:

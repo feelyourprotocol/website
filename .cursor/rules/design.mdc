@@ -24,7 +24,7 @@ Reference: `ExplorationMetaPills.vue` — `text-xs px-3 py-2 min-h-11` → `sm:t
 
 **Browse filters** (tag cloud, timeline rows): **`fyp-shell-tap-target`** plus extra vertical padding on mobile (`py-2` → `sm:py-0.5`).
 
-**Title-row icon links** (external EIP on cards / `ExplorationC`): **`size-11` on mobile**, `sm:size-7` — `.visit-exploration-button` in `main.css`.
+**Title-row Spec control** (snapshot panel on cards / `ExplorationC`): **`min-h-11` on mobile**, `sm:min-h-7` — `.e-info-panel-trigger` in `main.css`.
 
 **Leave full-size on all breakpoints:** in-exploration **`e-action-button`** / Run controls — primary widget actions, not site chrome. **`ExplorationNavListbox`** keeps its own responsive trigger rules.
 

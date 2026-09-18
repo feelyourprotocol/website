@@ -28,7 +28,7 @@ After you can name the chrome controls, and **before** shipping a second copy of
    - UIC exists → use it.
    - No UIC yet → extract in-between: `src/eComponents/ui/<Name>UIC.vue` + a practically sufficient spec under `src/eComponents/ui/__tests__/`, then wire **all** call sites (new and old). Do not leave the old inline markup.
 
-Reference: `SegmentedToggleUIC` — Fusaka | Glamsterdam on `eip-7708` and `eip-8037`, plus the gas-limit pair on `eip-8037`. Scenario step prev/next → **`ScenarioStepNavUIC`**. Scenario control row → **`WidgetChromeUIC`** (`.e-widget-chrome*` in `main.css`).
+Reference: `SegmentedToggleUIC` — Fusaka | Glamsterdam on `eip-7708` and `eip-8037`, plus the gas-limit pair on `eip-8037`. Scenario step prev/next → **`ScenarioStepNavUIC`**. Scenario control row → **`WidgetChromeUIC`** (`.e-widget-chrome*` in `main.css`). Title-row Spec snapshot → **`InfoPanelUIC`** + **`SpecSnapshotUIC`**.
 
 ## Widget chrome (scenario explorations)
 
