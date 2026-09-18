@@ -36,10 +36,4 @@ export const INFO: Exploration = {
     '<a href="https://github.com/paulmillr/noble-curves?tab=readme-ov-file#secp256k1-p256-p384-p521-ed25519-ed448-brainpool" target="_blank">Noble Curves</a> ' +
     'or the ' +
     '<a href="https://github.com/ethereumjs/ethereumjs-monorepo/tree/master/packages/evm#eip-7951-precompile-for-secp256r1-curve-support-osaka" target="_blank">EthereumJS example</a>.',
-  creatorName: 'HolgerD77',
-  creatorURL: 'https://x.com/HolgerD77',
-  poweredBy: [
-    { name: 'Noble', href: 'https://github.com/paulmillr/noble-curves' },
-    { name: 'EthereumJS', href: 'https://github.com/ethereumjs/ethereumjs-monorepo' },
-  ],
 }

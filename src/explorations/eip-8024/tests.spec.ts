@@ -36,7 +36,6 @@ describe('EIP-8024 Exploration', () => {
       expect(INFO.path).toContain('eip-8024')
       expect(INFO.topic).toBe('robustness')
       expect(INFO.timeline).toBe('glamsterdam')
-      expect(INFO.poweredBy.length).toBeGreaterThan(0)
     })
   })
 

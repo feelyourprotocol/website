@@ -26,7 +26,6 @@ async function mountWithExample(example: string) {
       attachTo: document.getElementById('root')!,
       global: {
         plugins: [router],
-        stubs: { PoweredByC: true },
       },
     },
   )

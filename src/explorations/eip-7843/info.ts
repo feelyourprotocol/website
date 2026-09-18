@@ -30,7 +30,4 @@ export const INFO: Exploration = {
     'the stack top should match the slot on the right. Change the slot, compare ' +
     '<code>TIMESTAMP</code> with <code>SLOTNUM</code>, or try the divide-by-12 trap. Switch to ' +
     'Fusaka to see the opcode fail.',
-  creatorName: 'HolgerD77',
-  creatorURL: 'https://x.com/HolgerD77',
-  poweredBy: [{ name: 'EthereumJS', href: 'https://github.com/ethereumjs/ethereumjs-monorepo' }],
 }

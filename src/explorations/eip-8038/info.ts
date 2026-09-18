@@ -30,7 +30,4 @@ export const INFO: Exploration = {
     'fill: touch stays 2,100, change jumps, create stays empty. Switch to <b>Fusaka</b> to see ' +
     'the smaller write. Try a <b>read</b> (touch only) or a <b>new slot</b> (create becomes ' +
     'state gas).',
-  creatorName: 'HolgerD77',
-  creatorURL: 'https://x.com/HolgerD77',
-  poweredBy: [{ name: 'EthereumJS', href: 'https://github.com/ethereumjs/ethereumjs-monorepo' }],
 }

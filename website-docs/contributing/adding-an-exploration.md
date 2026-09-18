@@ -74,7 +74,6 @@ export const INFO: Exploration = {
   mcpDocsStatus: CANONICAL.mcp.docsStatus,
   introText: `<b>${CANONICAL.question.coreQuestion}</b> …`,
   usageText: 'How to use the widget below.',
-  poweredBy: [{ name: 'EthereumJS', href: 'https://github.com/ethereumjs/ethereumjs-monorepo' }],
 }
 ```
 
@@ -88,7 +87,6 @@ export const INFO: Exploration = {
 | `seoDescription` | Discovery/search (~120–160 chars); **not** the same as `introText` |
 | `introText` / `usageText` | Pedagogy and accuracy vs the spec |
 | `introText` vs `seoDescription` | Intro teaches on-page; SEO targets search queries |
-| `poweredBy` | Credit libraries used |
 | `image` | Required — [Images](/contributing/images). Page uses `image.webp`; cards use `imageSmall`. |
 | `imageBoxHeight` | Cover-only: `COVER_COLUMN_IMAGE_HEIGHT` (`48rem`). Companion: `16rem`–`19rem` with `rightPanel: true`. |
 | `rightPanel` | Set when a companion teleports into `#exploration-right-panel`; otherwise omit. |

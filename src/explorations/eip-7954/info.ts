@@ -29,7 +29,4 @@ export const INFO: Exploration = {
     'The first example crosses the old runtime-code wall by exactly one byte. Press ' +
     '<b>Deploy</b> to try the same contract on Fusaka and Glamsterdam, then test the new ' +
     'ceiling, one byte beyond it, and the separate initcode boundary.',
-  creatorName: 'HolgerD77',
-  creatorURL: 'https://x.com/HolgerD77',
-  poweredBy: [{ name: 'EthereumJS', href: 'https://github.com/ethereumjs/ethereumjs-monorepo' }],
 }

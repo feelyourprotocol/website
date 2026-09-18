@@ -190,7 +190,6 @@ describe('EIP-8037 state-creation gas exploration', () => {
               ExplorationC: {
                 template: '<div><slot name="content" /></div>',
               },
-              PoweredByC: true,
             },
           },
         },
@@ -231,7 +230,6 @@ describe('EIP-8037 state-creation gas exploration', () => {
               ExplorationC: {
                 template: '<div><slot name="content" /></div>',
               },
-              PoweredByC: true,
             },
           },
         },

@@ -33,11 +33,6 @@ export interface Examples {
   }
 }
 
-export interface PoweredByItem {
-  name: string
-  href: string
-}
-
 export interface Exploration {
   /** Folder name and route key, e.g. `eip-7883`. Must match `src/explorations/<id>/`. */
   id: string
@@ -74,13 +69,8 @@ export interface Exploration {
   introText: string
   /** HTML instructions for using the widget below the intro. */
   usageText: string
-  /** Optional attribution for the exploration author. */
-  creatorName?: string
-  /** Optional link for the exploration author. */
-  creatorURL?: string
-  /** Libraries or projects the widget runs on — shown in the exploration footer. */
-  poweredBy: PoweredByItem[]
 }
+
 export interface Explorations {
   [key: string]: Exploration
 }

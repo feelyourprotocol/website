@@ -8,7 +8,6 @@ import ActionButtonUIC from '@/eComponents/ui/ActionButtonUIC.vue'
 import ExamplesUIC from '@/eComponents/ui/ExamplesUIC.vue'
 import HexDataInputUIC from '@/eComponents/ui/HexDataInputUIC.vue'
 import ExplorationC from '@/explorations/ExplorationC.vue'
-import PoweredByC from '@/explorations/PoweredByC.vue'
 import type { Examples } from '@/explorations/REGISTRY'
 import type { Exploration } from '@/explorations/REGISTRY'
 import { TOPICS } from '@/explorations/TOPICS'
@@ -368,12 +367,6 @@ function formatStackWord(word: bigint): string {
           <div class="e-grid-single">
             <BytecodeStepperResultEC :execResult="execResult" :error="error" />
           </div>
-
-          <PoweredByC
-            :poweredBy="exploration.poweredBy"
-            :creatorName="exploration.creatorName"
-            :creatorURL="exploration.creatorURL"
-          />
         </div>
       </template>
     </ExplorationC>

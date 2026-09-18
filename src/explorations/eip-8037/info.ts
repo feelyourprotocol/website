@@ -30,7 +30,4 @@ export const INFO: Exploration = {
     'transfer succeeds and the two bars appear with a 21,000 marker. Switch to ' +
     '<b>21,000</b> to see the out-of-gas failure wallets still hit. Try Fusaka, or a funded ' +
     'recipient, to watch the state bar collapse.',
-  creatorName: 'HolgerD77',
-  creatorURL: 'https://x.com/HolgerD77',
-  poweredBy: [{ name: 'EthereumJS', href: 'https://github.com/ethereumjs/ethereumjs-monorepo' }],
 }

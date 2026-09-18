@@ -30,7 +30,4 @@ export const INFO: Exploration = {
     'Pick a scenario, choose <b>Glamsterdam</b> or <b>Fusaka</b>, then press <b>Run block</b>. ' +
     'Decoded Transfer rows appear in the receipt panel on the right. Try the same scenario on ' +
     'Fusaka to see the baseline without EIP-7708 logs.',
-  creatorName: 'HolgerD77',
-  creatorURL: 'https://x.com/HolgerD77',
-  poweredBy: [{ name: 'EthereumJS', href: 'https://github.com/ethereumjs/ethereumjs-monorepo' }],
 }

@@ -140,7 +140,6 @@ describe('EIP-8038 state-access gas exploration', () => {
               ExplorationC: {
                 template: '<div><slot name="content" /></div>',
               },
-              PoweredByC: true,
             },
           },
         },
@@ -184,7 +183,6 @@ describe('EIP-8038 state-access gas exploration', () => {
               ExplorationC: {
                 template: '<div><slot name="content" /></div>',
               },
-              PoweredByC: true,
             },
           },
         },

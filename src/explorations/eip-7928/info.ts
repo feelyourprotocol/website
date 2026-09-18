@@ -29,7 +29,4 @@ export const INFO: Exploration = {
     'Work through the curriculum steps in order — each builds on the previous one. Read the ' +
     'scenario summary, then press <b>Run block</b>. The highlighted panel shows what changed in ' +
     'the BAL; expand the JSON on the right for the full structure.',
-  creatorName: 'HolgerD77',
-  creatorURL: 'https://x.com/HolgerD77',
-  poweredBy: [{ name: 'EthereumJS', href: 'https://github.com/ethereumjs/ethereumjs-monorepo' }],
 }

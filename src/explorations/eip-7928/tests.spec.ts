@@ -46,7 +46,6 @@ describe('EIP-7928 BAL Exploration', () => {
       expect(INFO.path).toContain('eip-7928')
       expect(INFO.topic).toBe('scaling')
       expect(INFO.timeline).toBe('glamsterdam')
-      expect(INFO.poweredBy.length).toBeGreaterThan(0)
     })
   })
 

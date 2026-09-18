@@ -32,7 +32,4 @@ export const INFO: Exploration = {
     'latches when you rest on DUPN, SWAPN, or EXCHANGE. The DUPN demo uses a 17-item stack ' +
     '(the minimum for depth 16); SWAPN needs one slot more at the same depth; EXCHANGE fits in ' +
     'four pushes. Execution runs on a Glamsterdam-fork EVM via EthereumJS.',
-  creatorName: 'HolgerD77',
-  creatorURL: 'https://x.com/HolgerD77',
-  poweredBy: [{ name: 'EthereumJS', href: 'https://github.com/ethereumjs/ethereumjs-monorepo' }],
 }
