@@ -40,11 +40,31 @@ export interface ProtocolChangeIdentity {
   id: string
   /** EIP number when applicable. */
   eip: number
-  /** Canonical spec URL (EIPs site). */
+  /**
+   * Commit-pinned GitHub blob URL of the EIP markdown this widget/lab implements.
+   * Not the floating `eips.ethereum.org` page. See `eip-canonical-data.mdc` § Spec versioning.
+   */
   specUrl: string
+  /**
+   * UTC calendar date (`YYYY-MM-DD`) of the GitHub **commit** in `specUrl`
+   * (`committer.date`). Not the EIP preamble `created:` field. Omit on floating
+   * `eips.ethereum.org` URLs. See `eip-canonical-data.mdc` § Spec versioning.
+   */
+  specDate?: string
   /** Short human name; feeds exploration `title` and MCP catalogue `name`. */
   name: string
+  /** EIP editor status from the **pinned** markdown preamble (`status:`). */
+  status?: EipProcessStatus
+  /**
+   * execution-specs test release this snapshot was aligned with (optional).
+   * Example: `https://github.com/ethereum/execution-specs/releases/tag/tests-glamsterdam-devnet@v8.1.0`
+   */
+  testReleaseUrl?: string
 }
+
+/** EST tag EthereumJS Glamsterdam preview currently aligns with. Refresh via update-ethereumjs. */
+export const GLAMSTERDAM_DEVNET_TEST_RELEASE_URL =
+  'https://github.com/ethereum/execution-specs/releases/tag/tests-glamsterdam-devnet@v8.1.0'
 
 /** Problem framing — drives home cards, intro lead, and MCP docs opening. */
 export interface ProtocolChangeQuestion {
@@ -71,21 +91,8 @@ export interface ProtocolChangeTaxonomy {
   tags: Tag[]
 }
 
-/** EIP process status on eips.ethereum.org — not fork `role` and not `docsStatus`. */
+/** EIP process status in the pinned EIP markdown — not fork `role` and not `docsStatus`. */
 export type EipProcessStatus = 'Draft' | 'Review' | 'Last Call' | 'Final' | 'Stagnant' | 'Withdrawn'
-
-/**
- * Spec/process maturity — optional prose for MCP module replicas and briefs.
- * Not shown on the public exploration UI today.
- */
-export interface ProtocolChangeMaturity {
-  /** EIP editor status (Draft, Final, …). */
-  eipStatus?: EipProcessStatus
-  /** Client / library implementation notes (free text). */
-  implMaturity?: string
-  /** Test coverage notes (free text). */
-  testMaturity?: string
-}
 
 /** MCP twin hints — replicated into engine module + human catalogue; partially surfaced on site. */
 export interface ProtocolChangeMcpHints {
@@ -119,6 +126,5 @@ export interface ProtocolChangeCanonical {
   identity: ProtocolChangeIdentity
   question: ProtocolChangeQuestion
   taxonomy: ProtocolChangeTaxonomy
-  maturity: ProtocolChangeMaturity
   mcp: ProtocolChangeMcpHints
 }

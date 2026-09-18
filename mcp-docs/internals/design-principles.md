@@ -17,7 +17,7 @@ These boundaries apply to everything we ship.
 
 - **Query shapes, not library APIs** — generic verbs (`simulate`, `transaction`, `block`, `generate`, `probe`); structured results.
 - **Fork = capability set** — `(baseHardfork, eips[])` à la carte; named forks are **catalog capabilities** (summary, advertised EIPs, shapes), not id-only shortcuts.
-- **Provenance on every result** — engine version, fork config, advertised or explicit EIP maturity metadata.
+- **Provenance on every result** — engine version, fork config, advertised EIP status, spec URL, and spec date, stability rollup, human caveat.
 
 End-user summary: [Capabilities](/use/capabilities), [Guarantees](/use/guarantees).
 

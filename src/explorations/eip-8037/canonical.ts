@@ -3,14 +3,19 @@
  * Replicate into engine EipCapability and mcp-docs; do not invent shared meaning in replicas.
  */
 import type { ProtocolChangeCanonical } from '@/explorations/canonicalTypes'
+import { GLAMSTERDAM_DEVNET_TEST_RELEASE_URL } from '@/explorations/canonicalTypes'
 import { Tag } from '@/explorations/TAGS'
 
 export const CANONICAL: ProtocolChangeCanonical = {
   identity: {
     id: 'eip-8037',
     eip: 8037,
-    specUrl: 'https://eips.ethereum.org/EIPS/eip-8037',
+    specUrl:
+      'https://github.com/ethereum/EIPs/blob/5a8c80897aeb0952322cd0dfff767c541002b8c3/EIPS/eip-8037.md',
+    specDate: '2026-07-31',
     name: 'EIP-8037 State Creation Gas Cost Increase',
+    status: 'Review',
+    testReleaseUrl: GLAMSTERDAM_DEVNET_TEST_RELEASE_URL,
   },
   question: {
     coreQuestion: "Why isn't 21,000 gas enough for a simple ETH transfer anymore?",
@@ -20,11 +25,6 @@ export const CANONICAL: ProtocolChangeCanonical = {
     topic: 'robustness',
     timeline: 'glamsterdam',
     tags: [Tag.GasCosts, Tag.EVM],
-  },
-  maturity: {
-    eipStatus: 'Review',
-    implMaturity: 'Implemented in EthereumJS (Glamsterdam, experimental)',
-    testMaturity: 'execution-specs / glamsterdam-devnet (v8.1.x)',
   },
   mcp: {
     shapes: ['transaction', 'simulate'],

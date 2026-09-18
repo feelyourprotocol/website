@@ -14,7 +14,7 @@ Engine pointer (do not fork this map): sibling [`../mcp-execution-engine/.cursor
 - **Schema:** `src/explorations/canonicalTypes.ts` — add new shared fields here first
 - **Instance:** `src/explorations/eip-NNNN/canonical.ts` → `export const CANONICAL`
 - **`info.ts`:** website chrome only (path, HTML, images, SEO). May spread `CANONICAL` for display; do not add shared meaning only in `info.ts`
-- Replicate into engine `EipCapability` and `mcp-docs/use/eips/`. **Website `CANONICAL` wins on twin-metadata conflict** (identity, question, taxonomy, maturity, MCP hints). Engine must not import from `website/src/explorations/`.
+- Replicate into engine `EipCapability` and `mcp-docs/use/eips/`. **Website `CANONICAL` wins on twin-metadata conflict** (identity, question, taxonomy, MCP hints). Engine must not import from `website/src/explorations/`.
 
 ## Lab catalog (engine owns)
 
@@ -33,12 +33,44 @@ Engine pointer (do not fork this map): sibling [`../mcp-execution-engine/.cursor
 
 Every **live** exploration needs `mcp-docs/use/eips/eip-NNNN.md` (Runnable or Planned). Landing on mainnet does **not** sunset the exploration or twin. `docsStatus: sunset` is for no honest lab shape, not activation.
 
-## When to update
+## Spec versioning
+
+Store the **EIP markdown this lab implements**, not the floating `eips.ethereum.org` page. Fill `identity.specUrl`, `identity.specDate`, `identity.status`, and optional `identity.testReleaseUrl` when adding an exploration and whenever EthereumJS (or the EST snapshot) updates. Playbooks: [add-exploration](../skills/add-exploration/SKILL.md), [update-ethereumjs](../skills/update-ethereumjs/SKILL.md).
+
+EthereumJS hardfork EIP work tracks official cross-client spec tests. The EthereumJS repo (e.g. `packages/vm/README.md` hardfork table, CHANGELOG “Spec snapshot”) is a **hint** — confirm against [ethereum/execution-specs releases](https://github.com/ethereum/execution-specs/releases). Do not treat EthereumJS docs as the unquestioned source of truth.
+
+### How to collect (GitHub / web only)
+
+**Do not** use a local `ethereum/EIPs` (or execution-specs) git checkout to resolve pins. Fetch from GitHub on the web (file contents, git blobs API, commit list, raw URLs). If the test release, devnet branch, `ref_spec`, or a working blob URL is missing or ambiguous, **ask** — do not guess and do not fall back to a local clone.
+
+1. **Test release** — the EST tag EthereumJS implemented (example: [tests-glamsterdam-devnet@v8.1.0](https://github.com/ethereum/execution-specs/releases/tag/tests-glamsterdam-devnet%40v8.1.0)). Store that URL as `identity.testReleaseUrl` on every twin aligned to it. EthereumJS docs (`packages/vm` README / CHANGELOG) are a hint only — confirm on the [execution-specs releases](https://github.com/ethereum/execution-specs/releases) page.
+2. **Devnet branch** — linked from that release (example: `devnets/glamsterdam/8` → `https://github.com/ethereum/execution-specs/tree/devnets/glamsterdam/8`). If the branch, tag, or starting point is unclear, **ask**.
+3. **`ref_spec_*`** — in that branch, `tests/<fork>/eipNNNN_*/spec.py` (example: [eip-7708 spec.py](https://github.com/ethereum/execution-specs/blob/devnets/glamsterdam/8/tests/amsterdam/eip7708_eth_transfer_logs/spec.py)):
+
+   ```python
+   ref_spec_7708 = ReferenceSpec(
+       "EIPS/eip-7708.md", "f7230c46a743313957d8f38a159bda934cc735b2"
+   )
+   ```
+
+   `version` is the EIP git object. Prefer a **commit** SHA so this URL works in a browser:
+
+   `https://github.com/ethereum/EIPs/blob/<commit>/EIPS/eip-NNNN.md`
+
+   Confirm with GitHub file contents at that ref. If `version` is a **blob** SHA (GitHub `/blob/<sha>/…` 404s / “SHA must identify a commit”), get the blob body from the GitHub git-blobs API for `identity.status`, then list commits on `EIPS/eip-NNNN.md` and open each until the file blob SHA matches. Use **that** commit in `specUrl`. If you cannot match it on the web, **ask**.
+4. **`identity.status`** — `status:` from that pinned markdown preamble. Do not copy a newer `master` status onto an old pin.
+5. **`identity.specDate`** — UTC calendar date (`YYYY-MM-DD`) of that GitHub **commit** (`committer.date` on the commit API or commit page). Not the EIP preamble `created:` date. Omit on floating `eips.ethereum.org` URLs. If the date is missing, **ask**.
+
+Mainnet / `current` forks use the same chain (stable EST release + `ref_spec` on that tree) when a pin exists. Until then, a floating `eips.ethereum.org` URL is an honest gap — fill on the next EthereumJS/EST bump.
+
+### When to update
 
 | Change | Write first | Then |
 | --- | --- | --- |
 | New shared twin field | `canonicalTypes.ts` | instance files; engine `protocol.ts` / `EipCapability` if replicated |
 | New or changed twin meaning | `eip-NNNN/canonical.ts` | `info.ts` spread, engine module, mcp-docs page |
+| New exploration or EST/`ref_spec` pin | `identity.specUrl`, `specDate`, `status`, `testReleaseUrl` | `info.ts` `infoURL`, engine module, mcp-docs “Canonical spec” |
+| EthereumJS library bump | confirm release + branch + `ref_spec` ([update-ethereumjs](../skills/update-ethereumjs/SKILL.md)) | refresh pins on affected twins, then replicas |
 | MCP testing finds better keywords, shapes, honesty, or `docsStatus` | `canonical.ts` first | then replicas — do not patch only the engine module or mcp-docs |
 | Lineage, introductions, or encoding | engine source | mcp-docs coverage / fork pages if the human catalogue changed |
 

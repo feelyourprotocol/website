@@ -12,7 +12,7 @@ End-user tool semantics: [Describe Capabilities](/use/tools/describe-capabilitie
 
 - **Query shapes, not library APIs** — the MCP surface exposes generic verbs (`simulate`, `transaction`, `block`, `generate`, `probe`); the engine returns structured results.
 - **Fork = capability set** — `(baseHardfork, eips[])` à la carte; named forks (`fusaka` baseline, `glamsterdam` preview) are catalog capabilities (summary, advertised EIPs, shapes).
-- **Provenance on every result** — engine version, fork config, advertised or explicit EIP maturity metadata, stability rollup, human caveat.
+- **Provenance on every result** — engine version, fork config, advertised EIP status, spec URL, and spec date, stability rollup, human caveat.
 - **Boundaries** — raw bytecode or impersonated transaction fields **plus constructed prestate**; no Solidity compile; no archive node; no multi-block **historical** backtesting.
 
 See also [Design Principles](/internals/design-principles).

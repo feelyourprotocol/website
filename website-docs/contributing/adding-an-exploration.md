@@ -38,10 +38,17 @@ import { Tag } from '@/explorations/TAGS'
 
 /** Source of truth for this protocol change (website + MCP). Replicate into engine EipCapability and mcp-docs. */
 export const CANONICAL: ProtocolChangeCanonical = {
-  identity: { id: 'eip-XXXX', eip: 0, specUrl: 'https://eips.ethereum.org/EIPS/eip-XXXX', name: '…' },
+  identity: {
+    id: 'eip-XXXX',
+    eip: 0,
+    specUrl: 'https://github.com/ethereum/EIPs/blob/<commit>/EIPS/eip-XXXX.md',
+    specDate: '2026-07-10',
+    name: '…',
+    status: 'Review',
+    testReleaseUrl: 'https://github.com/ethereum/execution-specs/releases/tag/tests-glamsterdam-devnet@v8.1.0',
+  },
   question: { coreQuestion: '…', changeNature: 'new-capability' },
-  taxonomy: { topic: 'scaling', timeline: 'fusaka', tags: [Tag.EVM] },
-  maturity: { eipStatus: 'Final' },
+  taxonomy: { topic: 'scaling', timeline: 'glamsterdam', tags: [Tag.EVM] },
   mcp: { shapes: ['simulate'], docsStatus: 'runnable' },
 }
 ```

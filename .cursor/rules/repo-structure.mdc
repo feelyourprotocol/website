@@ -44,7 +44,7 @@ Fleet overview for humans: [docs.feelyourprotocol.org](https://docs.feelyourprot
 | **Rules — protocol data** (always-on) | `eip-canonical-data.mdc` | Twin + lab data homes, when to update, how to retrieve (website + MCP). Engine `website-relation.mdc` points here — do not fork the map |
 | **Rules — task invariants** (glob-scoped) | `explorations-website.mdc` on `src/explorations/**`, `src/eComponents/**`; `design.mdc` on shared Vue/chrome; `exploration-design.mdc` on exploration Vue, UICs, and cover/layout files | Failure modes for one domain — not a fourth primitive |
 | **Rules — specialized** | `video-recording.mdc`, `og-images.mdc` | Long capture/setup playbooks; do not fold into primitives |
-| **Skills** | `.cursor/skills/round-trip-protocol-change/`, `add-exploration`, `cover-image`, `bro-bruh-comic`, `x-engagement` | Ordered workflows; point at website-docs + source, do not duplicate catalogs |
+| **Skills** | `.cursor/skills/round-trip-protocol-change/`, `add-exploration`, `update-ethereumjs`, `cover-image`, `bro-bruh-comic`, `x-engagement` | Ordered workflows; point at website-docs + source, do not duplicate catalogs |
 
 New work: invariants → rule or glob rule; executable procedure → skill; concepts and API tables → website-docs only.
 

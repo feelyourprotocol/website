@@ -25,9 +25,9 @@ Repo: [ethereum/EIPs](https://github.com/ethereum/EIPs) — file `EIPS/eip-NNNN.
 
 - **Default ref:** `master` (latest). If the human names a commit, PR, tag, or date, use that instead.
 - **Fetch:** `https://raw.githubusercontent.com/ethereum/EIPs/master/EIPS/eip-NNNN.md` (or GitHub file contents: `owner=ethereum` `repo=EIPs` `path=EIPS/eip-NNNN.md` `ref=master`). Prefer this over `eips.ethereum.org` (can lag).
-- **Preamble:** `status`, `type`, `category`, `discussions-to`, `requires`, `created` — these feed maturity, suitability, and the MCP outline.
+- **Preamble:** `status`, `type`, `category`, `discussions-to`, `requires`, `created` — these feed suitability and the MCP outline. Phase 2 **pins** `identity.specUrl` / `specDate` / `status` / `testReleaseUrl` from EST `ref_spec` ([eip-canonical-data.mdc](../rules/eip-canonical-data.mdc) § Spec versioning), not from floating `master` unless no pin exists yet.
 
-**Later (not this round):** pin the spec by commit and/or date in `canonical.ts`, show it on the website, and have MCP answer “which version.” Do not invent those fields now.
+Briefing may read `master` for pedagogy. Proposed `CANONICAL.identity.specUrl` can stay a placeholder if the EST/devnet starting point is unknown — [add-exploration](../add-exploration/SKILL.md) must pin it (or **ask**). Do not use a local `ethereum/EIPs` checkout.
 
 ### `discussions-to`
 
