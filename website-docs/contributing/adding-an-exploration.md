@@ -30,7 +30,7 @@ Register in `REGISTRY.ts` or the exploration will not appear. Add a matching row
 
 ## Canonical metadata (`canonical.ts`)
 
-Shared meaning lives here — replicated into MCP engine modules and docs. Schema: `src/explorations/canonicalTypes.ts`.
+Shared meaning lives here — replicated into MCP engine modules and docs. Schema: `src/explorations/canonicalTypes.ts`. Agent contract: [eip-canonical-data.mdc](https://github.com/feelyourprotocol/website/blob/main/.cursor/rules/eip-canonical-data.mdc).
 
 ```typescript
 import type { ProtocolChangeCanonical } from '@/explorations/canonicalTypes'

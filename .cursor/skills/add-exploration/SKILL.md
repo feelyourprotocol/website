@@ -18,7 +18,7 @@ Executable playbook for the **explorations website** only (`src/explorations/`).
 
 **Lookups:** `canonicalTypes.ts`, `REGISTRY.ts`, `types.ts` — do not guess IDs or re-list CSS tables in chat.
 
-Repo boundaries: [AGENTS.md](../../AGENTS.md), [repo-structure.mdc](../rules/repo-structure.mdc).
+Repo boundaries: [AGENTS.md](../../AGENTS.md), [repo-structure.mdc](../rules/repo-structure.mdc). Data homes: [eip-canonical-data.mdc](../rules/eip-canonical-data.mdc). Website process: [explorations-website.mdc](../rules/explorations-website.mdc).
 
 ## Design (same turn, before files)
 
@@ -123,15 +123,23 @@ If the briefing promised a twin, add or stub `mcp-docs/use/eips/eip-NNNN.md` in 
 | `mcp-docs/use/eips/eip-NNNN.md` | Every **live** exploration (same PR or immediate follow-up) |
 | Engine module | When `CANONICAL.mcp.shapes` includes a **shipped** verb — round-trip phase 3 |
 
-## Invariants (also in explorations.mdc)
+## Invariants
 
-- **No hardcoded Tailwind colors** — use `e-*` classes from `src/main.css`
-- **Same logical control, one UIC** — do not restyle a sibling copy; extract to `src/eComponents/ui/` with tests ([exploration-design.mdc](../rules/exploration-design.mdc))
+Website process ([explorations-website.mdc](../rules/explorations-website.mdc)):
+
 - **Libraries only in the exploration folder**
 - **Companion UI inside E-Component slots**
 - **Register in REGISTRY.ts** (nav)
 - **Engagement lexicon** — `social/watchlist.yml` `problem_slices` + `eip_number_fallback` for live ids; remove on sunset
 - **Cover art** — `image.webp` on every exploration
+
+Design ([exploration-design.mdc](../rules/exploration-design.mdc)):
+
+- **No hardcoded Tailwind colors** — use `e-*` classes from `src/main.css`
+- **Same logical control, one UIC** — do not restyle a sibling copy; extract to `src/eComponents/ui/` with tests
+
+Data ([eip-canonical-data.mdc](../rules/eip-canonical-data.mdc)):
+
 - **New shared fields only on `canonicalTypes.ts`**
 - **Keep after mainnet** — do not set `docsStatus: sunset` because the fork activated
 

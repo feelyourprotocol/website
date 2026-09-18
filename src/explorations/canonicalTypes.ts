@@ -5,8 +5,10 @@ import type { TopicId } from '@/explorations/topicIds'
 
 /**
  * Schema source of truth for protocol-change metadata shared by the explorations
- * website and MCP twins. Workflow: extend this file → fill `eip-NNNN/canonical.ts`
- * → copy into engine `EipCapability` and `mcp-docs/use/eips/` (website wins on conflict).
+ * website and MCP twins. Homes, update order, and how to retrieve:
+ * `.cursor/rules/eip-canonical-data.mdc`. Workflow: extend this file → fill
+ * `eip-NNNN/canonical.ts` → copy into engine `EipCapability` and `mcp-docs/use/eips/`
+ * (website wins on twin-metadata conflict).
  *
  * **Three fork vocabularies (do not mix):**
  * - `taxonomy.timeline` — website browse pill id (`WebsiteTimelineId`, subset of lineage).

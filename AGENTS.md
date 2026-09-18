@@ -4,7 +4,7 @@ Tool-agnostic entrypoint for coding agents (Cursor, Claude Code, Codex, etc.) in
 
 **Read this file first.** Then load the task skill if one exists.
 
-**website-docs** are the human conceptual guide — taxonomies, how to brief and review, structural rules. **Skills** are the executable path for implementation. Shared protocol metadata lives in **`src/explorations/canonicalTypes.ts`** and per-EIP **`canonical.ts`** (then `info.ts` for website chrome only). Taxonomy ids: `TOPICS.ts`, `TIMELINE.ts`, `TAGS.ts`, `forkCatalog.ts`. UI/CSS: `REGISTRY.ts`, `main.css` — do not duplicate catalogs into prompts.
+**website-docs** are the human conceptual guide — taxonomies, how to brief and review, structural rules. **Skills** are the executable path for implementation. Shared protocol metadata: [eip-canonical-data.mdc](.cursor/rules/eip-canonical-data.mdc) — schema **`src/explorations/canonicalTypes.ts`**, per-EIP **`canonical.ts`**, then `info.ts` for website chrome only. Taxonomy ids: `TOPICS.ts`, `TIMELINE.ts`, `TAGS.ts`, `forkCatalog.ts`. UI/CSS: `REGISTRY.ts`, `main.css` — do not duplicate catalogs into prompts.
 
 ## Docs map
 
@@ -54,7 +54,8 @@ Field reference and human checklist: [adding-an-exploration.md](website-docs/con
 Catalog: [`repo-structure.mdc`](.cursor/rules/repo-structure.mdc).
 
 - **Primitives (always-on):** `repo-structure.mdc`, `quality.mdc`, `testing.mdc`, `git.mdc`
-- **Task invariants (glob):** `explorations.mdc` when editing `src/explorations/` or `src/eComponents/`
+- **Protocol data (always-on):** `eip-canonical-data.mdc` — twin + lab data homes (website + MCP)
+- **Task invariants (glob):** `explorations-website.mdc` when editing `src/explorations/` or `src/eComponents/`
 - **Design (glob):** `design.mdc` — site shell responsiveness, touch targets, shared chrome; `exploration-design.mdc` — cover column vs companion; same logical control → one UIC
 - **Specialized:** `video-recording.mdc`, `og-images.mdc`
 

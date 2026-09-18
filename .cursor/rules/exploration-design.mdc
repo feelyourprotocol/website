@@ -6,7 +6,11 @@ alwaysApply: false
 
 # Exploration design
 
-Visual/layout decisions for exploration **pages**. Folder invariants stay in [explorations.mdc](./explorations.mdc). **Add a section here when a layout miss repeats.**
+Visual/layout decisions for exploration **pages**. Website process: [explorations-website.mdc](./explorations-website.mdc). Canonical data: [eip-canonical-data.mdc](./eip-canonical-data.mdc). **Add a section here when a layout miss repeats.**
+
+## Classes
+
+Use `e-*` design-system classes from `src/main.css` — no hardcoded Tailwind color utilities on exploration UI. Do not re-list CSS class tables in prompts; read source.
 
 ## Same logical control, one UIC
 

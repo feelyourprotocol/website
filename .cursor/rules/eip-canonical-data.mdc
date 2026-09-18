@@ -1,0 +1,49 @@
+---
+description: Canonical EIP/exploration data — where it lives, when to update, how to read (website + MCP)
+alwaysApply: true
+---
+
+# EIP canonical data (website + MCP)
+
+Twin pedagogy and lab facts are **different homes**. Do not flatten this to “website wins everything.”
+
+Engine pointer (do not fork this map): sibling [`../mcp-execution-engine/.cursor/rules/website-relation.mdc`](../mcp-execution-engine/.cursor/rules/website-relation.mdc).
+
+## Twin metadata (website wins)
+
+- **Schema:** `src/explorations/canonicalTypes.ts` — add new shared fields here first
+- **Instance:** `src/explorations/eip-NNNN/canonical.ts` → `export const CANONICAL`
+- **`info.ts`:** website chrome only (path, HTML, images, SEO). May spread `CANONICAL` for display; do not add shared meaning only in `info.ts`
+- Replicate into engine `EipCapability` and `mcp-docs/use/eips/`. **Website `CANONICAL` wins on twin-metadata conflict** (identity, question, taxonomy, maturity, MCP hints). Engine must not import from `website/src/explorations/`.
+
+## Lab catalog (engine owns)
+
+- Fork lineage, roles, aliases, `activatedEips`: `mcp-execution-engine/src/forks/lineage.ts`. Website `TIMELINE.ts` is the browse subset (forks that have explorations). `forkCatalog.ts` lists MCP lineage ids — keep in sync with engine `LINEAGE_FORK_IDS`.
+- Historical introductions and probe comparison **pairs**: `mcp-execution-engine/src/forks/introductions.ts`. `describe_capabilities` derives `eips[].comparison` from this, not from `CANONICAL.mcp.comparison.note`.
+- Encoding / opcodes / constructible facts: `mcp-execution-engine/src/modules/eip-NNNN/`.
+- Runtime agents: live `describe_capabilities` — not this rule, not markdown, not `canonical.ts`.
+
+## Taxonomies (read source, do not guess)
+
+- `src/explorations/TOPICS.ts` — static set
+- `src/explorations/TIMELINE.ts` — combined upgrade names; same ids as MCP lineage
+- `src/explorations/TAGS.ts` — enum; new tags must follow [architecture § tags](../../website-docs/guide/architecture.md#tags)
+
+## Twins
+
+Every **live** exploration needs `mcp-docs/use/eips/eip-NNNN.md` (Runnable or Planned). Landing on mainnet does **not** sunset the exploration or twin. `docsStatus: sunset` is for no honest lab shape, not activation.
+
+## When to update
+
+| Change | Write first | Then |
+| --- | --- | --- |
+| New shared twin field | `canonicalTypes.ts` | instance files; engine `protocol.ts` / `EipCapability` if replicated |
+| New or changed twin meaning | `eip-NNNN/canonical.ts` | `info.ts` spread, engine module, mcp-docs page |
+| MCP testing finds better keywords, shapes, honesty, or `docsStatus` | `canonical.ts` first | then replicas — do not patch only the engine module or mcp-docs |
+| Lineage, introductions, or encoding | engine source | mcp-docs coverage / fork pages if the human catalogue changed |
+
+## How to retrieve
+
+- Coding agents: read the files above. Do not guess IDs or duplicate catalogs into prompts.
+- Connected MCP: `describe_capabilities` (`namedForks`, `eipIntroductions`, `eips[]`).
+- Human catalogue: `mcp-docs/use/coverage.md` and per-EIP pages — may lag; probe wins.

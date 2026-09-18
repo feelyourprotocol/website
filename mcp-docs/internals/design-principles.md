@@ -10,7 +10,7 @@ These boundaries apply to everything we ship.
 - **Raw bytecode, base-layer only** — No Solidity compilation in the service. ERC/application-layer concerns are out of scope.
 - **Observability first** — Rich execution traces (stack, memory, gas, opcodes) are a primary deliverable.
 - **Intent-driven MCP tools** — Tools match use cases (run bytecode, run transaction, run block, generate BAL, …), not raw library APIs one-to-one.
-- **Exploration twins** — Every live website exploration has an MCP-docs EIP page mapping the same problem set; engine modules ship when a verb can run the change. Canonical metadata lives in website `canonical.ts`. Twins stay after the EIP is on mainnet; fork `role` may rotate around them. `sunset` is for no honest lab observation, not for activation.
+- **Exploration twins** — Every live website exploration has an MCP-docs EIP page mapping the same problem set; engine modules ship when a verb can run the change. Canonical metadata lives in website `canonical.ts` ([eip-canonical-data.mdc](https://github.com/feelyourprotocol/website/blob/main/.cursor/rules/eip-canonical-data.mdc)). Twins stay after the EIP is on mainnet; fork `role` may rotate around them. `sunset` is for no honest lab observation, not for activation.
 - **Hard wall** — No sequential multi-block **historical** backtesting (archive-node / `revm` territory). A lab block of 1–8 constructed txs is not that.
 
 ## Engine design

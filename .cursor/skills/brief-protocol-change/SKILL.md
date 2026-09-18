@@ -13,7 +13,7 @@ Phase 1 of the [round-trip](../round-trip-protocol-change/SKILL.md). Also run st
 
 **This phase is a report.** Propose `CANONICAL` in chat. Do **not** create the exploration folder, widget, or engine module until the human GOs.
 
-Answers later land in `src/explorations/eip-NNNN/canonical.ts` — not only in chat. Schema: [`canonicalTypes.ts`](../../src/explorations/canonicalTypes.ts).
+Answers later land in `src/explorations/eip-NNNN/canonical.ts` — not only in chat. Schema: [`canonicalTypes.ts`](../../src/explorations/canonicalTypes.ts). Data homes: [eip-canonical-data.mdc](../rules/eip-canonical-data.mdc).
 
 Do **not** brief from model memory of the EIP. Fetch sources below, then skim one close existing exploration so the idea is comparative, not generic.
 
