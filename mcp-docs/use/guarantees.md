@@ -7,7 +7,7 @@
 - **Deterministic execution** — Same bytecode + fork config → same result (within EthereumJS semantics).
 - **Isolated lab / BYOS** — No archive node, no mainnet or L2 sync. You supply bytecode, txs, and any **constructed** prestate (accounts, code, storage). We do not pull chain state.
 - **Call isolation (default)** — Each tool call starts from that payload. Transport sessions are not EVM memory. Optional snapshot continuation is not shipped.
-- **Provenance on every result** — Engine version, fork config, advertised EIP status, spec URL, and spec date, stability rollup, human caveat. Fields are **basic and mostly optional** in v0.1 — we will tighten over time.
+- **Provenance on every result** — Engine version, fork config, advertised EIP status, spec URL, spec date, named test release, stability rollup, human caveat. Named `eips: [NNNN]` runs add a compact `Spec:` clause to the caveat; generic fork runs keep those facts on `perEip` only. Fields are **basic and mostly optional** in v0.1 — we will tighten over time.
 - **Guardrails** — Hard limits below prevent runaway resource use.
 
 ## Limits
@@ -32,6 +32,7 @@
 <Changelog
   title="Guarantees Changelog"
   :entries="[
+    { version: 'v0.8', date: '2026-09-18', summary: 'Named eips[] runs put a compact Spec: snapshot on provenance.caveat.' },
     { version: 'v0.7', date: '2026-09-17', summary: '110M transaction-only ceiling supports Glamsterdam EIP-8037 state gas for large contract creation.' },
     { version: 'v0.6', date: '2026-09-16', summary: 'Generic hardfork runs list advertised modules on provenance when eips[] is empty.' },
     { version: 'v0.4', date: '2026-09-10', summary: 'Max 8 transactions on run_block.' },

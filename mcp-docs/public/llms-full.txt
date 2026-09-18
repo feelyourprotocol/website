@@ -25,7 +25,7 @@ Do NOT fall back to mcp-execution-engine lab scripts or npm run lab unless MCP
 is unavailable. Trust listTools on the connected server over stale repo text.
 
 Tools:
-- describe_capabilities (probe) — registry: named fork capabilities, runnable EIP modules, opcodes, encoding, shapes
+- describe_capabilities (probe) — registry: named fork capabilities, runnable EIP modules, opcodes, encoding, shapes, spec snapshot
 - run_bytecode (simulate) — VM message-call; call-frame gas; optional accounts / stateGasSpilled
 - run_transaction — paid tx gas, receipt logs, wallet gasLimit, EIP-8037 dimensions
 - run_block — 1–8 txs as a lab block; optional header slot / number / timestamp
@@ -177,9 +177,12 @@ FOR AI AGENTS
    or run_block (several txs / header slot).
    Default fork amsterdam; optionally osaka for mainnet comparison.
    A generic hardfork run does not require an EIP number.
+   eips[] rows include specUrl, specDate, status, testReleaseName (or a live EIP page).
+   Cite that snapshot once when the question is a specific EIP.
    Do not use the execution-engine lab as a substitute.
 2. Cite provenance.engineVersion and provenance.forkConfig in answers.
    On a generic Amsterdam run, forkConfig.eips is empty and perEip lists advertised modules.
+   Named eips:[NNNN] runs add Spec: (status, date, test release) on provenance.caveat.
 3. Index: /llms.txt. Schemas: /schemas/*.input.json
 
 Vision on roadmap; this file is operational reference.

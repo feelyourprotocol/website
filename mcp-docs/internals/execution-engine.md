@@ -12,7 +12,7 @@ End-user tool semantics: [Describe Capabilities](/use/tools/describe-capabilitie
 
 - **Query shapes, not library APIs** — the MCP surface exposes generic verbs (`simulate`, `transaction`, `block`, `generate`, `probe`); the engine returns structured results.
 - **Fork = capability set** — `(baseHardfork, eips[])` à la carte; named forks (`fusaka` baseline, `glamsterdam` preview) are catalog capabilities (summary, advertised EIPs, shapes).
-- **Provenance on every result** — engine version, fork config, advertised EIP status, spec URL, and spec date, stability rollup, human caveat.
+- **Provenance on every result** — engine version, fork config, advertised EIP status, spec URL, spec date, named test release, stability rollup, human caveat. Named `eips[]` add a compact `Spec:` clause.
 - **Boundaries** — raw bytecode or impersonated transaction fields **plus constructed prestate**; no Solidity compile; no archive node; no multi-block **historical** backtesting.
 
 See also [Design Principles](/internals/design-principles).
@@ -106,6 +106,7 @@ See [Quality](/internals/quality).
 <Changelog
   title="Execution Engine Changelog"
   :entries="[
+    { version: 'v0.1.12', date: '2026-09-18', summary: 'Named eips[] caveats include a compact Spec: snapshot (status, date, test release).' },
     { version: 'v0.1.11', date: '2026-09-16', summary: 'Named forks are catalog capabilities; generic-run provenance lists advertised modules.' },
     { version: 'v0.1.9', date: '2026-09-14', summary: 'Boundaries: isolated lab / constructed prestate; historical backtesting still out.' },
     { version: 'v0.1.8', date: '2026-09-14', summary: 'EIP-8038 state-access module; accounts[].storage seed; SSTORE via runTransaction.' },

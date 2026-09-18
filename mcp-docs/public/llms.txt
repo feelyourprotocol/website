@@ -6,7 +6,7 @@
 
 When the feel-your-protocol MCP server is connected:
 
-- describe_capabilities — probe registry (named fork capabilities, runnable EIP modules, opcodes, encoding)
+- describe_capabilities — probe registry (named fork capabilities, runnable EIP modules, opcodes, encoding, spec snapshot)
 - run_bytecode — run raw bytecode under a fork config
 - run_transaction — paid tx gas, receipt logs, wallet gasLimit, contract creation
 - run_block — 1–8 txs as a lab block; optional header slot / number / timestamp

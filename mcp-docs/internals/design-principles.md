@@ -17,7 +17,7 @@ These boundaries apply to everything we ship.
 
 - **Query shapes, not library APIs** — generic verbs (`simulate`, `transaction`, `block`, `generate`, `probe`); structured results.
 - **Fork = capability set** — `(baseHardfork, eips[])` à la carte; named forks are **catalog capabilities** (summary, advertised EIPs, shapes), not id-only shortcuts.
-- **Provenance on every result** — engine version, fork config, advertised EIP status, spec URL, and spec date, stability rollup, human caveat.
+- **Provenance on every result** — engine version, fork config, advertised EIP status, spec URL, spec date, named test release, stability rollup, human caveat. Named `eips[]` add a compact `Spec:` clause.
 
 End-user summary: [Capabilities](/use/capabilities), [Guarantees](/use/guarantees).
 
@@ -26,6 +26,7 @@ End-user summary: [Capabilities](/use/capabilities), [Guarantees](/use/guarantee
 <Changelog
   title="Design Principles Changelog"
   :entries="[
+    { version: 'v0.9', date: '2026-09-18', summary: 'Named eips[] caveats include a compact Spec: snapshot.' },
     { version: 'v0.8', date: '2026-09-17', summary: 'Twins stay after mainnet activation; sunset is for no honest lab observation.' },
     { version: 'v0.7', date: '2026-09-16', summary: 'Named forks are catalog capabilities alongside EIP modules; generic hardfork runs stay on the same verbs.' },
     { version: 'v0.5', date: '2026-09-10', summary: 'block shape (run_block) alongside simulate / transaction / generate / probe.' },
