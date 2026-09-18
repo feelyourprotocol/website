@@ -11,6 +11,7 @@ export const CANONICAL: ProtocolChangeCanonical = {
     eip: 7951,
     specUrl: 'https://eips.ethereum.org/EIPS/eip-7951',
     name: 'EIP-7951 secp256r1 Precompile Support',
+    status: 'Final',
   },
   question: {
     coreQuestion: 'Why add a secp256r1 precompile?',
@@ -20,11 +21,6 @@ export const CANONICAL: ProtocolChangeCanonical = {
     topic: 'ux',
     timeline: 'fusaka',
     tags: [Tag.Precompiles, Tag.Signatures],
-  },
-  maturity: {
-    eipStatus: 'Final',
-    implMaturity: 'Implemented in EthereumJS',
-    testMaturity: 'Precompile verification vectors',
   },
   mcp: {
     shapes: ['simulate'],

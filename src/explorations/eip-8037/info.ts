@@ -12,6 +12,10 @@ export const INFO: Exploration = {
   seoDescription:
     'EIP-8037 state-creation gas — see why a 21,000 gas limit is not enough for a first-touch ETH transfer on Glamsterdam, and how execution vs state gas split.',
   infoURL: CANONICAL.identity.specUrl,
+  specDate: CANONICAL.identity.specDate,
+  specStatus: CANONICAL.identity.status,
+  testReleaseUrl: CANONICAL.identity.testReleaseUrl,
+  testReleaseName: CANONICAL.identity.testReleaseName,
   topic: CANONICAL.taxonomy.topic,
   timeline: CANONICAL.taxonomy.timeline,
   tags: CANONICAL.taxonomy.tags,
@@ -30,7 +34,4 @@ export const INFO: Exploration = {
     'transfer succeeds and the two bars appear with a 21,000 marker. Switch to ' +
     '<b>21,000</b> to see the out-of-gas failure wallets still hit. Try Fusaka, or a funded ' +
     'recipient, to watch the state bar collapse.',
-  creatorName: 'HolgerD77',
-  creatorURL: 'https://x.com/HolgerD77',
-  poweredBy: [{ name: 'EthereumJS', href: 'https://github.com/ethereumjs/ethereumjs-monorepo' }],
 }

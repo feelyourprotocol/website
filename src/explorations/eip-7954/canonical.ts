@@ -3,14 +3,23 @@
  * Replicate into engine EipCapability and mcp-docs; do not invent shared meaning in replicas.
  */
 import type { ProtocolChangeCanonical } from '@/explorations/canonicalTypes'
+import {
+  GLAMSTERDAM_DEVNET_TEST_RELEASE_NAME,
+  GLAMSTERDAM_DEVNET_TEST_RELEASE_URL,
+} from '@/explorations/canonicalTypes'
 import { Tag } from '@/explorations/TAGS'
 
 export const CANONICAL: ProtocolChangeCanonical = {
   identity: {
     id: 'eip-7954',
     eip: 7954,
-    specUrl: 'https://eips.ethereum.org/EIPS/eip-7954',
+    specUrl:
+      'https://github.com/ethereum/EIPs/blob/1dc9bc870f864d7ad1095fc73ba8ca098d02c732/EIPS/eip-7954.md',
+    specDate: '2026-05-21',
     name: 'EIP-7954 Increase Maximum Contract Size',
+    status: 'Draft',
+    testReleaseUrl: GLAMSTERDAM_DEVNET_TEST_RELEASE_URL,
+    testReleaseName: GLAMSTERDAM_DEVNET_TEST_RELEASE_NAME,
   },
   question: {
     coreQuestion: 'How much contract code can you deploy before the protocol rejects it?',
@@ -20,11 +29,6 @@ export const CANONICAL: ProtocolChangeCanonical = {
     topic: 'ux',
     timeline: 'glamsterdam',
     tags: [Tag.Contracts, Tag.EVM],
-  },
-  maturity: {
-    eipStatus: 'Review',
-    implMaturity: 'Implemented in EthereumJS (Glamsterdam, experimental)',
-    testMaturity: 'execution-specs Glamsterdam development fixtures',
   },
   mcp: {
     shapes: ['transaction'],

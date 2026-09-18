@@ -9,7 +9,6 @@ import ScenarioStepNavUIC from '@/eComponents/ui/ScenarioStepNavUIC.vue'
 import SegmentedToggleUIC from '@/eComponents/ui/SegmentedToggleUIC.vue'
 import WidgetChromeUIC from '@/eComponents/ui/WidgetChromeUIC.vue'
 import ExplorationC from '@/explorations/ExplorationC.vue'
-import PoweredByC from '@/explorations/PoweredByC.vue'
 import { TOPICS } from '@/explorations/TOPICS'
 import { useCompanionStatusPublisher } from '@/libs/companionStatus'
 import { resolveInitialExample } from '@/libs/exampleFromQuery'
@@ -168,12 +167,6 @@ await init()
 
         <ResultBoxUIC v-if="errorMsg" title="Error" :left="true" :errorText="errorMsg" />
       </template>
-
-      <PoweredByC
-        :poweredBy="exploration.poweredBy"
-        :creatorName="exploration.creatorName"
-        :creatorURL="exploration.creatorURL"
-      />
     </template>
   </ExplorationC>
 

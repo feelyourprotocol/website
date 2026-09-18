@@ -52,7 +52,7 @@ describe('ExplorationC', () => {
     expect(wrapper.find('[data-testid="preview-pill-mcp"]').exists()).toBe(false)
   })
 
-  it('external info link stops click propagation (safe inside RouterLink cards)', async () => {
+  it('opens a Spec snapshot panel instead of navigating away', async () => {
     const exploration = EXPLORATIONS['eip-8024']
     const topic = TOPICS[exploration.topic]
     const parentClick = vi.fn()
@@ -73,12 +73,11 @@ describe('ExplorationC', () => {
     })
 
     const wrapper = mount(Host)
-    const infoLink = wrapper.find('a.visit-exploration-button')
+    const trigger = wrapper.get('[data-testid="spec-pin"]')
+    expect(trigger.text()).toBe('Spec')
 
-    expect(infoLink.attributes('href')).toBe(exploration.infoURL)
-    expect(infoLink.attributes('target')).toBe('_blank')
-
-    await infoLink.trigger('click')
+    await trigger.trigger('click')
     expect(parentClick).not.toHaveBeenCalled()
+    expect(wrapper.get('[data-testid="spec-pin-url"]').attributes('href')).toBe(exploration.infoURL)
   })
 })

@@ -1,11 +1,9 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { ArrowTopRightOnSquareIcon } from '@heroicons/vue/24/solid'
-
-import ButtonUIC from '@/eComponents/ui/ButtonUIC.vue'
 
 import ExplorationMetaPills from './ExplorationMetaPills.vue'
 import type { Exploration } from './REGISTRY'
+import SpecSnapshotUIC from './SpecSnapshotUIC.vue'
 import { type Topic, topicCSSVars } from './TOPICS'
 
 const props = withDefaults(
@@ -35,7 +33,7 @@ const showUsage = computed(
     class="exploration-c"
     data-testid="exploration-ready"
   >
-    <div class="flex items-start gap-2 mb-2">
+    <div class="relative z-10 flex items-start gap-2 mb-2">
       <component
         :is="asPageTitle ? 'h1' : 'h3'"
         class="font-bold text-lg tracking-tight flex-1 min-w-0 e-text"
@@ -43,19 +41,7 @@ const showUsage = computed(
         {{ exploration.title }}
       </component>
       <div class="flex shrink-0 items-center gap-1">
-        <a
-          :href="exploration.infoURL"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="visit-exploration-button"
-          @click.stop
-        >
-          <ButtonUIC
-            :icon="ArrowTopRightOnSquareIcon"
-            tooltip="External Link with more information"
-            aria-label="Open external EIP information"
-          />
-        </a>
+        <SpecSnapshotUIC :exploration="exploration" />
       </div>
     </div>
 

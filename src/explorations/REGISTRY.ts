@@ -1,4 +1,4 @@
-import type { ProtocolChangeMcpHints } from './canonicalTypes'
+import type { EipProcessStatus, ProtocolChangeMcpHints } from './canonicalTypes'
 import { INFO as eip7708 } from './eip-7708/info'
 import { INFO as eip7843 } from './eip-7843/info'
 import { INFO as eip7883 } from './eip-7883/info'
@@ -33,11 +33,6 @@ export interface Examples {
   }
 }
 
-export interface PoweredByItem {
-  name: string
-  href: string
-}
-
 export interface Exploration {
   /** Folder name and route key, e.g. `eip-7883`. Must match `src/explorations/<id>/`. */
   id: string
@@ -45,8 +40,16 @@ export interface Exploration {
   path: string
   /** Human-readable page title shown in the exploration shell. */
   title: string
-  /** Link to the canonical spec (EIPs site, ERC, or research note). */
+  /** Link to the canonical spec (pinned GitHub blob or live EIP page). */
   infoURL: string
+  /** UTC calendar date (`YYYY-MM-DD`) of the pinned spec commit. Omit on floating URLs. */
+  specDate?: string
+  /** EIP editor status from the pinned markdown preamble. */
+  specStatus?: EipProcessStatus
+  /** execution-specs test release this snapshot was aligned with. */
+  testReleaseUrl?: string
+  /** Release tag shown as the test-release link label. */
+  testReleaseName?: string
   /** Topic ID — fixed set in `TOPICS.ts` (scaling, privacy, ux, …). Drives card grouping and topic colors. */
   topic: TopicId
   /** Timeline fork id from `TIMELINE.ts` (catalog subset of MCP lineage ids). */
@@ -74,13 +77,8 @@ export interface Exploration {
   introText: string
   /** HTML instructions for using the widget below the intro. */
   usageText: string
-  /** Optional attribution for the exploration author. */
-  creatorName?: string
-  /** Optional link for the exploration author. */
-  creatorURL?: string
-  /** Libraries or projects the widget runs on — shown in the exploration footer. */
-  poweredBy: PoweredByItem[]
 }
+
 export interface Explorations {
   [key: string]: Exploration
 }

@@ -7,7 +7,7 @@
 When MCP is **connected**, trust the live server first:
 
 1. **`listTools`** — tool names, descriptions, and input schemas
-2. **`describe_capabilities`** — `baselineForkId`, `namedForks` (Berlin→Glamsterdam lineage: order, predecessorId, activatedEips, related twins), `eipIntroductions` (when each EIP appeared — compare with predecessor), runnable EIP modules with derived comparison pairs, opcodes, encoding, ceilings
+2. **`describe_capabilities`** — `baselineForkId`, `namedForks` (Berlin→Glamsterdam lineage: order, predecessorId, activatedEips, related twins), `eipIntroductions` (when each EIP appeared — compare with predecessor), runnable EIP modules with derived comparison pairs, opcodes, encoding, ceilings, and spec snapshot fields (`specUrl`, `specDate`, `status`, `testReleaseName` or a live EIP page)
 
 Markdown on this site is **secondary**. It can lag behind a gateway release; the probe response and tool schemas cannot.
 
@@ -22,7 +22,7 @@ Markdown on this site is **secondary**. It can lag behind a gateway release; the
 
 ## Calling tools
 
-1. Probe first — learn what is runnable and how opcodes encode
+1. Probe first — learn what is runnable, how opcodes encode, and which EIP spec snapshot this lab implements
 2. Run with **caller-supplied** inputs on the fork you need (default **glamsterdam**). A generic hardfork run does **not** require an EIP number — omit `eips[]`. Use **`run_bytecode`** for opcodes/precompiles and program-gas SSTORE/SLOAD; **`run_transaction`** for wallet gas, first-touch transfers, receipt logs, and `txStateGas`; **`run_block`** for several txs or a header slot. Prefund / code / storage in the **same** request when the observation needs a constructed world. Each call is a **new** lab unless you pass that prestate again. Use **fusaka** when the question is current mainnet EL (or a compare against it) — this server does not ship demo programs
 3. **Do not** substitute the `mcp-execution-engine` lab, `npm run lab`, or repository source unless MCP is unavailable
 
@@ -33,10 +33,13 @@ When the user is a **human** (exploring protocol changes, not integrating the se
 - Answer in **plain language** about behavior and results (gas, success, stack, traces)
 - **Call MCP tools silently**
 - Do **not** expose tool names, JSON field names (such as `baseHardfork`), raw hex, or request payloads unless the user explicitly asks for implementation detail
+- If the question is about a **specific EIP**, mention the spec snapshot **once** in that first answer (status, update date, named test release — or that the lab uses the live EIP page). Do not repeat it on every later gas number unless they ask what the result is based on
 
 ## Reporting results
 
-Always cite **`provenance.engineVersion`** and **`provenance.forkConfig`** when reporting simulation outcomes. On a generic Glamsterdam run, `forkConfig.eips` is empty and `perEip` lists advertised modules. Historical forks may include **`provenance.predecessorForkId`** for compare hints.
+Always cite **`provenance.engineVersion`** and **`provenance.forkConfig`** when reporting simulation outcomes. On a generic Glamsterdam run, `forkConfig.eips` is empty and `perEip` lists advertised modules (machine record — do not dump every spec URL into the human answer). Historical forks may include **`provenance.predecessorForkId`** for compare hints.
+
+When the caller **names** an EIP (`eips: [NNNN]`), `provenance.caveat` includes a compact **`Spec:`** clause (status, date or live page, named test release). Use that for the one-time human note. Generic fork runs keep the same facts on `perEip` only.
 
 ## When you are reading docs (no MCP)
 
@@ -57,6 +60,7 @@ Use this order:
 <Changelog
   title="Runtime Agents Changelog"
   :entries="[
+    { version: 'v0.16', date: '2026-09-18', summary: 'Cite the EIP spec snapshot once on EIP-specific answers; named eips[] runs put Spec: on provenance.caveat.' },
     { version: 'v0.15', date: '2026-09-17', summary: 'Fusaka runs are first-class for current-mainnet features, not only preview compares.' },
     { version: 'v0.14', date: '2026-09-16', summary: 'Generic hardfork runs (no EIP required); namedForks are catalog capabilities; provenance lists advertised modules.' },
     { version: 'v0.12', date: '2026-09-10', summary: 'run_block routing for header slot and multi-tx lab blocks.' },

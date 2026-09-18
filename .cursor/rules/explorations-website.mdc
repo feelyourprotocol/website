@@ -1,31 +1,12 @@
 ---
-description: Exploration folder invariants — taxonomies, E-Components, styling, registry, canonical SoT
+description: Website exploration process — E-Components, registration, home, cover artifact
 globs: src/explorations/**,src/eComponents/**
 alwaysApply: false
 ---
 
-# Explorations (task invariants)
+# Explorations (website)
 
-When editing `src/explorations/` or shared `src/eComponents/`:
-
-## Canonical source of truth
-
-- **Schema:** `src/explorations/canonicalTypes.ts` — add new shared fields here first
-- **Instance:** `src/explorations/eip-NNNN/canonical.ts` → `export const CANONICAL`
-- **`info.ts`:** website chrome only (path, HTML, images, SEO). May spread `CANONICAL` for display; do not add shared meaning only in `info.ts`
-- Replicate into engine module + mcp-docs; website `CANONICAL` wins on conflict
-
-## No orphan explorations
-
-Every live exploration needs `mcp-docs/use/eips/eip-NNNN.md` (Runnable or Planned). See [brief-protocol-change skill](../skills/brief-protocol-change/SKILL.md). Landing on mainnet does **not** sunset the exploration or twin.
-
-## Taxonomies
-
-Read valid IDs from source — do not guess:
-
-- `src/explorations/TOPICS.ts` — static set
-- `src/explorations/TIMELINE.ts` — forks that have explorations (combined upgrade names; same ids as MCP lineage)
-- `src/explorations/TAGS.ts` — enum; new tags must follow [architecture § tags](../../website-docs/guide/architecture.md#tags)
+When editing `src/explorations/` or shared `src/eComponents/`. Canonical metadata: [eip-canonical-data.mdc](./eip-canonical-data.mdc). Layout and CSS: [exploration-design.mdc](./exploration-design.mdc).
 
 ## Building blocks
 
@@ -34,11 +15,9 @@ Read valid IDs from source — do not guess:
 3. Extension UI goes **inside** E-Component slots (`#below`, `#result`) — not as siblings (provide/inject is descendant-only).
 4. **Result slot must match `changeNature`** — gas compare only for `repricing`; validity/output for `new-capability` precompiles.
 
-## Styling and deps
+## Deps
 
-- Use `e-*` design-system classes from `src/main.css` — no hardcoded Tailwind color utilities on exploration UI. Do not re-list CSS class tables in prompts; read source.
-- **Same logical control, one UIC.** Do not copy a sibling's toggle/button chrome with different colors or spacing. Extract to `src/eComponents/ui/` with tests ([exploration-design.mdc](./exploration-design.mdc)). That is not a new E-Component.
-- Import third-party libraries only in the exploration folder (or exploration-local modules), not in E-Components.
+Import third-party libraries only in the exploration folder (or exploration-local modules), not in E-Components.
 
 ## Registration
 

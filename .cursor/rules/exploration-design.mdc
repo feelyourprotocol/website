@@ -6,7 +6,11 @@ alwaysApply: false
 
 # Exploration design
 
-Visual/layout decisions for exploration **pages**. Folder invariants stay in [explorations.mdc](./explorations.mdc). **Add a section here when a layout miss repeats.**
+Visual/layout decisions for exploration **pages**. Website process: [explorations-website.mdc](./explorations-website.mdc). Canonical data: [eip-canonical-data.mdc](./eip-canonical-data.mdc). **Add a section here when a layout miss repeats.**
+
+## Classes
+
+Use `e-*` design-system classes from `src/main.css` — no hardcoded Tailwind color utilities on exploration UI. Do not re-list CSS class tables in prompts; read source.
 
 ## Same logical control, one UIC
 
@@ -24,7 +28,7 @@ After you can name the chrome controls, and **before** shipping a second copy of
    - UIC exists → use it.
    - No UIC yet → extract in-between: `src/eComponents/ui/<Name>UIC.vue` + a practically sufficient spec under `src/eComponents/ui/__tests__/`, then wire **all** call sites (new and old). Do not leave the old inline markup.
 
-Reference: `SegmentedToggleUIC` — Fusaka | Glamsterdam on `eip-7708` and `eip-8037`, plus the gas-limit pair on `eip-8037`. Scenario step prev/next → **`ScenarioStepNavUIC`**. Scenario control row → **`WidgetChromeUIC`** (`.e-widget-chrome*` in `main.css`).
+Reference: `SegmentedToggleUIC` — Fusaka | Glamsterdam on `eip-7708` and `eip-8037`, plus the gas-limit pair on `eip-8037`. Scenario step prev/next → **`ScenarioStepNavUIC`**. Scenario control row → **`WidgetChromeUIC`** (`.e-widget-chrome*` in `main.css`). Title-row Spec snapshot → **`InfoPanelUIC`** + **`SpecSnapshotUIC`**.
 
 ## Widget chrome (scenario explorations)
 

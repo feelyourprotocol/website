@@ -13,7 +13,7 @@ Phase 1 of the [round-trip](../round-trip-protocol-change/SKILL.md). Also run st
 
 **This phase is a report.** Propose `CANONICAL` in chat. Do **not** create the exploration folder, widget, or engine module until the human GOs.
 
-Answers later land in `src/explorations/eip-NNNN/canonical.ts` — not only in chat. Schema: [`canonicalTypes.ts`](../../src/explorations/canonicalTypes.ts).
+Answers later land in `src/explorations/eip-NNNN/canonical.ts` — not only in chat. Schema: [`canonicalTypes.ts`](../../src/explorations/canonicalTypes.ts). Data homes: [eip-canonical-data.mdc](../rules/eip-canonical-data.mdc).
 
 Do **not** brief from model memory of the EIP. Fetch sources below, then skim one close existing exploration so the idea is comparative, not generic.
 
@@ -25,9 +25,9 @@ Repo: [ethereum/EIPs](https://github.com/ethereum/EIPs) — file `EIPS/eip-NNNN.
 
 - **Default ref:** `master` (latest). If the human names a commit, PR, tag, or date, use that instead.
 - **Fetch:** `https://raw.githubusercontent.com/ethereum/EIPs/master/EIPS/eip-NNNN.md` (or GitHub file contents: `owner=ethereum` `repo=EIPs` `path=EIPS/eip-NNNN.md` `ref=master`). Prefer this over `eips.ethereum.org` (can lag).
-- **Preamble:** `status`, `type`, `category`, `discussions-to`, `requires`, `created` — these feed maturity, suitability, and the MCP outline.
+- **Preamble:** `status`, `type`, `category`, `discussions-to`, `requires`, `created` — these feed suitability and the MCP outline. Phase 2 **pins** `identity.specUrl` / `specDate` / `status` / `testReleaseUrl` / `testReleaseName` from EST `ref_spec` ([eip-canonical-data.mdc](../rules/eip-canonical-data.mdc) § Spec versioning), not from floating `master` unless no pin exists yet.
 
-**Later (not this round):** pin the spec by commit and/or date in `canonical.ts`, show it on the website, and have MCP answer “which version.” Do not invent those fields now.
+Briefing may read `master` for pedagogy. Proposed `CANONICAL.identity.specUrl` can stay a placeholder if the EST/devnet starting point is unknown — [add-exploration](../add-exploration/SKILL.md) must pin it (or **ask**). Do not use a local `ethereum/EIPs` checkout.
 
 ### `discussions-to`
 

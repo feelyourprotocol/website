@@ -8,7 +8,7 @@ Return a machine-readable snapshot of what this server can **actually run**: eng
 
 ## When to use
 
-- **First call** when connecting — learn forks, modules, and limits before simulating
+- **First call** when connecting — learn forks, modules, limits, and which EIP spec snapshot this lab implements before simulating
 - Answer support questions: “Is Glamsterdam available?”, “Which EIPs does that fork advertise?”, “Is EIP-8024 supported?”, “Can I run Glamsterdam bytecode with DUPN?”
 - Read the `glamsterdam` named-fork row for a generic preview run; read opcode encoding so you can **construct** bytecode (this tool does not hand you a canned example program)
 
@@ -29,7 +29,7 @@ None required. Pass `{}` or omit arguments.
 | `baselineForkId` | Current mainnet EL (`fusaka`) — first-class run target and optional compare baseline |
 | `namedForks` | Berlin→Glamsterdam lineage — `order`, `predecessorId`, `successorId`, `role`, `activatedEips`, advertised `relatedEips`, `shapes` |
 | `eipIntroductions` | When each EIP activated — use with predecessor compares (e.g. PUSH0 at Shapella, predecessor Paris) |
-| `eips` | Runnable modules — `comparison` derived from `eipIntroductions` (predecessor vs `introducedAt`) |
+| `eips` | Runnable modules — `comparison` derived from `eipIntroductions` (predecessor vs `introducedAt`); each row includes `specUrl`, `specDate`, `status`, and optional `testReleaseUrl` / `testReleaseName` (or a live `eips.ethereum.org` page when unpinned) |
 | `allowedBaseHardforks` | Lineage forks (`berlin` … `glamsterdam`) plus aliases; glacier/BPO ids rejected |
 
 ## Example
@@ -56,6 +56,9 @@ _Output (abbreviated):_
     "comparison": { "baselineForkId": "fusaka", "previewForkId": "glamsterdam", "note": "…" },
     "summary": "Glamsterdam EVM executes DUPN, SWAPN, and EXCHANGE. Supply any bytecode; this server does not ship demo programs.",
     "shapes": ["simulate"],
+    "status": "Review",
+    "specDate": "2026-06-10",
+    "testReleaseName": "tests-glamsterdam-devnet@v8.1.0",
     "opcodes": [
       { "name": "DUPN", "opcodeHex": "0xe6", "effect": "Copy the stack item at depth n onto the top.", "immediate": { "encoding": "n = (immediate + 145) mod 256; …", "minDepth": 17, "maxDepth": 235 } }
     ]
@@ -72,6 +75,7 @@ _Output (abbreviated):_
 <Changelog
   title="Describe Capabilities Changelog"
   :entries="[
+    { version: 'v0.16', date: '2026-09-18', summary: 'eips[] rows include specUrl, specDate, status, and named test release (or live EIP page).' },
     { version: 'v0.15', date: '2026-09-17', summary: 'maxTransactionGasLimit exposes the separate 110M transaction-only ceiling.' },
     { version: 'v0.14', date: '2026-09-17', summary: 'baselineForkId is a first-class run target, not only a compare hint.' },
     { version: 'v0.13', date: '2026-09-16', summary: 'namedForks are catalog capabilities (summary, relatedEips, shapes); generic hardfork questions are first-class.' },

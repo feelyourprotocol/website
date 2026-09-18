@@ -3,14 +3,23 @@
  * Replicate into engine EipCapability and mcp-docs; do not invent shared meaning in replicas.
  */
 import type { ProtocolChangeCanonical } from '@/explorations/canonicalTypes'
+import {
+  GLAMSTERDAM_DEVNET_TEST_RELEASE_NAME,
+  GLAMSTERDAM_DEVNET_TEST_RELEASE_URL,
+} from '@/explorations/canonicalTypes'
 import { Tag } from '@/explorations/TAGS'
 
 export const CANONICAL: ProtocolChangeCanonical = {
   identity: {
     id: 'eip-8038',
     eip: 8038,
-    specUrl: 'https://eips.ethereum.org/EIPS/eip-8038',
+    specUrl:
+      'https://github.com/ethereum/EIPs/blob/8331fb3eed0a5366b28b25a016f1ad04fac0fa8e/EIPS/eip-8038.md',
+    specDate: '2026-08-04',
     name: 'EIP-8038 State-Access Gas Cost Update',
+    status: 'Review',
+    testReleaseUrl: GLAMSTERDAM_DEVNET_TEST_RELEASE_URL,
+    testReleaseName: GLAMSTERDAM_DEVNET_TEST_RELEASE_NAME,
   },
   question: {
     coreQuestion:
@@ -21,11 +30,6 @@ export const CANONICAL: ProtocolChangeCanonical = {
     topic: 'robustness',
     timeline: 'glamsterdam',
     tags: [Tag.GasCosts, Tag.EVM],
-  },
-  maturity: {
-    eipStatus: 'Review',
-    implMaturity: 'Implemented in EthereumJS (Glamsterdam, experimental)',
-    testMaturity: 'execution-specs / glamsterdam-devnet (v8.1.x)',
   },
   mcp: {
     shapes: ['simulate', 'transaction'],

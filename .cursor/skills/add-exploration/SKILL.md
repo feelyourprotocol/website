@@ -18,7 +18,7 @@ Executable playbook for the **explorations website** only (`src/explorations/`).
 
 **Lookups:** `canonicalTypes.ts`, `REGISTRY.ts`, `types.ts` — do not guess IDs or re-list CSS tables in chat.
 
-Repo boundaries: [AGENTS.md](../../AGENTS.md), [repo-structure.mdc](../rules/repo-structure.mdc).
+Repo boundaries: [AGENTS.md](../../AGENTS.md), [repo-structure.mdc](../rules/repo-structure.mdc). Data homes: [eip-canonical-data.mdc](../rules/eip-canonical-data.mdc). Website process: [explorations-website.mdc](../rules/explorations-website.mdc).
 
 ## Design (same turn, before files)
 
@@ -76,6 +76,7 @@ Stop and ask (do not improvise past these):
 - New **shared** E-Component — only when the sub-round above was skipped without human approval and the pattern is still one-off (does **not** apply to extracting a UIC for a duplicate control)
 - Briefing verdict no longer holds (spec cannot be taught honestly)
 - Spec too underspecified for a truthful widget
+- EST test release, devnet branch, or `ref_spec` pin is unclear ([eip-canonical-data.mdc](../rules/eip-canonical-data.mdc) § Spec versioning)
 
 ## Tests (test-first)
 
@@ -97,7 +98,7 @@ Invariants and finish commands: [testing.mdc](../rules/testing.mdc), [quality.md
 ## Implementation steps
 
 1. Create `src/explorations/<id>/`
-2. `canonical.ts` — `CANONICAL` per `canonicalTypes.ts` (SoT), from the signed-off proposal
+2. `canonical.ts` — `CANONICAL` per `canonicalTypes.ts` (SoT), from the signed-off proposal. Pin `identity.specUrl`, `identity.specDate`, `identity.status`, `identity.testReleaseUrl`, and `identity.testReleaseName` per [eip-canonical-data.mdc](../rules/eip-canonical-data.mdc) § Spec versioning (GitHub/web only — no local EIPs checkout). If the starting point is unclear, **ask**. EthereumJS bumps later: [update-ethereumjs](../update-ethereumjs/SKILL.md).
 3. `info.ts` — website chrome; `introText` starts with `coreQuestion` from `CANONICAL`; copy `coreQuestion` and `mcpDocsStatus` onto `INFO` for home preview cards. Set `imageBoxHeight` per [exploration-design.mdc](../rules/exploration-design.mdc) (`COVER_COLUMN_IMAGE_HEIGHT` vs companion `16rem`–`19rem`).
 4. `examples.ts` + execution helpers — **tests for the protocol claim first** (or immediately with these files)
 5. `MyC.vue` (+ `config.ts` if E-Component-backed) — then Vue mount tests. After the first chrome pass, run the [cross-exploration UI check](#design-same-turn-before-files) (design §11). If a sibling already has the same control and there is no UIC, extract + tests **in this step**, then wire every call site.
@@ -123,16 +124,25 @@ If the briefing promised a twin, add or stub `mcp-docs/use/eips/eip-NNNN.md` in 
 | `mcp-docs/use/eips/eip-NNNN.md` | Every **live** exploration (same PR or immediate follow-up) |
 | Engine module | When `CANONICAL.mcp.shapes` includes a **shipped** verb — round-trip phase 3 |
 
-## Invariants (also in explorations.mdc)
+## Invariants
 
-- **No hardcoded Tailwind colors** — use `e-*` classes from `src/main.css`
-- **Same logical control, one UIC** — do not restyle a sibling copy; extract to `src/eComponents/ui/` with tests ([exploration-design.mdc](../rules/exploration-design.mdc))
+Website process ([explorations-website.mdc](../rules/explorations-website.mdc)):
+
 - **Libraries only in the exploration folder**
 - **Companion UI inside E-Component slots**
 - **Register in REGISTRY.ts** (nav)
 - **Engagement lexicon** — `social/watchlist.yml` `problem_slices` + `eip_number_fallback` for live ids; remove on sunset
 - **Cover art** — `image.webp` on every exploration
+
+Design ([exploration-design.mdc](../rules/exploration-design.mdc)):
+
+- **No hardcoded Tailwind colors** — use `e-*` classes from `src/main.css`
+- **Same logical control, one UIC** — do not restyle a sibling copy; extract to `src/eComponents/ui/` with tests
+
+Data ([eip-canonical-data.mdc](../rules/eip-canonical-data.mdc)):
+
 - **New shared fields only on `canonicalTypes.ts`**
+- **Pin the spec** — commit-pinned `specUrl`, commit `specDate`, preamble `status`, optional `testReleaseUrl` / `testReleaseName`
 - **Keep after mainnet** — do not set `docsStatus: sunset` because the fork activated
 
 ## Finish gates

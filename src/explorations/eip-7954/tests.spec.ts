@@ -116,7 +116,6 @@ describe('EIP-7954 contract-size exploration', () => {
         plugins: [router],
         stubs: {
           ExplorationC: { template: '<div><slot name="content" /></div>' },
-          PoweredByC: true,
         },
       },
     })

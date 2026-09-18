@@ -1,0 +1,41 @@
+schema: video-short-tweet/v1
+id: eip-7954
+
+# Comic opened with the old 24 KiB contract wall.
+# Video tweet leads with both new ceilings and a developer-facing diagnostic.
+shape: thread
+
+t1:
+  body: |
+    EIP-7954 · Glamsterdam
+    New deployments get 64 KiB of runtime code and 128 KiB of initcode — up from 24 and 48 KiB.
+
+    Which contract feature no longer has to be cut for size?
+
+    https://feelyourprotocol.org/eip-7954-contract-size-limit
+  media: eip-7954-2026-09-17T16-00-51-final.mp4
+  video_description: |
+    Vertical Short explaining EIP-7954 contract deployment limits. A title card
+    asks how much contract code can be deployed, then the widget compares Fusaka
+    and Glamsterdam at the old runtime-code and initcode walls. The narration
+    closes with the new 64 KiB runtime and 128 KiB initcode ceilings.
+  intent: https://x.com/intent/post?text=EIP-7954+%C2%B7+Glamsterdam%0ANew+deployments+get+64+KiB+of+runtime+code+and+128+KiB+of+initcode+%E2%80%94+up+from+24+and+48+KiB.%0A%0AWhich+contract+feature+no+longer+has+to+be+cut+for+size%3F%0A%0Ahttps%3A%2F%2Ffeelyourprotocol.org%2Feip-7954-contract-size-limit
+
+t2:
+  body: |
+    The new deployment boundaries:
+
+    Spec: https://eips.ethereum.org/EIPS/eip-7954
+    Forkcast: https://forkcast.org/eips/7954/
+  intent: https://x.com/intent/post?text=The+new+deployment+boundaries%3A%0A%0ASpec%3A+https%3A%2F%2Feips.ethereum.org%2FEIPS%2Feip-7954%0AForkcast%3A+https%3A%2F%2Fforkcast.org%2Feips%2F7954%2F
+
+sources:
+  exploration_url: https://feelyourprotocol.org/eip-7954-contract-size-limit
+  spec_url: https://eips.ethereum.org/EIPS/eip-7954
+  forkcast_url: https://forkcast.org/eips/7954/
+
+notes: |
+  Consumed opener: "EIP-7954 · Glamsterdam / New deployments get 64 KiB of
+  runtime code and 128 KiB of initcode". Diagnostic: "Which contract feature
+  no longer has to be cut for size?". Do not clone the comic's 24 KiB wall
+  opener.

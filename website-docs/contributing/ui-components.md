@@ -14,6 +14,8 @@ When briefing an agent: *“use shared UI components; keep exploration-specific 
 
 Prefer existing shared components over new ones. API details: read the `.vue` files under `src/eComponents/ui/` — not duplicated here.
 
+**Spec snapshot.** Title-row **Spec** uses `InfoPanelUIC` (labelled trigger, board-sized panel below growing left, topic `e-border`) plus `SpecSnapshotUIC` for the pin facts. Do not revive the old icon-only EIP link.
+
 ## Same control, one look
 
 If two explorations need the same chrome (segmented two-button, primary run action, example picker), they share one UIC. Discovering a duplicate while adding an exploration is a stop-and-extract: add the UIC plus tests, then switch **every** call site. Do not restyle a copy. This is not a new E-Component.

@@ -55,7 +55,7 @@ Same named forks as [Run Bytecode](/use/tools/run-bytecode): default **glamsterd
 | `createdAddress` | Successful creation only — deployed contract address |
 | `deployedCodeSize` | Successful creation only — stored runtime-code bytes |
 | `logs` / `decodedLogs` | Receipt logs; EIP-7708 Transfer/Burn decorations when present |
-| `provenance` | Always present |
+| `provenance` | Always present — named `eips[]` add a compact `Spec:` clause on `caveat` |
 
 ## Example — first-touch 1 wei (Glamsterdam)
 
@@ -83,6 +83,7 @@ See [Guarantees](/use/guarantees) for gas ceilings. The higher transaction-only 
 <Changelog
   title="Run Transaction Changelog"
   :entries="[
+    { version: 'v0.7', date: '2026-09-18', summary: 'Named eips[] provenance.caveat includes a compact Spec: snapshot.' },
     { version: 'v0.6', date: '2026-09-17', summary: 'Contract creation via omitted to; createdAddress and deployedCodeSize; 110M transaction-only ceiling.' },
     { version: 'v0.5', date: '2026-09-17', summary: 'Fusaka fork note: current-mainnet features, not only a compare baseline.' },
     { version: 'v0.4', date: '2026-09-16', summary: 'Generic Glamsterdam / Fusaka transaction is a first-class when-to-use.' },

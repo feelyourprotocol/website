@@ -366,9 +366,28 @@ body {
   @apply inline-flex items-center justify-center border-1 rounded-md min-h-11 min-w-11 p-2.5;
 }
 
-/* Title-row external EIP link on cards and exploration shell — touch-sized mobile, compact desktop */
-.visit-exploration-button .e-button-icon {
-  @apply size-11 p-2.5 sm:size-7 sm:min-h-0 sm:min-w-0 sm:p-1.5;
+/* Title-row Spec snapshot trigger — touch-sized mobile, compact desktop */
+.e-info-panel-trigger {
+  color: var(--e-text);
+  border-color: var(--e-border);
+  background-color: #fff;
+  @apply inline-flex items-center justify-center border-1 rounded-md min-h-11 px-3 text-sm font-semibold sm:min-h-7 sm:px-2.5 sm:text-xs;
+  transition: background-color 0.15s ease;
+}
+
+.e-info-panel-trigger:hover {
+  background-color: var(--e-bg-light);
+}
+
+.e-info-panel-trigger:focus-visible {
+  outline-color: var(--e-border-dark);
+  @apply outline outline-2 outline-offset-2;
+}
+
+/* Board-sized flyout: same padding/radius as `.exploration-c`, grows left from the trigger */
+.e-info-panel {
+  border: 1px solid var(--e-border);
+  @apply absolute right-0 z-[80] mt-1.5 box-border w-[min(22rem,calc(100vw-2.5rem))] rounded-lg bg-white p-5 text-left shadow-lg;
 }
 
 /* --- E-Component: Precompile Interface --- */
