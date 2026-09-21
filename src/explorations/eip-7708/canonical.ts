@@ -3,14 +3,23 @@
  * Replicate into engine EipCapability and mcp-docs; do not invent shared meaning in replicas.
  */
 import type { ProtocolChangeCanonical } from '@/explorations/canonicalTypes'
+import {
+  GLAMSTERDAM_DEVNET_TEST_RELEASE_NAME,
+  GLAMSTERDAM_DEVNET_TEST_RELEASE_URL,
+} from '@/explorations/canonicalTypes'
 import { Tag } from '@/explorations/TAGS'
 
 export const CANONICAL: ProtocolChangeCanonical = {
   identity: {
     id: 'eip-7708',
     eip: 7708,
-    specUrl: 'https://eips.ethereum.org/EIPS/eip-7708',
+    specUrl:
+      'https://github.com/ethereum/EIPs/blob/f7230c46a743313957d8f38a159bda934cc735b2/EIPS/eip-7708.md',
+    specDate: '2026-07-10',
     name: 'EIP-7708 ETH transfers emit a log',
+    status: 'Review',
+    testReleaseUrl: GLAMSTERDAM_DEVNET_TEST_RELEASE_URL,
+    testReleaseName: GLAMSTERDAM_DEVNET_TEST_RELEASE_NAME,
   },
   question: {
     coreQuestion:
@@ -21,11 +30,6 @@ export const CANONICAL: ProtocolChangeCanonical = {
     topic: 'ux',
     timeline: 'glamsterdam',
     tags: [Tag.EVM, Tag.GasCosts, Tag.Logs],
-  },
-  maturity: {
-    eipStatus: 'Review',
-    implMaturity: 'Implemented in EthereumJS (Glamsterdam)',
-    testMaturity: 'execution-specs eip7708_eth_transfer_logs',
   },
   mcp: {
     shapes: ['transaction', 'simulate'],

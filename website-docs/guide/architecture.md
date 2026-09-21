@@ -19,7 +19,7 @@ src/explorations/eip-7883/
 └── tests.spec.ts   # Tests
 ```
 
-Schema for all explorations: `src/explorations/canonicalTypes.ts`. Replicate `CANONICAL` into engine modules and MCP docs; website wins on conflict.
+Schema for all explorations: `src/explorations/canonicalTypes.ts`. Agent contract: [eip-canonical-data.mdc](https://github.com/feelyourprotocol/website/blob/main/.cursor/rules/eip-canonical-data.mdc). Replicate twin metadata into engine modules and MCP docs; website wins on that conflict. Lab lineage, introductions, and encoding live in the engine.
 
 ### MCP twin (no orphan explorations)
 

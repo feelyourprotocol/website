@@ -40,7 +40,6 @@ describe('EIP-7843 Exploration', () => {
       expect(INFO.topic).toBe('robustness')
       expect(INFO.timeline).toBe('glamsterdam')
       expect(INFO.rightPanel).toBe(true)
-      expect(INFO.poweredBy.length).toBeGreaterThan(0)
     })
 
     it('leads intro with the core question', () => {

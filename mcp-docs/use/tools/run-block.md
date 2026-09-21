@@ -44,7 +44,7 @@ Same named forks as [Run Bytecode](/use/tools/run-bytecode): default **glamsterd
 | `header` | `number`, `timestamp`, `gasUsed`, optional `slotNumber` |
 | `transactions[]` | Per-tx paid gas, optional Glamsterdam `txRegularGas` / `txStateGas`, logs |
 | `error` | First tx failure or a block-level catch, else `null` |
-| `provenance` | Always present |
+| `provenance` | Always present — named `eips[]` add a compact `Spec:` clause on `caveat` |
 
 On Glamsterdam, header `gasUsed` may track the state-gas dimension (EIP-8037). Paid tx gas lives on `transactions[].gasUsed`.
 

@@ -11,6 +11,10 @@ export const INFO: Exploration = {
   seoDescription:
     'Interactive EVM explainer for EIP-7843 SLOTNUM — see why TIMESTAMP ÷ 12 is a trap, and read the beacon slot from the block header on Glamsterdam.',
   infoURL: CANONICAL.identity.specUrl,
+  specDate: CANONICAL.identity.specDate,
+  specStatus: CANONICAL.identity.status,
+  testReleaseUrl: CANONICAL.identity.testReleaseUrl,
+  testReleaseName: CANONICAL.identity.testReleaseName,
   topic: CANONICAL.taxonomy.topic,
   timeline: CANONICAL.taxonomy.timeline,
   tags: CANONICAL.taxonomy.tags,
@@ -30,7 +34,4 @@ export const INFO: Exploration = {
     'the stack top should match the slot on the right. Change the slot, compare ' +
     '<code>TIMESTAMP</code> with <code>SLOTNUM</code>, or try the divide-by-12 trap. Switch to ' +
     'Fusaka to see the opcode fail.',
-  creatorName: 'HolgerD77',
-  creatorURL: 'https://x.com/HolgerD77',
-  poweredBy: [{ name: 'EthereumJS', href: 'https://github.com/ethereumjs/ethereumjs-monorepo' }],
 }

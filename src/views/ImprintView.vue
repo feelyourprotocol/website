@@ -79,11 +79,6 @@ const breadcrumbs = getBreadcrumbsForPath('/imprint')
             — unit testing
           </li>
         </ul>
-
-        <p class="mt-6 text-slate-300">
-          Ethereum libraries used by individual explorations are credited inline via the
-          <span class="text-white">⚡</span> icon on each widget.
-        </p>
       </div>
 
       <div class="border-slate-300 border-2 bg-clip-border p-6 rounded-xl text-xs font-mono">

@@ -143,7 +143,6 @@ describe('EIP-7708 transfer-log exploration', () => {
               ExplorationC: {
                 template: '<div><slot name="content" /></div>',
               },
-              PoweredByC: true,
             },
           },
         },
@@ -179,7 +178,6 @@ describe('EIP-7708 transfer-log exploration', () => {
               ExplorationC: {
                 template: '<div><slot name="content" /></div>',
               },
-              PoweredByC: true,
             },
           },
         },

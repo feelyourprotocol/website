@@ -29,9 +29,6 @@ async function mountWithQuery(query: Record<string, string> = {}) {
       attachTo: document.getElementById('root')!,
       global: {
         plugins: [router],
-        stubs: {
-          PoweredByC: true,
-        },
       },
     },
   )

@@ -11,6 +11,7 @@ export const CANONICAL: ProtocolChangeCanonical = {
     eip: 7883,
     specUrl: 'https://eips.ethereum.org/EIPS/eip-7883',
     name: 'EIP-7883 ModExp Gas Cost Increase',
+    status: 'Final',
   },
   question: {
     coreQuestion: 'How are ModExp gas costs changing with Fusaka?',
@@ -20,11 +21,6 @@ export const CANONICAL: ProtocolChangeCanonical = {
     topic: 'robustness',
     timeline: 'fusaka',
     tags: [Tag.GasCosts, Tag.Precompiles],
-  },
-  maturity: {
-    eipStatus: 'Final',
-    implMaturity: 'Implemented in EthereumJS',
-    testMaturity: 'Precompile gas tests',
   },
   mcp: {
     shapes: ['simulate'],

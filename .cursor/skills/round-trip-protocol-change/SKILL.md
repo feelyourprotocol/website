@@ -82,7 +82,7 @@ The human may add MCP hints here (what the widget made obvious, what the engine 
 
 ## Phase 3 — MCP
 
-Only after explicit GO. Website `CANONICAL` is the source of truth.
+Only after explicit GO. Twin metadata: website `CANONICAL` ([eip-canonical-data.mdc](../rules/eip-canonical-data.mdc)).
 
 Load and follow [add-mcp-module](https://github.com/feelyourprotocol/mcp-execution-engine/blob/main/.cursor/skills/add-mcp-module/SKILL.md).
 

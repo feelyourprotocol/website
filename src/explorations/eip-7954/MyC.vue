@@ -6,7 +6,6 @@ import ExamplesUIC from '@/eComponents/ui/ExamplesUIC.vue'
 import ResultBoxUIC from '@/eComponents/ui/resultBox/ResultBoxUIC.vue'
 import WidgetChromeUIC from '@/eComponents/ui/WidgetChromeUIC.vue'
 import ExplorationC from '@/explorations/ExplorationC.vue'
-import PoweredByC from '@/explorations/PoweredByC.vue'
 import { TOPICS } from '@/explorations/TOPICS'
 import { resolveInitialExample } from '@/libs/exampleFromQuery'
 import { useExplorationExampleQuery } from '@/libs/useExplorationExampleQuery'
@@ -67,12 +66,6 @@ void warmExecution()
 
       <DeploymentResultView :scenario="scenario" :result="result" />
       <ResultBoxUIC v-if="errorMsg" title="Error" :left="true" :errorText="errorMsg" />
-
-      <PoweredByC
-        :poweredBy="exploration.poweredBy"
-        :creatorName="exploration.creatorName"
-        :creatorURL="exploration.creatorURL"
-      />
     </template>
   </ExplorationC>
 </template>

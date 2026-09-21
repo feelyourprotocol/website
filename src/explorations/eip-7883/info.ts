@@ -12,6 +12,10 @@ export const INFO: Exploration = {
   seoDescription:
     'EIP-7883 ModExp gas cost increase — interactive look at Ethereum precompile gas recalibration and its security motivation.',
   infoURL: CANONICAL.identity.specUrl,
+  specDate: CANONICAL.identity.specDate,
+  specStatus: CANONICAL.identity.status,
+  testReleaseUrl: CANONICAL.identity.testReleaseUrl,
+  testReleaseName: CANONICAL.identity.testReleaseName,
   topic: CANONICAL.taxonomy.topic,
   timeline: CANONICAL.taxonomy.timeline,
   tags: CANONICAL.taxonomy.tags,
@@ -30,7 +34,4 @@ export const INFO: Exploration = {
     'especially interesting — that size shows up often when verifying RSA signatures in ' +
     'airdrop contracts. Compare the before/after gas costs side by side. The ' +
     '<b>1025-byte invalid</b> example shows EIP-7823 rejection on Fusaka.',
-  creatorName: 'HolgerD77',
-  creatorURL: 'https://x.com/HolgerD77',
-  poweredBy: [{ name: 'EthereumJS', href: 'https://github.com/ethereumjs/ethereumjs-monorepo' }],
 }

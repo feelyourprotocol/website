@@ -30,7 +30,7 @@ Register in `REGISTRY.ts` or the exploration will not appear. Add a matching row
 
 ## Canonical metadata (`canonical.ts`)
 
-Shared meaning lives here — replicated into MCP engine modules and docs. Schema: `src/explorations/canonicalTypes.ts`.
+Shared meaning lives here — replicated into MCP engine modules and docs. Schema: `src/explorations/canonicalTypes.ts`. Agent contract: [eip-canonical-data.mdc](https://github.com/feelyourprotocol/website/blob/main/.cursor/rules/eip-canonical-data.mdc).
 
 ```typescript
 import type { ProtocolChangeCanonical } from '@/explorations/canonicalTypes'
@@ -38,10 +38,18 @@ import { Tag } from '@/explorations/TAGS'
 
 /** Source of truth for this protocol change (website + MCP). Replicate into engine EipCapability and mcp-docs. */
 export const CANONICAL: ProtocolChangeCanonical = {
-  identity: { id: 'eip-XXXX', eip: 0, specUrl: 'https://eips.ethereum.org/EIPS/eip-XXXX', name: '…' },
+  identity: {
+    id: 'eip-XXXX',
+    eip: 0,
+    specUrl: 'https://github.com/ethereum/EIPs/blob/<commit>/EIPS/eip-XXXX.md',
+    specDate: '2026-07-10',
+    name: '…',
+    status: 'Review',
+    testReleaseUrl: 'https://github.com/ethereum/execution-specs/releases/tag/tests-glamsterdam-devnet@v8.1.0',
+    testReleaseName: 'tests-glamsterdam-devnet@v8.1.0',
+  },
   question: { coreQuestion: '…', changeNature: 'new-capability' },
-  taxonomy: { topic: 'scaling', timeline: 'fusaka', tags: [Tag.EVM] },
-  maturity: { eipStatus: 'Final' },
+  taxonomy: { topic: 'scaling', timeline: 'glamsterdam', tags: [Tag.EVM] },
   mcp: { shapes: ['simulate'], docsStatus: 'runnable' },
 }
 ```
@@ -60,6 +68,10 @@ export const INFO: Exploration = {
   title: CANONICAL.identity.name,
   seoDescription: '…',
   infoURL: CANONICAL.identity.specUrl,
+  specDate: CANONICAL.identity.specDate,
+  specStatus: CANONICAL.identity.status,
+  testReleaseUrl: CANONICAL.identity.testReleaseUrl,
+  testReleaseName: CANONICAL.identity.testReleaseName,
   topic: CANONICAL.taxonomy.topic,
   timeline: CANONICAL.taxonomy.timeline,
   tags: CANONICAL.taxonomy.tags,
@@ -67,7 +79,6 @@ export const INFO: Exploration = {
   mcpDocsStatus: CANONICAL.mcp.docsStatus,
   introText: `<b>${CANONICAL.question.coreQuestion}</b> …`,
   usageText: 'How to use the widget below.',
-  poweredBy: [{ name: 'EthereumJS', href: 'https://github.com/ethereumjs/ethereumjs-monorepo' }],
 }
 ```
 
@@ -81,7 +92,6 @@ export const INFO: Exploration = {
 | `seoDescription` | Discovery/search (~120–160 chars); **not** the same as `introText` |
 | `introText` / `usageText` | Pedagogy and accuracy vs the spec |
 | `introText` vs `seoDescription` | Intro teaches on-page; SEO targets search queries |
-| `poweredBy` | Credit libraries used |
 | `image` | Required — [Images](/contributing/images). Page uses `image.webp`; cards use `imageSmall`. |
 | `imageBoxHeight` | Cover-only: `COVER_COLUMN_IMAGE_HEIGHT` (`48rem`). Companion: `16rem`–`19rem` with `rightPanel: true`. |
 | `rightPanel` | Set when a companion teleports into `#exploration-right-panel`; otherwise omit. |

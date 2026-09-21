@@ -100,12 +100,13 @@ describe('ExplorationPreviewC', () => {
     expect(wrapper.text()).toContain(base.coreQuestion)
   })
 
-  it('external spec link does not use the exploration route', () => {
+  it('opens a Spec snapshot panel instead of a raw EIP link', async () => {
     const exploration = EXPLORATIONS['eip-7708']!
     const wrapper = mountPreview('eip-7708')
 
-    const link = wrapper.find('a.visit-exploration-button')
-    expect(link.attributes('href')).toBe(exploration.infoURL)
-    expect(link.attributes('target')).toBe('_blank')
+    const trigger = wrapper.get('[data-testid="spec-pin"]')
+    expect(trigger.text()).toBe('Spec')
+    await trigger.trigger('click')
+    expect(wrapper.get('[data-testid="spec-pin-url"]').attributes('href')).toBe(exploration.infoURL)
   })
 })

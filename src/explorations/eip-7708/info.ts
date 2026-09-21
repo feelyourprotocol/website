@@ -11,6 +11,10 @@ export const INFO: Exploration = {
   seoDescription:
     'EIP-7708 ETH transfer logs — see when native ETH shows up as an ERC-20-style Transfer event in the receipt, and when it stays silent.',
   infoURL: CANONICAL.identity.specUrl,
+  specDate: CANONICAL.identity.specDate,
+  specStatus: CANONICAL.identity.status,
+  testReleaseUrl: CANONICAL.identity.testReleaseUrl,
+  testReleaseName: CANONICAL.identity.testReleaseName,
   topic: CANONICAL.taxonomy.topic,
   timeline: CANONICAL.taxonomy.timeline,
   tags: CANONICAL.taxonomy.tags,
@@ -30,7 +34,4 @@ export const INFO: Exploration = {
     'Pick a scenario, choose <b>Glamsterdam</b> or <b>Fusaka</b>, then press <b>Run block</b>. ' +
     'Decoded Transfer rows appear in the receipt panel on the right. Try the same scenario on ' +
     'Fusaka to see the baseline without EIP-7708 logs.',
-  creatorName: 'HolgerD77',
-  creatorURL: 'https://x.com/HolgerD77',
-  poweredBy: [{ name: 'EthereumJS', href: 'https://github.com/ethereumjs/ethereumjs-monorepo' }],
 }

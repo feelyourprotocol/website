@@ -12,6 +12,10 @@ export const INFO: Exploration = {
   seoDescription:
     'Interactive explainer for EIP-8038 — see why an SSTORE on Glamsterdam pays separately for touching a slot, changing it, or creating it.',
   infoURL: CANONICAL.identity.specUrl,
+  specDate: CANONICAL.identity.specDate,
+  specStatus: CANONICAL.identity.status,
+  testReleaseUrl: CANONICAL.identity.testReleaseUrl,
+  testReleaseName: CANONICAL.identity.testReleaseName,
   topic: CANONICAL.taxonomy.topic,
   timeline: CANONICAL.taxonomy.timeline,
   tags: CANONICAL.taxonomy.tags,
@@ -30,7 +34,4 @@ export const INFO: Exploration = {
     'fill: touch stays 2,100, change jumps, create stays empty. Switch to <b>Fusaka</b> to see ' +
     'the smaller write. Try a <b>read</b> (touch only) or a <b>new slot</b> (create becomes ' +
     'state gas).',
-  creatorName: 'HolgerD77',
-  creatorURL: 'https://x.com/HolgerD77',
-  poweredBy: [{ name: 'EthereumJS', href: 'https://github.com/ethereumjs/ethereumjs-monorepo' }],
 }

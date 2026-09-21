@@ -65,7 +65,7 @@ Expected on baseline: `success: false` (invalid opcode `0xe6`). Re-run with `gla
 | `steps` | Optional trace steps when `trace` is true |
 | `logs` | Raw logs emitted during execution (when any) |
 | `decodedLogs` | Indexed logs with optional decorations |
-| `provenance` | Always present — `engineVersion`, `forkConfig`, optional EIP metadata |
+| `provenance` | Always present — `engineVersion`, `forkConfig`, `perEip` spec snapshot; named `eips[]` also add a compact `Spec:` clause on `caveat` |
 
 ## Examples
 
@@ -117,6 +117,7 @@ See [Guarantees](/use/guarantees) for ceilings (max gas, bytecode size, trace st
 <Changelog
   title="Run Bytecode Changelog"
   :entries="[
+    { version: 'v0.14', date: '2026-09-18', summary: 'Named eips[] provenance.caveat includes a compact Spec: snapshot.' },
     { version: 'v0.13', date: '2026-09-17', summary: 'Fusaka is first-class for current-mainnet features, not only a compare baseline.' },
     { version: 'v0.12', date: '2026-09-16', summary: 'Generic Glamsterdam bytecode (no EIP named) is a first-class when-to-use.' },
     { version: 'v0.10', date: '2026-09-14', summary: 'SSTORE belongs on run_transaction — run_bytecode cannot persist storage writes.' },
