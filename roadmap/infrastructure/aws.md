@@ -6,7 +6,7 @@ Where the two legs run — and where they're heading for [launch week](/roadmap/
 
 Everything public today (the [website](https://feelyourprotocol.org), docs, community-token, roadmap, mcp-docs) runs behind nginx on a single **Strato V-Server**. That's fine for static sites and the explorations frontend.
 
-The MCP **engine and gateway** are developed and tested locally and on AWS EC2 in preparation for the public HTTP endpoint — see `server-config/aws/mcp/` for the bootstrap walkthrough. **Public HTTP at `mcp.feelyourprotocol.org` is not launched yet.**
+The MCP **engine and gateway** are developed and tested locally and on AWS EC2 in preparation for the public HTTP endpoint — see `server-config/aws/` for the bootstrap walkthrough. **Public HTTP at `mcp.feelyourprotocol.org` is not launched yet.**
 
 ## Why the MCP needs dedicated compute
 
