@@ -1,8 +1,8 @@
 # Capabilities
 
-> **Status:** Six tools **implemented** (`describe_capabilities`, `run_bytecode`, `run_transaction`, `run_block`, `generate`, `inspect`). **Public MCP not launched.**
+> **Status:** Six tools **implemented** (`describe_capabilities`, `run_bytecode`, `run_transaction`, `run_block`, `generate_artifact`, `inspect_artifact`). **Public MCP not launched.**
 
-The MCP server exposes **intent-driven tools** — verbs that match how agents and integrators think about protocol work, not raw library APIs one-to-one.
+The MCP server exposes **intent-driven tools** — verbs that match how agents and integrators think about protocol work, not raw library APIs one-to-one. Live `describe_capabilities` returns **`queryShapes[]`** (catalog id → MCP name) and **`tools`** on each EIP and named-fork row. Call the MCP name, not the catalog id.
 
 ## Query shapes
 
@@ -12,8 +12,8 @@ The MCP server exposes **intent-driven tools** — verbs that match how agents a
 | **Run bytecode** | `run_bytecode` | Run raw bytecode as a message-call; optional trace and accounts | Implemented — public launch pending |
 | **Run transaction** | `run_transaction` | Paid tx gas, receipt logs, EIP-8037 dimensions | Implemented — public launch pending |
 | **Run block** | `run_block` | 1–8 txs as a lab block; header snapshot (optional slot) | Implemented — public launch pending |
-| **Generate** | `generate` | Derive lab artifacts (BAL / EIP-7928 first) | Implemented — public launch pending |
-| **Inspect** | `inspect` | Structure + hash on caller blobs (BAL, 7702 auth, typed tx, withdrawals, requests) | Implemented — public launch pending |
+| **Generate** | `generate_artifact` | Derive lab artifacts (BAL / EIP-7928 first) | Implemented — public launch pending |
+| **Inspect** | `inspect_artifact` | Structure + hash on caller blobs (BAL, 7702 auth, typed tx, withdrawals, requests) | Implemented — public launch pending |
 
 To **optionally** compare baseline vs preview, call the same verb twice — **fusaka** (current mainnet EL), then **glamsterdam** (preview) — and diff gas, success, traces, or logs. One run on Glamsterdam only is fully supported — you do **not** need to name an EIP. One run on **fusaka** is also first-class when the question is a current-mainnet feature (ModExp, P-256, a generic mainnet-EL program).
 
@@ -32,6 +32,8 @@ See [Guarantees](/use/guarantees) for limits and provenance details.
 <Changelog
   title="Capabilities Changelog"
   :entries="[
+    { version: 'v0.18', date: '2026-09-22', summary: 'Probe queryShapes dictionary; EIP/fork rows list tools (MCP names), not shapes.' },
+    { version: 'v0.17', date: '2026-09-22', summary: 'Renamed generate → generate_artifact and inspect → inspect_artifact.' },
     { version: 'v0.16', date: '2026-09-17', summary: 'Fusaka runs are first-class for current-mainnet features, not only preview compares.' },
     { version: 'v0.15', date: '2026-09-16', summary: 'generate + inspect — BAL from lab block; inspect without chain state.' },
     { version: 'v0.14', date: '2026-09-16', summary: 'Generic hardfork runs (Glamsterdam default) are first-class — EIP modules remain the per-change catalogue.' },

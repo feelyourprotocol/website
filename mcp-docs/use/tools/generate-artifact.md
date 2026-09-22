@@ -1,6 +1,6 @@
-# Generate
+# Generate Artifact
 
-> **Status:** Implemented — MCP tool: `generate`. **Public endpoint not live.**
+> **Status:** Implemented — MCP tool: `generate_artifact`. **Public endpoint not live.**
 
 ## Purpose
 
@@ -10,7 +10,7 @@ BYOS lab only. Does **not** verify the BAL of a mainnet block without archive pa
 
 ## MCP tool name
 
-`generate`
+`generate_artifact`
 
 ## Inputs
 
@@ -26,4 +26,14 @@ Same as `run_block`, plus optional `kind` (`block-access-list`, default).
 | `itemCount` / `maxItems` | EIP-7928 item cap vs lab block gas limit |
 | `provenance` | Fork and engine metadata |
 
-Pair with [Inspect](/use/tools/inspect) on caller-supplied BAL payloads.
+Pair with [Inspect Artifact](/use/tools/inspect-artifact) on caller-supplied BAL payloads.
+
+## Changelog
+
+<Changelog
+  title="Generate Artifact Changelog"
+  :entries="[
+    { version: 'v0.2', date: '2026-09-22', summary: 'Renamed MCP tool generate → generate_artifact (query shape stays generate).' },
+    { version: 'v0.1', date: '2026-09-16', summary: 'Implemented — BAL from lab block on Glamsterdam.' },
+  ]"
+/>

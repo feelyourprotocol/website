@@ -9,14 +9,14 @@ These boundaries apply to everything we ship.
 - **Call isolation is the default** — Each tool call is a fresh lab from **that payload**. An MCP transport session (stdio process, HTTP `mcp-session-id`) is not an EVM. Continuation across prompts (“use the contract we just deployed”) is optional later (caller-held snapshot or a short-lived gateway handle) — not shipped, not implied.
 - **Raw bytecode, base-layer only** — No Solidity compilation in the service. ERC/application-layer concerns are out of scope.
 - **Observability first** — Rich execution traces (stack, memory, gas, opcodes) are a primary deliverable.
-- **Intent-driven MCP tools** — Tools match use cases (run bytecode, run transaction, run block, generate BAL, …), not raw library APIs one-to-one.
+- **Intent-driven MCP tools** — Tools match use cases (run bytecode, run transaction, run block, generate_artifact, inspect_artifact, …), not raw library APIs one-to-one.
 - **Exploration twins** — Every live website exploration has an MCP-docs EIP page mapping the same problem set; engine modules ship when a verb can run the change. Canonical metadata lives in website `canonical.ts` ([eip-canonical-data.mdc](https://github.com/feelyourprotocol/website/blob/main/.cursor/rules/eip-canonical-data.mdc)). Twins stay after the EIP is on mainnet; fork `role` may rotate around them. `sunset` is for no honest lab observation, not for activation.
 - **Hard wall** — No sequential multi-block **historical** backtesting (archive-node / `revm` territory). A lab block of 1–8 constructed txs is not that.
 
 ## Engine design
 
-- **Query shapes, not library APIs** — generic verbs (`simulate`, `transaction`, `block`, `generate`, `probe`); structured results.
-- **Fork = capability set** — `(baseHardfork, eips[])` à la carte; named forks are **catalog capabilities** (summary, advertised EIPs, shapes), not id-only shortcuts.
+- **Query shapes, not library APIs** — internal catalog ids (`simulate`, `transaction`, `block`, `generate`, `probe`); live probe maps them to MCP tools via `queryShapes`. The engine returns structured results.
+- **Fork = capability set** — `(baseHardfork, eips[])` à la carte; named forks are **catalog capabilities** (summary, advertised EIPs, `tools`), not id-only shortcuts.
 - **Provenance on every result** — engine version, fork config, advertised EIP status, spec URL, spec date, named test release, stability rollup, human caveat. Named `eips[]` add a compact `Spec:` clause.
 
 End-user summary: [Capabilities](/use/capabilities), [Guarantees](/use/guarantees).

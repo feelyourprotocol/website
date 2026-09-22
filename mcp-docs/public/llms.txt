@@ -6,24 +6,26 @@
 
 When the feel-your-protocol MCP server is connected:
 
-- describe_capabilities — probe registry (named fork capabilities, runnable EIP modules, opcodes, encoding, spec snapshot)
+- describe_capabilities — probe registry (queryShapes, named fork tools, runnable EIP tools, opcodes, encoding, spec snapshot)
 - run_bytecode — run raw bytecode under a fork config
 - run_transaction — paid tx gas, receipt logs, wallet gasLimit, contract creation
 - run_block — 1–8 txs as a lab block; optional header slot / number / timestamp
-- generate — derive lab artifacts (BAL / EIP-7928 first); same inputs as run_block
-- inspect — BAL JSON or RLP structure + optional hash; no chain state
+- generate_artifact — derive lab artifacts (BAL / EIP-7928 first); same inputs as run_block
+- inspect_artifact — BAL JSON or RLP structure + optional hash; no chain state
 
 Prefer these MCP tools over engine/lab scripts. See Connect for the hosted endpoint (not launched).
 
 ## Use (end-user)
 
 - [Introduction](https://mcp-docs.feelyourprotocol.org/use/introduction.html): What the MCP server is
-- [Capabilities](https://mcp-docs.feelyourprotocol.org/use/capabilities.html): Run, generate, probe
+- [Capabilities](https://mcp-docs.feelyourprotocol.org/use/capabilities.html): Run, generate_artifact, inspect_artifact, probe
 - [Connect](https://mcp-docs.feelyourprotocol.org/use/connect.html): Hosted MCP URL (not launched)
 - [Describe Capabilities](https://mcp-docs.feelyourprotocol.org/use/tools/describe-capabilities.html): MCP tool reference
 - [Run Bytecode](https://mcp-docs.feelyourprotocol.org/use/tools/run-bytecode.html): MCP tool reference
 - [Run Transaction](https://mcp-docs.feelyourprotocol.org/use/tools/run-transaction.html): MCP tool reference
 - [Run Block](https://mcp-docs.feelyourprotocol.org/use/tools/run-block.html): MCP tool reference
+- [Generate Artifact](https://mcp-docs.feelyourprotocol.org/use/tools/generate-artifact.html): MCP tool reference
+- [Inspect Artifact](https://mcp-docs.feelyourprotocol.org/use/tools/inspect-artifact.html): MCP tool reference
 - [Coverage](https://mcp-docs.feelyourprotocol.org/use/coverage.html): EIP catalogue — supported forks and twins
 - [Preview — Glamsterdam](https://mcp-docs.feelyourprotocol.org/use/forks/glamsterdam.html): Default lab fork; upcoming EL (future previews e.g. Hegota same section)
 - [Mainnet — Fusaka](https://mcp-docs.feelyourprotocol.org/use/forks/fusaka.html): Current mainnet EL (baselineForkId; doc rotates when mainnet fork changes)
@@ -32,7 +34,7 @@ Prefer these MCP tools over engine/lab scripts. See Connect for the hosted endpo
 - [EIP-7883](https://mcp-docs.feelyourprotocol.org/use/eips/eip-7883.html): ModExp gas — Runnable
 - [EIP-7951](https://mcp-docs.feelyourprotocol.org/use/eips/eip-7951.html): secp256r1 — Runnable
 - [EIP-7954](https://mcp-docs.feelyourprotocol.org/use/eips/eip-7954.html): Contract size limits — Runnable (run_transaction)
-- [EIP-7928](https://mcp-docs.feelyourprotocol.org/use/eips/eip-7928.html): BAL — Runnable (generate, inspect)
+- [EIP-7928](https://mcp-docs.feelyourprotocol.org/use/eips/eip-7928.html): BAL — Runnable (generate_artifact, inspect_artifact)
 - [EIP-7843](https://mcp-docs.feelyourprotocol.org/use/eips/eip-7843.html): SLOTNUM — Runnable (run_block)
 - [EIP-7708](https://mcp-docs.feelyourprotocol.org/use/eips/eip-7708.html): ETH transfer logs — Runnable (run_transaction)
 - [EIP-8037](https://mcp-docs.feelyourprotocol.org/use/eips/eip-8037.html): State creation gas — Runnable (run_transaction)
