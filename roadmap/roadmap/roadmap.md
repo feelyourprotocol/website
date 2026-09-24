@@ -13,7 +13,7 @@ The board is **data-driven** — edit [`roadmap/data/roadmap.ts`](https://github
 - **Engine & API** — the [MCP server](/concepts/api-mcp) on EthereumJS: generic tools shipped, Amsterdam EIP catalogue filling, **public hosted launch** in [launch week](/roadmap/launch), then BAL generate and Hegota scope.
 - **Website & Education** — explorations (~2/week), MCP twin links on [mcp-docs](https://mcp-docs.feelyourprotocol.org), and documented **without vs with MCP** proofs for the oracle thesis.
 - **Infrastructure** — website on Strato; [AWS EC2](/infrastructure/aws) for the headless MCP host and x402 plumbing.
-- **Business & Community** — [x402 pricing](/monetization/pricing), [token discounts](/monetization/token), [distribution](/go-to-market/distribution), registry presence. (Granular as separate doc pages; grouped here for board readability.)
+- **Business & Community** — [x402 pricing](/monetization/pricing), [token discounts](/monetization/token), [distribution](/go-to-market/distribution), agent-readable onboarding and registry discovery. (Granular as separate doc pages; grouped here for board readability.)
 
 ## Phasing
 
@@ -24,6 +24,7 @@ Within Phase 3, the sequence we're in: **catalogue + pipeline done** → **publi
 <Changelog
   title="Roadmap Changelog"
   :entries="[
+    { version: 'v0.5', date: '2026-09-24', summary: 'Agent-readable onboarding and registry listings on the board.' },
     { version: 'v0.4', date: '2026-09-02', summary: 'Board refreshed — PoC done, launch week in Now column; Amsterdam vs Glamsterdam naming clarified in notes.' },
     { version: 'v0.3', date: '2026-06-30', summary: 'Reframed roadmap as conceptualization workspace — tracks describe planned work, not shipped product.' },
     { version: 'v0.2', date: '2026-06-30', summary: 'Reworked tracks to four execution streams (Engine & API, Website, Infrastructure, Business & Community) and Phase-3 build sequence, based on the strategy session.' },

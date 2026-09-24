@@ -130,7 +130,13 @@ export const ROADMAP_TRACKS: RoadmapTrack[] = [
         title: 'x402 on public endpoint',
         horizon: 'now',
         status: 'in-progress',
-        note: 'USDC on Base; per-gas pricing target for launch week.',
+        note: 'USDC on Base; per-gas quote an agent can decide from.',
+      },
+      {
+        title: 'Agent-readable onboarding',
+        horizon: 'next',
+        status: 'planned',
+        note: 'Capability, price, and payment without a human who read the website. See /vision/two-audiences.',
       },
       {
         title: 'Tiered token discounts',
@@ -142,6 +148,7 @@ export const ROADMAP_TRACKS: RoadmapTrack[] = [
         title: 'MCP registry listings',
         horizon: 'next',
         status: 'planned',
+        note: 'Machine-readable listings so agents can find the lab.',
       },
       { title: 'Enterprise annual tier / buyback', horizon: 'later', status: 'planned', note: 'Introduce "when they come".' },
     ],

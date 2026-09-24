@@ -9,7 +9,7 @@ Feel Your Protocol's **deterministic oracle for the future Ethereum protocol** �
 | At launch | Status today |
 | --- | --- |
 | Hosted MCP at `https://mcp.feelyourprotocol.org/mcp` | Not launched |
-| Tools: `describe_capabilities`, `run_bytecode`, `run_transaction` | Implemented (gateway v0.1) |
+| Tools: `describe_capabilities`, `run_bytecode`, `run_transaction`, `run_block`, `generate_artifact`, `inspect_artifact` | Implemented (gateway) |
 | EIP catalogue on mcp-docs | Growing — Glamsterdam EIPs filling |
 | [x402](/concepts/x402) payment (USDC on Base) | Decided for launch week — integration + docs in progress |
 | [Token holder discounts](/monetization/token) | Planned alongside x402 — never a gate |
@@ -45,7 +45,7 @@ See [Principles — Launch discipline](/vision/principles#launch-discipline-oct-
 - **Explorations (today):** [feelyourprotocol.org](https://feelyourprotocol.org)
 - **MCP catalogue & tools (today):** [mcp-docs.feelyourprotocol.org](https://mcp-docs.feelyourprotocol.org)
 - **Tracks & history:** [Roadmap](/roadmap/roadmap) · [Timeline](/roadmap/timeline)
-- **Strategy:** [Problem & Vision](/vision/problem-vision) · [Distribution](/go-to-market/distribution)
+- **Strategy:** [Problem & Vision](/vision/problem-vision) · [Two Audiences](/vision/two-audiences) · [Distribution](/go-to-market/distribution)
 
 Updates during the countdown on [X @FeelEthereum](https://x.com/FeelEthereum).
 
@@ -54,6 +54,7 @@ Updates during the countdown on [X @FeelEthereum](https://x.com/FeelEthereum).
 <Changelog
   title="Launch Week Changelog"
   :entries="[
+    { version: 'v0.3', date: '2026-09-24', summary: 'Six launch tools; strategy links include Two Audiences.' },
     { version: 'v0.2', date: '2026-09-02', summary: 'x402 payment decided for launch week — USDC on Base; facilitator wiring still build-in-public.' },
     { version: 'v0.1', date: '2026-09-02', summary: 'Initial public launch week page — 5–9 Oct 2026 target, hosted MCP + x402, honest scope.' },
   ]"

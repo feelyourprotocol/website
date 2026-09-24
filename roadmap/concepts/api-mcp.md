@@ -8,7 +8,7 @@
 
 **Delivery shape:** primarily an **MCP server** over HTTP at `mcp.feelyourprotocol.org` — not a bare REST API, not a self-host tutorial. [MCP](https://modelcontextprotocol.io) is the agent↔tool standard: discover tools, read schemas, call without custom prompt engineering.
 
-## Live tool surface _(v0.1 — generic verbs)_
+## Live tool surface _(generic verbs)_
 
 We deliberately ship **intent-driven tools**, not per-EIP endpoints:
 
@@ -17,6 +17,9 @@ We deliberately ship **intent-driven tools**, not per-EIP endpoints:
 | `describe_capabilities` | probe | Registry: forks, runnable EIP modules, opcodes, encoding, shapes |
 | `run_bytecode` | simulate | Run caller-supplied bytecode under a fork config; optional trace |
 | `run_transaction` | transaction | Paid tx gas, receipt logs, wallet gasLimit, first-touch transfers |
+| `run_block` | block | 1–8 txs as a lab block; optional header slot / number / timestamp |
+| `generate_artifact` | generate | Lab artifacts (e.g. block-level access lists) |
+| `inspect_artifact` | inspect | Structure / hash of a caller-supplied artifact |
 
 EIP coverage is advertised through the probe response and human catalogue pages under `mcp-docs/use/eips/` — not separate tools like `simulate_eip8024_stack`. Compare baseline vs preview by calling the **same verb** twice (e.g. `osaka` then `amsterdam`).
 
@@ -62,7 +65,7 @@ const result = await simulateBytecode({ bytecode, fork: { baseHardfork: 'glamste
 
 - **EIP-7928 generate** — when it ships relative to launch week.
 - **x402 integration** — facilitator, proxy, token discount check (build-in-public on the personal dev channel).
-- **Registry listings** — metadata and discovery after the hosted endpoint is live.
+- **Registry listings** — machine-readable discovery after the hosted endpoint is live. See [Two Audiences](/vision/two-audiences).
 
 Resolved: MCP-first delivery (not REST-primary); docs split (roadmap = strategy, mcp-docs = operational).
 
@@ -71,6 +74,7 @@ Resolved: MCP-first delivery (not REST-primary); docs split (roadmap = strategy,
 <Changelog
   title="Agent API Concept Changelog"
   :entries="[
+    { version: 'v0.7', date: '2026-09-24', summary: 'Six generic verbs (run_block, generate_artifact, inspect_artifact); registry discovery for agents.' },
     { version: 'v0.6', date: '2026-09-14', summary: 'BYOS: isolated lab and demand-built prestate; MCP transport session is not EVM memory.' },
     { version: 'v0.5', date: '2026-09-08', summary: 'run_bytecode + run_transaction; renamed from run_evm_bytecode.' },
     { version: 'v0.4', date: '2026-09-02', summary: 'Generic MCP tools shipped (describe_capabilities, run_evm_bytecode); per-EIP tool sketch retired; public launch pending.' },

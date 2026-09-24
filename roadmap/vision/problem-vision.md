@@ -30,6 +30,8 @@ The lab equipment **exists** — engine, gateway tools, and a growing EIP catalo
 
 The educational website does not get left behind — it remains the **visual front door** and DevRel engine while keeping its teaching mission. See [Two Legs, One Engine](/vision/two-legs).
 
+Humans (researchers, educators, integrators, the token community) and **agents themselves** are equal customers. Agents will discover and pay for services without a person who has already allowlisted us. Payment, onboarding, and discovery are built for that — see [Two Audiences](/vision/two-audiences).
+
 ## Why us (the moat)
 
 - **Domain depth.** Years of building EIP prototypes and maintaining critical infrastructure inside the Ethereum ecosystem — context an LLM cannot synthesize on its own.
@@ -49,6 +51,7 @@ These lines will move as we learn — operational detail lives on [mcp-docs](htt
 ## Where this fits
 
 - **[Two Legs, One Engine](/vision/two-legs)** — how the website and the MCP server reinforce each other.
+- **[Two Audiences](/vision/two-audiences)** — humans and agents as equal customers.
 - **[Principles & Operating Discipline](/vision/principles)** — the guardrails we hold ourselves to.
 - **[Roadmap & Tracks](/roadmap/roadmap)** · **[Timeline](/roadmap/timeline)** · **[Launch week](/roadmap/launch)** — how and when we ship.
 
@@ -57,6 +60,7 @@ These lines will move as we learn — operational detail lives on [mcp-docs](htt
 <Changelog
   title="Problem & Vision Changelog"
   :entries="[
+    { version: 'v0.5', date: '2026-09-24', summary: 'Humans and agents as equal customers; payment, onboarding, and discovery follow from that.' },
     { version: 'v0.4', date: '2026-09-02', summary: 'Lab equipment built — public hosted launch is the next milestone; mcp-docs and generic MCP tools acknowledged.' },
     { version: 'v0.3', date: '2026-07-15', summary: 'MCP docs site live — strategic sketch stays here; concrete docs on mcp-docs.' },
     { version: 'v0.2', date: '2026-06-30', summary: 'Reframed as conceptualization workspace — conditional language for unshipped API.' },

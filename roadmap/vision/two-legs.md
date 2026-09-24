@@ -1,12 +1,12 @@
 # Two Legs, One Engine
 
-Feel Your Protocol is designed around **two legs that share one engine**. The same EthereumJS core powers both the educational website (live today) and the headless MCP server for the future Ethereum protocol (built, **not yet publicly launched**) — but each leg serves a different audience and is framed differently.
+Feel Your Protocol is designed around **two legs that share one engine**. The same EthereumJS core powers both the educational website (live today) and the headless MCP server for the future Ethereum protocol (built, **not yet publicly launched**) — but each leg is a different **surface** and is framed differently. Who those surfaces serve — humans and agents as equal customers — is [Two Audiences](/vision/two-audiences).
 
 ## The two legs
 
 | | **Leg A — Website** _(live)_ | **Leg B — MCP server** _(built; public launch pending)_ |
 | --- | --- | --- |
-| Audience | Humans: protocol enthusiasts, devs, the Bankr community | Machines: AI agents, and the researchers/teams behind them |
+| Surface | Humans in the browser | Agents on the hosted MCP — [two audiences](/vision/two-audiences) |
 | Experience | Interactive, visual, educational explorations | Headless, deterministic, well-documented; MCP tool bindings |
 | Optimizes for | Intuition, narrative, trust | Latency, reliability, exact deterministic output |
 | Economics | Community, fan token, education | [x402 pay-per-use](/monetization/pricing) in USDC on the hosted endpoint |
@@ -42,6 +42,7 @@ Two legs means two kinds of work — UI/narrative polish vs. ruthless uptime and
 <Changelog
   title="Two Legs Changelog"
   :entries="[
+    { version: 'v0.4', date: '2026-09-24', summary: 'Legs as surfaces; who they serve is Two Audiences.' },
     { version: 'v0.3', date: '2026-09-02', summary: 'Leg B is built (not publicly launched); mcp-docs exists; launch week is the hosted milestone.' },
     { version: 'v0.2', date: '2026-06-30', summary: 'Initial two-legs model — website live, API planned.' },
   ]"

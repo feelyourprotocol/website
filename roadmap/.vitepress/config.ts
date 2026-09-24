@@ -88,6 +88,7 @@ export default defineConfig({
         items: [
           { text: 'Problem & Vision', link: '/vision/problem-vision' },
           { text: 'Two Legs, One Engine', link: '/vision/two-legs' },
+          { text: 'Two Audiences', link: '/vision/two-audiences' },
           { text: 'Principles & Operating Discipline', link: '/vision/principles' },
         ],
       },
