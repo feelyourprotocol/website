@@ -20,6 +20,8 @@ It depends one-way on **`mcp-execution-engine`**. End-user connection (hosted): 
 | `run_bytecode` | `simulateBytecode()` |
 | `run_transaction` | `runTransaction()` |
 | `run_block` | `runBlock()` |
+| `generate_artifact` | `generateArtifact()` |
+| `inspect_artifact` | `inspectArtifact()` |
 
 Server name: `FeelYourProtocol` v0.1.0. Entry: `node dist/index.js` (bin: `fyp-mcp`).
 
@@ -31,15 +33,18 @@ mcp-gateway/
 │   ├── index.ts                 # stdio entry
 │   ├── engine/TaskProcessor.ts  # scaling seam
 │   ├── tools/                   # MCP tool registration
-│   └── schemas/                 # zod (mirrored in public/schemas on docs site)
-└── schemas/                     # JSON Schema copies for docs
+│   └── schemas/                 # Zod — runtime validation (source of truth)
+└── schemas/                     # Published *.input.json + manifest.json
 ```
+
+Published JSON in gateway `schemas/` is copied byte-for-byte to [mcp-docs/public/schemas/](/schemas/describe_capabilities.input.json) (one file per tool). CI in both repos fails when copies drift.
 
 ## Changelog
 
 <Changelog
   title="Gateway Changelog"
   :entries="[
+    { version: 'v0.1.8', date: '2026-09-22', summary: 'Six tools; Zod vs published JSON schema workflow and manifest.' },
     { version: 'v0.1.7', date: '2026-09-16', summary: 'Server instructions claim generic hardfork prompts; named forks stay on the same verbs.' },
     { version: 'v0.1.5', date: '2026-09-08', summary: 'Added run_transaction; renamed run_evm_bytecode → run_bytecode.' },
     { version: 'v0.1.4', date: '2026-09-02', summary: 'Stdio framed as development transport; public path is hosted Connect.' },

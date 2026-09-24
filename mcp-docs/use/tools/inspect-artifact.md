@@ -27,6 +27,10 @@ Kinds (see probe **`inspectKinds`**): **`block-access-list`** (7928 BAL), **`aut
 
 See [Describe Capabilities](/use/tools/describe-capabilities) for `inspectKinds`.
 
+## JSON schema
+
+[inspect_artifact.input.json](/schemas/inspect_artifact.input.json)
+
 ## Changelog
 
 <Changelog

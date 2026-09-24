@@ -23,6 +23,7 @@ export default mergeConfig(
         'roadmap/**/*.spec.ts',
         'og/**/*.spec.ts',
         'video/**/*.spec.ts',
+        'mcp-docs/**/*.spec.ts',
       ],
       root: fileURLToPath(new URL('./', import.meta.url)),
     },

@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mcp-docs.feelyourprotocol.org/schemas/inspect_artifact.input.json",
+  "title": "inspect_artifact input",
+  "type": "object",
+  "required": ["artifact"],
+  "properties": {
+    "kind": {
+      "type": "string",
+      "enum": [
+        "block-access-list",
+        "authorization-list",
+        "typed-transaction",
+        "withdrawals",
+        "execution-requests"
+      ],
+      "description": "Structure kind. Default block-access-list. See describe_capabilities inspectKinds."
+    },
+    "artifact": {
+      "description": "Payload shape depends on kind (JSON array, object, or hex string).",
+      "oneOf": [
+        { "type": "array" },
+        { "type": "string", "minLength": 1 },
+        { "type": "object" }
+      ]
+    },
+    "blockGasLimit": {
+      "type": "string",
+      "description": "Block gas limit for EIP-7928 BAL item cap check. Decimal string."
+    },
+    "expectedHash": {
+      "type": "string",
+      "description": "Optional 32-byte commitment hex (BAL, tx, withdrawalsRoot, requestsHash)."
+    },
+    "fork": {
+      "type": "object",
+      "description": "Fork for typed-transaction decode (default pectra).",
+      "properties": {
+        "baseHardfork": { "type": "string" },
+        "eips": { "type": "array", "items": { "type": "integer" } }
+      },
+      "required": ["baseHardfork"]
+    }
+  },
+  "additionalProperties": false
+}

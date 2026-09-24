@@ -53,7 +53,7 @@ Use this order:
 
 **Full use-layer text:** [`/llms-full.txt`](/llms-full.txt)
 
-**JSON schemas:** [describe_capabilities](/schemas/describe_capabilities.input.json), [run_bytecode](/schemas/run_bytecode.input.json), [run_transaction](/schemas/run_transaction.input.json), [run_block](/schemas/run_block.input.json)
+**JSON schemas:** [describe_capabilities](/schemas/describe_capabilities.input.json), [run_bytecode](/schemas/run_bytecode.input.json), [run_transaction](/schemas/run_transaction.input.json), [run_block](/schemas/run_block.input.json), [generate_artifact](/schemas/generate_artifact.input.json), [inspect_artifact](/schemas/inspect_artifact.input.json)
 
 ## Changelog
 

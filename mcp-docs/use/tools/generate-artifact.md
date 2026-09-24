@@ -28,6 +28,10 @@ Same as `run_block`, plus optional `kind` (`block-access-list`, default).
 
 Pair with [Inspect Artifact](/use/tools/inspect-artifact) on caller-supplied BAL payloads.
 
+## JSON schema
+
+[generate_artifact.input.json](/schemas/generate_artifact.input.json)
+
 ## Changelog
 
 <Changelog
