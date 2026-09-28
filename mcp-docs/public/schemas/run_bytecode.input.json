@@ -21,7 +21,7 @@
           "code": { "type": "string" },
           "storage": {
             "type": "array",
-            "description": "Optional storage slots to seed.",
+            "description": "Optional storage slots to seed (existing-slot SSTORE / SLOAD).",
             "items": {
               "type": "object",
               "required": ["slot", "value"],

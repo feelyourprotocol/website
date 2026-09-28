@@ -4,7 +4,7 @@
 
 ## Purpose
 
-Return a machine-readable snapshot of what this server can **actually run**: engine version, ceilings, **named fork capabilities**, **`inspectKinds`**, and **runnable EIP modules**. Each named fork describes a generic hardfork run (summary, keywords, shapes, advertised `relatedEips`) — you do not need to name an EIP. Each EIP module describes **what became possible** (opcodes, encoding rules, keywords, `shapes`) — not demo programs. Unimplemented EIPs are omitted. Use `shapes` to pick **`run_bytecode`**, **`run_transaction`**, **`run_block`**, **`generate`**, or **`inspect`**.
+Return a machine-readable snapshot of what this server can **actually run**: engine version, ceilings, **named fork capabilities**, **`inspectKinds`**, and **runnable EIP modules**. Each named fork describes a generic hardfork run (summary, keywords, **`tools`**, advertised `relatedEips`) — you do not need to name an EIP. Each EIP module describes **what became possible** (opcodes, encoding rules, keywords, **`tools`**) — not demo programs. Unimplemented EIPs are omitted. Use **`eips[].tools`** / **`namedForks[].tools`** to pick **`run_bytecode`**, **`run_transaction`**, **`run_block`**, **`generate_artifact`**, or **`inspect_artifact`**. **`queryShapes[]`** is the dictionary from internal catalog ids (`simulate`, `generate`, …) to those MCP names — do not call the `id`.
 
 ## When to use
 
@@ -27,9 +27,10 @@ None required. Pass `{}` or omit arguments.
 | `engineVersion` | Semver of `mcp-execution-engine` |
 | `ceilings` | `maxGasLimit`, `maxTransactionGasLimit`, `defaultGasLimit`, `maxBytecodeBytes`, `maxTraceSteps`, `maxTxsPerBlock` |
 | `baselineForkId` | Current mainnet EL (`fusaka`) — first-class run target and optional compare baseline |
-| `namedForks` | Berlin→Glamsterdam lineage — `order`, `predecessorId`, `successorId`, `role`, `activatedEips`, advertised `relatedEips`, `shapes` |
-| `eipIntroductions` | When each EIP activated — use with predecessor compares (e.g. PUSH0 at Shapella, predecessor Paris) |
-| `eips` | Runnable modules — `comparison` derived from `eipIntroductions` (predecessor vs `introducedAt`); each row includes `specUrl`, `specDate`, `status`, and optional `testReleaseUrl` / `testReleaseName` (or a live `eips.ethereum.org` page when unpinned) |
+| `queryShapes` | Dictionary: catalog `id` (`simulate`, `generate`, …) → `mcpTool` (`run_bytecode`, `generate_artifact`, …). Agents call `mcpTool`. |
+| `namedForks` | Berlin→Glamsterdam lineage — `order`, `predecessorId`, `successorId`, `role`, `activatedEips`, advertised `relatedEips`, **`tools`** (MCP names) |
+| `eipIntroductions` | When each EIP activated — use with predecessor compares (e.g. PUSH0 at Shapella, predecessor Paris); **`observableTools`** are MCP names |
+| `eips` | Runnable modules — `comparison` derived from `eipIntroductions` (predecessor vs `introducedAt`); **`tools`** lists MCP names to call; each row includes `specUrl`, `specDate`, `status`, and optional `testReleaseUrl` / `testReleaseName` (or a live `eips.ethereum.org` page when unpinned) |
 | `allowedBaseHardforks` | Lineage forks (`berlin` … `glamsterdam`) plus aliases; glacier/BPO ids rejected |
 
 ## Example
@@ -46,16 +47,19 @@ _Output (abbreviated):_
 {
   "engineVersion": "0.1.0",
   "baselineForkId": "fusaka",
+  "queryShapes": [
+    { "id": "simulate", "mcpTool": "run_bytecode", "summary": "…" }
+  ],
   "namedForks": [
-    { "id": "fusaka", "role": "current", "aliases": ["osaka", "mainnet-el"], "relatedEips": [7883, 7951], "…": "…" },
-    { "id": "glamsterdam", "role": "preview", "aliases": ["amsterdam"], "relatedEips": [7708, 7843, 7928, 8024, 8037, 8038], "…": "…" }
+    { "id": "fusaka", "role": "current", "aliases": ["osaka", "mainnet-el"], "relatedEips": [7883, 7951], "tools": ["run_bytecode", "run_transaction", "run_block"], "…": "…" },
+    { "id": "glamsterdam", "role": "preview", "aliases": ["amsterdam"], "relatedEips": [7708, 7843, 7928, 8024, 8037, 8038], "tools": ["run_bytecode", "run_transaction", "run_block"], "…": "…" }
   ],
   "eips": [{
     "eip": 8024,
     "runnable": true,
     "comparison": { "baselineForkId": "fusaka", "previewForkId": "glamsterdam", "note": "…" },
     "summary": "Glamsterdam EVM executes DUPN, SWAPN, and EXCHANGE. Supply any bytecode; this server does not ship demo programs.",
-    "shapes": ["simulate"],
+    "tools": ["run_bytecode"],
     "status": "Review",
     "specDate": "2026-06-10",
     "testReleaseName": "tests-glamsterdam-devnet@v8.1.0",
@@ -75,6 +79,8 @@ _Output (abbreviated):_
 <Changelog
   title="Describe Capabilities Changelog"
   :entries="[
+    { version: 'v0.18', date: '2026-09-22', summary: 'queryShapes dictionary; eips/namedForks/eipIntroductions emit tools (MCP names), not shapes.' },
+    { version: 'v0.17', date: '2026-09-22', summary: 'shapes generate/inspect map to generate_artifact / inspect_artifact.' },
     { version: 'v0.16', date: '2026-09-18', summary: 'eips[] rows include specUrl, specDate, status, and named test release (or live EIP page).' },
     { version: 'v0.15', date: '2026-09-17', summary: 'maxTransactionGasLimit exposes the separate 110M transaction-only ceiling.' },
     { version: 'v0.14', date: '2026-09-17', summary: 'baselineForkId is a first-class run target, not only a compare hint.' },

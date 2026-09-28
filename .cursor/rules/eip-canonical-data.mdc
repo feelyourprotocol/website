@@ -77,5 +77,5 @@ Mainnet / `current` forks use the same chain (stable EST release + `ref_spec` on
 ## How to retrieve
 
 - Coding agents: read the files above. Do not guess IDs or duplicate catalogs into prompts.
-- Connected MCP: `describe_capabilities` (`namedForks`, `eipIntroductions`, `eips[]`).
+- Connected MCP: `describe_capabilities` (`namedForks`, `eipIntroductions`, `eips[]`, `queryShapes`). Use `tools` / `observableTools` (MCP names), not catalog shape ids.
 - Human catalogue: `mcp-docs/use/coverage.md` and per-EIP pages — may lag; probe wins.

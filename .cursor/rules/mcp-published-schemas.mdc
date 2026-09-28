@@ -1,0 +1,21 @@
+---
+description: MCP tool input JSON in mcp-docs/public/schemas — sync with mcp-gateway
+globs:
+  - mcp-docs/public/schemas/**
+  - mcp-docs/use/tools/**
+  - mcp-docs/use/runtime-agents.md
+---
+
+# MCP published input schemas
+
+Hosted JSON lives in `mcp-docs/public/schemas/`. **Canonical copies are in the gateway repo:** `mcp-gateway/schemas/*.input.json` (listed in `manifest.json`).
+
+## When MCP tool inputs change
+
+1. Edit Zod first in `mcp-gateway/src/schemas/`.
+2. Update the matching `*.input.json` in `mcp-gateway/schemas/` and `manifest.json` if needed.
+3. Copy those JSON files **byte-for-byte** into `website/mcp-docs/public/schemas/`.
+4. Link the schema from the tool page and from `mcp-docs/use/runtime-agents.md`.
+5. Run `npm run test:ci` in gateway and `npm run test:unit:ci` in website (sync specs).
+
+Do not hand-edit only the website copy — CI compares both trees when sibling checkouts exist.

@@ -1,10 +1,16 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://mcp-docs.feelyourprotocol.org/schemas/run_block.input.json",
-  "title": "run_block input",
+  "$id": "https://mcp-docs.feelyourprotocol.org/schemas/generate_artifact.input.json",
+  "title": "generate_artifact input",
+  "description": "Same lab block inputs as run_block, plus optional artifact kind (EIP-7928 BAL first).",
   "type": "object",
   "required": ["transactions"],
   "properties": {
+    "kind": {
+      "type": "string",
+      "enum": ["block-access-list"],
+      "description": "Artifact to derive from the lab block. Default block-access-list (EIP-7928)."
+    },
     "transactions": {
       "type": "array",
       "minItems": 1,

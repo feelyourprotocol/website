@@ -1,6 +1,6 @@
-# Inspect
+# Inspect Artifact
 
-> **Status:** Implemented — MCP tool: `inspect`. **Public endpoint not live.**
+> **Status:** Implemented — MCP tool: `inspect_artifact`. **Public endpoint not live.**
 
 ## Purpose
 
@@ -10,7 +10,7 @@ Kinds (see probe **`inspectKinds`**): **`block-access-list`** (7928 BAL), **`aut
 
 ## MCP tool name
 
-`inspect`
+`inspect_artifact`
 
 ## Inputs
 
@@ -26,3 +26,17 @@ Kinds (see probe **`inspectKinds`**): **`block-access-list`** (7928 BAL), **`aut
 `wellFormed`, `structureOk`, optional `hashMatch` / `itemCapOk`, `errors[]`, `computedHash`, `itemCount`.
 
 See [Describe Capabilities](/use/tools/describe-capabilities) for `inspectKinds`.
+
+## JSON schema
+
+[inspect_artifact.input.json](/schemas/inspect_artifact.input.json)
+
+## Changelog
+
+<Changelog
+  title="Inspect Artifact Changelog"
+  :entries="[
+    { version: 'v0.2', date: '2026-09-22', summary: 'Renamed MCP tool inspect → inspect_artifact (query shape stays inspect).' },
+    { version: 'v0.1', date: '2026-09-16', summary: 'Implemented — structure and hash without chain state.' },
+  ]"
+/>

@@ -21,13 +21,13 @@ features:
     details: Public hosted MCP + x402 (USDC on Base) at launch week — 5–9 October 2026. What ships, what we're not promising, and where to follow the countdown.
     link: /roadmap/launch
   - title: Vision & Strategy
-    details: The protocol↔app gap, the deterministic-oracle thesis, and the "two legs, one engine" model — website plus MCP server.
+    details: The protocol↔app gap, the deterministic-oracle thesis, two legs (website plus MCP), and two audiences (humans and agents).
     link: /vision/problem-vision
   - title: Roadmap & Timeline
     details: Parallel tracks — Engine & API, Website, Infrastructure, Business & Community — history filled in, launch as the next hollow marker.
     link: /roadmap/roadmap
   - title: Core Concepts
-    details: Generic MCP tools (describe_capabilities, run_bytecode, run_transaction), x402 payment rails, and operational detail on mcp-docs.
+    details: Six generic MCP tools, x402 as an agent purchase, and operational detail on mcp-docs.
     link: /concepts/api-mcp
   - title: Monetization & Infra
     details: Draft x402 per-gas pricing, token-holder discounts, AWS hosting for the public endpoint.

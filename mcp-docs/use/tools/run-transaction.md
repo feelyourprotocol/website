@@ -35,7 +35,7 @@ Raw opcode / stack / precompile programs belong on [Run Bytecode](/use/tools/run
 | `accounts` | No | Extra accounts to prefund (`address`, optional `balance`, `code`, `storage` slots) |
 | `fork` | No | `{ baseHardfork, eips[] }` — default **`glamsterdam`** |
 | `gasLimit` | No | Decimal string. Default `1000000`. Tool ceiling `110000000`; fork validity rules still apply |
-| `authorizationList` | No | Signed EIP-7702 JSON items — **Pectra+** type-4 set-code tx. Use [Inspect](/use/tools/inspect) `authorization-list` to validate first. |
+| `authorizationList` | No | Signed EIP-7702 JSON items — **Pectra+** type-4 set-code tx. Use [Inspect Artifact](/use/tools/inspect-artifact) `authorization-list` to validate first. |
 
 ### Fork notes
 

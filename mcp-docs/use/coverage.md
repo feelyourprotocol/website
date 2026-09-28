@@ -22,19 +22,19 @@ Full per-fork ids, aliases, and `activatedEips` live in **`describe_capabilities
 
 ## Runnable capabilities (live catalog)
 
-These appear in `describe_capabilities()` — engine modules with `runnable: true`. **Comparison pairs** on each row are derived from `eipIntroductions` (predecessor vs `introducedAt`).
+These appear in `describe_capabilities()` — engine modules with `runnable: true`. **Comparison pairs** on each row are derived from `eipIntroductions` (predecessor vs `introducedAt`). **Tools** are MCP names (`eips[].tools`).
 
-| EIP  | Nature         | Shapes   | Introduced at | Compare (typical)        | Catalogue                      |
+| EIP  | Nature         | Tools   | Introduced at | Compare (typical)        | Catalogue                      |
 | ---- | -------------- | -------- | ------------- | ------------------------ | ------------------------------ |
-| 8024 | new-capability | simulate | glamsterdam     | fusaka → glamsterdam        | [EIP-8024](/use/eips/eip-8024) |
-| 7843 | new-capability | block    | glamsterdam     | fusaka → glamsterdam        | [EIP-7843](/use/eips/eip-7843) |
-| 7708 | new-capability | transaction, simulate | glamsterdam | fusaka → glamsterdam | [EIP-7708](/use/eips/eip-7708) |
-| 7928 | new-structure  | generate, inspect | glamsterdam | fusaka → glamsterdam | [EIP-7928](/use/eips/eip-7928) |
-| 7883 | repricing      | simulate | fusaka         | pectra → fusaka           | [EIP-7883](/use/eips/eip-7883) |
-| 7951 | new-capability | simulate | fusaka         | pectra → fusaka           | [EIP-7951](/use/eips/eip-7951) |
-| 7954 | limit          | transaction | glamsterdam   | fusaka → glamsterdam      | [EIP-7954](/use/eips/eip-7954) |
-| 8037 | new-exec-model | transaction, simulate | glamsterdam | fusaka → glamsterdam | [EIP-8037](/use/eips/eip-8037) |
-| 8038 | repricing      | simulate, transaction | glamsterdam | fusaka → glamsterdam | [EIP-8038](/use/eips/eip-8038) |
+| 8024 | new-capability | run_bytecode | glamsterdam     | fusaka → glamsterdam        | [EIP-8024](/use/eips/eip-8024) |
+| 7843 | new-capability | run_block    | glamsterdam     | fusaka → glamsterdam        | [EIP-7843](/use/eips/eip-7843) |
+| 7708 | new-capability | run_transaction, run_bytecode | glamsterdam | fusaka → glamsterdam | [EIP-7708](/use/eips/eip-7708) |
+| 7928 | new-structure  | generate_artifact, inspect_artifact | glamsterdam | fusaka → glamsterdam | [EIP-7928](/use/eips/eip-7928) |
+| 7883 | repricing      | run_bytecode | fusaka         | pectra → fusaka           | [EIP-7883](/use/eips/eip-7883) |
+| 7951 | new-capability | run_bytecode | fusaka         | pectra → fusaka           | [EIP-7951](/use/eips/eip-7951) |
+| 7954 | limit          | run_transaction | glamsterdam   | fusaka → glamsterdam      | [EIP-7954](/use/eips/eip-7954) |
+| 8037 | new-exec-model | run_transaction, run_bytecode | glamsterdam | fusaka → glamsterdam | [EIP-8037](/use/eips/eip-8037) |
+| 8038 | repricing      | run_bytecode, run_transaction | glamsterdam | fusaka → glamsterdam | [EIP-8038](/use/eips/eip-8038) |
 
 **Glamsterdam note (8024 / 7843):** The Glamsterdam hardfork already bundles these EIPs. Passing `eips: [8024]` or `eips: [7843]` is accepted but is not a pre/post toggle.
 
@@ -48,7 +48,7 @@ Every **live** website exploration has an MCP-docs page mapping the same problem
 | 7883 | ModExp gas         | Runnable               | [EIP-7883](/use/eips/eip-7883) |
 | 7951 | secp256r1          | Runnable               | [EIP-7951](/use/eips/eip-7951) |
 | 7954 | Contract size limits | Runnable               | [EIP-7954](/use/eips/eip-7954) |
-| 7928 | Block access lists | **Runnable** (generate, inspect) | [EIP-7928](/use/eips/eip-7928) |
+| 7928 | Block access lists | **Runnable** (`generate_artifact`, `inspect_artifact`) | [EIP-7928](/use/eips/eip-7928) |
 | 7843 | SLOTNUM opcode     | Runnable               | [EIP-7843](/use/eips/eip-7843) |
 | 7708 | ETH transfer logs  | Runnable               | [EIP-7708](/use/eips/eip-7708) |
 | 8037 | State creation gas | Runnable               | [EIP-8037](/use/eips/eip-8037) |
@@ -61,7 +61,7 @@ Canonical metadata for twins lives in website `src/explorations/eip-NNNN/canonic
 <Changelog
   title="Coverage Changelog"
   :entries="[
-    { version: 'v0.29', date: '2026-09-17', summary: 'EIP-7954 runnable — contract creation reports created address and deployed code size.' },
+    { version: 'v0.31', date: '2026-09-22', summary: 'Live catalog Tools column is MCP names (eips[].tools); queryShapes is the dictionary.' },
     { version: 'v0.28', date: '2026-09-17', summary: 'EIP-7954 exploration twin — Planned until run_transaction supports contract creation.' },
     { version: 'v0.27', date: '2026-09-17', summary: 'EIP-7702 is fork-level run_transaction/inspect — not a catalogue twin or EIP docs page.' },
     { version: 'v0.26', date: '2026-09-17', summary: 'Retired PeerDAS exploration removed from website catalogue; Fusaka-only EIPs stay in probe.' },

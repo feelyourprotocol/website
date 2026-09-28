@@ -99,7 +99,7 @@ export type EipProcessStatus = 'Draft' | 'Review' | 'Last Call' | 'Final' | 'Sta
 
 /** MCP twin hints — replicated into engine module + human catalogue; partially surfaced on site. */
 export interface ProtocolChangeMcpHints {
-  /** Runnable verbs for this twin (see `McpQueryShape`). */
+  /** Runnable verbs for this twin (internal catalog ids; see `McpQueryShape`). Probe JSON emits MCP tool names as `tools`. */
   shapes: McpQueryShape[]
   /** Agent/search vocabulary; copied to engine `keywords`. Not shown on exploration UI. */
   keywords?: string[]

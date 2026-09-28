@@ -36,7 +36,7 @@ roadmap/
 ├── data/
 │   ├── timeline.ts               # Timeline phases + events (edit to update)
 │   └── roadmap.ts                # Roadmap tracks, horizons, items (edit to update)
-├── vision/                       # problem-vision, two-legs, principles
+├── vision/                       # problem-vision, two-legs, two-audiences, principles
 ├── roadmap/                      # roadmap.md, timeline.md, launch.md
 ├── concepts/                     # api-mcp.md, x402.md
 ├── monetization/                 # pricing.md, token.md

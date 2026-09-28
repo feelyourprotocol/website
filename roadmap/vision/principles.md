@@ -5,6 +5,7 @@ The shift from "fun side project" to "sustainable business" is a vulnerable mome
 ## Operating principles
 
 - **Deterministic truth above all.** The product's entire value is exactness. Correctness, reproducibility and transparent traces beat speed and breadth.
+- **Agents are customers.** Humans and agents are equal audiences — not “humans who use agents.” Discovery, payment, and onboarding must be able to close without a person who has read the website. See [Two Audiences](/vision/two-audiences).
 - **Scope discipline.** Be the best at one thing — isolated, stateless EVM simulation and cryptographic primitives. Say no to archive-node territory, `solc`, ERC-app-layer logic, and consensus-layer mechanics. (See [boundaries](/concepts/api-mcp#tech-readiness-boundaries).)
 - **Frictionless for outsiders, rewarding for insiders.** Never put the community token in the critical path of a paying agent; let it be a [discount and a perk](/monetization/token), not a gate.
 - **Hosted is the product.** Open source stays open; official docs and marketing describe the **public endpoint**, not a self-host path. Permissionless builders can still read the repos — that is ethos, not go-to-market.
@@ -35,6 +36,7 @@ The vision was pressure-tested against a set of recurring psychological/strategi
 | **Forgetting economics / tech** | Treating monetization or feasibility as an afterthought. |
 | **The community trap** | Letting token-community tempo dictate the engineering roadmap. |
 | **Audience identity crisis** | Building in the uncanny valley between human-visual and machine-headless — solved by [two legs, one engine](/vision/two-legs). |
+| **Human-in-the-loop assumption** | Designing as if every agent has a person who already allowlisted the tool — the [two-audiences](/vision/two-audiences) failure mode. |
 | **The infinite-AI-leverage illusion** | Assuming easy creation means easy maintenance; over-committing as a solo builder. |
 | **Solution looking for a problem** | Building the API first and hunting for users later. |
 | **Agentic-UX blindspot** | Designing for humans when the consumer is an LLM that will silently misuse a bad schema. |
@@ -51,6 +53,7 @@ _This page is a living checklist; refine as the project teaches us new lessons._
 <Changelog
   title="Principles Changelog"
   :entries="[
+    { version: 'v0.4', date: '2026-09-24', summary: 'Agents are customers; watch the human-in-the-loop assumption.' },
     { version: 'v0.3', date: '2026-09-02', summary: 'PoC shipped — added hosted-product, oracle-proof, and launch-checklist principles; x402-as-product trap.' },
     { version: 'v0.2', date: '2026-06-30', summary: 'Initial founder-traps table and operating principles.' },
   ]"

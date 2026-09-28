@@ -7,7 +7,7 @@
 When MCP is **connected**, trust the live server first:
 
 1. **`listTools`** — tool names, descriptions, and input schemas
-2. **`describe_capabilities`** — `baselineForkId`, `namedForks` (Berlin→Glamsterdam lineage: order, predecessorId, activatedEips, related twins), `eipIntroductions` (when each EIP appeared — compare with predecessor), runnable EIP modules with derived comparison pairs, opcodes, encoding, ceilings, and spec snapshot fields (`specUrl`, `specDate`, `status`, `testReleaseName` or a live EIP page)
+2. **`describe_capabilities`** — `baselineForkId`, `namedForks` (Berlin→Glamsterdam lineage: order, predecessorId, activatedEips, related twins, **`tools`**), `queryShapes` (catalog id → MCP tool), `eipIntroductions` (`observableTools` are MCP names), runnable EIP modules with **`tools`** and derived comparison pairs, opcodes, encoding, ceilings, and spec snapshot fields (`specUrl`, `specDate`, `status`, `testReleaseName` or a live EIP page)
 
 Markdown on this site is **secondary**. It can lag behind a gateway release; the probe response and tool schemas cannot.
 
@@ -23,7 +23,7 @@ Markdown on this site is **secondary**. It can lag behind a gateway release; the
 ## Calling tools
 
 1. Probe first — learn what is runnable, how opcodes encode, and which EIP spec snapshot this lab implements
-2. Run with **caller-supplied** inputs on the fork you need (default **glamsterdam**). A generic hardfork run does **not** require an EIP number — omit `eips[]`. Use **`run_bytecode`** for opcodes/precompiles and program-gas SSTORE/SLOAD; **`run_transaction`** for wallet gas, first-touch transfers, receipt logs, and `txStateGas`; **`run_block`** for several txs or a header slot. Prefund / code / storage in the **same** request when the observation needs a constructed world. Each call is a **new** lab unless you pass that prestate again. Use **fusaka** when the question is current mainnet EL (or a compare against it) — this server does not ship demo programs
+2. Run with **caller-supplied** inputs on the fork you need (default **glamsterdam**). A generic hardfork run does **not** require an EIP number — omit `eips[]`. Use **`run_bytecode`** for opcodes/precompiles and program-gas SSTORE/SLOAD; **`run_transaction`** for wallet gas, first-touch transfers, receipt logs, and `txStateGas`; **`run_block`** for several txs or a header slot; **`generate_artifact`** for lab BAL JSON; **`inspect_artifact`** for caller-supplied structure/hash. Prefund / code / storage in the **same** request when the observation needs a constructed world. Each call is a **new** lab unless you pass that prestate again. Use **fusaka** when the question is current mainnet EL (or a compare against it) — this server does not ship demo programs
 3. **Do not** substitute the `mcp-execution-engine` lab, `npm run lab`, or repository source unless MCP is unavailable
 
 ## Replying to humans
@@ -46,20 +46,22 @@ When the caller **names** an EIP (`eips: [NNNN]`), `provenance.caveat` includes 
 Use this order:
 
 1. [Capabilities](/use/capabilities) — query shapes
-2. Per-tool reference: [Discover](/use/tools/describe-capabilities), [Run bytecode](/use/tools/run-bytecode), [Run transaction](/use/tools/run-transaction), [Run block](/use/tools/run-block)
+2. Per-tool reference: [Discover](/use/tools/describe-capabilities), [Run bytecode](/use/tools/run-bytecode), [Run transaction](/use/tools/run-transaction), [Run block](/use/tools/run-block), [Generate artifact](/use/tools/generate-artifact), [Inspect artifact](/use/tools/inspect-artifact)
 3. [Guarantees](/use/guarantees) — determinism, provenance, ceilings
 
 **Machine-readable index:** [`/llms.txt`](/llms.txt)
 
 **Full use-layer text:** [`/llms-full.txt`](/llms-full.txt)
 
-**JSON schemas:** [describe_capabilities](/schemas/describe_capabilities.input.json), [run_bytecode](/schemas/run_bytecode.input.json), [run_transaction](/schemas/run_transaction.input.json), [run_block](/schemas/run_block.input.json)
+**JSON schemas:** [describe_capabilities](/schemas/describe_capabilities.input.json), [run_bytecode](/schemas/run_bytecode.input.json), [run_transaction](/schemas/run_transaction.input.json), [run_block](/schemas/run_block.input.json), [generate_artifact](/schemas/generate_artifact.input.json), [inspect_artifact](/schemas/inspect_artifact.input.json)
 
 ## Changelog
 
 <Changelog
   title="Runtime Agents Changelog"
   :entries="[
+    { version: 'v0.18', date: '2026-09-22', summary: 'Probe queryShapes + tools (MCP names); do not call catalog shape ids.' },
+    { version: 'v0.17', date: '2026-09-22', summary: 'Routing includes generate_artifact and inspect_artifact.' },
     { version: 'v0.16', date: '2026-09-18', summary: 'Cite the EIP spec snapshot once on EIP-specific answers; named eips[] runs put Spec: on provenance.caveat.' },
     { version: 'v0.15', date: '2026-09-17', summary: 'Fusaka runs are first-class for current-mainnet features, not only preview compares.' },
     { version: 'v0.14', date: '2026-09-16', summary: 'Generic hardfork runs (no EIP required); namedForks are catalog capabilities; provenance lists advertised modules.' },

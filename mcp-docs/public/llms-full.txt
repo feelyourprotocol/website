@@ -25,10 +25,12 @@ Do NOT fall back to mcp-execution-engine lab scripts or npm run lab unless MCP
 is unavailable. Trust listTools on the connected server over stale repo text.
 
 Tools:
-- describe_capabilities (probe) — registry: named fork capabilities, runnable EIP modules, opcodes, encoding, shapes, spec snapshot
+- describe_capabilities (probe) — registry: named fork capabilities, queryShapes (id → mcpTool), eips[].tools, opcodes, encoding, spec snapshot
 - run_bytecode (simulate) — VM message-call; call-frame gas; optional accounts / stateGasSpilled
 - run_transaction — paid tx gas, receipt logs, wallet gasLimit, EIP-8037 dimensions
 - run_block — 1–8 txs as a lab block; optional header slot / number / timestamp
+- generate_artifact — lab BAL JSON + hash (EIP-7928); same inputs as run_block
+- inspect_artifact — caller-supplied structure + optional hash; no chain state
 
 A generic hardfork run (bytecode or a tx under Amsterdam) does NOT require naming an EIP.
 Compare gas or outcomes optionally by calling the same verb twice (e.g. osaka then amsterdam).
@@ -65,7 +67,8 @@ Query shapes and MCP tools:
 - Run bytecode → run_bytecode — implemented (public launch pending)
 - Run transaction → run_transaction — implemented (public launch pending)
 - Run block → run_block — implemented (public launch pending)
-- Generate (BAL) — planned Step 6
+- Generate artifact → generate_artifact — implemented (public launch pending)
+- Inspect artifact → inspect_artifact — implemented (public launch pending)
 
 Optional: compare baseline vs preview by calling run twice (osaka then amsterdam).
 A generic Amsterdam run does not require naming an EIP.
@@ -141,6 +144,26 @@ First-touch 1 wei to empty account: Osaka gasUsed 21000; Amsterdam ≈ 204600 (t
 gasLimit 21000 fails on Amsterdam first-touch.
 
 Use for EIP-7954 contract creation, EIP-8037 and EIP-7708 plain ETH transfers, and paid txStateGas. Use run_bytecode for opcodes/precompiles, SLOAD / EXTCODESIZE, and SSTORE program gas.
+
+================================================================================
+TOOL: GENERATE_ARTIFACT (IMPLEMENTED — PUBLIC LAUNCH PENDING)
+================================================================================
+
+MCP tool name: generate_artifact
+
+Purpose: Derive structured artifacts from a lab block (same inputs as run_block).
+First kind: block-access-list (EIP-7928 BAL JSON + hash). Glamsterdam only. BYOS lab —
+not mainnet BAL verification.
+
+================================================================================
+TOOL: INSPECT_ARTIFACT (IMPLEMENTED — PUBLIC LAUNCH PENDING)
+================================================================================
+
+MCP tool name: inspect_artifact
+
+Purpose: Judge a caller-supplied structured artifact without chain state
+(encoding, structure, optional hash). Kinds: block-access-list, authorization-list,
+typed-transaction, withdrawals, execution-requests. See inspectKinds on probe.
 ================================================================================
 COVERAGE
 ================================================================================
@@ -174,7 +197,9 @@ FOR AI AGENTS
 1. If feel-your-protocol MCP connected → use describe_capabilities, then
    run_bytecode (opcodes/precompiles/program-gas SSTORE or generic bytecode under a fork),
    run_transaction (wallet gas, transfers, receipts, txStateGas),
-   or run_block (several txs / header slot).
+   run_block (several txs / header slot),
+   generate_artifact (lab BAL JSON),
+   or inspect_artifact (caller-supplied structure/hash).
    Default fork amsterdam; optionally osaka for mainnet comparison.
    A generic hardfork run does not require an EIP number.
    eips[] rows include specUrl, specDate, status, testReleaseName (or a live EIP page).

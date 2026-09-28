@@ -8,7 +8,7 @@ This page is the home for **preview** execution-layer hardforks on the MCP: what
 
 **Glamsterdam** (EL alias **`amsterdam`**) is the upcoming EL fork and the **default** when you omit `fork`. You can run caller-supplied bytecode, a paid transaction, or a small lab block under Glamsterdam rules.
 
-You do **not** need to name an EIP. Omit `fork` or pass `{ "baseHardfork": "glamsterdam", "eips": [] }`. The probe lists `summary`, `keywords`, `shapes`, and advertised **`relatedEips`**.
+You do **not** need to name an EIP. Omit `fork` or pass `{ "baseHardfork": "glamsterdam", "eips": [] }`. The probe lists `summary`, `keywords`, **`tools`**, and advertised **`relatedEips`**.
 
 **Advertised runnable twins:**
 
@@ -17,7 +17,7 @@ You do **not** need to name an EIP. Omit `fork` or pass `{ "baseHardfork": "glam
 | 8024 | [DUPN / SWAPN / EXCHANGE](/use/eips/eip-8024) |
 | 7843 | [SLOTNUM](/use/eips/eip-7843) |
 | 7708 | [ETH transfer logs](/use/eips/eip-7708) |
-| 7928 | [BAL](/use/eips/eip-7928) (`generate` / `inspect`) |
+| 7928 | [BAL](/use/eips/eip-7928) (`generate_artifact` / `inspect_artifact`) |
 | 7954 | [Contract size limits](/use/eips/eip-7954) |
 | 8037 | [State creation gas](/use/eips/eip-8037) |
 | 8038 | [State-access gas](/use/eips/eip-8038) |
