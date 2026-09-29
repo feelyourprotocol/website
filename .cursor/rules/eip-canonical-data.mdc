@@ -22,6 +22,8 @@ Engine pointer (do not fork this map): sibling [`../mcp-execution-engine/.cursor
 - Historical introductions and probe comparison **pairs**: `mcp-execution-engine/src/forks/introductions.ts`. `describe_capabilities` derives `eips[].comparison` from this, not from `CANONICAL.mcp.comparison.note`.
 - **Maintenance EIPs** (`coverage: 'supported'` on an introduction row) are engine facts, not twins. Do not add `canonical.ts`, an exploration, or `mcp-docs/use/eips/eip-NNNN.md`. The fork page may name them in one line. Agents omit that id from `eips` and use the fork's tools.
 - **Consensus EIPs** (`coverage: 'consensus'`) are engine facts, not twins. This lab does not execute them. Do not add `canonical.ts`, an exploration, or a per-EIP docs page. Do not add a consensus-only number to `activatedEips`.
+- **Networking EIPs** (`coverage: 'networking'`) are engine facts, not twins. This lab does not speak the wire protocol. Do not add `canonical.ts`, an exploration, or a per-EIP docs page. Do not add them to `activatedEips`.
+- **Informational EIPs** (`coverage: 'informational'`) are engine facts, not twins. This lab does not execute an analysis or a schedule. Do not add `canonical.ts`, an exploration, or a per-EIP docs page. Do not add them to `activatedEips`.
 - Encoding / opcodes / constructible facts: `mcp-execution-engine/src/modules/eip-NNNN/`.
 - Runtime agents: live `describe_capabilities` — not this rule, not markdown, not `canonical.ts`.
 

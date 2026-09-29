@@ -60,13 +60,18 @@ Canonical metadata for twins lives in website `src/explorations/eip-NNNN/canonic
 
 `eipIntroductions[].coverage` of **`supported`** means the hardfork already applies the EIP. There is no exploration and no page in this catalogue. Omit the id from `eips` and use the fork's tools. EIP-8246 (SELFDESTRUCT no longer burns ETH) is the first, on Glamsterdam. **`listed`** rows are a name and a fork only.
 
-**`consensus`** means the EIP is consensus-layer and this lab does not execute it. There is no page here. Already marked: 3675 (Paris), 4895 (Shapella), 6110 and 7251 (Pectra), 7594 (Fusaka), and on Glamsterdam 7688, 7732, 8045, 8061. Networking EIPs in the Glamsterdam meta list stay off the probe.
+**`consensus`** means the EIP is consensus-layer and this lab does not execute it. There is no page here. Already marked: 3675 (Paris), 4895 (Shapella), 6110 and 7251 (Pectra), 7594 (Fusaka), and on Glamsterdam 7688, 7732, 8045, 8061.
+
+**`networking`** means a wire-protocol EIP. This lab does not speak it, and there is no page here. Glamsterdam: 7975, 8070, 8136, 8159, 8189. Naming one in `eips` is rejected.
+
+**`informational`** means an analysis or a schedule. This lab does not execute it, and there is no page here. Glamsterdam: 7904, 8261. Naming one in `eips` is rejected.
 
 ## Changelog
 
 <Changelog
   title="Coverage Changelog"
   :entries="[
+    { version: 'v0.34', date: '2026-09-29', summary: 'Networking and informational EIPs use those coverages and stay off this catalogue.' },
     { version: 'v0.33', date: '2026-09-29', summary: 'Consensus-layer EIPs use coverage consensus and stay off this catalogue.' },
     { version: 'v0.32', date: '2026-09-29', summary: 'Supported bundle EIPs (EIP-8246) stay off this catalogue; probe coverage is supported.' },
     { version: 'v0.28', date: '2026-09-17', summary: 'EIP-7954 exploration twin — Planned until run_transaction supports contract creation.' },
