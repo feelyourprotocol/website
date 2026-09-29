@@ -101,7 +101,7 @@ Same `working_directory` + `required_permissions: ["all"]` as other git. CI is n
 
 A push does not say whether a PR exists. For **each repo you just pushed** (one repo at a time, after that push succeeded), look it up (`gh pr view <branch>`).
 
-- **PR exists:** update **that** PR’s body to match the work now on the branch. Do not open a second PR. On a **round-trip** PR, keep the [arch shape](#pull-requests), refresh **Round-trip** and **So far**, and do not retitle. Do not turn the body into a changelog of the last commit.
+- **PR exists:** update **that** PR’s title and body when the weighted essence on the branch has changed ([Pull requests](#pull-requests)). Do not open a second PR. Do not turn the body into a changelog of the last commit.
 - **No PR:** say so. Open one only if the human asked to open PRs — **`gh pr create` immediately after that repo’s push**, wait success, then move to the next repo.
 
 Report the PR URL (or “no PR”) after each repo’s push+PR step. `gh pr edit` is not a signed git op — still run it **sequentially**, with `working_directory` + `required_permissions: ["all"]`.
@@ -125,25 +125,43 @@ Twitter reply voice refinement
 
 ## Pull requests
 
-Same shortness as commit subjects. No conventional-commit prefix. No template checklist.
+The title and the body name the **essence** of the work on the branch. Weight the important parts. Leave side tasks out (a lint fix, a test expectation, scaffolding, a one-line supporting edit). Not the latest commit. Not a bare id. Not a changelog.
 
-**Round-trip** (this session is running the round-trip skill; shared `eip-NNNN` branch is the extra signal): every repo’s PR is the **bigger-context** PR. Title is just the EIP id (`EIP-8038`) — including engine/gateway, even if the first commits are only supporting (git rules, scaffolding). That PR will accumulate the exploration / MCP work. Do not name it after the first commit.
+**Title.** One line. No conventional-commit prefix. One noun phrase per substantial part, separated by ` / `, heaviest first. EIP work starts with `EIP-NNNN`, then the artifact. When the part is fork-scoped, put the fork in parentheses.
 
-Description: the **arch**, not the latest commit. Same shape, **not** the same text — each repo writes its own slice.
+```
+EIP-2780 Exploration (Amsterdam) / More formal EIP handling classification documentation
+EIP-8038 MCP module
+Git rules
+```
 
-- **website** — the exploration (widget, cover, home, mcp-docs twin).
-- **mcp-execution-engine** — the engine module / verbs / catalog.
-- **mcp-gateway** — transport: exposing those verbs, no per-EIP tool.
+`EIP-2780` alone is too thin once the branch holds real work. When later commits change the essence, retitle. Do not keep the first commit’s name.
 
-Within that slice:
+**Description.** The same parts, in the same order, as `##` sections. The heading is the title part (the text between ` / `). One theme is one part. Each repo writes its own slice. Leave side tasks out.
 
-- **What** — one or two lines: this repo’s part of the EIP.
-- **Round-trip** — where this repo sits (exploration vs MCP vs later); mark done vs open.
-- **So far** — what shipped **here**; what still lands on this PR. After later pushes, this is the line that moves.
+Choose the form for what the part is:
 
-Do **not** copy the website body onto engine/gateway. Do **not** narrate supporting commits (`git.mdc`, templates). Those are not the PR.
+- **Overview** — a short prose opening when the part needs a sentence of context.
+- **Table** — parallel, recurring facts (taxonomy, prices, catalog placement, tool surface).
+- **Prose** — a new concept. Explain what it means and what this repo does with it. A table can follow once the idea is clear.
 
-Engine and gateway bodies **link** the website GitHub PR (the exploration). Do not paste its description.
+One **Related** line at the top of the body links the sibling PRs.
 
-- After that main PR: follow-ups add the artifact (`EIP-8038 Comic + Video`) and a short artifact-specific body.
-- Outside a round-trip: two-to-five-word title (`Git rules`); short structured body is fine.
+```
+Related: [engine#15](https://github.com/…) · [gateway#12](https://github.com/…)
+
+## EIP-2780 Exploration (Amsterdam)
+
+Why a send stays 21,000 and a self-send is 12,000. Scenario widget, local piece ledger.
+
+| Property | Value |
+| --- | --- |
+| Topic / timeline | robustness · Glamsterdam |
+| Tags | Gas costs, EVM, Contracts |
+
+## More formal EIP handling classification documentation
+
+EIPs with no exploration and no MCP twin now have an explicit kind.
+
+**supported.** The hardfork already applies it. Leave the id out of `eips`.
+```
