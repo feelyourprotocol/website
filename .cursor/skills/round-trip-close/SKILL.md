@@ -128,7 +128,7 @@ Human one-time setup: [YOUTUBE.md](../../../video/YOUTUBE.md). Agent never `Read
 1. Run with `required_permissions: ["all"]` from `website/`:
    `npm run video:youtube:upload -- eip-NNNN --privacy public`
    (or `--privacy unlisted` / `--privacy private` when the human named that).
-2. On success: report the `https://www.youtube.com/shorts/<id>` URL. `youtube.yml` now has `published:` — do not commit it unless asked.
+2. On success: report the Short URL and the Studio edit link `https://studio.youtube.com/video/<id>/edit`. The Shorts cover is set on that page. `youtube.yml` now has `published:` — do not commit it unless asked.
 3. On missing client / refresh token: **STOP**. Point at `video/YOUTUBE.md`. Do not paste Studio copy unless the human asks for the fallback.
 4. On any other CLI error: high-level cause only. Do not retry with `--force` (that duplicates the video).
 

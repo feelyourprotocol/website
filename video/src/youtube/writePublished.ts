@@ -34,3 +34,8 @@ export function writePublished(ymlText: string, published: YoutubePublishedMeta)
 export function shortsUrl(videoId: string): string {
   return `https://www.youtube.com/shorts/${videoId}`
 }
+
+/** Studio editor. The Shorts cover is set here; `thumbnails.set` does not apply it. */
+export function studioEditUrl(videoId: string): string {
+  return `https://studio.youtube.com/video/${videoId}/edit`
+}

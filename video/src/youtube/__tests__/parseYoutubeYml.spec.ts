@@ -5,7 +5,7 @@ import { describe, expect, it } from 'vitest'
 
 import { parseScalar, parseYoutubeYml } from '../parseYoutubeYml.ts'
 import { YOUTUBE_YML_SCHEMA } from '../types.ts'
-import { shortsUrl, writePublished } from '../writePublished.ts'
+import { shortsUrl, studioEditUrl, writePublished } from '../writePublished.ts'
 
 const PROJECTS_ROOT = join(dirname(fileURLToPath(import.meta.url)), '../../../projects')
 
@@ -142,5 +142,11 @@ published:
     expect(once.match(/^published:/gm)?.length).toBe(1)
     expect(once).toContain('video_id: new')
     expect(once).not.toContain('video_id: old')
+  })
+})
+
+describe('studioEditUrl', () => {
+  it('points at the Studio editor for that video', () => {
+    expect(studioEditUrl('IQYCxaEjEgM')).toBe('https://studio.youtube.com/video/IQYCxaEjEgM/edit')
   })
 })
