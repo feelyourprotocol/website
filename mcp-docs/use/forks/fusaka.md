@@ -8,7 +8,7 @@ This page tracks **whatever fork mainnet EL is on right now**. Today that is **F
 
 ModExp repricing (**7883**), secp256r1 precompile (**7951**), and related Fusaka EL changes are active on mainnet. Use this fork to **run those features** (adoption at your own pace) as well as to compare against Pectra or Glamsterdam. **Predecessor in lineage:** Pectra ([historical table](/use/forks/historical-forks)). **Preview successor:** [Glamsterdam](/use/forks/glamsterdam).
 
-Activated EIP numbers are in the probe (`namedForks[].activatedEips`, **`eipIntroductions`**). PeerDAS and blob-sidecar behaviour are not fully observable in this lab.
+Activated EIP numbers are in the probe (`namedForks[].activatedEips`, **`eipIntroductions`**). PeerDAS (EIP-7594) is **`coverage: consensus`**. Blob sidecars are not run here.
 
 ## Runnable FYP twins on Fusaka
 
@@ -51,6 +51,7 @@ Provenance on a generic Fusaka run lists advertised modules **7883** and **7951*
 <Changelog
   title="Current Mainnet Fork Changelog"
   :entries="[
+    { version: 'v0.7', date: '2026-09-29', summary: 'PeerDAS (EIP-7594) is coverage consensus. Blob sidecars stay out of this lab.' },
     { version: 'v0.6', date: '2026-09-17', summary: 'Fusaka twins stay first-class after activation (adoption runs, not only compares).' },
     { version: 'v0.5', date: '2026-09-17', summary: 'Twin pages linked from this fork doc (sidebar no longer lists EIPs).' },
     { version: 'v0.4', date: '2026-09-17', summary: 'Canonical catalog id is fusaka; osaka is the EL alias; mainnet-el remains the role alias.' },

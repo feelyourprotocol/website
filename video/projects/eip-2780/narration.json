@@ -1,0 +1,41 @@
+{
+  "segmentGapMs": 350,
+  "segments": [
+    {
+      "beat": "hook",
+      "text": "Why does sending ETH to someone else still cost 21,000 gas, while sending it to yourself costs 12,000?"
+    },
+    {
+      "beat": "context",
+      "text": "Glamsterdam replaces that flat charge with named pieces. A normal send stays 21,000."
+    },
+    {
+      "beat": "send",
+      "text": "Twelve thousand for the sender, three thousand to touch the recipient, six thousand to move the value."
+    },
+    {
+      "beat": "self",
+      "text": "A self-send drops the recipient and the value charge. Only twelve thousand remains."
+    },
+    {
+      "beat": "zero",
+      "text": "No value moved. Fifteen thousand: the sender, plus the recipient touch."
+    },
+    {
+      "beat": "fusaka",
+      "text": "Now the same self-send, one fork earlier."
+    },
+    {
+      "beat": "fusaka-run",
+      "text": "The flat twenty-one thousand comes back."
+    },
+    {
+      "beat": "recap",
+      "text": "Someone else, twenty-one thousand. Yourself, twelve thousand. No value, fifteen thousand. Fusaka charges twenty-one thousand for all three."
+    },
+    {
+      "beat": "outro",
+      "text": "Read the schedule on Forkcast. Run the three shapes on feelyourprotocol dot org."
+    }
+  ]
+}

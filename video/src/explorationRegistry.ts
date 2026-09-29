@@ -43,6 +43,10 @@ export const EXPLORATION_REGISTRY: Record<string, ExplorationMeta> = {
     path: '/eip-7954-contract-size-limit',
     topic: 'ux',
   },
+  'eip-2780': {
+    path: '/eip-2780-intrinsic-transaction-gas',
+    topic: 'robustness',
+  },
 }
 
 /** Topic → overlay theme (aligned with og/src/topic-colors.ts). */

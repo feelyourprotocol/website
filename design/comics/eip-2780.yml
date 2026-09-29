@@ -1,0 +1,78 @@
+# Bro & Bruh comic metadata — schema bro-bruh-comic/v1
+# Keep this key set when adding files. Do not rename keys.
+schema: bro-bruh-comic/v1
+id: eip-2780
+episode: 8
+series: bro-bruh
+image: eip-2780.png
+
+exploration:
+  id: eip-2780
+  eip: 2780
+  name: EIP-2780 Resource-based Intrinsic Transaction Gas
+  core_question: >-
+    Why does sending ETH to someone else still cost 21,000 gas, while sending
+    it to yourself costs 12,000?
+
+engine: parallel-worlds
+bridge:
+  word: YOURSELF
+  trader_sense: the only bag he is willing to size
+  protocol_sense: a self-send keeps the sender cost and drops the extra pieces
+
+vibe:
+  slug: waiting-on-the-date
+  topic: a public test date exists and mainnet still does not
+  register: protocol
+  recency: 2026-09
+  why_hot: >-
+    Glamsterdam has a Sepolia date in early October and still no mainnet
+    date, so the week is a waiting posture rather than a candle story
+  why_narrative: >-
+    YOURSELF is Bruh keeping size in his own book while he waits, and the
+    self-send Bro is dwelling on. The date stays out of both bubbles.
+  repeat_of: null
+
+setting:
+  name: early-morning community garden plots
+  why: >-
+    Shared watering, unused civic beds. Not a mirror room and not a
+    waiting-room diorama.
+
+easter_egg: >-
+  Watering can with a tiny purple-to-cyan Ethereum octahedron on the body
+
+copy:
+  panel1_bruh: >-
+    I KEEP THIS BAG FOR YOURSELF ONLY. THE REST OF THE BOOK CAN WAIT.
+  panel2_bro: >-
+    EIP-2780 — A SEND TO YOURSELF KEEPS THE SENDER COST. THE EXTRA PIECES
+    FALL AWAY.
+  panel2_affect: dreaming
+  title: '*BRO & BRUH EPISODE 8'
+  cta: A NEW FEEL YOUR PROTOCOL EXPLORATION HAS ARRIVED, CHECK IT OUT!
+
+tweet:
+  body: |-
+    Sending ETH to someone else still costs 21,000. Sending it to yourself costs 12,000.
+
+    https://feelyourprotocol.org/eip-2780-intrinsic-transaction-gas
+  url: https://feelyourprotocol.org/eip-2780-intrinsic-transaction-gas
+  alt: >-
+    Bro & Bruh episode 8, two-panel comic in an early-morning community
+    garden. Panel 1: Bruh, short dark hair and green hoodie, holds a watering
+    can and thinks: I KEEP THIS BAG FOR YOURSELF ONLY. THE REST OF THE BOOK
+    CAN WAIT. The word YOURSELF is dark red. Bro, blonde ponytail and
+    backwards teal FYP cap, waters the next bed. A can carries a tiny
+    purple-to-cyan Ethereum octahedron. Panel 2: close-up of Bro, half-lidded,
+    blushing, pink hearts around his face. He thinks: EIP-2780 — A SEND TO
+    YOURSELF KEEPS THE SENDER COST. THE EXTRA PIECES FALL AWAY. YOURSELF is
+    dark red again. Bottom-left: original circular FYP mark and
+    feelyourprotocol.org. Yellow box: A NEW FEEL YOUR PROTOCOL EXPLORATION
+    HAS ARRIVED, CHECK IT OUT!
+  intent: https://x.com/intent/post?text=Sending%20ETH%20to%20someone%20else%20still%20costs%2021%2C000.%20Sending%20it%20to%20yourself%20costs%2012%2C000.%0A%0Ahttps%3A%2F%2Ffeelyourprotocol.org%2Feip-2780-intrinsic-transaction-gas
+
+notes: >-
+  Bridge YOURSELF is consumed. Setting community garden and watering-can
+  octahedron are consumed. Do not reuse waiting-on-the-date. Panel 2 affect
+  stays dreaming.

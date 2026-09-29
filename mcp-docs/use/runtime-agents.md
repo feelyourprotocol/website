@@ -7,7 +7,7 @@
 When MCP is **connected**, trust the live server first:
 
 1. **`listTools`** — tool names, descriptions, and input schemas
-2. **`describe_capabilities`** — `baselineForkId`, `namedForks` (Berlin→Glamsterdam lineage: order, predecessorId, activatedEips, related twins, **`tools`**), `queryShapes` (catalog id → MCP tool), `eipIntroductions` (`observableTools` are MCP names), runnable EIP modules with **`tools`** and derived comparison pairs, opcodes, encoding, ceilings, and spec snapshot fields (`specUrl`, `specDate`, `status`, `testReleaseName` or a live EIP page)
+2. **`describe_capabilities`** — `baselineForkId`, `namedForks` (Berlin→Glamsterdam lineage: order, predecessorId, activatedEips, related twins, **`tools`**), `queryShapes` (catalog id → MCP tool), `eipIntroductions` (`coverage` is `twin`, `supported`, `listed`, `consensus`, `networking`, or `informational`; `observableTools` are MCP names — omit `supported` ids from `eips`; do not put `consensus`, `networking`, or `informational` ids in `eips`), runnable EIP modules with **`tools`** and derived comparison pairs, opcodes, encoding, ceilings, and spec snapshot fields (`specUrl`, `specDate`, `status`, `testReleaseName` or a live EIP page)
 
 Markdown on this site is **secondary**. It can lag behind a gateway release; the probe response and tool schemas cannot.
 
@@ -60,6 +60,7 @@ Use this order:
 <Changelog
   title="Runtime Agents Changelog"
   :entries="[
+    { version: 'v0.19', date: '2026-09-29', summary: 'Probe coverage adds networking and informational; do not put those ids in eips.' },
     { version: 'v0.18', date: '2026-09-22', summary: 'Probe queryShapes + tools (MCP names); do not call catalog shape ids.' },
     { version: 'v0.17', date: '2026-09-22', summary: 'Routing includes generate_artifact and inspect_artifact.' },
     { version: 'v0.16', date: '2026-09-18', summary: 'Cite the EIP spec snapshot once on EIP-specific answers; named eips[] runs put Spec: on provenance.caveat.' },

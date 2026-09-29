@@ -45,7 +45,7 @@ Examples:
 
 ## Honesty
 
-The lab does not replay Merge consensus, beacon withdrawals, blob sidecars, or PeerDAS. Those EIPs still appear in **`eipIntroductions`** with honest summaries.
+The lab does not replay Merge consensus, beacon withdrawals, or PeerDAS. Those introductions use **`coverage: consensus`** (EIP-3675, EIP-4895, EIP-6110, EIP-7251). EIP-4399 `PREVRANDAO` stays an execution opcode. Blob sidecars stay **`listed`**: out of this lab, and not consensus-only.
 
 ## What you can ask your agent
 
@@ -58,6 +58,7 @@ The lab does not replay Merge consensus, beacon withdrawals, blob sidecars, or P
 <Changelog
   title="Historical Forks Catalogue Changelog"
   :entries="[
+    { version: 'v0.7', date: '2026-09-29', summary: 'Merge, withdrawals, deposits, and max effective balance are coverage consensus.' },
     { version: 'v0.6', date: '2026-09-17', summary: '7702 set-code documented as Pectra fork feature — not a catalogue EIP page.' },
     { version: 'v0.5', date: '2026-09-17', summary: 'Historical forks still host advertised twins for adoption runs, not only compares.' },
     { version: 'v0.4', date: '2026-09-17', summary: 'Pectra 7702 twin linked from the lineage table.' },

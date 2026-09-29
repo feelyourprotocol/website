@@ -1,4 +1,5 @@
 import type { EipProcessStatus, ProtocolChangeMcpHints } from './canonicalTypes'
+import { INFO as eip2780 } from './eip-2780/info'
 import { INFO as eip7708 } from './eip-7708/info'
 import { INFO as eip7843 } from './eip-7843/info'
 import { INFO as eip7883 } from './eip-7883/info'
@@ -15,6 +16,7 @@ import type { TopicId } from './topicIds'
 export { COVER_COLUMN_IMAGE_HEIGHT } from './layout'
 
 export const EXPLORATIONS: Explorations = {
+  [eip2780.id]: eip2780,
   [eip7708.id]: eip7708,
   [eip7843.id]: eip7843,
   [eip7883.id]: eip7883,
