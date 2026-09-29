@@ -56,12 +56,16 @@ Every **live** website exploration has an MCP-docs page mapping the same problem
 
 Canonical metadata for twins lives in website `src/explorations/eip-NNNN/canonical.ts`.
 
+## Bundled, no page
+
+`eipIntroductions[].coverage` of **`supported`** means the hardfork already applies the EIP. There is no exploration and no page in this catalogue. Omit the id from `eips` and use the fork's tools. EIP-8246 (SELFDESTRUCT no longer burns ETH) is the first, on Glamsterdam. **`listed`** rows are a name and a fork only.
+
 ## Changelog
 
 <Changelog
   title="Coverage Changelog"
   :entries="[
-    { version: 'v0.31', date: '2026-09-22', summary: 'Live catalog Tools column is MCP names (eips[].tools); queryShapes is the dictionary.' },
+    { version: 'v0.32', date: '2026-09-29', summary: 'Supported bundle EIPs (EIP-8246) stay off this catalogue; probe coverage is supported.' },
     { version: 'v0.28', date: '2026-09-17', summary: 'EIP-7954 exploration twin — Planned until run_transaction supports contract creation.' },
     { version: 'v0.27', date: '2026-09-17', summary: 'EIP-7702 is fork-level run_transaction/inspect — not a catalogue twin or EIP docs page.' },
     { version: 'v0.26', date: '2026-09-17', summary: 'Retired PeerDAS exploration removed from website catalogue; Fusaka-only EIPs stay in probe.' },

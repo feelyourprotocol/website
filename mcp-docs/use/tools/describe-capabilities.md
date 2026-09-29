@@ -29,7 +29,7 @@ None required. Pass `{}` or omit arguments.
 | `baselineForkId` | Current mainnet EL (`fusaka`) — first-class run target and optional compare baseline |
 | `queryShapes` | Dictionary: catalog `id` (`simulate`, `generate`, …) → `mcpTool` (`run_bytecode`, `generate_artifact`, …). Agents call `mcpTool`. |
 | `namedForks` | Berlin→Glamsterdam lineage — `order`, `predecessorId`, `successorId`, `role`, `activatedEips`, advertised `relatedEips`, **`tools`** (MCP names) |
-| `eipIntroductions` | When each EIP activated — use with predecessor compares (e.g. PUSH0 at Shapella, predecessor Paris); **`observableTools`** are MCP names |
+| `eipIntroductions` | When each EIP activated. **`coverage`** is `twin` (runnable module), `supported` (hardfork already applies it — omit that id from `eips` and use the fork tools), or `listed` (name and fork only). **`observableTools`** are MCP names; `supported` rows omit them |
 | `eips` | Runnable modules — `comparison` derived from `eipIntroductions` (predecessor vs `introducedAt`); **`tools`** lists MCP names to call; each row includes `specUrl`, `specDate`, `status`, and optional `testReleaseUrl` / `testReleaseName` (or a live `eips.ethereum.org` page when unpinned) |
 | `allowedBaseHardforks` | Lineage forks (`berlin` … `glamsterdam`) plus aliases; glacier/BPO ids rejected |
 
@@ -79,7 +79,7 @@ _Output (abbreviated):_
 <Changelog
   title="Describe Capabilities Changelog"
   :entries="[
-    { version: 'v0.18', date: '2026-09-22', summary: 'queryShapes dictionary; eips/namedForks/eipIntroductions emit tools (MCP names), not shapes.' },
+    { version: 'v0.19', date: '2026-09-29', summary: 'eipIntroductions.coverage: twin, supported (omit from eips), or listed.' },
     { version: 'v0.17', date: '2026-09-22', summary: 'shapes generate/inspect map to generate_artifact / inspect_artifact.' },
     { version: 'v0.16', date: '2026-09-18', summary: 'eips[] rows include specUrl, specDate, status, and named test release (or live EIP page).' },
     { version: 'v0.15', date: '2026-09-17', summary: 'maxTransactionGasLimit exposes the separate 110M transaction-only ceiling.' },

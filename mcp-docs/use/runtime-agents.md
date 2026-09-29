@@ -7,7 +7,7 @@
 When MCP is **connected**, trust the live server first:
 
 1. **`listTools`** — tool names, descriptions, and input schemas
-2. **`describe_capabilities`** — `baselineForkId`, `namedForks` (Berlin→Glamsterdam lineage: order, predecessorId, activatedEips, related twins, **`tools`**), `queryShapes` (catalog id → MCP tool), `eipIntroductions` (`observableTools` are MCP names), runnable EIP modules with **`tools`** and derived comparison pairs, opcodes, encoding, ceilings, and spec snapshot fields (`specUrl`, `specDate`, `status`, `testReleaseName` or a live EIP page)
+2. **`describe_capabilities`** — `baselineForkId`, `namedForks` (Berlin→Glamsterdam lineage: order, predecessorId, activatedEips, related twins, **`tools`**), `queryShapes` (catalog id → MCP tool), `eipIntroductions` (`coverage` is `twin`, `supported`, or `listed`; `observableTools` are MCP names — omit `supported` ids from `eips`), runnable EIP modules with **`tools`** and derived comparison pairs, opcodes, encoding, ceilings, and spec snapshot fields (`specUrl`, `specDate`, `status`, `testReleaseName` or a live EIP page)
 
 Markdown on this site is **secondary**. It can lag behind a gateway release; the probe response and tool schemas cannot.
 

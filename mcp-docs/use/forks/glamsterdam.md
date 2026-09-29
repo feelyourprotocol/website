@@ -42,7 +42,9 @@ The Glamsterdam hardfork **bundles** the advertised modules. `eips: [8024]` is a
 
 **Preview vs mainnet today:** run **`fusaka`** then **`glamsterdam`** (`baselineForkId` is Fusaka until mainnet changes). For one EIP, use **`eipIntroductions`**: compare predecessor vs **`introducedAt`** (Glamsterdam twins → usually Fusaka vs Glamsterdam).
 
-Other bundled changes may execute in the client but stay **uncatalogued** until a shipped verb can show them honestly. Generic Glamsterdam provenance keeps `eips: []` and lists advertised modules in **`perEip`**.
+Other bundled changes are **`eipIntroductions`** rows, not extra tools. **`coverage: "supported"`** means the hardfork already applies the rule: leave `eips` empty and use this fork's tools. There is no exploration and no per-EIP page. EIP-8246 (SELFDESTRUCT no longer burns ETH) is the first. **`coverage: "listed"`** is a name and a fork only.
+
+Generic Glamsterdam provenance keeps `eips: []` and lists advertised modules in **`perEip`**. If a request names a supported id such as `8246`, the lab drops it and notes that on `provenance.caveat`.
 
 ## Related
 
@@ -58,6 +60,7 @@ Other bundled changes may execute in the client but stay **uncatalogued** until 
 <Changelog
   title="Preview Forks (Glamsterdam) Changelog"
   :entries="[
+    { version: 'v0.6', date: '2026-09-29', summary: 'EIP-8246 is coverage supported: bundled on Glamsterdam, no twin page.' },
     { version: 'v0.5', date: '2026-09-17', summary: 'EIP-7954 contract creation added to advertised runnable twins.' },
     { version: 'v0.4', date: '2026-09-17', summary: 'Twin pages linked from this fork doc (sidebar no longer lists EIPs).' },
     { version: 'v0.3', date: '2026-09-17', summary: 'Canonical catalog id is glamsterdam; amsterdam is the EL alias.' },
