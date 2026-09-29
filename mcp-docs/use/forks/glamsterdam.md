@@ -46,6 +46,8 @@ Other bundled changes are **`eipIntroductions`** rows, not extra tools. **`cover
 
 Generic Glamsterdam provenance keeps `eips: []` and lists advertised modules in **`perEip`**. If a request names a supported id such as `8246`, the lab drops it and notes that on `provenance.caveat`.
 
+Consensus-layer EIPs scheduled with Glamsterdam are **`coverage: "consensus"`** and are not in the execution bundle: 7688, 7732, 8045, 8061. This lab does not execute them, and there is no page for each one. Naming one in `eips` is rejected.
+
 ## Related
 
 | | |
@@ -60,6 +62,7 @@ Generic Glamsterdam provenance keeps `eips: []` and lists advertised modules in 
 <Changelog
   title="Preview Forks (Glamsterdam) Changelog"
   :entries="[
+    { version: 'v0.7', date: '2026-09-29', summary: 'Consensus EIPs 7688, 7732, 8045, and 8061 are coverage consensus — out of this lab.' },
     { version: 'v0.6', date: '2026-09-29', summary: 'EIP-8246 is coverage supported: bundled on Glamsterdam, no twin page.' },
     { version: 'v0.5', date: '2026-09-17', summary: 'EIP-7954 contract creation added to advertised runnable twins.' },
     { version: 'v0.4', date: '2026-09-17', summary: 'Twin pages linked from this fork doc (sidebar no longer lists EIPs).' },

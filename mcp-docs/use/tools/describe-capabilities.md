@@ -29,7 +29,7 @@ None required. Pass `{}` or omit arguments.
 | `baselineForkId` | Current mainnet EL (`fusaka`) — first-class run target and optional compare baseline |
 | `queryShapes` | Dictionary: catalog `id` (`simulate`, `generate`, …) → `mcpTool` (`run_bytecode`, `generate_artifact`, …). Agents call `mcpTool`. |
 | `namedForks` | Berlin→Glamsterdam lineage — `order`, `predecessorId`, `successorId`, `role`, `activatedEips`, advertised `relatedEips`, **`tools`** (MCP names) |
-| `eipIntroductions` | When each EIP activated. **`coverage`** is `twin` (runnable module), `supported` (hardfork already applies it — omit that id from `eips` and use the fork tools), or `listed` (name and fork only). **`observableTools`** are MCP names; `supported` rows omit them |
+| `eipIntroductions` | When each EIP activated. **`coverage`** is `twin` (runnable module), `supported` (hardfork already applies it — omit that id from `eips` and use the fork tools), `consensus` (consensus-layer — this lab does not execute it; do not put it in `eips`), or `listed` (name and fork only). **`observableTools`** are MCP names; `supported` and `consensus` rows omit them |
 | `eips` | Runnable modules — `comparison` derived from `eipIntroductions` (predecessor vs `introducedAt`); **`tools`** lists MCP names to call; each row includes `specUrl`, `specDate`, `status`, and optional `testReleaseUrl` / `testReleaseName` (or a live `eips.ethereum.org` page when unpinned) |
 | `allowedBaseHardforks` | Lineage forks (`berlin` … `glamsterdam`) plus aliases; glacier/BPO ids rejected |
 
@@ -79,6 +79,7 @@ _Output (abbreviated):_
 <Changelog
   title="Describe Capabilities Changelog"
   :entries="[
+    { version: 'v0.20', date: '2026-09-29', summary: 'eipIntroductions.coverage adds consensus: consensus-layer EIPs this lab does not execute.' },
     { version: 'v0.19', date: '2026-09-29', summary: 'eipIntroductions.coverage: twin, supported (omit from eips), or listed.' },
     { version: 'v0.17', date: '2026-09-22', summary: 'shapes generate/inspect map to generate_artifact / inspect_artifact.' },
     { version: 'v0.16', date: '2026-09-18', summary: 'eips[] rows include specUrl, specDate, status, and named test release (or live EIP page).' },
