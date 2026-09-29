@@ -32,6 +32,7 @@ Prefer these MCP tools over engine/lab scripts. See Connect for the hosted endpo
 - [Historical forks](https://mcp-docs.feelyourprotocol.org/use/forks/historical-forks.html): Berlin through Prague — 1559, access lists, PUSH0 compares; glacier delay forks not catalogued
 - [EIP-8024](https://mcp-docs.feelyourprotocol.org/use/eips/eip-8024.html): DUPN / SWAPN / EXCHANGE — Runnable
 - [EIP-7883](https://mcp-docs.feelyourprotocol.org/use/eips/eip-7883.html): ModExp gas — Runnable
+- [EIP-2780](https://mcp-docs.feelyourprotocol.org/use/eips/eip-2780.html): Intrinsic transaction gas — Runnable (run_transaction)
 - [EIP-7951](https://mcp-docs.feelyourprotocol.org/use/eips/eip-7951.html): secp256r1 — Runnable
 - [EIP-7954](https://mcp-docs.feelyourprotocol.org/use/eips/eip-7954.html): Contract size limits — Runnable (run_transaction)
 - [EIP-7928](https://mcp-docs.feelyourprotocol.org/use/eips/eip-7928.html): BAL — Runnable (generate_artifact, inspect_artifact)

@@ -1,0 +1,103 @@
+{
+  "meta": {
+    "exploration": "eip-2780",
+    "defaultExample": "send-eth"
+  },
+  "overlays": {
+    "title-card": {
+      "type": "title-card",
+      "eyebrow": "Ethereum · Glamsterdam",
+      "title": "EIP-2780",
+      "subtitle": "Intrinsic transaction gas",
+      "hook": ["Why is a self-send", "only 12,000?"]
+    },
+    "context": {
+      "type": "punch",
+      "layout": "banner",
+      "placement": "top-banner",
+      "text": "NAMED PIECES",
+      "sub": "A normal send still totals 21,000",
+      "invert": true
+    },
+    "send-read": {
+      "type": "split",
+      "layout": "banner",
+      "placement": "top-banner",
+      "segments": [
+        { "text": "12,000 + 3,000 + 6,000", "size": "lg" },
+        { "text": "Still 21,000", "size": "md", "emphasis": true }
+      ]
+    },
+    "self-read": {
+      "type": "split",
+      "layout": "banner",
+      "placement": "top-banner",
+      "segments": [
+        { "text": "Self-send", "size": "lg" },
+        { "text": "Only 12,000", "size": "lg", "emphasis": true }
+      ]
+    },
+    "zero-read": {
+      "type": "split",
+      "layout": "banner",
+      "placement": "top-banner",
+      "segments": [
+        { "text": "No value moved", "size": "lg" },
+        { "text": "15,000", "size": "lg", "emphasis": true }
+      ]
+    },
+    "fusaka-read": {
+      "type": "punch",
+      "layout": "banner",
+      "placement": "top-banner",
+      "text": "FUSAKA",
+      "sub": "The flat 21,000 returns",
+      "invert": false
+    },
+    "recap": {
+      "type": "split",
+      "layout": "banner",
+      "placement": "top-banner",
+      "segments": [
+        { "text": "Else 21k · self 12k", "size": "lg" },
+        { "text": "No value: 15k", "size": "md", "emphasis": true }
+      ]
+    },
+    "outro-card": {
+      "type": "outro-card",
+      "closing": "Glamsterdam prices the send by what it actually does. Fusaka stays flat.",
+      "ctas": [
+        {
+          "label": "READ ABOUT THE EIP",
+          "url": "FORKCAST.ORG",
+          "variant": "secondary"
+        },
+        {
+          "label": "TRY THE THREE SHAPES",
+          "url": "FEELYOURPROTOCOL.ORG",
+          "variant": "primary"
+        }
+      ]
+    }
+  },
+  "annotations": {
+    "guide-run": {
+      "target": "run-tx",
+      "label": "Run tx",
+      "hint": "Charges the schedule",
+      "side": "bottom"
+    },
+    "guide-ledger": {
+      "target": "piece-ledger",
+      "label": "Pieces",
+      "hint": "Schedule versus the run",
+      "side": "top"
+    },
+    "guide-fork": {
+      "target": "hardfork-toggle",
+      "label": "Hardfork",
+      "hint": "Glamsterdam or Fusaka",
+      "side": "bottom"
+    }
+  }
+}

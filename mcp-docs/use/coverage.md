@@ -14,7 +14,7 @@ Fork configuration is **à la carte**: a base hardfork plus an optional EIP list
 | ----- | ----------- | ---------- | -------------------- | -------------- | ---------- |
 | 0–5   | `berlin` … `pectra` | historical | see probe | (generic runs; no advertised twins) | [Historical forks](/use/forks/historical-forks) |
 | 6     | `fusaka`     | current    | `osaka`, `mainnet-el` | 7883, 7951 | [Mainnet — Fusaka](/use/forks/fusaka) |
-| 7     | `glamsterdam` | preview    | `amsterdam`          | 8024, 7843, 7708, 7928, 7954, 8037, 8038   | [Preview — Glamsterdam](/use/forks/glamsterdam) |
+| 7     | `glamsterdam` | preview    | `amsterdam`          | 2780, 8024, 7843, 7708, 7928, 7954, 8037, 8038   | [Preview — Glamsterdam](/use/forks/glamsterdam) |
 
 Full per-fork ids, aliases, and `activatedEips` live in **`describe_capabilities`** — the table above is the human map to three doc pages.
 
@@ -26,6 +26,7 @@ These appear in `describe_capabilities()` — engine modules with `runnable: tru
 
 | EIP  | Nature         | Tools   | Introduced at | Compare (typical)        | Catalogue                      |
 | ---- | -------------- | -------- | ------------- | ------------------------ | ------------------------------ |
+| 2780 | repricing      | run_transaction | glamsterdam | fusaka → glamsterdam | [EIP-2780](/use/eips/eip-2780) |
 | 8024 | new-capability | run_bytecode | glamsterdam     | fusaka → glamsterdam        | [EIP-8024](/use/eips/eip-8024) |
 | 7843 | new-capability | run_block    | glamsterdam     | fusaka → glamsterdam        | [EIP-7843](/use/eips/eip-7843) |
 | 7708 | new-capability | run_transaction, run_bytecode | glamsterdam | fusaka → glamsterdam | [EIP-7708](/use/eips/eip-7708) |
@@ -44,6 +45,7 @@ Every **live** website exploration has an MCP-docs page mapping the same problem
 
 | EIP  | Exploration twin   | MCP status             | Page                           |
 | ---- | ------------------ | ---------------------- | ------------------------------ |
+| 2780 | Intrinsic transaction gas | Runnable | [EIP-2780](/use/eips/eip-2780) |
 | 8024 | Stack opcodes      | Runnable               | [EIP-8024](/use/eips/eip-8024) |
 | 7883 | ModExp gas         | Runnable               | [EIP-7883](/use/eips/eip-7883) |
 | 7951 | secp256r1          | Runnable               | [EIP-7951](/use/eips/eip-7951) |
@@ -71,6 +73,7 @@ Canonical metadata for twins lives in website `src/explorations/eip-NNNN/canonic
 <Changelog
   title="Coverage Changelog"
   :entries="[
+    { version: 'v0.35', date: '2026-09-29', summary: 'EIP-2780 intrinsic gas is a runnable twin on run_transaction.' },
     { version: 'v0.34', date: '2026-09-29', summary: 'Networking and informational EIPs use those coverages and stay off this catalogue.' },
     { version: 'v0.33', date: '2026-09-29', summary: 'Consensus-layer EIPs use coverage consensus and stay off this catalogue.' },
     { version: 'v0.32', date: '2026-09-29', summary: 'Supported bundle EIPs (EIP-8246) stay off this catalogue; probe coverage is supported.' },

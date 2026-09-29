@@ -14,6 +14,7 @@ You do **not** need to name an EIP. Omit `fork` or pass `{ "baseHardfork": "glam
 
 | EIP | Page |
 | --- | --- |
+| 2780 | [Intrinsic transaction gas](/use/eips/eip-2780) |
 | 8024 | [DUPN / SWAPN / EXCHANGE](/use/eips/eip-8024) |
 | 7843 | [SLOTNUM](/use/eips/eip-7843) |
 | 7708 | [ETH transfer logs](/use/eips/eip-7708) |
@@ -64,6 +65,7 @@ Networking EIPs are **`coverage: "networking"`**: 7975, 8070, 8136, 8159, 8189. 
 <Changelog
   title="Preview Forks (Glamsterdam) Changelog"
   :entries="[
+    { version: 'v0.9', date: '2026-09-29', summary: 'EIP-2780 intrinsic gas joins the advertised Glamsterdam twins.' },
     { version: 'v0.8', date: '2026-09-29', summary: 'Networking (7975, 8070, 8136, 8159, 8189) and informational (7904, 8261) EIPs are out of this lab.' },
     { version: 'v0.7', date: '2026-09-29', summary: 'Consensus EIPs 7688, 7732, 8045, and 8061 are coverage consensus — out of this lab.' },
     { version: 'v0.6', date: '2026-09-29', summary: 'EIP-8246 is coverage supported: bundled on Glamsterdam, no twin page.' },

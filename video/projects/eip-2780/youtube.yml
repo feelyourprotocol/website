@@ -1,0 +1,40 @@
+schema: video-short-youtube/v1
+id: eip-2780
+
+title: 'EIP-2780 Self-send stays at 12,000 (Glamsterdam) #Shorts'
+
+description: |
+  A value transfer still totals 21,000. A self-send keeps only the 12,000 sender piece.
+
+  EIP-2780 replaces the flat intrinsic charge on Glamsterdam. The short runs three shapes: a send to someone else (12,000 + 3,000 + 6,000), a self-send (12,000), and a call that moves no value (15,000). Fusaka still charges 21,000 for all three.
+
+  Explore it interactively:
+  https://feelyourprotocol.org/eip-2780-intrinsic-transaction-gas
+
+  Spec: https://github.com/ethereum/EIPs/blob/8331fb3eed0a5366b28b25a016f1ad04fac0fa8e/EIPS/eip-2780.md
+  Forkcast: https://forkcast.org/eips/2780/
+
+  #Ethereum #Glamsterdam #IntrinsicGas #FeelYourProtocol #Shorts
+
+tags:
+  - Ethereum
+  - EIP-2780
+  - Glamsterdam
+  - robustness
+  - intrinsic gas
+  - self-transfer
+  - transaction base cost
+
+category: Science & Technology
+playlist: Feel Your Protocol · Glamsterdam EIPs
+
+thumbnail:
+  file: eip-2780-2026-09-29T09-30-43-final-thumb.jpg
+  width: 1280
+  time_sec: 1.5
+  source: title-card
+
+sources:
+  exploration_url: https://feelyourprotocol.org/eip-2780-intrinsic-transaction-gas
+  spec_url: https://github.com/ethereum/EIPs/blob/8331fb3eed0a5366b28b25a016f1ad04fac0fa8e/EIPS/eip-2780.md
+  forkcast_url: https://forkcast.org/eips/2780/

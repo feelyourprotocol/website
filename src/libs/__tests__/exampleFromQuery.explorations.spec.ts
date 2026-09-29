@@ -1,5 +1,9 @@
 import { describe, expect, it } from 'vitest'
 
+import {
+  DEFAULT_SHAPE_ID as eip2780Default,
+  examples as eip2780Examples,
+} from '@/explorations/eip-2780/examples'
 import { config as eip7843Config } from '@/explorations/eip-7843/config'
 import { examples as eip7843Examples } from '@/explorations/eip-7843/examples'
 import { config as eip7883Config } from '@/explorations/eip-7883/config'
@@ -24,6 +28,7 @@ import { resolveInitialExample } from '@/libs/exampleFromQuery'
 
 /** Every live exploration and its default example key. */
 const EXPLORATION_EXAMPLE_SETS = [
+  { id: 'eip-2780', defaultKey: eip2780Default, examples: eip2780Examples },
   { id: 'eip-7843', defaultKey: eip7843Config.defaultExample, examples: eip7843Examples },
   { id: 'eip-7883', defaultKey: eip7883Config.defaultExample, examples: eip7883Examples },
   { id: 'eip-7928', defaultKey: eip7928Default, examples: eip7928Examples },

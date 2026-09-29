@@ -1,0 +1,42 @@
+schema: video-short-tweet/v1
+id: eip-2780
+
+# Comic already opened on YOURSELF / the 21,000 vs 12,000 question.
+# Video tweet leads with the split and a gas-quote diagnostic.
+shape: thread
+
+t1:
+  body: |
+    EIP-2780 · Glamsterdam
+    The flat intrinsic splits into sender, recipient touch, and value. A self-send keeps only the sender piece.
+
+    Would a 12,000 self-send still fit the quote you ship?
+
+    https://feelyourprotocol.org/eip-2780-intrinsic-transaction-gas
+  media: eip-2780-2026-09-29T09-30-43-final.mp4
+  video_description: |
+    Vertical short for EIP-2780. The title card asks why a self-send is only
+    12,000. The widget runs a value transfer on Glamsterdam: 12,000 for the
+    sender, 3,000 to touch the recipient, and 6,000 to move the value, still
+    21,000. A self-send drops to 12,000. A call with no value is 15,000.
+    Fusaka puts the flat 21,000 back. Voice-over points to Forkcast and
+    feelyourprotocol.org.
+  intent: https://x.com/intent/post?text=EIP-2780%20%C2%B7%20Glamsterdam%0AThe%20flat%20intrinsic%20splits%20into%20sender%2C%20recipient%20touch%2C%20and%20value.%20A%20self-send%20keeps%20only%20the%20sender%20piece.%0A%0AWould%20a%2012%2C000%20self-send%20still%20fit%20the%20quote%20you%20ship%3F%0A%0Ahttps%3A%2F%2Ffeelyourprotocol.org%2Feip-2780-intrinsic-transaction-gas
+
+t2:
+  body: |
+    Where the pieces are written down:
+
+    Spec: https://github.com/ethereum/EIPs/blob/8331fb3eed0a5366b28b25a016f1ad04fac0fa8e/EIPS/eip-2780.md
+    Forkcast: https://forkcast.org/eips/2780/
+  intent: https://x.com/intent/post?text=Where%20the%20pieces%20are%20written%20down%3A%0A%0ASpec%3A%20https%3A%2F%2Fgithub.com%2Fethereum%2FEIPs%2Fblob%2F8331fb3eed0a5366b28b25a016f1ad04fac0fa8e%2FEIPS%2Feip-2780.md%0AForkcast%3A%20https%3A%2F%2Fforkcast.org%2Feips%2F2780%2F
+
+sources:
+  exploration_url: https://feelyourprotocol.org/eip-2780-intrinsic-transaction-gas
+  spec_url: https://github.com/ethereum/EIPs/blob/8331fb3eed0a5366b28b25a016f1ad04fac0fa8e/EIPS/eip-2780.md
+  forkcast_url: https://forkcast.org/eips/2780/
+
+notes: |
+  Consumed opener: "EIP-2780 · Glamsterdam / The flat intrinsic splits into sender, recipient touch, and value."
+  Diagnostic: "Would a 12,000 self-send still fit the quote you ship?"
+  Do not clone the comic caption that restates 21,000 versus 12,000 as two sentences.

@@ -73,6 +73,15 @@ weather_mcp:
     x402-as-token or points, price, ETF.
 
 problem_slices:
+  - id: eip-2780
+    path: /eip-2780-intrinsic-transaction-gas
+    core_question: Why does sending ETH to someone else still cost 21,000 gas, while sending it to yourself costs 12,000?
+    search:
+      - intrinsic gas 21000 Ethereum
+      - self transfer gas cheaper
+      - wallet gas limit simple transfer
+      - transaction base cost split
+    avoid_leading_with: EIP-2780
   - id: eip-7954
     path: /eip-7954-contract-size-limit
     core_question: How much contract code can you deploy before the protocol rejects it?
@@ -153,6 +162,7 @@ problem_slices:
 
 # Last-resort ids if a hit already names an EIP (live only). Not a daily rotation.
 eip_number_fallback:
+  - eip-2780
   - eip-7954
   - eip-8038
   - eip-7843
