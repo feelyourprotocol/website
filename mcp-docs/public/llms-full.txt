@@ -211,6 +211,7 @@ FOR AI AGENTS
 2. Cite provenance.engineVersion and provenance.forkConfig in answers.
    On a generic Amsterdam run, forkConfig.eips is empty and perEip lists advertised modules.
    Named eips:[NNNN] runs add Spec: (status, date, test release) on provenance.caveat.
-3. Index: /llms.txt. Schemas: /schemas/*.input.json
+3. Reply to humans in plain language — do not expose tool names, JSON field names, or raw hex unless they ask for implementation detail. On a specific EIP question, state the spec snapshot once (status, date, test release); do not repeat on every gas number.
+4. Index: /llms.txt. Human onboarding: /use/connect.html, /use/capabilities.html. Schemas: /schemas/*.input.json
 
-Vision on roadmap; this file is operational reference.
+Vision on roadmap; this file is operational reference for connected agents.

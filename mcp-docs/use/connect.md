@@ -1,56 +1,102 @@
 # Connect
 
-> **Status:** **Public MCP — not launched.** **Launch week target: 5–9 October 2026.** Planned URL: **`https://mcp.feelyourprotocol.org/mcp`**. [Roadmap launch details](https://roadmap.feelyourprotocol.org/roadmap/launch.html).
-
-::: tip Looking to explore EIPs in the browser?
-Go to **[feelyourprotocol.org](https://feelyourprotocol.org)** — no MCP setup required. Come back here when the hosted MCP endpoint ships.
+::: tip Launch timing
+**Target: 5–9 October 2026.** The hosted URL below is **not live yet**. You can prepare config now; reconnect or refresh tools once we announce the endpoint on [X @FeelEthereum](https://x.com/FeelEthereum).
 :::
 
-## What is available today
+**Endpoint (at launch):** `https://mcp.feelyourprotocol.org/mcp`  
+**Cost at launch:** free — full Glamsterdam hardfork, no wallet, no API key.
 
-| URL / transport | Purpose | Status |
-| --- | --- | --- |
-| [feelyourprotocol.org](https://feelyourprotocol.org) | Interactive explorations | **Live** — start here |
-| `https://mcp-docs.feelyourprotocol.org` | This documentation site | **Live** |
-| `https://mcp.feelyourprotocol.org/mcp` | Remote MCP over HTTP | **Not launched** |
+This page is the **hosted** product only — not a self-host guide. For browser learning, use **[feelyourprotocol.org](https://feelyourprotocol.org)**.
 
-There is **no** public URL to connect an agent today. **Launch week: 5–9 October 2026** — see the [roadmap launch page](https://roadmap.feelyourprotocol.org/roadmap/launch.html).
+## After you connect — try this first
 
-This page documents the **hosted** product. It is not a self-host guide.
+Ask your agent:
 
-## What agents will connect to (at launch)
+> *“Send 1 wei to an empty account under Amsterdam and tell me the gas the wallet would need.”*
 
-The hosted server will expose:
+That exercises first-touch state gas ([EIP-8037](/use/eips/eip-8037)) without you naming tools or JSON fields. Then browse [Amsterdam now](/use/forks/glamsterdam) for more prompts.
 
-| MCP tool | Shape | Purpose |
-| --- | --- | --- |
-| `describe_capabilities` | probe | Registry: named fork capabilities, runnable EIP modules, opcodes, encoding |
-| `run_bytecode` | simulate | Run raw bytecode under a fork config |
-| `run_transaction` | transaction | Paid tx gas, receipt logs, first-touch / wallet gasLimit |
-| `run_block` | block | 1–8 txs as a lab block; optional header slot / number / timestamp |
+---
 
-To **optionally** compare baseline vs preview, call the **same verb** twice — **`fusaka`** then **`glamsterdam`** — and diff gas or outcomes. A single run on Glamsterdam alone is fine.
+## Cursor
 
-The public server is **free at launch** — full Glamsterdam, no wallet and no API key. The exact client config for Cursor, Claude, and other MCP hosts will be documented here when the endpoint ships. Same tools; remote HTTP — no local build required. Newer EIPs later sit on a paid tier; see [Pricing](/use/pricing).
+1. Open **Cursor Settings → MCP** (or edit your user `mcp.json`).
+2. Add a server entry (name is yours; `feel-your-protocol` matches our docs):
 
-## Example prompts (when the public server is connected)
+```json
+{
+  "mcpServers": {
+    "feel-your-protocol": {
+      "url": "https://mcp.feelyourprotocol.org/mcp"
+    }
+  }
+}
+```
 
-You do not need to memorize tool names. Examples:
+3. Save and **restart Cursor** or reload MCP servers from settings.
+4. In chat, confirm tools appear (six verbs including run and probe capabilities).
+5. Run the [first prompt](#after-you-connect-try-this-first) above.
 
-- *"Simulate bytecode `0x600100` under Glamsterdam and tell me the gas used."*
-- *"What can I run under Glamsterdam on this server without picking an EIP?"*
-- *"What EIPs does the Feel Your Protocol MCP server support?"*
-- *"Run a 1 wei transfer to an empty account on Glamsterdam vs Fusaka — what gas would a wallet need?"*
-- *"Run two transfers as one Glamsterdam block and show the receipts."*
-- *"Run ModExp gas compare on Pectra vs Fusaka."*
+Remote HTTP MCP requires a Cursor build that supports URL transport — update Cursor if the server fails to connect once the endpoint is live.
 
-The agent should route these to `run_bytecode`, `run_transaction`, `run_block`, or `describe_capabilities`.
+---
+
+## Claude (Desktop)
+
+1. Open **Settings → Developer → Edit Config** (MCP configuration location varies slightly by Claude Desktop version — use the official “custom MCP server” docs for your install).
+2. Register the same URL:
+
+```json
+{
+  "mcpServers": {
+    "feel-your-protocol": {
+      "url": "https://mcp.feelyourprotocol.org/mcp"
+    }
+  }
+}
+```
+
+3. Restart Claude Desktop.
+4. Start a new conversation and ask the [first prompt](#after-you-connect-try-this-first).
+
+If your Claude product only lists pre-approved connectors today, save this config and retry at launch — we document the stable URL here.
+
+---
+
+## OpenAI Codex / CLI agents
+
+Point your MCP-capable Codex or agent CLI at the same HTTP endpoint. Exact flag names depend on the client; the invariant is:
+
+- **Transport:** HTTP MCP at `https://mcp.feelyourprotocol.org/mcp`
+- **Discovery:** allow the host to list tools from the server
+- **First test:** the [8037 prompt](#after-you-connect-try-this-first)
+
+When OpenAI ships or updates Codex MCP wiring, this URL stays the single integration point — no per-EIP endpoints.
+
+---
+
+## Other MCP hosts
+
+Any host that supports **remote MCP over HTTP** can use:
+
+| Field | Value |
+| --- | --- |
+| URL | `https://mcp.feelyourprotocol.org/mcp` |
+| Auth at launch | none |
+
+After connect, prefer natural-language questions. The agent should call the server’s generic tools (`run_bytecode`, `run_transaction`, `run_block`, …) — you do not need to memorize them. Optional compare: ask for the **same question on Fusaka then Amsterdam** and diff gas or receipts.
+
+## What the server exposes
+
+At launch you get probe + run + artifact tools covering Amsterdam and the earlier fork lineage. Machine-readable schemas live under [Reference → Tool schemas](/use/tools/describe-capabilities). Human “what can I ask?” lives on [What you can ask](/use/capabilities).
 
 ## Changelog
 
 <Changelog
   title="Connect Changelog"
   :entries="[
+    { version: 'v0.14', date: '2026-10-01', summary: 'Cursor, Claude, Codex, and generic HTTP MCP setup; first-test prompt; launch still pending.' },
     { version: 'v0.13', date: '2026-10-01', summary: 'Launch connect is free. Client config still lands with the endpoint.' },
     { version: 'v0.12', date: '2026-09-16', summary: 'Example prompt for a generic Glamsterdam run with no EIP named.' },
     { version: 'v0.10', date: '2026-09-08', summary: 'Added run_transaction; renamed run_evm_bytecode → run_bytecode.' },

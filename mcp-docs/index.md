@@ -3,38 +3,27 @@ layout: home
 
 hero:
   name: Feel Your Protocol
-  text: MCP Server Documentation
-  tagline: Open public launch week 5–9 October 2026 — full Glamsterdam, no payment. Explorations live on feelyourprotocol.org today; agents connect at mcp.feelyourprotocol.org when we ship.
+  text: MCP server for the next Ethereum
+  tagline: Deterministic Amsterdam simulations for your agent — free at public launch, 5–9 October 2026. Start with Connect or read Why this server.
   actions:
     - theme: brand
-      text: Use the server
+      text: Connect
+      link: /use/connect
+    - theme: alt
+      text: Why this server
       link: /use/introduction
-    - theme: alt
-      text: Look inside
-      link: /internals/architecture
-    - theme: alt
-      text: Runtime agents
-      link: /use/runtime-agents
 
 features:
-  - title: Use the server
-    details: Capabilities, tool reference, connection, coverage, and guarantees — for agent operators and integrators. No TypeScript internals.
-    link: /use/introduction
-  - title: Look inside
-    details: Architecture, repositories, execution engine API, quality procedures, deployment shape, and how this site relates to the roadmap.
-    link: /internals/architecture
-  - title: Runtime agents
-    details: MCP-first playbook for connected agents — plain language to humans, llms.txt index, provenance when reporting results.
-    link: /use/runtime-agents
-  - title: Vision (Roadmap)
-    details: Strategic sketches and draft concepts stay on the roadmap site. This site documents shipped or in-progress reality.
-    link: /internals/roadmap-relationship
+  - title: Connect
+    details: Cursor, Claude, Codex — one hosted URL and a first prompt to try when we go live.
+    link: /use/connect
+  - title: Amsterdam now
+    details: Full Glamsterdam hardfork at launch. Gas, receipts, and bytecode under upcoming rules.
+    link: /use/forks/glamsterdam
+  - title: What you can ask
+    details: Wallet gas, opcodes, storage pricing, lab blocks — five jobs, no tool memorization.
+    link: /use/capabilities
+  - title: Browser explorations
+    details: Prefer clicking through a change first? Same questions on feelyourprotocol.org.
+    link: https://feelyourprotocol.org
 ---
-
-::: warning Public launch — countdown
-**The Feel Your Protocol MCP server has not launched publicly yet.**
-
-**Target: launch week 5–9 October 2026** — hosted HTTP at **`mcp.feelyourprotocol.org`**, free, with the full Glamsterdam hardfork. Details: [roadmap launch page](https://roadmap.feelyourprotocol.org/roadmap/launch.html). Access after that: [Pricing](/use/pricing).
-
-**Live now:** [Interactive explorations](https://feelyourprotocol.org) on the main website — the textbook slice of each EIP.
-:::

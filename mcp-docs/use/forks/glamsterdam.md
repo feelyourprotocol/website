@@ -1,63 +1,62 @@
-# Preview & upcoming forks — Glamsterdam
+# Amsterdam now
 
-> **Status:** **Ready for the public MCP** (not launched). **Default lab fork** — run under Glamsterdam **without naming an EIP**.
+::: info Naming
+**Glamsterdam** is the catalog id; **`amsterdam`** is the Ethereum execution-layer alias. Both mean the same fork here. Default when you omit `fork`.
+:::
 
-This page is the home for **preview** execution-layer hardforks on the MCP: what you can run *before* mainnet catches up. When mainnet moves on, the [current mainnet](/use/forks/fusaka) page is updated; the next scheduled fork gets a page here (e.g. **Hegota** after Glamsterdam ships — same section, new row in the probe).
+At launch this is the **free** product surface: the full upcoming Amsterdam hardfork on the hosted MCP, plus everything bundled with it. You do not need to name an EIP — ask about behavior and let your agent pick the run shape.
 
-## Glamsterdam today
+Prefer the visual twin? Many of these changes have [browser explorations](https://feelyourprotocol.org) on the main site.
 
-**Glamsterdam** (EL alias **`amsterdam`**) is the upcoming EL fork and the **default** when you omit `fork`. You can run caller-supplied bytecode, a paid transaction, or a small lab block under Glamsterdam rules.
+## Start with these questions
 
-You do **not** need to name an EIP. Omit `fork` or pass `{ "baseHardfork": "glamsterdam", "eips": [] }`. The probe lists `summary`, `keywords`, **`tools`**, and advertised **`relatedEips`**.
+These are the highest-signal checks for integrators and auditors — exact gas and receipts, not LLM guesses.
 
-**Advertised runnable twins:**
-
-| EIP | Page |
+| Question | Twin |
 | --- | --- |
-| 2780 | [Intrinsic transaction gas](/use/eips/eip-2780) |
-| 8024 | [DUPN / SWAPN / EXCHANGE](/use/eips/eip-8024) |
-| 7843 | [SLOTNUM](/use/eips/eip-7843) |
-| 7708 | [ETH transfer logs](/use/eips/eip-7708) |
-| 7928 | [BAL](/use/eips/eip-7928) (`generate_artifact` / `inspect_artifact`) |
-| 7954 | [Contract size limits](/use/eips/eip-7954) |
-| 8037 | [State creation gas](/use/eips/eip-8037) |
-| 8038 | [State-access gas](/use/eips/eip-8038) |
+| What intrinsic gas does a simple transfer use? | [EIP-2780](/use/eips/eip-2780) |
+| What does the first 1 wei to an empty account cost? | [EIP-8037](/use/eips/eip-8037) |
+| How does SSTORE on an existing slot price vs today’s mainnet? | [EIP-8038](/use/eips/eip-8038) |
+| Does a value transfer show up as a receipt log? | [EIP-7708](/use/eips/eip-7708) |
 
-## What you can ask your agent
+**Example prompts**
 
-- *“Run this bytecode under Glamsterdam and tell me the gas used.”*
-- *“Simulate a 1 wei transfer to an empty account under Glamsterdam.”*
-- *“What can I run under Glamsterdam on this server — without picking an EIP?”*
-- *“Run the same program on Fusaka then Glamsterdam and diff gas and success.”*
+- *“What intrinsic gas does a plain ETH transfer use on Amsterdam?”*
+- *“Send 1 wei to an empty account on Amsterdam — wallet gas breakdown.”*
+- *“SSTORE value 7 into slot 3 — Amsterdam vs Fusaka gas.”*
+- *“Transfer 1 ETH — what logs appear in the receipt on Amsterdam?”*
 
-## Workflow
+## Also on Amsterdam
 
-| Step | Action |
+| Topic | Twin |
 | --- | --- |
-| 1 | [Describe Capabilities](/use/tools/describe-capabilities) — `namedForks`, `eipIntroductions`, Glamsterdam `relatedEips` |
-| 2 | [Run bytecode](/use/tools/run-bytecode), [Run transaction](/use/tools/run-transaction), or [Run block](/use/tools/run-block) — default Glamsterdam; [Fusaka](/use/forks/fusaka) optional for mainnet-today compare |
+| Contract creation size limit | [EIP-7954](/use/eips/eip-7954) |
+| Block access lists (generate / inspect) | [EIP-7928](/use/eips/eip-7928) |
+| DUPN / SWAPN / EXCHANGE | [EIP-8024](/use/eips/eip-8024) |
+| SLOTNUM opcode / header slot in lab blocks | [EIP-7843](/use/eips/eip-7843) |
 
-## Fork caveat
+## Compare to mainnet today
 
-The Glamsterdam hardfork **bundles** the advertised modules. `eips: [8024]` is accepted but is **not** a before/after toggle on Glamsterdam itself.
+When you care about **before vs after**, ask for the same experiment on **Fusaka** (today’s mainnet EL) and **Amsterdam**, then diff gas or success. One Amsterdam-only run is always valid.
 
-**Preview vs mainnet today:** run **`fusaka`** then **`glamsterdam`** (`baselineForkId` is Fusaka until mainnet changes). For one EIP, use **`eipIntroductions`**: compare predecessor vs **`introducedAt`** (Glamsterdam twins → usually Fusaka vs Glamsterdam).
+[Fusaka (mainnet)](/use/forks/fusaka) · [Historical forks](/use/forks/historical-forks)
 
-Other bundled changes are **`eipIntroductions`** rows, not extra tools. **`coverage: "supported"`** means the hardfork already applies the rule: leave `eips` empty and use this fork's tools. There is no exploration and no per-EIP page. EIP-8246 (SELFDESTRUCT no longer burns ETH) is the first. **`coverage: "listed"`** is a name and a fork only.
+## How your agent runs it
 
-Generic Glamsterdam provenance keeps `eips: []` and lists advertised modules in **`perEip`**. If a request names a supported id such as `8246`, the lab drops it and notes that on `provenance.caveat`.
+1. Connect — [Connect](/use/connect)
+2. Ask in plain language — [What you can ask](/use/capabilities)
+3. Optional deep dive — per-EIP pages above or the full [EIP catalogue](/use/coverage)
 
-Consensus-layer EIPs scheduled with Glamsterdam are **`coverage: "consensus"`** and are not in the execution bundle: 7688, 7732, 8045, 8061. This lab does not execute them, and there is no page for each one. Naming one in `eips` is rejected.
+Bundled rule changes that do not have their own exploration (for example SELFDESTRUCT no longer burning ETH) still apply on Amsterdam; your agent uses generic Amsterdam runs without naming those ids.
 
-Networking EIPs are **`coverage: "networking"`**: 7975, 8070, 8136, 8159, 8189. Informational EIPs are **`coverage: "informational"`**: 7904, 8261. Same handling: no page, not in the execution bundle, and naming one in `eips` is rejected.
+Consensus-layer and networking EIPs scheduled beside Amsterdam are **not** executed in this lab — the [EIP catalogue](/use/coverage) notes which ids to omit.
 
 ## Related
 
 | | |
 | --- | --- |
-| [Current mainnet (Fusaka)](/use/forks/fusaka) | Today’s EL baseline |
-| [Historical forks](/use/forks/historical-forks) | Paris → Pectra |
-| [EIP catalogue](/use/coverage) | Lineage + EIP twins |
+| [Pricing](/use/pricing) | Free at launch; paid tier for EIPs ahead of Amsterdam later |
+| [Limits](/use/guarantees) | Determinism, BYOS, ceilings |
 | [EIP-7773](https://eips.ethereum.org/EIPS/eip-7773) | Glamsterdam meta |
 
 ## Changelog
@@ -65,6 +64,7 @@ Networking EIPs are **`coverage: "networking"`**: 7975, 8070, 8136, 8159, 8189. 
 <Changelog
   title="Preview Forks (Glamsterdam) Changelog"
   :entries="[
+    { version: 'v1.0', date: '2026-10-01', summary: 'User-first Amsterdam page — gas/receipt questions first; probe jargon moved to catalogue.' },
     { version: 'v0.9', date: '2026-09-29', summary: 'EIP-2780 intrinsic gas joins the advertised Glamsterdam twins.' },
     { version: 'v0.8', date: '2026-09-29', summary: 'Networking (7975, 8070, 8136, 8159, 8189) and informational (7904, 8261) EIPs are out of this lab.' },
     { version: 'v0.7', date: '2026-09-29', summary: 'Consensus EIPs 7688, 7732, 8045, and 8061 are coverage consensus — out of this lab.' },

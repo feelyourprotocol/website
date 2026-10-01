@@ -5,7 +5,7 @@ const MCP_DOCS_ORIGIN = 'https://mcp-docs.feelyourprotocol.org'
 
 const MCP_DOCS_TITLE = 'Feel Your Protocol MCP Docs'
 const MCP_DOCS_DESCRIPTION =
-  'Concrete documentation for the Feel Your Protocol MCP server — deterministic future-Ethereum-protocol simulations for AI agents, tool reference, and technical setup.'
+  'Connect your agent to a deterministic Ethereum lab — Amsterdam at launch, free. Prompts, limits, and reference for the Feel Your Protocol MCP server.'
 
 /** Stable path under `mcp-docs/public/og/` — copied to `dist/mcp-docs/og/` on build. */
 const MCP_DOCS_OG_IMAGE_PATH = '/og/default.webp'
@@ -70,46 +70,44 @@ export default defineConfig({
     siteTitle:
       '<span class="fyp-nav-title"><span class="fyp-nav-title-main">Feel Your Protocol</span><span class="fyp-nav-title-sub">MCP Docs</span></span>',
     nav: [
-      { text: 'Use', link: '/use/introduction' },
-      { text: 'Internals', link: '/internals/architecture' },
-      { text: 'All Docs', link: 'https://docs.feelyourprotocol.org' },
-      { text: 'Roadmap', link: 'https://roadmap.feelyourprotocol.org' },
-      { text: 'Website Docs', link: 'https://website-docs.feelyourprotocol.org' },
+      { text: 'Get started', link: '/use/introduction' },
+      { text: 'Connect', link: '/use/connect' },
       { text: 'Website', link: 'https://feelyourprotocol.org' },
+      { text: 'All docs', link: 'https://docs.feelyourprotocol.org' },
+      { text: 'Internals', link: '/internals/architecture' },
     ],
     sidebar: {
       '/use/': [
         {
-          text: 'Use',
+          text: 'Get started',
           items: [
-            { text: 'Introduction', link: '/use/introduction' },
-            { text: 'Capabilities', link: '/use/capabilities' },
+            { text: 'Why this server', link: '/use/introduction' },
             { text: 'Connect', link: '/use/connect' },
-            {
-              text: 'Tools',
-              collapsed: false,
-              items: [
-                { text: 'Describe Capabilities', link: '/use/tools/describe-capabilities' },
-                { text: 'Run Bytecode', link: '/use/tools/run-bytecode' },
-                { text: 'Run Transaction', link: '/use/tools/run-transaction' },
-                { text: 'Run Block', link: '/use/tools/run-block' },
-                { text: 'Generate Artifact', link: '/use/tools/generate-artifact' },
-                { text: 'Inspect Artifact', link: '/use/tools/inspect-artifact' },
-              ],
-            },
-            { text: 'EIP catalogue', link: '/use/coverage' },
-            {
-              text: 'Forks',
-              collapsed: false,
-              items: [
-                { text: 'Preview — Glamsterdam', link: '/use/forks/glamsterdam' },
-                { text: 'Mainnet — Fusaka', link: '/use/forks/fusaka' },
-                { text: 'Historical (Berlin → Pectra)', link: '/use/forks/historical-forks' },
-              ],
-            },
-            { text: 'Guarantees', link: '/use/guarantees' },
+            { text: 'Amsterdam now', link: '/use/forks/glamsterdam' },
+            { text: 'What you can ask', link: '/use/capabilities' },
+            { text: 'Limits', link: '/use/guarantees' },
             { text: 'Pricing', link: '/use/pricing' },
-            { text: 'Runtime agents', link: '/use/runtime-agents' },
+            {
+              text: 'Reference',
+              collapsed: true,
+              items: [
+                { text: 'EIP catalogue', link: '/use/coverage' },
+                { text: 'Mainnet — Fusaka', link: '/use/forks/fusaka' },
+                { text: 'Historical forks', link: '/use/forks/historical-forks' },
+                {
+                  text: 'Tool schemas',
+                  collapsed: true,
+                  items: [
+                    { text: 'Describe Capabilities', link: '/use/tools/describe-capabilities' },
+                    { text: 'Run Bytecode', link: '/use/tools/run-bytecode' },
+                    { text: 'Run Transaction', link: '/use/tools/run-transaction' },
+                    { text: 'Run Block', link: '/use/tools/run-block' },
+                    { text: 'Generate Artifact', link: '/use/tools/generate-artifact' },
+                    { text: 'Inspect Artifact', link: '/use/tools/inspect-artifact' },
+                  ],
+                },
+              ],
+            },
           ],
         },
       ],
@@ -124,7 +122,6 @@ export default defineConfig({
             { text: 'Quality', link: '/internals/quality' },
             { text: 'Deployment', link: '/internals/deployment' },
             { text: 'Design Principles', link: '/internals/design-principles' },
-            { text: 'Roadmap vs MCP Docs', link: '/internals/roadmap-relationship' },
             { text: 'Contributing', link: '/internals/contributing' },
           ],
         },
@@ -139,7 +136,7 @@ export default defineConfig({
     },
     footer: {
       message:
-        'Use = end-user reference. Internals = architecture and operations. Each section carries its own micro-changelog.',
+        'Get started = connect and ask questions. Reference = catalogues and tool schemas. Internals = for builders.',
       copyright: 'Feel Your Protocol',
     },
   },

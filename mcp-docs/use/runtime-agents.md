@@ -1,65 +1,26 @@
 # Runtime agents
 
-> **Audience:** AI agents with (or about to use) the **feel-your-protocol** MCP server — not human onboarding, not server development.
+::: info Humans start elsewhere
+If you are connecting an agent for the first time, use **[Connect](/use/connect)** and **[What you can ask](/use/capabilities)**. This page is a short pointer for automated readers.
+:::
 
-## Source of truth
+When the **feel-your-protocol** MCP server is connected, trust the **live server** first:
 
-When MCP is **connected**, trust the live server first:
+1. **`listTools`** — names, descriptions, input schemas  
+2. **`describe_capabilities`** — forks, runnable EIPs, opcodes, ceilings, spec snapshots  
 
-1. **`listTools`** — tool names, descriptions, and input schemas
-2. **`describe_capabilities`** — `baselineForkId`, `namedForks` (Berlin→Glamsterdam lineage: order, predecessorId, activatedEips, related twins, **`tools`**), `queryShapes` (catalog id → MCP tool), `eipIntroductions` (`coverage` is `twin`, `supported`, `listed`, `consensus`, `networking`, or `informational`; `observableTools` are MCP names — omit `supported` ids from `eips`; do not put `consensus`, `networking`, or `informational` ids in `eips`), runnable EIP modules with **`tools`** and derived comparison pairs, opcodes, encoding, ceilings, and spec snapshot fields (`specUrl`, `specDate`, `status`, `testReleaseName` or a live EIP page)
+Markdown on this site can lag a release; the probe and schemas cannot.
 
-Markdown on this site is **secondary**. It can lag behind a gateway release; the probe response and tool schemas cannot.
+**Machine-readable index:** [`/llms.txt`](/llms.txt) · **Full use-layer text:** [`/llms-full.txt`](/llms-full.txt)
 
-**If MCP is connected and working, you usually do not need this page** — unless the user pasted a doc URL or you need behavior rules below.
-
-## Not this page
-
-| If you are… | Go to… |
-| --- | --- |
-| A **human** connecting or exploring | [Connect](/use/connect), [EIP catalogue](/use/coverage), [EIP-8024](/use/eips/eip-8024) |
-| **Extending** the engine or gateway | [Contributing](/internals/contributing) → [mcp-execution-engine AGENTS.md](https://github.com/feelyourprotocol/mcp-execution-engine/blob/main/AGENTS.md) |
-
-## Calling tools
-
-1. Probe first — learn what is runnable, how opcodes encode, and which EIP spec snapshot this lab implements
-2. Run with **caller-supplied** inputs on the fork you need (default **glamsterdam**). A generic hardfork run does **not** require an EIP number — omit `eips[]`. Use **`run_bytecode`** for opcodes/precompiles and program-gas SSTORE/SLOAD; **`run_transaction`** for wallet gas, first-touch transfers, receipt logs, and `txStateGas`; **`run_block`** for several txs or a header slot; **`generate_artifact`** for lab BAL JSON; **`inspect_artifact`** for caller-supplied structure/hash. Prefund / code / storage in the **same** request when the observation needs a constructed world. Each call is a **new** lab unless you pass that prestate again. Use **fusaka** when the question is current mainnet EL (or a compare against it) — this server does not ship demo programs
-3. **Do not** substitute the `mcp-execution-engine` lab, `npm run lab`, or repository source unless MCP is unavailable
-
-## Replying to humans
-
-When the user is a **human** (exploring protocol changes, not integrating the server):
-
-- Answer in **plain language** about behavior and results (gas, success, stack, traces)
-- **Call MCP tools silently**
-- Do **not** expose tool names, JSON field names (such as `baseHardfork`), raw hex, or request payloads unless the user explicitly asks for implementation detail
-- If the question is about a **specific EIP**, mention the spec snapshot **once** in that first answer (status, update date, named test release — or that the lab uses the live EIP page). Do not repeat it on every later gas number unless they ask what the result is based on
-
-## Reporting results
-
-Always cite **`provenance.engineVersion`** and **`provenance.forkConfig`** when reporting simulation outcomes. On a generic Glamsterdam run, `forkConfig.eips` is empty and `perEip` lists advertised modules (machine record — do not dump every spec URL into the human answer). Historical forks may include **`provenance.predecessorForkId`** for compare hints.
-
-When the caller **names** an EIP (`eips: [NNNN]`), `provenance.caveat` includes a compact **`Spec:`** clause (status, date or live page, named test release). Use that for the one-time human note. Generic fork runs keep the same facts on `perEip` only.
-
-## When you are reading docs (no MCP)
-
-Use this order:
-
-1. [Capabilities](/use/capabilities) — query shapes
-2. Per-tool reference: [Discover](/use/tools/describe-capabilities), [Run bytecode](/use/tools/run-bytecode), [Run transaction](/use/tools/run-transaction), [Run block](/use/tools/run-block), [Generate artifact](/use/tools/generate-artifact), [Inspect artifact](/use/tools/inspect-artifact)
-3. [Guarantees](/use/guarantees) — determinism, provenance, ceilings
-
-**Machine-readable index:** [`/llms.txt`](/llms.txt)
-
-**Full use-layer text:** [`/llms-full.txt`](/llms-full.txt)
-
-**JSON schemas:** [describe_capabilities](/schemas/describe_capabilities.input.json), [run_bytecode](/schemas/run_bytecode.input.json), [run_transaction](/schemas/run_transaction.input.json), [run_block](/schemas/run_block.input.json), [generate_artifact](/schemas/generate_artifact.input.json), [inspect_artifact](/schemas/inspect_artifact.input.json)
+**Behavior rules for connected agents** (plain language to humans, probe before run, cite provenance, do not substitute local lab scripts) live in **`llms.txt`** and **`llms-full.txt`** — not duplicated here.
 
 ## Changelog
 
 <Changelog
   title="Runtime Agents Changelog"
   :entries="[
+    { version: 'v0.20', date: '2026-10-01', summary: 'Stub — playbook moved to llms.txt; humans use Connect and What you can ask.' },
     { version: 'v0.19', date: '2026-09-29', summary: 'Probe coverage adds networking and informational; do not put those ids in eips.' },
     { version: 'v0.18', date: '2026-09-22', summary: 'Probe queryShapes + tools (MCP names); do not call catalog shape ids.' },
     { version: 'v0.17', date: '2026-09-22', summary: 'Routing includes generate_artifact and inspect_artifact.' },

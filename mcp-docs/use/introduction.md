@@ -1,39 +1,64 @@
-# Introduction
+# Why this server
 
-> **Status:** **MCP server — not publicly launched.** This docs site is live; **`mcp.feelyourprotocol.org` is planned.** Until then, use the [website explorations](https://feelyourprotocol.org).
+::: info Prefer the browser?
+**[feelyourprotocol.org](https://feelyourprotocol.org)** is the interactive textbook — no MCP setup. This site is for people who want their **agent** to run exact protocol experiments.
+:::
 
-## For most visitors
+## Public launch
 
-If you heard about Feel Your Protocol from the community or Bankr and want to **explore Ethereum protocol changes interactively**, start on the main site:
+**5–9 October 2026** — we open **`https://mcp.feelyourprotocol.org/mcp`**. The endpoint is **not live yet**; [Connect](/use/connect) has the client steps so you can wire your agent before go-live.
 
-**[feelyourprotocol.org](https://feelyourprotocol.org)** — browser explorations (textbook). No install, no MCP config.
+| | |
+| --- | --- |
+| **Cost at launch** | Free — full Amsterdam (Glamsterdam) hardfork, no wallet, no API key |
+| **What you bring** | Bytecode, transactions, optional demo accounts per call (no mainnet RPC) |
+| **Later** | New EIPs ahead of Amsterdam move to a paid tier — [Pricing](/use/pricing) · [roadmap launch](https://roadmap.feelyourprotocol.org/roadmap/launch.html) |
 
-This MCP docs site describes the **lab equipment** we are building: a headless server so agents can run the same problem sets with arbitrary inputs. That product is **in progress** — not something you connect to from the web today.
+## The gap
 
-| What | Status | Who it is for |
-| --- | --- | --- |
-| [Website explorations](https://feelyourprotocol.org) | **Live** | Everyone — curiosity, learning, feeling the protocol |
-| **Public MCP endpoint** (`mcp.feelyourprotocol.org`) | **Not launched** | Agents and integrators — [Connect](/use/connect) when it ships |
+Large language models sound confident about gas, opcodes, and fork diffs. They are not executing the EVM. When Amsterdam lands, a wrong intrinsic gas number or a missed first-touch state cost is not a typo — it is a product bug waiting in your wallet logic, your deploy script, or your audit report.
 
-## What the MCP server will do (when launched)
+Feel Your Protocol closes that gap with a **hosted lab**: the same EthereumJS execution stack that powers our public explorations, exposed to your agent through MCP. You ask in plain language; the server runs under the fork you need and returns **deterministic** results — gas, receipts, traces, provenance — not a guess.
 
-Feel Your Protocol will provide a **headless MCP server** wrapping the EthereumJS stack so AI agents can run **exact, deterministic simulations** of the *future* Ethereum protocol — upcoming forks, EIPs, and research — and receive rich JSON traces they can reason over.
+**How a run works:** your question → your agent → one isolated lab run → fork, gas, and traces you can cite.
 
-At launch the hosted server will expose six MCP tools — `describe_capabilities`, `run_bytecode`, `run_transaction`, `run_block`, `generate_artifact`, and `inspect_artifact` — covering the **full Glamsterdam hardfork** and the earlier forks already in the catalogue. EIP catalogue pages describe how each exploration maps to agent prompts once you can connect.
+## Why this implementation
 
-**Launch is free.** No wallet, no API key. Newer EIPs that are still ahead of Glamsterdam (first expected: frame transactions, EIP-8141) become a paid tier a few weeks later. See [Pricing](/use/pricing).
+| You get | Why it matters |
+| --- | --- |
+| **Amsterdam by default** | The upcoming hardfork is the product at launch — full Glamsterdam rules, not a cherry-picked demo. |
+| **Bring your own state** | Bytecode, transactions, and demo accounts travel in the same call. No archive node, no “trust our mainnet fork.” |
+| **Generic verbs** | One server answers opcode, wallet-gas, and small-block questions — your agent picks the shape, not twenty EIP endpoints. |
+| **Honest scope** | No Solidity compile, no chain RPC, no multi-block historical replay. What we refuse is as important as what we run. |
 
-## Mental model
+## Try these first on Amsterdam
 
-From the [two-legs vision](https://roadmap.feelyourprotocol.org/vision/two-legs.html): the explorations **website** is the textbook; the **MCP server** is the lab equipment. The textbook is live; the hosted lab is not open yet.
+After [Connect](/use/connect), paste a prompt — you do not need EIP numbers in conversation.
 
-For architecture, repositories, and build procedures, see [Internals](/internals/architecture). For vision and draft concepts, see the [roadmap site](https://roadmap.feelyourprotocol.org).
+| Ask your agent | Twin |
+| --- | --- |
+| *“What intrinsic gas does a simple ETH transfer use under Amsterdam?”* | [EIP-2780](/use/eips/eip-2780) |
+| *“Send 1 wei to an empty account on Amsterdam — what gas does the wallet need?”* | [EIP-8037](/use/eips/eip-8037) |
+| *“How does SSTORE on an existing slot price on Amsterdam vs Fusaka?”* | [EIP-8038](/use/eips/eip-8038) |
+| *“Does a value transfer emit a receipt log on Amsterdam?”* | [EIP-7708](/use/eips/eip-7708) |
+
+More on the Amsterdam bundle: [deploy limits](/use/eips/eip-7954), [block access lists](/use/eips/eip-7928), [stack opcodes](/use/eips/eip-8024), [SLOTNUM](/use/eips/eip-7843). Already on mainnet here: [ModExp](/use/eips/eip-7883), [P-256](/use/eips/eip-7951) on Fusaka.
+
+## Where to go next
+
+1. **[Connect](/use/connect)** — Cursor, Claude, Codex, and a generic MCP config (steps ready before the URL goes live).
+2. **[Amsterdam now](/use/forks/glamsterdam)** — the fork bundle and the questions we highlight first.
+3. **[What you can ask](/use/capabilities)** — five jobs this server is built for.
+
+Want to click through a change first? The [website explorations](https://feelyourprotocol.org) are the visual twin of many Amsterdam EIPs — same questions, human UI.
 
 ## Changelog
 
 <Changelog
   title="Introduction Changelog"
   :entries="[
+    { version: 'v0.16', date: '2026-10-01', summary: 'Launch table and Amsterdam prompt table moved from home — home is hero + features only.' },
+    { version: 'v0.15', date: '2026-10-01', summary: 'User-facing rewrite — why deterministic Amsterdam lab; removed internals-first framing.' },
     { version: 'v0.14', date: '2026-10-01', summary: 'Launch is a free Glamsterdam MCP. Paid tier for newer EIPs comes later.' },
     { version: 'v0.13', date: '2026-09-22', summary: 'Six launch tools — generate_artifact and inspect_artifact with the four run/probe verbs.' },
     { version: 'v0.11', date: '2026-09-08', summary: 'Three launch tools — describe_capabilities, run_bytecode, run_transaction.' },
