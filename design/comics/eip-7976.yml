@@ -1,0 +1,80 @@
+# Bro & Bruh comic metadata — schema bro-bruh-comic/v1
+# Keep this key set when adding files. Do not rename keys.
+schema: bro-bruh-comic/v1
+id: eip-7976
+episode: 9
+series: bro-bruh
+image: eip-7976.jpg
+
+exploration:
+  id: eip-7976
+  eip: 7976
+  name: EIP-7976 Increase Calldata Floor Cost
+  core_question: >-
+    When does calldata cost 64 gas per byte, and when does a normal call
+    still pay 4 and 16?
+
+engine: false-friend
+bridge:
+  word: FLOOR
+  trader_sense: the price he will not sell this bag under
+  protocol_sense: the calldata floor a quiet call pays, 64 gas per byte
+
+vibe:
+  slug: l2-island-fatigue
+  topic: people are tired of hopping separate L2 books
+  register: l2
+  recency: 2026-09
+  why_hot: >-
+    A late-September thread asked whether L2s have become isolated islands
+    and whether hopping between them is worth it
+  why_narrative: >-
+    FLOOR is Bruh refusing to hop and holding one bag, and the calldata
+    floor Bro is dwelling on. The islands stay out of both bubbles.
+  repeat_of: null
+
+setting:
+  name: night-shift bakery proofing room
+  why: >-
+    Shared bench, rising dough, warm lamps. Not a trading floor and not a
+    literal floor close-up.
+
+easter_egg: >-
+  Bench scraper with a tiny purple-to-cyan Ethereum octahedron etched on
+  the blade
+
+copy:
+  panel1_bruh: >-
+    I WON'T HOP BOOKS. I HOLD THE FLOOR ON THIS BAG. THE REST CAN WAIT.
+  panel2_bro: >-
+    EIP-7976 — DATA THAT DOES LITTLE ELSE PAYS THE FLOOR. REAL WORK KEEPS
+    THE OLD RATE.
+  panel2_affect: dreaming
+  title: '*BRO & BRUH EPISODE 9'
+  cta: A NEW FEEL YOUR PROTOCOL EXPLORATION HAS ARRIVED, CHECK IT OUT!
+
+tweet:
+  body: |-
+    When calldata does little else, every byte pays the floor. A call that does real work keeps 4 and 16.
+
+    https://feelyourprotocol.org/eip-7976-calldata-floor-cost
+  url: https://feelyourprotocol.org/eip-7976-calldata-floor-cost
+  alt: >-
+    Bro & Bruh episode 9, two-panel comic in a night-shift bakery proofing
+    room. Panel 1: Bruh, short dark hair and green hoodie, shapes dough and
+    thinks: I WON'T HOP BOOKS. I HOLD THE FLOOR ON THIS BAG. THE REST CAN
+    WAIT. The word FLOOR is dark red. Bro, blonde ponytail and backwards
+    teal FYP cap, shapes the next loaf and looks elsewhere. A bench scraper
+    carries a tiny purple-to-cyan Ethereum octahedron. Panel 2: close-up of
+    Bro, half-lidded, blushing, pink hearts around his face. He thinks:
+    EIP-7976 — DATA THAT DOES LITTLE ELSE PAYS THE FLOOR. REAL WORK KEEPS
+    THE OLD RATE. FLOOR is dark red again. Bottom-left: original circular
+    FYP mark and feelyourprotocol.org. Yellow box: A NEW FEEL YOUR PROTOCOL
+    EXPLORATION HAS ARRIVED, CHECK IT OUT!
+  intent: https://x.com/intent/post?text=When%20calldata%20does%20little%20else%2C%20every%20byte%20pays%20the%20floor.%20A%20call%20that%20does%20real%20work%20keeps%204%20and%2016.%0A%0Ahttps%3A%2F%2Ffeelyourprotocol.org%2Feip-7976-calldata-floor-cost
+
+notes: >-
+  Bridge FLOOR is consumed. Setting night-shift bakery and bench-scraper
+  octahedron are consumed. Do not reuse l2-island-fatigue. Panel 2 affect
+  stays dreaming. Do not set a later strip on a trading floor to chase this
+  word.

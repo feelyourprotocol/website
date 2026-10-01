@@ -9,6 +9,7 @@ You do not talk to the EVM in JSON. You talk to **your agent**, and the agent ca
 **Example prompts**
 
 - *“What intrinsic gas does a plain ETH transfer use on Amsterdam?”* → [EIP-2780](/use/eips/eip-2780)
+- *“This calldata is mostly zeros. What does it cost on Amsterdam versus Fusaka?”* → [EIP-7976](/use/eips/eip-7976)
 - *“Deploy a contract this size on Amsterdam — do I hit the limit?”* → [EIP-7954](/use/eips/eip-7954)
 - *“Does this transfer emit a log in the receipt on Amsterdam?”* → [EIP-7708](/use/eips/eip-7708)
 - *“First 1 wei to an empty account — break down regular vs state gas.”* → [EIP-8037](/use/eips/eip-8037)

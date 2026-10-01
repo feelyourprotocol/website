@@ -3,6 +3,7 @@ import './bootstrap-playwright-env.ts'
 import { assertChromiumReady } from './check-browsers.ts'
 import { OG_HEIGHT, OG_WIDTH } from './config.ts'
 import { generateAllOgImages, generateExplorationOg, generateTopicOg } from './generate.ts'
+import { generateMcpDocsOg } from './generate-mcp-docs-og.ts'
 import { generateRoadmapOg } from './generate-roadmap-og.ts'
 
 function usage(): never {
@@ -10,6 +11,7 @@ function usage(): never {
   npm run generate -- exploration <id>   e.g.  npm run generate -- exploration eip-7883
   npm run generate -- topic <id>         e.g.  npm run generate -- topic scaling
   npm run generate -- roadmap            e.g.  npm run generate -- roadmap
+  npm run generate -- mcp-docs           e.g.  npm run generate -- mcp-docs
   npm run generate -- all`)
   process.exit(1)
 }
@@ -27,6 +29,12 @@ async function main(): Promise<void> {
 
   if (command === 'roadmap') {
     const outPath = await generateRoadmapOg()
+    console.log(`Wrote ${outPath} (${OG_WIDTH}×${OG_HEIGHT})`)
+    return
+  }
+
+  if (command === 'mcp-docs') {
+    const outPath = await generateMcpDocsOg()
     console.log(`Wrote ${outPath} (${OG_WIDTH}×${OG_HEIGHT})`)
     return
   }

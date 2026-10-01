@@ -73,7 +73,7 @@ Fast-moving sections embed `<Changelog :entries="…" />` with a short manual en
 
 Meta tags (canonical, Open Graph, Twitter) are injected at build time via `transformHead` in `.vitepress/config.ts`, plus a generated `sitemap.xml`.
 
-**Open Graph image** — generate at 1200×630 from `public/og/render.html` (add `generate:og:mcp-docs` to the `og/` package when needed). Until then, copy or generate `public/og/default.webp` before first social share.
+**Open Graph image** — `npm run generate:og:mcp-docs` from the website repo root (captures `public/og/render.html` → `public/og/default.webp`). Do not copy roadmap’s `default.webp`; Twitter uses the image bytes, not `og:title`.
 
 ## Subdomain deployment
 

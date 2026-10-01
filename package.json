@@ -25,6 +25,7 @@
     "generate:og:topic": "npm run generate --prefix og -- topic",
     "generate:og:all": "npm run generate --prefix og -- all",
     "generate:og:roadmap": "npm run generate --prefix og -- roadmap",
+    "generate:og:mcp-docs": "npm run generate --prefix og -- mcp-docs",
     "og:setup": "npm run setup --prefix og",
     "og:check": "npm run check --prefix og",
     "og:preflight": "npm run preflight --prefix og",

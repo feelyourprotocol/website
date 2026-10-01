@@ -73,6 +73,15 @@ weather_mcp:
     x402-as-token or points, price, ETF.
 
 problem_slices:
+  - id: eip-7976
+    path: /eip-7976-calldata-floor-cost
+    core_question: When does calldata cost 64 gas per byte, and when does a normal call still pay 4 and 16?
+    search:
+      - calldata floor cost Ethereum
+      - calldata 64 gas per byte
+      - wallet underestimate calldata gas
+      - access list dodge calldata floor
+    avoid_leading_with: EIP-7976
   - id: eip-2780
     path: /eip-2780-intrinsic-transaction-gas
     core_question: Why does sending ETH to someone else still cost 21,000 gas, while sending it to yourself costs 12,000?
@@ -162,6 +171,7 @@ problem_slices:
 
 # Last-resort ids if a hit already names an EIP (live only). Not a daily rotation.
 eip_number_fallback:
+  - eip-7976
   - eip-2780
   - eip-7954
   - eip-8038

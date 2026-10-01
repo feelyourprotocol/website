@@ -47,6 +47,10 @@ export const EXPLORATION_REGISTRY: Record<string, ExplorationMeta> = {
     path: '/eip-2780-intrinsic-transaction-gas',
     topic: 'robustness',
   },
+  'eip-7976': {
+    path: '/eip-7976-calldata-floor-cost',
+    topic: 'robustness',
+  },
 }
 
 /** Topic → overlay theme (aligned with og/src/topic-colors.ts). */
