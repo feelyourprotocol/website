@@ -11,14 +11,22 @@
     },
     "accounts": {
       "type": "array",
-      "description": "Optional prestate. Seed storage for existing-slot SSTORE on 0x00000000000000000000000000000000000000b1.",
+      "description": "BYOS prestate in the same call: balances (wei strings), runtime code, storage, nonce. Empty world otherwise.",
       "items": {
         "type": "object",
         "required": ["address"],
+        "additionalProperties": false,
         "properties": {
-          "address": { "type": "string" },
-          "balance": { "type": "string" },
-          "code": { "type": "string" },
+          "address": { "type": "string", "description": "Hex address." },
+          "balance": {
+            "type": "string",
+            "description": "Wei as decimal string. Omit for default 1 ETH; use \"0\" for unfunded."
+          },
+          "nonce": {
+            "type": "string",
+            "description": "Account nonce as decimal string. Default 0."
+          },
+          "code": { "type": "string", "description": "Runtime bytecode already at this address." },
           "storage": {
             "type": "array",
             "description": "Optional storage slots to seed (existing-slot SSTORE / SLOAD).",

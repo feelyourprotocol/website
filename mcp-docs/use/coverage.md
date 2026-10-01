@@ -6,6 +6,8 @@ This page is the **human EIP index**. Per-EIP pages live at `/use/eips/eip-NNNN`
 
 Fork configuration is **à la carte**: a base hardfork plus an optional EIP list (runnable modules only — history is “run under Shapella”, not “enable 3855 on Paris”). Named forks are **catalog capabilities** in the **Berlin→Glamsterdam lineage**. A generic run under a named fork does **not** require naming an EIP.
 
+**State (BYOS):** each run starts an **empty world** (no mainnet RPC). Put demo prestate in **`accounts[]`** on the same tool call — wei balances, optional nonce, runtime `code`, storage slots. The agent builds that JSON from natural language; the server validates and applies it. The same shape can be filled later by an external state provider.
+
 **Default:** one simulation on the fork the user names (`amsterdam`, `osaka`, `glamsterdam`, …). **Compare (only when asked):** find the change in `eipIntroductions` → run the same verb on **predecessorFork(introducedAt)** and on **introducedAt**.
 
 ## Lineage (live)

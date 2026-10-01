@@ -106,7 +106,7 @@ trace, optional stateGasSpilled, provenance. Not for wallet gasLimit — use run
 
 Inputs:
 - bytecode (required): hex, max 24576 bytes
-- accounts (optional): code/balance/storage prestate. Existing-slot SSTORE: storage on 0x00000000000000000000000000000000000000b1
+- accounts (optional): BYOS prestate on the same call — wei balance (omit → 1 ETH default; "0" → unfunded), optional nonce, runtime code, storage slots. Agent builds JSON from natural language; server validates. Empty world (no mainnet RPC).
 - fork (optional): { baseHardfork, eips[] } — default amsterdam; use osaka for mainnet baseline comparisons
 - gasLimit (optional): string, default 1000000, max 30000000
 - trace (optional): boolean, max 10000 steps

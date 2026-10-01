@@ -32,10 +32,14 @@ Raw opcode / stack / precompile programs belong on [Run Bytecode](/use/tools/run
 | `value` | No | Wei as a decimal string (default `0`) |
 | `data` | No | Calldata hex, or initcode when `to` is omitted |
 | `code` | No | Runtime bytecode installed at `to` before the tx (contract-wallet / SSTORE) |
-| `accounts` | No | Extra accounts to prefund (`address`, optional `balance`, `code`, `storage` slots) |
+| `accounts` | No | BYOS prestate on this call — same shape as [Run Bytecode](/use/tools/run-bytecode#byos-prestate-accounts) (`balance`, `nonce`, `code`, `storage`) |
 | `fork` | No | `{ baseHardfork, eips[] }` — default **`glamsterdam`** |
 | `gasLimit` | No | Decimal string. Default `1000000`. Tool ceiling `110000000`; fork validity rules still apply |
 | `authorizationList` | No | Signed EIP-7702 JSON items — **Pectra+** type-4 set-code tx. Use [Inspect Artifact](/use/tools/inspect-artifact) `authorization-list` to validate first. |
+
+### BYOS prestate
+
+Same empty-world **`accounts[]`** model as [Run Bytecode](/use/tools/run-bytecode#byos-prestate-accounts): seed senders, recipients, deployed runtime `code`, and storage on **this** call. Use `code` on the tx when you need bytecode at `to` without a separate account row.
 
 ### Fork notes
 
