@@ -17,9 +17,9 @@ Until the public endpoint is live, the play is **substance, not hype**:
 | Rhythm | Channel | Content |
 | --- | --- | --- |
 | **~2–3× / week** | Twitter/X ([@FeelEthereum](https://x.com/FeelEthereum)) | New Glamsterdam explorations — each ships with a per-exploration [announcement arc](/go-to-market/marketing#announcement-cadence-per-exploration): comic (spark) + video (engage), MCP tweet (equip) added at launch |
-| **1× / week** | Personal dev account | x402 / payment integration build-in-public (technical, not token news) |
+| **1× / week** | Personal dev account | Open-endpoint hardening and, after launch, the paid-tier build (technical, not token news) |
 | **As ready** | Website + mcp-docs | **Without MCP vs with MCP** proofs — same prompt, same model, checked outcomes |
-| **Pinned anchor** | Official account | [Launch week](/roadmap/launch) countdown — hosted MCP, not self-host |
+| **Pinned anchor** | Official account | [Launch week](/roadmap/launch) countdown — open hosted MCP, full Glamsterdam |
 
 We do **not** promote local stdio or self-host setup in official docs or marketing. Open source stays open; the product is the hosted endpoint.
 
@@ -27,9 +27,9 @@ Videos from the automation pipeline are **feed infographics** (uploaded directly
 
 ## Product hook vs payment hook
 
-Public copy leads with the **deterministic oracle** — exact simulation of upcoming fork rules — not "machines paying for Ethereum." [x402](/concepts/x402) is how agents access the service without API keys; it is not the reason the product exists.
+Public copy leads with the **deterministic oracle** — exact simulation of upcoming fork rules. At launch the server is open. [x402](/concepts/x402) is how agents later buy EIPs that are still ahead of the free hardfork; it is not the reason the product exists.
 
-The community token appears as a **discount lane at launch**, not as headline news driven by market moves.
+The community token appears as a **discount lane on the paid tier**, not as headline news and not at launch.
 
 ## Channels _(after launch)_
 
@@ -46,13 +46,14 @@ Programmatic actors with urgent incentive: **MEV searchers**, **DeFi/security au
 
 ## Cadence
 
-The roadmap, timeline, and [launch week](/roadmap/launch) page are the canonical public schedule. Twitter/X carries the countdown; the personal dev account carries payment-rail transparency.
+The roadmap, timeline, and [launch week](/roadmap/launch) page are the canonical public schedule. Twitter/X carries the countdown to the open endpoint. Payment-rail transparency starts when the paid tier is actually being built.
 
 ## Changelog
 
 <Changelog
   title="Distribution Changelog"
   :entries="[
+    { version: 'v0.4', date: '2026-10-01', summary: 'Countdown is the open Glamsterdam MCP. Payment-rail posts wait for the paid tier.' },
     { version: 'v0.3', date: '2026-09-03', summary: 'Countdown rhythm row now points to Marketing Strategy for the per-exploration announcement arc (comic + video + MCP).' },
     { version: 'v0.2', date: '2026-09-02', summary: 'Rewritten for launch countdown — DevRel running, hosted-only GTM, oracle-first hook, without/with MCP proofs.' },
     { version: 'v0.1', date: '2026-06-30', summary: 'Initial future GTM outline — registries, outreach hypotheses.' },

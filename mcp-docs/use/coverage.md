@@ -1,6 +1,6 @@
 # Coverage
 
-> **Status:** Catalogue for the **upcoming public MCP** (not launched). Runnable modules are those the hosted server will advertise via probe. Until then, use the [website explorations](https://feelyourprotocol.org).
+> **Status:** Catalogue for the **upcoming public MCP** (not launched). At launch this catalogue is **free**, including the full Glamsterdam hardfork. Runnable modules are those the hosted server will advertise via probe. Until then, use the [website explorations](https://feelyourprotocol.org). Newer EIPs after launch may sit on a [paid tier](/use/pricing).
 
 This page is the **human EIP index**. Per-EIP pages live at `/use/eips/eip-NNNN` but are not listed in the sidebar — open them from the tables below, from a [fork page](/use/forks/glamsterdam), or via search. Agents use `describe_capabilities`, not this nav.
 
@@ -82,6 +82,7 @@ Canonical metadata for twins lives in website `src/explorations/eip-NNNN/canonic
     { version: 'v0.28', date: '2026-09-17', summary: 'EIP-7954 exploration twin — Planned until run_transaction supports contract creation.' },
     { version: 'v0.27', date: '2026-09-17', summary: 'EIP-7702 is fork-level run_transaction/inspect — not a catalogue twin or EIP docs page.' },
     { version: 'v0.26', date: '2026-09-17', summary: 'Retired PeerDAS exploration removed from website catalogue; Fusaka-only EIPs stay in probe.' },
+    { version: 'v0.26', date: '2026-10-01', summary: 'Launch catalogue is free, including full Glamsterdam. Newer EIPs may be paid later.' },
     { version: 'v0.25', date: '2026-09-17', summary: 'Current-mainnet twins stay first-class; sunset is not “already activated.”' },
     { version: 'v0.24', date: '2026-09-17', summary: 'Human EIP index — per-EIP pages stay linked from this catalogue, not the sidebar.' },
     { version: 'v0.23', date: '2026-09-16', summary: 'Lineage extended with Berlin and London (historical floor); glacier BPO forks excluded.' },

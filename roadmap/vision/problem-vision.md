@@ -4,7 +4,7 @@
 
 **roadmap.feelyourprotocol.org** is the Phase 3 **strategy and history workspace** — vision, tracks, timeline, and draft concepts for the sustainable business layer. It records where our thinking stands, including open questions, so we have a stable place to iterate.
 
-**What exists today:** the [explorations website](https://feelyourprotocol.org), [website docs](https://website-docs.feelyourprotocol.org), [MCP docs](https://mcp-docs.feelyourprotocol.org), the execution engine and gateway (tools implemented), and years of EthereumJS work behind both legs. **What we're shipping next:** the **public hosted MCP** at `mcp.feelyourprotocol.org` with [x402](/concepts/x402) payment rails — [launch week 5–9 October 2026](/roadmap/launch).
+**What exists today:** the [explorations website](https://feelyourprotocol.org), [website docs](https://website-docs.feelyourprotocol.org), [MCP docs](https://mcp-docs.feelyourprotocol.org), the execution engine and gateway (tools implemented), and years of EthereumJS work behind both legs. **What we're shipping next:** the **public hosted MCP** at `mcp.feelyourprotocol.org`, open and unpaid, with the full Glamsterdam hardfork — [launch week 5–9 October 2026](/roadmap/launch). [x402](/concepts/x402) for newer EIPs follows after that service has usage and has been hardened.
 
 This scope is deliberate: we are **not** building general mainnet infrastructure, RPC, or testnet ops — that work lives elsewhere in the ecosystem. FYP targets the gap between probabilistic LLMs and **deterministic simulation of protocol changes not yet on mainnet**.
 
@@ -26,7 +26,7 @@ Build Feel Your Protocol into the **deterministic oracle for the future Ethereum
 
 In one line: **deterministic truth for probabilistic machines.**
 
-The lab equipment **exists** — engine, gateway tools, and a growing EIP catalogue on [mcp-docs](https://mcp-docs.feelyourprotocol.org). The product milestone is the **hosted, paid endpoint** agents connect to without self-hosting. Concrete tool schemas and limits live on mcp-docs; this site keeps the strategic sketch.
+The lab equipment **exists** — engine, gateway tools, and a growing EIP catalogue on [mcp-docs](https://mcp-docs.feelyourprotocol.org). The product milestone is the **hosted endpoint** agents connect to without self-hosting — open at launch, with a [paid tier](/monetization/pricing#access-cycle) for EIPs that are still ahead of the current hardfork. Concrete tool schemas and limits live on mcp-docs; this site keeps the strategic sketch.
 
 The educational website does not get left behind — it remains the **visual front door** and DevRel engine while keeping its teaching mission. See [Two Legs, One Engine](/vision/two-legs).
 
@@ -60,6 +60,7 @@ These lines will move as we learn — operational detail lives on [mcp-docs](htt
 <Changelog
   title="Problem & Vision Changelog"
   :entries="[
+    { version: 'v0.6', date: '2026-10-01', summary: 'Next ship is the open Glamsterdam MCP. Paid x402 tier follows for EIPs ahead of that hardfork.' },
     { version: 'v0.5', date: '2026-09-24', summary: 'Humans and agents as equal customers; payment, onboarding, and discovery follow from that.' },
     { version: 'v0.4', date: '2026-09-02', summary: 'Lab equipment built — public hosted launch is the next milestone; mcp-docs and generic MCP tools acknowledged.' },
     { version: 'v0.3', date: '2026-07-15', summary: 'MCP docs site live — strategic sketch stays here; concrete docs on mcp-docs.' },

@@ -39,14 +39,15 @@ Build sequence (see [roadmap timeline](https://roadmap.feelyourprotocol.org/road
 2. ~~**Execution engine**~~ — `simulateBytecode()` + `runTransaction()` + `runBlock()` + capability registry ([reference](/internals/execution-engine))
 3. ~~**Gateway (stdio)**~~ — development transport / PoC — **six tools implemented** (incl. generate_artifact, inspect_artifact)
 4. **AWS bootstrap** — EC2, nginx, TLS, deploy pipeline
-5. **HTTP transport** — remote MCP endpoint
-6. **Further tools** — observability, x402, … (EIP-7928 BAL generate_artifact/inspect_artifact shipped)
+5. **HTTP transport** — open public endpoint, free Glamsterdam catalogue (launch week)
+6. **Further tools** — observability, then x402 for EIPs ahead of that hardfork (EIP-7928 BAL generate_artifact/inspect_artifact already shipped)
 
 ## Changelog
 
 <Changelog
   title="Architecture Changelog"
   :entries="[
+    { version: 'v0.13', date: '2026-10-01', summary: 'HTTP launch is the open catalogue. x402 follows for newer EIPs.' },
     { version: 'v0.12', date: '2026-09-14', summary: 'MCP simulateBytecode is createVM plus a message-call, not detached runCode.' },
     { version: 'v0.11', date: '2026-09-14', summary: 'Engine described as isolated lab (no chain RPC), not empty-world stateless.' },
     { version: 'v0.10', date: '2026-09-10', summary: 'run_block lab verb — header snapshot and per-tx receipts; BAL generate still planned.' },

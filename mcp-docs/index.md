@@ -4,7 +4,7 @@ layout: home
 hero:
   name: Feel Your Protocol
   text: MCP Server Documentation
-  tagline: Public hosted launch week 5–9 October 2026. Interactive explorations live on feelyourprotocol.org today — agents connect at mcp.feelyourprotocol.org when we ship.
+  tagline: Open public launch week 5–9 October 2026 — full Glamsterdam, no payment. Explorations live on feelyourprotocol.org today; agents connect at mcp.feelyourprotocol.org when we ship.
   actions:
     - theme: brand
       text: Use the server
@@ -34,7 +34,7 @@ features:
 ::: warning Public launch — countdown
 **The Feel Your Protocol MCP server has not launched publicly yet.**
 
-**Target: launch week 5–9 October 2026** — hosted HTTP at **`mcp.feelyourprotocol.org`**. Details: [roadmap launch page](https://roadmap.feelyourprotocol.org/roadmap/launch.html).
+**Target: launch week 5–9 October 2026** — hosted HTTP at **`mcp.feelyourprotocol.org`**, free, with the full Glamsterdam hardfork. Details: [roadmap launch page](https://roadmap.feelyourprotocol.org/roadmap/launch.html). Access after that: [Pricing](/use/pricing).
 
 **Live now:** [Interactive explorations](https://feelyourprotocol.org) on the main website — the textbook slice of each EIP.
 :::

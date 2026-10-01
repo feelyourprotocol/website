@@ -8,7 +8,7 @@ The **`mcp-gateway`** repo is the public face of the MCP server:
 - **Tool registry** — intent-driven tools → `mcp-execution-engine`
 - **TaskProcessor seam** — `LocalTaskProcessor` now; worker pool / queue later
 - **Observability** — planned (Step 7)
-- **x402 payments** — planned (Steps 8–9)
+- **x402 payments** — after the open public launch (paid tier for new EIPs; not part of launch week)
 
 It depends one-way on **`mcp-execution-engine`**. End-user connection (hosted): [Connect](/use/connect).
 
@@ -44,6 +44,7 @@ Published JSON in gateway `schemas/` is copied byte-for-byte to [mcp-docs/public
 <Changelog
   title="Gateway Changelog"
   :entries="[
+    { version: 'v0.1.9', date: '2026-10-01', summary: 'x402 is after the open public launch, for the paid EIP tier.' },
     { version: 'v0.1.8', date: '2026-09-22', summary: 'Six tools; Zod vs published JSON schema workflow and manifest.' },
     { version: 'v0.1.7', date: '2026-09-16', summary: 'Server instructions claim generic hardfork prompts; named forks stay on the same verbs.' },
     { version: 'v0.1.5', date: '2026-09-08', summary: 'Added run_transaction; renamed run_evm_bytecode → run_bytecode.' },

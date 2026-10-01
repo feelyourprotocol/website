@@ -189,7 +189,9 @@ Out of scope: Solidity compile, ERC layer, multi-block backtesting.
 PRICING
 ================================================================================
 
-Not shipped. x402 planned Steps 8-9. See roadmap.feelyourprotocol.org.
+Launch week is free: full Glamsterdam hardfork, no wallet, no API key.
+x402 comes later for EIPs still ahead of that hardfork (first expected: EIP-8141 frame transactions).
+See https://mcp-docs.feelyourprotocol.org/use/pricing.html
 
 ================================================================================
 FOR AI AGENTS

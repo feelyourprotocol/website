@@ -1,6 +1,6 @@
 # Token Utility
 
-How the Bankr community token **relates** to the hosted MCP once it takes payment — without ever becoming a barrier to adoption. All of this is **directional**; nothing is wired up yet. Target alignment: [launch week](/roadmap/launch).
+How the Bankr community token **relates** to the hosted MCP once the [paid tier](/monetization/pricing#access-cycle) takes payment — without ever becoming a barrier to adoption. All of this is **directional**; nothing is wired up yet. It is **not** part of [launch week](/roadmap/launch). The open Glamsterdam server does not check a token balance.
 
 ## The core rule
 
@@ -47,6 +47,7 @@ _Tier numbers and the buyback/governance/bounty mechanics are directional — to
 <Changelog
   title="Token Utility Changelog"
   :entries="[
+    { version: 'v0.3', date: '2026-10-01', summary: 'Token discounts belong to the paid tier, not launch week.' },
     { version: 'v0.2', date: '2026-09-02', summary: 'Framed around hosted MCP launch week; explicit no-hype-for-holders note.' },
     { version: 'v0.1', date: '2026-06-30', summary: 'Initial dual-lane discount model outline.' },
   ]"

@@ -30,7 +30,7 @@ Full schemas and limits: [mcp-docs/use/tools/](https://mcp-docs.feelyourprotocol
 - **Isolated lab / BYOS.** No archive node, no mainnet or L2 sync. The caller supplies bytecode, txs, and any constructed prestate; we run in an isolated context. **Default:** discard that lab world after the call (so workers stay parallel). Constructing accounts/code/storage **in the request** is in scope. An MCP transport session is not EVM memory — continuation across prompts is optional later, not implied.
 - **Raw bytecode, base-layer only.** No Solidity compilation in the service. ERC application-layer concerns are out of scope.
 - **Observability first.** Rich JSON traces (stack, memory, gas, opcodes) are a primary deliverable.
-- **Guardrails for agents.** Tool schemas, hard ceilings, and gas-based pricing protect the service (see [Pricing](/monetization/pricing)).
+- **Guardrails for agents.** Tool schemas and hard ceilings protect the open service. Gas-based pricing applies on the paid tier (see [Pricing](/monetization/pricing)).
 
 ## Use-case scopes _(candidates)_
 
@@ -64,7 +64,7 @@ const result = await simulateBytecode({ bytecode, fork: { baseHardfork: 'glamste
 ## Open questions
 
 - **EIP-7928 generate** — when it ships relative to launch week.
-- **x402 integration** — facilitator, proxy, token discount check (build-in-public on the personal dev channel).
+- **x402 integration** — after the open launch has usage and has been hardened. Facilitator, proxy, token discount check. First paid EIP expected: 8141. See [Pricing](/monetization/pricing#access-cycle).
 - **Registry listings** — machine-readable discovery after the hosted endpoint is live. See [Two Audiences](/vision/two-audiences).
 
 Resolved: MCP-first delivery (not REST-primary); docs split (roadmap = strategy, mcp-docs = operational).
@@ -74,6 +74,7 @@ Resolved: MCP-first delivery (not REST-primary); docs split (roadmap = strategy,
 <Changelog
   title="Agent API Concept Changelog"
   :entries="[
+    { version: 'v0.8', date: '2026-10-01', summary: 'x402 is a post-launch question. Launch week is the open Glamsterdam endpoint.' },
     { version: 'v0.7', date: '2026-09-24', summary: 'Six generic verbs (run_block, generate_artifact, inspect_artifact); registry discovery for agents.' },
     { version: 'v0.6', date: '2026-09-14', summary: 'BYOS: isolated lab and demand-built prestate; MCP transport session is not EVM memory.' },
     { version: 'v0.5', date: '2026-09-08', summary: 'run_bytecode + run_transaction; renamed from run_evm_bytecode.' },

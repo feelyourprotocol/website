@@ -19,9 +19,9 @@ This MCP docs site describes the **lab equipment** we are building: a headless s
 
 Feel Your Protocol will provide a **headless MCP server** wrapping the EthereumJS stack so AI agents can run **exact, deterministic simulations** of the *future* Ethereum protocol — upcoming forks, EIPs, and research — and receive rich JSON traces they can reason over.
 
-At launch the hosted server will expose six MCP tools — `describe_capabilities`, `run_bytecode`, `run_transaction`, `run_block`, `generate_artifact`, and `inspect_artifact`. EIP catalogue pages describe how each exploration maps to agent prompts once you can connect.
+At launch the hosted server will expose six MCP tools — `describe_capabilities`, `run_bytecode`, `run_transaction`, `run_block`, `generate_artifact`, and `inspect_artifact` — covering the **full Glamsterdam hardfork** and the earlier forks already in the catalogue. EIP catalogue pages describe how each exploration maps to agent prompts once you can connect.
 
-Payments (x402) come with or shortly after the public endpoint.
+**Launch is free.** No wallet, no API key. Newer EIPs that are still ahead of Glamsterdam (first expected: frame transactions, EIP-8141) become a paid tier a few weeks later. See [Pricing](/use/pricing).
 
 ## Mental model
 
@@ -34,6 +34,7 @@ For architecture, repositories, and build procedures, see [Internals](/internals
 <Changelog
   title="Introduction Changelog"
   :entries="[
+    { version: 'v0.14', date: '2026-10-01', summary: 'Launch is a free Glamsterdam MCP. Paid tier for newer EIPs comes later.' },
     { version: 'v0.13', date: '2026-09-22', summary: 'Six launch tools — generate_artifact and inspect_artifact with the four run/probe verbs.' },
     { version: 'v0.11', date: '2026-09-08', summary: 'Three launch tools — describe_capabilities, run_bytecode, run_transaction.' },
     { version: 'v0.10', date: '2026-09-02', summary: 'User docs describe the hosted product only — no local stdio / self-host early access.' },

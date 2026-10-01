@@ -109,7 +109,13 @@ export const TIMELINE_EVENTS: TimelineEvent[] = [
     date: '2026-10-05',
     label: 'Public MCP launch week',
     phase: 3,
-    note: 'Hosted HTTP at mcp.feelyourprotocol.org + x402 (USDC on Base). See /roadmap/launch.',
+    note: 'Hosted HTTP at mcp.feelyourprotocol.org — open, no payment. Full Glamsterdam hardfork. See /roadmap/launch.',
+  },
+  {
+    date: 'later',
+    label: 'x402 paid tier',
+    phase: 3,
+    note: 'After usage and hardening. New EIPs ahead of the free hardfork; first expected is EIP-8141. See /monetization/pricing.',
   },
   {
     date: 'later',

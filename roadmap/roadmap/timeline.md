@@ -29,7 +29,8 @@ Evolve into a sustainable business: a deterministic [MCP server](/concepts/api-m
 - **2026-07** — MCP docs live; execution engine v0.1; gateway tools implemented.
 - **2026-08** — EIP catalogue twins; Fusaka vs Glamsterdam compare; runnable modules (8024, 7708, 7883, 7951).
 - **2026-09** — Round-trip pipeline (EIP → exploration → MCP catalogue in ~30 minutes).
-- **2026-10-05 – 09 (target)** — [Public MCP launch week](/roadmap/launch): hosted HTTP + x402 payment rails.
+- **2026-10-05 – 09 (target)** — [Public MCP launch week](/roadmap/launch): hosted HTTP, open access, full Glamsterdam hardfork.
+- **Later** — [x402 paid tier](/monetization/pricing#access-cycle): new EIPs ahead of that hardfork, starting with EIP-8141, after the open service has usage and has been hardened. Those EIPs graduate to free when Hegota / Bogota is on the horizon.
 - **Later** — Enterprise annual tier and revenue→token loop, "when they come".
 
 _As Phase 3 milestones land (or shift), update them in the data file so the chart and this page stay in sync._
@@ -39,6 +40,7 @@ _As Phase 3 milestones land (or shift), update them in the data file so the char
 <Changelog
   title="Timeline Changelog"
   :entries="[
+    { version: 'v0.3', date: '2026-10-01', summary: 'Launch week is the open Glamsterdam MCP. x402 paid tier is a later marker, EIP-8141 first.' },
     { version: 'v0.2', date: '2026-09-02', summary: 'Phase 3 events updated — PoC and pipeline done; public launch week 5–9 Oct 2026 as next marker.' },
     { version: 'v0.1', date: '2026-06-30', summary: 'Initial timeline scaffold with Phase 1–3 events.' },
   ]"

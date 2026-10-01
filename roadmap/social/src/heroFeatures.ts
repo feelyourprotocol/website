@@ -2,7 +2,7 @@
 export const HERO_FEATURES = [
   {
     title: 'Launch week',
-    detail: 'Hosted MCP + x402 — 5–9 Oct 2026.',
+    detail: 'Open hosted MCP — 5–9 Oct 2026. Full Glamsterdam.',
   },
   {
     title: 'Vision & Strategy',
@@ -14,6 +14,6 @@ export const HERO_FEATURES = [
   },
   {
     title: 'Monetization',
-    detail: 'Per-gas x402; token = discount lane only.',
+    detail: 'Free hardfork at launch. Paid EIPs later (8141 first).',
   },
 ] as const

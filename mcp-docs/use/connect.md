@@ -31,7 +31,7 @@ The hosted server will expose:
 
 To **optionally** compare baseline vs preview, call the **same verb** twice — **`fusaka`** then **`glamsterdam`** — and diff gas or outcomes. A single run on Glamsterdam alone is fine.
 
-Payments (x402) and the exact client config for Cursor, Claude, and other MCP hosts will be documented here when the endpoint ships. Same tools; remote HTTP — no local build required.
+The public server is **free at launch** — full Glamsterdam, no wallet and no API key. The exact client config for Cursor, Claude, and other MCP hosts will be documented here when the endpoint ships. Same tools; remote HTTP — no local build required. Newer EIPs later sit on a paid tier; see [Pricing](/use/pricing).
 
 ## Example prompts (when the public server is connected)
 
@@ -51,6 +51,7 @@ The agent should route these to `run_bytecode`, `run_transaction`, `run_block`, 
 <Changelog
   title="Connect Changelog"
   :entries="[
+    { version: 'v0.13', date: '2026-10-01', summary: 'Launch connect is free. Client config still lands with the endpoint.' },
     { version: 'v0.12', date: '2026-09-16', summary: 'Example prompt for a generic Glamsterdam run with no EIP named.' },
     { version: 'v0.10', date: '2026-09-08', summary: 'Added run_transaction; renamed run_evm_bytecode → run_bytecode.' },
     { version: 'v0.9', date: '2026-09-02', summary: 'Launch week countdown — 5–9 Oct 2026 target; link to roadmap launch page.' },

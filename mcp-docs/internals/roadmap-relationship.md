@@ -29,8 +29,8 @@ The roadmap [Agent API & MCP concept](https://roadmap.feelyourprotocol.org/conce
 | Topic | Roadmap | MCP Docs | Private `server-config` |
 | --- | --- | --- | --- |
 | Why build an MCP server? | Yes | Brief pointer | — |
-| x402 pricing *model* (draft) | Yes | — | — |
-| x402 middleware *wiring* | Pointer only | Yes (when shipped) | Secrets, treasury address |
+| Access cycle (free hardfork, paid new EIPs) | Yes | What is free **now** — [Pricing](/use/pricing) | — |
+| x402 middleware *wiring* | Pointer only | Yes (when the paid tier ships) | Secrets, treasury address |
 | AWS *target* architecture | Yes | Deploy shape (public) | Real nginx, SSH, env |
 | `run_bytecode` / `run_transaction` / `run_block` tool schema | — | Yes (when shipped) | — |
 | Token discount tiers (concept) | Yes | Yes (when shipped) | Token contract address |
@@ -52,6 +52,7 @@ All sites are separate subdomains; the [main website](https://feelyourprotocol.o
 <Changelog
   title="Roadmap Relationship Changelog"
   :entries="[
+    { version: 'v0.4', date: '2026-10-01', summary: 'Use/pricing states what is free at launch. The access cycle stays on the roadmap until x402 ships.' },
     { version: 'v0.3', date: '2026-07-20', summary: 'Moved to internals/; updated links for use/ split.' },
     { version: 'v0.1', date: '2026-07-15', summary: 'Initial split definition — roadmap vs MCP docs vs server-config.' },
   ]"
