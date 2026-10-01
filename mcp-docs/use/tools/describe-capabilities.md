@@ -26,11 +26,11 @@ None required. Pass `{}` or omit arguments.
 | --- | --- |
 | `engineVersion` | Semver of `mcp-execution-engine` |
 | `ceilings` | `maxGasLimit`, `maxTransactionGasLimit`, `defaultGasLimit`, `maxBytecodeBytes`, `maxTraceSteps`, `maxTxsPerBlock` |
-| `baselineForkId` | Current mainnet EL (`fusaka`) — first-class run target and optional compare baseline |
+| `baselineForkId` | Current mainnet EL (`fusaka`) — probe label for mainnet-today; run the fork the user asked for |
 | `queryShapes` | Dictionary: catalog `id` (`simulate`, `generate`, …) → `mcpTool` (`run_bytecode`, `generate_artifact`, …). Agents call `mcpTool`. |
 | `namedForks` | Berlin→Glamsterdam lineage — `order`, `predecessorId`, `successorId`, `role`, `activatedEips`, advertised `relatedEips`, **`tools`** (MCP names) |
 | `eipIntroductions` | When each EIP activated. **`coverage`** is `twin` (runnable module), `supported` (hardfork already applies it — omit that id from `eips` and use the fork tools), `consensus` (consensus-layer — this lab does not execute it; do not put it in `eips`), `networking` (wire protocol — this lab does not speak it; do not put it in `eips`), `informational` (analysis or a schedule — this lab does not execute it; do not put it in `eips`), or `listed` (name and fork only). **`observableTools`** are MCP names; `supported`, `consensus`, `networking`, and `informational` rows omit them |
-| `eips` | Runnable modules — `comparison` derived from `eipIntroductions` (predecessor vs `introducedAt`); **`tools`** lists MCP names to call; each row includes `specUrl`, `specDate`, `status`, and optional `testReleaseUrl` / `testReleaseName` (or a live `eips.ethereum.org` page when unpinned) |
+| `eips` | Runnable modules — optional `comparison` lookup from `eipIntroductions` (use when the user asks for before/after); **`tools`** lists MCP names to call; each row includes `specUrl`, `specDate`, `status`, and optional `testReleaseUrl` / `testReleaseName` (or a live `eips.ethereum.org` page when unpinned) |
 | `allowedBaseHardforks` | Lineage forks (`berlin` … `glamsterdam`) plus aliases; glacier/BPO ids rejected |
 
 ## Example

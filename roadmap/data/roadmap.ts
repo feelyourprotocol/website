@@ -77,7 +77,7 @@ export const ROADMAP_TRACKS: RoadmapTrack[] = [
         title: 'Hegota scope (EL EIPs)',
         horizon: 'later',
         status: 'planned',
-        note: 'FOCIL, frame txs, EL changes per EIP-8081.',
+        note: 'Frame txs and other Hegota EL work start on the paid tier, then move to free as that hardfork approaches.',
       },
     ],
   },
@@ -127,10 +127,10 @@ export const ROADMAP_TRACKS: RoadmapTrack[] = [
     accent: '#f59e0b',
     items: [
       {
-        title: 'x402 on public endpoint',
-        horizon: 'now',
-        status: 'in-progress',
-        note: 'USDC on Base; per-gas quote an agent can decide from.',
+        title: 'x402 paid tier',
+        horizon: 'next',
+        status: 'planned',
+        note: 'Weeks after the open launch. USDC on Base for new EIPs; EIP-8141 first. See /monetization/pricing.',
       },
       {
         title: 'Agent-readable onboarding',

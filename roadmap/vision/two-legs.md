@@ -9,7 +9,7 @@ Feel Your Protocol is designed around **two legs that share one engine**. The sa
 | Surface | Humans in the browser | Agents on the hosted MCP — [two audiences](/vision/two-audiences) |
 | Experience | Interactive, visual, educational explorations | Headless, deterministic, well-documented; MCP tool bindings |
 | Optimizes for | Intuition, narrative, trust | Latency, reliability, exact deterministic output |
-| Economics | Community, fan token, education | [x402 pay-per-use](/monetization/pricing) in USDC on the hosted endpoint |
+| Economics | Community, fan token, education | Open at launch (full Glamsterdam). Later, [x402](/monetization/pricing) for EIPs ahead of the current hardfork |
 | Docs | [website-docs](https://website-docs.feelyourprotocol.org) | [mcp-docs](https://mcp-docs.feelyourprotocol.org) |
 
 The shared engine is the modular EthereumJS stack and the fork/EIP pipeline behind it — real on the website side and in the execution engine; the **public hosted gateway** is what [launch week](/roadmap/launch) ships.
@@ -42,6 +42,7 @@ Two legs means two kinds of work — UI/narrative polish vs. ruthless uptime and
 <Changelog
   title="Two Legs Changelog"
   :entries="[
+    { version: 'v0.5', date: '2026-10-01', summary: 'Leg B economics: open Glamsterdam at launch; x402 for EIPs ahead of the hardfork.' },
     { version: 'v0.4', date: '2026-09-24', summary: 'Legs as surfaces; who they serve is Two Audiences.' },
     { version: 'v0.3', date: '2026-09-02', summary: 'Leg B is built (not publicly launched); mcp-docs exists; launch week is the hosted milestone.' },
     { version: 'v0.2', date: '2026-06-30', summary: 'Initial two-legs model — website live, API planned.' },

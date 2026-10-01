@@ -2,6 +2,8 @@
 
 MCP docs content lives in the [website](https://github.com/feelyourprotocol/website) repo under `mcp-docs/`.
 
+**Roadmap vs this site:** vision, pricing drafts, and launch strategy stay on [roadmap.feelyourprotocol.org](https://roadmap.feelyourprotocol.org). User-facing connect guides and “what to ask” stay under `mcp-docs/use/`. See the short note on [Roadmap vs MCP Docs](/internals/roadmap-relationship).
+
 ## Structure
 
 | Section | Path | Audience |
@@ -30,6 +32,7 @@ See [Quality](/internals/quality) for test and lint commands.
 <Changelog
   title="Contributing Changelog"
   :entries="[
+    { version: 'v0.9', date: '2026-10-01', summary: 'Roadmap split note — strategy on roadmap site, product docs on use/.' },
     { version: 'v0.8', date: '2026-09-17', summary: 'Twins stay after mainnet activation; do not drop Coverage or fork-page rows.' },
     { version: 'v0.7', date: '2026-09-17', summary: 'EIP pages stay off the sidebar — index them on Coverage and the matching fork page.' },
     { version: 'v0.6', date: '2026-09-16', summary: 'Named-fork catalogue pages under use/forks/ when fork capability rows change.' },

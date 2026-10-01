@@ -35,7 +35,7 @@ mcp-docs/
 │           └── Changelog.vue     # Per-section micro-changelog
 ├── use/                          # End-user: capabilities, tools, connection
 │   ├── introduction.md
-│   ├── capabilities.md
+│   ├── capabilities.md           # What you can ask (user jobs)
 │   ├── connect.md
 │   ├── tools/                    # One page per MCP tool (grows as tools ship)
 │   ├── coverage.md
@@ -43,7 +43,7 @@ mcp-docs/
 │   ├── eips/                     # Human catalogue — one page per runnable EIP module
 │   ├── guarantees.md
 │   ├── pricing.md
-│   └── runtime-agents.md         # Runtime agent playbook (MCP-first)
+│   └── runtime-agents.md         # Stub → llms.txt for connected agents
 ├── internals/                    # Architecture, engine API, quality, deploy
 │   ├── architecture.md
 │   ├── repositories.md

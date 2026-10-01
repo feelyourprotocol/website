@@ -28,19 +28,47 @@ Wallet gas limits, first-touch ETH transfers, receipt logs, and paid **`txStateG
 | Field | Required | Description |
 | --- | --- | --- |
 | `bytecode` | Yes | Hex-encoded bytecode (`0x` prefix optional). Max 24 576 bytes. |
-| `accounts` | No | Prefund code / balance / storage. Existing-slot SSTORE: put `storage` on `0x00000000000000000000000000000000000000b1` (the lab execution account). |
-| `fork` | No | `{ baseHardfork, eips[] }` — default **`glamsterdam`**. Use **`fusaka`** for current-mainnet features or as a compare baseline |
+| `accounts` | No | BYOS prestate on **this call** (see below). |
+| `fork` | No | `{ baseHardfork, eips[] }` — default **`glamsterdam`**. Use **`fusaka`** when the user asks for current-mainnet EL behavior |
 | `gasLimit` | No | Decimal string. Default `1000000`. Max `30000000`. |
 | `trace` | No | When true, include stack-only execution steps (max 10 000) |
+
+### BYOS prestate (`accounts[]`)
+
+Each run starts an **empty world**. To model “five accounts, two with 3 ETH, one unfunded, deploy this runtime bytecode at `0x…`”, build **`accounts[]`** on the **same** `run_bytecode` call — the server does not invent demo state.
+
+| Field | Meaning |
+| --- | --- |
+| `address` | Hex address (required) |
+| `balance` | Wei as decimal string. Omit → default **1 ETH** prefund; `"0"` → unfunded |
+| `nonce` | Decimal string. Default `0` |
+| `code` | Runtime bytecode **already** at this address (not CREATE) |
+| `storage` | `{ slot, value }` hex words for existing-slot SLOAD/SSTORE |
+
+- **`bytecode`** (top-level) is the program executed at the lab address `0x00000000000000000000000000000000000000b1`.
+- Other contracts and callers live in **`accounts[]`**. Precompiles (`0x05`, `0x100`, …) need no seeding.
+- Protocol system contracts are **not** pre-installed; if a test needs one, supply caller-provided runtime code at the known address.
+
+Example — 3 ETH sender and a contract already deployed:
+
+```json
+{
+  "bytecode": "0x…",
+  "accounts": [
+    { "address": "0x0000000000000000000000000000000000000001", "balance": "3000000000000000000" },
+    { "address": "0x00000000000000000000000000000000000000aa", "code": "0x600100", "storage": [{ "slot": "0x00", "value": "0x01" }] }
+  ]
+}
+```
 
 ### Fork notes
 
 - **`glamsterdam`** — preview fork (`{ "baseHardfork": "glamsterdam", "eips": [] }`; alias `amsterdam`). Default. EIP-8024 and other Glamsterdam EIPs are **bundled in the hardfork** — you do not need `eips: [8024]` for DUPN/SWAPN/EXCHANGE to work.
-- **`fusaka`** — current mainnet EL (`{ "baseHardfork": "fusaka", "eips": [] }`; aliases `osaka`, `mainnet-el`). First-class for Fusaka twins (ModExp, P-256) and as the compare baseline vs Glamsterdam.
+- **`fusaka`** — current mainnet EL (`{ "baseHardfork": "fusaka", "eips": [] }`; aliases `osaka`, `mainnet-el`). First-class for Fusaka twins (ModExp, P-256).
 
-### Optional: compare baseline vs preview
+### Compare (only when the user asks)
 
-When you need a before/after view, run the **same bytecode twice** — `fusaka`, then `glamsterdam` — and diff `gasUsed`, `success`, and optional `steps`. See `baselineForkId` and `eips[].comparison` from [Describe Capabilities](/use/tools/describe-capabilities). Skip this if you only care about Glamsterdam behavior.
+When the user wants a before/after view, run the **same bytecode twice** on the pair from `eipIntroductions` / `eips[].comparison` (often predecessor vs `introducedAt`) and diff `gasUsed`, `success`, and optional `steps`. For a single-fork question, run once on the fork they named.
 
 ```json
 {

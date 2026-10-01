@@ -87,13 +87,16 @@ async function screenshotHtml(html: string, outPath: string): Promise<void> {
   try {
     const page = await browser.newPage({
       viewport: { width: OG_WIDTH, height: OG_HEIGHT },
-      deviceScaleFactor: 1,
+      deviceScaleFactor: 2,
     })
     await page.goto(`${server.url}/og/.tmp/preview.html`, { waitUntil: 'networkidle', timeout: 30_000 })
     await page.waitForTimeout(150)
     mkdirSync(join(outPath, '..'), { recursive: true })
     const png = await page.screenshot({ type: 'png' })
-    await sharp(png).webp({ quality: 92 }).toFile(outPath)
+    await sharp(png)
+      .resize(OG_WIDTH, OG_HEIGHT, { fit: 'fill', kernel: 'lanczos3' })
+      .webp({ quality: 92 })
+      .toFile(outPath)
   } finally {
     await browser.close()
     await server.close()

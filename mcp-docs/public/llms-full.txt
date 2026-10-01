@@ -70,7 +70,8 @@ Query shapes and MCP tools:
 - Generate artifact → generate_artifact — implemented (public launch pending)
 - Inspect artifact → inspect_artifact — implemented (public launch pending)
 
-Optional: compare baseline vs preview by calling run twice (osaka then amsterdam).
+Default: one run on the fork the user named (amsterdam, osaka, glamsterdam, …).
+Compare only when they ask: same verb twice on predecessor vs introducedAt from eipIntroductions.
 A generic Amsterdam run does not require naming an EIP.
 
 Scope: stateless/BYOS, raw bytecode only, no Solidity compile, no archive node,
@@ -92,7 +93,7 @@ MCP tool name: describe_capabilities
 Input: {} (no required fields)
 Output: engineVersion, ceilings, baselineForkId, namedForks (Berlin→Amsterdam lineage), eipIntroductions (when EIPs activated), eips (runnable modules with derived comparison pairs), allowedBaseHardforks
 
-Use first for lineage (berlin through amsterdam; aliases merge, shapella, dencun, pectra, fusaka, glamsterdam). Glacier delay forks are not catalog targets. eipIntroductions + predecessor compares (e.g. 1559: berlin vs london; PUSH0: paris vs shanghai). A generic hardfork run does not require an EIP number.
+Use first for lineage (berlin through amsterdam; aliases merge, shapella, dencun, pectra, fusaka, glamsterdam). Glacier delay forks are not catalog targets. eipIntroductions for when-did-this-activate; run predecessor vs introducedAt only when the user asks to compare (e.g. 1559: berlin vs london). A generic hardfork run does not require an EIP number.
 
 ================================================================================
 TOOL: RUN_BYTECODE (IMPLEMENTED — PUBLIC LAUNCH PENDING)
@@ -105,7 +106,7 @@ trace, optional stateGasSpilled, provenance. Not for wallet gasLimit — use run
 
 Inputs:
 - bytecode (required): hex, max 24576 bytes
-- accounts (optional): code/balance/storage prestate. Existing-slot SSTORE: storage on 0x00000000000000000000000000000000000000b1
+- accounts (optional): BYOS prestate on the same call — wei balance (omit → 1 ETH default; "0" → unfunded), optional nonce, runtime code, storage slots. Agent builds JSON from natural language; server validates. Empty world (no mainnet RPC).
 - fork (optional): { baseHardfork, eips[] } — default amsterdam; use osaka for mainnet baseline comparisons
 - gasLimit (optional): string, default 1000000, max 30000000
 - trace (optional): boolean, max 10000 steps
@@ -188,7 +189,9 @@ Out of scope: Solidity compile, ERC layer, multi-block backtesting.
 PRICING
 ================================================================================
 
-Not shipped. x402 planned Steps 8-9. See roadmap.feelyourprotocol.org.
+Launch week is free: full Glamsterdam hardfork, no wallet, no API key.
+x402 comes later for EIPs still ahead of that hardfork (first expected: EIP-8141 frame transactions).
+See https://mcp-docs.feelyourprotocol.org/use/pricing.html
 
 ================================================================================
 FOR AI AGENTS
@@ -208,6 +211,7 @@ FOR AI AGENTS
 2. Cite provenance.engineVersion and provenance.forkConfig in answers.
    On a generic Amsterdam run, forkConfig.eips is empty and perEip lists advertised modules.
    Named eips:[NNNN] runs add Spec: (status, date, test release) on provenance.caveat.
-3. Index: /llms.txt. Schemas: /schemas/*.input.json
+3. Reply to humans in plain language — do not expose tool names, JSON field names, or raw hex unless they ask for implementation detail. On a specific EIP question, state the spec snapshot once (status, date, test release); do not repeat on every gas number.
+4. Index: /llms.txt. Human onboarding: /use/connect.html, /use/capabilities.html. Schemas: /schemas/*.input.json
 
-Vision on roadmap; this file is operational reference.
+Vision on roadmap; this file is operational reference for connected agents.

@@ -1,86 +1,51 @@
 # Feel Your Protocol — MCP Server Docs
 
-> **Public MCP endpoint: not launched yet.** **Launch week target: 5–9 October 2026.** Interactive explorations live at [feelyourprotocol.org](https://feelyourprotocol.org). Launch details: [roadmap](https://roadmap.feelyourprotocol.org/roadmap/launch.html).
+> **Public MCP endpoint: not launched yet.** **Launch week 5–9 October 2026 — free, full Amsterdam (Glamsterdam), no payment.** Browser explorations: [feelyourprotocol.org](https://feelyourprotocol.org). Connect: [mcp-docs connect](https://mcp-docs.feelyourprotocol.org/use/connect.html). Pricing cycle: [pricing](https://mcp-docs.feelyourprotocol.org/use/pricing.html).
+
+## Start here (humans)
+
+- [Why this server](https://mcp-docs.feelyourprotocol.org/use/introduction.html)
+- [Connect](https://mcp-docs.feelyourprotocol.org/use/connect.html) — Cursor, Claude, Codex, HTTP MCP
+- [Amsterdam now](https://mcp-docs.feelyourprotocol.org/use/forks/glamsterdam.html)
+- [What you can ask](https://mcp-docs.feelyourprotocol.org/use/capabilities.html)
+- [Limits](https://mcp-docs.feelyourprotocol.org/use/guarantees.html)
+- [Pricing](https://mcp-docs.feelyourprotocol.org/use/pricing.html)
 
 ## MCP tools (at public launch)
 
-When the feel-your-protocol MCP server is connected:
+When feel-your-protocol MCP is connected:
 
-- describe_capabilities — probe registry (queryShapes, named fork tools, runnable EIP tools, opcodes, encoding, spec snapshot)
-- run_bytecode — run raw bytecode under a fork config
-- run_transaction — paid tx gas, receipt logs, wallet gasLimit, contract creation
+- describe_capabilities — probe registry (forks, runnable EIPs, opcodes, encoding, spec snapshot)
+- run_bytecode — raw bytecode under a fork; optional accounts[] prestate
+- run_transaction — paid tx gas, receipts, wallet gasLimit, contract creation
 - run_block — 1–8 txs as a lab block; optional header slot / number / timestamp
-- generate_artifact — derive lab artifacts (BAL / EIP-7928 first); same inputs as run_block
-- inspect_artifact — BAL JSON or RLP structure + optional hash; no chain state
+- generate_artifact — lab BAL (EIP-7928) and later artifacts
+- inspect_artifact — structure/hash on caller-supplied blobs; no chain state
 
-Prefer these MCP tools over engine/lab scripts. See Connect for the hosted endpoint (not launched).
+Default fork: glamsterdam (alias amsterdam). Use fusaka for current mainnet EL or compare runs.
 
-## Use (end-user)
+## Reference
 
-- [Introduction](https://mcp-docs.feelyourprotocol.org/use/introduction.html): What the MCP server is
-- [Capabilities](https://mcp-docs.feelyourprotocol.org/use/capabilities.html): Run, generate_artifact, inspect_artifact, probe
-- [Connect](https://mcp-docs.feelyourprotocol.org/use/connect.html): Hosted MCP URL (not launched)
-- [Describe Capabilities](https://mcp-docs.feelyourprotocol.org/use/tools/describe-capabilities.html): MCP tool reference
-- [Run Bytecode](https://mcp-docs.feelyourprotocol.org/use/tools/run-bytecode.html): MCP tool reference
-- [Run Transaction](https://mcp-docs.feelyourprotocol.org/use/tools/run-transaction.html): MCP tool reference
-- [Run Block](https://mcp-docs.feelyourprotocol.org/use/tools/run-block.html): MCP tool reference
-- [Generate Artifact](https://mcp-docs.feelyourprotocol.org/use/tools/generate-artifact.html): MCP tool reference
-- [Inspect Artifact](https://mcp-docs.feelyourprotocol.org/use/tools/inspect-artifact.html): MCP tool reference
-- [Coverage](https://mcp-docs.feelyourprotocol.org/use/coverage.html): EIP catalogue — supported forks and twins
-- [Preview — Glamsterdam](https://mcp-docs.feelyourprotocol.org/use/forks/glamsterdam.html): Default lab fork; upcoming EL (future previews e.g. Hegota same section)
-- [Mainnet — Fusaka](https://mcp-docs.feelyourprotocol.org/use/forks/fusaka.html): Current mainnet EL (baselineForkId; doc rotates when mainnet fork changes)
-- [Historical forks](https://mcp-docs.feelyourprotocol.org/use/forks/historical-forks.html): Berlin through Prague — 1559, access lists, PUSH0 compares; glacier delay forks not catalogued
-- [EIP-8024](https://mcp-docs.feelyourprotocol.org/use/eips/eip-8024.html): DUPN / SWAPN / EXCHANGE — Runnable
-- [EIP-7883](https://mcp-docs.feelyourprotocol.org/use/eips/eip-7883.html): ModExp gas — Runnable
-- [EIP-2780](https://mcp-docs.feelyourprotocol.org/use/eips/eip-2780.html): Intrinsic transaction gas — Runnable (run_transaction)
-- [EIP-7951](https://mcp-docs.feelyourprotocol.org/use/eips/eip-7951.html): secp256r1 — Runnable
-- [EIP-7954](https://mcp-docs.feelyourprotocol.org/use/eips/eip-7954.html): Contract size limits — Runnable (run_transaction)
-- [EIP-7928](https://mcp-docs.feelyourprotocol.org/use/eips/eip-7928.html): BAL — Runnable (generate_artifact, inspect_artifact)
-- [EIP-7843](https://mcp-docs.feelyourprotocol.org/use/eips/eip-7843.html): SLOTNUM — Runnable (run_block)
-- [EIP-7708](https://mcp-docs.feelyourprotocol.org/use/eips/eip-7708.html): ETH transfer logs — Runnable (run_transaction)
-- [EIP-8037](https://mcp-docs.feelyourprotocol.org/use/eips/eip-8037.html): State creation gas — Runnable (run_transaction)
-- [EIP-8038](https://mcp-docs.feelyourprotocol.org/use/eips/eip-8038.html): State-access gas — Runnable (run_transaction / run_bytecode)
-- [Guarantees](https://mcp-docs.feelyourprotocol.org/use/guarantees.html): Determinism, provenance, limits
-- [Runtime agents](https://mcp-docs.feelyourprotocol.org/use/runtime-agents.html): MCP-first playbook for connected agents
+- [EIP catalogue](https://mcp-docs.feelyourprotocol.org/use/coverage.html)
+- [Fusaka (mainnet)](https://mcp-docs.feelyourprotocol.org/use/forks/fusaka.html)
+- Tool schemas under /use/tools/ and /schemas/*.input.json
 
-## JSON schemas
+## Connected agents
 
-- [describe_capabilities.input.json](https://mcp-docs.feelyourprotocol.org/schemas/describe_capabilities.input.json)
-- [run_bytecode.input.json](https://mcp-docs.feelyourprotocol.org/schemas/run_bytecode.input.json)
-- [run_transaction.input.json](https://mcp-docs.feelyourprotocol.org/schemas/run_transaction.input.json)
-- [run_block.input.json](https://mcp-docs.feelyourprotocol.org/schemas/run_block.input.json)
+1. Trust listTools + describe_capabilities over markdown when MCP works.
+2. Probe before run. Caller supplies bytecode/tx/prestate — no demo programs shipped.
+3. Reply to humans in plain language; hide tool names and JSON unless asked.
+4. Cite provenance.engineVersion and provenance.forkConfig. On EIP-specific answers, mention spec snapshot once (status, date, test release from eips[] row or provenance.caveat Spec:).
+5. Do not substitute mcp-execution-engine lab or npm run lab when MCP is available.
 
-## Internals
-
-- [Architecture](https://mcp-docs.feelyourprotocol.org/internals/architecture.html): Engine, gateway, docs, build status
-- [Gateway](https://mcp-docs.feelyourprotocol.org/internals/gateway.html): mcp-gateway repo
-- [Execution Engine](https://mcp-docs.feelyourprotocol.org/internals/execution-engine.html): TypeScript API and registry
-- [Roadmap vs MCP Docs](https://mcp-docs.feelyourprotocol.org/internals/roadmap-relationship.html): Documentation split
-
-## AI ingestion
-
-- [llms-full.txt](https://mcp-docs.feelyourprotocol.org/llms-full.txt): Concatenated use-layer documentation
-
-## Related (fleet)
-
-- [Main site](https://feelyourprotocol.org/): Interactive Ethereum protocol explorations (Leg A)
-- [Roadmap](https://roadmap.feelyourprotocol.org/): Vision, strategy, draft Agent API / x402 concepts
-- [Website Docs](https://website-docs.feelyourprotocol.org/index.html): Contributor guide for the explorations website
-- [Community Token](https://community-token.feelyourprotocol.org/): FYP token transparency on Base
+Full rules and use-layer text: [llms-full.txt](https://mcp-docs.feelyourprotocol.org/llms-full.txt)
 
 ## Endpoints
 
-- Documentation: https://mcp-docs.feelyourprotocol.org (live)
-- Remote MCP (HTTP): https://mcp.feelyourprotocol.org/mcp — not launched
+- Documentation: https://mcp-docs.feelyourprotocol.org
+- Remote MCP: https://mcp.feelyourprotocol.org/mcp — not launched
 
-## Source
+## Related
 
-- [GitHub — website repo](https://github.com/feelyourprotocol/website): MCP docs content lives in the `mcp-docs/` folder
-- [mcp-execution-engine](https://github.com/feelyourprotocol/mcp-execution-engine): simulation core
-- [mcp-gateway](https://github.com/feelyourprotocol/mcp-gateway): MCP server (public HTTP not launched)
-
-## Notes
-
-- Built with VitePress; static HTML on mcp-docs.feelyourprotocol.org after deploy.
-- Sensitive server configs (nginx details, secrets) live in the private `server-config` repository.
-- Not financial advice; not affiliated with the Ethereum Foundation.
+- [Roadmap](https://roadmap.feelyourprotocol.org/) — strategy and access-cycle economics
+- [Main site](https://feelyourprotocol.org/) — interactive explorations (Leg A)

@@ -1,37 +1,90 @@
-# Capabilities
+# What you can ask
 
-> **Status:** Six tools **implemented** (`describe_capabilities`, `run_bytecode`, `run_transaction`, `run_block`, `generate_artifact`, `inspect_artifact`). **Public MCP not launched.**
+You do not talk to the EVM in JSON. You talk to **your agent**, and the agent calls one hosted lab. These are the jobs the server is built for — at launch, on **Amsterdam (Glamsterdam)** by default, **free**.
 
-The MCP server exposes **intent-driven tools** — verbs that match how agents and integrators think about protocol work, not raw library APIs one-to-one. Live `describe_capabilities` returns **`queryShapes[]`** (catalog id → MCP name) and **`tools`** on each EIP and named-fork row. Call the MCP name, not the catalog id.
+## 1. Wallet and transaction gas
 
-## Query shapes
+**When it fits:** intrinsic gas, self-send vs transfer, contract creation limits, receipt logs on value moves, “what gasLimit should my wallet show?”
 
-| Shape | MCP tool | What it does | Status |
-| --- | --- | --- | --- |
-| **Probe** | `describe_capabilities` | Supported forks, runnable EIP modules, opcodes, encoding | Implemented — public launch pending |
-| **Run bytecode** | `run_bytecode` | Run raw bytecode as a message-call; optional trace and accounts | Implemented — public launch pending |
-| **Run transaction** | `run_transaction` | Paid tx gas, receipt logs, EIP-8037 dimensions | Implemented — public launch pending |
-| **Run block** | `run_block` | 1–8 txs as a lab block; header snapshot (optional slot) | Implemented — public launch pending |
-| **Generate** | `generate_artifact` | Derive lab artifacts (BAL / EIP-7928 first) | Implemented — public launch pending |
-| **Inspect** | `inspect_artifact` | Structure + hash on caller blobs (BAL, 7702 auth, typed tx, withdrawals, requests) | Implemented — public launch pending |
+**Example prompts**
 
-To **optionally** compare baseline vs preview, call the same verb twice — **fusaka** (current mainnet EL), then **glamsterdam** (preview) — and diff gas, success, traces, or logs. One run on Glamsterdam only is fully supported — you do **not** need to name an EIP. One run on **fusaka** is also first-class when the question is a current-mainnet feature (ModExp, P-256, a generic mainnet-EL program).
+- *“What intrinsic gas does a plain ETH transfer use on Amsterdam?”* → [EIP-2780](/use/eips/eip-2780)
+- *“Deploy a contract this size on Amsterdam — do I hit the limit?”* → [EIP-7954](/use/eips/eip-7954)
+- *“Does this transfer emit a log in the receipt on Amsterdam?”* → [EIP-7708](/use/eips/eip-7708)
+- *“First 1 wei to an empty account — break down regular vs state gas.”* → [EIP-8037](/use/eips/eip-8037)
 
-## Scope boundaries
+**Compare (only when you ask):** run the same transfer on **Fusaka** then **Amsterdam** and diff `gasUsed`.
 
-- **Isolated lab / BYOS** — You supply bytecode or transaction fields and any constructed prestate. No archive node, no mainnet or L2 sync. Prefund / code / storage / a short lab block in **one call** is in scope.
-- **Call isolation (default)** — The next prompt does not see the last run’s EVM unless you pass that prestate again (or a future snapshot handle).
-- **Raw bytecode, base-layer only** — No Solidity compilation in the service. ERC/application-layer concerns are out of scope.
-- **Observability first** — Rich execution traces (stack, gas, opcodes) are a primary deliverable.
-- **Hard wall** — No sequential multi-block **historical** backtesting (archive-node / `revm` territory).
+## 2. Bytecode, opcodes, and precompiles
 
-See [Guarantees](/use/guarantees) for limits and provenance details.
+**When it fits:** stack opcodes, ModExp cost curves, P-256 verify, arbitrary bytecode under a fork.
+
+**Example prompts**
+
+- *“Run this bytecode on Amsterdam and show gas and the final stack.”*
+- *“Call ModExp with these inputs — gas on Pectra vs Fusaka.”* → [EIP-7883](/use/eips/eip-7883)
+- *“Does secp256r1 precompile accept this signature on mainnet rules?”* → [EIP-7951](/use/eips/eip-7951)
+- *“Exercise DUPN/SWAPN on Amsterdam.”* → [EIP-8024](/use/eips/eip-8024)
+
+You supply bytecode (and optional [demo accounts](/use/tools/run-bytecode#byos-prestate-accounts)) — the server does not ship demo contracts.
+
+## 3. Storage gas and program gas
+
+**When it fits:** SSTORE/SLOAD pricing, existing-slot vs new-slot behavior, Glamsterdam **state gas** split.
+
+**Example prompts**
+
+- *“SSTORE slot 3 from cold — Amsterdam vs Fusaka.”* → [EIP-8038](/use/eips/eip-8038)
+- *“Seed storage in accounts[] and run this bytecode — what gas?”*
+
+Bytecode path vs transaction path: program gas often belongs in a bytecode run; paid tx totals belong in a transaction run. Your agent can choose; both are supported for 8038.
+
+## 4. Small lab blocks
+
+**When it fits:** several transactions in one block, header slot/number, per-tx receipts together.
+
+**Example prompts**
+
+- *“Run these two transfers as one Amsterdam block and show each receipt.”*
+- *“Set header slot and run one tx — what changes?”* → [EIP-7843](/use/eips/eip-7843) context
+
+Up to **8** transactions per block. Not historical chain replay.
+
+## 5. Artifacts without executing chain history
+
+**When it fits:** block access list JSON, structure checks, hashes — caller-supplied blobs.
+
+**Example prompts**
+
+- *“Generate a BAL for this lab block under Amsterdam.”* → [EIP-7928](/use/eips/eip-7928)
+- *“Inspect this BAL JSON — valid structure and hash?”*
+
+## What we do not do
+
+- Compile Solidity or fetch mainnet state
+- Run long historical multi-block replays
+- Replace your archive node or RPC provider
+
+Details: [Limits](/use/guarantees). Fork catalogue: [Amsterdam](/use/forks/glamsterdam), [EIP index](/use/coverage).
+
+## For integrators — tool names
+
+The agent maps your question to a small set of MCP tools. You rarely need these names; they are listed under **Reference → Tool schemas** when you debug integrations.
+
+| Job (above) | Typical MCP tool |
+| --- | --- |
+| Discover what is runnable | `describe_capabilities` |
+| Bytecode / opcodes / traces | `run_bytecode` |
+| Paid tx / receipts / wallet gas | `run_transaction` |
+| Multi-tx lab block | `run_block` |
+| BAL generate / inspect | `generate_artifact`, `inspect_artifact` |
 
 ## Changelog
 
 <Changelog
   title="Capabilities Changelog"
   :entries="[
+    { version: 'v0.19', date: '2026-10-01', summary: 'Reframed as five user jobs; tool table moved to integrator footnote.' },
     { version: 'v0.18', date: '2026-09-22', summary: 'Probe queryShapes dictionary; EIP/fork rows list tools (MCP names), not shapes.' },
     { version: 'v0.17', date: '2026-09-22', summary: 'Renamed generate → generate_artifact and inspect → inspect_artifact.' },
     { version: 'v0.16', date: '2026-09-17', summary: 'Fusaka runs are first-class for current-mainnet features, not only preview compares.' },

@@ -1,12 +1,24 @@
 # Pricing & Cost Model
 
-How we're **thinking about** pricing the hosted MCP once it is public — and how that relates to what it would cost to run. A fast-moving section with its own [changelog](#changelog). Exact numbers below are **placeholders under discussion**; no payment flow is live yet. Target: **x402 on the public endpoint at [launch week](/roadmap/launch)**.
+How access and price work on the hosted MCP. A fast-moving section with its own [changelog](#changelog). Exact per-gas numbers below stay **placeholders**; no payment flow is live yet.
 
-## Pricing model _(draft)_
+## Access cycle
 
-The direction from the strategy session: **linear pay-per-use via [x402](/concepts/x402)**, in USDC on Base, **charged from request #1 — no free tier.**
+The public server opens **free** at [launch week](/roadmap/launch). Payment is a later layer, and the line between free and paid moves with the hardfork calendar.
 
-Why no free trial: to an autonomous agent, signing a sub-cent payment costs the same effort as signing a free auth challenge — the friction is in the *process*, not the price. A free tier might buy nothing but complexity and an attack surface. Charging linearly from the first request keeps the server **stateless and hyper-lean** (no usage DB, no trial logic) and filters out spam automatically. Still a design choice to validate when we wire up x402 for launch.
+1. **Open launch (5–9 October 2026).** Hosted MCP, no [x402](/concepts/x402), no API key. The free tier is the **full Glamsterdam hardfork** (EL alias Amsterdam) plus the Berlin→Fusaka lineage the lab already runs. Goal of the first weeks: real usage, and time to harden the open service.
+2. **Paid tier, a few weeks later.** Once that open path has adoption data and has settled, we turn on x402 (USDC on Base). The delimiter is **new EIPs** that are not yet part of the hardfork on the free tier. The first paid capability we expect to ship is **frame transactions ([EIP-8141](https://eips.ethereum.org/EIPS/eip-8141))**. Further interesting EIPs join this tier on a shorter, more automated cadence — that needs more of the EthereumJS fork pipeline than we have today.
+3. **Graduation.** When the next hardfork (**Hegota / Bogota**) is on the horizon, the EIPs that were paid while they were ahead of mainnet — including EIP-8141 — **move into the free tier** as part of that hardfork. The next wave of post-fork EIPs starts paid again.
+
+That loop is the product rhythm: **today’s hardfork is open; tomorrow’s EIPs are paid until they become today’s hardfork.**
+
+[Token holder discounts](/monetization/token) attach to the paid tier when it exists. They are never a gate, and they are not part of launch week.
+
+## Pricing model _(draft, paid tier)_
+
+On the paid tier the direction is still **linear pay-per-use via x402**, in USDC on Base. The open hardfork stays free; we do not charge the Glamsterdam catalogue from request #1.
+
+An earlier draft charged every request and skipped a free tier, on the theory that a sub-cent signature is the same friction as a free auth challenge. Launch week tests the other side of that: agents need a door they can walk through before we ask them to pay. Spam on the open tier is handled by hard ceilings, not by a quote. The paid tier can stay stateless — the quote is per call, with no usage account.
 
 ### Price per simulated gas
 
@@ -27,10 +39,10 @@ A flat **annual stablecoin subscription** (e.g. ~$799 USDC/yr) for budget predic
 
 Because agents are tireless cost-optimizers, defenses would be economic and architectural rather than human-friction based:
 
-- **Pay-from-#1** makes spam economically self-limiting.
-- **Hard ceilings** at the gateway reject queries beyond a max simulation depth — no buying your way into a DoS.
-- **MCP schema guardrails** would instruct the agent not to issue oversized requests in the first place.
-- For any optional free/identity path: a **minimum on-chain balance** (e.g. ~$5 USDC/ETH) or **ERC-8004 identity** check defeats Sybil/empty-wallet farming. (Net conclusion from the strategy session: with linear x402, an explicit free tier likely isn't needed at all.)
+- **Hard ceilings** at the gateway reject queries beyond a max simulation depth — on the open tier and on the paid tier. Payment does not buy a larger ceiling.
+- **MCP schema guardrails** instruct the agent not to issue oversized requests in the first place.
+- On the **paid tier**, the quote makes spam economically self-limiting.
+- Optional later: a **minimum on-chain balance** or **ERC-8004 identity** check if the open tier needs a Sybil brake beyond ceilings.
 
 ## Cost model _(early estimate)_
 
@@ -47,6 +59,7 @@ The `$100` discount tier is deliberately pitched near the **real per-call cost l
 <Changelog
   title="Pricing Changelog"
   :entries="[
+    { version: 'v0.6', date: '2026-10-01', summary: 'Access cycle — free Glamsterdam at launch; x402 paid tier weeks later, starting with EIP-8141; graduation into the next hardfork.' },
     { version: 'v0.5', date: '2026-09-02', summary: 'x402 decided for launch week (USDC on Base) — per-gas model unchanged; payment not live yet.' },
     { version: 'v0.4', date: '2026-09-02', summary: 'Coupled to launch week — x402 target on public hosted MCP; engine exists, payment not live.' },
     { version: 'v0.3', date: '2026-06-30', summary: 'Reframed as draft pricing model — no live payment flow; conditional language throughout.' },

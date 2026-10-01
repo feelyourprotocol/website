@@ -83,9 +83,11 @@ npm run video:youtube:playlist-sync
 npm run video:youtube:playlist-sync -- eip-7708 eip-8037
 ```
 
-On success the CLI prints `https://www.youtube.com/shorts/<id>` and writes a
-`published:` block into `youtube.yml` so a second run is a no-op. `--force`
-uploads a **new** video (avoid unless you mean to duplicate).
+On success the CLI prints `https://www.youtube.com/shorts/<id>` and
+`https://studio.youtube.com/video/<id>/edit`. Set the Shorts cover on that
+Studio page. It also writes a `published:` block into `youtube.yml` so a
+second run is a no-op. `--force` uploads a **new** video (avoid unless you
+mean to duplicate).
 
 Quota: `videos.insert` costs 1,600 units; the default daily cap is 10,000
 (~six uploads). Custom Shorts thumbnails may need a verified channel / YPP —

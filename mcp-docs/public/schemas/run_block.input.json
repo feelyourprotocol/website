@@ -44,13 +44,22 @@
     },
     "accounts": {
       "type": "array",
+      "description": "BYOS prestate: fund tx senders and on-chain contracts (wei, code, storage, nonce) in the same call.",
       "items": {
         "type": "object",
         "required": ["address"],
+        "additionalProperties": false,
         "properties": {
-          "address": { "type": "string" },
-          "balance": { "type": "string" },
-          "code": { "type": "string" },
+          "address": { "type": "string", "description": "Hex address." },
+          "balance": {
+            "type": "string",
+            "description": "Wei as decimal string. Omit for default 1 ETH; use \"0\" for unfunded."
+          },
+          "nonce": {
+            "type": "string",
+            "description": "Account nonce as decimal string. Default 0."
+          },
+          "code": { "type": "string", "description": "Runtime bytecode already at this address." },
           "storage": {
             "type": "array",
             "description": "Optional storage slots to seed (existing-slot SSTORE / SLOAD).",

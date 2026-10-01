@@ -271,7 +271,7 @@ notes: <consumed opener + anything a later LLM must not repeat>
 
 The muxed `*-final.mp4` is uploadable **as-is** to YouTube Shorts. YouTube Studio asks for **title**, **description**, and **thumbnail** at minimum; we fill all three plus tags + playlist + category. Everything lives in `youtube.yml`; the thumbnail is auto-extracted from the video by `npm run video:thumb -- <id>`.
 
-The X arc (comic + video tweet) is the primary channel; YouTube Shorts is a **secondary evergreen index** — same clip, tuned for search rather than for a timeline hit. Copy is more descriptive, keywords matter more than voice. The skill always produces `youtube.yml` + the title-card JPEG so upload is one CLI away. **Do not upload in this phase.** Round-trip close owns the public upload after merge (exploration URL live). Standalone: the human may run `npm run video:youtube:upload -- <id>` after auth, or paste into Studio from this report.
+The X arc (comic + video tweet) is the primary channel; YouTube Shorts is a **secondary evergreen index** — same clip, tuned for search rather than for a timeline hit. Copy is more descriptive, keywords matter more than voice. The skill always produces `youtube.yml` + the title-card JPEG so upload is one CLI away. **Do not upload in this phase.** Round-trip close owns the public upload after merge (exploration URL live). The upload report includes `https://studio.youtube.com/video/<id>/edit` so the Shorts cover can be set in Studio. Standalone: the human may run `npm run video:youtube:upload -- <id>` after auth, or paste into Studio from this report.
 
 ### Title (aim ≤ 70 chars, hard cap 100)
 

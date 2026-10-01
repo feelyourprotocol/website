@@ -17,7 +17,7 @@ The shift from "fun side project" to "sustainable business" is a vulnerable mome
 Before we call the MCP "live":
 
 - HTTP endpoint reachable at `mcp.feelyourprotocol.org`
-- x402 path exercised end-to-end (not only designed)
+- Open to connect — payment is a later milestone, not a launch gate
 - Connect docs describe the hosted path only
 - Catalogue honestly lists Runnable vs Planned EIPs
 - At least one checked without/with MCP proof published
@@ -53,6 +53,7 @@ _This page is a living checklist; refine as the project teaches us new lessons._
 <Changelog
   title="Principles Changelog"
   :entries="[
+    { version: 'v0.5', date: '2026-10-01', summary: 'Launch checklist is the open endpoint. x402 stays a later milestone, not a launch gate.' },
     { version: 'v0.4', date: '2026-09-24', summary: 'Agents are customers; watch the human-in-the-loop assumption.' },
     { version: 'v0.3', date: '2026-09-02', summary: 'PoC shipped — added hosted-product, oracle-proof, and launch-checklist principles; x402-as-product trap.' },
     { version: 'v0.2', date: '2026-06-30', summary: 'Initial founder-traps table and operating principles.' },

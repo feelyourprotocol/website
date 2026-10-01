@@ -6,6 +6,7 @@ import { loadVideoEnv } from '../loadEnv.ts'
 import { parseUploadArgs, UPLOAD_USAGE } from './parseUploadArgs.ts'
 import { playlistsForProject } from './topicPlaylist.ts'
 import { planUpload, resolveYoutubeClientConfig, uploadShort } from './uploadShort.ts'
+import { studioEditUrl } from './writePublished.ts'
 
 const PROJECTS_ROOT = join(import.meta.dirname, '../../projects')
 
@@ -65,6 +66,7 @@ async function main(): Promise<void> {
   )
 
   console.log(`${result.action}: ${result.url}`)
+  console.log(`Studio:   ${studioEditUrl(result.videoId)}`)
   for (const warning of result.warnings) {
     console.warn(warning)
   }

@@ -30,23 +30,21 @@ body {
   position: relative;
 }
 
+/* Inset so a social app's corner crop clips background, not the stroke. */
 .card::before {
   content: '';
   position: absolute;
-  inset: 0;
-  border: 4px solid {{ACCENT}};
+  inset: 36px;
+  border: 2px solid {{ACCENT}};
+  border-radius: 28px;
   pointer-events: none;
-}
-
-.accent-bar {
-  height: 8px;
-  background: linear-gradient(90deg, {{ACCENT}} 0%, #06b6d4 100%);
+  z-index: 2;
 }
 
 .content {
   flex: 1;
   display: flex;
-  padding: 36px 44px 28px;
+  padding: 52px 52px 22px;
   gap: 40px;
   min-height: 0;
 }
@@ -139,9 +137,13 @@ body {
   display: flex;
   align-items: center;
   gap: 14px;
-  padding: 18px 44px 24px;
+  margin: 0 40px 40px;
+  padding: 16px 16px 18px;
   border-top: 1px solid rgba(15, 23, 42, 0.08);
+  border-radius: 0 0 24px 24px;
   background: rgba(255, 255, 255, 0.72);
+  position: relative;
+  z-index: 1;
 }
 
 .footer img {
@@ -174,7 +176,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 48px 56px 28px;
+  padding: 52px 56px 22px;
   gap: 18px;
 }
 

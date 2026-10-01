@@ -98,15 +98,15 @@
     box-shadow 0.2s ease;
 }
 
-.fyp-site-mcp .VPHomeFeatures .VPFeature:nth-child(4n + 2) {
+.fyp-site-mcp .VPHomeFeatures .item:nth-child(4n + 2) .VPFeature {
   border-left-color: var(--fyp-cyan);
 }
 
-.fyp-site-mcp .VPHomeFeatures .VPFeature:nth-child(4n + 3) {
+.fyp-site-mcp .VPHomeFeatures .item:nth-child(4n + 3) .VPFeature {
   border-left-color: #0ea5e9;
 }
 
-.fyp-site-mcp .VPHomeFeatures .VPFeature:nth-child(4n + 4) {
+.fyp-site-mcp .VPHomeFeatures .item:nth-child(4n + 4) .VPFeature {
   border-left-color: var(--fyp-amber);
 }
 
@@ -195,4 +195,14 @@
 
 .fyp-changelog__summary {
   color: var(--vp-c-text-1);
+}
+
+/* Home: VitePress VPFeatures uses flex + .item.grid-4 widths — do not set grid on .items */
+
+@media (min-width: 960px) {
+  .fyp-site-mcp .VPHomeFeatures .item.grid-4 {
+    flex: 0 0 25%;
+    width: 25%;
+    max-width: 25%;
+  }
 }
