@@ -4,7 +4,7 @@
 
 ## Why this page exists
 
-The probe exposes the **Berlin→Glamsterdam lineage** so agents can answer “when did this EIP appear?” and run **predecessor compares**. Human docs use **three buckets**:
+The probe exposes the **Berlin→Glamsterdam lineage** so agents can answer “when did this EIP appear?” and run simulations on any named fork. Human docs use **three buckets**:
 
 | Bucket | Doc page | Probe `role` |
 | --- | --- | --- |
@@ -12,19 +12,23 @@ The probe exposes the **Berlin→Glamsterdam lineage** so agents can answer “w
 | Current mainnet EL | [Fusaka](/use/forks/fusaka) | `current` |
 | History | **This page** (Berlin → Pectra) | `historical` |
 
-Historical forks are generic run targets: `{ "baseHardfork": "<id>", "eips": [] }` on the three run tools. Use **`eipIntroductions`** from [Describe Capabilities](/use/tools/describe-capabilities) for facts and compare pairs. **Pectra+** also enables set-code type-4 txs via [Run transaction](/use/tools/run-transaction) `authorizationList` (fork feature, not a catalogue twin). Current-mainnet twins on Fusaka follow when that role rotates.
+Historical forks are generic run targets: `{ "baseHardfork": "<id>", "eips": [] }` on the three run tools. Use **`eipIntroductions`** from [Describe Capabilities](/use/tools/describe-capabilities) for when-did-this-activate facts. **Pectra+** also enables set-code type-4 txs via [Run transaction](/use/tools/run-transaction) `authorizationList` (fork feature, not a catalogue twin). Current-mainnet twins on Fusaka follow when that role rotates.
 
 From **Shapella** on, the catalog id is the combined upgrade name; the EL city name is an alias. **Paris** has no Shapella-style portmanteau — `paris` stays canonical (aliases `merge`, `the-merge`).
 
 **Not in the catalogue:** difficulty-bomb delay forks (Arrow Glacier, Gray Glacier, Muir Glacier, …) and blob-parameter-only upgrades — the lineage jumps **Berlin → London → Paris** on mainnet.
 
-## Compare pattern
+## Single fork vs compare
+
+**Single fork:** pick the fork the user named and run once (e.g. PUSH0 bytecode on **`shapella`** only).
+
+**Compare (when the user asks):**
 
 1. Look up the EIP or keyword in **`eipIntroductions`**.
 2. Note **`introducedAt`**.
 3. Run the same verb on **`predecessorFork(introducedAt)`** and on **`introducedAt`**.
 
-Examples:
+Examples (compare prompts):
 
 - **EIP-1559** → **`london`** → compare **`berlin`** then **`london`** on the same [Run transaction](/use/tools/run-transaction) (fee market / paid `gasUsed`).
 - **PUSH0** (3855) → **`shapella`** → compare **`paris`** then **`shapella`** (`0x5f00` on bytecode).

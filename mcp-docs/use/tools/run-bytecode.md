@@ -29,18 +29,18 @@ Wallet gas limits, first-touch ETH transfers, receipt logs, and paid **`txStateG
 | --- | --- | --- |
 | `bytecode` | Yes | Hex-encoded bytecode (`0x` prefix optional). Max 24 576 bytes. |
 | `accounts` | No | Prefund code / balance / storage. Existing-slot SSTORE: put `storage` on `0x00000000000000000000000000000000000000b1` (the lab execution account). |
-| `fork` | No | `{ baseHardfork, eips[] }` — default **`glamsterdam`**. Use **`fusaka`** for current-mainnet features or as a compare baseline |
+| `fork` | No | `{ baseHardfork, eips[] }` — default **`glamsterdam`**. Use **`fusaka`** when the user asks for current-mainnet EL behavior |
 | `gasLimit` | No | Decimal string. Default `1000000`. Max `30000000`. |
 | `trace` | No | When true, include stack-only execution steps (max 10 000) |
 
 ### Fork notes
 
 - **`glamsterdam`** — preview fork (`{ "baseHardfork": "glamsterdam", "eips": [] }`; alias `amsterdam`). Default. EIP-8024 and other Glamsterdam EIPs are **bundled in the hardfork** — you do not need `eips: [8024]` for DUPN/SWAPN/EXCHANGE to work.
-- **`fusaka`** — current mainnet EL (`{ "baseHardfork": "fusaka", "eips": [] }`; aliases `osaka`, `mainnet-el`). First-class for Fusaka twins (ModExp, P-256) and as the compare baseline vs Glamsterdam.
+- **`fusaka`** — current mainnet EL (`{ "baseHardfork": "fusaka", "eips": [] }`; aliases `osaka`, `mainnet-el`). First-class for Fusaka twins (ModExp, P-256).
 
-### Optional: compare baseline vs preview
+### Compare (only when the user asks)
 
-When you need a before/after view, run the **same bytecode twice** — `fusaka`, then `glamsterdam` — and diff `gasUsed`, `success`, and optional `steps`. See `baselineForkId` and `eips[].comparison` from [Describe Capabilities](/use/tools/describe-capabilities). Skip this if you only care about Glamsterdam behavior.
+When the user wants a before/after view, run the **same bytecode twice** on the pair from `eipIntroductions` / `eips[].comparison` (often predecessor vs `introducedAt`) and diff `gasUsed`, `success`, and optional `steps`. For a single-fork question, run once on the fork they named.
 
 ```json
 {

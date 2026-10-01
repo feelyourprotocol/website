@@ -33,7 +33,7 @@ A **single** paid transfer still belongs on [Run Transaction](/use/tools/run-tra
 
 ### Fork notes
 
-Same named forks as [Run Bytecode](/use/tools/run-bytecode): default **glamsterdam**; **fusaka** for current-mainnet features or a compare baseline. `slotNumber` is rejected on Fusaka.
+Same named forks as [Run Bytecode](/use/tools/run-bytecode): default **glamsterdam**; **fusaka** when the user asks for current-mainnet EL behavior. One run per named fork unless they ask to compare. `slotNumber` is rejected on Fusaka.
 
 ## Outputs
 

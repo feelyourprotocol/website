@@ -39,7 +39,7 @@ Raw opcode / stack / precompile programs belong on [Run Bytecode](/use/tools/run
 
 ### Fork notes
 
-Same named forks as [Run Bytecode](/use/tools/run-bytecode): default **glamsterdam**; **fusaka** for current-mainnet features or a compare baseline.
+Same named forks as [Run Bytecode](/use/tools/run-bytecode): default **glamsterdam**; **fusaka** when the user asks for current-mainnet EL behavior. One run per named fork unless they ask to compare.
 
 ## Outputs
 

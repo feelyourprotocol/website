@@ -70,7 +70,8 @@ Query shapes and MCP tools:
 - Generate artifact → generate_artifact — implemented (public launch pending)
 - Inspect artifact → inspect_artifact — implemented (public launch pending)
 
-Optional: compare baseline vs preview by calling run twice (osaka then amsterdam).
+Default: one run on the fork the user named (amsterdam, osaka, glamsterdam, …).
+Compare only when they ask: same verb twice on predecessor vs introducedAt from eipIntroductions.
 A generic Amsterdam run does not require naming an EIP.
 
 Scope: stateless/BYOS, raw bytecode only, no Solidity compile, no archive node,
@@ -92,7 +93,7 @@ MCP tool name: describe_capabilities
 Input: {} (no required fields)
 Output: engineVersion, ceilings, baselineForkId, namedForks (Berlin→Amsterdam lineage), eipIntroductions (when EIPs activated), eips (runnable modules with derived comparison pairs), allowedBaseHardforks
 
-Use first for lineage (berlin through amsterdam; aliases merge, shapella, dencun, pectra, fusaka, glamsterdam). Glacier delay forks are not catalog targets. eipIntroductions + predecessor compares (e.g. 1559: berlin vs london; PUSH0: paris vs shanghai). A generic hardfork run does not require an EIP number.
+Use first for lineage (berlin through amsterdam; aliases merge, shapella, dencun, pectra, fusaka, glamsterdam). Glacier delay forks are not catalog targets. eipIntroductions for when-did-this-activate; run predecessor vs introducedAt only when the user asks to compare (e.g. 1559: berlin vs london). A generic hardfork run does not require an EIP number.
 
 ================================================================================
 TOOL: RUN_BYTECODE (IMPLEMENTED — PUBLIC LAUNCH PENDING)

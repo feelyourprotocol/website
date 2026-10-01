@@ -6,7 +6,7 @@ This page is the **human EIP index**. Per-EIP pages live at `/use/eips/eip-NNNN`
 
 Fork configuration is **à la carte**: a base hardfork plus an optional EIP list (runnable modules only — history is “run under Shapella”, not “enable 3855 on Paris”). Named forks are **catalog capabilities** in the **Berlin→Glamsterdam lineage**. A generic run under a named fork does **not** require naming an EIP.
 
-**Compare pattern:** find the change in `eipIntroductions` → `introducedAt` → run the same verb on **predecessorFork(introducedAt)** and on **introducedAt**.
+**Default:** one simulation on the fork the user names (`amsterdam`, `osaka`, `glamsterdam`, …). **Compare (only when asked):** find the change in `eipIntroductions` → run the same verb on **predecessorFork(introducedAt)** and on **introducedAt**.
 
 ## Lineage (live)
 
@@ -22,7 +22,7 @@ Full per-fork ids, aliases, and `activatedEips` live in **`describe_capabilities
 
 ## Runnable capabilities (live catalog)
 
-These appear in `describe_capabilities()` — engine modules with `runnable: true`. **Comparison pairs** on each row are derived from `eipIntroductions` (predecessor vs `introducedAt`). **Tools** are MCP names (`eips[].tools`).
+These appear in `describe_capabilities()` — engine modules with `runnable: true`. **Comparison pairs** on each row are lookup metadata from `eipIntroductions` (predecessor vs `introducedAt`) — use them when the user asks for a before/after, not on every run. **Tools** are MCP names (`eips[].tools`).
 
 | EIP  | Nature         | Tools   | Introduced at | Compare (typical)        | Catalogue                      |
 | ---- | -------------- | -------- | ------------- | ------------------------ | ------------------------------ |
