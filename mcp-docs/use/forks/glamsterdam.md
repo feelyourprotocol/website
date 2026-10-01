@@ -34,6 +34,7 @@ These are the highest-signal checks for integrators and auditors — exact gas a
 | Block access lists (generate / inspect) | [EIP-7928](/use/eips/eip-7928) |
 | DUPN / SWAPN / EXCHANGE | [EIP-8024](/use/eips/eip-8024) |
 | SLOTNUM opcode / header slot in lab blocks | [EIP-7843](/use/eips/eip-7843) |
+| Calldata floor (64 gas per byte when the call does little else) | [EIP-7976](/use/eips/eip-7976) |
 
 ## Compare to mainnet today
 
@@ -47,7 +48,7 @@ When you care about **before vs after**, ask for the same experiment on **Fusaka
 2. Ask in plain language — [What you can ask](/use/capabilities)
 3. Optional deep dive — per-EIP pages above or the full [EIP catalogue](/use/coverage)
 
-Bundled rule changes that do not have their own exploration (for example SELFDESTRUCT no longer burning ETH) still apply on Amsterdam; your agent uses generic Amsterdam runs without naming those ids.
+Bundled rule changes that do not have their own exploration still apply on Amsterdam. SELFDESTRUCT no longer burns ETH. Access-list bytes pay the same 64-gas floor as calldata. Your agent uses generic Amsterdam runs without naming those ids.
 
 Consensus-layer and networking EIPs scheduled beside Amsterdam are **not** executed in this lab — the [EIP catalogue](/use/coverage) notes which ids to omit.
 
@@ -64,6 +65,7 @@ Consensus-layer and networking EIPs scheduled beside Amsterdam are **not** execu
 <Changelog
   title="Preview Forks (Glamsterdam) Changelog"
   :entries="[
+    { version: 'v1.1', date: '2026-10-01', summary: 'EIP-7976 calldata floor joins the advertised twins. EIP-7981 stays bundled.' },
     { version: 'v1.0', date: '2026-10-01', summary: 'User-first Amsterdam page — gas/receipt questions first; probe jargon moved to catalogue.' },
     { version: 'v0.9', date: '2026-09-29', summary: 'EIP-2780 intrinsic gas joins the advertised Glamsterdam twins.' },
     { version: 'v0.8', date: '2026-09-29', summary: 'Networking (7975, 8070, 8136, 8159, 8189) and informational (7904, 8261) EIPs are out of this lab.' },

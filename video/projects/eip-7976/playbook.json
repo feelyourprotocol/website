@@ -1,0 +1,108 @@
+{
+  "format": "shorts",
+  "exploration": "eip-7976",
+  "defaultExample": "zeros",
+  "steps": [
+    {
+      "beat": "hook",
+      "overlay": "title-card",
+      "wait": 6200
+    },
+    {
+      "beat": "context",
+      "overlay": "context",
+      "placement": "bottom-banner",
+      "focus": "byte-stage",
+      "cue": 3200,
+      "hideOverlay": true,
+      "wait": 700
+    },
+    {
+      "beat": "zeros",
+      "overlay": "zeros-read",
+      "annotate": "guide-calldata",
+      "placement": "bottom-banner",
+      "focus": "calldata",
+      "cue": 2800,
+      "hideOverlay": true,
+      "wait": 900
+    },
+    {
+      "beat": "fusaka",
+      "overlay": "fusaka-read",
+      "annotate": "guide-fork",
+      "placement": "top-banner",
+      "focus": "hardfork-toggle",
+      "cue": 2200,
+      "click": "hardfork-fusaka",
+      "wait": 700
+    },
+    {
+      "beat": "fusaka-run",
+      "annotate": "guide-compare",
+      "focus": "floor-compare",
+      "wait": 4200
+    },
+    {
+      "beat": "nonzero-nav",
+      "focus": "example-select",
+      "click": "scenario-step-next",
+      "wait": 500
+    },
+    {
+      "beat": "nonzeros",
+      "overlay": "nonzero-read",
+      "annotate": "guide-calldata",
+      "placement": "bottom-banner",
+      "focus": "calldata",
+      "cue": 2800,
+      "hideOverlay": true,
+      "wait": 900
+    },
+    {
+      "beat": "busy-nav",
+      "focus": "example-select",
+      "click": "scenario-step-next",
+      "wait": 500
+    },
+    {
+      "beat": "busy",
+      "overlay": "busy-read",
+      "annotate": "guide-compare",
+      "placement": "top-banner",
+      "focus": "floor-compare",
+      "cue": 2600,
+      "hideOverlay": true,
+      "wait": 1000
+    },
+    {
+      "beat": "access-nav",
+      "focus": "example-select",
+      "click": "scenario-step-next",
+      "wait": 500
+    },
+    {
+      "beat": "access",
+      "overlay": "access-read",
+      "annotate": "guide-compare",
+      "placement": "top-banner",
+      "focus": "floor-compare",
+      "cue": 2600,
+      "hideOverlay": true,
+      "wait": 1000
+    },
+    {
+      "beat": "recap",
+      "overlay": "recap",
+      "annotate": "guide-compare",
+      "placement": "top-banner",
+      "focus": "floor-compare",
+      "wait": 4800
+    },
+    {
+      "beat": "outro",
+      "overlay": "outro-card",
+      "wait": 5600
+    }
+  ]
+}

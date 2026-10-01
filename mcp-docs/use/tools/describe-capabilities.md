@@ -52,7 +52,7 @@ _Output (abbreviated):_
   ],
   "namedForks": [
     { "id": "fusaka", "role": "current", "aliases": ["osaka", "mainnet-el"], "relatedEips": [7883, 7951], "tools": ["run_bytecode", "run_transaction", "run_block"], "…": "…" },
-    { "id": "glamsterdam", "role": "preview", "aliases": ["amsterdam"], "relatedEips": [2780, 7708, 7843, 7928, 8024, 8037, 8038], "tools": ["run_bytecode", "run_transaction", "run_block"], "…": "…" }
+    { "id": "glamsterdam", "role": "preview", "aliases": ["amsterdam"], "relatedEips": [2780, 7708, 7843, 7928, 7954, 7976, 8024, 8037, 8038], "tools": ["run_bytecode", "run_transaction", "run_block"], "…": "…" }
   ],
   "eips": [{
     "eip": 8024,

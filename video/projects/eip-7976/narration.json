@@ -1,0 +1,45 @@
+{
+  "segmentGapMs": 350,
+  "segments": [
+    {
+      "beat": "hook",
+      "text": "When does calldata cost 64 gas per byte, and when does a normal call still pay 4 and 16?"
+    },
+    {
+      "beat": "context",
+      "text": "On Glamsterdam, little work means 64 for every byte, zero or not. Fusaka stays at 10 and 40."
+    },
+    {
+      "beat": "zeros",
+      "text": "These are one hundred zero bytes, and the call does no work. The floor is six thousand four hundred."
+    },
+    {
+      "beat": "fusaka",
+      "text": "Same zeros. One fork earlier."
+    },
+    {
+      "beat": "fusaka-run",
+      "text": "The floor is one thousand. Ten gas per zero byte."
+    },
+    {
+      "beat": "nonzeros",
+      "text": "Now every byte is nonzero. The floor still wins. Forty becomes sixty-four, not ten."
+    },
+    {
+      "beat": "busy",
+      "text": "A few hundred additions. That work costs more than the floor, so each byte stays at sixteen."
+    },
+    {
+      "beat": "access",
+      "text": "No calldata here. An address and a storage key still pay sixty-four each on Glamsterdam."
+    },
+    {
+      "beat": "recap",
+      "text": "Little work, sixty-four a byte. Real work, four and sixteen. Fusaka stays at ten and forty."
+    },
+    {
+      "beat": "outro",
+      "text": "The floor schedule is on Forkcast. The four shapes are on feelyourprotocol dot org."
+    }
+  ]
+}

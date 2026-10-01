@@ -30,6 +30,10 @@ After you can name the chrome controls, and **before** shipping a second copy of
 
 Reference: `SegmentedToggleUIC` — Fusaka | Glamsterdam on `eip-7708` and `eip-8037`, plus the gas-limit pair on `eip-8037`. Scenario step prev/next → **`ScenarioStepNavUIC`**. Scenario control row → **`WidgetChromeUIC`** (`.e-widget-chrome*` in `main.css`). Title-row Spec snapshot → **`InfoPanelUIC`** + **`SpecSnapshotUIC`**.
 
+## Local visuals
+
+A picture that makes the EIP readable — bars, a byte field, a ledger — is part of the exploration. Put a one-off in `src/explorations/<id>/`. If the next exploration would want that same picture, extract `src/eComponents/ui/<Name>UIC.vue` instead of copying the file: generic props, no EIP number inside, tests for empty / zero / overflow. Shared chrome (toggle, run, picker) extracts on the second copy even when it is not a “picture.” A new shared E-Component stays exception-gated in the add-exploration skill.
+
 ## Widget chrome (scenario explorations)
 
 **Scenario widgets** (7708, 8037, 8038, 7928) share one chrome layout via **`WidgetChromeUIC`**: optional **`steps`** (`ScenarioStepNavUIC`), optional **`toggles`** (one or more `SegmentedToggleUIC`), then **`examples`** + **`run`** as a pair on the action band.

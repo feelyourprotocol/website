@@ -1,0 +1,112 @@
+{
+  "meta": {
+    "exploration": "eip-7976",
+    "defaultExample": "zeros"
+  },
+  "overlays": {
+    "title-card": {
+      "type": "title-card",
+      "eyebrow": "Ethereum · Glamsterdam",
+      "title": "EIP-7976",
+      "subtitle": "Calldata floor",
+      "hook": ["When does calldata", "cost 64 a byte?"]
+    },
+    "context": {
+      "type": "punch",
+      "layout": "banner",
+      "placement": "bottom-banner",
+      "text": "LITTLE WORK",
+      "sub": "64 per byte, zero or not",
+      "invert": true
+    },
+    "zeros-read": {
+      "type": "split",
+      "layout": "banner",
+      "placement": "bottom-banner",
+      "segments": [
+        { "text": "100 zero bytes", "size": "lg" },
+        { "text": "Floor 6,400", "size": "lg", "emphasis": true }
+      ]
+    },
+    "fusaka-read": {
+      "type": "punch",
+      "layout": "banner",
+      "placement": "top-banner",
+      "text": "FUSAKA",
+      "sub": "Same zeros, floor 1,000",
+      "invert": false
+    },
+    "nonzero-read": {
+      "type": "split",
+      "layout": "banner",
+      "placement": "bottom-banner",
+      "segments": [
+        { "text": "100 nonzero bytes", "size": "lg" },
+        { "text": "40 becomes 64", "size": "lg", "emphasis": true }
+      ]
+    },
+    "busy-read": {
+      "type": "split",
+      "layout": "banner",
+      "placement": "top-banner",
+      "segments": [
+        { "text": "Real work", "size": "lg" },
+        { "text": "Stays at 16", "size": "lg", "emphasis": true }
+      ]
+    },
+    "access-read": {
+      "type": "split",
+      "layout": "banner",
+      "placement": "top-banner",
+      "segments": [
+        { "text": "No calldata", "size": "lg" },
+        { "text": "Listed bytes still 64", "size": "md", "emphasis": true }
+      ]
+    },
+    "recap": {
+      "type": "split",
+      "layout": "banner",
+      "placement": "top-banner",
+      "segments": [
+        { "text": "Quiet: 64 a byte", "size": "lg" },
+        { "text": "Busy: 4 and 16", "size": "md", "emphasis": true }
+      ]
+    },
+    "outro-card": {
+      "type": "outro-card",
+      "closing": "Little work pays the floor. Real work keeps 4 and 16. Fusaka stays at 10 and 40.",
+      "ctas": [
+        {
+          "label": "READ THE FLOOR SCHEDULE",
+          "url": "FORKCAST.ORG",
+          "variant": "secondary"
+        },
+        {
+          "label": "STEP THE FOUR SHAPES",
+          "url": "FEELYOURPROTOCOL.ORG",
+          "variant": "primary"
+        }
+      ]
+    }
+  },
+  "annotations": {
+    "guide-calldata": {
+      "target": "calldata",
+      "label": "Calldata",
+      "hint": "Every byte in this transaction",
+      "side": "bottom"
+    },
+    "guide-compare": {
+      "target": "floor-compare",
+      "label": "The price",
+      "hint": "Almost no work, or real work",
+      "side": "top"
+    },
+    "guide-fork": {
+      "target": "hardfork-toggle",
+      "label": "Hardfork",
+      "hint": "Glamsterdam or Fusaka",
+      "side": "bottom"
+    }
+  }
+}

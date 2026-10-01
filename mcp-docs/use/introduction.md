@@ -38,6 +38,7 @@ After [Connect](/use/connect), paste a prompt — you do not need EIP numbers in
 | Ask your agent | Twin |
 | --- | --- |
 | *“What intrinsic gas does a simple ETH transfer use under Amsterdam?”* | [EIP-2780](/use/eips/eip-2780) |
+| *“This calldata is mostly zeros. What does it cost on Amsterdam versus Fusaka?”* | [EIP-7976](/use/eips/eip-7976) |
 | *“Send 1 wei to an empty account on Amsterdam — what gas does the wallet need?”* | [EIP-8037](/use/eips/eip-8037) |
 | *“How does SSTORE on an existing slot price on Amsterdam vs Fusaka?”* | [EIP-8038](/use/eips/eip-8038) |
 | *“Does a value transfer emit a receipt log on Amsterdam?”* | [EIP-7708](/use/eips/eip-7708) |

@@ -66,6 +66,10 @@ Do **not** create a new shared E-Component by default — but when briefing or d
 
 **UIC vs E-Component:** copying a sibling’s chrome (two-button toggle, run button, example picker) with different colors or spacing is a **required in-between UIC extract** (`src/eComponents/ui/`, tests included). That is not a new E-Component and does not use the exception gate below.
 
+**Local visuals.** A picture that teaches this EIP — a byte field, a ledger, a chart — belongs in the exploration. Create it there (`src/explorations/<id>/<Name>.vue`) when the reading is specific to this change. That is a normal part of the widget, not a fallback and not an exception.
+
+If a later exploration would want the **same picture** (same control, same way of reading it), do not copy the file. Extract a UIC in this phase: `src/eComponents/ui/<Name>UIC.vue`, props that carry no EIP number, and tests for empty, zero, overflow, and a short list. Then use it here. One-off pedagogy stays local. Shared chrome (toggles, run, example picker) is still a UIC as soon as a second copy would exist. A new shared E-Component stays on the exception gate.
+
 **Sub-round checklist:** typed config + neutral display types (no third-party imports in E-Component), unit tests, catalogue row, optional provide/inject for loose coupling to exploration execution.
 
 ## Exception gates
