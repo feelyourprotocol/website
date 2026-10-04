@@ -50,7 +50,7 @@ When you care about **before vs after**, ask for the same experiment on **Fusaka
 
 Bundled rule changes that do not have their own exploration still apply on Amsterdam. SELFDESTRUCT no longer burns ETH. Access-list bytes pay the same 64-gas floor as calldata. Your agent uses generic Amsterdam runs without naming those ids.
 
-EIP-7997 is unshown. The chain must already contain the CREATE2 factory, and this lab does not install it.
+EIP-7997 is unshown. The chain must already contain the CREATE2 factory, and this lab does not install it. EIP-8282 is unshown. A lab block does not return builder deposit or exit requests, and whether a builder is accepted is consensus.
 
 Consensus-layer and networking EIPs scheduled beside Amsterdam are **not** executed in this lab — the [EIP catalogue](/use/coverage) notes which ids to omit.
 
@@ -67,6 +67,7 @@ Consensus-layer and networking EIPs scheduled beside Amsterdam are **not** execu
 <Changelog
   title="Preview Forks (Glamsterdam) Changelog"
   :entries="[
+    { version: 'v1.3', date: '2026-10-04', summary: 'EIP-8282 is coverage unshown. Lab blocks do not return builder requests.' },
     { version: 'v1.2', date: '2026-10-04', summary: 'EIP-7997 is coverage unshown. The fork does not install the CREATE2 factory.' },
     { version: 'v1.1', date: '2026-10-01', summary: 'EIP-7976 calldata floor joins the advertised twins. EIP-7981 stays bundled.' },
     { version: 'v1.0', date: '2026-10-01', summary: 'User-first Amsterdam page — gas/receipt questions first; probe jargon moved to catalogue.' },

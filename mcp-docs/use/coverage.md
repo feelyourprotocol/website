@@ -62,7 +62,7 @@ Canonical metadata for twins lives in website `src/explorations/eip-NNNN/canonic
 
 `eipIntroductions[].coverage` of **`supported`** means the hardfork already applies the EIP. There is no exploration and no page in this catalogue. Omit the id from `eips` and use the fork's tools. On Glamsterdam: EIP-8246 (SELFDESTRUCT no longer burns ETH) and EIP-7981 (access-list bytes pay the calldata floor). **`listed`** rows are a name and a fork only.
 
-**`unshown`** means an execution-layer EIP in the bundle whose effect this lab does not demonstrate. There is no page. Naming it in `eips` is rejected, and a generic fork run does not stand in for it. On Glamsterdam: EIP-7997 (the CREATE2 factory is not installed by the fork).
+**`unshown`** means an execution-layer EIP in the bundle whose effect this lab does not demonstrate. There is no page. Naming it in `eips` is rejected, and a generic fork run does not stand in for it. On Glamsterdam: EIP-7997 (the CREATE2 factory is not installed by the fork) and EIP-8282 (builder requests are not returned; acceptance is consensus).
 
 **`consensus`** means the EIP is consensus-layer and this lab does not execute it. There is no page here. Already marked: 3675 (Paris), 4895 (Shapella), 6110 and 7251 (Pectra), 7594 (Fusaka), and on Glamsterdam 7688, 7732, 8045, 8061.
 
@@ -75,6 +75,7 @@ Canonical metadata for twins lives in website `src/explorations/eip-NNNN/canonic
 <Changelog
   title="Coverage Changelog"
   :entries="[
+    { version: 'v0.38', date: '2026-10-04', summary: 'EIP-8282 builder requests are coverage unshown. A lab block does not return them.' },
     { version: 'v0.37', date: '2026-10-04', summary: 'EIP-7997 is coverage unshown: the CREATE2 factory is not installed or demonstrated here.' },
     { version: 'v0.36', date: '2026-10-01', summary: 'EIP-7976 calldata floor is a runnable twin. EIP-7981 is coverage supported.' },
     { version: 'v0.35', date: '2026-09-29', summary: 'EIP-2780 intrinsic gas is a runnable twin on run_transaction.' },
