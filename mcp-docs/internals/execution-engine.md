@@ -91,6 +91,7 @@ See also [Design Principles](/internals/design-principles).
 | 7883 | repricing | yes | simulate |
 | 7951 | new-capability | yes | simulate |
 | 8037 | new-exec-model | yes | transaction, simulate |
+| 7778 | new-exec-model | yes | block, transaction |
 | 8038 | repricing | yes | simulate, transaction |
 
 Only runnable modules appear in `describeCapabilities().eips`. Named forks appear in `namedForks` with advertised `relatedEips`. Wallet / receipt questions use **transaction**; opcode / precompile questions use **simulate**; header slot / multi-tx questions use **block**. A generic Glamsterdam run uses the same verbs with empty `eips[]`.
@@ -106,6 +107,7 @@ See [Quality](/internals/quality).
 <Changelog
   title="Execution Engine Changelog"
   :entries="[
+    { version: 'v0.1.13', date: '2026-10-04', summary: 'EIP-7778 module — paid gas vs block count on storage-clear refunds.' },
     { version: 'v0.1.12', date: '2026-09-18', summary: 'Named eips[] caveats include a compact Spec: snapshot (status, date, test release).' },
     { version: 'v0.1.11', date: '2026-09-16', summary: 'Named forks are catalog capabilities; generic-run provenance lists advertised modules.' },
     { version: 'v0.1.9', date: '2026-09-14', summary: 'Boundaries: isolated lab / constructed prestate; historical backtesting still out.' },

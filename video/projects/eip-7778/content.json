@@ -1,0 +1,103 @@
+{
+  "meta": {
+    "exploration": "eip-7778",
+    "defaultExample": "01-clear-slot"
+  },
+  "overlays": {
+    "title-card": {
+      "type": "title-card",
+      "eyebrow": "Ethereum · Glamsterdam",
+      "title": "EIP-7778",
+      "subtitle": "Block gas accounting",
+      "hook": ["I cleared storage.", "Why does the block still count it?"]
+    },
+    "context": {
+      "type": "punch",
+      "layout": "banner",
+      "placement": "top-banner",
+      "text": "REFUND STAYS ON THE BILL",
+      "sub": "The block keeps the full charge",
+      "invert": true
+    },
+    "clear-read": {
+      "type": "split",
+      "layout": "banner",
+      "placement": "top-banner",
+      "segments": [
+        { "text": "You pay less", "size": "lg" },
+        { "text": "The block counts full", "size": "md", "emphasis": true }
+      ]
+    },
+    "fusaka-read": {
+      "type": "punch",
+      "layout": "banner",
+      "placement": "top-banner",
+      "text": "FUSAKA",
+      "sub": "The same clear. One number.",
+      "invert": false
+    },
+    "rewrite-read": {
+      "type": "split",
+      "layout": "banner",
+      "placement": "top-banner",
+      "segments": [
+        { "text": "No refund", "size": "lg" },
+        { "text": "Bill and block match", "size": "md", "emphasis": true }
+      ]
+    },
+    "reset-read": {
+      "type": "split",
+      "layout": "banner",
+      "placement": "top-banner",
+      "segments": [
+        { "text": "Put the value back", "size": "lg" },
+        { "text": "The block stays cheap", "size": "md", "emphasis": true }
+      ]
+    },
+    "recap": {
+      "type": "split",
+      "layout": "banner",
+      "placement": "top-banner",
+      "segments": [
+        { "text": "Clear: two numbers", "size": "lg" },
+        { "text": "Fusaka: they match", "size": "md", "emphasis": true }
+      ]
+    },
+    "outro-card": {
+      "type": "outro-card",
+      "closing": "Glamsterdam keeps the refund on your bill. Fusaka still lets it shrink the block.",
+      "ctas": [
+        {
+          "label": "READ ABOUT THE EIP",
+          "url": "FORKCAST.ORG",
+          "variant": "secondary"
+        },
+        {
+          "label": "COMPARE THE TWO NUMBERS",
+          "url": "FEELYOURPROTOCOL.ORG",
+          "variant": "primary"
+        }
+      ]
+    }
+  },
+  "annotations": {
+    "guide-run": {
+      "target": "run-tx",
+      "label": "Run tx",
+      "hint": "Bill versus the block",
+      "side": "bottom"
+    },
+    "guide-ledger": {
+      "target": "pay-ledger",
+      "label": "Two figures",
+      "hint": "What you pay, what the block counts",
+      "side": "top"
+    },
+    "guide-fork": {
+      "target": "hardfork-toggle",
+      "label": "Hardfork",
+      "hint": "Glamsterdam or Fusaka",
+      "side": "bottom"
+    }
+  }
+}

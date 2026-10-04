@@ -48,6 +48,7 @@ Bytecode path vs transaction path: program gas often belongs in a bytecode run; 
 
 - *“Run these two transfers as one Amsterdam block and show each receipt.”*
 - *“Set header slot and run one tx — what changes?”* → [EIP-7843](/use/eips/eip-7843) context
+- *“Clear a storage slot on Amsterdam. What do I pay, and what does the block count?”* → [EIP-7778](/use/eips/eip-7778)
 
 Up to **8** transactions per block. Not historical chain replay.
 

@@ -18,6 +18,7 @@ These are the highest-signal checks for integrators and auditors — exact gas a
 | What does the first 1 wei to an empty account cost? | [EIP-8037](/use/eips/eip-8037) |
 | How does SSTORE on an existing slot price vs today’s mainnet? | [EIP-8038](/use/eips/eip-8038) |
 | Does a value transfer show up as a receipt log? | [EIP-7708](/use/eips/eip-7708) |
+| I cleared storage and got a refund — why does the block still count the full gas? | [EIP-7778](/use/eips/eip-7778) |
 
 **Example prompts**
 
@@ -67,6 +68,7 @@ Consensus-layer and networking EIPs scheduled beside Amsterdam are **not** execu
 <Changelog
   title="Preview Forks (Glamsterdam) Changelog"
   :entries="[
+    { version: 'v1.4', date: '2026-10-04', summary: 'EIP-7778 joins the advertised twins — refunds stay on the bill, not the block.' },
     { version: 'v1.3', date: '2026-10-04', summary: 'EIP-8282 is coverage unshown. Lab blocks do not return builder requests.' },
     { version: 'v1.2', date: '2026-10-04', summary: 'EIP-7997 is coverage unshown. The fork does not install the CREATE2 factory.' },
     { version: 'v1.1', date: '2026-10-01', summary: 'EIP-7976 calldata floor joins the advertised twins. EIP-7981 stays bundled.' },

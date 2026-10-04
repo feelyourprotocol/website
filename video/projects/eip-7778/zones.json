@@ -1,0 +1,42 @@
+{
+  "format": { "width": 540, "height": 960 },
+  "safeZone": {
+    "topPx": 56,
+    "bottomPx": 120,
+    "leftPx": 32,
+    "rightPx": 48,
+    "description": "YouTube Shorts — keep readable text/UI inside; black bars may bleed to edges"
+  },
+  "focusAreas": {
+    "example-select": {
+      "selector": "[data-testid=\"example-select\"]",
+      "description": "Scenario picker — clear, rewrite, put it back"
+    },
+    "hardfork-toggle": {
+      "selector": "[data-testid=\"hardfork-toggle\"]",
+      "description": "Glamsterdam / Fusaka toggle"
+    },
+    "run-tx": {
+      "selector": "[data-testid=\"run-tx\"]",
+      "description": "Run tx action button"
+    },
+    "pay-ledger": {
+      "selector": "[data-testid=\"pay-ledger\"]",
+      "description": "You pay versus what the block counts"
+    }
+  },
+  "placements": {
+    "top-banner": {
+      "anchor": "top",
+      "insetPx": 0,
+      "maxHeightPx": 184,
+      "description": "Full-bleed black bar; text inset via CSS safe zone"
+    },
+    "bottom-banner": {
+      "anchor": "bottom",
+      "insetPx": 120,
+      "maxHeightPx": 140,
+      "description": "Bar above the Shorts bottom action row"
+    }
+  }
+}

@@ -27,6 +27,7 @@ export const E2E_EXPLORATIONS: E2eExploration[] = [
   { id: 'eip-7954', path: '/eip-7954-contract-size-limit', family: 'scenario' },
   { id: 'eip-7976', path: '/eip-7976-calldata-floor-cost', family: 'scenario' },
   { id: 'eip-8024', path: '/eip-8024-stack-opcodes-dupn-swapn-exchange', family: 'bytecode' },
+  { id: 'eip-7778', path: '/eip-7778-block-gas-accounting', family: 'scenario' },
   { id: 'eip-8037', path: '/eip-8037-state-creation-gas', family: 'scenario' },
   { id: 'eip-8038', path: '/eip-8038-state-access-gas', family: 'scenario' },
 ]

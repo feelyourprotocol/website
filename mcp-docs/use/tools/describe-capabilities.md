@@ -52,7 +52,7 @@ _Output (abbreviated):_
   ],
   "namedForks": [
     { "id": "fusaka", "role": "current", "aliases": ["osaka", "mainnet-el"], "relatedEips": [7883, 7951], "tools": ["run_bytecode", "run_transaction", "run_block"], "…": "…" },
-    { "id": "glamsterdam", "role": "preview", "aliases": ["amsterdam"], "relatedEips": [2780, 7708, 7843, 7928, 7954, 7976, 8024, 8037, 8038], "tools": ["run_bytecode", "run_transaction", "run_block"], "…": "…" }
+    { "id": "glamsterdam", "role": "preview", "aliases": ["amsterdam"], "relatedEips": [2780, 7708, 7778, 7843, 7928, 7954, 7976, 8024, 8037, 8038], "tools": ["run_bytecode", "run_transaction", "run_block"], "…": "…" }
   ],
   "eips": [{
     "eip": 8024,
@@ -79,6 +79,7 @@ _Output (abbreviated):_
 <Changelog
   title="Describe Capabilities Changelog"
   :entries="[
+    { version: 'v0.24', date: '2026-10-04', summary: 'EIP-7778 is a runnable Glamsterdam twin (run_transaction, run_block).' },
     { version: 'v0.23', date: '2026-10-04', summary: 'EIP-8282 is coverage unshown, with EIP-7997.' },
     { version: 'v0.22', date: '2026-10-04', summary: 'eipIntroductions.coverage adds unshown: execution-layer EIPs this lab does not demonstrate. EIP-7997 is the first.' },
     { version: 'v0.21', date: '2026-09-29', summary: 'eipIntroductions.coverage adds networking and informational: wire protocol and notes this lab does not execute.' },

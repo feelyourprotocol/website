@@ -1,0 +1,94 @@
+{
+  "format": "shorts",
+  "exploration": "eip-7778",
+  "defaultExample": "01-clear-slot",
+  "steps": [
+    {
+      "beat": "hook",
+      "overlay": "title-card",
+      "wait": 5600
+    },
+    {
+      "beat": "context",
+      "overlay": "context",
+      "placement": "top-banner",
+      "focus": "pay-ledger",
+      "cue": 3600,
+      "hideOverlay": true,
+      "wait": 600
+    },
+    {
+      "beat": "clear",
+      "overlay": "clear-read",
+      "annotate": "guide-run",
+      "placement": "top-banner",
+      "focus": "run-tx",
+      "cue": 2800,
+      "click": "run-tx",
+      "wait": 900
+    },
+    {
+      "beat": "fusaka",
+      "overlay": "fusaka-read",
+      "annotate": "guide-fork",
+      "placement": "top-banner",
+      "focus": "hardfork-toggle",
+      "cue": 2400,
+      "click": "hardfork-fusaka",
+      "wait": 700
+    },
+    {
+      "beat": "fusaka-run",
+      "annotate": "guide-ledger",
+      "focus": "pay-ledger",
+      "cue": 2600,
+      "click": "run-tx",
+      "wait": 1200
+    },
+    {
+      "beat": "rewrite-nav",
+      "focus": "example-select",
+      "click": "scenario-step-next",
+      "wait": 500
+    },
+    {
+      "beat": "rewrite",
+      "overlay": "rewrite-read",
+      "annotate": "guide-run",
+      "placement": "top-banner",
+      "focus": "run-tx",
+      "cue": 2600,
+      "click": "run-tx",
+      "wait": 900
+    },
+    {
+      "beat": "reset-nav",
+      "focus": "example-select",
+      "click": "scenario-step-next",
+      "wait": 500
+    },
+    {
+      "beat": "reset",
+      "overlay": "reset-read",
+      "annotate": "guide-ledger",
+      "placement": "top-banner",
+      "focus": "pay-ledger",
+      "cue": 3200,
+      "click": "run-tx",
+      "wait": 1100
+    },
+    {
+      "beat": "recap",
+      "overlay": "recap",
+      "annotate": "guide-ledger",
+      "placement": "top-banner",
+      "focus": "pay-ledger",
+      "wait": 4400
+    },
+    {
+      "beat": "outro",
+      "overlay": "outro-card",
+      "wait": 5200
+    }
+  ]
+}

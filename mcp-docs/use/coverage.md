@@ -12,7 +12,7 @@ Newer EIPs that are still ahead of Amsterdam may move to a [paid tier](/use/pric
 | ----- | ----------- | ---------- | -------------------- | -------------- | ---------- |
 | 0–5   | `berlin` … `pectra` | historical | see probe | (generic runs; no advertised twins) | [Historical forks](/use/forks/historical-forks) |
 | 6     | `fusaka`     | current    | `osaka`, `mainnet-el` | 7883, 7951 | [Mainnet — Fusaka](/use/forks/fusaka) |
-| 7     | `glamsterdam` | preview    | `amsterdam`          | 2780, 7976, 8024, 7843, 7708, 7928, 7954, 8037, 8038   | [Amsterdam now](/use/forks/glamsterdam) |
+| 7     | `glamsterdam` | preview    | `amsterdam`          | 2780, 7778, 7976, 8024, 7843, 7708, 7928, 7954, 8037, 8038   | [Amsterdam now](/use/forks/glamsterdam) |
 
 Full per-fork ids, aliases, and `activatedEips` live in **`describe_capabilities`** — the table above is the human map to three doc pages.
 
@@ -34,6 +34,7 @@ These appear in `describe_capabilities()` — engine modules with `runnable: tru
 | 7951 | new-capability | run_bytecode | fusaka         | pectra → fusaka           | [EIP-7951](/use/eips/eip-7951) |
 | 7954 | limit          | run_transaction | glamsterdam   | fusaka → glamsterdam      | [EIP-7954](/use/eips/eip-7954) |
 | 8037 | new-exec-model | run_transaction, run_bytecode | glamsterdam | fusaka → glamsterdam | [EIP-8037](/use/eips/eip-8037) |
+| 7778 | new-exec-model | run_block, run_transaction | glamsterdam | fusaka → glamsterdam | [EIP-7778](/use/eips/eip-7778) |
 | 8038 | repricing      | run_bytecode, run_transaction | glamsterdam | fusaka → glamsterdam | [EIP-8038](/use/eips/eip-8038) |
 
 **Glamsterdam note (8024 / 7843):** The Glamsterdam hardfork already bundles these EIPs. Passing `eips: [8024]` or `eips: [7843]` is accepted but is not a pre/post toggle.
@@ -54,6 +55,7 @@ Every **live** website exploration has an MCP-docs page mapping the same problem
 | 7843 | SLOTNUM opcode     | Runnable               | [EIP-7843](/use/eips/eip-7843) |
 | 7708 | ETH transfer logs  | Runnable               | [EIP-7708](/use/eips/eip-7708) |
 | 8037 | State creation gas | Runnable               | [EIP-8037](/use/eips/eip-8037) |
+| 7778 | Block gas accounting | Runnable             | [EIP-7778](/use/eips/eip-7778) |
 | 8038 | State-access gas   | Runnable               | [EIP-8038](/use/eips/eip-8038) |
 
 Canonical metadata for twins lives in website `src/explorations/eip-NNNN/canonical.ts`.
@@ -75,6 +77,7 @@ Canonical metadata for twins lives in website `src/explorations/eip-NNNN/canonic
 <Changelog
   title="Coverage Changelog"
   :entries="[
+    { version: 'v0.39', date: '2026-10-04', summary: 'EIP-7778 block gas accounting is a runnable twin (paid gas vs block count).' },
     { version: 'v0.38', date: '2026-10-04', summary: 'EIP-8282 builder requests are coverage unshown. A lab block does not return them.' },
     { version: 'v0.37', date: '2026-10-04', summary: 'EIP-7997 is coverage unshown: the CREATE2 factory is not installed or demonstrated here.' },
     { version: 'v0.36', date: '2026-10-01', summary: 'EIP-7976 calldata floor is a runnable twin. EIP-7981 is coverage supported.' },
