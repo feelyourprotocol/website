@@ -18,6 +18,7 @@ These are the highest-signal checks for integrators and auditors — exact gas a
 | What does the first 1 wei to an empty account cost? | [EIP-8037](/use/eips/eip-8037) |
 | How does SSTORE on an existing slot price vs today’s mainnet? | [EIP-8038](/use/eips/eip-8038) |
 | Does a value transfer show up as a receipt log? | [EIP-7708](/use/eips/eip-7708) |
+| I cleared storage and got a refund — why does the block still count the full gas? | [EIP-7778](/use/eips/eip-7778) |
 
 **Example prompts**
 
@@ -50,6 +51,8 @@ When you care about **before vs after**, ask for the same experiment on **Fusaka
 
 Bundled rule changes that do not have their own exploration still apply on Amsterdam. SELFDESTRUCT no longer burns ETH. Access-list bytes pay the same 64-gas floor as calldata. Your agent uses generic Amsterdam runs without naming those ids.
 
+EIP-7997 is unshown. The chain must already contain the CREATE2 factory, and this lab does not install it. EIP-8282 is unshown. A lab block does not return builder deposit or exit requests, and whether a builder is accepted is consensus.
+
 Consensus-layer and networking EIPs scheduled beside Amsterdam are **not** executed in this lab — the [EIP catalogue](/use/coverage) notes which ids to omit.
 
 ## Related
@@ -65,6 +68,9 @@ Consensus-layer and networking EIPs scheduled beside Amsterdam are **not** execu
 <Changelog
   title="Preview Forks (Glamsterdam) Changelog"
   :entries="[
+    { version: 'v1.4', date: '2026-10-04', summary: 'EIP-7778 joins the advertised twins — refunds stay on the bill, not the block.' },
+    { version: 'v1.3', date: '2026-10-04', summary: 'EIP-8282 is coverage unshown. Lab blocks do not return builder requests.' },
+    { version: 'v1.2', date: '2026-10-04', summary: 'EIP-7997 is coverage unshown. The fork does not install the CREATE2 factory.' },
     { version: 'v1.1', date: '2026-10-01', summary: 'EIP-7976 calldata floor joins the advertised twins. EIP-7981 stays bundled.' },
     { version: 'v1.0', date: '2026-10-01', summary: 'User-first Amsterdam page — gas/receipt questions first; probe jargon moved to catalogue.' },
     { version: 'v0.9', date: '2026-09-29', summary: 'EIP-2780 intrinsic gas joins the advertised Glamsterdam twins.' },

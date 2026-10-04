@@ -1,0 +1,41 @@
+{
+  "segmentGapMs": 350,
+  "segments": [
+    {
+      "beat": "hook",
+      "text": "I cleared storage and got a refund — why does the block still count the full gas?"
+    },
+    {
+      "beat": "context",
+      "text": "On Glamsterdam the refund stays on your bill. The block keeps the charge from before that refund."
+    },
+    {
+      "beat": "clear",
+      "text": "Clear a slot. You pay less. The block still counts the full charge."
+    },
+    {
+      "beat": "fusaka",
+      "text": "Same clear, one fork earlier."
+    },
+    {
+      "beat": "fusaka-run",
+      "text": "Now the two numbers match. The refund shrinks the block too."
+    },
+    {
+      "beat": "rewrite",
+      "text": "Back on Glamsterdam. Rewrite the slot. Nothing is cleared, so the bill and the block agree."
+    },
+    {
+      "beat": "reset",
+      "text": "Put the original value back. That cheaper work still counts for the block. The extra refund comes off your bill only."
+    },
+    {
+      "beat": "recap",
+      "text": "A clear splits the numbers on Glamsterdam. Fusaka keeps them together. A rewrite matches on both."
+    },
+    {
+      "beat": "outro",
+      "text": "Read the rule on Forkcast. Compare the two numbers on feelyourprotocol dot org."
+    }
+  ]
+}

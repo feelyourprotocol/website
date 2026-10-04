@@ -51,6 +51,10 @@ export const EXPLORATION_REGISTRY: Record<string, ExplorationMeta> = {
     path: '/eip-7976-calldata-floor-cost',
     topic: 'robustness',
   },
+  'eip-7778': {
+    path: '/eip-7778-block-gas-accounting',
+    topic: 'robustness',
+  },
 }
 
 /** Topic → overlay theme (aligned with og/src/topic-colors.ts). */

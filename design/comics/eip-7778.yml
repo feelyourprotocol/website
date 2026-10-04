@@ -1,0 +1,55 @@
+schema: bro-bruh-comic/v1
+id: eip-7778
+episode: 10
+series: bro-bruh
+image: eip-7778.jpg
+
+exploration:
+  id: eip-7778
+  eip: 7778
+  name: EIP-7778 Block Gas Accounting without Refunds
+  core_question: I cleared storage and got a refund — why does the block still count the full gas?
+
+engine: false-friend
+bridge:
+  word: REFUND
+  trader_sense: money back on a bad fill, before adding size
+  protocol_sense: a storage-clear refund that stays on the sender bill and does not shrink the block
+
+vibe:
+  slug: sepolia-countdown
+  topic: Two days before the Glamsterdam Sepolia activation, people are waiting rather than adding
+  register: protocol
+  recency: 2026-10
+  why_hot: Sepolia activates Glamsterdam on 6 October 2026; operators and client teams are in a countdown
+  why_narrative: Bruh will not add size until money comes back; the date is heat, not a noun in his mouth
+  repeat_of: sepolia-oct6
+
+setting:
+  name: after-hours piano practice room
+  why: The refund word is cash-back. The room is music practice, not a returns counter, so the collision stays accidental.
+
+easter_egg: A metronome on the piano carries a tiny purple diamond sticker.
+
+copy:
+  panel1_bruh: NOT ADDING TILL I SEE THE REFUND
+  panel2_bro: EIP-7778 — YOUR REFUND STAYS. THE BLOCK STILL KEEPS THE WORK. I CAN *FEEL* IT
+  panel2_affect: dreaming
+  title: '*BRO & BRUH EPISODE 10'
+  cta: A NEW FEEL YOUR PROTOCOL EXPLORATION HAS ARRIVED, CHECK IT OUT!
+
+tweet:
+  body: |
+    A storage clear still pays you back.
+    The block keeps counting the work.
+
+    https://feelyourprotocol.org/eip-7778-block-gas-accounting
+  url: https://feelyourprotocol.org/eip-7778-block-gas-accounting
+  alt: |
+    Two-panel comic in an after-hours piano practice room. Panel 1: Bruh, short dark hair and a green hoodie, stares at his phone and says "NOT ADDING TILL I SEE THE REFUND," with REFUND in red. Bro, blonde ponytail and a backwards teal FYP cap, sits at the piano and does not look at him. A metronome on the piano has a tiny purple diamond sticker. Panel 2: close-up of Bro, half-lidded, blushing, pink hearts around his face, saying "EIP-7778 — YOUR REFUND STAYS. THE BLOCK STILL KEEPS THE WORK. I CAN FEEL IT," with REFUND in red. Yellow title reads *BRO & BRUH EPISODE 10. A yellow box says a new Feel Your Protocol exploration has arrived. The original octahedron logo and feelyourprotocol.org sit at the bottom left.
+  intent: https://x.com/intent/post?text=A%20storage%20clear%20still%20pays%20you%20back.%0AThe%20block%20keeps%20counting%20the%20work.%0A%0Ahttps%3A%2F%2Ffeelyourprotocol.org%2Feip-7778-block-gas-accounting
+
+notes: |
+  Consumed bridge REFUND, setting after-hours piano practice room, egg metronome diamond sticker,
+  Bruh line NOT ADDING TILL I SEE THE REFUND, vibe slug sepolia-countdown (repeat of sepolia-oct6).
+  Do not reuse the piano room or the refund stamp. FEEL also rendered red in the drawing; the bridge word is REFUND.

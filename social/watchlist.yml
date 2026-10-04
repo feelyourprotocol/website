@@ -73,6 +73,15 @@ weather_mcp:
     x402-as-token or points, price, ETF.
 
 problem_slices:
+  - id: eip-7778
+    path: /eip-7778-block-gas-accounting
+    core_question: I cleared storage and got a refund — why does the block still count the full gas?
+    search:
+      - storage clear refund block gas
+      - SSTORE refund still fills the block
+      - block gas limit refund Ethereum
+      - gas refund does not shrink the block
+    avoid_leading_with: EIP-7778
   - id: eip-7976
     path: /eip-7976-calldata-floor-cost
     core_question: When does calldata cost 64 gas per byte, and when does a normal call still pay 4 and 16?
@@ -171,6 +180,7 @@ problem_slices:
 
 # Last-resort ids if a hit already names an EIP (live only). Not a daily rotation.
 eip_number_fallback:
+  - eip-7778
   - eip-7976
   - eip-2780
   - eip-7954

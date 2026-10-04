@@ -41,6 +41,7 @@ After [Connect](/use/connect), paste a prompt — you do not need EIP numbers in
 | *“This calldata is mostly zeros. What does it cost on Amsterdam versus Fusaka?”* | [EIP-7976](/use/eips/eip-7976) |
 | *“Send 1 wei to an empty account on Amsterdam — what gas does the wallet need?”* | [EIP-8037](/use/eips/eip-8037) |
 | *“How does SSTORE on an existing slot price on Amsterdam vs Fusaka?”* | [EIP-8038](/use/eips/eip-8038) |
+| *“I cleared storage and got a refund. Why does the block still count the full gas?”* | [EIP-7778](/use/eips/eip-7778) |
 | *“Does a value transfer emit a receipt log on Amsterdam?”* | [EIP-7708](/use/eips/eip-7708) |
 
 More on the Amsterdam bundle: [deploy limits](/use/eips/eip-7954), [block access lists](/use/eips/eip-7928), [stack opcodes](/use/eips/eip-8024), [SLOTNUM](/use/eips/eip-7843). Already on mainnet here: [ModExp](/use/eips/eip-7883), [P-256](/use/eips/eip-7951) on Fusaka.

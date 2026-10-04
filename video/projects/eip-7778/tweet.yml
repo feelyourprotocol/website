@@ -1,0 +1,39 @@
+schema: video-short-tweet/v1
+id: eip-7778
+
+# Comic already opened on REFUND. Video tweet leads with the bill versus the block.
+shape: thread
+
+t1:
+  body: |
+    EIP-7778 · Glamsterdam
+    A storage clear still pays you back. The block keeps the full charge.
+
+    Would your block builder still treat that refund as free space?
+
+    https://feelyourprotocol.org/eip-7778-block-gas-accounting
+  media: eip-7778-2026-10-04T13-59-09-final.mp4
+  video_description: |
+    Vertical short for EIP-7778. The title card asks why a storage clear still
+    leaves the block counting the full gas. On Glamsterdam the widget shows
+    you pay less than the block counts. The same clear on Fusaka shows one
+    number. A rewrite matches on both. Putting the original value back stays
+    cheap for the block, and the extra refund still comes off the bill only.
+    Voice-over points to Forkcast and feelyourprotocol.org.
+  intent: https://x.com/intent/post?text=EIP-7778%20%C2%B7%20Glamsterdam%0AA%20storage%20clear%20still%20pays%20you%20back.%20The%20block%20keeps%20the%20full%20charge.%0A%0AWould%20your%20block%20builder%20still%20treat%20that%20refund%20as%20free%20space%3F%0A%0Ahttps%3A%2F%2Ffeelyourprotocol.org%2Feip-7778-block-gas-accounting
+
+t2:
+  body: |
+    Where the rule is written down:
+
+    Spec: https://github.com/ethereum/EIPs/blob/3929b1aab57b493417eccec7457d1485eccb9768/EIPS/eip-7778.md
+    Forkcast: https://forkcast.org/eips/7778/
+  intent: https://x.com/intent/post?text=Where%20the%20rule%20is%20written%20down%3A%0A%0ASpec%3A%20https%3A%2F%2Fgithub.com%2Fethereum%2FEIPs%2Fblob%2F3929b1aab57b493417eccec7457d1485eccb9768%2FEIPS%2Feip-7778.md%0AForkcast%3A%20https%3A%2F%2Fforkcast.org%2Feips%2F7778%2F
+
+sources:
+  exploration_url: https://feelyourprotocol.org/eip-7778-block-gas-accounting
+  spec_url: https://github.com/ethereum/EIPs/blob/3929b1aab57b493417eccec7457d1485eccb9768/EIPS/eip-7778.md
+  forkcast_url: https://forkcast.org/eips/7778/
+
+notes: |
+  Consumed opener: "EIP-7778 · Glamsterdam / A storage clear still pays you back. The block keeps the full charge."
