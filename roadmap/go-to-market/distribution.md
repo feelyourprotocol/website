@@ -1,63 +1,92 @@
-# Distribution & DevRel
+# Distribution
 
-> **Active GTM for the launch chapter** — the DevRel engine (website) already runs; the countdown to [launch week](/roadmap/launch) is the current public narrative.
+How someone arrives at the lab. Four channels matter here. Two of them we already use. Two we have not turned on.
 
-## The DevRel engine _(running)_
+<Motto>People hear about it. Agents still have to be pointed at it.</Motto>
 
-The biggest asset is trust, and the [website](/vision/two-legs) generates it today:
-
-- **Proof-of-work halo** — interactive fork breakdowns prove competence and de-risk the MCP for developers who will allowlist it.
-- **Founder brand** — an open-source, ex-core-dev track record converts skeptics far better than ad-style marketing.
-- **Education as top-of-funnel** — capture developers while they're learning a fork; the hosted MCP is the natural next step. _The website is the textbook; the MCP server is the lab equipment._
-
-## Launch countdown _(Sep – Oct 2026)_
-
-Until the public endpoint is live, the play is **substance, not hype**:
-
-| Rhythm | Channel | Content |
+| Channel | Who arrives | Where we are |
 | --- | --- | --- |
-| **~2–3× / week** | Twitter/X ([@FeelEthereum](https://x.com/FeelEthereum)) | New Glamsterdam explorations — each ships with a per-exploration [announcement arc](/go-to-market/marketing#announcement-cadence-per-exploration): comic (spark) + video (engage), MCP tweet (equip) added at launch |
-| **1× / week** | Personal dev account | Open-endpoint hardening and, after launch, the paid-tier build (technical, not token news) |
-| **As ready** | Website + mcp-docs | **Without MCP vs with MCP** proofs — same prompt, same model, checked outcomes |
-| **Pinned anchor** | Official account | [Launch week](/roadmap/launch) countdown — open hosted MCP, full Glamsterdam |
+| [X, one to many](#one-to-many-x) | A person in a feed | Running |
+| [One to one](#one-to-one) | A specific person we chose | Started, shape still open |
+| [Human catalogues](#human-catalogues) | A person browsing a registry or marketplace | Not listed |
+| [Agent discovery](#agent-discovery) | An agent, or the host acting for one | Later |
 
-We do **not** promote local stdio or self-host setup in official docs or marketing. Open source stays open; the product is the hosted endpoint.
+The website is what these channels point at. An exploration is the proof; the hosted MCP is the thing a person can then connect. Open source stays open. We do not market a local stdio setup as the product.
 
-Videos from the automation pipeline are **feed infographics** (uploaded directly to X), not YouTube-Shorts-as-growth-strategy.
+## One to many: X
 
-## Product hook vs payment hook
+[@FeelEthereum](https://x.com/FeelEthereum) is the concrete public channel. The shape of a drop lives on [Marketing](/go-to-market/marketing): a comic, then a short video, and a third tweet about the hosted MCP once that server is the thing we can point at. Between drops, a weekday scan drafts a weather note and a few reply, quote, or retweet cards. A person posts them. The agent does not.
 
-Public copy leads with the **deterministic oracle** — exact simulation of upcoming fork rules. At launch the server is open. [x402](/concepts/x402) is how agents later buy EIPs that are still ahead of the free hardfork; it is not the reason the product exists.
+What that channel is good at is showing one protocol change to many people who already care about forks. What it is not good at is explaining the server, the price, or how to connect. Those stay one link deep, on the exploration or on mcp-docs.
 
-The community token appears as a **discount lane on the paid tier**, not as headline news and not at launch.
+A few rules already hold, and they should survive a rewrite of the copy:
 
-## Channels _(after launch)_
+- The post is about the change, not about the token and not about [x402](/concepts/x402).
+- Nothing goes out without an artefact. No countdown thread standing in for a server that is not up.
+- Silence is allowed. A weak reply is worse than none.
 
-| Channel | Play |
-| --- | --- |
-| **Registry SEO & metadata** | Meticulous MCP listings — exact EIP numbers, keywords ("MEV simulation"), thorough docs on [mcp-docs](https://mcp-docs.feelyourprotocol.org) |
-| **Visual Twitter/X funnel** | Teardowns simulating contracts under old vs new fork rules; without/with MCP comparisons |
-| **Agentic proof-of-value outreach** | Send specific, useful simulation results to teams working on upcoming forks (not generic pitches) |
-| **GitHub value-first** | Issues/PRs with real simulation data where relevant — footprint back to the hosted MCP |
+Open:
 
-## Likely first users _(hypothesis)_
+- After launch, is the third tweet a concrete prompt against the hosted server, or is a link to mcp-docs enough?
+- Does a personal technical account still earn a separate rhythm, or does everything public go through @FeelEthereum?
+- What would we even measure — follows, exploration visits, connects — and which of those we are willing to look at?
 
-Programmatic actors with urgent incentive: **MEV searchers**, **DeFi/security auditors**, and **L2 / infra teams**. To be validated once the hosted endpoint is live and the first without/with MCP proofs are published.
+## One to one
 
-## Cadence
+Launch marketing includes direct conversations. That is underway. There is no list, no script, and no cadence written down.
 
-The roadmap, timeline, and [launch week](/roadmap/launch) page are the canonical public schedule. Twitter/X carries the countdown to the open endpoint. Payment-rail transparency starts when the paid tier is actually being built.
+The only rule worth keeping from the earlier sketch: a note should carry something specific — an exploration, or a run the other person can repeat — rather than a generic introduction to the project.
+
+Open:
+
+- Who is worth a deep conversation first? The people the lab is built for are [protocol engineers, auditors, wallet and app engineers, and agent builders](/concepts/api-mcp#who-we-build-for). That is a map of fit, not a target list.
+- What is the first thing we send: a link, a short result, or an offer to run something of theirs?
+- Does this stay a founder conversation, or do we ever want help drafting the note? Sending it should stay a person either way.
+
+## Human catalogues
+
+The [official MCP Registry](https://modelcontextprotocol.io/registry/about) is a metadata store. Publishers put a `server.json` there (name, URL, how to run it, a description). The registry’s own docs say host apps should not read it directly. People meet servers on downstream marketplaces that pull that metadata and add their own curation.
+
+We are not published. [Registry listings](/roadmap/roadmap) sit in Later, after the open server has been used.
+
+A listing would let a person searching a catalogue find the lab without having seen a tweet. It would not rank us, and it would not explain an EIP. The description and the docs link do that work, or they don’t.
+
+Open:
+
+- Which catalogues do the people we care about actually open — a host’s built-in directory, or a third-party marketplace?
+- Is one `server.json` on the official registry enough, because the others scrape it, or do some directories still want their own submission?
+- What has to be true on mcp-docs before a stranger who found us in a list can connect without a walkthrough?
+
+## Agent discovery
+
+An agent does not browse X. Today it uses a server a person already connected. Finding the server on its own is a later problem, and the official registry is not that front door: hosts are expected to ask a marketplace, not `registry.modelcontextprotocol.io`.
+
+Once connected, `describe_capabilities` tells the agent what this server can run. That is discovery of scope, not discovery of existence.
+
+Paths that exist, none of them chosen:
+
+| Path | What it would mean | Lean so far |
+| --- | --- | --- |
+| A person connects us | The agent never has to find us. X, a conversation, or a catalogue did that. | This is how it works now |
+| A host marketplace | The official registry feeds it; the host decides what to show and what to allow | Not listed |
+| [x402 Bazaar](/concepts/x402) | A buyer can see a paid tool, its schema, and its price | Named as the first paid-discovery step, when the paid tier exists |
+| Another agent | Someone else’s agent recommends the server | Named on [Two audiences](/vision/two-audiences). No mechanism picked |
+
+Open:
+
+- For the next few months, is “a person connects us, then their agent stays” the whole goal?
+- If we publish once, which metadata has to be good enough for a marketplace search: fork names, the verbs, the fact that the open hardfork is free?
+- Bazaar describes a paid call. The open server is free. Do those want different listings, or one listing that says both?
 
 ## Changelog
 
 <Changelog
   title="Distribution Changelog"
   :entries="[
+    { version: 'v0.5', date: '2026-10-05', summary: 'Rebuilt around four channels: X, one-to-one, human catalogues, and agent discovery. Cadence tables, DevRel framing, and guessed first users left the page.' },
     { version: 'v0.4', date: '2026-10-01', summary: 'Countdown is the open Glamsterdam MCP. Payment-rail posts wait for the paid tier.' },
     { version: 'v0.3', date: '2026-09-03', summary: 'Countdown rhythm row now points to Marketing Strategy for the per-exploration announcement arc (comic + video + MCP).' },
     { version: 'v0.2', date: '2026-09-02', summary: 'Rewritten for launch countdown — DevRel running, hosted-only GTM, oracle-first hook, without/with MCP proofs.' },
     { version: 'v0.1', date: '2026-06-30', summary: 'Initial future GTM outline — registries, outreach hypotheses.' },
   ]"
 />
-
-_Add a one-line entry here whenever distribution strategy changes._
