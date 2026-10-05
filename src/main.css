@@ -384,6 +384,18 @@ body {
   @apply outline outline-2 outline-offset-2;
 }
 
+/* MCP catalog pill — Spec trigger colors, pill shape, normal weight */
+a.exploration-meta-pill-mcp {
+  color: var(--e-text);
+  border-color: var(--e-border);
+  background-color: #fff;
+  font-weight: 400;
+}
+
+a.exploration-meta-pill-mcp:hover {
+  background-color: var(--e-bg-light);
+}
+
 /* Board-sized flyout: same padding/radius as `.exploration-c`, grows left from the trigger */
 .e-info-panel {
   border: 1px solid var(--e-border);

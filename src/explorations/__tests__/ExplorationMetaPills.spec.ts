@@ -45,6 +45,7 @@ describe('ExplorationMetaPills', () => {
 
     const mcp = wrapper.get('[data-testid="preview-pill-mcp"]')
     expect(mcp.text()).toBe('MCP')
+    expect(mcp.classes()).toContain('exploration-meta-pill-mcp')
     expect(mcp.attributes('href')).toBe(mcpDocsEipPage('eip-7708'))
     expect(mcp.attributes('target')).toBe('_blank')
   })

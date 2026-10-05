@@ -69,7 +69,7 @@ function onPillClick(event: Event) {
       :href="mcpDocsUrl"
       target="_blank"
       rel="noopener noreferrer"
-      :class="[pillLinkClass, 'border-slate-300 text-slate-500']"
+      :class="[pillLinkClass, 'exploration-meta-pill-mcp']"
       data-testid="preview-pill-mcp"
       aria-label="MCP docs for this EIP"
       @click="onPillClick"
