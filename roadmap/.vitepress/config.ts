@@ -75,7 +75,6 @@ export default defineConfig({
       { text: 'Concepts', link: '/concepts/api-mcp' },
       { text: 'All Docs', link: 'https://docs.feelyourprotocol.org' },
       { text: 'MCP Docs', link: 'https://mcp-docs.feelyourprotocol.org' },
-      { text: 'Website Docs', link: 'https://website-docs.feelyourprotocol.org' },
       { text: 'Website', link: 'https://feelyourprotocol.org' },
     ],
     sidebar: [

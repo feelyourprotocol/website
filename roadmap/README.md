@@ -33,7 +33,11 @@ roadmap/
 │           ├── Timeline.vue      # Linear left→right project timeline
 │           ├── RoadmapBoard.vue  # Flexible track × horizon board (2–5 tracks)
 │           ├── Changelog.vue     # Per-section micro-changelog
-│           └── LaunchFacts.vue   # Three-up fact strip on the launch page
+│           ├── Checklist.vue     # One checklist panel (launch bar)
+│           ├── LaunchFacts.vue   # Three-up fact strip on the launch page
+│           ├── IconGrid.vue      # Heroicon cards for essay taxonomies
+│           ├── IconNote.vue      # Icon beside a prose point (not a card)
+│           └── Motto.vue         # One-line pull quote
 ├── data/
 │   ├── timeline.ts               # Timeline phases + events (edit to update)
 │   └── roadmap.ts                # Roadmap tracks, horizons, items (edit to update)

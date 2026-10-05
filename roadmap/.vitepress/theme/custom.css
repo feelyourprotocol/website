@@ -363,6 +363,194 @@
 }
 
 /* ============================================================
+ * IconGrid.vue / Motto.vue — scannable groups on essay pages
+ * ============================================================ */
+.vp-doc .fyp-motto {
+  font-family: var(--fyp-font-mono);
+  font-size: 1.05rem;
+  font-weight: 650;
+  letter-spacing: -0.02em;
+  line-height: 1.35;
+  margin: 1.15rem 0 1.35rem;
+  padding: 0.85rem 1rem;
+  border: 1px solid var(--vp-c-divider);
+  border-left: 3px solid var(--fyp-purple);
+  border-radius: 8px;
+  background: linear-gradient(
+    90deg,
+    rgba(124, 58, 237, 0.12),
+    rgba(6, 182, 212, 0.06) 55%,
+    transparent
+  );
+  color: var(--vp-c-text-1);
+}
+
+.vp-doc .fyp-icon-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.65rem;
+  margin: 0.85rem 0 1.35rem;
+}
+
+.vp-doc .fyp-icon-grid--three {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.vp-doc .fyp-icon-card,
+.vp-doc a.fyp-icon-card {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  border: 1px solid var(--vp-c-divider);
+  border-left: 3px solid var(--fyp-purple);
+  border-radius: 6px;
+  padding: 0.75rem 0.8rem 0.85rem;
+  background: var(--vp-c-bg-soft);
+  color: inherit;
+  text-decoration: none;
+}
+
+.vp-doc .fyp-icon-card:nth-child(4n + 2) {
+  border-left-color: var(--fyp-cyan);
+}
+
+.vp-doc .fyp-icon-card:nth-child(4n + 3) {
+  border-left-color: #0ea5e9;
+}
+
+.vp-doc .fyp-icon-card:nth-child(4n + 4) {
+  border-left-color: var(--fyp-amber);
+}
+
+.vp-doc a.fyp-icon-card:hover {
+  border-color: var(--vp-c-brand-2);
+  text-decoration: none;
+  color: inherit;
+}
+
+.vp-doc .fyp-icon-card__glyph {
+  width: 1.35rem;
+  height: 1.35rem;
+  margin-bottom: 0.45rem;
+  color: var(--vp-c-brand-1);
+}
+
+.vp-doc .fyp-icon-card__title {
+  font-family: var(--fyp-font-mono);
+  font-size: 0.92rem;
+  font-weight: 650;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+  margin: 0 0 0.3rem;
+  color: var(--vp-c-text-1);
+}
+
+.vp-doc .fyp-icon-card__detail {
+  margin: 0;
+  font-size: 0.84rem;
+  line-height: 1.4;
+  color: var(--vp-c-text-2);
+}
+
+@media (max-width: 720px) {
+  .vp-doc .fyp-icon-grid,
+  .vp-doc .fyp-icon-grid--three {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Icon beside prose — a marker, not a card */
+.vp-doc .fyp-icon-note {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.8rem;
+  margin: 0.95rem 0;
+}
+
+.vp-doc .fyp-icon-note__mark {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  flex: 0 0 auto;
+  margin-top: 0.1rem;
+  border-radius: 999px;
+  background: var(--vp-c-brand-soft);
+  color: var(--vp-c-brand-1);
+}
+
+.vp-doc .fyp-icon-note__glyph {
+  width: 1.15rem;
+  height: 1.15rem;
+}
+
+.vp-doc .fyp-icon-note__title {
+  font-family: var(--fyp-font-mono);
+  font-size: 0.95rem;
+  font-weight: 650;
+  letter-spacing: -0.02em;
+  line-height: 1.3;
+  margin: 0 0 0.2rem;
+  color: var(--vp-c-text-1);
+}
+
+.vp-doc .fyp-icon-note__body p {
+  margin: 0;
+  color: var(--vp-c-text-2);
+}
+
+.vp-doc .fyp-icon-note__body p + p {
+  margin-top: 0.35rem;
+}
+
+/* One checklist panel — launch bar, not a card per line */
+.vp-doc .fyp-checklist {
+  margin: 0.4rem 0 1.25rem;
+  padding: 0.9rem 1rem 1rem;
+  border: 1px solid var(--vp-c-divider);
+  border-left: 3px solid var(--fyp-purple);
+  border-radius: 8px;
+  background: var(--vp-c-bg-soft);
+}
+
+.vp-doc .fyp-checklist__label {
+  font-family: var(--fyp-font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin: 0 0 0.7rem;
+  color: var(--vp-c-text-2);
+}
+
+.vp-doc .fyp-checklist__items {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.vp-doc .fyp-checklist__items li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.55rem;
+  margin: 0;
+  line-height: 1.4;
+}
+
+.vp-doc .fyp-checklist__items li + li {
+  margin-top: 0.45rem;
+}
+
+.vp-doc .fyp-checklist__mark {
+  width: 1.05rem;
+  height: 1.05rem;
+  flex: 0 0 auto;
+  margin-top: 0.15rem;
+  color: var(--vp-c-brand-1);
+}
+
+/* ============================================================
  * Changelog.vue — per-section micro-versioning trail
  * ============================================================ */
 .fyp-changelog {
