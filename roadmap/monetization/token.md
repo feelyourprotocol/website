@@ -1,52 +1,59 @@
 # Token Utility
 
-How the Bankr community token **relates** to the hosted MCP once the [paid tier](/monetization/pricing#access-cycle) takes payment — without ever becoming a barrier to adoption. All of this is **directional**; nothing is wired up yet. It is **not** part of [launch week](/roadmap/launch). The open Glamsterdam server does not check a token balance.
+The community token is a **half-price switch** on the [paid tier](/monetization/pricing#the-price). It is not a key, and it is not part of [launch week](/roadmap/launch). Nothing here is wired up yet.
 
-## The core rule
+<Motto>A small holding. Half the price. Or skip it and pay the listed rate.</Motto>
 
-> **The token is a VIP pass for insiders, never a gate for newcomers.**
+## The rule
 
-The community's energy sparked this whole direction, so cutting them out would be wrong — but forcing a stranger to bridge to Base and swap for a niche token just to try the MCP would kill conversion. We resolve this by keeping the token **out of the critical path** and attaching value *around* it.
+One threshold. No ladder.
 
-## The dual-lane model _(planned)_
+If the wallet that pays [x402](/concepts/x402) holds a **modest** balance of the community token — on the order of a dollar when we set the number, already allowing for a likely rise in price — the paid tool prices are cut in half.
 
-| Lane | Who | How they would pay |
+The exact token count is not pinned. There is no rate on this page worth freezing.
+
+| Call | Standard | Holding met |
 | --- | --- | --- |
-| **Enterprise / outsider** | MEV bots, auditors, institutions, any new agent | Plain USDC via [x402](/monetization/pricing) — no token, no friction |
-| **Community / insider** | Existing token holders | Same x402 flow, but with a **gas-price discount** |
+| `run_bytecode`, `run_transaction` | 2¢ | 1¢ |
+| `run_block` | 4¢ | 2¢ |
+| Probe and artifact calls | Free | Free |
 
-Holders would get the discount with a single gasless wallet check; non-holders would never see the token at all.
+Below the line, the caller pays the standard price in USDC and never has to touch the token. The check is that paying wallet. There is no separate stake.
 
-## Discount tiers _(indicative, under discussion)_
+<IconNote icon="shield" title="Never a gate">
 
-| Token held | Discount on gas price |
-| --- | --- |
-| < $5 | 0% (base rate) |
-| > $5 | 15% |
-| > $20 | 30% |
-| > $100 | 50% |
+The open hardfork does not check a balance. A new agent can buy a future EIP with USDC alone. The token is a discount for people who already hold it, not a step in onboarding.
 
-This would turn the token into a **non-speculative volume discount**: heavy API users find it rational to hold it (it pays for itself), creating genuine, usage-driven demand — the on-chain analogue of a B2B volume contract.
+</IconNote>
 
-## Optional value-capture & alignment _(later / "when they come")_
+## Why one line
 
-- **Engine exhaust (buyback & burn):** route ~10–20% of USDC API revenue to programmatically buy and burn (or distribute) the token — the token becomes a proxy for the MCP's success, and the community becomes a distribution force.
-- **Roadmap governance:** let holders vote on which fork/endpoint to prioritize next.
-- **Visualization bounties:** pay the community in tokens to build explorations on top of new MCP capabilities — funding [Leg A](/vision/two-legs) from token utility.
+An earlier sketch used several dollar tiers — about $5, $20, and $100 — each taking a different percentage off a gas price. That asked the agent to understand a curve and a portfolio.
 
-## Why this is risk-free _(in design)_
+One line is easier to run, easier to say, and easier to accept or refuse before the call. The holding is deliberately small: a reason to keep a little of the token on the paying wallet, not a treasury requirement.
 
-Because the base layer would always be plain USDC, the discount model adds upside for the community **without** introducing onboarding friction, token-gated errors, or compliance headaches for enterprises. Permissionless access stays intact; the community is rewarded for being early.
+## How an agent would see it
 
-We do **not** use token news or market moves as a substitute for product milestones — launch substance comes from the hosted MCP and catalogue, not holder hype.
+The likely shape is a **separate tool** for the discounted price, next to the paid one. An agent would choose `run_future_transaction` or `run_future_transaction_discounted` up front, the same way it chooses any other tool.
 
-_Tier numbers and the buyback/governance/bounty mechanics are directional — to be finalized once the hosted endpoint and payment flow exist._
+Whether that second name actually ships is still open. The requirement is that the discount is visible before the call, not applied as a surprise inside it.
+
+Names and the reasoning are on [Pricing](/monetization/pricing#one-tool-one-price).
+
+## What this is not
+
+- Not part of the free Glamsterdam server.
+- Not a stake, a subscription, or a percentage ladder.
+- Not buybacks, holder votes, or exploration bounties. Those were later ideas. They are not part of this model.
+
+Token news is also not a stand-in for a product milestone. The launch is the hosted MCP.
 
 ## Changelog
 
 <Changelog
   title="Token Utility Changelog"
   :entries="[
+    { version: 'v0.4', date: '2026-10-05', summary: 'One modest holding — about a dollar, count not pinned — halves the fixed per-tool price. Tiered gas discounts, and later buyback or governance ideas, left the plan.' },
     { version: 'v0.3', date: '2026-10-01', summary: 'Token discounts belong to the paid tier, not launch week.' },
     { version: 'v0.2', date: '2026-09-02', summary: 'Framed around hosted MCP launch week; explicit no-hype-for-holders note.' },
     { version: 'v0.1', date: '2026-06-30', summary: 'Initial dual-lane discount model outline.' },

@@ -51,7 +51,7 @@ Gas, logs, stack, receipts, and the spec snapshot they came from. A bare success
 
 <IconNote icon="shield" title="A bounded open service">
 
-Schemas and hard ceilings keep the public server finite. Gas-based pricing belongs to the paid tier, later, on the [roadmap](/roadmap/roadmap).
+Schemas and hard ceilings keep the public server finite. A fixed price per tool belongs to the paid tier, later — see [Pricing](/monetization/pricing).
 
 </IconNote>
 

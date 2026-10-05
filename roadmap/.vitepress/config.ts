@@ -109,7 +109,7 @@ export default defineConfig({
       {
         text: 'Monetization & Community',
         items: [
-          { text: 'Pricing & Cost Model', link: '/monetization/pricing' },
+          { text: 'Pricing', link: '/monetization/pricing' },
           { text: 'Token Utility', link: '/monetization/token' },
         ],
       },
