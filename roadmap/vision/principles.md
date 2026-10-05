@@ -18,7 +18,7 @@ Humans and agents are equal audiences — not “humans who use agents.” Disco
 
 <IconNote icon="boundary" title="Scope discipline">
 
-Be the best at one thing — isolated, stateless EVM simulation and cryptographic primitives. Say no to archive-node territory, `solc`, ERC-app-layer logic, and consensus-layer mechanics. (See [boundaries](/concepts/api-mcp#tech-readiness-boundaries).)
+Be the best at one thing — isolated, stateless EVM simulation and cryptographic primitives. Say no to archive-node territory, `solc`, ERC-app-layer logic, and consensus-layer mechanics. (See [boundaries](/concepts/api-mcp#boundaries).)
 
 </IconNote>
 

@@ -15,7 +15,7 @@ A V-Server uses shared (KVM) virtualization — fine for bursty web traffic, but
 ## Target architecture _(in progress for launch)_
 
 - **Compute-optimized EC2, ARM/Graviton (`c7g`).** Node.js + EthereumJS run very well on ARM; Graviton gives strong price/performance for heavy CPU work.
-- **Dedicated vCores mapped to the worker pool.** Pin the Node `worker_threads` pool size to the instance's vCores so each isolated simulation gets predictable compute (see [the API concept page](/concepts/api-mcp#tech-readiness-boundaries)).
+- **Dedicated vCores mapped to the worker pool.** Pin the Node `worker_threads` pool size to the instance's vCores so each isolated simulation gets predictable compute (see [the API page](/concepts/api-mcp#boundaries)).
 - **Main thread = traffic controller.** Handles I/O and MCP routing; confirmed work goes to a worker that runs the bytecode and returns the trace. x402 verification lands here with the paid tier.
 
 ## The hybrid setup
@@ -29,7 +29,7 @@ Dedicated compute for the hosted lab, without over-engineering the educational p
 
 ## Scaling boundaries
 
-Scale **horizontally** for more concurrent isolated simulations (more workers / instances). What we explicitly do **not** plan to scale into is stateful, sequential multi-block historical processing — archive-node territory and outside our scope (see [boundaries](/concepts/api-mcp#tech-readiness-boundaries)). Cost drivers feed directly into the [cost model](/monetization/pricing#cost-model).
+Scale **horizontally** for more concurrent isolated simulations (more workers / instances). What we explicitly do **not** plan to scale into is stateful, sequential multi-block historical processing — archive-node territory and outside our scope (see [boundaries](/concepts/api-mcp#boundaries)). Cost drivers feed directly into the [cost model](/monetization/pricing#cost-model).
 
 ## Open questions _(later)_
 

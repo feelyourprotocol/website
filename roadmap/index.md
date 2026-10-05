@@ -27,7 +27,7 @@ features:
     details: Parallel tracks — Engine & API, Website, Infrastructure, Business & Community — history filled in, launch as the next hollow marker.
     link: /roadmap/roadmap
   - title: Core Concepts
-    details: Six generic MCP tools, open at launch, x402 later for EIPs ahead of the current hardfork. Operational detail on mcp-docs.
+    details: Who the lab is for, how a sentence becomes a run, and where the server stops. Calling it is on mcp-docs.
     link: /concepts/api-mcp
   - title: Monetization & Infra
     details: Free Glamsterdam at launch, then a paid tier for new EIPs (EIP-8141 first) that graduates into the next hardfork. Token discounts on the paid lane only.
