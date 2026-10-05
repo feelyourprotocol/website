@@ -121,7 +121,7 @@ export default defineConfig({
         text: 'Go-to-Market',
         items: [
           { text: 'Distribution', link: '/go-to-market/distribution' },
-          { text: 'Marketing Strategy', link: '/go-to-market/marketing' },
+          { text: 'Marketing', link: '/go-to-market/marketing' },
         ],
       },
     ],

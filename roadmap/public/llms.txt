@@ -31,6 +31,7 @@ volume discount on future API usage, not a gate. Educational, open-source charac
 - [Pricing](https://roadmap.feelyourprotocol.org/monetization/pricing.html): Draft cost model
 - [Hosting & infrastructure](https://roadmap.feelyourprotocol.org/infrastructure/aws.html): Roles, the gateway/engine split, and how far automation goes
 - [Distribution](https://roadmap.feelyourprotocol.org/go-to-market/distribution.html): X, one-to-one, human catalogues, and how an agent might find the lab
+- [Marketing](https://roadmap.feelyourprotocol.org/go-to-market/marketing.html): Market listening, brand perception, and communication around shipped work
 
 ## Related
 
