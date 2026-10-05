@@ -103,7 +103,7 @@ export default defineConfig({
         text: 'Core Concepts',
         items: [
           { text: 'Agent API & MCP', link: '/concepts/api-mcp' },
-          { text: 'x402 & Agent Economy (Concept)', link: '/concepts/x402' },
+          { text: 'x402 & Agent Payments', link: '/concepts/x402' },
         ],
       },
       {
