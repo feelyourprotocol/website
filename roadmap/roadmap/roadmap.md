@@ -1,29 +1,54 @@
 # Roadmap & Tracks
 
-The roadmap runs along a few **parallel execution streams**. Each track moves at its own pace; together they turn the [vision](/vision/problem-vision) into something shippable. Concrete dates live on the [timeline](/roadmap/timeline) and the [launch week](/roadmap/launch) page — the board below uses **Now / Next / Later** horizons instead.
+Four tracks, moving at their own pace. The column is the status. A card does not carry a second label.
 
-Phase 3 is in **build-to-launch**: the MCP engine and catalogue exist; the public hosted endpoint is what we're shipping next. Payment rails follow once that endpoint has been used. Fast-moving sections — this page, the [Agent API concept](/concepts/api-mcp), and [pricing](/monetization/pricing) — each have a **micro-changelog** at the bottom.
+**Done** is the recent work, still in view. Older ships leave the board. **In progress** is live work. **Next** is the following chapter. **Later** waits for a hardfork, or for demand.
 
-The board is **data-driven** — edit [`roadmap/data/roadmap.ts`](https://github.com/feelyourprotocol/website/blob/main/roadmap/data/roadmap.ts) to add or reorder tracks (rows), horizons (columns), and items. Built to stay readable with **2–5 tracks**.
+Dates live on the [timeline](/roadmap/timeline) and on [launch week](/roadmap/launch).
 
 <RoadmapBoard />
 
 ## The tracks
 
-- **Engine & API** — the [MCP server](/concepts/api-mcp) on EthereumJS: generic tools shipped, Glamsterdam catalogue filling, **open public launch** in [launch week](/roadmap/launch), then a paid cadence for new EIPs and Hegota scope.
-- **Website & Education** — explorations (~2/week), MCP twin links on [mcp-docs](https://mcp-docs.feelyourprotocol.org), and documented **without vs with MCP** proofs for the oracle thesis.
-- **Infrastructure** — website on Strato; [AWS EC2](/infrastructure/aws) for the headless MCP host. x402 plumbing lands with the paid tier.
-- **Business & Community** — [access cycle and x402 pricing](/monetization/pricing), [token discounts](/monetization/token), [distribution](/go-to-market/distribution), agent-readable onboarding and registry discovery. (Granular as separate doc pages; grouped here for board readability.)
+<IconNote icon="chip" title="Engine & API">
 
-## Phasing
+Six generic tools and the Glamsterdam catalogue are in. The public door at [mcp.feelyourprotocol.org](https://mcp.feelyourprotocol.org) opens in [launch week](/roadmap/launch), and we are checking whether the answers actually help. Next is frame transactions. The rest of Hegota waits, and starts on the paid tier.
 
-Within Phase 3, the sequence we're in: **catalogue + pipeline done** → **open public MCP** (launch week, full Glamsterdam) → **harden and watch usage** → **x402 paid tier for new EIPs** (EIP-8141 first) → those EIPs **graduate to free** when Hegota / Bogota is in view → **registry + enterprise tier** when demand appears. See the [timeline](/roadmap/timeline). Order and dates are **targets under discussion**, not commitments.
+</IconNote>
+
+<IconNote icon="book" title="Website & Education">
+
+Every live exploration already has an [MCP catalogue](https://mcp-docs.feelyourprotocol.org) page. The textbook keeps growing.
+
+</IconNote>
+
+<IconNote icon="server" title="Infrastructure">
+
+The website is on Strato, and the [MCP host](/infrastructure/aws) is up on EC2. A small metrics view is already running alongside the open server. Next, a new EIP can be built overnight on an EthereumJS branch.
+
+</IconNote>
+
+<IconNote icon="people" title="Business & Community">
+
+Docs and processes are in place, and so is exploration marketing: comics, videos, and tweets. Launch marketing is underway: MCP education, outreach, and one-to-one conversations. Next is the [paid tier](/monetization/pricing) (x402, EIP-8141 first) and [token discounts](/monetization/token) that never gate. [Registry listings](/go-to-market/distribution) and [agent onboarding](/vision/two-audiences) wait.
+
+</IconNote>
+
+## How it lines up
+
+Catalogue, tools, and the comics and videos are done. This week opens the public MCP, watches whether the answers help, and talks about the lab. A first metrics view is already up. Next is frame transactions, overnight EIP builds, and then the paid tier. Registry listings and the rest of Hegota wait. Order and dates are targets, not commitments. The [timeline](/roadmap/timeline) holds the longer arc.
 
 ## Changelog
 
 <Changelog
   title="Roadmap Changelog"
   :entries="[
+    { version: 'v0.12', date: '2026-10-05', summary: 'Exploration marketing moved to Done. Comics, videos, and tweets stay on the card without an ongoing-work frame.' },
+    { version: 'v0.11', date: '2026-10-05', summary: 'EIP build automation moved to Infrastructure. Registry listings moved to Later. Org docs are Done. Exploration marketing (comics, videos, tweets) is In progress.' },
+    { version: 'v0.10', date: '2026-10-05', summary: 'Hegota splits into frame txs (Next) and the remaining scope (Later). EIP build automation is Next. Launch marketing and usability evaluation are In progress.' },
+    { version: 'v0.9', date: '2026-10-05', summary: 'Column and track icons on the board. The same marks sit beside the track notes.' },
+    { version: 'v0.8', date: '2026-10-05', summary: 'Done stays the recent work. Block access lists, the without-vs-with proof, and the enterprise tier left the board. Metrics moved to In progress. Agent onboarding moved to Later.' },
+    { version: 'v0.7', date: '2026-10-05', summary: 'Columns are Done, In progress, Next, Later. Status pills removed. Catalogue, block access lists, and the EC2 host moved to Done. Public HTTP stays in progress.' },
     { version: 'v0.6', date: '2026-10-01', summary: 'Open Glamsterdam launch in Now; x402 paid tier moved to Next (EIP-8141 first, then graduation).' },
     { version: 'v0.5', date: '2026-09-24', summary: 'Agent-readable onboarding and registry listings on the board.' },
     { version: 'v0.4', date: '2026-09-02', summary: 'Board refreshed — PoC done, launch week in Now column; Amsterdam vs Glamsterdam naming clarified in notes.' },

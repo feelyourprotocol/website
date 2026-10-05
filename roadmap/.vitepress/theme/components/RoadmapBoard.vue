@@ -2,12 +2,7 @@
 import { computed } from 'vue'
 
 import { ROADMAP_HORIZONS, ROADMAP_TRACKS } from '../../../data/roadmap'
-
-const statusLabel: Record<string, string> = {
-  'done': 'Done',
-  'in-progress': 'In progress',
-  'planned': 'Planned',
-}
+import { roadmapIcon } from '../icons'
 
 /** Index a track's items by horizon for cell lookup. */
 const tracks = computed(() =>
@@ -24,14 +19,30 @@ const tracks = computed(() =>
   <div class="fyp-roadmap">
     <div class="fyp-roadmap__grid" :style="{ '--horizon-count': ROADMAP_HORIZONS.length }">
       <div class="fyp-roadmap__corner" />
-      <div v-for="horizon in ROADMAP_HORIZONS" :key="horizon.id" class="fyp-roadmap__horizon">
-        {{ horizon.label }}
+      <div
+        v-for="horizon in ROADMAP_HORIZONS"
+        :key="horizon.id"
+        class="fyp-roadmap__horizon"
+        :class="`fyp-roadmap__horizon--${horizon.id}`"
+      >
+        <component
+          :is="roadmapIcon(horizon.icon)"
+          v-if="roadmapIcon(horizon.icon)"
+          class="fyp-roadmap__horizon-icon"
+          aria-hidden="true"
+        />
+        <span>{{ horizon.label }}</span>
       </div>
 
       <template v-for="track in tracks" :key="track.id">
-        <div class="fyp-roadmap__track-label">
-          <span class="fyp-roadmap__track-swatch" :style="{ '--track-accent': track.accent }" />
-          {{ track.label }}
+        <div class="fyp-roadmap__track-label" :style="{ '--track-accent': track.accent }">
+          <component
+            :is="roadmapIcon(track.icon)"
+            v-if="roadmapIcon(track.icon)"
+            class="fyp-roadmap__track-icon"
+            aria-hidden="true"
+          />
+          <span>{{ track.label }}</span>
         </div>
         <div
           v-for="horizon in ROADMAP_HORIZONS"
@@ -46,9 +57,6 @@ const tracks = computed(() =>
           >
             <div class="fyp-roadmap__item-title">{{ item.title }}</div>
             <div v-if="item.note" class="fyp-roadmap__item-note">{{ item.note }}</div>
-            <span class="fyp-roadmap__status" :class="`fyp-roadmap__status--${item.status}`">
-              {{ statusLabel[item.status] }}
-            </span>
           </div>
         </div>
       </template>

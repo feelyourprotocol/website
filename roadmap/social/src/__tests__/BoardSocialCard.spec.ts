@@ -13,10 +13,15 @@ describe('BoardSocialCard', () => {
     expect(wrapper.text()).toContain(SOCIAL_CARDS.board.title)
     expect(wrapper.text()).toContain(SOCIAL_CARDS.board.subtitle)
     expect(wrapper.findAll('.fyp-social-board__horizon')).toHaveLength(ROADMAP_HORIZONS.length)
+    expect(wrapper.findAll('.fyp-social-board__horizon-icon')).toHaveLength(ROADMAP_HORIZONS.length)
     expect(wrapper.findAll('.fyp-social-board__track')).toHaveLength(ROADMAP_TRACKS.length)
+    expect(wrapper.findAll('.fyp-social-board__track-icon')).toHaveLength(ROADMAP_TRACKS.length)
+    expect(wrapper.findAll('.fyp-roadmap__horizon-icon')).toHaveLength(ROADMAP_HORIZONS.length)
     expect(wrapper.find('.fyp-roadmap').exists()).toBe(true)
+    expect(wrapper.text()).toContain('Done')
     expect(wrapper.text()).toContain('In progress')
-    expect(wrapper.text()).toContain('Planned')
+    expect(wrapper.text()).toContain('Later')
+    expect(wrapper.text()).not.toContain('Planned')
   })
 
   it('includes gradient glow layers', () => {

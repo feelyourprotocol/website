@@ -431,7 +431,7 @@ body.fyp-site-roadmap {
 
 .fyp-social-board__horizons {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 0.85rem;
   margin: 0;
   padding: 0;
@@ -440,23 +440,51 @@ body.fyp-site-roadmap {
 
 .fyp-social-board__horizon {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: 0.35rem;
   padding: 0.75rem 1rem;
   border-radius: 10px;
   border: 1px solid rgba(15, 23, 42, 0.08);
   background: rgba(255, 255, 255, 0.82);
   backdrop-filter: blur(6px);
   box-shadow: 0 4px 14px rgba(15, 23, 42, 0.04);
-  border-top: 3px solid var(--fyp-purple);
+  border-top: 3px solid #10b981;
 }
 
 .fyp-social-board__horizon--2 {
-  border-top-color: var(--fyp-cyan);
+  border-top-color: var(--fyp-purple);
 }
 
 .fyp-social-board__horizon--3 {
+  border-top-color: var(--fyp-cyan);
+}
+
+.fyp-social-board__horizon--4 {
   border-top-color: var(--fyp-amber);
+}
+
+.fyp-social-board__horizon-icon {
+  width: 1.15rem;
+  height: 1.15rem;
+  color: var(--vp-c-text-1);
+}
+
+.fyp-social-board__horizon--1 .fyp-social-board__horizon-icon {
+  color: #059669;
+}
+
+.fyp-social-board__horizon--2 .fyp-social-board__horizon-icon {
+  color: var(--fyp-purple);
+}
+
+.fyp-social-board__horizon--3 .fyp-social-board__horizon-icon {
+  color: #0891b2;
+}
+
+.fyp-social-board__horizon--4 .fyp-social-board__horizon-icon {
+  color: #b45309;
 }
 
 .fyp-social-board__horizon-label {
@@ -490,12 +518,11 @@ body.fyp-site-roadmap {
   box-shadow: 0 4px 14px rgba(15, 23, 42, 0.04);
 }
 
-.fyp-social-board__track-swatch {
-  width: 0.75rem;
-  height: 0.75rem;
+.fyp-social-board__track-icon {
+  width: 1rem;
+  height: 1rem;
   flex: 0 0 auto;
-  border-radius: 3px;
-  background: var(--track-accent, var(--fyp-purple));
+  color: var(--track-accent, var(--fyp-purple));
 }
 
 .fyp-social-board__track-label {
@@ -504,43 +531,6 @@ body.fyp-site-roadmap {
   font-weight: 700;
   line-height: 1.25;
   color: var(--vp-c-text-1);
-}
-
-.fyp-social-board__legend {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.65rem;
-  margin: 0.85rem 0 0;
-}
-
-.fyp-social-board__legend-item {
-  display: inline-flex;
-}
-
-.fyp-social-board__status {
-  display: inline-block;
-  font-family: var(--fyp-font-mono);
-  font-size: 0.62rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  padding: 0.2rem 0.45rem;
-  border-radius: 4px;
-}
-
-.fyp-social-board__status--done {
-  color: #047857;
-  background: rgba(16, 185, 129, 0.14);
-}
-
-.fyp-social-board__status--in-progress {
-  color: #6d28d9;
-  background: rgba(124, 58, 237, 0.14);
-}
-
-.fyp-social-board__status--planned {
-  color: var(--vp-c-text-2);
-  background: var(--vp-c-default-soft);
 }
 
 .fyp-social-board__body {

@@ -1,15 +1,10 @@
 <script setup lang="ts">
 import RoadmapBoard from '../../../.vitepress/theme/components/RoadmapBoard.vue'
+import { roadmapIcon } from '../../../.vitepress/theme/icons.ts'
 import { ROADMAP_HORIZONS, ROADMAP_TRACKS } from '../../../data/roadmap.ts'
 import { SOCIAL_CARDS } from '../cards.ts'
 
 const meta = SOCIAL_CARDS.board
-
-const statusLegend = [
-  { id: 'done', label: 'Done' },
-  { id: 'in-progress', label: 'In progress' },
-  { id: 'planned', label: 'Planned' },
-] as const
 </script>
 
 <template>
@@ -33,6 +28,12 @@ const statusLegend = [
               class="fyp-social-board__horizon"
               :class="`fyp-social-board__horizon--${index + 1}`"
             >
+              <component
+                :is="roadmapIcon(horizon.icon)"
+                v-if="roadmapIcon(horizon.icon)"
+                class="fyp-social-board__horizon-icon"
+                aria-hidden="true"
+              />
               <span class="fyp-social-board__horizon-label">{{ horizon.label }}</span>
             </li>
           </ul>
@@ -44,23 +45,16 @@ const statusLegend = [
               class="fyp-social-board__track"
               :style="{ '--track-accent': track.accent }"
             >
-              <span class="fyp-social-board__track-swatch" aria-hidden="true" />
+              <component
+                :is="roadmapIcon(track.icon)"
+                v-if="roadmapIcon(track.icon)"
+                class="fyp-social-board__track-icon"
+                aria-hidden="true"
+              />
               <span class="fyp-social-board__track-label">{{ track.label }}</span>
             </li>
           </ul>
         </div>
-
-        <p class="fyp-social-board__legend">
-          <span
-            v-for="entry in statusLegend"
-            :key="entry.id"
-            class="fyp-social-board__legend-item"
-          >
-            <span class="fyp-social-board__status" :class="`fyp-social-board__status--${entry.id}`">
-              {{ entry.label }}
-            </span>
-          </span>
-        </p>
       </div>
     </div>
 

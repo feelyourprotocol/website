@@ -1,10 +1,14 @@
 import type { Component } from 'vue'
 import {
+  ArrowRightIcon,
   ArrowsRightLeftIcon,
   BanknotesIcon,
   BeakerIcon,
+  BoltIcon,
   BookOpenIcon,
   CalendarDaysIcon,
+  CheckCircleIcon,
+  ClockIcon,
   CommandLineIcon,
   CpuChipIcon,
   CubeIcon,
@@ -13,6 +17,7 @@ import {
   MapIcon,
   NoSymbolIcon,
   ScaleIcon,
+  ServerStackIcon,
   ShieldCheckIcon,
   SparklesIcon,
   Square3Stack3DIcon,
@@ -38,6 +43,11 @@ export const ROADMAP_ICONS = {
   split: ArrowsRightLeftIcon,
   map: MapIcon,
   token: BanknotesIcon,
+  check: CheckCircleIcon,
+  bolt: BoltIcon,
+  arrow: ArrowRightIcon,
+  clock: ClockIcon,
+  server: ServerStackIcon,
 } as const satisfies Record<string, Component>
 
 export type RoadmapIconId = keyof typeof ROADMAP_ICONS
