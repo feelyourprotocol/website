@@ -29,7 +29,7 @@ volume discount on future API usage, not a gate. Educational, open-source charac
 
 - [Token role](https://roadmap.feelyourprotocol.org/monetization/token.html): FYP as volume discount, not gate
 - [Pricing](https://roadmap.feelyourprotocol.org/monetization/pricing.html): Draft cost model
-- [AWS / hosting](https://roadmap.feelyourprotocol.org/infrastructure/aws.html): Strato vs cloud for API MVP
+- [Hosting & infrastructure](https://roadmap.feelyourprotocol.org/infrastructure/aws.html): Roles, the gateway/engine split, and how far automation goes
 - [Distribution](https://roadmap.feelyourprotocol.org/go-to-market/distribution.html): Go-to-market notes
 
 ## Related

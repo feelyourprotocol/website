@@ -115,7 +115,7 @@ export default defineConfig({
       },
       {
         text: 'Infrastructure',
-        items: [{ text: 'AWS & Hosting', link: '/infrastructure/aws' }],
+        items: [{ text: 'Hosting & Infrastructure', link: '/infrastructure/aws' }],
       },
       {
         text: 'Go-to-Market',
