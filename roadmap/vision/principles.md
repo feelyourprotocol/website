@@ -22,7 +22,7 @@ Before we call the MCP "live":
 - Catalogue honestly lists Runnable vs Planned EIPs
 - At least one checked without/with MCP proof published
 
-See [Launch week](/roadmap/launch) for the public checklist framing.
+The public page is [Launch week](/roadmap/launch). This checklist stays here.
 
 ## Founder traps we watch for
 
@@ -53,6 +53,7 @@ _This page is a living checklist; refine as the project teaches us new lessons._
 <Changelog
   title="Principles Changelog"
   :entries="[
+    { version: 'v0.6', date: '2026-10-05', summary: 'Launch week is the public page. This checklist stays the internal bar.' },
     { version: 'v0.5', date: '2026-10-01', summary: 'Launch checklist is the open endpoint. x402 stays a later milestone, not a launch gate.' },
     { version: 'v0.4', date: '2026-09-24', summary: 'Agents are customers; watch the human-in-the-loop assumption.' },
     { version: 'v0.3', date: '2026-09-02', summary: 'PoC shipped — added hosted-product, oracle-proof, and launch-checklist principles; x402-as-product trap.' },

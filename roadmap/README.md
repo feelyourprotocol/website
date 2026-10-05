@@ -32,7 +32,8 @@ roadmap/
 │       └── components/
 │           ├── Timeline.vue      # Linear left→right project timeline
 │           ├── RoadmapBoard.vue  # Flexible track × horizon board (2–5 tracks)
-│           └── Changelog.vue     # Per-section micro-changelog
+│           ├── Changelog.vue     # Per-section micro-changelog
+│           └── LaunchFacts.vue   # Three-up fact strip on the launch page
 ├── data/
 │   ├── timeline.ts               # Timeline phases + events (edit to update)
 │   └── roadmap.ts                # Roadmap tracks, horizons, items (edit to update)

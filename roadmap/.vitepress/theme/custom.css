@@ -313,6 +313,56 @@
 }
 
 /* ============================================================
+ * LaunchFacts.vue — three-up strip on the public launch page
+ * ============================================================ */
+.vp-doc .fyp-launch-facts {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.6rem;
+  margin: 1.25rem 0 1.75rem;
+  padding: 0;
+}
+
+.fyp-launch-facts__item {
+  border: 1px solid var(--vp-c-divider);
+  border-left: 3px solid var(--fyp-purple);
+  border-radius: 6px;
+  padding: 0.7rem 0.8rem;
+  background: var(--vp-c-bg-soft);
+}
+
+.fyp-launch-facts__item:nth-child(2) {
+  border-left-color: var(--fyp-cyan);
+}
+
+.fyp-launch-facts__item:nth-child(3) {
+  border-left-color: #0ea5e9;
+}
+
+.vp-doc .fyp-launch-facts__title {
+  font-family: var(--fyp-font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin: 0 0 0.3rem;
+  color: var(--vp-c-text-1);
+}
+
+.vp-doc .fyp-launch-facts__detail {
+  margin: 0;
+  font-size: 0.85rem;
+  line-height: 1.35;
+  color: var(--vp-c-text-2);
+}
+
+@media (max-width: 640px) {
+  .vp-doc .fyp-launch-facts {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ============================================================
  * Changelog.vue — per-section micro-versioning trail
  * ============================================================ */
 .fyp-changelog {

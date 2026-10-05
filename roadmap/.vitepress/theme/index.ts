@@ -3,6 +3,7 @@ import DefaultTheme from 'vitepress/theme'
 import { onMounted } from 'vue'
 
 import Changelog from './components/Changelog.vue'
+import LaunchFacts from './components/LaunchFacts.vue'
 import RoadmapBoard from './components/RoadmapBoard.vue'
 import Timeline from './components/Timeline.vue'
 import './custom.css'
@@ -22,5 +23,6 @@ export default {
     app.component('Timeline', Timeline)
     app.component('RoadmapBoard', RoadmapBoard)
     app.component('Changelog', Changelog)
+    app.component('LaunchFacts', LaunchFacts)
   },
 } satisfies Theme
