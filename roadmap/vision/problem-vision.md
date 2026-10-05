@@ -1,65 +1,104 @@
 # Problem & Vision
 
-## About this site
+Ethereum changes faster than people can learn it, and faster than an AI can safely guess it.
 
-**roadmap.feelyourprotocol.org** is the Phase 3 **strategy and history workspace** — vision, tracks, timeline, and draft concepts for the sustainable business layer. It records where our thinking stands, including open questions, so we have a stable place to iterate.
+Protocol updates — EIPs, hard forks, research — are hard to follow, hard to explain, and hard to build against. Feel Your Protocol started as a hands-on way through that: read the change, run it, see what it does.
 
-**What exists today:** the [explorations website](https://feelyourprotocol.org), [website docs](https://website-docs.feelyourprotocol.org), [MCP docs](https://mcp-docs.feelyourprotocol.org), the execution engine and gateway (tools implemented), and years of EthereumJS work behind both legs. **What we're shipping next:** the **public hosted MCP** at `mcp.feelyourprotocol.org`, open and unpaid, with the full Glamsterdam hardfork — [launch week 5–9 October 2026](/roadmap/launch). [x402](/concepts/x402) for newer EIPs follows after that service has usage and has been hardened.
+Agents now take on the same work. Auditing a contract, searching for MEV, testing an upgrade before it lands. They hit a wall:
 
-This scope is deliberate: we are **not** building general mainnet infrastructure, RPC, or testnet ops — that work lives elsewhere in the ecosystem. FYP targets the gap between probabilistic LLMs and **deterministic simulation of protocol changes not yet on mainnet**.
+> **LLMs are probabilistic. The Ethereum protocol is strictly deterministic.**
 
-For tracks, horizons, and how ideas evolve over time, see [Roadmap & Tracks](/roadmap/roadmap) — fast-moving sections there and on the [Agent API concept](/concepts/api-mcp) and [pricing model](/monetization/pricing) pages each carry a **micro-changelog** at the bottom.
+<IconGrid
+  :items="[
+    { icon: 'spark', title: 'A model guesses', detail: 'Gas, a cascade of state, a deep stack trace. The answer sounds sure and can still be wrong.' },
+    { icon: 'cube', title: 'The protocol does not', detail: 'The same inputs have one result. An oracle is the call that returns it.' },
+  ]"
+/>
 
-## The Problem
+## The oracle
 
-There is a large and growing gap between the **Ethereum protocol layer** and the **application layer**. Protocol changes — EIPs, hard forks, and research — are hard to follow, hard to explain, and hard to build against. Feel Your Protocol started to help close that gap: to explain and educate on protocol updates, hands on.
+Feel Your Protocol is that oracle for the **future** protocol — the rules that are not on mainnet yet.
 
-Phase 3 adds a second axis to the same problem. As AI agents take on real protocol work — auditing contracts, optimizing MEV, testing upgrades — they hit a hard wall:
+A hosted MCP server wraps the modular [EthereumJS](https://github.com/ethereumjs/ethereumjs-monorepo) stack. An agent sends bytecode, a transaction, or a small block, and gets an exact simulation under an upcoming fork.
 
-> **LLMs are probabilistic; the Ethereum protocol is strictly deterministic.**
+<Motto>Deterministic truth for probabilistic machines.</Motto>
 
-An AI model cannot reliably simulate cascading state changes, calculate exact gas under an unreleased EIP, or trace deep stack manipulations. It will confidently hallucinate. What agents lack is a deterministic **ground-truth oracle** they can call to get the real answer.
+### Textbook and server
 
-## The Vision
+<IconGrid
+  :items="[
+    { icon: 'book', title: 'Textbook', detail: 'A person learns the change, by hand, on the explorations site.', href: 'https://feelyourprotocol.org' },
+    { icon: 'terminal', title: 'Server', detail: 'An agent runs the same change and reads the trace.', href: 'https://mcp-docs.feelyourprotocol.org' },
+  ]"
+/>
 
-Build Feel Your Protocol into the **deterministic oracle for the future Ethereum protocol** — a headless **MCP server** that wraps the modular [EthereumJS](https://github.com/ethereumjs/ethereumjs-monorepo) stack so that AI agents (and the researchers behind them) can run real, exact simulations of upcoming fork rules, EIPs, and research targets on demand.
+One engine underneath both. [Two legs, one engine](/vision/two-legs).
 
-In one line: **deterministic truth for probabilistic machines.**
+### People and agents
 
-The lab equipment **exists** — engine, gateway tools, and a growing EIP catalogue on [mcp-docs](https://mcp-docs.feelyourprotocol.org). The product milestone is the **hosted endpoint** agents connect to without self-hosting — open at launch, with a [paid tier](/monetization/pricing#access-cycle) for EIPs that are still ahead of the current hardfork. Concrete tool schemas and limits live on mcp-docs; this site keeps the strategic sketch.
+<IconGrid
+  :items="[
+    { icon: 'people', title: 'People', detail: 'Researchers, educators, integrators, and the token community.' },
+    { icon: 'chip', title: 'Agents', detail: 'They can arrive alone, with nobody who has already allowlisted the tool.' },
+  ]"
+/>
 
-The educational website does not get left behind — it remains the **visual front door** and DevRel engine while keeping its teaching mission. See [Two Legs, One Engine](/vision/two-legs).
+[Two audiences](/vision/two-audiences).
 
-Humans (researchers, educators, integrators, the token community) and **agents themselves** are equal customers. Agents will discover and pay for services without a person who has already allowlisted us. Payment, onboarding, and discovery are built for that — see [Two Audiences](/vision/two-audiences).
+### What opens
 
-## Why us (the moat)
+The lab is built. During [launch week](/roadmap/launch) the public server goes live.
 
-- **Domain depth.** Years of building EIP prototypes and maintaining critical infrastructure inside the Ethereum ecosystem — context an LLM cannot synthesize on its own.
-- **A uniquely suited stack.** EthereumJS is highly modular (13+ libraries), TypeScript-native, and exceptionally observable — easy to switch fork contexts, manipulate state, dump step-by-step traces, and expose cryptographic primitives (via the Noble ecosystem). This is hard to replicate with a monolithic Rust node.
-- **Founder & brand trust.** A recognizable, education-first brand and an open-source track record lower the barrier for developers to trust — and allowlist — the infrastructure.
-- **Proof over promise.** We document **without MCP vs with MCP** comparisons — same prompt, same model, different outcome — so the oracle thesis is checked, not asserted.
+<LaunchFacts
+  :facts="[
+    { title: 'Open', detail: 'Free. No API key, no payment.' },
+    { title: 'Glamsterdam', detail: 'The full upcoming hardfork, 5–9 October 2026.' },
+    { title: 'Later', detail: 'A paid tier for EIPs still ahead of that fork.' },
+  ]"
+/>
 
-## Target product — what we're aiming for (and what we're not)
+Schemas and limits live on [mcp-docs](https://mcp-docs.feelyourprotocol.org). The paid cycle is on [Pricing](/monetization/pricing#access-cycle).
 
-Boundaries we hold to keep scope honest:
+## Why us
 
-- **Aiming for:** a headless, **stateless** EVM simulation & cryptographic oracle. Bring-your-own-state; raw bytecode in, deterministic JSON trace out. Delivered as a **hosted MCP server** (not a self-host tutorial).
-- **Explicitly not:** a generic RPC provider, an archive node, or a high-throughput indexer. We deliberately avoid sequential multi-block historical processing (see [Tech Readiness & Boundaries](/concepts/api-mcp#tech-readiness-boundaries)).
+<IconGrid
+  :items="[
+    { icon: 'beaker', title: 'The work is already here', detail: 'Years of EIP prototypes, and of maintaining infrastructure inside Ethereum. A model cannot invent that context.' },
+    { icon: 'stack', title: 'A stack you can take apart', detail: 'EthereumJS is TypeScript libraries, not one node. Forks switch, state arrives per call, and every step can be traced. Cryptography sits on Noble. A monolithic Rust node is a poor fit.' },
+    { icon: 'shield', title: 'A name people trust', detail: 'An education-first brand and an open-source record make it easier to allowlist the server.' },
+    { icon: 'scale', title: 'Checked, not claimed', detail: 'The same question, on the same model, once without the server and once with it. The difference is published.' },
+  ]"
+/>
 
-These lines will move as we learn — operational detail lives on [mcp-docs](https://mcp-docs.feelyourprotocol.org).
+## The shape of it
 
-## Where this fits
+<IconGrid
+  :columns="3"
+  :items="[
+    { icon: 'inbox', title: 'You bring', detail: 'Accounts, code, and transactions. A fresh lab world each call.' },
+    { icon: 'trace', title: 'You receive', detail: 'Gas, logs, and a step-by-step trace.' },
+    { icon: 'boundary', title: 'Outside', detail: 'Chain RPC, an archive of mainnet history, an indexer, long replays of past blocks.' },
+  ]"
+/>
 
-- **[Two Legs, One Engine](/vision/two-legs)** — how the website and the MCP server reinforce each other.
-- **[Two Audiences](/vision/two-audiences)** — humans and agents as equal customers.
-- **[Principles & Operating Discipline](/vision/principles)** — the guardrails we hold ourselves to.
-- **[Roadmap & Tracks](/roadmap/roadmap)** · **[Timeline](/roadmap/timeline)** · **[Launch week](/roadmap/launch)** — how and when we ship.
+## Where to go next
+
+<IconGrid
+  :items="[
+    { icon: 'calendar', title: 'Launch week', detail: 'What opens, and when.', href: '/roadmap/launch' },
+    { icon: 'split', title: 'Two legs', detail: 'The textbook and the server.', href: '/vision/two-legs' },
+    { icon: 'people', title: 'Two audiences', detail: 'People and agents.', href: '/vision/two-audiences' },
+    { icon: 'map', title: 'Roadmap', detail: 'Tracks, then the timeline.', href: '/roadmap/roadmap' },
+  ]"
+/>
 
 ## Changelog
 
 <Changelog
   title="Problem & Vision Changelog"
   :entries="[
+    { version: 'v0.8', date: '2026-10-05', summary: 'Icon groups for the wall, the two legs, the two audiences, the moat, and the lab boundary.' },
+    { version: 'v0.7', date: '2026-10-05', summary: 'Shorter public page. Dropped the Phase 3 frame from this essay.' },
     { version: 'v0.6', date: '2026-10-01', summary: 'Next ship is the open Glamsterdam MCP. Paid x402 tier follows for EIPs ahead of that hardfork.' },
     { version: 'v0.5', date: '2026-09-24', summary: 'Humans and agents as equal customers; payment, onboarding, and discovery follow from that.' },
     { version: 'v0.4', date: '2026-09-02', summary: 'Lab equipment built — public hosted launch is the next milestone; mcp-docs and generic MCP tools acknowledged.' },

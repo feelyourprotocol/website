@@ -36,6 +36,7 @@ Raw opcode / stack / precompile programs belong on [Run Bytecode](/use/tools/run
 | `fork` | No | `{ baseHardfork, eips[] }` — default **`glamsterdam`** |
 | `gasLimit` | No | Decimal string. Default `1000000`. Tool ceiling `110000000`; fork validity rules still apply |
 | `authorizationList` | No | Signed EIP-7702 JSON items — **Pectra+** type-4 set-code tx. Use [Inspect Artifact](/use/tools/inspect-artifact) `authorization-list` to validate first. |
+| `accessList` | No | EIP-2930 access list (type-2 tx). On Glamsterdam, list bytes pay the calldata floor (**EIP-7981**). Not combinable with `authorizationList`. |
 
 ### BYOS prestate
 
@@ -87,6 +88,7 @@ See [Guarantees](/use/guarantees) for gas ceilings. The higher transaction-only 
 <Changelog
   title="Run Transaction Changelog"
   :entries="[
+    { version: 'v0.8', date: '2026-10-04', summary: 'Optional accessList (EIP-2930 type-2 tx) for EIP-7981 floor demos on Glamsterdam.' },
     { version: 'v0.7', date: '2026-09-18', summary: 'Named eips[] provenance.caveat includes a compact Spec: snapshot.' },
     { version: 'v0.6', date: '2026-09-17', summary: 'Contract creation via omitted to; createdAddress and deployedCodeSize; 110M transaction-only ceiling.' },
     { version: 'v0.5', date: '2026-09-17', summary: 'Fusaka fork note: current-mainnet features, not only a compare baseline.' },

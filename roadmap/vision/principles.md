@@ -4,25 +4,62 @@ The shift from "fun side project" to "sustainable business" is a vulnerable mome
 
 ## Operating principles
 
-- **Deterministic truth above all.** The product's entire value is exactness. Correctness, reproducibility and transparent traces beat speed and breadth.
-- **Agents are customers.** Humans and agents are equal audiences — not “humans who use agents.” Discovery, payment, and onboarding must be able to close without a person who has read the website. See [Two Audiences](/vision/two-audiences).
-- **Scope discipline.** Be the best at one thing — isolated, stateless EVM simulation and cryptographic primitives. Say no to archive-node territory, `solc`, ERC-app-layer logic, and consensus-layer mechanics. (See [boundaries](/concepts/api-mcp#tech-readiness-boundaries).)
-- **Frictionless for outsiders, rewarding for insiders.** Never put the community token in the critical path of a paying agent; let it be a [discount and a perk](/monetization/token), not a gate.
-- **Hosted is the product.** Open source stays open; official docs and marketing describe the **public endpoint**, not a self-host path. Permissionless builders can still read the repos — that is ethos, not go-to-market.
-- **Prove the oracle, don't assert it.** Run and publish **without MCP vs with MCP** comparisons (same prompt, same model) before we claim the thesis in public.
-- **Cypherpunk character.** Permissionless access, open standards, privacy-respecting, code-first — carried forward from the side-project era into the business.
+<IconNote icon="cube" title="Deterministic truth above all">
+
+The product's entire value is exactness. Correctness, reproducibility and transparent traces beat speed and breadth.
+
+</IconNote>
+
+<IconNote icon="chip" title="Agents are customers">
+
+Humans and agents are equal audiences — not “humans who use agents.” Discovery, payment, and onboarding must be able to close without a person who has read the website. See [Two Audiences](/vision/two-audiences).
+
+</IconNote>
+
+<IconNote icon="boundary" title="Scope discipline">
+
+Be the best at one thing — isolated, stateless EVM simulation and cryptographic primitives. Say no to archive-node territory, `solc`, ERC-app-layer logic, and consensus-layer mechanics. (See [boundaries](/concepts/api-mcp#boundaries).)
+
+</IconNote>
+
+<IconNote icon="token" title="Frictionless for outsiders, rewarding for insiders">
+
+Never put the community token in the critical path of a paying agent; let it be a [discount and a perk](/monetization/token), not a gate.
+
+</IconNote>
+
+<IconNote icon="terminal" title="Hosted is the product">
+
+Open source stays open; official docs and marketing describe the **public endpoint**, not a self-host path. Permissionless builders can still read the repos — that is ethos, not go-to-market.
+
+</IconNote>
+
+<IconNote icon="beaker" title="Prove the oracle, don't assert it">
+
+Run and publish **without MCP vs with MCP** comparisons (same prompt, same model) before we claim the thesis in public.
+
+</IconNote>
+
+<IconNote icon="shield" title="Cypherpunk character">
+
+Permissionless access, open standards, privacy-respecting, code-first — carried forward from the side-project era into the business.
+
+</IconNote>
 
 ## Launch discipline _(Oct 2026)_
 
-Before we call the MCP "live":
+<Checklist
+  label="Before we call it live"
+  :items="[
+    'HTTP endpoint reachable at mcp.feelyourprotocol.org',
+    'Open to connect — payment is a later milestone, not a launch gate',
+    'Connect docs describe the hosted path only',
+    'Catalogue honestly lists Runnable vs Planned EIPs',
+    'At least one checked without/with MCP proof published',
+  ]"
+/>
 
-- HTTP endpoint reachable at `mcp.feelyourprotocol.org`
-- Open to connect — payment is a later milestone, not a launch gate
-- Connect docs describe the hosted path only
-- Catalogue honestly lists Runnable vs Planned EIPs
-- At least one checked without/with MCP proof published
-
-See [Launch week](/roadmap/launch) for the public checklist framing.
+The public page is [Launch week](/roadmap/launch). This checklist stays here.
 
 ## Founder traps we watch for
 
@@ -44,7 +81,7 @@ The vision was pressure-tested against a set of recurring psychological/strategi
 | **Perfect-protocol procrastination** | Over-engineering before a single agent has queried the hosted server in the wild. |
 | **x402 as the product** | Payment rails are how agents access the oracle — not the reason to exist. |
 
-> These also make good public-thread material — the project documents its own reasoning in the open.
+<Motto>These also make good public-thread material — the project documents its own reasoning in the open.</Motto>
 
 _This page is a living checklist; refine as the project teaches us new lessons._
 
@@ -53,6 +90,8 @@ _This page is a living checklist; refine as the project teaches us new lessons._
 <Changelog
   title="Principles Changelog"
   :entries="[
+    { version: 'v0.7', date: '2026-10-05', summary: 'Same rules. Icon notes for the principles; the launch bar is one checklist.' },
+    { version: 'v0.6', date: '2026-10-05', summary: 'Launch week is the public page. This checklist stays the internal bar.' },
     { version: 'v0.5', date: '2026-10-01', summary: 'Launch checklist is the open endpoint. x402 stays a later milestone, not a launch gate.' },
     { version: 'v0.4', date: '2026-09-24', summary: 'Agents are customers; watch the human-in-the-loop assumption.' },
     { version: 'v0.3', date: '2026-09-02', summary: 'PoC shipped — added hosted-product, oracle-proof, and launch-checklist principles; x402-as-product trap.' },

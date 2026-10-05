@@ -30,9 +30,14 @@ roadmap/
 │       ├── index.ts              # Extends default theme; registers global components
 │       ├── custom.css            # FYP skin (brand colors, fonts, dot grid) + viz styles
 │       └── components/
-│           ├── Timeline.vue      # Linear left→right project timeline
+│           ├── Timeline.vue      # Vertical chronicle, grouped by quarter
 │           ├── RoadmapBoard.vue  # Flexible track × horizon board (2–5 tracks)
-│           └── Changelog.vue     # Per-section micro-changelog
+│           ├── Changelog.vue     # Per-section micro-changelog
+│           ├── Checklist.vue     # One checklist panel (launch bar)
+│           ├── LaunchFacts.vue   # Three-up fact strip on the launch page
+│           ├── IconGrid.vue      # Heroicon cards for essay taxonomies
+│           ├── IconNote.vue      # Icon beside a prose point (not a card)
+│           └── Motto.vue         # One-line pull quote
 ├── data/
 │   ├── timeline.ts               # Timeline phases + events (edit to update)
 │   └── roadmap.ts                # Roadmap tracks, horizons, items (edit to update)
@@ -68,7 +73,7 @@ See also [Launch-Strategie.md](../../Launch-Strategie.md) §2 and [Announcement-
 
 Both visualizations are **data-driven** so they are lightweight and trivial to re-render when things change:
 
-- **Timeline** (`<Timeline />`) — edit `data/timeline.ts` to add phases/events.
+- **Timeline** (`<Timeline />`) — edit `data/timeline.ts` to add a dated event. Undated plans stay on the board.
 - **Roadmap board** (`<RoadmapBoard />`) — edit `data/roadmap.ts` to add tracks (rows), horizons (columns), and items. Built for 2–5 tracks.
 
 ## Micro-versioning

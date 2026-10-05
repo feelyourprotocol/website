@@ -1,45 +1,34 @@
 <script setup lang="ts">
-import { computed } from 'vue'
-
-import { TIMELINE_EVENTS, TIMELINE_PHASES } from '../../../data/timeline'
-
-/** Group events under their phase, preserving source order. */
-const phases = computed(() =>
-  TIMELINE_PHASES.map((phase) => ({
-    ...phase,
-    events: TIMELINE_EVENTS.filter((event) => event.phase === phase.id),
-  })),
-)
+import { TIMELINE_GROUPS, formatTimelineDate } from '../../../data/timeline'
+import { roadmapIcon } from '../icons'
 </script>
 
 <template>
   <div class="fyp-timeline">
-    <div class="fyp-timeline__track">
-      <div
-        v-for="phase in phases"
-        :key="phase.id"
-        class="fyp-timeline__phase"
-        :style="{ '--phase-color': phase.color }"
-      >
-        <div class="fyp-timeline__phase-label">{{ phase.label }}</div>
-        <div class="fyp-timeline__phase-range">{{ phase.range }}</div>
-        <div class="fyp-timeline__bar" />
-        <div class="fyp-timeline__events">
-          <div
-            v-for="event in phase.events"
-            :key="event.date + event.label"
-            class="fyp-timeline__event"
-            :class="{ 'fyp-timeline__event--done': event.done }"
-          >
-            <span class="fyp-timeline__dot" />
-            <span>
-              <span class="fyp-timeline__event-date">{{ event.date }}</span>
-              <strong>{{ event.label }}</strong>
-              <template v-if="event.note"> — {{ event.note }}</template>
-            </span>
+    <section v-for="group in TIMELINE_GROUPS" :key="group.id" class="fyp-timeline__group">
+      <div class="fyp-timeline__quarter">{{ group.label }}</div>
+      <div class="fyp-timeline__events" role="list">
+        <div
+          v-for="event in group.events"
+          :key="event.id"
+          class="fyp-timeline__event"
+          :class="{ 'fyp-timeline__event--ahead': !event.done }"
+          role="listitem"
+        >
+          <span class="fyp-timeline__mark" aria-hidden="true">
+            <component
+              :is="roadmapIcon(event.icon)"
+              v-if="roadmapIcon(event.icon)"
+              class="fyp-timeline__glyph"
+            />
+          </span>
+          <div class="fyp-timeline__copy">
+            <span class="fyp-timeline__date">{{ formatTimelineDate(event.date) }}</span>
+            <span class="fyp-timeline__label">{{ event.label }}</span>
+            <p v-if="event.note" class="fyp-timeline__note">{{ event.note }}</p>
           </div>
         </div>
       </div>
-    </div>
+    </section>
   </div>
 </template>

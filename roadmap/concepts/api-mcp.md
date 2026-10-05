@@ -1,79 +1,97 @@
-# Agent API & MCP Server (Concept)
+# Agent API & MCP
 
-> **Strategic sketch — operational docs on [mcp-docs.feelyourprotocol.org](https://mcp-docs.feelyourprotocol.org).** The execution engine and gateway tools exist; the **public hosted endpoint** is not launched yet. See [Launch week](/roadmap/launch).
+The server is the lab. The website is the textbook. Both run on EthereumJS.
 
-## What we're building
+How to call it lives on [mcp-docs](https://mcp-docs.feelyourprotocol.org). This page is who the lab is for, and where a sentence stops and a run begins. The public door opens in [launch week](/roadmap/launch).
 
-**Feel Your Protocol MCP server**: a headless service wrapping the EthereumJS stack so an AI agent can run **exact, deterministic simulations of the future Ethereum protocol** — upcoming forks, EIPs, and research — and get back not just a result, but a step-by-step trace it can reason over.
+<Motto>The model speaks. The server runs.</Motto>
 
-**Delivery shape:** primarily an **MCP server** over HTTP at `mcp.feelyourprotocol.org` — not a bare REST API, not a self-host tutorial. [MCP](https://modelcontextprotocol.io) is the agent↔tool standard: discover tools, read schemas, call without custom prompt engineering.
+## Who we build for
 
-## Live tool surface _(generic verbs)_
+A call starts empty. The caller brings bytecode, a transaction, or a small world of accounts, and names a fork from Berlin through Glamsterdam. What comes back is gas, logs, a trace, a receipt, or a generated structure, plus provenance. There is no mainnet, no compiler, and no mempool.
 
-We deliberately ship **intent-driven tools**, not per-EIP endpoints:
+That is a narrow door, and it picks the users.
 
-| MCP tool | Shape | Purpose |
+| Who | What they bring | What they leave with |
 | --- | --- | --- |
-| `describe_capabilities` | probe | Registry: forks, runnable EIP modules, opcodes, encoding, shapes |
-| `run_bytecode` | simulate | Run caller-supplied bytecode under a fork config; optional trace |
-| `run_transaction` | transaction | Paid tx gas, receipt logs, wallet gasLimit, first-touch transfers |
-| `run_block` | block | 1–8 txs as a lab block; optional header slot / number / timestamp |
-| `generate_artifact` | generate | Lab artifacts (e.g. block-level access lists) |
-| `inspect_artifact` | inspect | Structure / hash of a caller-supplied artifact |
+| Protocol engineers, EIP authors, client developers | A fork, and a program or a transaction they wrote to ask one question | The same answer twice. Gas, logs, a trace they can diff. |
+| Auditors of upcoming behavior | A scenario they constructed. The contract, the call, the slots. | Stack and gas at the opcode they care about, under the new rules. |
+| Wallet and app engineers | The call or the transaction their software will actually send | Whether the upcoming rules change the result they are about to ship. |
+| Agent builders | A user question in language, and a schema | A result they can quote. The fork and the spec sit on the provenance. |
 
-EIP coverage is advertised through the probe response and human catalogue pages under `mcp-docs/use/eips/` — not separate tools like `simulate_eip8024_stack`. Compare baseline vs preview by calling the **same verb** twice (e.g. `osaka` then `amsterdam`).
+Learners and educators stay on the textbook. When one of them reaches the server, it is usually through an agent, with the program already in hand. An agent is not a separate audience. It is how the four groups arrive when nobody is clicking.
 
-Full schemas and limits: [mcp-docs/use/tools/](https://mcp-docs.feelyourprotocol.org/use/tools/describe-capabilities.html).
+<IconNote icon="boundary" title="Outside the lab">
 
-## Design principles _(still hold)_
+Mainnet and L2 replay, a Solidity compiler, the mempool, and the consensus and networking layers are other products. A searcher who needs live state is outside this door. So is a chat that answers Ethereum questions without a run.
 
-- **Isolated lab / BYOS.** No archive node, no mainnet or L2 sync. The caller supplies bytecode, txs, and any constructed prestate; we run in an isolated context. **Default:** discard that lab world after the call (so workers stay parallel). Constructing accounts/code/storage **in the request** is in scope. An MCP transport session is not EVM memory — continuation across prompts is optional later, not implied.
-- **Raw bytecode, base-layer only.** No Solidity compilation in the service. ERC application-layer concerns are out of scope.
-- **Observability first.** Rich JSON traces (stack, memory, gas, opcodes) are a primary deliverable.
-- **Guardrails for agents.** Tool schemas and hard ceilings protect the open service. Gas-based pricing applies on the paid tier (see [Pricing](/monetization/pricing)).
+</IconNote>
 
-## Use-case scopes _(candidates)_
+## Design
 
-Three scopes mapped onto the stack — v1 focuses on **run** under upcoming fork rules:
+The tool list, the schemas, and the limits live on [mcp-docs](https://mcp-docs.feelyourprotocol.org/use/tools/describe-capabilities.html). The shape underneath is small.
 
-1. **Future-fork gas & opcode simulator** — run bytecode under Fusaka vs Glamsterdam; compare gas, logs, stack. _Audience:_ DeFi engineers, MEV searchers, auditors. _(8024, 7708, 7883, 7951 in catalogue today.)_
-2. **Deep-state security tracer** — return exact stack/memory at sensitive opcodes via optional trace. _Audience:_ security auditors._
-3. **Block-level access lists (EIP-7928)** — **generate** shape planned; website exploration is the textbook twin today.
+<IconNote icon="beaker" title="An isolated world">
 
-## Likely first users _(hypothesis — to validate at launch)_
+The caller brings the world on the same call. Accounts, code, storage. We run it and discard it. A conversation is not EVM memory.
 
-Programmatic actors with urgent incentive to understand upcoming forks **before** mainnet: **MEV searchers**, **DeFi/security auditors**, and **L2 / infra teams** running automated integration tests. The website builds trust; the hosted MCP is what they allowlist.
+</IconNote>
 
-## Illustrative handler _(early sketch — superseded by generic tools)_
+<IconNote icon="chip" title="Generic verbs">
 
-An early design explored per-EIP tool names. We rejected that in favour of generic verbs + a live catalogue. The handler shape is still instructive:
+The fork and the catalogue choose the rules. A comparison is the same verb, called twice. The probe says which forks and which EIPs can actually run.
 
-```typescript
-// Today: one run tool, fork config selects Glamsterdam + bundled EIPs
-const common = new Common({ chain: 'mainnet', hardfork: 'amsterdam' }) // EthereumJS EL id
-const result = await simulateBytecode({ bytecode, fork: { baseHardfork: 'glamsterdam' } })
-// → gasUsed, stack, logs, provenance JSON back to the agent
-```
+</IconNote>
 
-## Tech readiness & boundaries
+<IconNote icon="trace" title="The trace is the product">
 
-- **TypeScript is fine for this.** Isolated single simulations; the LLM round-trip dominates timing. Modularity and observability matter more than raw speed.
-- **Concurrency via worker pool.** CPU-bound sims in Node `worker_threads` so the network layer stays responsive. See [AWS & Hosting](/infrastructure/aws).
-- **The hard wall to avoid:** sequential multi-block **historical** backtesting. Archive-node / `revm` territory — outside scope and margins.
+Gas, logs, stack, receipts, and the spec snapshot they came from. A bare success flag is not the result we are building.
 
-## Open questions
+</IconNote>
 
-- **EIP-7928 generate** — when it ships relative to launch week.
-- **x402 integration** — after the open launch has usage and has been hardened. Facilitator, proxy, token discount check. First paid EIP expected: 8141. See [Pricing](/monetization/pricing#access-cycle).
-- **Registry listings** — machine-readable discovery after the hosted endpoint is live. See [Two Audiences](/vision/two-audiences).
+<IconNote icon="shield" title="A bounded open service">
 
-Resolved: MCP-first delivery (not REST-primary); docs split (roadmap = strategy, mcp-docs = operational).
+Schemas and hard ceilings keep the public server finite. A fixed price per tool belongs to the paid tier, later — see [Pricing](/monetization/pricing).
+
+</IconNote>
+
+## Code and the server
+
+An exploration and a server call are the same execution, met at two distances. The widget fixes the example, so a person can see the question. The server takes a program the caller wrote. There is no second engine.
+
+| | Textbook | Server |
+| --- | --- | --- |
+| Who writes the program | We do, as a curated example | The caller |
+| What changes | The question on the page | Fork, bytecode, transaction, accounts |
+| What comes back | A lesson | Gas, logs, a trace, provenance |
+
+The [two legs](/vision/two-legs) are that split. The catalogue on mcp-docs is the list of questions both sides can honestly run.
+
+## Language and execution
+
+Someone asks, in language, what a self-transfer costs on Glamsterdam, or how an opcode differs from Fusaka. The server never sees that sentence. There is no question field.
+
+The agent, or the widget, translates. Intent becomes fields: a fork id, hex, a transaction, accounts. Those fields are the delimiter. Past them, EthereumJS runs, and the result is a number, a log, a trace. The agent may say it back in language. The sentence is the explanation. The run is the answer.
+
+| Step | Who holds it | What crosses |
+| --- | --- | --- |
+| Intent | A person, or an agent, in language | A question |
+| Translation | The agent, or a widget | Fork, bytecode, transaction, accounts. A schema. |
+| Execution | The server | A deterministic result |
+| Answer | The agent, quoting the run | Language again, with provenance attached |
+
+A bad translation shows up. The schema rejects it, or the run is about a different program than the one in the question. Provenance names the fork and the spec, so the quoted answer can be checked. The translation stays outside the server. Moving it inside would make the result depend on a model.
+
+## Boundaries
+
+One simulation at a time, in a worker, so calls stay parallel. TypeScript is enough. The slow part is the model round-trip, not the EVM. The wall is sequential historical backtesting and archive state. Scaling means more isolated runs, which is the [host](/infrastructure/aws) question. [Principles](/vision/principles) keeps the same line.
 
 ## Changelog
 
 <Changelog
-  title="Agent API Concept Changelog"
+  title="Agent API Changelog"
   :entries="[
+    { version: 'v0.9', date: '2026-10-05', summary: 'Rewrite around who the lab is for, the textbook/server split, and the language-to-run delimiter. Tool catalogue and stale generate plans leave for mcp-docs.' },
     { version: 'v0.8', date: '2026-10-01', summary: 'x402 is a post-launch question. Launch week is the open Glamsterdam endpoint.' },
     { version: 'v0.7', date: '2026-09-24', summary: 'Six generic verbs (run_block, generate_artifact, inspect_artifact); registry discovery for agents.' },
     { version: 'v0.6', date: '2026-09-14', summary: 'BYOS: isolated lab and demand-built prestate; MCP transport session is not EVM memory.' },
@@ -84,5 +102,3 @@ Resolved: MCP-first delivery (not REST-primary); docs split (roadmap = strategy,
     { version: 'v0.1', date: '2026-06-30', summary: 'Initial outline — MCP-first delivery, stateless/BYOS design, three use-case scopes.' },
   ]"
 />
-
-_Add a one-line entry here whenever the Agent API concept changes._

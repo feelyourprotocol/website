@@ -317,48 +317,29 @@ body.fyp-site-roadmap {
 }
 
 /* --- Timeline banner extras --- */
-.fyp-social-timeline__phases {
+.fyp-social-timeline__quarters {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 0.85rem;
   margin: 1.25rem 0 0.85rem;
   padding: 0;
   list-style: none;
 }
 
-.fyp-social-timeline__phase {
-  display: flex;
-  flex-direction: column;
-  gap: 0.25rem;
-  padding: 0.8rem 0.95rem;
+.fyp-social-timeline__quarter {
+  padding: 0.75rem 0.9rem;
   border-radius: 10px;
   border: 1px solid rgba(15, 23, 42, 0.08);
+  border-top: 3px solid var(--fyp-purple);
   background: rgba(255, 255, 255, 0.82);
   backdrop-filter: blur(6px);
   box-shadow: 0 4px 14px rgba(15, 23, 42, 0.04);
-}
-
-.fyp-social-timeline__phase-bar {
-  display: block;
-  width: 100%;
-  height: 4px;
-  border-radius: 999px;
-  background: var(--phase-color, var(--fyp-purple));
-  margin-bottom: 0.35rem;
-}
-
-.fyp-social-timeline__phase-label {
   font-family: var(--fyp-font-mono);
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--phase-color, var(--vp-c-text-1));
-}
-
-.fyp-social-timeline__phase-range {
   font-size: 0.78rem;
-  color: var(--vp-c-text-2);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-align: center;
+  color: var(--vp-c-text-1);
 }
 
 .fyp-social-timeline__legend {
@@ -431,7 +412,7 @@ body.fyp-site-roadmap {
 
 .fyp-social-board__horizons {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 0.85rem;
   margin: 0;
   padding: 0;
@@ -440,23 +421,51 @@ body.fyp-site-roadmap {
 
 .fyp-social-board__horizon {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: 0.35rem;
   padding: 0.75rem 1rem;
   border-radius: 10px;
   border: 1px solid rgba(15, 23, 42, 0.08);
   background: rgba(255, 255, 255, 0.82);
   backdrop-filter: blur(6px);
   box-shadow: 0 4px 14px rgba(15, 23, 42, 0.04);
-  border-top: 3px solid var(--fyp-purple);
+  border-top: 3px solid #10b981;
 }
 
 .fyp-social-board__horizon--2 {
-  border-top-color: var(--fyp-cyan);
+  border-top-color: var(--fyp-purple);
 }
 
 .fyp-social-board__horizon--3 {
+  border-top-color: var(--fyp-cyan);
+}
+
+.fyp-social-board__horizon--4 {
   border-top-color: var(--fyp-amber);
+}
+
+.fyp-social-board__horizon-icon {
+  width: 1.15rem;
+  height: 1.15rem;
+  color: var(--vp-c-text-1);
+}
+
+.fyp-social-board__horizon--1 .fyp-social-board__horizon-icon {
+  color: #059669;
+}
+
+.fyp-social-board__horizon--2 .fyp-social-board__horizon-icon {
+  color: var(--fyp-purple);
+}
+
+.fyp-social-board__horizon--3 .fyp-social-board__horizon-icon {
+  color: #0891b2;
+}
+
+.fyp-social-board__horizon--4 .fyp-social-board__horizon-icon {
+  color: #b45309;
 }
 
 .fyp-social-board__horizon-label {
@@ -490,12 +499,11 @@ body.fyp-site-roadmap {
   box-shadow: 0 4px 14px rgba(15, 23, 42, 0.04);
 }
 
-.fyp-social-board__track-swatch {
-  width: 0.75rem;
-  height: 0.75rem;
+.fyp-social-board__track-icon {
+  width: 1rem;
+  height: 1rem;
   flex: 0 0 auto;
-  border-radius: 3px;
-  background: var(--track-accent, var(--fyp-purple));
+  color: var(--track-accent, var(--fyp-purple));
 }
 
 .fyp-social-board__track-label {
@@ -504,43 +512,6 @@ body.fyp-site-roadmap {
   font-weight: 700;
   line-height: 1.25;
   color: var(--vp-c-text-1);
-}
-
-.fyp-social-board__legend {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.65rem;
-  margin: 0.85rem 0 0;
-}
-
-.fyp-social-board__legend-item {
-  display: inline-flex;
-}
-
-.fyp-social-board__status {
-  display: inline-block;
-  font-family: var(--fyp-font-mono);
-  font-size: 0.62rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  padding: 0.2rem 0.45rem;
-  border-radius: 4px;
-}
-
-.fyp-social-board__status--done {
-  color: #047857;
-  background: rgba(16, 185, 129, 0.14);
-}
-
-.fyp-social-board__status--in-progress {
-  color: #6d28d9;
-  background: rgba(124, 58, 237, 0.14);
-}
-
-.fyp-social-board__status--planned {
-  color: var(--vp-c-text-2);
-  background: var(--vp-c-default-soft);
 }
 
 .fyp-social-board__body {
@@ -638,84 +609,91 @@ body.fyp-site-roadmap {
 }
 
 .fyp-timeline {
-  --track-color: var(--vp-c-divider);
-  overflow-x: visible;
   padding: 0.25rem 0 0;
 }
 
-.fyp-timeline__track {
-  position: relative;
-  display: flex;
-  min-width: 640px;
-  align-items: stretch;
-  gap: 0;
-}
-
-.fyp-timeline__phase {
-  position: relative;
-  flex: 1 1 0;
-  padding: 0 0.75rem 1.5rem;
-  min-width: 140px;
-}
-
-.fyp-timeline__phase-label {
+.fyp-timeline__quarter {
+  margin: 1rem 0 0.25rem;
   font-family: var(--fyp-font-mono);
   font-size: 0.72rem;
   font-weight: 700;
-  text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: var(--phase-color, var(--vp-c-brand-1));
-}
-
-.fyp-timeline__phase-range {
-  font-size: 0.72rem;
+  text-transform: uppercase;
   color: var(--vp-c-text-3);
-  margin-bottom: 0.6rem;
 }
 
-.fyp-timeline__bar {
-  position: relative;
-  height: 4px;
-  border-radius: 2px;
-  background: var(--phase-color, var(--vp-c-brand-1));
-  opacity: 0.6;
+.fyp-timeline__group:first-child .fyp-timeline__quarter {
+  margin-top: 0;
 }
 
 .fyp-timeline__events {
   position: relative;
-  margin-top: 0.9rem;
   display: flex;
   flex-direction: column;
-  gap: 0.55rem;
+}
+
+.fyp-timeline__events::before {
+  content: '';
+  position: absolute;
+  left: 0.95rem;
+  top: 1rem;
+  bottom: 1rem;
+  width: 2px;
+  background: color-mix(in srgb, var(--vp-c-brand-1) 55%, transparent);
 }
 
 .fyp-timeline__event {
-  display: flex;
+  display: grid;
+  grid-template-columns: 2rem minmax(0, 1fr);
+  gap: 0.75rem;
   align-items: flex-start;
-  gap: 0.5rem;
-  font-size: 0.8rem;
-  line-height: 1.3;
+  padding: 0.45rem 0;
 }
 
-.fyp-timeline__dot {
-  margin-top: 0.2rem;
-  width: 0.7rem;
-  height: 0.7rem;
-  flex: 0 0 auto;
+.fyp-timeline__mark {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
   border-radius: 999px;
-  background: var(--vp-c-bg);
-  border: 2px solid var(--phase-color, var(--vp-c-brand-1));
+  background: var(--vp-c-brand-soft);
+  color: var(--vp-c-brand-1);
+  box-shadow: 0 0 0 4px #fff;
 }
 
-.fyp-timeline__event--done .fyp-timeline__dot {
-  background: var(--phase-color, var(--vp-c-brand-1));
+.fyp-timeline__glyph {
+  width: 1.05rem;
+  height: 1.05rem;
 }
 
-.fyp-timeline__event-date {
+.fyp-timeline__event--ahead .fyp-timeline__mark {
+  background: #fff;
+  color: var(--fyp-cyan);
+  box-shadow: 0 0 0 4px #fff, inset 0 0 0 1.5px var(--fyp-cyan);
+}
+
+.fyp-timeline__date {
+  display: block;
   font-family: var(--fyp-font-mono);
   font-size: 0.7rem;
   color: var(--vp-c-text-3);
+}
+
+.fyp-timeline__label {
   display: block;
+  margin-top: 0.05rem;
+  font-weight: 650;
+  line-height: 1.3;
+}
+
+.fyp-timeline__note {
+  margin: 0.15rem 0 0;
+  font-size: 0.84rem;
+  line-height: 1.4;
+  color: var(--vp-c-text-2);
 }
 
 /* --- Roadmap board (from custom.css) --- */
@@ -725,9 +703,9 @@ body.fyp-site-roadmap {
 
 .fyp-roadmap__grid {
   display: grid;
-  grid-template-columns: minmax(120px, 0.7fr) repeat(var(--horizon-count, 3), minmax(180px, 1fr));
-  gap: 0.6rem;
-  min-width: 720px;
+  grid-template-columns: 6.75rem repeat(var(--horizon-count, 4), minmax(0, 1fr));
+  gap: 0.5rem;
+  min-width: 0;
 }
 
 .fyp-roadmap__corner {
@@ -735,37 +713,67 @@ body.fyp-site-roadmap {
 }
 
 .fyp-roadmap__horizon {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
   font-family: var(--fyp-font-mono);
-  font-size: 0.72rem;
+  font-size: 0.68rem;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.06em;
   color: var(--vp-c-text-2);
-  padding: 0 0.25rem 0.5rem;
-  border-bottom: 1px solid var(--vp-c-divider);
+  padding: 0 0.15rem 0.45rem;
+  border-bottom: 2px solid var(--vp-c-divider);
+}
+
+.fyp-roadmap__horizon-icon {
+  width: 0.95rem;
+  height: 0.95rem;
+  flex: 0 0 auto;
+}
+
+.fyp-roadmap__horizon--done {
+  color: #047857;
+  border-bottom-color: #10b981;
+}
+
+.fyp-roadmap__horizon--progress {
+  color: var(--vp-c-brand-1);
+  border-bottom-color: var(--fyp-purple);
+}
+
+.fyp-roadmap__horizon--next {
+  color: #0e7490;
+  border-bottom-color: var(--fyp-cyan);
+}
+
+.fyp-roadmap__horizon--later {
+  color: #b45309;
+  border-bottom-color: var(--fyp-amber);
 }
 
 .fyp-roadmap__track-label {
   display: flex;
-  align-items: center;
-  gap: 0.5rem;
+  align-items: flex-start;
+  gap: 0.35rem;
   font-weight: 700;
-  font-size: 0.85rem;
-  padding-right: 0.5rem;
+  font-size: 0.78rem;
+  line-height: 1.25;
+  padding-right: 0.25rem;
 }
 
-.fyp-roadmap__track-swatch {
-  width: 0.8rem;
-  height: 0.8rem;
+.fyp-roadmap__track-icon {
+  width: 1.05rem;
+  height: 1.05rem;
   flex: 0 0 auto;
-  border-radius: 3px;
-  background: var(--track-accent, var(--vp-c-brand-1));
+  color: var(--track-accent, var(--vp-c-brand-1));
 }
 
 .fyp-roadmap__cell {
   display: flex;
   flex-direction: column;
   gap: 0.4rem;
+  min-height: 2.25rem;
 }
 
 .fyp-roadmap__item {
@@ -786,33 +794,6 @@ body.fyp-site-roadmap {
   color: var(--vp-c-text-3);
   font-size: 0.72rem;
   margin-top: 0.15rem;
-}
-
-.fyp-roadmap__status {
-  display: inline-block;
-  margin-top: 0.35rem;
-  font-family: var(--fyp-font-mono);
-  font-size: 0.62rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  padding: 0.05rem 0.4rem;
-  border-radius: 4px;
-}
-
-.fyp-roadmap__status--done {
-  color: #047857;
-  background: rgba(16, 185, 129, 0.14);
-}
-
-.fyp-roadmap__status--in-progress {
-  color: #6d28d9;
-  background: rgba(124, 58, 237, 0.14);
-}
-
-.fyp-roadmap__status--planned {
-  color: var(--vp-c-text-2);
-  background: var(--vp-c-default-soft);
 }
 
 /* --- YouTube channel banner (2560×1440 — safe zone 1546×423 centered) --- */

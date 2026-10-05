@@ -75,7 +75,6 @@ export default defineConfig({
       { text: 'Concepts', link: '/concepts/api-mcp' },
       { text: 'All Docs', link: 'https://docs.feelyourprotocol.org' },
       { text: 'MCP Docs', link: 'https://mcp-docs.feelyourprotocol.org' },
-      { text: 'Website Docs', link: 'https://website-docs.feelyourprotocol.org' },
       { text: 'Website', link: 'https://feelyourprotocol.org' },
     ],
     sidebar: [
@@ -103,26 +102,26 @@ export default defineConfig({
       {
         text: 'Core Concepts',
         items: [
-          { text: 'Agent API & MCP (Concept)', link: '/concepts/api-mcp' },
-          { text: 'x402 & Agent Economy (Concept)', link: '/concepts/x402' },
+          { text: 'Agent API & MCP', link: '/concepts/api-mcp' },
+          { text: 'x402 & Agent Payments', link: '/concepts/x402' },
         ],
       },
       {
         text: 'Monetization & Community',
         items: [
-          { text: 'Pricing & Cost Model', link: '/monetization/pricing' },
+          { text: 'Pricing', link: '/monetization/pricing' },
           { text: 'Token Utility', link: '/monetization/token' },
         ],
       },
       {
         text: 'Infrastructure',
-        items: [{ text: 'AWS & Hosting', link: '/infrastructure/aws' }],
+        items: [{ text: 'Hosting & Infrastructure', link: '/infrastructure/aws' }],
       },
       {
         text: 'Go-to-Market',
         items: [
-          { text: 'Distribution & DevRel', link: '/go-to-market/distribution' },
-          { text: 'Marketing Strategy', link: '/go-to-market/marketing' },
+          { text: 'Distribution', link: '/go-to-market/distribution' },
+          { text: 'Marketing', link: '/go-to-market/marketing' },
         ],
       },
     ],

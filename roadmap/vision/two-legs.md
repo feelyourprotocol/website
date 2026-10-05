@@ -1,47 +1,59 @@
 # Two Legs, One Engine
 
-Feel Your Protocol is designed around **two legs that share one engine**. The same EthereumJS core powers both the educational website (live today) and the headless MCP server for the future Ethereum protocol (built, **not yet publicly launched**) — but each leg is a different **surface** and is framed differently. Who those surfaces serve — humans and agents as equal customers — is [Two Audiences](/vision/two-audiences).
+One engine. Two ways to meet it.
 
-## The two legs
+The explorations site and the MCP server run on the same EthereumJS stack. One is where a person learns a protocol change. The other is where an agent runs it. They are different surfaces, for [two audiences](/vision/two-audiences): people, and the agents those people trust with a tool.
 
-| | **Leg A — Website** _(live)_ | **Leg B — MCP server** _(built; public launch pending)_ |
+<Motto>The website is the textbook. The MCP server is the lab equipment.</Motto>
+
+The textbook is live. The lab is built. The public door opens in [launch week](/roadmap/launch).
+
+## The two surfaces
+
+| | Textbook | Lab |
 | --- | --- | --- |
-| Surface | Humans in the browser | Agents on the hosted MCP — [two audiences](/vision/two-audiences) |
-| Experience | Interactive, visual, educational explorations | Headless, deterministic, well-documented; MCP tool bindings |
-| Optimizes for | Intuition, narrative, trust | Latency, reliability, exact deterministic output |
-| Economics | Community, fan token, education | Open at launch (full Glamsterdam). Later, [x402](/monetization/pricing) for EIPs ahead of the current hardfork |
-| Docs | [website-docs](https://website-docs.feelyourprotocol.org) | [mcp-docs](https://mcp-docs.feelyourprotocol.org) |
+| Who it faces | A person, in the browser | An agent, on the hosted server |
+| What it feels like | Visual, hands-on, a change you can follow | Headless, exact, a tool with a schema |
+| What it is for | Intuition and trust | A fast result you can check twice |
+| What it costs | Free to learn | Free at launch, on full Glamsterdam. Later, [x402](/monetization/pricing) for EIPs still ahead of that fork |
+| Where to read | [website-docs](https://website-docs.feelyourprotocol.org) | [mcp-docs](https://mcp-docs.feelyourprotocol.org) |
 
-The shared engine is the modular EthereumJS stack and the fork/EIP pipeline behind it — real on the website side and in the execution engine; the **public hosted gateway** is what [launch week](/roadmap/launch) ships.
+Under both is the modular EthereumJS stack, and the path from an EIP to an exploration to a catalogue entry. Launch week adds the hosted door: `mcp.feelyourprotocol.org`.
 
-## They reinforce each other (the DevRel funnel)
+## Why they belong together
 
-An early instinct was to fully separate "marketing" the website from the API. That's wrong: **aesthetics don't sell infrastructure, but trust, reputation and educational authority absolutely do.** The website is the project's DevRel engine — and it's already running:
+The website is not a brochure parked beside the server. It is how the server becomes something a person will trust.
 
-- **Proof-of-work halo.** A meticulous, interactive breakdown of a fork is undeniable proof of competence — it converts into technical trust for the MCP underneath.
-- **Education as top-of-funnel.** People arrive to *learn* about an upcoming protocol change; the natural next step is to *use* the hosted MCP through their agent.
-- **The agent trust proxy.** Humans configure which tools their agents may use. A developer will be far more likely to allowlist our MCP server if they already know and trust the FYP website.
+<IconNote icon="beaker" title="You can see the work">
 
-A simple mental model:
+A careful, interactive account of a fork is hard to fake. That is how technical trust moves to the server underneath.
 
-> **The website is the textbook. The MCP server is the lab equipment.**
+</IconNote>
 
-The textbook is live. The lab equipment is built; the hosted door opens in [launch week](/roadmap/launch).
+<IconNote icon="book" title="Learning is the front door">
 
-## How they connect, concretely
+People arrive to understand a change that is not on mainnet yet. The next step is to let an agent run that same change.
 
-- The website remains the **visual entry point** — each exploration links to its MCP twin on `mcp-docs/use/eips/`.
-- Both legs live as **separate sites/subdomains**, with the [main website](https://feelyourprotocol.org) acting as the **binding ground** that ties the fleet together (`docs.`, `community-token.`, this `roadmap.`, `mcp-docs.`, and `mcp.` at launch).
+</IconNote>
 
-## The discipline this requires
+<IconNote icon="shield" title="Humans allow the tool">
 
-Two legs means two kinds of work — UI/narrative polish vs. ruthless uptime and deterministic testing. As a small team this is a real resource tension; we manage it explicitly rather than pretending both can move at full speed at once. See [Principles & Operating Discipline](/vision/principles).
+An agent only calls what a person permits. A developer who already trusts the textbook is far more likely to allow the lab.
+
+</IconNote>
+
+## How they meet
+
+Each exploration on [feelyourprotocol.org](https://feelyourprotocol.org) points at its twin in the MCP catalogue. The sites stay separate. The main website is the front door: docs, the community token, this roadmap, and mcp-docs keep their own addresses. `mcp.` joins them when the server is public.
+
+Two surfaces also means two kinds of work. Narrative and interface on one side. Uptime and exact tests on the other. A small team cannot push both at full speed, and [Principles](/vision/principles) is where that stays visible.
 
 ## Changelog
 
 <Changelog
   title="Two Legs Changelog"
   :entries="[
+    { version: 'v0.6', date: '2026-10-05', summary: 'Shorter page. Textbook and lab as the picture; icon notes for how they reinforce.' },
     { version: 'v0.5', date: '2026-10-01', summary: 'Leg B economics: open Glamsterdam at launch; x402 for EIPs ahead of the hardfork.' },
     { version: 'v0.4', date: '2026-09-24', summary: 'Legs as surfaces; who they serve is Two Audiences.' },
     { version: 'v0.3', date: '2026-09-02', summary: 'Leg B is built (not publicly launched); mcp-docs exists; launch week is the hosted milestone.' },

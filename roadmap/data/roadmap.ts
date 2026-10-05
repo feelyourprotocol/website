@@ -1,31 +1,33 @@
 /**
  * Roadmap data — drives `<RoadmapBoard />`.
  *
- * The board is a grid of tracks (rows) × horizons (columns). Both are
- * flexible: add or remove horizons in `ROADMAP_HORIZONS` and tracks in
- * `ROADMAP_TRACKS`. Each track item is placed in a column via its
- * `horizon` id. Keep 2–5 tracks for a readable layout.
+ * The board is a grid of tracks (rows) × horizons (columns). The column
+ * is the status. Add or remove horizons in `ROADMAP_HORIZONS` and tracks
+ * in `ROADMAP_TRACKS`. Each item sits in a column via its `horizon` id.
+ * Keep 2–5 tracks for a readable layout.
  *
  * Four execution streams. Docs sections can be more granular than the
  * board (e.g. pricing, token and GTM each get their own page) — the board
  * stays crisp by grouping monetization, token and GTM under "Business".
  *
  * NOTE: directional, not committed scheduling — refine in content rounds.
+ *
+ * Done is the recent work still in view. When a card stops being the
+ * point, it leaves the board. Done is not an archive.
  */
-
-export type RoadmapStatus = 'planned' | 'in-progress' | 'done'
 
 export interface RoadmapHorizon {
   /** Stable id, referenced by items. */
   id: string
   label: string
+  /** Outline icon id from the roadmap icon set. */
+  icon: string
 }
 
 export interface RoadmapItem {
   title: string
   /** Which horizon column this item sits in. */
   horizon: string
-  status: RoadmapStatus
   note?: string
 }
 
@@ -34,13 +36,16 @@ export interface RoadmapTrack {
   label: string
   /** Accent color (hex). */
   accent: string
+  /** Outline icon id from the roadmap icon set. */
+  icon: string
   items: RoadmapItem[]
 }
 
 export const ROADMAP_HORIZONS: RoadmapHorizon[] = [
-  { id: 'now', label: 'Now' },
-  { id: 'next', label: 'Next' },
-  { id: 'later', label: 'Later' },
+  { id: 'done', label: 'Done', icon: 'check' },
+  { id: 'progress', label: 'In progress', icon: 'bolt' },
+  { id: 'next', label: 'Next', icon: 'arrow' },
+  { id: 'later', label: 'Later', icon: 'clock' },
 ]
 
 export const ROADMAP_TRACKS: RoadmapTrack[] = [
@@ -48,36 +53,37 @@ export const ROADMAP_TRACKS: RoadmapTrack[] = [
     id: 'engine',
     label: 'Engine & API',
     accent: '#7c3aed',
+    icon: 'chip',
     items: [
       {
-        title: 'MCP tools implemented',
-        horizon: 'now',
-        status: 'done',
-        note: 'describe_capabilities + run_bytecode + run_transaction; generic verbs, not per-EIP tools.',
+        title: 'MCP tools',
+        horizon: 'done',
+        note: 'Six generic verbs: probe, bytecode, transaction, block, generate, inspect.',
       },
       {
         title: 'Glamsterdam EIP catalogue',
-        horizon: 'now',
-        status: 'in-progress',
-        note: 'Canonical id is the combined name (glamsterdam); amsterdam remains the EthereumJS / EL alias. Round-trip pipeline filling runnable modules.',
+        horizon: 'done',
+        note: 'Runnable twins for the preview fork, plus Fusaka 7883 and 7951.',
       },
       {
         title: 'Public hosted MCP',
-        horizon: 'now',
-        status: 'in-progress',
+        horizon: 'progress',
         note: 'HTTP at mcp.feelyourprotocol.org — launch week 5–9 Oct 2026.',
       },
       {
-        title: 'EIP-7928 BAL generate',
-        horizon: 'next',
-        status: 'planned',
-        note: 'Generate shape for block-level access lists.',
+        title: 'Usability evaluation',
+        horizon: 'progress',
+        note: 'Check whether the way the server is built, and the way it answers, is actually helpful.',
       },
       {
-        title: 'Hegota scope (EL EIPs)',
+        title: 'Frame txs',
+        horizon: 'next',
+        note: 'The first Hegota execution slice. Starts on the paid tier.',
+      },
+      {
+        title: 'Hegota scope',
         horizon: 'later',
-        status: 'planned',
-        note: 'Frame txs and other Hegota EL work start on the paid tier, then move to free as that hardfork approaches.',
+        note: 'The rest of the Hegota execution work, after frame txs. Moves to free as that hardfork approaches.',
       },
     ],
   },
@@ -85,24 +91,17 @@ export const ROADMAP_TRACKS: RoadmapTrack[] = [
     id: 'website',
     label: 'Website & Education',
     accent: '#06b6d4',
+    icon: 'book',
     items: [
       {
-        title: 'Explorations & education',
-        horizon: 'now',
-        status: 'in-progress',
-        note: '~2 Amsterdam explorations per week; video pipeline for social.',
+        title: 'MCP twin links',
+        horizon: 'done',
+        note: 'Every live exploration has a catalogue page.',
       },
       {
-        title: 'MCP twin links per exploration',
-        horizon: 'now',
-        status: 'in-progress',
-        note: 'Each live exploration maps to mcp-docs/use/eips/.',
-      },
-      {
-        title: 'Without vs with MCP proof',
-        horizon: 'next',
-        status: 'planned',
-        note: 'Documented agent comparisons — oracle vs LLM-only answers.',
+        title: 'Explorations',
+        horizon: 'progress',
+        note: 'The textbook keeps growing.',
       },
     ],
   },
@@ -110,47 +109,67 @@ export const ROADMAP_TRACKS: RoadmapTrack[] = [
     id: 'infra',
     label: 'Infrastructure',
     accent: '#0ea5e9',
+    icon: 'server',
     items: [
-      { title: 'Website on Strato', horizon: 'now', status: 'done' },
+      { title: 'Website on Strato', horizon: 'done' },
       {
         title: 'AWS EC2 MCP host',
-        horizon: 'now',
-        status: 'in-progress',
-        note: 'Compute-optimized Graviton; nginx + TLS for public HTTP.',
+        horizon: 'done',
+        note: 'Graviton host is up. Public HTTP opens with the hosted MCP.',
       },
-      { title: 'Scale & observability', horizon: 'later', status: 'planned' },
+      {
+        title: 'Scale & observability',
+        horizon: 'progress',
+        note: 'A small custom metrics view is already running.',
+      },
+      {
+        title: 'EIP build automation',
+        horizon: 'next',
+        note: 'A new EIP can be built overnight on an EthereumJS branch.',
+      },
     ],
   },
   {
     id: 'business',
     label: 'Business & Community',
     accent: '#f59e0b',
+    icon: 'people',
     items: [
+      {
+        title: 'Org docs and processes',
+        horizon: 'done',
+        note: 'In place for the relevant organizational parts.',
+      },
+      {
+        title: 'Exploration marketing',
+        horizon: 'done',
+        note: 'Comics, videos, and the tweets that go with them.',
+      },
+      {
+        title: 'Launch marketing',
+        horizon: 'progress',
+        note: 'MCP education and outreach, including one-to-one conversations.',
+      },
       {
         title: 'x402 paid tier',
         horizon: 'next',
-        status: 'planned',
-        note: 'Weeks after the open launch. USDC on Base for new EIPs; EIP-8141 first. See /monetization/pricing.',
+        note: 'USDC on Base for new EIPs, EIP-8141 first, once the open server has been used.',
       },
       {
         title: 'Agent-readable onboarding',
-        horizon: 'next',
-        status: 'planned',
-        note: 'Capability, price, and payment without a human who read the website. See /vision/two-audiences.',
+        horizon: 'later',
+        note: 'Capability, price, and payment without a human who read the website.',
       },
       {
         title: 'Tiered token discounts',
         horizon: 'next',
-        status: 'planned',
-        note: 'Holder discount lane — never a gate for newcomers.',
+        note: 'A holder discount on the paid tier. Never a gate for newcomers.',
       },
       {
         title: 'MCP registry listings',
-        horizon: 'next',
-        status: 'planned',
+        horizon: 'later',
         note: 'Machine-readable listings so agents can find the lab.',
       },
-      { title: 'Enterprise annual tier / buyback', horizon: 'later', status: 'planned', note: 'Introduce "when they come".' },
     ],
   },
 ]
