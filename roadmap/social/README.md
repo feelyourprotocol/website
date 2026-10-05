@@ -11,7 +11,7 @@ no manual Figma work.
 |----|---------|-------------|
 | `hero` | Phase 3 headline + one-liner | `src/cards.ts` (edit copy there) |
 | `launch` | Public MCP launch week | `src/cards.ts` + `LaunchSocialCard.vue` |
-| `timeline` | Three-phase timeline | `roadmap/data/timeline.ts` |
+| `timeline` | Dated chronicle by quarter | `roadmap/data/timeline.ts` |
 | `board` | Track × horizon grid | `roadmap/data/roadmap.ts` |
 | `youtube-banner` | YouTube channel art (2560×1440) | `src/cards.ts` + `YouTubeBannerCard.vue` |
 | `twitter-banner` | X profile header (1500×500) | `src/cards.ts` + `TwitterBannerCard.vue` |

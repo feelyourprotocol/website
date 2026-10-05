@@ -1,126 +1,127 @@
 /**
- * Project timeline data — drives `<Timeline />`.
+ * Dated project story — drives `<Timeline />`.
  *
- * To update: add an event to `TIMELINE_EVENTS` (and a phase to
- * `TIMELINE_PHASES` when a new chapter begins). Events are grouped under
- * their phase by the `phase` id; the component renders left→right.
+ * Add a real date. Work with no date belongs on the roadmap board.
+ * Month precision (`YYYY-MM`) sorts after day-specific events in that month.
  */
 
-export interface TimelinePhase {
-  /** Stable id, referenced by events. */
-  id: number
-  label: string
-  /** Human-readable date range, e.g. "Sep 2025 – Jun 2026". */
-  range: string
-  /** Accent color (hex). */
-  color: string
-}
-
 export interface TimelineEvent {
-  /** ISO-ish date or month, e.g. "2025-09-11" or "2026-06". */
+  id: string
+  /** `YYYY-MM-DD` or `YYYY-MM`. */
   date: string
   label: string
-  phase: number
-  /** Optional one-line context. */
   note?: string
-  /** Mark as a reached/historical event (filled dot) vs. upcoming (hollow). */
+  /** Outline icon id from the roadmap icon set. */
+  icon: string
+  /** Reached. A dated marker still ahead omits this. */
   done?: boolean
 }
 
-export const TIMELINE_PHASES: TimelinePhase[] = [
-  {
-    id: 1,
-    label: 'Phase 1 · Side Project',
-    range: 'Sep 2025 – Jun 2026',
-    color: '#64748b',
-  },
-  {
-    id: 2,
-    label: 'Phase 2 · Funded & Focused',
-    range: 'Jun 2026',
-    color: '#7c3aed',
-  },
-  {
-    id: 3,
-    label: 'Phase 3 · Sustainable Business',
-    range: 'Jun 2026 →',
-    color: '#06b6d4',
-  },
-]
+export interface TimelineGroup {
+  id: string
+  label: string
+  events: TimelineEvent[]
+}
+
+const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+
+export function timelineSortKey(date: string): string {
+  return date.split('-').length === 2 ? `${date}-32` : date
+}
+
+export function formatTimelineDate(date: string): string {
+  const [year, month, day] = date.split('-')
+  const name = MONTHS[Number(month) - 1] ?? month
+  if (!day) return `${name} ${year}`
+  return `${Number(day)} ${name} ${year}`
+}
+
+export function timelineQuarterId(date: string): string {
+  const [year, month] = date.split('-')
+  const quarter = Math.ceil(Number(month) / 3)
+  return `${year}-Q${quarter}`
+}
+
+export function groupTimeline(events: TimelineEvent[]): TimelineGroup[] {
+  const sorted = [...events].sort((a, b) => timelineSortKey(a.date).localeCompare(timelineSortKey(b.date)))
+  const groups: TimelineGroup[] = []
+  for (const event of sorted) {
+    const id = timelineQuarterId(event.date)
+    const [year, quarter] = id.split('-')
+    const last = groups[groups.length - 1]
+    if (!last || last.id !== id) {
+      groups.push({ id, label: `${year} ${quarter}`, events: [event] })
+    } else {
+      last.events.push(event)
+    }
+  }
+  return groups
+}
 
 export const TIMELINE_EVENTS: TimelineEvent[] = [
   {
+    id: 'first-commit',
     date: '2025-09-11',
     label: 'First commit',
-    phase: 1,
-    note: 'Project launched on GitHub — built for fun, to close the protocol↔app gap.',
+    icon: 'spark',
+    note: 'The project lands on GitHub, built to close the gap between the protocol and the apps.',
     done: true,
   },
   {
+    id: 'bankr-token',
     date: '2026-06-05',
     label: 'Bankr token claimed',
-    phase: 2,
-    note: 'Community token secured ~2 months of funding; new urgency and a regular schedule.',
+    icon: 'token',
+    note: 'The community token covers about two months, and the work gets a regular schedule.',
     done: true,
   },
   {
+    id: 'twitter',
     date: '2026-06-06',
-    label: 'Twitter / X set up',
-    phase: 2,
-    note: 'Public channel for protocol education and project updates.',
+    label: 'Twitter / X',
+    icon: 'people',
+    note: 'A public channel for protocol education and project updates.',
     done: true,
   },
   {
+    id: 'explorations',
     date: '2026-06',
     label: 'New explorations',
-    phase: 2,
-    note: 'EIP-8024, BAL and more built during the focused period.',
+    icon: 'book',
+    note: 'EIP-8024, block access lists, and more, in that focused stretch.',
     done: true,
   },
   {
-    date: '2026-06',
-    label: 'Phase 3 begins',
-    phase: 3,
-    note: 'Conceptualization + early build: future-protocol MCP server alongside the website.',
-    done: true,
-  },
-  {
+    id: 'mcp-engine',
     date: '2026-07',
-    label: 'MCP engine & docs',
-    phase: 3,
-    note: 'mcp-docs live; execution engine v0.1; gateway tools (describe_capabilities, run_bytecode, run_transaction).',
+    label: 'MCP engine and docs',
+    icon: 'chip',
+    note: 'mcp-docs goes live. The execution engine and the first gateway tools land.',
     done: true,
   },
   {
+    id: 'catalogue-twins',
     date: '2026-08',
     label: 'EIP catalogue twins',
-    phase: 3,
-    note: 'Fusaka vs Glamsterdam compare; runnable modules for 8024, 7708, 7883, 7951.',
+    icon: 'stack',
+    note: 'Fusaka and Glamsterdam side by side. Runnable modules for 8024, 7708, 7883, and 7951.',
     done: true,
   },
   {
+    id: 'round-trip',
     date: '2026-09',
     label: 'Round-trip pipeline',
-    phase: 3,
-    note: 'EIP → exploration → MCP catalogue in ~30 minutes; Glamsterdam EIPs filling the catalog.',
+    icon: 'bolt',
+    note: 'An EIP can go from exploration to MCP catalogue in about half an hour.',
     done: true,
   },
   {
+    id: 'launch-week',
     date: '2026-10-05',
     label: 'Public MCP launch week',
-    phase: 3,
-    note: 'Hosted HTTP at mcp.feelyourprotocol.org — open, no payment. Full Glamsterdam hardfork. See /roadmap/launch.',
-  },
-  {
-    date: 'later',
-    label: 'x402 paid tier',
-    phase: 3,
-    note: 'After usage and hardening. New EIPs ahead of the free hardfork; first expected is EIP-8141. See /monetization/pricing.',
-  },
-  {
-    date: 'later',
-    label: 'Enterprise tier',
-    phase: 3,
-    note: 'Flat annual stablecoin tier + revenue→token loop, introduced "when they come".',
+    icon: 'calendar',
+    note: 'Hosted HTTP at mcp.feelyourprotocol.org. Open, on the full Glamsterdam set. 5–9 October.',
   },
 ]
+
+export const TIMELINE_GROUPS: TimelineGroup[] = groupTimeline(TIMELINE_EVENTS)

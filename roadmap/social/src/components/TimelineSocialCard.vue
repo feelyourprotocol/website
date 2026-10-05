@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import Timeline from '../../../.vitepress/theme/components/Timeline.vue'
-import { TIMELINE_PHASES } from '../../../data/timeline.ts'
+import { TIMELINE_GROUPS } from '../../../data/timeline.ts'
 import { SOCIAL_CARDS } from '../cards.ts'
 
 const meta = SOCIAL_CARDS.timeline
@@ -19,27 +19,20 @@ const meta = SOCIAL_CARDS.timeline
         <h1 class="fyp-social-banner__headline">{{ meta.title }}</h1>
         <p class="fyp-social-banner__tagline">{{ meta.subtitle }}</p>
 
-        <ul class="fyp-social-timeline__phases">
-          <li
-            v-for="phase in TIMELINE_PHASES"
-            :key="phase.id"
-            class="fyp-social-timeline__phase"
-            :style="{ '--phase-color': phase.color }"
-          >
-            <span class="fyp-social-timeline__phase-bar" aria-hidden="true" />
-            <span class="fyp-social-timeline__phase-label">{{ phase.label }}</span>
-            <span class="fyp-social-timeline__phase-range">{{ phase.range }}</span>
+        <ul class="fyp-social-timeline__quarters">
+          <li v-for="group in TIMELINE_GROUPS" :key="group.id" class="fyp-social-timeline__quarter">
+            {{ group.label }}
           </li>
         </ul>
 
         <p class="fyp-social-timeline__legend">
           <span class="fyp-social-timeline__legend-item">
             <span class="fyp-social-timeline__legend-dot fyp-social-timeline__legend-dot--done" />
-            reached
+            happened
           </span>
           <span class="fyp-social-timeline__legend-item">
             <span class="fyp-social-timeline__legend-dot fyp-social-timeline__legend-dot--upcoming" />
-            upcoming target
+            still ahead
           </span>
         </p>
       </div>

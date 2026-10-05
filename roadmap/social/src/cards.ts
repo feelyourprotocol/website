@@ -41,10 +41,10 @@ export const SOCIAL_CARDS: Record<SocialCardId, SocialCardMeta> = {
   },
   timeline: {
     id: 'timeline',
-    eyebrow: 'Phase 3 · Timeline',
-    title: 'Where we’ve been — and where we’re headed',
-    subtitle: 'Side project → funded focus → build to public launch.',
-    footerHint: 'Filled dots = reached · hollow = upcoming',
+    eyebrow: 'Roadmap · Timeline',
+    title: 'From the first commit',
+    subtitle: 'The dated story, up to public MCP launch week.',
+    footerHint: 'Filled marks have happened · the hollow mark is still ahead',
   },
   board: {
     id: 'board',
