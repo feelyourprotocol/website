@@ -52,11 +52,14 @@ Same named forks as [Run Bytecode](/use/tools/run-bytecode): default **glamsterd
 | `success` | Every tx completed without revert or intrinsic failure |
 | `gasUsed` | Header `gasUsed` after lab generate (`gasUsedScope: block`) |
 | `header` | `number`, `timestamp`, `gasUsed`, optional `slotNumber` |
-| `transactions[]` | Per-tx paid gas, optional Glamsterdam `txRegularGas` / `txStateGas`, logs |
+| `transactions[]` | Per-tx paid gas, optional Glamsterdam `txRegularGas` / `txStateGas`, `regularGas`, `recipientPrestate`, logs |
+| `regularGasDelta` | When per-tx `regularGas.total` differs — part names and values per tx index |
 | `error` | First tx failure or a block-level catch, else `null` |
 | `provenance` | Always present — named `eips[]` add a compact `Spec:` clause on `caveat` |
 
 On Glamsterdam, header `gasUsed` may track the state-gas dimension (EIP-8037). Paid tx gas lives on `transactions[].gasUsed`.
+
+When two receipts disagree on paid regular gas, explain from `regularGas` / `regularGasDelta` — not from matching `txStateGas`.
 
 Not in this version: BAL JSON, builder requests, historical replay.
 

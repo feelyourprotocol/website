@@ -65,12 +65,16 @@ Same named forks as [Run Bytecode](/use/tools/run-bytecode): default **glamsterd
 | `gasUsedScope` | Always `transaction` |
 | `txRegularGas` | Glamsterdam only — regular-gas total |
 | `txStateGas` | Glamsterdam only — state-gas total |
+| `regularGas` | Parts that sum to `txRegularGas` (base, recipient, value, calldata, floorUplift, execution) |
+| `recipientPrestate` | `self` / `existing` / `created` before the tx — labels `txStateGas`, not regular gas |
 | `returnValue` | Hex return data |
 | `error` | Failure message (e.g. intrinsic gas too low), else `null` |
 | `createdAddress` | Successful creation only — deployed contract address |
 | `deployedCodeSize` | Successful creation only — stored runtime-code bytes |
 | `logs` / `decodedLogs` | Receipt logs; EIP-7708 Transfer/Burn decorations when present |
 | `provenance` | Always present — named `eips[]` add a compact `Spec:` clause on `caveat` |
+
+If paid regular gas differs from what you expected, read `regularGas` — do not explain a regular gap with `txStateGas` alone.
 
 ## Example — first-touch 1 wei (Glamsterdam)
 
