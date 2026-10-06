@@ -26,6 +26,9 @@ That keeps workers parallel and honest: the answer is a function of what you sup
 | Max bytecode size | 24_576 bytes |
 | Max trace steps | 10_000 |
 | Max transactions per lab block | 8 |
+| Max wall-clock time per call (hosted) | 15 s |
+
+A call that runs past the time limit is stopped and returns `execution_timeout`. When many calls arrive at once, the hosted server queues a few and answers the rest with `server_busy`; retry shortly.
 
 Payment (when the paid tier exists) does **not** raise these ceilings.
 
@@ -38,6 +41,7 @@ Payment (when the paid tier exists) does **not** raise these ceilings.
 <CollapsibleChangelog
   title="Guarantees Changelog"
   :entries="[
+    { version: 'v0.10', date: '2026-10-06', summary: 'Hosted calls stop after 15 s (execution_timeout); a full queue answers server_busy.' },
     { version: 'v0.9', date: '2026-10-01', summary: 'User-facing Limits page — determinism, BYOS, ceilings; provenance in one paragraph.' },
     { version: 'v0.8', date: '2026-09-18', summary: 'Named eips[] runs put a compact Spec: snapshot on provenance.caveat.' },
     { version: 'v0.7', date: '2026-09-17', summary: '110M transaction-only ceiling supports Glamsterdam EIP-8037 state gas for large contract creation.' },
