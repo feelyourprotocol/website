@@ -4,7 +4,7 @@ layout: home
 hero:
   name: Feel Your Protocol
   text: MCP server for the next Ethereum
-  tagline: Deterministic Amsterdam simulations for your agent — free at public launch, 5–9 October 2026. Start with Connect or read Why this server.
+  tagline: Live since 6 October 2026 — free Amsterdam simulations for your agent. Connect, then ask a question.
   actions:
     - theme: brand
       text: Connect
@@ -19,14 +19,14 @@ features:
       width: 28
       height: 28
     title: Connect
-    details: Cursor, Claude, Codex — one hosted URL and a first prompt to try when we go live.
+    details: Cursor, Claude, Codex — one hosted URL. Paste it and ask.
     link: /use/connect
   - icon:
       src: /icons/amsterdam.svg
       width: 28
       height: 28
     title: Amsterdam now
-    details: Full Glamsterdam hardfork at launch. Gas, receipts, and bytecode under upcoming rules.
+    details: Full Glamsterdam hardfork, live now. Gas, receipts, and bytecode under upcoming rules.
     link: /use/forks/glamsterdam
   - icon:
       src: /icons/ask.svg
@@ -67,7 +67,7 @@ Once you are connected, paste this into your agent. No EIP number, no JSON.
     { title: 'EIP pages', detail: 'Twelve changes, each with prompts you can copy.', href: '/use/coverage' },
     { title: 'Limits', detail: 'Determinism, bring-your-own-state, hard ceilings.', href: '/use/guarantees' },
     { title: 'Tool schemas', detail: 'Reference for the six MCP tools.', href: '/use/tools/describe-capabilities' },
-    { title: 'Pricing', detail: 'Free at launch; what comes later.', href: '/use/pricing' },
+    { title: 'Pricing', detail: 'Free now. A paid tier for later EIPs.', href: '/use/pricing' },
   ]"
 />
 

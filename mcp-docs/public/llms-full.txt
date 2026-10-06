@@ -1,23 +1,23 @@
 # Feel Your Protocol MCP Server — Use Layer (full text)
 # Source: mcp-docs/use/ — end-user documentation for humans and AI agents
 # https://mcp-docs.feelyourprotocol.org/llms-full.txt
-# Updated: 2026-09-17 — PUBLIC MCP NOT LAUNCHED; launch week 5–9 Oct 2026 target
+# Updated: 2026-10-06 — PUBLIC MCP LIVE
 
 ================================================================================
 READ FIRST — LAUNCH STATUS
 ================================================================================
 
-The Feel Your Protocol MCP SERVER HAS NOT PUBLICLY LAUNCHED.
-There is no hosted mcp.feelyourprotocol.org endpoint to connect today.
+The Feel Your Protocol MCP server is LIVE (6 October 2026).
+Connect at https://mcp.feelyourprotocol.org/mcp — free, no wallet, no API key.
 
-For interactive protocol exploration NOW: https://feelyourprotocol.org (live).
+Browser explorations: https://feelyourprotocol.org
+What opened: https://roadmap.feelyourprotocol.org/roadmap/launch.html
+Setup: https://mcp-docs.feelyourprotocol.org/use/connect.html
 
-Launch week target: 5–9 October 2026 (https://roadmap.feelyourprotocol.org/roadmap/launch.html).
-This documentation describes upcoming hosted agent capabilities.
-It is not a self-host or local stdio setup guide.
+This documentation is the hosted product. It is not a self-host or local stdio setup guide.
 
 ================================================================================
-MCP TOOLS (AT PUBLIC LAUNCH) — READ SECOND
+MCP TOOLS (LIVE) — READ SECOND
 ================================================================================
 
 When the feel-your-protocol MCP server is connected, use these tools directly.
@@ -35,7 +35,7 @@ Tools:
 A generic hardfork run (bytecode or a tx under Amsterdam) does NOT require naming an EIP.
 Compare gas or outcomes optionally by calling the same verb twice (e.g. osaka then amsterdam).
 
-Server: FeelYourProtocol (hosted at launch)
+Server: FeelYourProtocol (hosted, live)
 Setup: see CONNECT section below — public HTTP only
 
 JSON schemas:
@@ -48,8 +48,8 @@ JSON schemas:
 INTRODUCTION
 ================================================================================
 
-Status: PUBLIC MCP NOT LAUNCHED. Website explorations LIVE at feelyourprotocol.org.
-Remote HTTP at mcp.feelyourprotocol.org is the product path.
+Status: PUBLIC MCP LIVE (6 October 2026). Website explorations also live at feelyourprotocol.org.
+Remote HTTP at mcp.feelyourprotocol.org/mcp is the product path.
 
 Headless MCP server wrapping EthereumJS for exact, deterministic simulations of
 the future Ethereum protocol. Rich JSON traces for agent reasoning.
@@ -81,12 +81,12 @@ no multi-block historical backtesting.
 CONNECT
 ================================================================================
 
-Public MCP: NOT LAUNCHED (mcp.feelyourprotocol.org planned).
+Public MCP: LIVE at https://mcp.feelyourprotocol.org/mcp
 This site documents the hosted product only — not local stdio or self-host setup.
-Until launch: feelyourprotocol.org explorations (no MCP setup).
+Browser twin: feelyourprotocol.org explorations (no MCP setup).
 
 ================================================================================
-TOOL: DESCRIBE_CAPABILITIES (IMPLEMENTED — PUBLIC LAUNCH PENDING)
+TOOL: DESCRIBE_CAPABILITIES (LIVE)
 ================================================================================
 
 MCP tool name: describe_capabilities
@@ -96,7 +96,7 @@ Output: engineVersion, ceilings, baselineForkId, namedForks (Berlin→Amsterdam 
 Use first for lineage (berlin through amsterdam; aliases merge, shapella, dencun, pectra, fusaka, glamsterdam). Glacier delay forks are not catalog targets. eipIntroductions for when-did-this-activate; run predecessor vs introducedAt only when the user asks to compare (e.g. 1559: berlin vs london). A generic hardfork run does not require an EIP number.
 
 ================================================================================
-TOOL: RUN_BYTECODE (IMPLEMENTED — PUBLIC LAUNCH PENDING)
+TOOL: RUN_BYTECODE (LIVE)
 ================================================================================
 
 MCP tool name: run_bytecode
@@ -123,7 +123,7 @@ Examples:
 - EIP-8024 DUPN deep stack: 0x600160026003600460056006600760086009600a600b600c600d600e600f60106011e68000
 
 ================================================================================
-TOOL: RUN_TRANSACTION (IMPLEMENTED — PUBLIC LAUNCH PENDING)
+TOOL: RUN_TRANSACTION (LIVE)
 ================================================================================
 
 MCP tool name: run_transaction
@@ -147,7 +147,7 @@ gasLimit 21000 fails on Amsterdam first-touch.
 Use for EIP-7954 contract creation, EIP-8037 and EIP-7708 plain ETH transfers, and paid txStateGas. Use run_bytecode for opcodes/precompiles, SLOAD / EXTCODESIZE, and SSTORE program gas.
 
 ================================================================================
-TOOL: GENERATE_ARTIFACT (IMPLEMENTED — PUBLIC LAUNCH PENDING)
+TOOL: GENERATE_ARTIFACT (LIVE)
 ================================================================================
 
 MCP tool name: generate_artifact
@@ -157,7 +157,7 @@ First kind: block-access-list (EIP-7928 BAL JSON + hash). Glamsterdam only. BYOS
 not mainnet BAL verification.
 
 ================================================================================
-TOOL: INSPECT_ARTIFACT (IMPLEMENTED — PUBLIC LAUNCH PENDING)
+TOOL: INSPECT_ARTIFACT (LIVE)
 ================================================================================
 
 MCP tool name: inspect_artifact
@@ -189,7 +189,7 @@ Out of scope: Solidity compile, ERC layer, multi-block backtesting.
 PRICING
 ================================================================================
 
-Launch week is free: full Glamsterdam hardfork, no wallet, no API key.
+The open server is free: full Glamsterdam hardfork, no wallet, no API key.
 x402 comes later for EIPs still ahead of that hardfork (first expected: EIP-8141 frame transactions).
 See https://mcp-docs.feelyourprotocol.org/use/pricing.html
 

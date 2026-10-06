@@ -51,15 +51,15 @@ The names are examples. What matters is the choice: schema, price, and fork scop
 
 ## Access cycle
 
-The public server opens **free** at [launch week](/roadmap/launch). Payment is a later layer, and the line between free and paid moves with the hardfork calendar.
+The public server is **free** and [open](/roadmap/launch). Payment is a later layer, and the line between free and paid moves with the hardfork calendar.
 
-1. **Open launch (5–9 October 2026).** Hosted MCP, no [x402](/concepts/x402), no API key. The free tier is the **full Glamsterdam hardfork** (EL alias Amsterdam) plus the Berlin→Fusaka lineage the lab already runs. The first weeks are for real usage, and for hardening the open service.
+1. **Open launch (6 October 2026).** Hosted MCP, no [x402](/concepts/x402), no API key. The free tier is the **full Glamsterdam hardfork** (EL alias Amsterdam) plus the Berlin→Fusaka lineage the lab already runs. The first weeks are for real usage, and for hardening the open service.
 2. **Paid tier, a few weeks later.** Once that open path has adoption data and has settled, we turn on x402 (USDC on Base). The delimiter is **new EIPs** that are not yet part of the hardfork on the free tier. The first paid capability we expect to ship is **frame transactions ([EIP-8141](https://eips.ethereum.org/EIPS/eip-8141))**. Further EIPs join this tier on a shorter, more automated cadence.
 3. **Graduation.** When the next hardfork (**Hegota / Bogota**) is on the horizon, the EIPs that were paid while they were ahead of mainnet — including EIP-8141 — **move into the free tier** as part of that hardfork. The next wave of post-fork EIPs starts paid again.
 
 That loop is the product rhythm: **today’s hardfork is open; tomorrow’s EIPs are paid until they become today’s hardfork.**
 
-The [token holding](/monetization/token) cuts those paid prices in half. It is never a gate, and it is not part of launch week.
+The [token holding](/monetization/token) cuts those paid prices in half. It is never a gate, and it is not part of the open server.
 
 ## What changed
 
@@ -83,6 +83,7 @@ The bill is still mostly [AWS EC2](/infrastructure/aws) for the simulation worke
 <Changelog
   title="Pricing Changelog"
   :entries="[
+    { version: 'v0.8', date: '2026-10-06', summary: 'The free hardfork tier is the open server. Payment is still later.' },
     { version: 'v0.7', date: '2026-10-05', summary: 'Fixed price per tool — 2¢, 4¢ for run_block, artifacts likely free. One token holding halves it. Separate future-tool names are the likely shape. Per-gas curves, tiered discounts, and the enterprise subscription left the plan.' },
     { version: 'v0.6', date: '2026-10-01', summary: 'Access cycle — free Glamsterdam at launch; x402 paid tier weeks later, starting with EIP-8141; graduation into the next hardfork.' },
     { version: 'v0.5', date: '2026-09-02', summary: 'x402 decided for launch week (USDC on Base) — per-gas model unchanged; payment not live yet.' },

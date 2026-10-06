@@ -1,6 +1,6 @@
 # Run Bytecode
 
-> **Status:** Implemented — ships on the public MCP at launch. MCP tool: `run_bytecode`. **Public endpoint not live.**
+> **Status:** Live on the public MCP. Tool: `run_bytecode`.
 
 <PromptCard
   text="Run PUSH1 1 PUSH1 2 ADD on Amsterdam and show me the gas and the final stack."
@@ -153,6 +153,7 @@ See [Guarantees](/use/guarantees) for ceilings (max gas, bytecode size, trace st
 <CollapsibleChangelog
   title="Run Bytecode Changelog"
   :entries="[
+    { version: 'v0.15', date: '2026-10-06', summary: 'Public endpoint is live.' },
     { version: 'v0.14', date: '2026-09-18', summary: 'Named eips[] provenance.caveat includes a compact Spec: snapshot.' },
     { version: 'v0.13', date: '2026-09-17', summary: 'Fusaka is first-class for current-mainnet features, not only a compare baseline.' },
     { version: 'v0.12', date: '2026-09-16', summary: 'Generic Glamsterdam bytecode (no EIP named) is a first-class when-to-use.' },

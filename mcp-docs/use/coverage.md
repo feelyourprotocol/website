@@ -2,9 +2,9 @@
 
 Human index of **runnable** protocol changes on the hosted MCP. Per-EIP pages live at `/use/eips/eip-NNNN` — open them from the tables below, from [Amsterdam now](/use/forks/glamsterdam), or via search.
 
-**At launch:** everything in the Amsterdam bundle is **free** on the public server. **Demo state:** each run starts empty unless you pass `accounts[]` on the same call (balances, code, storage) — see [Run Bytecode BYOS](/use/tools/run-bytecode#byos-prestate-accounts). **Compare:** only when you ask — same question on Fusaka then Amsterdam, or on the predecessor fork named on each row.
+**Now:** everything in the Amsterdam bundle is **free** on the public server. **Demo state:** each run starts empty unless you pass `accounts[]` on the same call (balances, code, storage) — see [Run Bytecode BYOS](/use/tools/run-bytecode#byos-prestate-accounts). **Compare:** only when you ask — same question on Fusaka then Amsterdam, or on the predecessor fork named on each row.
 
-Newer EIPs that are still ahead of Amsterdam may move to a [paid tier](/use/pricing) after launch. Connected agents should call `describe_capabilities` for the live machine catalogue; this page is for humans browsing.
+Newer EIPs that are still ahead of Amsterdam may move to a [paid tier](/use/pricing) later. Connected agents should call `describe_capabilities` for the live machine catalogue; this page is for humans browsing.
 
 ## Lineage (live)
 
@@ -75,6 +75,7 @@ Canonical metadata for twins lives in website `src/explorations/eip-NNNN/canonic
 <CollapsibleChangelog
   title="Coverage Changelog"
   :entries="[
+    { version: 'v0.41', date: '2026-10-06', summary: 'The free Amsterdam catalogue is the open server.' },
     { version: 'v0.40', date: '2026-10-04', summary: 'EIP-7981 supported row documents accessList on run_transaction.' },
     { version: 'v0.39', date: '2026-10-04', summary: 'EIP-7778 block gas accounting is a runnable twin (paid gas vs block count).' },
     { version: 'v0.38', date: '2026-10-04', summary: 'EIP-8282 builder requests are coverage unshown. A lab block does not return them.' },

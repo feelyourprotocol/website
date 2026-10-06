@@ -5,7 +5,7 @@ const MCP_DOCS_ORIGIN = 'https://mcp-docs.feelyourprotocol.org'
 
 const MCP_DOCS_TITLE = 'Feel Your Protocol MCP Docs'
 const MCP_DOCS_DESCRIPTION =
-  'Connect your agent to a deterministic Ethereum lab — Amsterdam at launch, free. Prompts, limits, and reference for the Feel Your Protocol MCP server.'
+  'Connect your agent to a deterministic Ethereum lab — Amsterdam is live and free. Prompts, limits, and reference for the Feel Your Protocol MCP server.'
 
 /** Stable path under `mcp-docs/public/og/` — copied to `dist/mcp-docs/og/` on build. */
 const MCP_DOCS_OG_IMAGE_PATH = '/og/default.webp'

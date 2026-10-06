@@ -1,6 +1,6 @@
 # What you can ask
 
-You do not talk to the EVM in JSON. You talk to **your agent**, and the agent calls one hosted lab. These are the jobs the server is built for — at launch, on **Amsterdam (Glamsterdam)** by default, **free**.
+You do not talk to the EVM in JSON. You talk to **your agent**, and the agent calls one hosted lab. These are the jobs the server runs now — on **Amsterdam (Glamsterdam)** by default, **free**.
 
 ## 1. Wallet and transaction gas
 
@@ -139,6 +139,7 @@ The agent maps your question to a small set of MCP tools. You rarely need these 
 <CollapsibleChangelog
   title="Capabilities Changelog"
   :entries="[
+    { version: 'v0.21', date: '2026-10-06', summary: 'These jobs are live on the hosted MCP, not waiting for a launch window.' },
     { version: 'v0.20', date: '2026-10-06', summary: 'Launch polish — prompt cards per job; wording unchanged.' },
     { version: 'v0.19', date: '2026-10-01', summary: 'Reframed as five user jobs; tool table moved to integrator footnote.' },
     { version: 'v0.18', date: '2026-09-22', summary: 'Probe queryShapes dictionary; EIP/fork rows list tools (MCP names), not shapes.' },

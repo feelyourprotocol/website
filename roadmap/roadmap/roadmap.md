@@ -4,7 +4,7 @@ Four tracks, moving at their own pace. The column is the status. A card does not
 
 **Done** is the recent work, still in view. Older ships leave the board. **In progress** is live work. **Next** is the following chapter. **Later** waits for a hardfork, or for demand.
 
-Dates live on the [timeline](/roadmap/timeline) and on [launch week](/roadmap/launch).
+Dates live on the [timeline](/roadmap/timeline). What opened is on [MCP is live](/roadmap/launch).
 
 <RoadmapBoard />
 
@@ -12,7 +12,7 @@ Dates live on the [timeline](/roadmap/timeline) and on [launch week](/roadmap/la
 
 <IconNote icon="chip" title="Engine & API">
 
-Six generic tools and the Glamsterdam catalogue are in. The public door at [mcp.feelyourprotocol.org](https://mcp.feelyourprotocol.org) opens in [launch week](/roadmap/launch), and we are checking whether the answers actually help. Next is frame transactions. The rest of Hegota waits, and starts on the paid tier.
+Six generic tools and the Glamsterdam catalogue are in. The public door at [mcp.feelyourprotocol.org](https://mcp.feelyourprotocol.org) is [open](/roadmap/launch), and we are checking whether the answers actually help. Next is frame transactions. The rest of Hegota waits, and starts on the paid tier.
 
 </IconNote>
 
@@ -36,13 +36,15 @@ Docs and processes are in place, and so is exploration marketing: comics, videos
 
 ## How it lines up
 
-Catalogue, tools, and the comics and videos are done. This week opens the public MCP, watches whether the answers help, and talks about the lab. A first metrics view is already up. Next is frame transactions, overnight EIP builds, and then the paid tier. Registry listings and the rest of Hegota wait. Order and dates are targets, not commitments. The [timeline](/roadmap/timeline) holds the longer arc.
+Catalogue, tools, and the comics and videos are done. The public MCP is open. We are watching whether the answers help, and talking about the lab. A first metrics view is already up. Next is frame transactions, overnight EIP builds, and then the paid tier. Registry listings and the rest of Hegota wait. Order and dates are targets, not commitments. The [timeline](/roadmap/timeline) holds the longer arc.
 
 ## Changelog
 
 <Changelog
   title="Roadmap Changelog"
   :entries="[
+    { version: 'v0.14', date: '2026-10-06', summary: 'The week summary and the host note say the public MCP is open.' },
+    { version: 'v0.13', date: '2026-10-06', summary: 'Public hosted MCP moved to Done. The door is open.' },
     { version: 'v0.12', date: '2026-10-05', summary: 'Exploration marketing moved to Done. Comics, videos, and tweets stay on the card without an ongoing-work frame.' },
     { version: 'v0.11', date: '2026-10-05', summary: 'EIP build automation moved to Infrastructure. Registry listings moved to Later. Org docs are Done. Exploration marketing (comics, videos, tweets) is In progress.' },
     { version: 'v0.10', date: '2026-10-05', summary: 'Hegota splits into frame txs (Next) and the remaining scope (Later). EIP build automation is Next. Launch marketing and usability evaluation are In progress.' },

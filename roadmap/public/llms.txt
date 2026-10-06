@@ -3,8 +3,8 @@
 > Conceptualization workspace for Feel Your Protocol Phase 3: problem & vision, milestones,
 > roadmap tracks, timeline, and draft outlines of core concepts (deterministic API & MCP for the
 > future Ethereum protocol — upcoming forks, EIPs, and research; x402, pricing/cost model) and
-> infrastructure. Nothing here documents a shipped API yet — it records where thinking stands
-> a shipped API yet — it records where thinking stands today, including open questions.
+> infrastructure. The hosted MCP opened on 6 October 2026. This site records where thinking stands
+> today, including what is still open.
 
 The explorations website (feelyourprotocol.org) is the front door; this roadmap site is the
 organizational home for where the project is headed. The FYP community token is intended as a
@@ -17,6 +17,7 @@ volume discount on future API usage, not a gate. Educational, open-source charac
 
 ## Roadmap
 
+- [MCP is live](https://roadmap.feelyourprotocol.org/roadmap/launch.html): What opened on 6 October 2026, and where to connect
 - [Roadmap Board](https://roadmap.feelyourprotocol.org/roadmap/roadmap.html): Tracks and horizons (data-driven board)
 - [Timeline](https://roadmap.feelyourprotocol.org/roadmap/timeline.html): Project phases and milestones
 
@@ -37,7 +38,7 @@ volume discount on future API usage, not a gate. Educational, open-source charac
 
 - [Main site](https://feelyourprotocol.org/): Interactive Ethereum protocol explorations
 - [Website Docs](https://website-docs.feelyourprotocol.org/index.html): Contributor guide and architecture
-- [MCP Docs](https://mcp-docs.feelyourprotocol.org/): Concrete MCP server reference (as capabilities ship)
+- [MCP Docs](https://mcp-docs.feelyourprotocol.org/): Concrete MCP server reference. The hosted server is live.
 - [Community Token](https://community-token.feelyourprotocol.org/): Transparency page for FYP on Base
 - [Source on GitHub](https://github.com/feelyourprotocol/website): Roadmap content lives in the `roadmap/` folder
 

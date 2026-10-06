@@ -33,6 +33,27 @@ async function mountApp(router: ReturnType<typeof makeRouter>) {
 
 describe('App layout', () => {
   describe('Header', () => {
+    it('keeps the launch ribbon off the home page', async () => {
+      const wrapper = await mountApp(makeRouter())
+      expect(wrapper.find('[data-mcp-launched-ribbon]').exists()).toBe(false)
+    })
+
+    it('shows the launch ribbon on an exploration page', async () => {
+      const router = makeRouter()
+      const [, firstExploration] = Object.entries(EXPLORATIONS)[0]
+      await router.push(firstExploration.path)
+      await router.isReady()
+      const wrapper = mount(App, {
+        global: {
+          plugins: [router],
+          stubs: { RouterLink: RouterLinkStub },
+        },
+      })
+      await flushPromises()
+      expect(wrapper.find('[data-mcp-launched-ribbon]').exists()).toBe(true)
+      expect(wrapper.text()).toContain('The MCP server has launched.')
+    })
+
     it('renders site title', async () => {
       const wrapper = await mountApp(makeRouter())
       expect(wrapper.find('header').text()).toContain('Feel Your Protocol')
@@ -132,7 +153,8 @@ describe('App layout', () => {
   describe('Video mode', () => {
     it('hides header and footer when ?fyp-video=1', async () => {
       const router = makeRouter()
-      await router.push('/?fyp-video=1')
+      const [, firstExploration] = Object.entries(EXPLORATIONS)[0]
+      await router.push(`${firstExploration.path}?fyp-video=1`)
       await router.isReady()
       const wrapper = mount(App, {
         global: {
@@ -144,6 +166,7 @@ describe('App layout', () => {
 
       expect(wrapper.find('header').exists()).toBe(false)
       expect(wrapper.find('footer').exists()).toBe(false)
+      expect(wrapper.find('[data-mcp-launched-ribbon]').exists()).toBe(false)
       expect(wrapper.find('[data-testid="video-shell"]').exists()).toBe(true)
     })
   })

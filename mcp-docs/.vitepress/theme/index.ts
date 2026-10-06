@@ -2,6 +2,7 @@ import type { Theme } from 'vitepress'
 import DefaultTheme from 'vitepress/theme'
 import { onMounted } from 'vue'
 
+import Layout from './Layout.vue'
 import Changelog from './components/Changelog.vue'
 import ClientTabs from './components/ClientTabs.vue'
 import CodeSnippet from './components/CodeSnippet.vue'
@@ -26,6 +27,7 @@ import './custom.css'
  */
 export default {
   extends: DefaultTheme,
+  Layout,
   setup() {
     onMounted(() => {
       document.documentElement.classList.add('fyp-site-mcp')

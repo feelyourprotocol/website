@@ -117,10 +117,11 @@ export const TIMELINE_EVENTS: TimelineEvent[] = [
   },
   {
     id: 'launch-week',
-    date: '2026-10-05',
-    label: 'Public MCP launch week',
-    icon: 'calendar',
-    note: 'Hosted HTTP at mcp.feelyourprotocol.org. Open, on the full Glamsterdam set. 5–9 October.',
+    date: '2026-10-06',
+    label: 'Public MCP launch',
+    icon: 'spark',
+    note: 'Hosted HTTP at mcp.feelyourprotocol.org. Open, on the full Glamsterdam set, the same day as Glamsterdam Sepolia.',
+    done: true,
   },
 ]
 

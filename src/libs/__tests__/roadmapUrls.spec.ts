@@ -32,7 +32,7 @@ describe('roadmapUrls', () => {
     )
   })
 
-  it('ROADMAP_LAUNCH points at launch week page', () => {
+  it('ROADMAP_LAUNCH points at the live MCP page', () => {
     expect(ROADMAP_LAUNCH).toBe('https://roadmap.feelyourprotocol.org/roadmap/launch.html')
   })
 

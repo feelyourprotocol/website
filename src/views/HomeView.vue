@@ -1,11 +1,13 @@
 <script setup lang="ts">
+import { computed } from 'vue'
+
 import SectionLabel from '@/components/SectionLabel.vue'
 import ExplorationPreviewC from '@/explorations/ExplorationPreviewC.vue'
 import { EXPLORATIONS } from '@/explorations/REGISTRY'
 import { getNavTopicIds, TOPICS } from '@/explorations/TOPICS'
 import { COMMUNITY_TOKEN_HOME } from '@/libs/communityToken'
 import { WEBSITE_DOCS_HOME } from '@/libs/docsUrls'
-import { MCP_DOCS_HOME, mcpDocsPage, ROADMAP_LAUNCH } from '@/libs/roadmapUrls'
+import { MCP_DOCS_HOME, ROADMAP_LAUNCH } from '@/libs/roadmapUrls'
 import { McpLaunchHomeSection } from '@/mcp-launch'
 
 import { catalogExplorationIds, catalogForkLabels, latestExplorationIds } from './homeCatalog'
@@ -19,7 +21,10 @@ const catalogIds = catalogExplorationIds()
 const forkLabels = catalogForkLabels()
 const explorationCount = allExplorationIds.length
 const topicIds = getNavTopicIds()
-const mcpCoverageUrl = mcpDocsPage('use/coverage')
+const catalogNote = computed(() => {
+  const count = `${explorationCount} exploration${explorationCount === 1 ? '' : 's'}`
+  return forkLabels.length > 0 ? `${count} · ${forkLabels.join(' · ')}` : count
+})
 
 const fleet = [
   {
@@ -30,12 +35,12 @@ const fleet = [
   {
     title: 'MCP docs',
     href: MCP_DOCS_HOME,
-    note: 'Launch week 5–9 Oct 2026',
+    note: 'Live · connect an agent',
   },
   {
     title: 'Roadmap',
     href: ROADMAP_LAUNCH,
-    note: 'Hosted MCP countdown',
+    note: 'MCP launched 6 Oct 2026',
   },
   {
     title: 'Community token',
@@ -49,39 +54,13 @@ const fleet = [
   <main>
     <h1 class="sr-only">Feel Your Protocol — Ethereum Protocol Explorations for Humans and AI</h1>
 
-    <section class="fyp-run-surface mb-6 p-4 md:p-5" data-testid="home-intro-panel">
-      <p class="font-mono text-xs text-slate-500 mb-2" aria-hidden="true">fyp:~$</p>
-      <p class="font-mono text-sm md:text-base text-slate-100 leading-relaxed max-w-3xl">
-        Run upcoming Ethereum protocol changes
-        <span class="home-intro-spark">in the browser</span> — real EVM and cryptography libraries,
-        no backend, no mocks.<span class="home-intro-cursor" aria-hidden="true">█</span>
-      </p>
-      <div class="flex flex-wrap items-center gap-2 mt-4">
-        <a
-          href="#latest"
-          class="fyp-shell-cta bg-gradient-to-r from-purple-600 to-cyan-500 text-white transition hover:opacity-90"
-        >
-          ▶ Play an exploration
-        </a>
-        <a
-          :href="mcpCoverageUrl"
-          target="_blank"
-          rel="noopener"
-          class="fyp-shell-cta border border-slate-500 bg-transparent text-slate-300 hover:bg-white/5"
-        >
-          For agents
-        </a>
-      </div>
-      <p class="font-mono text-xs text-slate-400 mt-3">
-        # {{ explorationCount }} exploration{{ explorationCount === 1 ? '' : 's' }}
-        <template v-if="forkLabels.length > 0"> · {{ forkLabels.join(' · ') }}</template>
-      </p>
-    </section>
-
     <McpLaunchHomeSection />
 
     <section id="latest" class="mb-8">
       <SectionLabel>Latest</SectionLabel>
+      <p class="font-mono text-xs text-slate-500 -mt-1 mb-3" data-testid="home-catalog-note">
+        {{ catalogNote }}
+      </p>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         <RouterLink
           v-for="explorationId in latestIds"
@@ -152,8 +131,8 @@ const fleet = [
     <section>
       <SectionLabel>Also in this project</SectionLabel>
       <p class="text-slate-600 text-sm leading-relaxed mb-3 max-w-3xl">
-        The explorations site is the textbook. Docs, the hosted MCP lab (launch week
-        <span class="font-mono">5–9 Oct 2026</span>), and a community token on Base sit alongside
+        The explorations site is the textbook. The hosted MCP lab opened on
+        <span class="font-mono">6 Oct 2026</span>, with docs and a community token on Base alongside
         it.
       </p>
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">

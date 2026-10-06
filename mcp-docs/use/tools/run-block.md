@@ -1,6 +1,6 @@
 # Run Block
 
-> **Status:** Implemented — ships on the public MCP at launch. MCP tool: `run_block`. **Public endpoint not live.**
+> **Status:** Live on the public MCP. Tool: `run_block`.
 
 <PromptCard
   text="Run two plain transfers as one Amsterdam block and show each receipt."
@@ -88,6 +88,7 @@ Max **8** transactions. See [Guarantees](/use/guarantees) for gas ceilings.
 <CollapsibleChangelog
   title="Run Block Changelog"
   :entries="[
+    { version: 'v0.4', date: '2026-10-06', summary: 'Public endpoint is live.' },
     { version: 'v0.3', date: '2026-09-17', summary: 'Fusaka fork note: current-mainnet features, not only a compare baseline.' },
     { version: 'v0.2', date: '2026-09-16', summary: 'Generic Glamsterdam / Fusaka lab block is a first-class when-to-use.' },
   ]"

@@ -1,6 +1,6 @@
 # Inspect Artifact
 
-> **Status:** Implemented — MCP tool: `inspect_artifact`. **Public endpoint not live.**
+> **Status:** Live on the public MCP. Tool: `inspect_artifact`.
 
 <PromptCard
   text="Inspect this BAL JSON — is the structure valid, and does the hash match?"
@@ -44,6 +44,7 @@ See [Describe Capabilities](/use/tools/describe-capabilities) for `inspectKinds`
 <CollapsibleChangelog
   title="Inspect Artifact Changelog"
   :entries="[
+    { version: 'v0.3', date: '2026-10-06', summary: 'Public endpoint is live.' },
     { version: 'v0.2', date: '2026-09-22', summary: 'Renamed MCP tool inspect → inspect_artifact (query shape stays inspect).' },
     { version: 'v0.1', date: '2026-09-16', summary: 'Implemented — structure and hash without chain state.' },
   ]"

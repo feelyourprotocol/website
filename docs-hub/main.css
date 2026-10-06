@@ -1,4 +1,5 @@
 @import '../shared/vitepress/fyp-tokens.css';
+@import '../shared/vitepress/launched-banner.css';
 
 @font-face {
   font-family: 'JetBrains Mono';
@@ -382,9 +383,23 @@ body::before {
   text-transform: uppercase;
 }
 
-.badge--soon {
-  color: #166534;
-  background: rgba(34, 197, 94, 0.18);
+.badge--launched {
+  color: #fff;
+  background: linear-gradient(90deg, #16a34a, #0891b2);
+}
+
+.fyp-launched--hub {
+  --vp-c-brand-1: #16a34a;
+  --vp-c-brand-2: #15803d;
+  --vp-c-brand-soft: rgba(34, 197, 94, 0.16);
+  --vp-c-text-1: #0f172a;
+  --vp-c-text-2: #475569;
+  --vp-c-divider: #bbf7d0;
+  --vp-c-bg: #f7fdf9;
+  margin: 0 0 1.75rem;
+  border: 1px solid #86efac;
+  border-radius: 12px;
+  overflow: hidden;
 }
 
 .badge--live {

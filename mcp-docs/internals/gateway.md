@@ -1,14 +1,14 @@
 # Gateway
 
-> **Status:** **v0.1** — six tools implemented (development transport). HTTP on AWS planned (Steps 4–5). Public product path is the hosted endpoint — see [Connect](/use/connect).
+> **Status:** **v0.1** — six tools on the public HTTP endpoint. Stdio remains a development transport. Connect at [Connect](/use/connect).
 
 The **`mcp-gateway`** repo is the public face of the MCP server:
 
-- **MCP transport** — stdio as development transport today; HTTP `/mcp` on EC2 for the public product
+- **MCP transport** — HTTP `/mcp` on EC2 is the public product; stdio stays a development transport
 - **Tool registry** — intent-driven tools → `mcp-execution-engine`
 - **TaskProcessor seam** — `LocalTaskProcessor` now; worker pool / queue later
 - **Observability** — planned (Step 7)
-- **x402 payments** — after the open public launch (paid tier for new EIPs; not part of launch week)
+- **x402 payments** — after this open launch (paid tier for new EIPs; not part of the free server)
 
 It depends one-way on **`mcp-execution-engine`**. End-user connection (hosted): [Connect](/use/connect).
 
@@ -44,6 +44,7 @@ Published JSON in gateway `schemas/` is copied byte-for-byte to [mcp-docs/public
 <Changelog
   title="Gateway Changelog"
   :entries="[
+    { version: 'v0.1.10', date: '2026-10-06', summary: 'Public HTTP is the product path. x402 stays on the later paid tier.' },
     { version: 'v0.1.9', date: '2026-10-01', summary: 'x402 is after the open public launch, for the paid EIP tier.' },
     { version: 'v0.1.8', date: '2026-09-22', summary: 'Six tools; Zod vs published JSON schema workflow and manifest.' },
     { version: 'v0.1.7', date: '2026-09-16', summary: 'Server instructions claim generic hardfork prompts; named forks stay on the same verbs.' },

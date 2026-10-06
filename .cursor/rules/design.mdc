@@ -20,7 +20,7 @@ Prefer **mobile-first larger, `sm:` compact** over enlarging desktop. Do not cop
 
 Reference: `ExplorationMetaPills.vue` — `text-xs px-3 py-2 min-h-11` → `sm:text-[0.65rem] sm:px-2 sm:py-0.5 sm:min-h-0`.
 
-**Shell text CTAs** (home hero, MCP launch band): reuse **`fyp-shell-cta`** in `main.css` — `min-h-11` on mobile, `sm:py-1.5 sm:px-2.5 sm:min-h-0`; add color/border classes in the template.
+**Shell text CTAs** (MCP launch band): reuse **`fyp-shell-cta`** in `main.css` — `min-h-11` on mobile, `sm:py-1.5 sm:px-2.5 sm:min-h-0`; add color/border classes in the template.
 
 **Browse filters** (tag cloud, timeline rows): **`fyp-shell-tap-target`** plus extra vertical padding on mobile (`py-2` → `sm:py-0.5`).
 
@@ -38,7 +38,7 @@ Tailwind utilities and `src/main.css` own the type scale. **`text-[0.65rem]`** i
 
 Topic hues use `e-*` tokens on exploration cards; **neutral slate** for shared chrome borders and surfaces unless there is a deliberate brand moment (site title gradient, topic pill border).
 
-**Console vs lab floor.** One dark **`.fyp-run-surface`** (home intro, imprint acknowledgements): `fyp:~$`, **`.home-intro-spark`**, **`.home-intro-cursor`**, execute Play only on home. Everything else stays the **light lab floor** (dot grid, white topic cards, MCP wash card). **Seams:** **`.fyp-protocol-seam-bottom`** on header, **`.fyp-protocol-seam-top`** on footer — same purple→cyan rule as the console top edge. **Hover:** **`.neon-glow-hover`** on catalog preview cards and live topic tiles only (not empty “coming” tiles). **No MCP terminal green** on the main site; in-exploration widgets unchanged ([exploration-design.mdc](./exploration-design.mdc)).
+**Console vs lab floor.** The dark **`.fyp-run-surface`** is imprint acknowledgements only. Home stays on the **light lab floor** (dot grid, white topic cards, MCP wash card). **Seam:** **`.fyp-protocol-seam-top`** on the footer only — purple→cyan rule. The header keeps its padding and has no rule under the title. **Hover:** **`.neon-glow-hover`** on catalog preview cards and live topic tiles only (not empty “coming” tiles). **No MCP terminal green** on the main site; in-exploration widgets unchanged ([exploration-design.mdc](./exploration-design.mdc)).
 
 ## Accessibility
 

@@ -65,13 +65,14 @@ Consensus-layer and networking EIPs scheduled beside Amsterdam are **not** execu
 
 | | |
 | --- | --- |
-| [Pricing](/use/pricing) | Free at launch; paid tier for EIPs ahead of Amsterdam later |
+| [Pricing](/use/pricing) | Free now; paid tier for EIPs ahead of Amsterdam later |
 | [Limits](/use/guarantees) | Determinism, BYOS, ceilings |
 | [EIP-7773](https://eips.ethereum.org/EIPS/eip-7773) | Glamsterdam meta |
 
 <CollapsibleChangelog
   title="Preview Forks (Glamsterdam) Changelog"
   :entries="[
+    { version: 'v1.6', date: '2026-10-06', summary: 'Amsterdam on the hosted MCP is open, the same day as Glamsterdam Sepolia.' },
     { version: 'v1.5', date: '2026-10-06', summary: 'Launch polish — prompt cards and icon cards; wording unchanged.' },
     { version: 'v1.4', date: '2026-10-04', summary: 'EIP-7778 joins the advertised twins — refunds stay on the bill, not the block.' },
     { version: 'v1.3', date: '2026-10-04', summary: 'EIP-8282 is coverage unshown. Lab blocks do not return builder requests.' },

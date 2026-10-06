@@ -1,6 +1,6 @@
 # Current mainnet EL — Fusaka
 
-> **Status:** **Ready for the public MCP** (not launched). **`baselineForkId`** in the probe — today’s mainnet execution-layer rules.
+> **Status:** **Live on the public MCP.** **`baselineForkId`** in the probe — today’s mainnet execution-layer rules.
 
 This page tracks **whatever fork mainnet EL is on right now**. Today that is **Fusaka** (EL alias **`osaka`**; role alias **`mainnet-el`**). After Glamsterdam activates on mainnet, this doc (and probe metadata) will switch to Glamsterdam as `current` / `baselineForkId`, and the next preview fork moves under [Preview forks](/use/forks/glamsterdam). Fusaka twins stay advertised (this page becomes history); they are not dropped on activation.
 
@@ -58,6 +58,7 @@ Provenance on a generic Fusaka run lists advertised modules **7883** and **7951*
 <CollapsibleChangelog
   title="Current Mainnet Fork Changelog"
   :entries="[
+    { version: 'v0.9', date: '2026-10-06', summary: 'Fusaka runs are live on the hosted MCP.' },
     { version: 'v0.8', date: '2026-10-06', summary: 'Launch polish — prompt cards; wording unchanged.' },
     { version: 'v0.7', date: '2026-09-29', summary: 'PeerDAS (EIP-7594) is coverage consensus. Blob sidecars stay out of this lab.' },
     { version: 'v0.6', date: '2026-09-17', summary: 'Fusaka twins stay first-class after activation (adoption runs, not only compares).' },

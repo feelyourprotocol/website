@@ -6,7 +6,7 @@ The explorations site and the MCP server run on the same EthereumJS stack. One i
 
 <Motto>The website is the textbook. The MCP server is the lab equipment.</Motto>
 
-The textbook is live. The lab is built. The public door opens in [launch week](/roadmap/launch).
+The textbook is live. The lab door is [open](/roadmap/launch).
 
 ## The two surfaces
 
@@ -18,7 +18,7 @@ The textbook is live. The lab is built. The public door opens in [launch week](/
 | What it costs | Free to learn | Free at launch, on full Glamsterdam. Later, [x402](/monetization/pricing) for EIPs still ahead of that fork |
 | Where to read | [website-docs](https://website-docs.feelyourprotocol.org) | [mcp-docs](https://mcp-docs.feelyourprotocol.org) |
 
-Under both is the modular EthereumJS stack, and the path from an EIP to an exploration to a catalogue entry. Launch week adds the hosted door: `mcp.feelyourprotocol.org`.
+Under both is the modular EthereumJS stack, and the path from an EIP to an exploration to a catalogue entry. The hosted door is `mcp.feelyourprotocol.org`.
 
 ## Why they belong together
 
@@ -44,7 +44,7 @@ An agent only calls what a person permits. A developer who already trusts the te
 
 ## How they meet
 
-Each exploration on [feelyourprotocol.org](https://feelyourprotocol.org) points at its twin in the MCP catalogue. The sites stay separate. The main website is the front door: docs, the community token, this roadmap, and mcp-docs keep their own addresses. `mcp.` joins them when the server is public.
+Each exploration on [feelyourprotocol.org](https://feelyourprotocol.org) points at its twin in the MCP catalogue. The sites stay separate. The main website is the front door: docs, the community token, this roadmap, and mcp-docs keep their own addresses. The public lab is [mcp.feelyourprotocol.org](https://mcp.feelyourprotocol.org).
 
 Two surfaces also means two kinds of work. Narrative and interface on one side. Uptime and exact tests on the other. A small team cannot push both at full speed, and [Principles](/vision/principles) is where that stays visible.
 
@@ -53,6 +53,8 @@ Two surfaces also means two kinds of work. Narrative and interface on one side. 
 <Changelog
   title="Two Legs Changelog"
   :entries="[
+    { version: 'v0.8', date: '2026-10-06', summary: 'The public door is mcp.feelyourprotocol.org, open today.' },
+    { version: 'v0.7', date: '2026-10-06', summary: 'The hosted door is open.' },
     { version: 'v0.6', date: '2026-10-05', summary: 'Shorter page. Textbook and lab as the picture; icon notes for how they reinforce.' },
     { version: 'v0.5', date: '2026-10-01', summary: 'Leg B economics: open Glamsterdam at launch; x402 for EIPs ahead of the hardfork.' },
     { version: 'v0.4', date: '2026-09-24', summary: 'Legs as surfaces; who they serve is Two Audiences.' },

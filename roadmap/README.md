@@ -1,6 +1,6 @@
 # Roadmap Site
 
-VitePress site for **roadmap.feelyourprotocol.org** — strategy, history, and draft concepts for Feel Your Protocol Phase 3: problem & vision, tracks, timeline, [launch week](/roadmap/launch), and outlines of the MCP server, x402, and pricing. Operational MCP docs live on [mcp-docs](https://mcp-docs.feelyourprotocol.org).
+VitePress site for **roadmap.feelyourprotocol.org** — strategy, history, and draft concepts for Feel Your Protocol Phase 3: problem & vision, tracks, timeline, [MCP is live](/roadmap/launch), and outlines of the MCP server, x402, and pricing. Operational MCP docs live on [mcp-docs](https://mcp-docs.feelyourprotocol.org).
 
 It shares the Feel Your Protocol design language (JetBrains Mono, purple/cyan protocol sparks, dot grid) but uses a customized VitePress theme so it reads as the "business" side of the project — separate from the [website docs](https://website-docs.feelyourprotocol.org) and the [explorations website](https://feelyourprotocol.org).
 
@@ -78,7 +78,7 @@ Both visualizations are **data-driven** so they are lightweight and trivial to r
 
 ## Micro-versioning
 
-There are no full doc versions. Instead, fast-moving sections embed a `<Changelog :entries="…" />` block with a short manual entry per change. Currently on: **Roadmap** (`roadmap/roadmap.md`), **Launch week** (`roadmap/launch.md`), **Agent API** (`concepts/api-mcp.md`), and **Pricing** (`monetization/pricing.md`).
+There are no full doc versions. Instead, fast-moving sections embed a `<Changelog :entries="…" />` block with a short manual entry per change. Currently on: **Roadmap** (`roadmap/roadmap.md`), **MCP is live** (`roadmap/launch.md`), **Agent API** (`concepts/api-mcp.md`), and **Pricing** (`monetization/pricing.md`).
 
 ## SEO & social preview
 

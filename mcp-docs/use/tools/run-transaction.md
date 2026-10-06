@@ -1,6 +1,6 @@
 # Run Transaction
 
-> **Status:** Implemented — ships on the public MCP at launch. MCP tool: `run_transaction`. **Public endpoint not live.**
+> **Status:** Live on the public MCP. Tool: `run_transaction`.
 
 <PromptCard
   text="Send 1 wei to an empty account under Amsterdam and tell me the gas the wallet would need."
@@ -96,6 +96,7 @@ See [Guarantees](/use/guarantees) for gas ceilings. The higher transaction-only 
 <CollapsibleChangelog
   title="Run Transaction Changelog"
   :entries="[
+    { version: 'v0.9', date: '2026-10-06', summary: 'Public endpoint is live.' },
     { version: 'v0.8', date: '2026-10-04', summary: 'Optional accessList (EIP-2930 type-2 tx) for EIP-7981 floor demos on Glamsterdam.' },
     { version: 'v0.7', date: '2026-09-18', summary: 'Named eips[] provenance.caveat includes a compact Spec: snapshot.' },
     { version: 'v0.6', date: '2026-09-17', summary: 'Contract creation via omitted to; createdAddress and deployedCodeSize; 110M transaction-only ceiling.' },

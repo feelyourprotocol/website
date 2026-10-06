@@ -7,7 +7,7 @@ import { Tag } from '@/explorations/TAGS'
 import { TOPICS } from '@/explorations/TOPICS'
 import { COMMUNITY_TOKEN_HOME } from '@/libs/communityToken'
 import { WEBSITE_DOCS_HOME } from '@/libs/docsUrls'
-import { MCP_DOCS_HOME, mcpDocsPage, ROADMAP_LAUNCH } from '@/libs/roadmapUrls'
+import { MCP_DOCS_HOME, ROADMAP_LAUNCH } from '@/libs/roadmapUrls'
 
 import {
   catalogExplorationIds,
@@ -36,43 +36,16 @@ const catalog = catalogExplorationIds()
 
 describe('HomeView', () => {
   describe('Orient', () => {
-    it('states the project in one sentence', () => {
-      expect(wrapper.text()).toContain('Run upcoming Ethereum protocol changes in the browser')
+    it('keeps the home on the light floor, without the old console hero', () => {
+      expect(wrapper.find('[data-testid="home-intro-panel"]').exists()).toBe(false)
+      expect(wrapper.find('.fyp-run-surface').exists()).toBe(false)
     })
 
-    it('renders the home intro promise panel', () => {
-      expect(wrapper.find('[data-testid="home-intro-panel"]').exists()).toBe(true)
-    })
-
-    it('renders the terminal run surface with prompt', () => {
-      const panel = wrapper.get('[data-testid="home-intro-panel"]')
-      expect(panel.classes()).toContain('fyp-run-surface')
-      expect(panel.text()).toContain('fyp:~$')
-    })
-
-    it('offers play and agent doors', () => {
-      const play = wrapper.find('[data-testid="home-intro-panel"] a[href="#latest"]')
-      expect(play.exists()).toBe(true)
-      expect(play.classes()).toContain('from-purple-600')
-      expect(play.text()).toContain('Play an exploration')
-      const agents = wrapper.find(
-        `[data-testid="home-intro-panel"] a[href="${mcpDocsPage('use/coverage')}"]`,
-      )
-      expect(agents.exists()).toBe(true)
-      expect(agents.text()).toContain('For agents')
-    })
-
-    it('applies protocol pulse spark to “in the browser” in the lead sentence', () => {
-      const spark = wrapper.find('[data-testid="home-intro-panel"] .home-intro-spark')
-      expect(spark.exists()).toBe(true)
-      expect(spark.text()).toBe('in the browser')
-    })
-
-    it('shows live catalog stats', () => {
-      const panel = wrapper.get('[data-testid="home-intro-panel"]')
-      expect(panel.text()).toContain(`${Object.keys(EXPLORATIONS).length} explorations`)
-      expect(panel.text()).toContain('Fusaka')
-      expect(panel.text()).toContain('Glamsterdam')
+    it('notes how many explorations are on the site, and which forks', () => {
+      const note = wrapper.get('[data-testid="home-catalog-note"]')
+      expect(note.text()).toContain(`${Object.keys(EXPLORATIONS).length} explorations`)
+      expect(note.text()).toContain('Fusaka')
+      expect(note.text()).toContain('Glamsterdam')
     })
   })
 
@@ -165,9 +138,10 @@ describe('HomeView', () => {
   })
 
   describe('MCP launch section', () => {
-    it('renders launch week banner above latest', () => {
+    it('renders the launched MCP banner above latest', () => {
       expect(wrapper.find('[data-mcp-launch-week]').exists()).toBe(true)
-      expect(wrapper.text()).toContain('5–9 October 2026')
+      expect(wrapper.text()).toContain('MCP is live')
+      expect(wrapper.text()).toContain('6 October 2026')
     })
   })
 
