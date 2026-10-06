@@ -6,7 +6,7 @@ These boundaries apply to everything we ship.
 
 - **Isolated lab, not a node (BYOS)** — We never attach to mainnet, an L2, or an archive RPC. The caller brings — or we **construct in this request** — the accounts, code, and storage the run needs. That is what “stateless” meant: not a full node, **not** “the lab world must be empty.”
 - **Demand-built prestate is in scope** — Prefund, install code, seed storage, several txs in one `run_block`. “Pre-deploy this contract, then EXTCODESIZE it” is one call. Default after the call: discard that world (cheap, parallelizable).
-- **Call isolation is the default** — Each tool call is a fresh lab from **that payload**. An MCP transport session (stdio process, HTTP `mcp-session-id`) is not an EVM. Continuation across prompts (“use the contract we just deployed”) is optional later (caller-held snapshot or a short-lived gateway handle) — not shipped, not implied.
+- **Call isolation is the default** — Each tool call is a fresh lab from **that payload**. The hosted HTTP transport keeps no session: every POST stands alone, and a gateway restart does not drop an install. Continuation across prompts (“use the contract we just deployed”) is optional later (caller-held snapshot or a short-lived gateway handle) — not shipped, not implied.
 - **Raw bytecode, base-layer only** — No Solidity compilation in the service. ERC/application-layer concerns are out of scope.
 - **Observability first** — Rich execution traces (stack, memory, gas, opcodes) are a primary deliverable.
 - **Intent-driven MCP tools** — Tools match use cases (run bytecode, run transaction, run block, generate_artifact, inspect_artifact, …), not raw library APIs one-to-one.
@@ -26,6 +26,7 @@ End-user summary: [Capabilities](/use/capabilities), [Guarantees](/use/guarantee
 <Changelog
   title="Design Principles Changelog"
   :entries="[
+    { version: 'v0.10', date: '2026-10-06', summary: 'Hosted HTTP transport keeps no session id. A restart does not drop an install.' },
     { version: 'v0.9', date: '2026-09-18', summary: 'Named eips[] caveats include a compact Spec: snapshot.' },
     { version: 'v0.8', date: '2026-09-17', summary: 'Twins stay after mainnet activation; sunset is for no honest lab observation.' },
     { version: 'v0.7', date: '2026-09-16', summary: 'Named forks are catalog capabilities alongside EIP modules; generic hardfork runs stay on the same verbs.' },
