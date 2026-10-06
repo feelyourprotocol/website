@@ -87,7 +87,7 @@ Several transactions in one block, header slot/number, per-tx receipts together.
       label: 'Example prompts',
       prompts: [
         { text: `Run a lab block on Amsterdam with two plain 1 wei transfers — show each receipt.`, fork: 'Amsterdam' },
-        { text: `Run a lab block on Amsterdam with header slot 42 and bytecode that returns SLOTNUM — what value is returned?`, fork: 'Amsterdam', href: '/use/eips/eip-7843', hrefLabel: 'EIP-7843' },
+        { text: `Run a lab block on Amsterdam with header slot 42 — one transaction calls a contract whose runtime runs SLOTNUM and returns the slot number. What value is returned?`, fork: 'Amsterdam', href: '/use/eips/eip-7843', hrefLabel: 'EIP-7843' },
         { text: `Clear a nonzero storage slot on Glamsterdam — what do I pay, and what does the block count?`, fork: 'Amsterdam', href: '/use/eips/eip-7778', hrefLabel: 'EIP-7778' },
       ],
     },
