@@ -24,9 +24,7 @@ A few weeks after launch, once the open service has real usage and has been hard
 
 Per-gas rates, token-holder discounts, and facilitator details are still being finalized — see the [roadmap pricing model](https://roadmap.feelyourprotocol.org/monetization/pricing.html#access-cycle). This page will add a **402 quote shape** and a client example when the paid tier ships.
 
-## Changelog
-
-<Changelog
+<CollapsibleChangelog
   title="Pricing Changelog"
   :entries="[
     { version: 'v0.5', date: '2026-10-01', summary: 'Dual-tier table — free Amsterdam at launch; paid EIP-8141+ cycle with roadmap pointer.' },

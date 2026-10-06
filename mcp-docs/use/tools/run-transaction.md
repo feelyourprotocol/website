@@ -2,6 +2,16 @@
 
 > **Status:** Implemented — ships on the public MCP at launch. MCP tool: `run_transaction`. **Public endpoint not live.**
 
+<PromptCard
+  text="Send 1 wei to an empty account under Amsterdam and tell me the gas the wallet would need."
+  fork="Amsterdam"
+  lookFor="gasUsed near 204,600, with txStateGas near 183,600"
+  tool="run_transaction"
+  toolHref="/use/tools/run-transaction"
+  hrefLabel="What you can ask"
+  href="/use/capabilities"
+/>
+
 ## Purpose
 
 Run a **message-call or contract-creation transaction** under a chosen fork and receive **paid transaction gas** plus receipt logs. The sender is impersonated from `from` — no private key.
@@ -83,9 +93,7 @@ Expected: `success: true`, `gasUsed: "204600"`, `txStateGas: "183600"`. The same
 
 See [Guarantees](/use/guarantees) for gas ceilings. The higher transaction-only ceiling supports Glamsterdam's EIP-8037 state-gas reservoir for large deployments.
 
-## Changelog
-
-<Changelog
+<CollapsibleChangelog
   title="Run Transaction Changelog"
   :entries="[
     { version: 'v0.8', date: '2026-10-04', summary: 'Optional accessList (EIP-2930 type-2 tx) for EIP-7981 floor demos on Glamsterdam.' },

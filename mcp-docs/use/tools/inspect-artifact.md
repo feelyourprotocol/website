@@ -2,6 +2,16 @@
 
 > **Status:** Implemented — MCP tool: `inspect_artifact`. **Public endpoint not live.**
 
+<PromptCard
+  text="Inspect this BAL JSON — is the structure valid, and does the hash match?"
+  fork="Amsterdam"
+  lookFor="validation layers and the hash check"
+  tool="inspect_artifact"
+  toolHref="/use/tools/inspect-artifact"
+  hrefLabel="What you can ask"
+  href="/use/capabilities"
+/>
+
 ## Purpose
 
 Judge a **caller-supplied** structured artifact **without chain state** — encoding (layer A), canonical structure and item cap (layer B), optional hash match (layer C). Not consensus replay against mainnet.
@@ -31,9 +41,7 @@ See [Describe Capabilities](/use/tools/describe-capabilities) for `inspectKinds`
 
 [inspect_artifact.input.json](/schemas/inspect_artifact.input.json)
 
-## Changelog
-
-<Changelog
+<CollapsibleChangelog
   title="Inspect Artifact Changelog"
   :entries="[
     { version: 'v0.2', date: '2026-09-22', summary: 'Renamed MCP tool inspect → inspect_artifact (query shape stays inspect).' },

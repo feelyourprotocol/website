@@ -2,6 +2,16 @@
 
 > **Status:** Implemented — ships on the public MCP at launch. MCP tool: `run_block`. **Public endpoint not live.**
 
+<PromptCard
+  text="Run two plain transfers as one Amsterdam block and show each receipt."
+  fork="Amsterdam"
+  lookFor="per-transaction receipts plus the header snapshot"
+  tool="run_block"
+  toolHref="/use/tools/run-block"
+  hrefLabel="What you can ask"
+  href="/use/capabilities"
+/>
+
 ## Purpose
 
 Run **1–8 impersonated transactions as one lab block** and receive a **header snapshot** plus **per-tx receipts**. Senders are impersonated from each `from` — no private key.
@@ -75,9 +85,7 @@ Expected: `success: true`, `transactions[0].gasUsed: "204600"`, `txStateGas: "18
 
 Max **8** transactions. See [Guarantees](/use/guarantees) for gas ceilings.
 
-## Changelog
-
-<Changelog
+<CollapsibleChangelog
   title="Run Block Changelog"
   :entries="[
     { version: 'v0.3', date: '2026-09-17', summary: 'Fusaka fork note: current-mainnet features, not only a compare baseline.' },

@@ -2,6 +2,16 @@
 
 > **Status:** Implemented — ships on the public MCP at launch. MCP tool: `run_bytecode`. **Public endpoint not live.**
 
+<PromptCard
+  text="Run PUSH1 1 PUSH1 2 ADD on Amsterdam and show me the gas and the final stack."
+  fork="Amsterdam"
+  lookFor="gasUsed and the final stack"
+  tool="run_bytecode"
+  toolHref="/use/tools/run-bytecode"
+  hrefLabel="What you can ask"
+  href="/use/capabilities"
+/>
+
 ## Purpose
 
 Run **caller-supplied** raw EVM bytecode under a chosen fork / EIP configuration and receive a structured result — call-frame gas used, return data, final stack, optional opcode trace, and provenance.
@@ -140,9 +150,7 @@ Deep stack + `DUPN` — invalid on fusaka baseline; valid on Glamsterdam preview
 
 See [Guarantees](/use/guarantees) for ceilings (max gas, bytecode size, trace steps).
 
-## Changelog
-
-<Changelog
+<CollapsibleChangelog
   title="Run Bytecode Changelog"
   :entries="[
     { version: 'v0.14', date: '2026-09-18', summary: 'Named eips[] provenance.caveat includes a compact Spec: snapshot.' },

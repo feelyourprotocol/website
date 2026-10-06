@@ -28,10 +28,19 @@ Full index: [EIP catalogue](/use/coverage).
 
 ## What you can ask your agent
 
-- *“Run this under current mainnet EL (Fusaka / mainnet-el).”*
-- *“Verify this P-256 payload on Fusaka — does 0x100 return 0x01?”*
-- *“Compare ModExp gas: Pectra then Fusaka.”*
-- *“Same transfer on Fusaka vs Glamsterdam.”*
+<PromptList
+  :groups="[
+    {
+      label: 'Prompts to copy',
+      prompts: [
+        { text: `Run this under current mainnet EL (Fusaka / mainnet-el).`, fork: 'Fusaka' },
+        { text: `Verify this P-256 payload on Fusaka — does 0x100 return 0x01?`, fork: 'Fusaka', href: '/use/eips/eip-7951', hrefLabel: 'EIP-7951' },
+        { text: `Compare ModExp gas: Pectra then Fusaka.`, fork: 'Pectra vs Fusaka', href: '/use/eips/eip-7883', hrefLabel: 'EIP-7883' },
+        { text: `Same transfer on Fusaka vs Glamsterdam.`, fork: 'Fusaka vs Amsterdam' },
+      ],
+    },
+  ]"
+/>
 
 Pass `{ "baseHardfork": "fusaka", "eips": [] }` (or aliases `osaka`, `mainnet-el`). Fusaka is **not** the default lab fork — Glamsterdam is.
 
@@ -46,11 +55,10 @@ Provenance on a generic Fusaka run lists advertised modules **7883** and **7951*
 | [EIP catalogue](/use/coverage) | Lineage + EIP twins |
 | [Fork timeline](https://ethereum.org/ethereum-forks/) | External reference |
 
-## Changelog
-
-<Changelog
+<CollapsibleChangelog
   title="Current Mainnet Fork Changelog"
   :entries="[
+    { version: 'v0.8', date: '2026-10-06', summary: 'Launch polish — prompt cards; wording unchanged.' },
     { version: 'v0.7', date: '2026-09-29', summary: 'PeerDAS (EIP-7594) is coverage consensus. Blob sidecars stay out of this lab.' },
     { version: 'v0.6', date: '2026-09-17', summary: 'Fusaka twins stay first-class after activation (adoption runs, not only compares).' },
     { version: 'v0.5', date: '2026-09-17', summary: 'Twin pages linked from this fork doc (sidebar no longer lists EIPs).' },

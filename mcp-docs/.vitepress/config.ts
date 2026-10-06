@@ -35,6 +35,7 @@ export default defineConfig({
   description: MCP_DOCS_DESCRIPTION,
   /** README is contributor-facing only — keep it out of the built site + sitemap. */
   srcExclude: ['README.md'],
+  lastUpdated: true,
   head: [
     ['script', {}, 'document.documentElement.classList.add("fyp-site-mcp")'],
     ['meta', { name: 'twitter:card', content: 'summary_large_image' }],
@@ -87,6 +88,7 @@ export default defineConfig({
             { text: 'What you can ask', link: '/use/capabilities' },
             { text: 'Limits', link: '/use/guarantees' },
             { text: 'Pricing', link: '/use/pricing' },
+            { text: 'Terms', link: '/use/terms' },
             {
               text: 'Reference',
               collapsed: true,
@@ -134,10 +136,18 @@ export default defineConfig({
     search: {
       provider: 'local',
     },
+    editLink: {
+      pattern: 'https://github.com/feelyourprotocol/website/edit/main/mcp-docs/:path',
+      text: 'Edit this page on GitHub',
+    },
+    docFooter: {
+      prev: 'Previous',
+      next: 'Next',
+    },
     footer: {
       message:
         'Get started = connect and ask questions. Reference = catalogues and tool schemas. Internals = for builders.',
-      copyright: 'Feel Your Protocol',
+      copyright: 'Feel Your Protocol · <a href="/use/terms.html">Terms</a>',
     },
   },
 })

@@ -2,6 +2,16 @@
 
 > **Status:** Implemented — ships on the public MCP at launch. MCP tool: `describe_capabilities`. **Public endpoint not live.**
 
+<PromptCard
+  text="What can this MCP server run on Amsterdam, and which EIPs have runnable twins?"
+  fork="Amsterdam"
+  lookFor="named forks and the runnable eips[] rows"
+  tool="describe_capabilities"
+  toolHref="/use/tools/describe-capabilities"
+  hrefLabel="What you can ask"
+  href="/use/capabilities"
+/>
+
 ## Purpose
 
 Return a machine-readable snapshot of what this server can **actually run**: engine version, ceilings, **named fork capabilities**, **`inspectKinds`**, and **runnable EIP modules**. Each named fork describes a generic hardfork run (summary, keywords, **`tools`**, advertised `relatedEips`) — you do not need to name an EIP. Each EIP module describes **what became possible** (opcodes, encoding rules, keywords, **`tools`**) — not demo programs. Unimplemented EIPs are omitted. Use **`eips[].tools`** / **`namedForks[].tools`** to pick **`run_bytecode`**, **`run_transaction`**, **`run_block`**, **`generate_artifact`**, or **`inspect_artifact`**. **`queryShapes[]`** is the dictionary from internal catalog ids (`simulate`, `generate`, …) to those MCP names — do not call the `id`.
@@ -74,9 +84,7 @@ _Output (abbreviated):_
 
 [describe_capabilities.input.json](/schemas/describe_capabilities.input.json)
 
-## Changelog
-
-<Changelog
+<CollapsibleChangelog
   title="Describe Capabilities Changelog"
   :entries="[
     { version: 'v0.24', date: '2026-10-04', summary: 'EIP-7778 is a runnable Glamsterdam twin (run_transaction, run_block).' },
