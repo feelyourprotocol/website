@@ -20,6 +20,10 @@ This is the verb for wallet gas limits, contract deployment boundaries (EIP-7954
 
 Raw opcode / stack / precompile programs belong on [Run Bytecode](/use/tools/run-bytecode).
 
+## Agent voice
+
+Tell the user **paid gas**, wallet **gas limit**, logs, and **regular-gas** / **state-gas** splits in plain language. Use `regularGas` parts when explaining small gaps between similar transfers — not JSON names like `gasUsed` or `txStateGas` unless they asked for raw output.
+
 ## When to use
 
 - A generic **Glamsterdam** or **Fusaka** transaction (no EIP named)

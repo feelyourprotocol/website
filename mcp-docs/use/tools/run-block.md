@@ -20,6 +20,10 @@ This is the verb for a chosen beacon slot (`header.slotNumber` / [EIP-7843](/use
 
 A **single** paid transfer still belongs on [Run Transaction](/use/tools/run-transaction). Raw opcode / stack programs belong on [Run Bytecode](/use/tools/run-bytecode). Block-level access list JSON belongs on **`generate_artifact`** (not this tool).
 
+## Agent voice
+
+Tell the user **per-transaction paid gas**, receipts, and **regular-gas deltas** in plain language — not `transactions[].gasUsed` or header field names unless they asked for raw output.
+
 ## When to use
 
 - “What does SLOTNUM push if the header slot is 42?”

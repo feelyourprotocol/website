@@ -18,6 +18,10 @@ Run **caller-supplied** raw EVM bytecode under a chosen fork / EIP configuration
 
 Bytecode runs as a **VM message-call** (real execution account, call-frame gas — no 21,000 intrinsic). `SSTORE` persists for the duration of that call. Optional `accounts` seeds code, balance, and storage in the **same** request.
 
+## Agent voice
+
+Tell the user **call gas**, stack, and return data in plain language. Read `gasUsed` from the JSON internally; do not lead with that field name unless they asked for raw output.
+
 ## When to use
 
 - Generic hardfork runs (bytecode under **Glamsterdam** with no EIP named)

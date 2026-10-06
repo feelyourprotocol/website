@@ -30,6 +30,8 @@ Add a **section** when a miss repeats. Do not grow a mega-guide.
 
 **Prose in the quote.** Paste text uses human words (prefund storage, paid gas, call gas, block header total) — not MCP/JSON field names (`gasUsed`, `accounts[]`, `txRegularGas`). `lookFor` on the page may stay technical for reviewers.
 
+**Prose in the answer.** Connected agents should mirror that voice when reporting lab results: numbers from the tool JSON, labels in human words unless the user asked for raw fields.
+
 **Reuse.** [capabilities.md](mcp-docs/use/capabilities.md), [introduction.md](mcp-docs/use/introduction.md), and fork pages **reuse** the EIP sentence, not a vaguer twin. Tool-page openers that already pass the test stay.
 
 **Live voice.** Do not write “once the public MCP is live” — point at [Connect](/use/connect) as open now.
