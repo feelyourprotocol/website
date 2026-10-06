@@ -53,13 +53,20 @@ The lab does not replay Merge consensus, beacon withdrawals, or PeerDAS. Those i
 
 ## What you can ask your agent
 
-- *“Compare the same transfer on Berlin vs London — when did 1559 activate?”*
-- *“Run BASEFEE opcode bytecode on London vs Berlin.”*
-- *“When did PUSH0 activate — Paris vs Shapella?”*
+<PromptList
+  :groups="[
+    {
+      label: 'Prompts to copy',
+      prompts: [
+        { text: `Compare the same transfer on Berlin vs London — when did 1559 activate?`, fork: 'Berlin vs London' },
+        { text: `Run BASEFEE opcode bytecode on London vs Berlin.`, fork: 'Berlin vs London' },
+        { text: `When did PUSH0 activate — Paris vs Shapella?`, fork: 'Paris vs Shapella' },
+      ],
+    },
+  ]"
+/>
 
-## Changelog
-
-<Changelog
+<CollapsibleChangelog
   title="Historical Forks Catalogue Changelog"
   :entries="[
     { version: 'v0.7', date: '2026-09-29', summary: 'Merge, withdrawals, deposits, and max effective balance are coverage consensus.' },

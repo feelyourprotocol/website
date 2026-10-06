@@ -12,30 +12,32 @@ Prefer the visual twin? Many of these changes have [browser explorations](https:
 
 These are the highest-signal checks for integrators and auditors — exact gas and receipts, not LLM guesses.
 
-| Question | Twin |
-| --- | --- |
-| What intrinsic gas does a simple transfer use? | [EIP-2780](/use/eips/eip-2780) |
-| What does the first 1 wei to an empty account cost? | [EIP-8037](/use/eips/eip-8037) |
-| How does SSTORE on an existing slot price vs today’s mainnet? | [EIP-8038](/use/eips/eip-8038) |
-| Does a value transfer show up as a receipt log? | [EIP-7708](/use/eips/eip-7708) |
-| I cleared storage and got a refund — why does the block still count the full gas? | [EIP-7778](/use/eips/eip-7778) |
-
-**Example prompts**
-
-- *“What intrinsic gas does a plain ETH transfer use on Amsterdam?”*
-- *“Send 1 wei to an empty account on Amsterdam — wallet gas breakdown.”*
-- *“SSTORE value 7 into slot 3 — Amsterdam vs Fusaka gas.”*
-- *“Transfer 1 ETH — what logs appear in the receipt on Amsterdam?”*
+<PromptList
+  :groups="[
+    {
+      label: 'Prompts to copy',
+      prompts: [
+        { text: `What intrinsic gas does a plain ETH transfer use on Amsterdam?`, fork: 'Amsterdam', href: '/use/eips/eip-2780', hrefLabel: 'EIP-2780' },
+        { text: `Send 1 wei to an empty account on Amsterdam — wallet gas breakdown.`, fork: 'Amsterdam', href: '/use/eips/eip-8037', hrefLabel: 'EIP-8037' },
+        { text: `SSTORE value 7 into slot 3 — Amsterdam vs Fusaka gas.`, fork: 'Fusaka vs Amsterdam', href: '/use/eips/eip-8038', hrefLabel: 'EIP-8038' },
+        { text: `Transfer 1 ETH — what logs appear in the receipt on Amsterdam?`, fork: 'Amsterdam', href: '/use/eips/eip-7708', hrefLabel: 'EIP-7708' },
+        { text: `I cleared storage and got a refund — why does the block still count the full gas?`, fork: 'Amsterdam', href: '/use/eips/eip-7778', hrefLabel: 'EIP-7778' },
+      ],
+    },
+  ]"
+/>
 
 ## Also on Amsterdam
 
-| Topic | Twin |
-| --- | --- |
-| Contract creation size limit | [EIP-7954](/use/eips/eip-7954) |
-| Block access lists (generate / inspect) | [EIP-7928](/use/eips/eip-7928) |
-| DUPN / SWAPN / EXCHANGE | [EIP-8024](/use/eips/eip-8024) |
-| SLOTNUM opcode / header slot in lab blocks | [EIP-7843](/use/eips/eip-7843) |
-| Calldata floor (64 gas per byte when the call does little else) | [EIP-7976](/use/eips/eip-7976) |
+<IconGrid
+  :items="[
+    { icon: 'boundary', title: 'Contract creation size limit', detail: 'EIP-7954', href: '/use/eips/eip-7954' },
+    { icon: 'shield', title: 'Block access lists', detail: 'EIP-7928 — generate and inspect', href: '/use/eips/eip-7928' },
+    { icon: 'stack', title: 'DUPN / SWAPN / EXCHANGE', detail: 'EIP-8024', href: '/use/eips/eip-8024' },
+    { icon: 'clock', title: 'SLOTNUM opcode', detail: 'EIP-7843 — header slot in lab blocks', href: '/use/eips/eip-7843' },
+    { icon: 'scale', title: 'Calldata floor', detail: 'EIP-7976 — 64 gas per byte when the call does little else', href: '/use/eips/eip-7976' },
+  ]"
+/>
 
 ## Compare to mainnet today
 
@@ -45,9 +47,13 @@ When you care about **before vs after**, ask for the same experiment on **Fusaka
 
 ## How your agent runs it
 
-1. Connect — [Connect](/use/connect)
-2. Ask in plain language — [What you can ask](/use/capabilities)
-3. Optional deep dive — per-EIP pages above or the full [EIP catalogue](/use/coverage)
+<Steps
+  :steps="[
+    { title: 'Connect', href: '/use/connect' },
+    { title: 'Ask in plain language', href: '/use/capabilities' },
+    { title: 'Optional deep dive', href: '/use/coverage', detail: 'Per-EIP pages above or the full EIP catalogue.' },
+  ]"
+/>
 
 Bundled rule changes that do not have their own exploration still apply on Amsterdam. SELFDESTRUCT no longer burns ETH. Access-list bytes pay the same 64-gas floor as calldata. Your agent uses generic Amsterdam runs without naming those ids.
 
@@ -63,11 +69,10 @@ Consensus-layer and networking EIPs scheduled beside Amsterdam are **not** execu
 | [Limits](/use/guarantees) | Determinism, BYOS, ceilings |
 | [EIP-7773](https://eips.ethereum.org/EIPS/eip-7773) | Glamsterdam meta |
 
-## Changelog
-
-<Changelog
+<CollapsibleChangelog
   title="Preview Forks (Glamsterdam) Changelog"
   :entries="[
+    { version: 'v1.5', date: '2026-10-06', summary: 'Launch polish — prompt cards and icon cards; wording unchanged.' },
     { version: 'v1.4', date: '2026-10-04', summary: 'EIP-7778 joins the advertised twins — refunds stay on the bill, not the block.' },
     { version: 'v1.3', date: '2026-10-04', summary: 'EIP-8282 is coverage unshown. Lab blocks do not return builder requests.' },
     { version: 'v1.2', date: '2026-10-04', summary: 'EIP-7997 is coverage unshown. The fork does not install the CREATE2 factory.' },

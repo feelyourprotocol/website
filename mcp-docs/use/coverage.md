@@ -72,9 +72,7 @@ Canonical metadata for twins lives in website `src/explorations/eip-NNNN/canonic
 
 **`informational`** means an analysis or a schedule. This lab does not execute it, and there is no page here. Glamsterdam: 7904, 8261. Naming one in `eips` is rejected.
 
-## Changelog
-
-<Changelog
+<CollapsibleChangelog
   title="Coverage Changelog"
   :entries="[
     { version: 'v0.40', date: '2026-10-04', summary: 'EIP-7981 supported row documents accessList on run_transaction.' },

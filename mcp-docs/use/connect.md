@@ -4,98 +4,64 @@
 **Target: 5–9 October 2026.** The hosted URL below is **not live yet**. You can prepare config now; reconnect or refresh tools once we announce the endpoint on [X @FeelEthereum](https://x.com/FeelEthereum).
 :::
 
-**Endpoint (at launch):** `https://mcp.feelyourprotocol.org/mcp`  
-**Cost at launch:** free — full Glamsterdam hardfork, no wallet, no API key.
+One URL, no wallet, no API key. Add it to your agent, then ask a question in plain language.
 
-This page is the **hosted** product only — not a self-host guide. For browser learning, use **[feelyourprotocol.org](https://feelyourprotocol.org)**.
+<EndpointCard />
 
-## After you connect — try this first
+<LaunchFacts
+  :facts="[
+    { title: 'Cost at launch', detail: 'Free — full Glamsterdam hardfork' },
+    { title: 'Auth', detail: 'None — no wallet, no API key' },
+    { title: 'Scope', detail: 'Hosted product only, not a self-host guide' },
+  ]"
+/>
+
+For browser learning, use **[feelyourprotocol.org](https://feelyourprotocol.org)**.
+
+## Add the server to your agent
+
+<span id="cursor"></span><span id="claude-desktop"></span><span id="openai-codex-cli-agents"></span><span id="other-mcp-hosts"></span>
+
+Pick your client. Each tab has the shortest path for that client.
+
+<ClientTabs />
+
+## After you connect — try this first {#after-you-connect-try-this-first}
 
 Ask your agent:
 
-> *“Send 1 wei to an empty account under Amsterdam and tell me the gas the wallet would need.”*
+<PromptCard
+  text="Send 1 wei to an empty account under Amsterdam and tell me the gas the wallet would need."
+  fork="Amsterdam"
+  lookFor="gasUsed near 204,600, with txStateGas near 183,600"
+  tool="run_transaction"
+  toolHref="/use/tools/run-transaction"
+  href="/use/eips/eip-8037"
+  hrefLabel="EIP-8037"
+/>
 
 That exercises first-touch state gas ([EIP-8037](/use/eips/eip-8037)) without you naming tools or JSON fields. Then browse [Amsterdam now](/use/forks/glamsterdam) for more prompts.
 
----
-
-## Cursor
-
-1. Open **Cursor Settings → MCP** (or edit your user `mcp.json`).
-2. Add a server entry (name is yours; `feel-your-protocol` matches our docs):
-
-```json
-{
-  "mcpServers": {
-    "feel-your-protocol": {
-      "url": "https://mcp.feelyourprotocol.org/mcp"
-    }
-  }
-}
-```
-
-3. Save and **restart Cursor** or reload MCP servers from settings.
-4. In chat, confirm tools appear (six verbs including run and probe capabilities).
-5. Run the [first prompt](#after-you-connect-try-this-first) above.
-
-Remote HTTP MCP requires a Cursor build that supports URL transport — update Cursor if the server fails to connect once the endpoint is live.
-
----
-
-## Claude (Desktop)
-
-1. Open **Settings → Developer → Edit Config** (MCP configuration location varies slightly by Claude Desktop version — use the official “custom MCP server” docs for your install).
-2. Register the same URL:
-
-```json
-{
-  "mcpServers": {
-    "feel-your-protocol": {
-      "url": "https://mcp.feelyourprotocol.org/mcp"
-    }
-  }
-}
-```
-
-3. Restart Claude Desktop.
-4. Start a new conversation and ask the [first prompt](#after-you-connect-try-this-first).
-
-If your Claude product only lists pre-approved connectors today, save this config and retry at launch — we document the stable URL here.
-
----
-
-## OpenAI Codex / CLI agents
-
-Point your MCP-capable Codex or agent CLI at the same HTTP endpoint. Exact flag names depend on the client; the invariant is:
-
-- **Transport:** HTTP MCP at `https://mcp.feelyourprotocol.org/mcp`
-- **Discovery:** allow the host to list tools from the server
-- **First test:** the [8037 prompt](#after-you-connect-try-this-first)
-
-When OpenAI ships or updates Codex MCP wiring, this URL stays the single integration point — no per-EIP endpoints.
-
----
-
-## Other MCP hosts
-
-Any host that supports **remote MCP over HTTP** can use:
-
-| Field | Value |
-| --- | --- |
-| URL | `https://mcp.feelyourprotocol.org/mcp` |
-| Auth at launch | none |
-
 After connect, prefer natural-language questions. The agent should call the server’s generic tools (`run_bytecode`, `run_transaction`, `run_block`, …) — you do not need to memorize them. Optional compare: ask for the **same question on Fusaka then Amsterdam** and diff gas or receipts.
+
+## If it does not work
+
+| Symptom | Try this |
+| --- | --- |
+| No tools show up | Restart the client or reload MCP servers, then check that the URL ends in `/mcp`. |
+| Connection error before launch | The hosted endpoint is not live until launch week. Keep the config and retry once we announce it. |
+| Connection error after launch | Update your client — remote HTTP MCP needs a recent build. |
+| Claude does not list the server | Add it as a custom connector under Customize → Connectors, not in the local config file. |
+| The agent answers without calling a tool | Ask it to run the simulation on the MCP server, and name the fork (Amsterdam or Fusaka). |
 
 ## What the server exposes
 
 At launch you get probe + run + artifact tools covering Amsterdam and the earlier fork lineage. Machine-readable schemas live under [Reference → Tool schemas](/use/tools/describe-capabilities). Human “what can I ask?” lives on [What you can ask](/use/capabilities).
 
-## Changelog
-
-<Changelog
+<CollapsibleChangelog
   title="Connect Changelog"
   :entries="[
+    { version: 'v0.15', date: '2026-10-06', summary: 'Launch polish — endpoint card, client tabs with install link and one-line commands, troubleshooting table.' },
     { version: 'v0.14', date: '2026-10-01', summary: 'Cursor, Claude, Codex, and generic HTTP MCP setup; first-test prompt; launch still pending.' },
     { version: 'v0.13', date: '2026-10-01', summary: 'Launch connect is free. Client config still lands with the endpoint.' },
     { version: 'v0.12', date: '2026-09-16', summary: 'Example prompt for a generic Glamsterdam run with no EIP named.' },

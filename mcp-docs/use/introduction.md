@@ -24,41 +24,89 @@ Feel Your Protocol closes that gap with a **hosted lab**: the same EthereumJS ex
 
 ## Why this implementation
 
-| You get | Why it matters |
-| --- | --- |
-| **Amsterdam by default** | The upcoming hardfork is the product at launch — full Glamsterdam rules, not a cherry-picked demo. |
-| **Bring your own state** | Bytecode, transactions, and demo accounts travel in the same call. No archive node, no “trust our mainnet fork.” |
-| **Generic verbs** | One server answers opcode, wallet-gas, and small-block questions — your agent picks the shape, not twenty EIP endpoints. |
-| **Honest scope** | No Solidity compile, no chain RPC, no multi-block historical replay. What we refuse is as important as what we run. |
+<IconGrid
+  :items="[
+    { icon: 'spark', title: 'Amsterdam by default', detail: 'The upcoming hardfork is the product at launch — full Glamsterdam rules, not a cherry-picked demo.' },
+    { icon: 'cube', title: 'Bring your own state', detail: 'Bytecode, transactions, and demo accounts travel in the same call. No archive node, no “trust our mainnet fork.”' },
+    { icon: 'terminal', title: 'Generic verbs', detail: 'One server answers opcode, wallet-gas, and small-block questions — your agent picks the shape, not twenty EIP endpoints.' },
+    { icon: 'boundary', title: 'Honest scope', detail: 'No Solidity compile, no chain RPC, no multi-block historical replay. What we refuse is as important as what we run.' },
+  ]"
+/>
 
 ## Try these first on Amsterdam
 
 After [Connect](/use/connect), paste a prompt — you do not need EIP numbers in conversation.
 
-| Ask your agent | Twin |
-| --- | --- |
-| *“What intrinsic gas does a simple ETH transfer use under Amsterdam?”* | [EIP-2780](/use/eips/eip-2780) |
-| *“This calldata is mostly zeros. What does it cost on Amsterdam versus Fusaka?”* | [EIP-7976](/use/eips/eip-7976) |
-| *“Send 1 wei to an empty account on Amsterdam — what gas does the wallet need?”* | [EIP-8037](/use/eips/eip-8037) |
-| *“How does SSTORE on an existing slot price on Amsterdam vs Fusaka?”* | [EIP-8038](/use/eips/eip-8038) |
-| *“I cleared storage and got a refund. Why does the block still count the full gas?”* | [EIP-7778](/use/eips/eip-7778) |
-| *“Does a value transfer emit a receipt log on Amsterdam?”* | [EIP-7708](/use/eips/eip-7708) |
+<PromptList
+  :groups="[
+    {
+      label: 'Gas and receipts',
+      prompts: [
+        {
+          text: `What intrinsic gas does a simple ETH transfer use under Amsterdam?`,
+          fork: 'Amsterdam',
+          href: '/use/eips/eip-2780',
+          hrefLabel: 'EIP-2780',
+        },
+        {
+          text: `This calldata is mostly zeros. What does it cost on Amsterdam versus Fusaka?`,
+          fork: 'Fusaka vs Amsterdam',
+          href: '/use/eips/eip-7976',
+          hrefLabel: 'EIP-7976',
+        },
+        {
+          text: `Send 1 wei to an empty account on Amsterdam — what gas does the wallet need?`,
+          fork: 'Amsterdam',
+          href: '/use/eips/eip-8037',
+          hrefLabel: 'EIP-8037',
+        },
+        {
+          text: `Does a value transfer emit a receipt log on Amsterdam?`,
+          fork: 'Amsterdam',
+          href: '/use/eips/eip-7708',
+          hrefLabel: 'EIP-7708',
+        },
+      ],
+    },
+    {
+      label: 'Storage and blocks',
+      prompts: [
+        {
+          text: `How does SSTORE on an existing slot price on Amsterdam vs Fusaka?`,
+          fork: 'Fusaka vs Amsterdam',
+          href: '/use/eips/eip-8038',
+          hrefLabel: 'EIP-8038',
+        },
+        {
+          text: `I cleared storage and got a refund. Why does the block still count the full gas?`,
+          fork: 'Amsterdam',
+          href: '/use/eips/eip-7778',
+          hrefLabel: 'EIP-7778',
+        },
+      ],
+    },
+  ]"
+/>
 
 More on the Amsterdam bundle: [deploy limits](/use/eips/eip-7954), [block access lists](/use/eips/eip-7928), [stack opcodes](/use/eips/eip-8024), [SLOTNUM](/use/eips/eip-7843). Already on mainnet here: [ModExp](/use/eips/eip-7883), [P-256](/use/eips/eip-7951) on Fusaka.
 
 ## Where to go next
 
-1. **[Connect](/use/connect)** — Cursor, Claude, Codex, and a generic MCP config (steps ready before the URL goes live).
-2. **[Amsterdam now](/use/forks/glamsterdam)** — the fork bundle and the questions we highlight first.
-3. **[What you can ask](/use/capabilities)** — five jobs this server is built for.
+<IconGrid
+  :columns="3"
+  :items="[
+    { icon: 'terminal', title: 'Connect', detail: 'Cursor, Claude, Codex, and a generic MCP config — ready before the URL goes live.', href: '/use/connect' },
+    { icon: 'calendar', title: 'Amsterdam now', detail: 'The fork bundle and the questions we highlight first.', href: '/use/forks/glamsterdam' },
+    { icon: 'book', title: 'What you can ask', detail: 'Five jobs this server is built for.', href: '/use/capabilities' },
+  ]"
+/>
 
 Want to click through a change first? The [website explorations](https://feelyourprotocol.org) are the visual twin of many Amsterdam EIPs — same questions, human UI.
 
-## Changelog
-
-<Changelog
+<CollapsibleChangelog
   title="Introduction Changelog"
   :entries="[
+    { version: 'v0.17', date: '2026-10-06', summary: 'Launch polish — icon cards, prompt cards with EIP links; wording unchanged.' },
     { version: 'v0.16', date: '2026-10-01', summary: 'Launch table and Amsterdam prompt table moved from home — home is hero + features only.' },
     { version: 'v0.15', date: '2026-10-01', summary: 'User-facing rewrite — why deterministic Amsterdam lab; removed internals-first framing.' },
     { version: 'v0.14', date: '2026-10-01', summary: 'Launch is a free Glamsterdam MCP. Paid tier for newer EIPs comes later.' },

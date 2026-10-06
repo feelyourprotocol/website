@@ -4,62 +4,117 @@ You do not talk to the EVM in JSON. You talk to **your agent**, and the agent ca
 
 ## 1. Wallet and transaction gas
 
-**When it fits:** intrinsic gas, self-send vs transfer, contract creation limits, receipt logs on value moves, “what gasLimit should my wallet show?”
+<IconNote icon="inbox" title="When it fits">
 
-**Example prompts**
+Intrinsic gas, self-send vs transfer, contract creation limits, receipt logs on value moves, “what gasLimit should my wallet show?”
 
-- *“What intrinsic gas does a plain ETH transfer use on Amsterdam?”* → [EIP-2780](/use/eips/eip-2780)
-- *“This calldata is mostly zeros. What does it cost on Amsterdam versus Fusaka?”* → [EIP-7976](/use/eips/eip-7976)
-- *“Deploy a contract this size on Amsterdam — do I hit the limit?”* → [EIP-7954](/use/eips/eip-7954)
-- *“Does this transfer emit a log in the receipt on Amsterdam?”* → [EIP-7708](/use/eips/eip-7708)
-- *“First 1 wei to an empty account — break down regular vs state gas.”* → [EIP-8037](/use/eips/eip-8037)
+</IconNote>
+
+<PromptList
+  :groups="[
+    {
+      label: 'Example prompts',
+      prompts: [
+        { text: `What intrinsic gas does a plain ETH transfer use on Amsterdam?`, fork: 'Amsterdam', href: '/use/eips/eip-2780', hrefLabel: 'EIP-2780' },
+        { text: `This calldata is mostly zeros. What does it cost on Amsterdam versus Fusaka?`, fork: 'Fusaka vs Amsterdam', href: '/use/eips/eip-7976', hrefLabel: 'EIP-7976' },
+        { text: `Deploy a contract this size on Amsterdam — do I hit the limit?`, fork: 'Amsterdam', href: '/use/eips/eip-7954', hrefLabel: 'EIP-7954' },
+        { text: `Does this transfer emit a log in the receipt on Amsterdam?`, fork: 'Amsterdam', href: '/use/eips/eip-7708', hrefLabel: 'EIP-7708' },
+        { text: `First 1 wei to an empty account — break down regular vs state gas.`, fork: 'Amsterdam', href: '/use/eips/eip-8037', hrefLabel: 'EIP-8037' },
+      ],
+    },
+  ]"
+/>
 
 **Compare (only when you ask):** run the same transfer on **Fusaka** then **Amsterdam** and diff `gasUsed`.
 
 ## 2. Bytecode, opcodes, and precompiles
 
-**When it fits:** stack opcodes, ModExp cost curves, P-256 verify, arbitrary bytecode under a fork.
+<IconNote icon="chip" title="When it fits">
 
-**Example prompts**
+Stack opcodes, ModExp cost curves, P-256 verify, arbitrary bytecode under a fork.
 
-- *“Run this bytecode on Amsterdam and show gas and the final stack.”*
-- *“Call ModExp with these inputs — gas on Pectra vs Fusaka.”* → [EIP-7883](/use/eips/eip-7883)
-- *“Does secp256r1 precompile accept this signature on mainnet rules?”* → [EIP-7951](/use/eips/eip-7951)
-- *“Exercise DUPN/SWAPN on Amsterdam.”* → [EIP-8024](/use/eips/eip-8024)
+</IconNote>
+
+<PromptList
+  :groups="[
+    {
+      label: 'Example prompts',
+      prompts: [
+        { text: `Run this bytecode on Amsterdam and show gas and the final stack.`, fork: 'Amsterdam' },
+        { text: `Call ModExp with these inputs — gas on Pectra vs Fusaka.`, fork: 'Pectra vs Fusaka', href: '/use/eips/eip-7883', hrefLabel: 'EIP-7883' },
+        { text: `Does secp256r1 precompile accept this signature on mainnet rules?`, fork: 'Fusaka', href: '/use/eips/eip-7951', hrefLabel: 'EIP-7951' },
+        { text: `Exercise DUPN/SWAPN on Amsterdam.`, fork: 'Amsterdam', href: '/use/eips/eip-8024', hrefLabel: 'EIP-8024' },
+      ],
+    },
+  ]"
+/>
 
 You supply bytecode (and optional [demo accounts](/use/tools/run-bytecode#byos-prestate-accounts)) — the server does not ship demo contracts.
 
 ## 3. Storage gas and program gas
 
-**When it fits:** SSTORE/SLOAD pricing, existing-slot vs new-slot behavior, Glamsterdam **state gas** split.
+<IconNote icon="stack" title="When it fits">
 
-**Example prompts**
+SSTORE/SLOAD pricing, existing-slot vs new-slot behavior, Glamsterdam **state gas** split.
 
-- *“SSTORE slot 3 from cold — Amsterdam vs Fusaka.”* → [EIP-8038](/use/eips/eip-8038)
-- *“Seed storage in accounts[] and run this bytecode — what gas?”*
+</IconNote>
+
+<PromptList
+  :groups="[
+    {
+      label: 'Example prompts',
+      prompts: [
+        { text: `SSTORE slot 3 from cold — Amsterdam vs Fusaka.`, fork: 'Fusaka vs Amsterdam', href: '/use/eips/eip-8038', hrefLabel: 'EIP-8038' },
+        { text: `Seed storage in accounts[] and run this bytecode — what gas?`, fork: 'Amsterdam' },
+      ],
+    },
+  ]"
+/>
 
 Bytecode path vs transaction path: program gas often belongs in a bytecode run; paid tx totals belong in a transaction run. Your agent can choose; both are supported for 8038.
 
 ## 4. Small lab blocks
 
-**When it fits:** several transactions in one block, header slot/number, per-tx receipts together.
+<IconNote icon="cube" title="When it fits">
 
-**Example prompts**
+Several transactions in one block, header slot/number, per-tx receipts together.
 
-- *“Run these two transfers as one Amsterdam block and show each receipt.”*
-- *“Set header slot and run one tx — what changes?”* → [EIP-7843](/use/eips/eip-7843) context
-- *“Clear a storage slot on Amsterdam. What do I pay, and what does the block count?”* → [EIP-7778](/use/eips/eip-7778)
+</IconNote>
+
+<PromptList
+  :groups="[
+    {
+      label: 'Example prompts',
+      prompts: [
+        { text: `Run these two transfers as one Amsterdam block and show each receipt.`, fork: 'Amsterdam' },
+        { text: `Set header slot and run one tx — what changes?`, fork: 'Amsterdam', href: '/use/eips/eip-7843', hrefLabel: 'EIP-7843 context' },
+        { text: `Clear a storage slot on Amsterdam. What do I pay, and what does the block count?`, fork: 'Amsterdam', href: '/use/eips/eip-7778', hrefLabel: 'EIP-7778' },
+      ],
+    },
+  ]"
+/>
 
 Up to **8** transactions per block. Not historical chain replay.
 
 ## 5. Artifacts without executing chain history
 
-**When it fits:** block access list JSON, structure checks, hashes — caller-supplied blobs.
+<IconNote icon="shield" title="When it fits">
 
-**Example prompts**
+Block access list JSON, structure checks, hashes — caller-supplied blobs.
 
-- *“Generate a BAL for this lab block under Amsterdam.”* → [EIP-7928](/use/eips/eip-7928)
-- *“Inspect this BAL JSON — valid structure and hash?”*
+</IconNote>
+
+<PromptList
+  :groups="[
+    {
+      label: 'Example prompts',
+      prompts: [
+        { text: `Generate a BAL for this lab block under Amsterdam.`, fork: 'Amsterdam', href: '/use/eips/eip-7928', hrefLabel: 'EIP-7928' },
+        { text: `Inspect this BAL JSON — valid structure and hash?`, fork: 'Amsterdam', href: '/use/eips/eip-7928', hrefLabel: 'EIP-7928' },
+      ],
+    },
+  ]"
+/>
 
 ## What we do not do
 
@@ -81,11 +136,10 @@ The agent maps your question to a small set of MCP tools. You rarely need these 
 | Multi-tx lab block | `run_block` |
 | BAL generate / inspect | `generate_artifact`, `inspect_artifact` |
 
-## Changelog
-
-<Changelog
+<CollapsibleChangelog
   title="Capabilities Changelog"
   :entries="[
+    { version: 'v0.20', date: '2026-10-06', summary: 'Launch polish — prompt cards per job; wording unchanged.' },
     { version: 'v0.19', date: '2026-10-01', summary: 'Reframed as five user jobs; tool table moved to integrator footnote.' },
     { version: 'v0.18', date: '2026-09-22', summary: 'Probe queryShapes dictionary; EIP/fork rows list tools (MCP names), not shapes.' },
     { version: 'v0.17', date: '2026-09-22', summary: 'Renamed generate → generate_artifact and inspect → inspect_artifact.' },

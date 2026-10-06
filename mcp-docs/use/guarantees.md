@@ -35,9 +35,7 @@ Payment (when the paid tier exists) does **not** raise these ceilings.
 - **ERC / application-layer semantics** — base-layer execution only.
 - **Historical multi-block replay** — archive-node territory; one lab block (≤8 txs) is the block-shaped tool.
 
-## Changelog
-
-<Changelog
+<CollapsibleChangelog
   title="Guarantees Changelog"
   :entries="[
     { version: 'v0.9', date: '2026-10-01', summary: 'User-facing Limits page — determinism, BYOS, ceilings; provenance in one paragraph.' },

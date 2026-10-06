@@ -86,6 +86,9 @@
 .fyp-site-mcp .VPHomeHero .name {
   background: linear-gradient(90deg, var(--fyp-terminal-green), var(--fyp-cyan), var(--fyp-terminal-green));
   background-size: 200% 100%;
+  /* the `background` shorthand above resets clip — restore text clipping */
+  -webkit-background-clip: text;
+  background-clip: text;
   animation: fyp-gradient-shift 10s ease-in-out infinite;
 }
 
@@ -204,5 +207,929 @@
     flex: 0 0 25%;
     width: 25%;
     max-width: 25%;
+  }
+}
+
+.fyp-site-mcp .VPHomeFeatures .VPFeature .VPImage {
+  width: 28px;
+  height: 28px;
+  margin-bottom: 14px;
+}
+
+.fyp-site-mcp .fyp-home-section {
+  max-width: 1152px;
+  margin: 1rem auto 3rem;
+  padding: 0 24px;
+}
+
+@media (min-width: 960px) {
+  .fyp-site-mcp .fyp-home-section {
+    max-width: 720px;
+  }
+}
+
+.fyp-site-mcp .fyp-home-section .fyp-door-strip {
+  padding: 0;
+  margin: 1rem 0;
+}
+
+/* ============================================================
+ * Doc rhythm — headings, tables, code, callouts
+ * ============================================================ */
+.fyp-site-mcp .vp-doc h2 {
+  margin-top: 2.5rem;
+  padding-top: 1.75rem;
+  border-top: 1px solid var(--vp-c-divider);
+}
+
+/* EIP pages keep the h1 in Markdown (page title, outline, search) but show EipHeader instead */
+.fyp-site-mcp .vp-doc h1:has(+ .fyp-eip-header) {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.fyp-site-mcp .vp-doc h1 + h2,
+.fyp-site-mcp .vp-doc .fyp-eip-header + h2,
+.fyp-site-mcp .vp-doc h2:first-of-type {
+  border-top: none;
+  padding-top: 0;
+}
+
+.fyp-site-mcp .vp-doc h3 {
+  margin-top: 1.75rem;
+}
+
+.fyp-site-mcp .vp-doc table {
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
+  border-radius: 8px;
+  border: 1px solid var(--vp-c-divider);
+}
+
+.fyp-site-mcp .vp-doc tr {
+  background: transparent;
+}
+
+.fyp-site-mcp .vp-doc tr:nth-child(2n) {
+  background: var(--vp-c-bg-soft);
+}
+
+.fyp-site-mcp .vp-doc th {
+  font-family: var(--fyp-font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--vp-c-text-2);
+  background: var(--vp-c-bg-soft);
+}
+
+.fyp-site-mcp .vp-doc th,
+.fyp-site-mcp .vp-doc td {
+  border-color: var(--vp-c-divider);
+}
+
+.fyp-site-mcp .vp-doc div[class*='language-'] {
+  border-radius: 8px;
+  border: 1px solid var(--vp-c-divider);
+}
+
+.fyp-site-mcp .vp-doc .custom-block {
+  border-radius: 8px;
+  border-width: 0 0 0 3px;
+  border-style: solid;
+}
+
+.fyp-site-mcp .vp-doc .custom-block.warning {
+  border-color: var(--fyp-amber);
+}
+
+.fyp-site-mcp .vp-doc .custom-block.tip {
+  border-color: var(--fyp-terminal-green);
+}
+
+.fyp-site-mcp .vp-doc .custom-block-title {
+  font-family: var(--fyp-font-mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.04em;
+}
+
+.fyp-site-mcp .vp-doc a {
+  text-underline-offset: 3px;
+}
+
+/* ============================================================
+ * Chips (fork, status, tool)
+ * ============================================================ */
+.fyp-chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.12rem 0.55rem;
+  border-radius: 999px;
+  border: 1px solid var(--vp-c-divider);
+  font-family: var(--fyp-font-mono);
+  font-size: 0.7rem;
+  font-weight: 600;
+  line-height: 1.5;
+  text-decoration: none !important;
+  color: var(--vp-c-text-2);
+  background: var(--vp-c-bg);
+}
+
+a.fyp-chip:hover {
+  border-color: var(--vp-c-brand-1);
+  color: var(--vp-c-brand-1);
+}
+
+.fyp-chip--fork {
+  color: var(--vp-c-brand-2);
+  border-color: color-mix(in srgb, var(--vp-c-brand-1) 40%, transparent);
+  background: var(--vp-c-brand-soft);
+}
+
+.fyp-chip--status {
+  color: var(--vp-c-brand-2);
+  border-color: var(--vp-c-brand-1);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+/* ============================================================
+ * CopyButton
+ * ============================================================ */
+.fyp-copy-btn {
+  flex: 0 0 auto;
+  min-height: 28px;
+  padding: 0.15rem 0.7rem;
+  border-radius: 6px;
+  border: 1px solid var(--vp-c-divider);
+  background: var(--vp-c-bg);
+  color: var(--vp-c-text-2);
+  font-family: var(--fyp-font-mono);
+  font-size: 0.72rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    border-color 0.15s ease,
+    color 0.15s ease;
+}
+
+.fyp-copy-btn:hover,
+.fyp-copy-btn:focus-visible {
+  border-color: var(--vp-c-brand-1);
+  color: var(--vp-c-brand-1);
+}
+
+.fyp-copy-btn--done {
+  border-color: var(--vp-c-brand-1);
+  color: var(--vp-c-brand-2);
+  background: var(--vp-c-brand-soft);
+}
+
+/* ============================================================
+ * PromptCard / PromptList — the star of the docs
+ * ============================================================ */
+.fyp-prompt-list {
+  margin: 1.25rem 0;
+}
+
+.fyp-prompt-list__intro {
+  color: var(--vp-c-text-2);
+  margin: 0 0 1rem;
+}
+
+.fyp-prompt-list__group + .fyp-prompt-list__group {
+  margin-top: 1.5rem;
+}
+
+.fyp-prompt-list__label {
+  margin: 0 0 0.6rem !important;
+  font-family: var(--fyp-font-mono);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--vp-c-text-2);
+}
+
+.fyp-prompt-list__cards {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.fyp-prompt-card {
+  margin: 1rem 0;
+  padding: 0.75rem 1rem 0.85rem;
+  border: 1px solid var(--vp-c-divider);
+  border-left: 3px solid var(--fyp-terminal-green);
+  border-radius: 8px;
+  background: var(--vp-c-bg);
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.fyp-prompt-list__cards .fyp-prompt-card {
+  margin: 0;
+}
+
+.fyp-prompt-card:hover {
+  box-shadow: 0 2px 12px rgba(34, 197, 94, 0.12);
+}
+
+.fyp-prompt-card__meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  min-height: 28px;
+}
+
+.fyp-prompt-card__quote,
+.fyp-site-mcp .vp-doc .fyp-prompt-card__quote {
+  margin: 0.35rem 0 0;
+  padding: 0;
+  border: none;
+  color: var(--vp-c-text-1);
+}
+
+.fyp-prompt-card__quote p {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.55;
+  overflow-wrap: anywhere;
+}
+
+.fyp-prompt-card__quote p::before {
+  content: '“';
+  color: var(--vp-c-brand-1);
+  font-family: var(--fyp-font-mono);
+}
+
+.fyp-prompt-card__quote p::after {
+  content: '”';
+  color: var(--vp-c-brand-1);
+  font-family: var(--fyp-font-mono);
+}
+
+.fyp-prompt-card__hint,
+.fyp-prompt-card__foot {
+  margin: 0.55rem 0 0 !important;
+  font-size: 0.8rem;
+  line-height: 1.5;
+  color: var(--vp-c-text-2);
+}
+
+.fyp-prompt-card__hint-label {
+  margin-right: 0.5rem;
+  font-family: var(--fyp-font-mono);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--vp-c-brand-2);
+}
+
+.fyp-prompt-card__foot {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.25rem 1rem;
+  padding-top: 0.5rem;
+  border-top: 1px dashed var(--vp-c-divider);
+}
+
+.fyp-prompt-card__foot code {
+  font-size: 0.78rem;
+}
+
+.fyp-prompt-card__more {
+  font-weight: 600;
+}
+
+/* ============================================================
+ * EipHeader / LeadQuestion
+ * ============================================================ */
+.fyp-eip-header {
+  margin: 0 0 2rem;
+  padding: 1rem 1.15rem;
+  border: 1px solid var(--vp-c-divider);
+  border-left: 3px solid var(--fyp-terminal-green);
+  border-radius: 8px;
+  background: var(--vp-c-bg-soft);
+}
+
+.fyp-eip-header__row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem 1rem;
+}
+
+.fyp-eip-header__id {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.25rem 0.75rem;
+  margin: 0 !important;
+  min-width: 0;
+}
+
+.fyp-eip-header__number {
+  font-family: var(--fyp-font-mono);
+  font-size: 1.6rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--vp-c-brand-1);
+}
+
+.fyp-eip-header__title {
+  font-family: var(--fyp-font-mono);
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--vp-c-text-1);
+  overflow-wrap: anywhere;
+}
+
+.fyp-eip-header__launch {
+  margin: 0.6rem 0 0 !important;
+  font-size: 0.85rem;
+  color: var(--vp-c-text-2);
+}
+
+.fyp-eip-header__chips {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: 0.75rem;
+}
+
+.fyp-eip-header__tools-label {
+  margin-left: 0.4rem;
+  font-family: var(--fyp-font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--vp-c-text-3);
+}
+
+.fyp-eip-header__links {
+  margin: 0.75rem 0 0 !important;
+  font-size: 0.88rem;
+}
+
+.fyp-lead-question,
+.fyp-site-mcp .vp-doc .fyp-lead-question {
+  margin: 0.5rem 0 1.25rem;
+  font-size: 1.15rem;
+  line-height: 1.6;
+  font-weight: 500;
+  color: var(--vp-c-text-1);
+}
+
+/* ============================================================
+ * SpecTable
+ * ============================================================ */
+.fyp-spec-table {
+  margin: 1rem 0;
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.fyp-spec-table__row {
+  display: grid;
+  grid-template-columns: minmax(7rem, 11rem) 1fr;
+  gap: 0.25rem 1rem;
+  padding: 0.55rem 1rem;
+}
+
+.fyp-spec-table__row:nth-child(even) {
+  background: var(--vp-c-bg-soft);
+}
+
+.fyp-spec-table__row + .fyp-spec-table__row {
+  border-top: 1px solid var(--vp-c-divider);
+}
+
+.fyp-spec-table dt {
+  font-family: var(--fyp-font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--vp-c-text-2);
+}
+
+.fyp-spec-table dd {
+  margin: 0;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+/* ============================================================
+ * Steps
+ * ============================================================ */
+.fyp-steps,
+.fyp-site-mcp .vp-doc ol.fyp-steps {
+  list-style: none;
+  margin: 1rem 0;
+  padding: 0;
+}
+
+.fyp-steps__item,
+.fyp-site-mcp .vp-doc .fyp-steps__item {
+  position: relative;
+  display: flex;
+  gap: 0.9rem;
+  margin: 0;
+  padding: 0 0 1.1rem;
+}
+
+.fyp-steps__item:not(:last-child)::before {
+  content: '';
+  position: absolute;
+  left: 13px;
+  top: 28px;
+  bottom: 0;
+  border-left: 1px dashed var(--vp-c-divider);
+}
+
+.fyp-steps__marker {
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 1px solid var(--vp-c-brand-1);
+  background: var(--vp-c-brand-soft);
+  color: var(--vp-c-brand-2);
+  font-family: var(--fyp-font-mono);
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.fyp-steps__body {
+  min-width: 0;
+}
+
+.fyp-steps__title {
+  margin: 0.1rem 0 0 !important;
+  font-weight: 600;
+}
+
+.fyp-steps__detail {
+  margin: 0.2rem 0 0 !important;
+  font-size: 0.9rem;
+  color: var(--vp-c-text-2);
+}
+
+/* ============================================================
+ * EndpointCard / CodeSnippet
+ * ============================================================ */
+.fyp-endpoint-card {
+  margin: 1.25rem 0;
+  padding: 0.85rem 1rem;
+  border: 1px solid var(--vp-c-divider);
+  border-left: 3px solid var(--fyp-cyan);
+  border-radius: 8px;
+  background: var(--vp-c-bg);
+}
+
+.fyp-endpoint-card__label {
+  margin: 0 0 0.4rem !important;
+  font-family: var(--fyp-font-mono);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--vp-c-text-2);
+}
+
+.fyp-endpoint-card__row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem 1rem;
+}
+
+.fyp-endpoint-card__url {
+  min-width: 0;
+  font-family: var(--fyp-font-mono);
+  font-size: 0.95rem;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+  color: var(--vp-c-brand-2);
+}
+
+.fyp-code-snippet {
+  margin: 0.75rem 0;
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--vp-code-block-bg);
+}
+
+.fyp-code-snippet__caption {
+  padding: 0.4rem 0.9rem 0;
+  font-size: 0.8rem;
+  color: var(--vp-c-text-2);
+}
+
+.fyp-code-snippet__bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.35rem 0.6rem 0.35rem 0.9rem;
+  border-bottom: 1px solid var(--vp-c-divider);
+}
+
+.fyp-code-snippet__lang {
+  font-family: var(--fyp-font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--vp-c-text-3);
+}
+
+.fyp-code-snippet__pre {
+  margin: 0;
+  padding: 0.75rem 0.9rem;
+  overflow-x: auto;
+  font-family: var(--fyp-font-mono);
+  font-size: 0.82rem;
+  line-height: 1.6;
+}
+
+.fyp-code-snippet__pre code {
+  background: none;
+  padding: 0;
+  color: var(--vp-code-block-color);
+  white-space: pre;
+}
+
+/* ============================================================
+ * ClientTabs
+ * ============================================================ */
+.fyp-client-tabs {
+  margin: 1rem 0 1.5rem;
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--vp-c-bg);
+}
+
+.fyp-client-tabs__list {
+  display: flex;
+  overflow-x: auto;
+  border-bottom: 1px solid var(--vp-c-divider);
+  background: var(--vp-c-bg-soft);
+}
+
+.fyp-client-tabs__tab {
+  flex: 0 0 auto;
+  min-height: 44px;
+  padding: 0.5rem 1.1rem;
+  border: none;
+  border-bottom: 2px solid transparent;
+  background: none;
+  font-family: var(--fyp-font-mono);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--vp-c-text-2);
+  cursor: pointer;
+}
+
+.fyp-client-tabs__tab:hover {
+  color: var(--vp-c-text-1);
+}
+
+.fyp-client-tabs__tab--active {
+  color: var(--vp-c-brand-1);
+  border-bottom-color: var(--vp-c-brand-1);
+  background: var(--vp-c-bg);
+}
+
+.fyp-client-tabs__panel {
+  padding: 1rem 1.15rem 0.5rem;
+}
+
+.fyp-client-tabs__panel > p:first-child {
+  margin-top: 0;
+}
+
+.fyp-client-tabs__note {
+  font-size: 0.85rem;
+  color: var(--vp-c-text-2);
+}
+
+.fyp-client-tabs__steps {
+  margin: 0.5rem 0;
+  padding-left: 1.25rem;
+}
+
+.fyp-client-tabs__table {
+  display: table !important;
+  width: 100%;
+}
+
+.fyp-install-link,
+.fyp-site-mcp .vp-doc a.fyp-install-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0.5rem 1.2rem;
+  border-radius: 8px;
+  background: var(--vp-c-brand-3);
+  color: #fff;
+  font-family: var(--fyp-font-mono);
+  font-weight: 700;
+  text-decoration: none;
+  transition: background 0.15s ease;
+}
+
+.fyp-install-link:hover,
+.fyp-site-mcp .vp-doc a.fyp-install-link:hover {
+  background: var(--vp-c-brand-2);
+  color: #fff;
+}
+
+/* ============================================================
+ * LaunchFacts / IconGrid / IconNote / DoorStrip
+ * ============================================================ */
+.fyp-launch-facts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 0.75rem;
+  margin: 1.25rem 0;
+}
+
+.fyp-launch-facts__item {
+  padding: 0.7rem 0.9rem;
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 8px;
+  background: var(--vp-c-bg-soft);
+}
+
+.fyp-launch-facts__title {
+  margin: 0 !important;
+  font-family: var(--fyp-font-mono);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--vp-c-text-2);
+}
+
+.fyp-launch-facts__detail {
+  margin: 0.25rem 0 0 !important;
+  font-size: 0.92rem;
+}
+
+.fyp-icon-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+  margin: 1.25rem 0;
+}
+
+.fyp-icon-grid--three {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.fyp-icon-card {
+  display: block;
+  padding: 0.9rem 1rem;
+  border: 1px solid var(--vp-c-divider);
+  border-left: 3px solid var(--fyp-terminal-green);
+  border-radius: 8px;
+  background: var(--vp-c-bg);
+  color: inherit;
+  text-decoration: none !important;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.fyp-icon-grid > .fyp-icon-card:nth-child(4n + 2) {
+  border-left-color: var(--fyp-cyan);
+}
+
+.fyp-icon-grid > .fyp-icon-card:nth-child(4n + 3) {
+  border-left-color: #0ea5e9;
+}
+
+.fyp-icon-grid > .fyp-icon-card:nth-child(4n + 4) {
+  border-left-color: var(--fyp-amber);
+}
+
+.fyp-icon-card--link:hover {
+  box-shadow: 0 2px 12px rgba(34, 197, 94, 0.14);
+}
+
+.fyp-icon-card__glyph {
+  width: 24px;
+  height: 24px;
+  margin-bottom: 0.4rem;
+  color: var(--vp-c-brand-1);
+}
+
+.fyp-icon-card__title {
+  margin: 0 !important;
+  font-family: var(--fyp-font-mono);
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--vp-c-text-1);
+}
+
+.fyp-icon-card__detail {
+  margin: 0.25rem 0 0 !important;
+  font-size: 0.88rem;
+  line-height: 1.55;
+  color: var(--vp-c-text-2);
+}
+
+.fyp-icon-note {
+  display: flex;
+  gap: 0.9rem;
+  margin: 1.25rem 0 0.5rem;
+  padding: 0.8rem 1rem;
+  border: 1px solid var(--vp-c-divider);
+  border-left: 3px solid var(--fyp-terminal-green);
+  border-radius: 8px;
+  background: var(--vp-c-bg-soft);
+}
+
+.fyp-icon-note__mark {
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  background: var(--vp-c-brand-soft);
+}
+
+.fyp-icon-note__glyph {
+  width: 22px;
+  height: 22px;
+  color: var(--vp-c-brand-1);
+}
+
+.fyp-icon-note__copy {
+  min-width: 0;
+}
+
+.fyp-icon-note__title {
+  margin: 0 !important;
+  font-family: var(--fyp-font-mono);
+  font-weight: 700;
+}
+
+.fyp-icon-note__body {
+  font-size: 0.92rem;
+  color: var(--vp-c-text-2);
+}
+
+.fyp-icon-note__body > :first-child {
+  margin-top: 0.2rem;
+}
+
+.fyp-icon-note__body > :last-child {
+  margin-bottom: 0;
+}
+
+.fyp-door-strip {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 0.75rem;
+  max-width: 1152px;
+  margin: 2rem auto;
+  padding: 0 24px;
+}
+
+.fyp-door-strip__item {
+  display: block;
+  padding: 0.8rem 1rem;
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 8px;
+  background: var(--vp-c-bg);
+  text-decoration: none !important;
+  color: inherit;
+  transition: border-color 0.2s ease;
+}
+
+.fyp-door-strip__item:hover {
+  border-color: var(--vp-c-brand-1);
+}
+
+.fyp-door-strip__title,
+.fyp-door-strip__detail {
+  display: block;
+}
+
+.fyp-door-strip__title {
+  margin: 0 !important;
+  font-family: var(--fyp-font-mono);
+  font-weight: 700;
+  color: var(--vp-c-brand-1);
+}
+
+.fyp-door-strip__detail {
+  margin: 0.2rem 0 0 !important;
+  font-size: 0.85rem;
+  color: var(--vp-c-text-2);
+}
+
+/* ============================================================
+ * CollapsibleChangelog
+ * ============================================================ */
+.fyp-changelog-collapse {
+  margin: 2rem 0 1rem;
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 8px;
+  background: var(--vp-c-bg-soft);
+}
+
+.fyp-changelog-collapse > .fyp-changelog {
+  margin: 0;
+  border: none;
+  border-top: 1px solid var(--vp-c-divider);
+  border-radius: 0;
+}
+
+.fyp-changelog-collapse__summary {
+  padding: 0.6rem 1rem;
+  cursor: pointer;
+  font-family: var(--fyp-font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--vp-c-text-2);
+}
+
+.fyp-changelog-collapse__summary:hover {
+  color: var(--vp-c-brand-1);
+}
+
+/* ============================================================
+ * Dark-mode contrast + mobile
+ * ============================================================ */
+.dark.fyp-site-mcp .fyp-prompt-card,
+.fyp-site-mcp.dark .fyp-prompt-card,
+.fyp-site-mcp.dark .fyp-icon-card,
+.fyp-site-mcp.dark .fyp-endpoint-card {
+  background: var(--vp-c-bg-soft);
+}
+
+.fyp-site-mcp.dark .fyp-chip {
+  background: var(--vp-c-bg-soft);
+}
+
+.fyp-site-mcp.dark .fyp-chip--fork {
+  background: var(--vp-c-brand-soft);
+}
+
+.fyp-site-mcp.dark .fyp-install-link,
+.fyp-site-mcp.dark .vp-doc a.fyp-install-link {
+  background: var(--vp-c-brand-3);
+}
+
+@media (max-width: 720px) {
+  .fyp-icon-grid,
+  .fyp-icon-grid--three {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .fyp-spec-table__row {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .fyp-eip-header__number {
+    font-size: 1.35rem;
+  }
+
+  .fyp-prompt-card {
+    padding: 0.7rem 0.8rem 0.8rem;
+  }
+
+  .fyp-client-tabs__panel {
+    padding: 0.85rem 0.85rem 0.35rem;
+  }
+
+  .fyp-door-strip {
+    padding: 0 16px;
   }
 }

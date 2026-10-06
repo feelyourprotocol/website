@@ -2,6 +2,16 @@
 
 > **Status:** Implemented — MCP tool: `generate_artifact`. **Public endpoint not live.**
 
+<PromptCard
+  text="Generate a BAL for a block with one plain ETH transfer on Amsterdam."
+  fork="Amsterdam"
+  lookFor="BAL JSON and its hash"
+  tool="generate_artifact"
+  toolHref="/use/tools/generate-artifact"
+  hrefLabel="What you can ask"
+  href="/use/capabilities"
+/>
+
 ## Purpose
 
 Derive **structured artifacts** from a lab block run — same inputs as [Run Block](/use/tools/run-block) (1–8 txs, accounts, optional header). First kind: **`block-access-list`** (EIP-7928 BAL JSON + hash).
@@ -32,9 +42,7 @@ Pair with [Inspect Artifact](/use/tools/inspect-artifact) on caller-supplied BAL
 
 [generate_artifact.input.json](/schemas/generate_artifact.input.json)
 
-## Changelog
-
-<Changelog
+<CollapsibleChangelog
   title="Generate Artifact Changelog"
   :entries="[
     { version: 'v0.2', date: '2026-09-22', summary: 'Renamed MCP tool generate → generate_artifact (query shape stays generate).' },
