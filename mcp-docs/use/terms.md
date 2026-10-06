@@ -18,7 +18,7 @@ A deterministic lab run under a named Ethereum fork, using EthereumJS. The serve
 
 You send bytecode, transactions, and demo accounts in each call. Do not send secrets, private keys, or anything you cannot share. Do not flood the server or use it to attack anyone.
 
-The server is free at launch. We may change, pause, or stop it. If a paid tier arrives (see [Pricing](/use/pricing)), these terms will be updated before anyone is charged.
+The server is free. We may change, pause, or stop it. If a paid tier arrives (see [Pricing](/use/pricing)), these terms will be updated before anyone is charged.
 
 ## No warranty
 
@@ -41,6 +41,7 @@ We may update this page. The date at the top is the version. German law applies,
 <CollapsibleChangelog
   title="Terms Changelog"
   :entries="[
+    { version: 'v0.2', date: '2026-10-06', summary: 'The hosted lab is free now, not only at a future launch.' },
     { version: 'v0.1', date: '2026-10-06', summary: 'First draft — hosted lab, no warranty, liability limited to intent and gross negligence while free.' },
   ]"
 />

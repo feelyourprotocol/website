@@ -2,7 +2,7 @@
 
 The server is the lab. The website is the textbook. Both run on EthereumJS.
 
-How to call it lives on [mcp-docs](https://mcp-docs.feelyourprotocol.org). This page is who the lab is for, and where a sentence stops and a run begins. The public door opens in [launch week](/roadmap/launch).
+How to call it lives on [mcp-docs](https://mcp-docs.feelyourprotocol.org). This page is who the lab is for, and where a sentence stops and a run begins. The public door is [open](/roadmap/launch).
 
 <Motto>The model speaks. The server runs.</Motto>
 
@@ -91,6 +91,7 @@ One simulation at a time, in a worker, so calls stay parallel. TypeScript is eno
 <Changelog
   title="Agent API Changelog"
   :entries="[
+    { version: 'v0.10', date: '2026-10-06', summary: 'The public door is open.' },
     { version: 'v0.9', date: '2026-10-05', summary: 'Rewrite around who the lab is for, the textbook/server split, and the language-to-run delimiter. Tool catalogue and stale generate plans leave for mcp-docs.' },
     { version: 'v0.8', date: '2026-10-01', summary: 'x402 is a post-launch question. Launch week is the open Glamsterdam endpoint.' },
     { version: 'v0.7', date: '2026-09-24', summary: 'Six generic verbs (run_block, generate_artifact, inspect_artifact); registry discovery for agents.' },

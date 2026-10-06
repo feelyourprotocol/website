@@ -59,7 +59,7 @@ Permissionless access, open standards, privacy-respecting, code-first — carrie
   ]"
 />
 
-The public page is [Launch week](/roadmap/launch). This checklist stays here.
+The public page is [MCP is live](/roadmap/launch). This checklist stays here.
 
 ## Founder traps we watch for
 
@@ -90,6 +90,7 @@ _This page is a living checklist; refine as the project teaches us new lessons._
 <Changelog
   title="Principles Changelog"
   :entries="[
+    { version: 'v0.8', date: '2026-10-06', summary: 'The public page records an open server. This checklist stays the internal bar.' },
     { version: 'v0.7', date: '2026-10-05', summary: 'Same rules. Icon notes for the principles; the launch bar is one checklist.' },
     { version: 'v0.6', date: '2026-10-05', summary: 'Launch week is the public page. This checklist stays the internal bar.' },
     { version: 'v0.5', date: '2026-10-01', summary: 'Launch checklist is the open endpoint. x402 stays a later milestone, not a launch gate.' },

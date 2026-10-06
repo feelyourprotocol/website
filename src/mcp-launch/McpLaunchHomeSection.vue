@@ -1,38 +1,61 @@
 <script setup lang="ts">
 import SectionLabel from '@/components/SectionLabel.vue'
-import { MCP_DOCS_HOME, ROADMAP_LAUNCH } from '@/libs/roadmapUrls'
+import { mcpDocsPage } from '@/libs/roadmapUrls'
+
+const connectUrl = mcpDocsPage('use/connect')
+const askUrl = mcpDocsPage('use/capabilities')
 </script>
 
 <template>
   <section data-mcp-launch-week class="mb-8">
-    <SectionLabel>MCP launch week</SectionLabel>
-    <div
-      class="rounded-lg border border-violet-300/80 bg-gradient-to-br from-violet-50 to-cyan-50/40 p-4 md:p-5"
-    >
-      <p class="font-mono text-xs text-violet-700 mb-2"># 5–9 October 2026 · target</p>
-      <p class="text-slate-800 text-sm md:text-base leading-relaxed max-w-3xl">
-        The deterministic MCP lab is built — the
-        <strong>public hosted server</strong> at
-        <span class="font-mono text-xs">mcp.feelyourprotocol.org</span>
-        opens in launch week. Explore Glamsterdam EIPs here today; agents connect at launch.
-      </p>
-      <div class="flex flex-wrap items-center gap-2 mt-4">
-        <a
-          :href="ROADMAP_LAUNCH"
-          target="_blank"
-          rel="noopener"
-          class="fyp-shell-cta bg-violet-700 text-white hover:bg-violet-600"
-        >
-          Launch details
-        </a>
-        <a
-          :href="MCP_DOCS_HOME"
-          target="_blank"
-          rel="noopener"
-          class="fyp-shell-cta border border-slate-400 bg-white text-slate-700 hover:bg-slate-50"
-        >
-          MCP catalogue
-        </a>
+    <SectionLabel>MCP is live</SectionLabel>
+    <div class="fyp-mcp-live">
+      <div class="fyp-mcp-live__body">
+        <div class="fyp-mcp-live__row">
+          <div class="fyp-mcp-live__mark" aria-hidden="true">
+            <svg class="fyp-mcp-live__glyph" viewBox="0 0 24 24" fill="none">
+              <path
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="1.5"
+                d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09ZM18.259 8.715 18 9.75l-.259-1.035a3.375 3.375 0 0 0-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 0 0 2.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 0 0 2.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 0 0-2.456 2.456ZM16.894 20.567 16.5 21.75l-.394-1.183a2.25 2.25 0 0 0-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 0 0 1.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 0 0 1.423 1.423l1.183.394-1.183.394a2.25 2.25 0 0 0-1.423 1.423Z"
+              />
+            </svg>
+          </div>
+          <div class="min-w-0">
+            <p class="fyp-mcp-live__kicker">
+              <span class="fyp-mcp-live__pill">
+                <span class="fyp-mcp-live__dot" aria-hidden="true" />
+                Live
+              </span>
+              6 October 2026 · Glamsterdam Sepolia
+            </p>
+            <p class="fyp-mcp-live__headline">The hosted lab is open.</p>
+            <p class="text-slate-700 text-sm md:text-base leading-relaxed max-w-3xl mt-1">
+              Agents can run the same Glamsterdam changes you explore here — free, no wallet, no API
+              key. Connect one and ask.
+            </p>
+          </div>
+        </div>
+        <div class="fyp-mcp-live__actions">
+          <a
+            :href="connectUrl"
+            target="_blank"
+            rel="noopener"
+            class="fyp-shell-cta bg-gradient-to-r from-purple-600 to-cyan-500 text-white transition hover:opacity-90"
+          >
+            Connect an agent
+          </a>
+          <a
+            :href="askUrl"
+            target="_blank"
+            rel="noopener"
+            class="fyp-shell-cta border border-violet-300 bg-white text-slate-700 hover:bg-violet-50"
+          >
+            Try a question
+          </a>
+        </div>
       </div>
     </div>
   </section>

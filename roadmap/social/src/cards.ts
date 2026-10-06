@@ -28,23 +28,23 @@ export const SOCIAL_CARDS: Record<SocialCardId, SocialCardMeta> = {
     eyebrow: 'Phase 3 · Roadmap',
     title: 'Deterministic oracle for the future Ethereum protocol.',
     subtitle:
-      'MCP tools built — public hosted launch week 5–9 October 2026. Textbook on feelyourprotocol.org today.',
+      'The hosted MCP is live — 6 October 2026, full Glamsterdam, no payment. Textbook on feelyourprotocol.org.',
     footerHint: 'roadmap.feelyourprotocol.org',
   },
   launch: {
     id: 'launch',
-    eyebrow: 'We have a launch date',
-    title: '5–9 October 2026',
+    eyebrow: 'Open · Glamsterdam Sepolia',
+    title: '6 October 2026',
     subtitle:
-      'Hosted MCP goes public at mcp.feelyourprotocol.org — deterministic EVM oracle for the Glamsterdam hardfork. Explore on the website today; agents connect in launch week.',
-    footerHint: 'feelyourprotocol.org today · agents at launch',
+      'The MCP server has launched at mcp.feelyourprotocol.org — free Glamsterdam runs, the same day as Sepolia. Connect an agent, or explore the textbook.',
+    footerHint: 'feelyourprotocol.org · connect on mcp-docs',
   },
   timeline: {
     id: 'timeline',
     eyebrow: 'Roadmap · Timeline',
     title: 'From the first commit',
-    subtitle: 'The dated story, up to public MCP launch week.',
-    footerHint: 'Filled marks have happened · the hollow mark is still ahead',
+    subtitle: 'The dated story, through the public MCP launch on 6 October 2026.',
+    footerHint: 'Every mark on this card has happened',
   },
   board: {
     id: 'board',

@@ -47,12 +47,12 @@ One engine underneath both. [Two legs, one engine](/vision/two-legs).
 
 ### What opens
 
-The lab is built. During [launch week](/roadmap/launch) the public server goes live.
+The public server is [live](/roadmap/launch).
 
 <LaunchFacts
   :facts="[
     { title: 'Open', detail: 'Free. No API key, no payment.' },
-    { title: 'Glamsterdam', detail: 'The full upcoming hardfork, 5–9 October 2026.' },
+    { title: 'Glamsterdam', detail: 'The full upcoming hardfork, open since 6 October 2026.' },
     { title: 'Later', detail: 'A paid tier for EIPs still ahead of that fork.' },
   ]"
 />
@@ -85,7 +85,7 @@ Schemas and limits live on [mcp-docs](https://mcp-docs.feelyourprotocol.org). Th
 
 <IconGrid
   :items="[
-    { icon: 'calendar', title: 'Launch week', detail: 'What opens, and when.', href: '/roadmap/launch' },
+    { icon: 'spark', title: 'MCP is live', detail: 'What opened, and where to connect.', href: '/roadmap/launch' },
     { icon: 'split', title: 'Two legs', detail: 'The textbook and the server.', href: '/vision/two-legs' },
     { icon: 'people', title: 'Two audiences', detail: 'People and agents.', href: '/vision/two-audiences' },
     { icon: 'map', title: 'Roadmap', detail: 'Tracks, then the timeline.', href: '/roadmap/roadmap' },
@@ -97,6 +97,7 @@ Schemas and limits live on [mcp-docs](https://mcp-docs.feelyourprotocol.org). Th
 <Changelog
   title="Problem & Vision Changelog"
   :entries="[
+    { version: 'v0.9', date: '2026-10-06', summary: 'The public server is open. The launch card points at what landed.' },
     { version: 'v0.8', date: '2026-10-05', summary: 'Icon groups for the wall, the two legs, the two audiences, the moat, and the lab boundary.' },
     { version: 'v0.7', date: '2026-10-05', summary: 'Shorter public page. Dropped the Phase 3 frame from this essay.' },
     { version: 'v0.6', date: '2026-10-01', summary: 'Next ship is the open Glamsterdam MCP. Paid x402 tier follows for EIPs ahead of that hardfork.' },

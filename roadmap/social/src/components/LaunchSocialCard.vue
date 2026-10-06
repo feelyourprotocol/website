@@ -5,8 +5,8 @@ const meta = SOCIAL_CARDS.launch
 
 const bullets = [
   { title: 'Hosted MCP', detail: 'mcp.feelyourprotocol.org' },
-  { title: 'Generic tools', detail: 'describe_capabilities · run_bytecode · run_transaction' },
-  { title: 'Agent payments', detail: 'x402 · USDC on Base' },
+  { title: 'Free', detail: 'No wallet · no API key' },
+  { title: 'Six tools', detail: 'Probe · bytecode · transaction · block' },
 ] as const
 </script>
 
@@ -26,12 +26,12 @@ const bullets = [
 
         <p class="fyp-social-launch__brand">Feel Your Protocol</p>
 
-        <div class="fyp-social-launch__date-panel" aria-label="Launch week dates">
-          <p class="fyp-social-launch__date-label">Launch week</p>
+        <div class="fyp-social-launch__date-panel" aria-label="Launch date">
+          <p class="fyp-social-launch__date-label">Live</p>
           <p class="fyp-social-launch__date">{{ meta.title }}</p>
         </div>
 
-        <h1 class="fyp-social-launch__headline">Hosted MCP goes public</h1>
+        <h1 class="fyp-social-launch__headline">The MCP server has launched.</h1>
         <p class="fyp-social-banner__tagline fyp-social-launch__tagline">{{ meta.subtitle }}</p>
 
         <ul class="fyp-social-hero__features fyp-social-launch__features">

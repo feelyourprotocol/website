@@ -2,6 +2,7 @@ import type { Theme } from 'vitepress'
 import DefaultTheme from 'vitepress/theme'
 import { onMounted } from 'vue'
 
+import Layout from './Layout.vue'
 import Changelog from './components/Changelog.vue'
 import Checklist from './components/Checklist.vue'
 import IconGrid from './components/IconGrid.vue'
@@ -18,6 +19,7 @@ import './custom.css'
  */
 export default {
   extends: DefaultTheme,
+  Layout,
   setup() {
     onMounted(() => {
       document.documentElement.classList.add('fyp-site-roadmap')

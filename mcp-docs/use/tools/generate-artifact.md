@@ -1,6 +1,6 @@
 # Generate Artifact
 
-> **Status:** Implemented — MCP tool: `generate_artifact`. **Public endpoint not live.**
+> **Status:** Live on the public MCP. Tool: `generate_artifact`.
 
 <PromptCard
   text="Generate a BAL for a block with one plain ETH transfer on Amsterdam."
@@ -45,6 +45,7 @@ Pair with [Inspect Artifact](/use/tools/inspect-artifact) on caller-supplied BAL
 <CollapsibleChangelog
   title="Generate Artifact Changelog"
   :entries="[
+    { version: 'v0.3', date: '2026-10-06', summary: 'Public endpoint is live.' },
     { version: 'v0.2', date: '2026-09-22', summary: 'Renamed MCP tool generate → generate_artifact (query shape stays generate).' },
     { version: 'v0.1', date: '2026-09-16', summary: 'Implemented — BAL from lab block on Glamsterdam.' },
   ]"

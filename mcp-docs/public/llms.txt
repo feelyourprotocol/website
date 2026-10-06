@@ -1,6 +1,6 @@
 # Feel Your Protocol — MCP Server Docs
 
-> **Public MCP endpoint: not launched yet.** **Launch week 5–9 October 2026 — free, full Amsterdam (Glamsterdam), no payment.** Browser explorations: [feelyourprotocol.org](https://feelyourprotocol.org). Connect: [mcp-docs connect](https://mcp-docs.feelyourprotocol.org/use/connect.html). Pricing cycle: [pricing](https://mcp-docs.feelyourprotocol.org/use/pricing.html).
+> **Public MCP endpoint: live since 6 October 2026.** Free, full Amsterdam (Glamsterdam), no payment. Browser explorations: [feelyourprotocol.org](https://feelyourprotocol.org). Connect: [mcp-docs connect](https://mcp-docs.feelyourprotocol.org/use/connect.html). Pricing cycle: [pricing](https://mcp-docs.feelyourprotocol.org/use/pricing.html).
 
 ## Start here (humans)
 
@@ -11,7 +11,7 @@
 - [Limits](https://mcp-docs.feelyourprotocol.org/use/guarantees.html)
 - [Pricing](https://mcp-docs.feelyourprotocol.org/use/pricing.html)
 
-## MCP tools (at public launch)
+## MCP tools (live)
 
 When feel-your-protocol MCP is connected:
 
@@ -43,7 +43,7 @@ Full rules and use-layer text: [llms-full.txt](https://mcp-docs.feelyourprotocol
 ## Endpoints
 
 - Documentation: https://mcp-docs.feelyourprotocol.org
-- Remote MCP: https://mcp.feelyourprotocol.org/mcp — not launched
+- Remote MCP: https://mcp.feelyourprotocol.org/mcp — live since 6 October 2026
 
 ## Related
 

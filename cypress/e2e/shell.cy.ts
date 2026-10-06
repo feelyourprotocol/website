@@ -1,8 +1,9 @@
 describe('Home', () => {
   it('loads intro, topics, and exploration cards', () => {
     cy.visit('/')
-    cy.get('[data-testid="home-intro-panel"]').should('be.visible')
-    cy.get('[data-mcp-launch-week]').should('exist')
+    cy.get('[data-testid="home-intro-panel"]').should('not.exist')
+    cy.get('[data-mcp-launch-week]').should('be.visible')
+    cy.get('[data-testid="home-catalog-note"]').should('be.visible')
     cy.contains('h2', 'Scaling').should('be.visible')
     cy.get('.exploration-c').should('have.length.gte', 1)
   })

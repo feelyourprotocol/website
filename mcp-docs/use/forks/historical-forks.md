@@ -1,6 +1,6 @@
 # Historical forks (Berlin → Pectra)
 
-> **Status:** **Ready for the public MCP** (not launched). One catalogue page for **past** execution-layer hardforks.
+> **Status:** **Live on the public MCP.** One catalogue page for **past** execution-layer hardforks.
 
 ## Why this page exists
 
@@ -58,9 +58,9 @@ The lab does not replay Merge consensus, beacon withdrawals, or PeerDAS. Those i
     {
       label: 'Prompts to copy',
       prompts: [
-        { text: `Compare the same transfer on Berlin vs London — when did 1559 activate?`, fork: 'Berlin vs London' },
-        { text: `Run BASEFEE opcode bytecode on London vs Berlin.`, fork: 'Berlin vs London' },
-        { text: `When did PUSH0 activate — Paris vs Shapella?`, fork: 'Paris vs Shapella' },
+        { text: `On Berlin then London, run a plain 1 wei transfer to an existing account — when does gas pricing change for 1559?`, fork: 'Berlin vs London' },
+        { text: `On London versus Berlin, run bytecode that executes BASEFEE — does BASEFEE exist only on London?`, fork: 'Berlin vs London' },
+        { text: `On Paris versus Shapella, run bytecode PUSH0 — when does PUSH0 succeed?`, fork: 'Paris vs Shapella' },
       ],
     },
   ]"
@@ -69,6 +69,7 @@ The lab does not replay Merge consensus, beacon withdrawals, or PeerDAS. Those i
 <CollapsibleChangelog
   title="Historical Forks Catalogue Changelog"
   :entries="[
+    { version: 'v0.8', date: '2026-10-06', summary: 'Historical fork runs are live on the hosted MCP.' },
     { version: 'v0.7', date: '2026-09-29', summary: 'Merge, withdrawals, deposits, and max effective balance are coverage consensus.' },
     { version: 'v0.6', date: '2026-09-17', summary: '7702 set-code documented as Pectra fork feature — not a catalogue EIP page.' },
     { version: 'v0.5', date: '2026-09-17', summary: 'Historical forks still host advertised twins for adoption runs, not only compares.' },

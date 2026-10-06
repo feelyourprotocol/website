@@ -1,6 +1,6 @@
 # Run Transaction
 
-> **Status:** Implemented — ships on the public MCP at launch. MCP tool: `run_transaction`. **Public endpoint not live.**
+> **Status:** Live on the public MCP. Tool: `run_transaction`.
 
 <PromptCard
   text="Send 1 wei to an empty account under Amsterdam and tell me the gas the wallet would need."
@@ -19,6 +19,10 @@ Run a **message-call or contract-creation transaction** under a chosen fork and 
 This is the verb for wallet gas limits, contract deployment boundaries (EIP-7954), first-touch ETH transfers (EIP-8037), EIP-7708 Transfer logs on **tx value**, and paid **`txStateGas`** (new-slot SSTORE / first-touch). Program-gas SSTORE / SLOAD belongs on [Run Bytecode](/use/tools/run-bytecode).
 
 Raw opcode / stack / precompile programs belong on [Run Bytecode](/use/tools/run-bytecode).
+
+## Agent voice
+
+Tell the user **paid gas**, wallet **gas limit**, logs, and **regular-gas** / **state-gas** splits in plain language. Use `regularGas` parts when explaining small gaps between similar transfers — not JSON names like `gasUsed` or `txStateGas` unless they asked for raw output.
 
 ## When to use
 
@@ -65,12 +69,16 @@ Same named forks as [Run Bytecode](/use/tools/run-bytecode): default **glamsterd
 | `gasUsedScope` | Always `transaction` |
 | `txRegularGas` | Glamsterdam only — regular-gas total |
 | `txStateGas` | Glamsterdam only — state-gas total |
+| `regularGas` | Parts that sum to `txRegularGas` (base, recipient, value, calldata, floorUplift, execution) |
+| `recipientPrestate` | `self` / `existing` / `created` before the tx — labels `txStateGas`, not regular gas |
 | `returnValue` | Hex return data |
 | `error` | Failure message (e.g. intrinsic gas too low), else `null` |
 | `createdAddress` | Successful creation only — deployed contract address |
 | `deployedCodeSize` | Successful creation only — stored runtime-code bytes |
 | `logs` / `decodedLogs` | Receipt logs; EIP-7708 Transfer/Burn decorations when present |
 | `provenance` | Always present — named `eips[]` add a compact `Spec:` clause on `caveat` |
+
+If paid regular gas differs from what you expected, read `regularGas` — do not explain a regular gap with `txStateGas` alone.
 
 ## Example — first-touch 1 wei (Glamsterdam)
 
@@ -96,6 +104,7 @@ See [Guarantees](/use/guarantees) for gas ceilings. The higher transaction-only 
 <CollapsibleChangelog
   title="Run Transaction Changelog"
   :entries="[
+    { version: 'v0.9', date: '2026-10-06', summary: 'Public endpoint is live.' },
     { version: 'v0.8', date: '2026-10-04', summary: 'Optional accessList (EIP-2930 type-2 tx) for EIP-7981 floor demos on Glamsterdam.' },
     { version: 'v0.7', date: '2026-09-18', summary: 'Named eips[] provenance.caveat includes a compact Spec: snapshot.' },
     { version: 'v0.6', date: '2026-09-17', summary: 'Contract creation via omitted to; createdAddress and deployedCodeSize; 110M transaction-only ceiling.' },

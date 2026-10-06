@@ -1,6 +1,6 @@
 # Token Utility
 
-The community token is a **half-price switch** on the [paid tier](/monetization/pricing#the-price). It is not a key, and it is not part of [launch week](/roadmap/launch). Nothing here is wired up yet.
+The community token is a **half-price switch** on the [paid tier](/monetization/pricing#the-price). It is not a key, and it is not part of the [open server](/roadmap/launch). Nothing here is wired up yet.
 
 <Motto>A small holding. Half the price. Or skip it and pay the listed rate.</Motto>
 
@@ -53,6 +53,7 @@ Token news is also not a stand-in for a product milestone. The launch is the hos
 <Changelog
   title="Token Utility Changelog"
   :entries="[
+    { version: 'v0.5', date: '2026-10-06', summary: 'The token stays off the open server. It is still a later discount on the paid tier.' },
     { version: 'v0.4', date: '2026-10-05', summary: 'One modest holding — about a dollar, count not pinned — halves the fixed per-tool price. Tiered gas discounts, and later buyback or governance ideas, left the plan.' },
     { version: 'v0.3', date: '2026-10-01', summary: 'Token discounts belong to the paid tier, not launch week.' },
     { version: 'v0.2', date: '2026-09-02', summary: 'Framed around hosted MCP launch week; explicit no-hype-for-holders note.' },

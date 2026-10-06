@@ -6,6 +6,7 @@
  * ============================================================ */
 
 @import '../../../shared/vitepress/fyp-tokens.css';
+@import '../../../shared/vitepress/launched-banner.css';
 
 :root.fyp-site-docs,
 .fyp-site-docs {

@@ -1,6 +1,6 @@
 # Current mainnet EL — Fusaka
 
-> **Status:** **Ready for the public MCP** (not launched). **`baselineForkId`** in the probe — today’s mainnet execution-layer rules.
+> **Status:** **Live on the public MCP.** **`baselineForkId`** in the probe — today’s mainnet execution-layer rules.
 
 This page tracks **whatever fork mainnet EL is on right now**. Today that is **Fusaka** (EL alias **`osaka`**; role alias **`mainnet-el`**). After Glamsterdam activates on mainnet, this doc (and probe metadata) will switch to Glamsterdam as `current` / `baselineForkId`, and the next preview fork moves under [Preview forks](/use/forks/glamsterdam). Fusaka twins stay advertised (this page becomes history); they are not dropped on activation.
 
@@ -33,10 +33,10 @@ Full index: [EIP catalogue](/use/coverage).
     {
       label: 'Prompts to copy',
       prompts: [
-        { text: `Run this under current mainnet EL (Fusaka / mainnet-el).`, fork: 'Fusaka' },
-        { text: `Verify this P-256 payload on Fusaka — does 0x100 return 0x01?`, fork: 'Fusaka', href: '/use/eips/eip-7951', hrefLabel: 'EIP-7951' },
-        { text: `Compare ModExp gas: Pectra then Fusaka.`, fork: 'Pectra vs Fusaka', href: '/use/eips/eip-7883', hrefLabel: 'EIP-7883' },
-        { text: `Same transfer on Fusaka vs Glamsterdam.`, fork: 'Fusaka vs Amsterdam' },
+        { text: `On Fusaka, run PUSH1 1 PUSH1 2 ADD and show me the gas and the final stack.`, fork: 'Fusaka' },
+        { text: `On Fusaka, CALL precompile 0x100 with a standard valid P-256 test vector (message hash, r, s, pubX, pubY) — does it return 0x01?`, fork: 'Fusaka', href: '/use/eips/eip-7951', hrefLabel: 'EIP-7951' },
+        { text: `On Pectra then Fusaka, run the same 32-byte ModExp CALL (base, exponent, and modulus each 32 bytes of 0x02) — how much did gas increase?`, fork: 'Pectra vs Fusaka', href: '/use/eips/eip-7883', hrefLabel: 'EIP-7883' },
+        { text: `Send 1 wei to an empty account on Fusaka, then send 1 wei to an empty account on Glamsterdam — how does paid gas differ?`, fork: 'Fusaka vs Amsterdam', href: '/use/eips/eip-8037', hrefLabel: 'EIP-8037' },
       ],
     },
   ]"
@@ -58,6 +58,7 @@ Provenance on a generic Fusaka run lists advertised modules **7883** and **7951*
 <CollapsibleChangelog
   title="Current Mainnet Fork Changelog"
   :entries="[
+    { version: 'v0.9', date: '2026-10-06', summary: 'Fusaka runs are live on the hosted MCP.' },
     { version: 'v0.8', date: '2026-10-06', summary: 'Launch polish — prompt cards; wording unchanged.' },
     { version: 'v0.7', date: '2026-09-29', summary: 'PeerDAS (EIP-7594) is coverage consensus. Blob sidecars stay out of this lab.' },
     { version: 'v0.6', date: '2026-09-17', summary: 'Fusaka twins stay first-class after activation (adoption runs, not only compares).' },

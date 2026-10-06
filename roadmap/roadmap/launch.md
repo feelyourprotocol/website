@@ -1,8 +1,8 @@
-# Public MCP Launch Week
+# The MCP server is live
 
-> **5–9 October 2026.** A public MCP server for the next Ethereum hardfork. During this week, agents can connect to `mcp.feelyourprotocol.org` and run exact simulations under Glamsterdam rules — a program, a transaction, or a small block — before those rules are on mainnet.
+> **6 October 2026.** The public MCP server for the next Ethereum hardfork is open — the same day Glamsterdam reaches Sepolia. Agents connect to `mcp.feelyourprotocol.org` and run exact simulations under Glamsterdam rules: a program, a transaction, or a small block, before those rules are on mainnet.
 
-Until the endpoint is up, the same changes are on [feelyourprotocol.org](https://feelyourprotocol.org), with the tool catalogue on [mcp-docs](https://mcp-docs.feelyourprotocol.org).
+The same changes are on [feelyourprotocol.org](https://feelyourprotocol.org), for a person to try by hand. The tool catalogue is on [mcp-docs](https://mcp-docs.feelyourprotocol.org).
 
 <LaunchFacts
   :facts="[
@@ -11,6 +11,10 @@ Until the endpoint is up, the same changes are on [feelyourprotocol.org](https:/
     { title: 'Hosted', detail: 'mcp.feelyourprotocol.org' },
   ]"
 />
+
+## Try it
+
+[Connect](https://mcp-docs.feelyourprotocol.org/use/connect.html) is one URL. Then ask something plain, for example: send 1 wei to an empty account under Amsterdam and read the gas a wallet would need. More prompts are on [What you can ask](https://mcp-docs.feelyourprotocol.org/use/capabilities.html).
 
 ## What you can do
 
@@ -25,9 +29,9 @@ Six tools. An agent calls them by name.
 | `generate_artifact` | Build a block access list from that same kind of block. |
 | `inspect_artifact` | Check a structure you already have, such as a block access list, without chain state. |
 
-The catalogue on mcp-docs names which EIPs are runnable today. The [explorations](https://feelyourprotocol.org) are the same changes, written for a person to try by hand.
+The catalogue on mcp-docs names which EIPs are runnable today. The [explorations](https://feelyourprotocol.org) are the same changes, written for a person.
 
-## After this week
+## After this opening
 
 The open server covers Glamsterdam and the forks already on mainnet. EIPs that are still ahead of that hardfork start on a paid tier a few weeks later, paid with [x402](/concepts/x402) (USDC on Base). The first expected one is [frame transactions (EIP-8141)](https://eips.ethereum.org/EIPS/eip-8141). Those EIPs join the open server when the next hardfork comes into view. The cycle is on [Pricing](/monetization/pricing#access-cycle).
 
@@ -35,17 +39,19 @@ You supply the accounts, the code, and the transactions. The server runs them in
 
 ## Where to go
 
+- **Connect:** [mcp-docs.feelyourprotocol.org/use/connect](https://mcp-docs.feelyourprotocol.org/use/connect.html)
+- **What you can ask:** [capabilities](https://mcp-docs.feelyourprotocol.org/use/capabilities.html)
 - **Explorations:** [feelyourprotocol.org](https://feelyourprotocol.org)
-- **Connect and the tool catalogue:** [mcp-docs.feelyourprotocol.org](https://mcp-docs.feelyourprotocol.org)
-- **Countdown:** [X @FeelEthereum](https://x.com/FeelEthereum)
+- **Updates:** [X @FeelEthereum](https://x.com/FeelEthereum)
 
 The [roadmap](/roadmap/roadmap) and the [timeline](/roadmap/timeline) are the longer view.
 
 ## Changelog
 
 <Changelog
-  title="Launch Week Changelog"
+  title="Launch Changelog"
   :entries="[
+    { version: 'v0.6', date: '2026-10-06', summary: 'The hosted MCP is open. This page is what landed, not a countdown.' },
     { version: 'v0.5', date: '2026-10-05', summary: 'Reader-facing launch page. The internal checklist stays on Principles.' },
     { version: 'v0.4', date: '2026-10-01', summary: 'Launch week is the open Glamsterdam MCP. x402 and paid EIPs start after usage and hardening.' },
     { version: 'v0.3', date: '2026-09-24', summary: 'Six launch tools; strategy links include Two Audiences.' },

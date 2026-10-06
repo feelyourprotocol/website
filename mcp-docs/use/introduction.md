@@ -4,15 +4,15 @@
 **[feelyourprotocol.org](https://feelyourprotocol.org)** is the interactive textbook — no MCP setup. This site is for people who want their **agent** to run exact protocol experiments.
 :::
 
-## Public launch
+## The server is open
 
-**5–9 October 2026** — we open **`https://mcp.feelyourprotocol.org/mcp`**. The endpoint is **not live yet**; [Connect](/use/connect) has the client steps so you can wire your agent before go-live.
+**6 October 2026** — **`https://mcp.feelyourprotocol.org/mcp`** is live, the same day Glamsterdam reaches Sepolia. [Connect](/use/connect) is the shortest path in.
 
 | | |
 | --- | --- |
-| **Cost at launch** | Free — full Amsterdam (Glamsterdam) hardfork, no wallet, no API key |
+| **Cost now** | Free — full Amsterdam (Glamsterdam) hardfork, no wallet, no API key |
 | **What you bring** | Bytecode, transactions, optional demo accounts per call (no mainnet RPC) |
-| **Later** | New EIPs ahead of Amsterdam move to a paid tier — [Pricing](/use/pricing) · [roadmap launch](https://roadmap.feelyourprotocol.org/roadmap/launch.html) |
+| **Later** | New EIPs ahead of Amsterdam move to a paid tier — [Pricing](/use/pricing) · [what opened](https://roadmap.feelyourprotocol.org/roadmap/launch.html) |
 
 ## The gap
 
@@ -26,7 +26,7 @@ Feel Your Protocol closes that gap with a **hosted lab**: the same EthereumJS ex
 
 <IconGrid
   :items="[
-    { icon: 'spark', title: 'Amsterdam by default', detail: 'The upcoming hardfork is the product at launch — full Glamsterdam rules, not a cherry-picked demo.' },
+    { icon: 'spark', title: 'Amsterdam by default', detail: 'The upcoming hardfork is the live default — full Glamsterdam rules, not a cherry-picked demo.' },
     { icon: 'cube', title: 'Bring your own state', detail: 'Bytecode, transactions, and demo accounts travel in the same call. No archive node, no “trust our mainnet fork.”' },
     { icon: 'terminal', title: 'Generic verbs', detail: 'One server answers opcode, wallet-gas, and small-block questions — your agent picks the shape, not twenty EIP endpoints.' },
     { icon: 'boundary', title: 'Honest scope', detail: 'No Solidity compile, no chain RPC, no multi-block historical replay. What we refuse is as important as what we run.' },
@@ -43,25 +43,25 @@ After [Connect](/use/connect), paste a prompt — you do not need EIP numbers in
       label: 'Gas and receipts',
       prompts: [
         {
-          text: `What intrinsic gas does a simple ETH transfer use under Amsterdam?`,
+          text: `On Glamsterdam, what intrinsic gas does a plain 1 wei transfer to an existing account use?`,
           fork: 'Amsterdam',
           href: '/use/eips/eip-2780',
           hrefLabel: 'EIP-2780',
         },
         {
-          text: `This calldata is mostly zeros. What does it cost on Amsterdam versus Fusaka?`,
+          text: `Call an existing account on Amsterdam with calldata of 100 zero bytes — what is intrinsic gas on Fusaka versus Amsterdam?`,
           fork: 'Fusaka vs Amsterdam',
           href: '/use/eips/eip-7976',
           hrefLabel: 'EIP-7976',
         },
         {
-          text: `Send 1 wei to an empty account on Amsterdam — what gas does the wallet need?`,
+          text: `Run a 1 wei transfer to an empty account on Glamsterdam — what gas would a wallet need?`,
           fork: 'Amsterdam',
           href: '/use/eips/eip-8037',
           hrefLabel: 'EIP-8037',
         },
         {
-          text: `Does a value transfer emit a receipt log on Amsterdam?`,
+          text: `Run a plain 1 wei transfer on Glamsterdam — decode the EIP-7708 Transfer log in the result.`,
           fork: 'Amsterdam',
           href: '/use/eips/eip-7708',
           hrefLabel: 'EIP-7708',
@@ -72,13 +72,13 @@ After [Connect](/use/connect), paste a prompt — you do not need EIP numbers in
       label: 'Storage and blocks',
       prompts: [
         {
-          text: `How does SSTORE on an existing slot price on Amsterdam vs Fusaka?`,
+          text: `Cold SSTORE 9 into storage slot 1 when slot 1 already holds 7 — prefund slot 1 with 7 on the contract, run on Fusaka and on Glamsterdam, and compare call gas.`,
           fork: 'Fusaka vs Amsterdam',
           href: '/use/eips/eip-8038',
           hrefLabel: 'EIP-8038',
         },
         {
-          text: `I cleared storage and got a refund. Why does the block still count the full gas?`,
+          text: `Run a lab block on Amsterdam with a transaction that clears storage and earns a refund — does the block header total still count the full gas for each transaction?`,
           fork: 'Amsterdam',
           href: '/use/eips/eip-7778',
           hrefLabel: 'EIP-7778',
@@ -95,7 +95,7 @@ More on the Amsterdam bundle: [deploy limits](/use/eips/eip-7954), [block access
 <IconGrid
   :columns="3"
   :items="[
-    { icon: 'terminal', title: 'Connect', detail: 'Cursor, Claude, Codex, and a generic MCP config — ready before the URL goes live.', href: '/use/connect' },
+    { icon: 'terminal', title: 'Connect', detail: 'Cursor, Claude, Codex, and a generic MCP config — one URL, then a question.', href: '/use/connect' },
     { icon: 'calendar', title: 'Amsterdam now', detail: 'The fork bundle and the questions we highlight first.', href: '/use/forks/glamsterdam' },
     { icon: 'book', title: 'What you can ask', detail: 'Five jobs this server is built for.', href: '/use/capabilities' },
   ]"
@@ -106,6 +106,7 @@ Want to click through a change first? The [website explorations](https://feelyou
 <CollapsibleChangelog
   title="Introduction Changelog"
   :entries="[
+    { version: 'v0.18', date: '2026-10-06', summary: 'The hosted MCP is live — the public-launch section is no longer a countdown.' },
     { version: 'v0.17', date: '2026-10-06', summary: 'Launch polish — icon cards, prompt cards with EIP links; wording unchanged.' },
     { version: 'v0.16', date: '2026-10-01', summary: 'Launch table and Amsterdam prompt table moved from home — home is hero + features only.' },
     { version: 'v0.15', date: '2026-10-01', summary: 'User-facing rewrite — why deterministic Amsterdam lab; removed internals-first framing.' },

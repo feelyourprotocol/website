@@ -57,29 +57,7 @@
   @apply ml-7 font-mono text-sm;
 }
 
-/* Home intro — protocol pulse on a few words (body type, same shift as protocol-dots) */
-.home-intro-spark {
-  background: linear-gradient(90deg, #7c3aed, #06b6d4, #7c3aed);
-  background-size: 200% 100%;
-  background-clip: text;
-  -webkit-background-clip: text;
-  color: transparent;
-  animation: gradientShift 10s ease-in-out infinite;
-  font: inherit;
-}
-
-@keyframes homeIntroBlink {
-  0%,
-  50% {
-    opacity: 1;
-  }
-  51%,
-  100% {
-    opacity: 0;
-  }
-}
-
-/* Shared dark console surface (home intro, imprint acknowledgements) */
+/* Dark console surface — imprint acknowledgements */
 .fyp-run-surface {
   background: #0f172a;
   border-top: 2px solid transparent;
@@ -88,19 +66,9 @@
   font-family: var(--font-mono);
 }
 
-.fyp-protocol-seam-bottom {
-  border-bottom: 2px solid transparent;
-  border-image: linear-gradient(90deg, #7c3aed, #06b6d4, #7c3aed) 1;
-}
-
 .fyp-protocol-seam-top {
   border-top: 2px solid transparent;
   border-image: linear-gradient(90deg, #7c3aed, #06b6d4, #7c3aed) 1;
-}
-
-.home-intro-cursor {
-  @apply ml-0.5 text-purple-400;
-  animation: homeIntroBlink 1s step-end infinite;
 }
 
 /* Spark 5: Neon hover glow — protocol nodes light up on interaction */
@@ -355,6 +323,151 @@ body {
   @apply inline-flex items-center justify-center px-3 py-2 min-h-11 rounded-md text-sm font-medium no-underline sm:min-h-0 sm:py-1.5 sm:px-2.5;
 }
 
+/* Home — MCP launched card (light lab floor, purple→cyan brand moment) */
+.fyp-mcp-live {
+  overflow: hidden;
+  border: 1px solid rgba(124, 58, 237, 0.35);
+  border-radius: 0.5rem;
+  background: linear-gradient(
+    115deg,
+    rgba(124, 58, 237, 0.12),
+    rgba(6, 182, 212, 0.1) 48%,
+    rgba(255, 255, 255, 0.92)
+  );
+}
+
+.fyp-mcp-live__body {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.9rem 1.25rem;
+  padding: 1rem 1rem 1.1rem;
+}
+
+.fyp-mcp-live__row {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+  flex: 1 1 18rem;
+  min-width: 0;
+}
+
+.fyp-mcp-live__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+@media (min-width: 768px) {
+  .fyp-mcp-live__body {
+    padding: 1.15rem 1.25rem 1.25rem;
+  }
+
+  .fyp-mcp-live__actions {
+    margin-left: auto;
+  }
+}
+
+.fyp-mcp-live__mark {
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  color: #6d28d9;
+  background: rgba(124, 58, 237, 0.12);
+  border: 1px solid rgba(124, 58, 237, 0.28);
+}
+
+.fyp-mcp-live__glyph {
+  width: 22px;
+  height: 22px;
+}
+
+.fyp-mcp-live__kicker {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.45rem 0.6rem;
+  margin: 0 0 0.35rem;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #6d28d9;
+}
+
+.fyp-mcp-live__pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.12rem 0.5rem 0.12rem 0.4rem;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #7c3aed, #0891b2);
+  color: #fff;
+  letter-spacing: 0.14em;
+}
+
+.fyp-mcp-live__dot {
+  width: 0.4rem;
+  height: 0.4rem;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7);
+  animation: fyp-live-pulse 1.8s ease-out infinite;
+}
+
+.fyp-mcp-live__headline {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.3;
+  color: #0f172a;
+}
+
+@media (min-width: 768px) {
+  .fyp-mcp-live__headline {
+    font-size: 1.35rem;
+  }
+}
+
+.fyp-mcp-live--ribbon .fyp-mcp-live__body {
+  padding: 0.7rem 0.85rem 0.75rem;
+}
+
+.fyp-mcp-live--ribbon .fyp-mcp-live__headline {
+  font-size: 1.05rem;
+}
+
+.fyp-mcp-live__lede {
+  margin: 0.2rem 0 0;
+  font-size: 0.875rem;
+  line-height: 1.45;
+  color: #334155;
+}
+
+@media (min-width: 768px) {
+  .fyp-mcp-live--ribbon .fyp-mcp-live__headline {
+    font-size: 1.15rem;
+  }
+}
+
+@keyframes fyp-live-pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.65);
+  }
+  70% {
+    box-shadow: 0 0 0 6px rgba(255, 255, 255, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+  }
+}
+
 .fyp-shell-tap-target {
   @apply min-h-11 sm:min-h-0;
 }
@@ -468,8 +581,7 @@ a.exploration-meta-pill-mcp:hover {
 
 @media (prefers-reduced-motion: reduce) {
   .protocol-dots,
-  .home-intro-spark,
-  .home-intro-cursor {
+  .fyp-mcp-live__dot {
     animation: none;
   }
 

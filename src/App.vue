@@ -1,16 +1,18 @@
 <script setup lang="ts">
-import { onUnmounted, ref, watch } from 'vue'
+import { computed, onUnmounted, ref, watch } from 'vue'
 import { RouterLink, RouterView, useRoute, useRouter } from 'vue-router'
 
 import ExplorationNavListbox from '@/components/ExplorationNavListbox.vue'
 import { FYP_X_URL, FYP_YOUTUBE_URL, ROADMAP_HOME } from '@/libs/roadmapUrls'
 import logoUrl from '@/logo.png'
+import McpLaunchedRibbon from '@/mcp-launch/McpLaunchedRibbon.vue'
 import { useVideoMode } from '@/video/useVideoMode'
 import VideoShell from '@/video/VideoShell.vue'
 
 const router = useRouter()
 const route = useRoute()
 const isVideoMode = useVideoMode()
+const showLaunchRibbon = computed(() => !isVideoMode.value && route.path !== '/')
 const selectedRoute = ref(route.path.includes('eip-') ? route.path : '')
 
 function navigate(path: string) {
@@ -45,7 +47,9 @@ onUnmounted(() => {
 
 <template>
   <div :class="isVideoMode ? 'fyp-video-mode min-h-dvh bg-black' : ''">
-    <header v-if="!isVideoMode" class="fyp-protocol-seam-bottom mt-3 mb-4 pb-4">
+    <McpLaunchedRibbon v-if="showLaunchRibbon" />
+
+    <header v-if="!isVideoMode" class="mt-3 mb-4 pb-4">
       <div class="flex flex-col gap-2 sm:grid sm:grid-cols-2">
         <div class="flex items-start justify-between gap-2 min-w-0 sm:contents">
           <div class="site-title min-w-0 flex-1 sm:col-start-1 sm:row-start-1">

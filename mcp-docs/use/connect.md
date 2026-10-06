@@ -1,7 +1,7 @@
 # Connect
 
-::: tip Launch timing
-**Target: 5–9 October 2026.** The hosted URL below is **not live yet**. You can prepare config now; reconnect or refresh tools once we announce the endpoint on [X @FeelEthereum](https://x.com/FeelEthereum).
+::: tip The server is live
+**6 October 2026.** The URL below is open — free, no wallet, no API key. Add it, then ask the first question on this page. Follow [X @FeelEthereum](https://x.com/FeelEthereum) for what ships next.
 :::
 
 One URL, no wallet, no API key. Add it to your agent, then ask a question in plain language.
@@ -10,7 +10,7 @@ One URL, no wallet, no API key. Add it to your agent, then ask a question in pla
 
 <LaunchFacts
   :facts="[
-    { title: 'Cost at launch', detail: 'Free — full Glamsterdam hardfork' },
+    { title: 'Cost now', detail: 'Free — full Glamsterdam hardfork' },
     { title: 'Auth', detail: 'None — no wallet, no API key' },
     { title: 'Scope', detail: 'Hosted product only, not a self-host guide' },
   ]"
@@ -49,18 +49,18 @@ After connect, prefer natural-language questions. The agent should call the serv
 | Symptom | Try this |
 | --- | --- |
 | No tools show up | Restart the client or reload MCP servers, then check that the URL ends in `/mcp`. |
-| Connection error before launch | The hosted endpoint is not live until launch week. Keep the config and retry once we announce it. |
-| Connection error after launch | Update your client — remote HTTP MCP needs a recent build. |
+| Connection error | Update your client — remote HTTP MCP needs a recent build — and check that the URL ends in `/mcp`. |
 | Claude does not list the server | Add it as a custom connector under Customize → Connectors, not in the local config file. |
 | The agent answers without calling a tool | Ask it to run the simulation on the MCP server, and name the fork (Amsterdam or Fusaka). |
 
 ## What the server exposes
 
-At launch you get probe + run + artifact tools covering Amsterdam and the earlier fork lineage. Machine-readable schemas live under [Reference → Tool schemas](/use/tools/describe-capabilities). Human “what can I ask?” lives on [What you can ask](/use/capabilities).
+You get probe + run + artifact tools covering Amsterdam and the earlier fork lineage. Machine-readable schemas live under [Reference → Tool schemas](/use/tools/describe-capabilities). Human “what can I ask?” lives on [What you can ask](/use/capabilities).
 
 <CollapsibleChangelog
   title="Connect Changelog"
   :entries="[
+    { version: 'v0.16', date: '2026-10-06', summary: 'Hosted endpoint is live. The page is connect-and-ask, not a countdown.' },
     { version: 'v0.15', date: '2026-10-06', summary: 'Launch polish — endpoint card, client tabs with install link and one-line commands, troubleshooting table.' },
     { version: 'v0.14', date: '2026-10-01', summary: 'Cursor, Claude, Codex, and generic HTTP MCP setup; first-test prompt; launch still pending.' },
     { version: 'v0.13', date: '2026-10-01', summary: 'Launch connect is free. Client config still lands with the endpoint.' },

@@ -2,6 +2,7 @@
 import ChangelogBox from '@ct/components/ChangelogBox.vue'
 import FundCommitment from '@ct/components/FundCommitment.vue'
 import GuidelinesTabs from '@ct/components/GuidelinesTabs.vue'
+import McpLaunchedBanner from '@ct/components/McpLaunchedBanner.vue'
 import SectionAnchorLink from '@ct/components/SectionAnchorLink.vue'
 import SiteFooter from '@ct/components/SiteFooter.vue'
 import SiteHeader from '@ct/components/SiteHeader.vue'
@@ -12,6 +13,7 @@ import { GUIDELINE_TABS, INTRO } from '@ct/content/topics'
 
 <template>
   <div class="mx-auto flex min-h-screen max-w-6xl flex-col px-3 py-4 md:px-6 md:py-5">
+    <McpLaunchedBanner />
     <SiteHeader />
 
     <main class="mt-5 flex flex-1 flex-col">

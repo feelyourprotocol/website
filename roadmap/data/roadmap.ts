@@ -67,8 +67,8 @@ export const ROADMAP_TRACKS: RoadmapTrack[] = [
       },
       {
         title: 'Public hosted MCP',
-        horizon: 'progress',
-        note: 'HTTP at mcp.feelyourprotocol.org — launch week 5–9 Oct 2026.',
+        horizon: 'done',
+        note: 'Open at mcp.feelyourprotocol.org — 6 October 2026, full Glamsterdam, no payment.',
       },
       {
         title: 'Usability evaluation',
@@ -115,7 +115,7 @@ export const ROADMAP_TRACKS: RoadmapTrack[] = [
       {
         title: 'AWS EC2 MCP host',
         horizon: 'done',
-        note: 'Graviton host is up. Public HTTP opens with the hosted MCP.',
+        note: 'Graviton host is up. Public HTTP is open with the hosted MCP.',
       },
       {
         title: 'Scale & observability',

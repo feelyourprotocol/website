@@ -1,6 +1,6 @@
 # Describe Capabilities
 
-> **Status:** Implemented — ships on the public MCP at launch. MCP tool: `describe_capabilities`. **Public endpoint not live.**
+> **Status:** Live on the public MCP. Tool: `describe_capabilities`.
 
 <PromptCard
   text="What can this MCP server run on Amsterdam, and which EIPs have runnable twins?"
@@ -87,6 +87,7 @@ _Output (abbreviated):_
 <CollapsibleChangelog
   title="Describe Capabilities Changelog"
   :entries="[
+    { version: 'v0.25', date: '2026-10-06', summary: 'Public endpoint is live.' },
     { version: 'v0.24', date: '2026-10-04', summary: 'EIP-7778 is a runnable Glamsterdam twin (run_transaction, run_block).' },
     { version: 'v0.23', date: '2026-10-04', summary: 'EIP-8282 is coverage unshown, with EIP-7997.' },
     { version: 'v0.22', date: '2026-10-04', summary: 'eipIntroductions.coverage adds unshown: execution-layer EIPs this lab does not demonstrate. EIP-7997 is the first.' },

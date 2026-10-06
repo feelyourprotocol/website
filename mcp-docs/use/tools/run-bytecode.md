@@ -1,11 +1,11 @@
 # Run Bytecode
 
-> **Status:** Implemented — ships on the public MCP at launch. MCP tool: `run_bytecode`. **Public endpoint not live.**
+> **Status:** Live on the public MCP. Tool: `run_bytecode`.
 
 <PromptCard
   text="Run PUSH1 1 PUSH1 2 ADD on Amsterdam and show me the gas and the final stack."
   fork="Amsterdam"
-  lookFor="gasUsed and the final stack"
+  lookFor="about 9 call-frame gas and stack 0x3"
   tool="run_bytecode"
   toolHref="/use/tools/run-bytecode"
   hrefLabel="What you can ask"
@@ -17,6 +17,10 @@
 Run **caller-supplied** raw EVM bytecode under a chosen fork / EIP configuration and receive a structured result — call-frame gas used, return data, final stack, optional opcode trace, and provenance.
 
 Bytecode runs as a **VM message-call** (real execution account, call-frame gas — no 21,000 intrinsic). `SSTORE` persists for the duration of that call. Optional `accounts` seeds code, balance, and storage in the **same** request.
+
+## Agent voice
+
+Tell the user **call gas**, stack, and return data in plain language. Read `gasUsed` from the JSON internally; do not lead with that field name unless they asked for raw output.
 
 ## When to use
 
@@ -153,6 +157,7 @@ See [Guarantees](/use/guarantees) for ceilings (max gas, bytecode size, trace st
 <CollapsibleChangelog
   title="Run Bytecode Changelog"
   :entries="[
+    { version: 'v0.15', date: '2026-10-06', summary: 'Public endpoint is live.' },
     { version: 'v0.14', date: '2026-09-18', summary: 'Named eips[] provenance.caveat includes a compact Spec: snapshot.' },
     { version: 'v0.13', date: '2026-09-17', summary: 'Fusaka is first-class for current-mainnet features, not only a compare baseline.' },
     { version: 'v0.12', date: '2026-09-16', summary: 'Generic Glamsterdam bytecode (no EIP named) is a first-class when-to-use.' },

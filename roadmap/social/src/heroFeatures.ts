@@ -1,8 +1,8 @@
 /** Compact feature tiles for the hero social card (echoes roadmap/index.md). */
 export const HERO_FEATURES = [
   {
-    title: 'Launch week',
-    detail: 'Open hosted MCP — 5–9 Oct 2026. Full Glamsterdam.',
+    title: 'MCP is live',
+    detail: 'Open hosted lab — 6 Oct 2026. Full Glamsterdam.',
   },
   {
     title: 'Vision & Strategy',
@@ -10,7 +10,7 @@ export const HERO_FEATURES = [
   },
   {
     title: 'Roadmap & Timeline',
-    detail: 'PoC done — public endpoint is next.',
+    detail: 'The open server is on the board as done.',
   },
   {
     title: 'Monetization',
