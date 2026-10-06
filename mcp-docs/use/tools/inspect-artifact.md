@@ -3,7 +3,7 @@
 > **Status:** Live on the public MCP. Tool: `inspect_artifact`.
 
 <PromptCard
-  text="Inspect this BAL JSON — is the structure valid, and does the hash match?"
+  text="Generate a BAL on Amsterdam for one plain transfer, then inspect that BAL JSON — is it well formed and does the hash match?"
   fork="Amsterdam"
   lookFor="validation layers and the hash check"
   tool="inspect_artifact"

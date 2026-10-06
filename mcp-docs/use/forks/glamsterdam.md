@@ -17,11 +17,11 @@ These are the highest-signal checks for integrators and auditors — exact gas a
     {
       label: 'Prompts to copy',
       prompts: [
-        { text: `What intrinsic gas does a plain ETH transfer use on Amsterdam?`, fork: 'Amsterdam', href: '/use/eips/eip-2780', hrefLabel: 'EIP-2780' },
-        { text: `Send 1 wei to an empty account on Amsterdam — wallet gas breakdown.`, fork: 'Amsterdam', href: '/use/eips/eip-8037', hrefLabel: 'EIP-8037' },
-        { text: `SSTORE value 7 into slot 3 — Amsterdam vs Fusaka gas.`, fork: 'Fusaka vs Amsterdam', href: '/use/eips/eip-8038', hrefLabel: 'EIP-8038' },
-        { text: `Transfer 1 ETH — what logs appear in the receipt on Amsterdam?`, fork: 'Amsterdam', href: '/use/eips/eip-7708', hrefLabel: 'EIP-7708' },
-        { text: `I cleared storage and got a refund — why does the block still count the full gas?`, fork: 'Amsterdam', href: '/use/eips/eip-7778', hrefLabel: 'EIP-7778' },
+        { text: `On Glamsterdam, what intrinsic gas does a plain 1 wei transfer to an existing account use?`, fork: 'Amsterdam', href: '/use/eips/eip-2780', hrefLabel: 'EIP-2780' },
+        { text: `Run a 1 wei transfer to an empty account on Glamsterdam — what gas would a wallet need?`, fork: 'Amsterdam', href: '/use/eips/eip-8037', hrefLabel: 'EIP-8037' },
+        { text: `Cold SSTORE value 9 into storage slot 1 when slot 1 already holds 7 (seed storage in accounts[]) — run on Fusaka and on Glamsterdam and compare gasUsed.`, fork: 'Fusaka vs Amsterdam', href: '/use/eips/eip-8038', hrefLabel: 'EIP-8038' },
+        { text: `Run a plain 1 wei transfer on Glamsterdam — decode the EIP-7708 Transfer log in the result.`, fork: 'Amsterdam', href: '/use/eips/eip-7708', hrefLabel: 'EIP-7708' },
+        { text: `Run a lab block on Amsterdam with a transaction that clears storage and earns a refund — does header gasUsed still reflect full gas per transaction?`, fork: 'Amsterdam', href: '/use/eips/eip-7778', hrefLabel: 'EIP-7778' },
       ],
     },
   ]"

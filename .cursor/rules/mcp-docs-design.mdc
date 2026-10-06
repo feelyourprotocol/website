@@ -1,0 +1,37 @@
+---
+description: Human MCP docs — voice, prompts, catalogue honesty
+globs:
+  - mcp-docs/**/*.md
+  - mcp-docs/.vitepress/theme/components/Prompt*.vue
+alwaysApply: false
+---
+
+# MCP docs design
+
+Human inspiration pages in `mcp-docs/`. Runtime truth stays in `describe_capabilities` and gateway schemas — see [mcp-published-schemas.mdc](./mcp-published-schemas.mdc) for JSON sync.
+
+Add a **section** when a miss repeats. Do not grow a mega-guide.
+
+## Prompts
+
+[PromptCard](mcp-docs/.vitepress/theme/components/PromptCard.vue) copies **only** the quote. `lookFor` stays on the page (not on the clipboard).
+
+**Empty-chat test.** A pasted quote must work with no earlier message. If the quote says “this”, “these”, “my”, or “same” without naming the referent in that same sentence, rewrite it.
+
+**Three kinds** — on EIP pages use group labels **Job**, **Lesson**, **Check**, **one** card each. Drop a kind when there is no honest example.
+
+| Kind | Role |
+| --- | --- |
+| **Job** | The sentence a matching person would paste (wallet, deployer, integrator). |
+| **Lesson** | Canonical contrast; both sides named in the quote (fork A vs B, self-send vs transfer). |
+| **Check** | An old belief the lab should confirm or knock down, inputs inside the sentence. |
+
+**Inputs in the quote.** Scenario txs need amount, recipient shape (empty / existing / self), and fork. Blocks name header fields when relevant. Opcodes: name a tiny program in words (`PUSH1 1 PUSH1 2 ADD`, DUPN at depth 4) — no long hex dumps. Precompiles: minimal vector in words (sizes + success question). Artifacts: generate then inspect in one sentence if needed — still no pasted JSON.
+
+**Reuse.** [capabilities.md](mcp-docs/use/capabilities.md), [introduction.md](mcp-docs/use/introduction.md), and fork pages **reuse** the EIP sentence, not a vaguer twin. Tool-page openers that already pass the test stay.
+
+**Live voice.** Do not write “once the public MCP is live” — point at [Connect](/use/connect) as open now.
+
+## Catalogue pages
+
+Per-EIP pages are twins of explorations — identity and spec pins follow [eip-canonical-data.mdc](./eip-canonical-data.mdc). Do not duplicate long probe tables; link tools and schemas.

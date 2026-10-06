@@ -58,9 +58,9 @@ The lab does not replay Merge consensus, beacon withdrawals, or PeerDAS. Those i
     {
       label: 'Prompts to copy',
       prompts: [
-        { text: `Compare the same transfer on Berlin vs London — when did 1559 activate?`, fork: 'Berlin vs London' },
-        { text: `Run BASEFEE opcode bytecode on London vs Berlin.`, fork: 'Berlin vs London' },
-        { text: `When did PUSH0 activate — Paris vs Shapella?`, fork: 'Paris vs Shapella' },
+        { text: `On Berlin then London, run a plain 1 wei transfer to an existing account — when does gas pricing change for 1559?`, fork: 'Berlin vs London' },
+        { text: `On London versus Berlin, run bytecode that executes BASEFEE — does BASEFEE exist only on London?`, fork: 'Berlin vs London' },
+        { text: `On Paris versus Shapella, run bytecode PUSH0 — when does PUSH0 succeed?`, fork: 'Paris vs Shapella' },
       ],
     },
   ]"

@@ -43,25 +43,25 @@ After [Connect](/use/connect), paste a prompt — you do not need EIP numbers in
       label: 'Gas and receipts',
       prompts: [
         {
-          text: `What intrinsic gas does a simple ETH transfer use under Amsterdam?`,
+          text: `On Glamsterdam, what intrinsic gas does a plain 1 wei transfer to an existing account use?`,
           fork: 'Amsterdam',
           href: '/use/eips/eip-2780',
           hrefLabel: 'EIP-2780',
         },
         {
-          text: `This calldata is mostly zeros. What does it cost on Amsterdam versus Fusaka?`,
+          text: `Call an existing account on Amsterdam with calldata of 100 zero bytes — what is intrinsic gas on Fusaka versus Amsterdam?`,
           fork: 'Fusaka vs Amsterdam',
           href: '/use/eips/eip-7976',
           hrefLabel: 'EIP-7976',
         },
         {
-          text: `Send 1 wei to an empty account on Amsterdam — what gas does the wallet need?`,
+          text: `Run a 1 wei transfer to an empty account on Glamsterdam — what gas would a wallet need?`,
           fork: 'Amsterdam',
           href: '/use/eips/eip-8037',
           hrefLabel: 'EIP-8037',
         },
         {
-          text: `Does a value transfer emit a receipt log on Amsterdam?`,
+          text: `Run a plain 1 wei transfer on Glamsterdam — decode the EIP-7708 Transfer log in the result.`,
           fork: 'Amsterdam',
           href: '/use/eips/eip-7708',
           hrefLabel: 'EIP-7708',
@@ -72,13 +72,13 @@ After [Connect](/use/connect), paste a prompt — you do not need EIP numbers in
       label: 'Storage and blocks',
       prompts: [
         {
-          text: `How does SSTORE on an existing slot price on Amsterdam vs Fusaka?`,
+          text: `Cold SSTORE value 9 into storage slot 1 when slot 1 already holds 7 (seed storage in accounts[]) — run on Fusaka and on Glamsterdam and compare gasUsed.`,
           fork: 'Fusaka vs Amsterdam',
           href: '/use/eips/eip-8038',
           hrefLabel: 'EIP-8038',
         },
         {
-          text: `I cleared storage and got a refund. Why does the block still count the full gas?`,
+          text: `Run a lab block on Amsterdam with a transaction that clears storage and earns a refund — does header gasUsed still reflect full gas per transaction?`,
           fork: 'Amsterdam',
           href: '/use/eips/eip-7778',
           hrefLabel: 'EIP-7778',

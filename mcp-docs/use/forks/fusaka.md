@@ -33,10 +33,10 @@ Full index: [EIP catalogue](/use/coverage).
     {
       label: 'Prompts to copy',
       prompts: [
-        { text: `Run this under current mainnet EL (Fusaka / mainnet-el).`, fork: 'Fusaka' },
-        { text: `Verify this P-256 payload on Fusaka — does 0x100 return 0x01?`, fork: 'Fusaka', href: '/use/eips/eip-7951', hrefLabel: 'EIP-7951' },
-        { text: `Compare ModExp gas: Pectra then Fusaka.`, fork: 'Pectra vs Fusaka', href: '/use/eips/eip-7883', hrefLabel: 'EIP-7883' },
-        { text: `Same transfer on Fusaka vs Glamsterdam.`, fork: 'Fusaka vs Amsterdam' },
+        { text: `On Fusaka, run PUSH1 1 PUSH1 2 ADD and show gasUsed and the final stack.`, fork: 'Fusaka' },
+        { text: `On Fusaka, CALL precompile 0x100 with a standard valid P-256 test vector (message hash, r, s, pubX, pubY) — does it return 0x01?`, fork: 'Fusaka', href: '/use/eips/eip-7951', hrefLabel: 'EIP-7951' },
+        { text: `On Pectra then Fusaka, run the same 32-byte ModExp CALL (base, exponent, and modulus each 32 bytes of 0x02) — how much did gas increase?`, fork: 'Pectra vs Fusaka', href: '/use/eips/eip-7883', hrefLabel: 'EIP-7883' },
+        { text: `Send 1 wei to an empty account on Fusaka, then send 1 wei to an empty account on Glamsterdam — how does paid gas differ?`, fork: 'Fusaka vs Amsterdam', href: '/use/eips/eip-8037', hrefLabel: 'EIP-8037' },
       ],
     },
   ]"

@@ -3,7 +3,7 @@
 > **Status:** Live on the public MCP. Tool: `run_block`.
 
 <PromptCard
-  text="Run two plain transfers as one Amsterdam block and show each receipt."
+  text="Run a lab block on Amsterdam with two plain 1 wei transfers — show each receipt."
   fork="Amsterdam"
   lookFor="per-transaction receipts plus the header snapshot"
   tool="run_block"
