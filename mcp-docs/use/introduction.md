@@ -72,13 +72,13 @@ After [Connect](/use/connect), paste a prompt — you do not need EIP numbers in
       label: 'Storage and blocks',
       prompts: [
         {
-          text: `Cold SSTORE value 9 into storage slot 1 when slot 1 already holds 7 (seed storage in accounts[]) — run on Fusaka and on Glamsterdam and compare gasUsed.`,
+          text: `Cold SSTORE 9 into storage slot 1 when slot 1 already holds 7 — prefund slot 1 with 7 on the contract, run on Fusaka and on Glamsterdam, and compare call gas.`,
           fork: 'Fusaka vs Amsterdam',
           href: '/use/eips/eip-8038',
           hrefLabel: 'EIP-8038',
         },
         {
-          text: `Run a lab block on Amsterdam with a transaction that clears storage and earns a refund — does header gasUsed still reflect full gas per transaction?`,
+          text: `Run a lab block on Amsterdam with a transaction that clears storage and earns a refund — does the block header total still count the full gas for each transaction?`,
           fork: 'Amsterdam',
           href: '/use/eips/eip-7778',
           hrefLabel: 'EIP-7778',

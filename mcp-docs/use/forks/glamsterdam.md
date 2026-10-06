@@ -19,9 +19,9 @@ These are the highest-signal checks for integrators and auditors — exact gas a
       prompts: [
         { text: `On Glamsterdam, what intrinsic gas does a plain 1 wei transfer to an existing account use?`, fork: 'Amsterdam', href: '/use/eips/eip-2780', hrefLabel: 'EIP-2780' },
         { text: `Run a 1 wei transfer to an empty account on Glamsterdam — what gas would a wallet need?`, fork: 'Amsterdam', href: '/use/eips/eip-8037', hrefLabel: 'EIP-8037' },
-        { text: `Cold SSTORE value 9 into storage slot 1 when slot 1 already holds 7 (seed storage in accounts[]) — run on Fusaka and on Glamsterdam and compare gasUsed.`, fork: 'Fusaka vs Amsterdam', href: '/use/eips/eip-8038', hrefLabel: 'EIP-8038' },
+        { text: `Cold SSTORE 9 into storage slot 1 when slot 1 already holds 7 — prefund slot 1 with 7 on the contract, run on Fusaka and on Glamsterdam, and compare call gas.`, fork: 'Fusaka vs Amsterdam', href: '/use/eips/eip-8038', hrefLabel: 'EIP-8038' },
         { text: `Run a plain 1 wei transfer on Glamsterdam — decode the EIP-7708 Transfer log in the result.`, fork: 'Amsterdam', href: '/use/eips/eip-7708', hrefLabel: 'EIP-7708' },
-        { text: `Run a lab block on Amsterdam with a transaction that clears storage and earns a refund — does header gasUsed still reflect full gas per transaction?`, fork: 'Amsterdam', href: '/use/eips/eip-7778', hrefLabel: 'EIP-7778' },
+        { text: `Run a lab block on Amsterdam with a transaction that clears storage and earns a refund — does the block header total still count the full gas for each transaction?`, fork: 'Amsterdam', href: '/use/eips/eip-7778', hrefLabel: 'EIP-7778' },
       ],
     },
   ]"

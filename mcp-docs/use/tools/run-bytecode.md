@@ -5,7 +5,7 @@
 <PromptCard
   text="Run PUSH1 1 PUSH1 2 ADD on Amsterdam and show me the gas and the final stack."
   fork="Amsterdam"
-  lookFor="gasUsed and the final stack"
+  lookFor="about 9 call-frame gas and stack 0x3"
   tool="run_bytecode"
   toolHref="/use/tools/run-bytecode"
   hrefLabel="What you can ask"

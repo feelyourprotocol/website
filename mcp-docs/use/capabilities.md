@@ -25,7 +25,7 @@ Intrinsic gas, self-send vs transfer, contract creation limits, receipt logs on 
   ]"
 />
 
-**Compare (only when you ask):** run the same transfer on **Fusaka** then **Amsterdam** and diff `gasUsed`.
+**Compare (only when you ask):** run the same transfer on **Fusaka** then **Amsterdam** and compare paid gas.
 
 ## 2. Bytecode, opcodes, and precompiles
 
@@ -64,8 +64,8 @@ SSTORE/SLOAD pricing, existing-slot vs new-slot behavior, Glamsterdam **state ga
     {
       label: 'Example prompts',
       prompts: [
-        { text: `Cold SSTORE value 9 into storage slot 1 when slot 1 already holds 7 (seed storage in accounts[]) — run on Fusaka and on Glamsterdam and compare gasUsed.`, fork: 'Fusaka vs Amsterdam', href: '/use/eips/eip-8038', hrefLabel: 'EIP-8038' },
-        { text: `On Glamsterdam, run bytecode that cold SSTOREs value 9 into storage slot 1 when slot 1 already holds 7 (seed storage in accounts[]) — what is gasUsed?`, fork: 'Amsterdam', href: '/use/eips/eip-8038', hrefLabel: 'EIP-8038' },
+        { text: `Cold SSTORE 9 into storage slot 1 when slot 1 already holds 7 — prefund slot 1 with 7 on the contract, run on Fusaka and on Glamsterdam, and compare call gas.`, fork: 'Fusaka vs Amsterdam', href: '/use/eips/eip-8038', hrefLabel: 'EIP-8038' },
+        { text: `On Glamsterdam, run bytecode that cold SSTOREs 9 into storage slot 1 when slot 1 already holds 7 — prefund slot 1 with 7 on the contract first. How much gas does the call use?`, fork: 'Amsterdam', href: '/use/eips/eip-8038', hrefLabel: 'EIP-8038' },
       ],
     },
   ]"

@@ -28,6 +28,8 @@ Add a **section** when a miss repeats. Do not grow a mega-guide.
 
 **Inputs in the quote.** Scenario txs need amount, recipient shape (empty / existing / self), and fork. Blocks name header fields when relevant. Opcodes: name a tiny program in words (`PUSH1 1 PUSH1 2 ADD`, DUPN at depth 4) — no long hex dumps. Precompiles: minimal vector in words (sizes + success question). Artifacts: generate then inspect in one sentence if needed — still no pasted JSON.
 
+**Prose in the quote.** Paste text uses human words (prefund storage, paid gas, call gas, block header total) — not MCP/JSON field names (`gasUsed`, `accounts[]`, `txRegularGas`). `lookFor` on the page may stay technical for reviewers.
+
 **Reuse.** [capabilities.md](mcp-docs/use/capabilities.md), [introduction.md](mcp-docs/use/introduction.md), and fork pages **reuse** the EIP sentence, not a vaguer twin. Tool-page openers that already pass the test stay.
 
 **Live voice.** Do not write “once the public MCP is live” — point at [Connect](/use/connect) as open now.
