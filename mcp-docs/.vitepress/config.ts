@@ -88,6 +88,7 @@ export default defineConfig({
             { text: 'What you can ask', link: '/use/capabilities' },
             { text: 'Limits', link: '/use/guarantees' },
             { text: 'Pricing', link: '/use/pricing' },
+            { text: 'Terms', link: '/use/terms' },
             {
               text: 'Reference',
               collapsed: true,
@@ -146,7 +147,7 @@ export default defineConfig({
     footer: {
       message:
         'Get started = connect and ask questions. Reference = catalogues and tool schemas. Internals = for builders.',
-      copyright: 'Feel Your Protocol',
+      copyright: 'Feel Your Protocol · <a href="/use/terms.html">Terms</a>',
     },
   },
 })

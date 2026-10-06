@@ -16,7 +16,7 @@ One URL, no wallet, no API key. Add it to your agent, then ask a question in pla
   ]"
 />
 
-For browser learning, use **[feelyourprotocol.org](https://feelyourprotocol.org)**.
+For browser learning, use **[feelyourprotocol.org](https://feelyourprotocol.org)**. Using the hosted server means you accept the short [Terms](/use/terms).
 
 ## Add the server to your agent
 

@@ -38,6 +38,7 @@ describe('mcp-docs URL stability', () => {
       '/use/forks/glamsterdam',
       '/use/forks/fusaka',
       '/use/tools/run-transaction',
+      '/use/terms',
     ]) {
       expect(pages).toContain(required)
     }
@@ -50,6 +51,13 @@ describe('mcp-docs URL stability', () => {
     for (const link of links) {
       expect(existsSync(join(ROOT, `${link}.md`)), `missing page for ${link}`).toBe(true)
     }
+  })
+
+  it('links Terms from the sidebar, the footer, and Connect', () => {
+    const config = readFileSync(join(ROOT, '.vitepress/config.ts'), 'utf8')
+    expect(config).toContain("link: '/use/terms'")
+    expect(config).toContain('/use/terms.html')
+    expect(readFileSync(join(ROOT, 'use/connect.md'), 'utf8')).toContain('(/use/terms)')
   })
 
   it('every internal Markdown link points at an existing page', () => {
