@@ -7,7 +7,7 @@ const rootDir = fileURLToPath(new URL('./community-token', import.meta.url))
 const outDir = fileURLToPath(new URL('./dist/community-token', import.meta.url))
 
 // Standalone mini-site for community-token.feelyourprotocol.org
-// Dev:  npm run community-token:dev   (http://localhost:5174)
+// Dev:  npm run community-token:dev   (http://localhost:5174 — not mcp-gateway metrics-ui)
 // Prod: npm run community-token:build → dist/community-token/
 export default defineConfig({
   root: rootDir,
