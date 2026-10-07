@@ -24,6 +24,9 @@ describe('LaunchedBanner', () => {
     expect(wrapper.text()).toContain('6 October 2026')
     expect(wrapper.get('a[href="/use/connect.html"]').text()).toBe('Connect')
     expect(wrapper.get('a[href="/use/capabilities.html"]').attributes('target')).toBeUndefined()
+    expect(wrapper.get('a[href*="status/2107839782525325437"]').text()).toBe(
+      'Read announcement on X',
+    )
   })
 
   it('opens an external entry point in a new tab', () => {

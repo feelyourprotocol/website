@@ -16,5 +16,6 @@ describe('McpLaunchHomeSection', () => {
     expect(wrapper.text()).toContain('The hosted lab is')
     expect(wrapper.find('a[href*="use/connect"]').exists()).toBe(true)
     expect(wrapper.find('a[href*="use/capabilities"]').exists()).toBe(true)
+    expect(wrapper.find('a[href*="status/2107839782525325437"]').exists()).toBe(true)
   })
 })

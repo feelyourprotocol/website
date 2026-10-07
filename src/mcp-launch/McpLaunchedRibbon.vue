@@ -1,5 +1,9 @@
 <script setup lang="ts">
-import { mcpDocsPage } from '@/libs/roadmapUrls'
+import {
+  FYP_MCP_LAUNCH_ANNOUNCEMENT_X_LABEL,
+  FYP_MCP_LAUNCH_ANNOUNCEMENT_X_URL,
+  mcpDocsPage,
+} from '@/libs/roadmapUrls'
 
 const connectUrl = mcpDocsPage('use/connect')
 const askUrl = mcpDocsPage('use/capabilities')
@@ -54,6 +58,14 @@ const askUrl = mcpDocsPage('use/capabilities')
           class="fyp-shell-cta border border-violet-300 bg-white text-slate-700 hover:bg-violet-50"
         >
           Try a question
+        </a>
+        <a
+          :href="FYP_MCP_LAUNCH_ANNOUNCEMENT_X_URL"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="fyp-shell-cta border border-violet-300 bg-white text-slate-700 hover:bg-violet-50"
+        >
+          {{ FYP_MCP_LAUNCH_ANNOUNCEMENT_X_LABEL }}
         </a>
       </div>
     </div>

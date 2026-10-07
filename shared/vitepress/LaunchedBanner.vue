@@ -1,6 +1,11 @@
 <script setup lang="ts">
 import { onBeforeUnmount, onMounted } from 'vue'
 
+import {
+  MCP_LAUNCH_ANNOUNCEMENT_X_LABEL,
+  MCP_LAUNCH_ANNOUNCEMENT_X_URL,
+} from '../mcpLaunchUrls'
+
 withDefaults(
   defineProps<{
     kicker: string
@@ -80,6 +85,14 @@ onBeforeUnmount(() => observer?.disconnect())
           :rel="secondaryExternal ? 'noopener noreferrer' : undefined"
         >
           {{ secondaryLabel }}
+        </a>
+        <a
+          class="fyp-launched__cta fyp-launched__cta--quiet"
+          :href="MCP_LAUNCH_ANNOUNCEMENT_X_URL"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {{ MCP_LAUNCH_ANNOUNCEMENT_X_LABEL }}
         </a>
       </div>
     </div>
