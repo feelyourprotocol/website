@@ -63,6 +63,23 @@ npm run roadmap:dev          # roadmap (VitePress)
 npm run community-token:dev  # community token mini-site
 ```
 
+### Local dev ports (fixed defaults)
+
+Run several targets at once — each command owns one port. Override only when needed (`PORT=…` on Vite apps).
+
+| Port | Command / repo | Site or tool |
+| --- | --- | --- |
+| 5173 | `website`: `npm run dev` | Explorations (Vite default) |
+| 5174 | `website`: `npm run community-token:dev` | Community token |
+| 5175 | `website`: `npm run social:dev` | Roadmap social card preview (may pick next free port) |
+| 5176 | `website`: `npm run docs:dev` | Docs hub landing |
+| 5177 | `mcp-gateway`: `npm run metrics-ui:dev` | MCP usage dashboard (dummy fixtures) |
+| 3000 | `mcp-gateway`: `npm run start:http` | MCP HTTP lab |
+| 3001 | `mcp-gateway`: `npm run start:metrics` | Metrics read API + built UI |
+| 4173 | `website`: Cypress E2E | Explorations preview (CI), not daily dev |
+
+VitePress dev servers (`website-docs`, `mcp-docs`, `roadmap`) use their own defaults — see each folder’s README.
+
 ### Build & deploy
 
 ```bash
