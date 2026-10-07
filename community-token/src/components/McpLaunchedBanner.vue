@@ -1,4 +1,9 @@
 <script setup lang="ts">
+import {
+  MCP_LAUNCH_ANNOUNCEMENT_X_LABEL,
+  MCP_LAUNCH_ANNOUNCEMENT_X_URL,
+} from '../../../shared/mcpLaunchUrls'
+
 const connectUrl = 'https://mcp-docs.feelyourprotocol.org/use/connect.html'
 const askUrl = 'https://mcp-docs.feelyourprotocol.org/use/capabilities.html'
 </script>
@@ -42,6 +47,14 @@ const askUrl = 'https://mcp-docs.feelyourprotocol.org/use/capabilities.html'
           rel="noopener noreferrer"
         >
           Try a question
+        </a>
+        <a
+          class="ct-launched__cta ct-launched__cta--quiet"
+          :href="MCP_LAUNCH_ANNOUNCEMENT_X_URL"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {{ MCP_LAUNCH_ANNOUNCEMENT_X_LABEL }}
         </a>
       </div>
     </div>

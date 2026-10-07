@@ -43,3 +43,8 @@ export const FYP_X_URL = 'https://x.com/FeelEthereum'
 
 /** @FeelEthereum YouTube channel — same handle as X. */
 export const FYP_YOUTUBE_URL = 'https://www.youtube.com/@FeelEthereum'
+
+export {
+  MCP_LAUNCH_ANNOUNCEMENT_X_LABEL as FYP_MCP_LAUNCH_ANNOUNCEMENT_X_LABEL,
+  MCP_LAUNCH_ANNOUNCEMENT_X_URL as FYP_MCP_LAUNCH_ANNOUNCEMENT_X_URL,
+} from '../../shared/mcpLaunchUrls'

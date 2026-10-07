@@ -1,6 +1,8 @@
 import { describe, expect, it } from 'vitest'
 
 import {
+  FYP_MCP_LAUNCH_ANNOUNCEMENT_X_LABEL,
+  FYP_MCP_LAUNCH_ANNOUNCEMENT_X_URL,
   FYP_X_HANDLE,
   FYP_X_URL,
   FYP_YOUTUBE_URL,
@@ -53,6 +55,13 @@ describe('roadmapUrls', () => {
 
   it('FYP_YOUTUBE_URL is the @FeelEthereum channel', () => {
     expect(FYP_YOUTUBE_URL).toBe('https://www.youtube.com/@FeelEthereum')
+  })
+
+  it('FYP_MCP_LAUNCH_ANNOUNCEMENT_X_URL is the launch thread', () => {
+    expect(FYP_MCP_LAUNCH_ANNOUNCEMENT_X_URL).toBe(
+      'https://x.com/FeelEthereum/status/2107839782525325437',
+    )
+    expect(FYP_MCP_LAUNCH_ANNOUNCEMENT_X_LABEL).toBe('Read announcement on X')
   })
 })
 
