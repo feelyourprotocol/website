@@ -150,7 +150,7 @@ describe('EIP-8038 state-access gas exploration', () => {
       expect(wrapper.text()).toContain('Glamsterdam')
       const glamsterdam = wrapper.find('[aria-pressed="true"]')
       expect(glamsterdam.exists()).toBe(true)
-      expect(glamsterdam.text()).toBe('Glamsterdam')
+      expect(glamsterdam.text()).toContain('Glamsterdam')
       expect(wrapper.find('[data-testid="cost-breakdown"]').attributes('data-has-run')).toBe(
         'false',
       )
@@ -190,9 +190,9 @@ describe('EIP-8038 state-access gas exploration', () => {
       await flushPromises()
       await flushPromises()
 
-      const fusaka = wrapper.findAll('button').find((b) => b.text() === 'Fusaka')
-      expect(fusaka).toBeDefined()
-      await fusaka!.trigger('click')
+      const fusaka = wrapper.find('[data-testid="hardfork-fusaka"]')
+      expect(fusaka.exists()).toBe(true)
+      await fusaka.trigger('click')
       expect(wrapper.find('[data-testid="hardfork-fusaka"]').attributes('aria-pressed')).toBe(
         'true',
       )

@@ -1,3 +1,5 @@
+import { FORK_MASCOT_EMOJI } from '@/explorations/forkCatalog'
+
 /**
  * Website catalog timeline — forks that have explorations.
  *
@@ -27,13 +29,13 @@ export const TIMELINE: Timeline = {
   fusaka: {
     title: 'Fusaka',
     role: 'current',
-    emoji: '🏯',
+    emoji: FORK_MASCOT_EMOJI.fusaka!,
     order: 100,
   },
   glamsterdam: {
     title: 'Glamsterdam',
     role: 'preview',
-    emoji: '🌷',
+    emoji: FORK_MASCOT_EMOJI.glamsterdam!,
     order: 110,
   },
 }

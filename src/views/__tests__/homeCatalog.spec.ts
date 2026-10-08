@@ -28,6 +28,6 @@ describe('homeCatalog', () => {
   })
 
   it('lists fork titles from live explorations', () => {
-    expect(catalogForkLabels()).toEqual(['Fusaka', 'Glamsterdam'])
+    expect(catalogForkLabels()).toEqual(['🦓 Fusaka', '🐻‍❄️ Glamsterdam'])
   })
 })

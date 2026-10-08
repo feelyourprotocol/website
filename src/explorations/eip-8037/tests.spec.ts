@@ -201,7 +201,7 @@ describe('EIP-8037 state-creation gas exploration', () => {
       expect(wrapper.text()).toContain('Recommended')
       const glamsterdam = wrapper.find('[aria-pressed="true"]')
       expect(glamsterdam.exists()).toBe(true)
-      expect(glamsterdam.text()).toBe('Glamsterdam')
+      expect(glamsterdam.text()).toContain('Glamsterdam')
       expect(wrapper.find('[data-testid="gas-bars"]').attributes('data-has-run')).toBe('false')
       expect(wrapper.text()).toContain('Run tx to fill execution and state bars')
       const gasBars = wrapper.find('[data-testid="gas-bars"]')
@@ -237,9 +237,9 @@ describe('EIP-8037 state-creation gas exploration', () => {
       await flushPromises()
       await flushPromises()
 
-      const fusaka = wrapper.findAll('button').find((b) => b.text() === 'Fusaka')
-      expect(fusaka).toBeDefined()
-      await fusaka!.trigger('click')
+      const fusaka = wrapper.find('[data-testid="hardfork-fusaka"]')
+      expect(fusaka.exists()).toBe(true)
+      await fusaka.trigger('click')
       expect(wrapper.find('[data-testid="hardfork-fusaka"]').attributes('aria-pressed')).toBe(
         'true',
       )

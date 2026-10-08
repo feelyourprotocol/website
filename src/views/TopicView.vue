@@ -62,8 +62,12 @@ const filterSummary = computed(() => {
   if (activeTagValue.value) parts.push(`tag ${activeTagValue.value}`)
   if (activeTimelineId.value) {
     const tid = activeTimelineId.value as WebsiteTimelineId
-    const label = tid in TIMELINE ? TIMELINE[tid].title : activeTimelineId.value
-    parts.push(`timeline ${label}`)
+    if (tid in TIMELINE) {
+      const entry = TIMELINE[tid]
+      parts.push(`timeline ${entry.emoji} ${entry.title}`)
+    } else {
+      parts.push(`timeline ${activeTimelineId.value}`)
+    }
   }
   return parts.join(' · ')
 })

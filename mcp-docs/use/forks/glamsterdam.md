@@ -1,4 +1,4 @@
-# Amsterdam now
+# 🐻‍❄️ Amsterdam now (Glamsterdam)
 
 ::: info Naming
 **Glamsterdam** is the catalog id; **`amsterdam`** is the Ethereum execution-layer alias. Both mean the same fork here. Default when you omit `fork`.

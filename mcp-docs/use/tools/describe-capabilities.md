@@ -38,7 +38,7 @@ None required. Pass `{}` or omit arguments.
 | `ceilings` | `maxGasLimit`, `maxTransactionGasLimit`, `defaultGasLimit`, `maxBytecodeBytes`, `maxTraceSteps`, `maxTxsPerBlock` |
 | `baselineForkId` | Current mainnet EL (`fusaka`) — probe label for mainnet-today; run the fork the user asked for |
 | `queryShapes` | Dictionary: catalog `id` (`simulate`, `generate`, …) → `mcpTool` (`run_bytecode`, `generate_artifact`, …). Agents call `mcpTool`. |
-| `namedForks` | Berlin→Glamsterdam lineage — `order`, `predecessorId`, `successorId`, `role`, `activatedEips`, advertised `relatedEips`, **`tools`** (MCP names) |
+| `namedForks` | Berlin→Glamsterdam lineage — `order`, `predecessorId`, `successorId`, `role`, `mascotEmoji` (when assigned), `activatedEips`, advertised `relatedEips`, **`tools`** (MCP names) |
 | `eipIntroductions` | When each EIP activated. **`coverage`** is `twin` (runnable module), `supported` (hardfork already applies it — omit that id from `eips` and use the fork tools), `unshown` (execution-layer, in the bundle, and this lab does not demonstrate it — do not put it in `eips`; a generic fork run does not stand in for it), `consensus` (consensus-layer — this lab does not execute it; do not put it in `eips`), `networking` (wire protocol — this lab does not speak it; do not put it in `eips`), `informational` (analysis or a schedule — this lab does not execute it; do not put it in `eips`), or `listed` (name and fork only). **`observableTools`** are MCP names; `supported`, `unshown`, `consensus`, `networking`, and `informational` rows omit them |
 | `eips` | Runnable modules — optional `comparison` lookup from `eipIntroductions` (use when the user asks for before/after); **`tools`** lists MCP names to call; each row includes `specUrl`, `specDate`, `status`, and optional `testReleaseUrl` / `testReleaseName` (or a live `eips.ethereum.org` page when unpinned) |
 | `allowedBaseHardforks` | Lineage forks (`berlin` … `glamsterdam`) plus aliases; glacier/BPO ids rejected |
@@ -61,8 +61,8 @@ _Output (abbreviated):_
     { "id": "simulate", "mcpTool": "run_bytecode", "summary": "…" }
   ],
   "namedForks": [
-    { "id": "fusaka", "role": "current", "aliases": ["osaka", "mainnet-el"], "relatedEips": [7883, 7951], "tools": ["run_bytecode", "run_transaction", "run_block"], "…": "…" },
-    { "id": "glamsterdam", "role": "preview", "aliases": ["amsterdam"], "relatedEips": [2780, 7708, 7778, 7843, 7928, 7954, 7976, 8024, 8037, 8038], "tools": ["run_bytecode", "run_transaction", "run_block"], "…": "…" }
+    { "id": "fusaka", "role": "current", "mascotEmoji": "🦓", "aliases": ["osaka", "mainnet-el"], "relatedEips": [7883, 7951], "tools": ["run_bytecode", "run_transaction", "run_block"], "…": "…" },
+    { "id": "glamsterdam", "role": "preview", "mascotEmoji": "🐻‍❄️", "aliases": ["amsterdam"], "relatedEips": [2780, 7708, 7778, 7843, 7928, 7954, 7976, 8024, 8037, 8038], "tools": ["run_bytecode", "run_transaction", "run_block"], "…": "…" }
   ],
   "eips": [{
     "eip": 8024,

@@ -11,6 +11,7 @@ Tool-agnostic entrypoint for coding agents (Cursor, Claude Code, Codex, etc.) in
 | Task | Read first |
 | --- | --- |
 | **Full round-trip** (EIP → exploration → MCP → optional comic/video → close) | [`.cursor/skills/round-trip-protocol-change/SKILL.md`](.cursor/skills/round-trip-protocol-change/SKILL.md) |
+| **Unicorn merge 🦄** (explicit phrase only — session branches → merged PRs → fresh `new-work`) | [`.cursor/skills/unicorn-merge/SKILL.md`](.cursor/skills/unicorn-merge/SKILL.md) — not round-trip close |
 | **Brief a protocol change** (round-trip phase 1) | [`.cursor/skills/brief-protocol-change/SKILL.md`](.cursor/skills/brief-protocol-change/SKILL.md) — includes working-tree prep (observe git only) |
 | **Create or change an exploration** (round-trip phase 2) | [`.cursor/skills/add-exploration/SKILL.md`](.cursor/skills/add-exploration/SKILL.md) → [adding-an-exploration.md](website-docs/contributing/adding-an-exploration.md) |
 | **EthereumJS / EST bump** (re-pin EIP specs) | [`.cursor/skills/update-ethereumjs/SKILL.md`](.cursor/skills/update-ethereumjs/SKILL.md) → [eip-canonical-data.mdc](.cursor/rules/eip-canonical-data.mdc) § Spec versioning |
