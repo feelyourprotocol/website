@@ -153,7 +153,7 @@ describe('EIP-7708 transfer-log exploration', () => {
       expect(wrapper.text()).toContain('Glamsterdam')
       const glamsterdam = wrapper.find('[aria-pressed="true"]')
       expect(glamsterdam.exists()).toBe(true)
-      expect(glamsterdam.text()).toBe('Glamsterdam')
+      expect(glamsterdam.text()).toContain('Glamsterdam')
       expect(wrapper.text()).toContain('Run the block to inspect receipt logs')
     })
 
@@ -185,14 +185,14 @@ describe('EIP-7708 transfer-log exploration', () => {
       await flushPromises()
       await flushPromises()
 
-      const fusaka = wrapper.findAll('button').find((b) => b.text() === 'Fusaka')
-      expect(fusaka).toBeDefined()
-      await fusaka!.trigger('click')
-      expect(wrapper.find('[aria-pressed="true"]').text()).toBe('Fusaka')
+      const fusaka = wrapper.find('[data-testid="hardfork-fusaka"]')
+      expect(fusaka.exists()).toBe(true)
+      await fusaka.trigger('click')
+      expect(wrapper.find('[aria-pressed="true"]').text()).toContain('Fusaka')
 
       const next = wrapper.findAll('button').find((b) => b.text().includes('next'))
       await next!.trigger('click')
-      expect(wrapper.find('[aria-pressed="true"]').text()).toBe('Glamsterdam')
+      expect(wrapper.find('[aria-pressed="true"]').text()).toContain('Glamsterdam')
     })
   })
 })

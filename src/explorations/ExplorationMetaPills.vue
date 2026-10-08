@@ -21,9 +21,11 @@ const props = withDefaults(
 const pillLinkClass =
   'exploration-meta-pill inline-flex items-center justify-center font-mono rounded-full border no-underline cursor-pointer transition-colors hover:bg-slate-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-400 text-xs px-3 py-2 min-h-11 sm:min-h-0 sm:px-2 sm:py-0.5 sm:text-[0.65rem]'
 
-const timelineLabel = computed(
-  () => TIMELINE[props.exploration.timeline]?.title ?? props.exploration.timeline,
-)
+const timelineLabel = computed(() => {
+  const entry = TIMELINE[props.exploration.timeline]
+  if (!entry) return props.exploration.timeline
+  return `${entry.emoji} ${entry.title}`
+})
 const timelineBrowseTo = computed(() => ({
   path: '/all',
   query: { timeline: props.exploration.timeline },

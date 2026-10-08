@@ -41,5 +41,5 @@ export function catalogForkLabels(): string[] {
     .map((id) => TIMELINE[id])
     .filter((entry): entry is NonNullable<typeof entry> => entry !== undefined)
     .sort((a, b) => a.order - b.order)
-    .map((entry) => entry.title)
+    .map((entry) => `${entry.emoji} ${entry.title}`)
 }

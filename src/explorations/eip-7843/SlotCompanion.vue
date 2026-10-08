@@ -2,6 +2,7 @@
 import { computed, watch } from 'vue'
 
 import SegmentedToggleUIC from '@/eComponents/ui/SegmentedToggleUIC.vue'
+import { fypHardforkToggleOptions } from '@/explorations/forkCatalog'
 import { TOPIC_COLORS, topicCSSVars, TOPICS } from '@/explorations/TOPICS'
 import { useCompanionStatusPublisher } from '@/libs/companionStatus'
 
@@ -22,10 +23,7 @@ const SLOT_PRESETS = [
   { value: '32', label: '32', testId: 'slot-preset-32' },
 ]
 
-const hardforkOptions = [
-  { value: 'glamsterdam', label: 'Glamsterdam', testId: 'hardfork-glamsterdam' },
-  { value: 'fusaka', label: 'Fusaka', testId: 'hardfork-fusaka' },
-]
+const hardforkOptions = fypHardforkToggleOptions()
 
 const parsed = computed(() => parseSlotNumber(slotInput.value))
 const appliedSlot = computed(() => (parsed.value.ok ? parsed.value.value : DEFAULT_SLOT))

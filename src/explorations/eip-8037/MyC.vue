@@ -8,6 +8,7 @@ import ScenarioStepNavUIC from '@/eComponents/ui/ScenarioStepNavUIC.vue'
 import SegmentedToggleUIC from '@/eComponents/ui/SegmentedToggleUIC.vue'
 import WidgetChromeUIC from '@/eComponents/ui/WidgetChromeUIC.vue'
 import ExplorationC from '@/explorations/ExplorationC.vue'
+import { fypHardforkToggleOptions } from '@/explorations/forkCatalog'
 import { TOPICS } from '@/explorations/TOPICS'
 import { resolveInitialExample } from '@/libs/exampleFromQuery'
 import { useExplorationExampleQuery } from '@/libs/useExplorationExampleQuery'
@@ -86,10 +87,7 @@ function onGasLimitInput(value: string) {
   if (value === 'classic' || value === 'recommended') setGasLimitMode(value)
 }
 
-const hardforkOptions = [
-  { value: 'glamsterdam', label: 'Glamsterdam', testId: 'hardfork-glamsterdam' },
-  { value: 'fusaka', label: 'Fusaka', testId: 'hardfork-fusaka' },
-]
+const hardforkOptions = fypHardforkToggleOptions()
 
 const gasLimitOptions = computed(() => [
   { value: 'classic', label: formatGas(CLASSIC_GAS_LIMIT), testId: 'gas-limit-classic' },

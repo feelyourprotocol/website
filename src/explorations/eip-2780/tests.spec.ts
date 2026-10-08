@@ -130,9 +130,9 @@ describe('EIP-2780 intrinsic transaction gas exploration', () => {
 
     it('shows a flat 21,000 when Fusaka is selected', async () => {
       const wrapper = await mountWidget()
-      const fusaka = wrapper.findAll('button').find((button) => button.text() === 'Fusaka')
-      expect(fusaka).toBeDefined()
-      await fusaka!.trigger('click')
+      const fusaka = wrapper.find('[data-testid="hardfork-fusaka"]')
+      expect(fusaka.exists()).toBe(true)
+      await fusaka.trigger('click')
       expect(wrapper.find('[data-testid="piece-ledger"]').attributes('data-split')).toBe('false')
       expect(wrapper.find('[data-testid="piece-total"]').text()).toBe('21,000')
       expect(wrapper.find('[data-testid="piece-base"]').text()).toContain('flat 21,000')

@@ -34,16 +34,29 @@ Examples (compare prompts):
 - **PUSH0** (3855) → **`shapella`** → compare **`paris`** then **`shapella`** (`0x5f00` on bytecode).
 - **ModExp repricing** (7883) → **`fusaka`** → compare **`pectra`** then **`fusaka`** ([EIP-7883](/use/eips/eip-7883)).
 
+## Upgrade mascots
+
+From **Paris (The Merge)** on, Ethereum upgrades often have a community mascot ([EIP-8066](https://eips.ethereum.org/EIPS/eip-8066)). The probe exposes them on `namedForks[].mascotEmoji` and on run results as `provenance.forkLabel` / `forkMascotEmoji`. Berlin and London predate that process.
+
+| Fork | Mascot |
+| --- | --- |
+| Paris (Merge) | 🐼 |
+| Shapella | 🦉 |
+| Dencun | 🐡 |
+| Pectra | 🦒 |
+| Fusaka | 🦓 |
+| Glamsterdam | 🐻‍❄️ |
+
 ## Lineage table (historical rows)
 
-| Order | `baseHardfork` | Aliases | Notable activations (full lists in probe) |
-| --- | --- | --- | --- |
-| 0 | `berlin` | — | 2565 ModExp, 2718 typed txs, 2929 cold/warm gas, 2930 access lists |
-| 1 | `london` | — | **1559** fee market, 3198 BASEFEE, 3529 refunds, 3541 initcode prefix |
-| 2 | `paris` | `merge`, `the-merge` | 3675 Merge (not replayable here), 4399 PREVRANDAO |
-| 3 | `shapella` | `shanghai` | 3855 PUSH0, 3860 initcode, 4895 withdrawals (limited in lab) |
-| 4 | `dencun` | `cancun` | 1153 transient storage, 5656 MCOPY, 4844 blobs (no blob txs in lab) |
-| 5 | `pectra` | `prague` | 7702 set-code (`authorizationList` on run_transaction), 2537 BLS precompiles, 7623 calldata |
+| Order | `baseHardfork` | Mascot | Aliases | Notable activations (full lists in probe) |
+| --- | --- | --- | --- | --- |
+| 0 | `berlin` | — | — | 2565 ModExp, 2718 typed txs, 2929 cold/warm gas, 2930 access lists |
+| 1 | `london` | — | — | **1559** fee market, 3198 BASEFEE, 3529 refunds, 3541 initcode prefix |
+| 2 | `paris` | 🐼 | `merge`, `the-merge` | 3675 Merge (not replayable here), 4399 PREVRANDAO |
+| 3 | `shapella` | 🦉 | `shanghai` | 3855 PUSH0, 3860 initcode, 4895 withdrawals (limited in lab) |
+| 4 | `dencun` | 🐡 | `cancun` | 1153 transient storage, 5656 MCOPY, 4844 blobs (no blob txs in lab) |
+| 5 | `pectra` | 🦒 | `prague` | 7702 set-code (`authorizationList` on run_transaction), 2537 BLS precompiles, 7623 calldata |
 
 **Floor:** **Berlin** — Istanbul and earlier hardforks are out of scope for this MCP round.
 

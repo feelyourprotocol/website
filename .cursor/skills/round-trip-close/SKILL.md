@@ -9,7 +9,7 @@ description: >-
 
 # Round-trip close
 
-**Only** after [round-trip](../round-trip-protocol-change/SKILL.md) comic and video (or skip of those asks). Not a general git habit. Standalone widget / engine / comic / video work must not run this.
+**Only** after [round-trip](../round-trip-protocol-change/SKILL.md) comic and video (or skip of those asks). Not a general git habit. Standalone widget / engine / comic / video work must not run this. For non–round-trip multi-repo ship/merge, the human uses **[Unicorn merge 🦄](../unicorn-merge/SKILL.md)** (explicit trigger only).
 
 Target: the confirmed id (`eip-NNNN`). The three siblings: `website`, `mcp-execution-engine`, `mcp-gateway`. Git cwd rules: [git.mdc](../../rules/git.mdc).
 

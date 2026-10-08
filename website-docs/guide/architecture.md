@@ -46,7 +46,7 @@ When instructing an agent: pick the topic that best reflects the **primary conce
 
 ### Timeline
 
-Forks that have explorations — ids in `TIMELINE.ts` match the MCP lineage catalog (`fusaka`, `glamsterdam`, …). From Shapella on, the combined upgrade name is canonical; the EL city name is an alias. Website nav is this subset only (do not add empty historical forks). Role is `historical` | `current` | `preview` (same as MCP `namedForks[].role`). Add a row when an exploration for that fork ships. Keep the row and the explorations after that fork is live on mainnet — role may later become `historical`; do not delete on activation.
+Forks that have explorations — ids in `TIMELINE.ts` match the MCP lineage catalog (`fusaka`, `glamsterdam`, …). From Shapella on, the combined upgrade name is canonical; the EL city name is an alias. Website nav is this subset only (do not add empty historical forks). Role is `historical` | `current` | `preview` (same as MCP `namedForks[].role`). Upgrade mascots ([EIP-8066](https://eips.ethereum.org/EIPS/eip-8066)) live in `forkCatalog.ts` `FORK_MASCOT_EMOJI` (keep in sync with engine `forks/mascots.ts`) and surface on timeline pills, toggles, and MCP probe/provenance. Add a row when an exploration for that fork ships. Keep the row and the explorations after that fork is live on mainnet — role may later become `historical`; do not delete on activation.
 
 ### Tags
 

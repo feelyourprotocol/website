@@ -225,9 +225,9 @@ describe('EIP-7976 calldata floor exploration', () => {
 
     it('shows the Fusaka floor of 10 per zero byte', async () => {
       const wrapper = await mountWidget()
-      const fusaka = wrapper.findAll('button').find((button) => button.text() === 'Fusaka')
-      expect(fusaka).toBeDefined()
-      await fusaka!.trigger('click')
+      const fusaka = wrapper.find('[data-testid="hardfork-fusaka"]')
+      expect(fusaka.exists()).toBe(true)
+      await fusaka.trigger('click')
       await vi.waitFor(() => {
         expect(wrapper.find('[data-testid="charged"]').text()).toBe('22,000')
       })

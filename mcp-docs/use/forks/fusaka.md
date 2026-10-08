@@ -1,4 +1,4 @@
-# Current mainnet EL — Fusaka
+# 🦓 Current mainnet EL — Fusaka
 
 > **Status:** **Live on the public MCP.** **`baselineForkId`** in the probe — today’s mainnet execution-layer rules.
 
